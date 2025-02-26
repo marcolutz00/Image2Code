@@ -15,7 +15,7 @@ async def main():
     client = LLMClient(STRATEGY)
 
     result = await client.generate_code(PROMPT, IMAGE_PATH)
-    print("Ergebnis:", result)
+    print("Ergebnis: ", result)
 
 
 if __name__ == "__main__":
