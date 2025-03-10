@@ -1,18 +1,44 @@
-# FinalProject
+# First Steps
+1. Install the requirements: `pip install -r requirements.txt`
+2. Add the API-Keys to `keys.json`
 
-/practical : Practical Implementation of the Thesis (e.g. Code, Pipeline, ...)<br />
-/theoretical : Theoretical Implementation of the Thesis (e.g. Latex)
+# Files
+### /practical:
+- **`keys.json`**: Contains the API-Keys for the different LLMs & ImgBB. Format: 
+    "openai": {
+      "api_key": "...",
+      "model": "gpt-4o"
+    },
+    "claude": {
+      "api_key": "...",
+      "model": "claude-3"
+    },
+- **`pipeline.py`**: Contains the Pipeline class which is responsible for the whole process of Image2Code.
 
-To get started:
-export OPENAI_API_KEY="xyz"
+#### /practical/API
+- **`apiCalls.py`**: Contains LLM-Client class which allows to use different LLMs (Strategies).
+
+##### /practical/API/Strategies
+- **`LLMStrategy.py`**: Abstract Base-Class `LLMStrategy` for different API-Strategies.
+
+#### /practical/Data:
+- Input (Images) and Output (Code) of the LLM-Client.
+
+#### /practical/Utils
+- Util functions for the Pipeline.
 
 
-# Possible similarity scores:
+### /theoretical:
+- Space for the theoretical, written part of the thesis.
+
+
+
+# Background Information
+## Possible similarity scores:
 - Structural Similary Index (SSIM): visual similarity
 - TreeBLEU - measures the match of the DOM tree structure
 - ClipScore
 
-
-# Accessability
+## Accessability
 - WCAG
 - Tools: AChecker, WAVE
