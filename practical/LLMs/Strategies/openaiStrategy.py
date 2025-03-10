@@ -19,8 +19,19 @@ class OpenAIStrategy(LLMStrategy):
 
             messages=[
                 {"role": "system", "content": f"Imagine that you are a senior frontend developper focusing on implementing React Code from UI-Images. Please only answer with the code, meaning without any explanation."},
-                {"role": "user", "content": f"{prompt}. Image Information: {image_data}"}
-                #{"role": "user", "content": f"{prompt}. This is the image: test"}
+                # {"role": "system", "content": f"Imagine that you are a are trying to explain the image to someone. Please describe the image in a few words."},
+
+                {"role": "user", "content": 
+                    [
+                        {"type": "text", "text": f"{prompt}"},
+                        {
+                            "type": "image_url",
+                            "image_url": {
+                                "url": f"{image_data}",
+                            },
+                        },
+                    ],
+                }
             ]
         )
         return response.choices[0].message.content
