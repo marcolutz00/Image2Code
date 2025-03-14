@@ -1,37 +1,90 @@
+from datasets import load_dataset
+from huggingface_hub import login
+from PIL import Image
 import os
 import json
-import base64
-import requests
+import asyncio
+from playwright.async_api import async_playwright
+import os 
 
-keys_path = os.path.join(os.path.dirname(__file__), '..', 'keys.json')
+'''
+Important: 
+SALt-NLP/Design2Code-hf -> 77.6 MB
+xcodemind/webcode2m -> 1.1 TB
+'''
+DATASETS = ["SALT-NLP/Design2Code-hf", "biglab/webui-7k-elements", "xcodemind/webcode2m"]
+DIR_PATH = os.path.dirname(os.path.realpath(__file__))
+IMAGE_PATH = f"{DIR_PATH}/Data/images"
+HTML_PATH = f"{DIR_PATH}/Data/code"
 
-with open(keys_path) as f:
-    keys = json.load(f)
-    imgbb_api_key = keys["imgbb"]["api_key"]
+async def process_html_file(html_path):
+    # Browser Session
+    async with async_playwright() as p:
+        # TODO: Check if size of screen correct
+        browser = await p.chromium.launch()
+        page = await browser.new_page()
+        await page.goto(f"file://{os.path.abspath(html_path)}")
 
-print(imgbb_api_key)
+        # DOM
+        dom_html = await page.content()
 
-# Load images from data folder
-input_folder = os.path.join(os.path.dirname(__file__), '..', 'Data', 'Input')
-images = [f for f in os.listdir(input_folder) if os.path.isfile(os.path.join(input_folder, f))]
+        # List Elemente
+        elements = await page.query_selector_all("*")
 
-print(images)
+        # TODO: CHeck again if correct
+        bounding_boxes = []
+        # for elem in elements:
+        #     box = await elem.bounding_box()
+        #     tag_name = await elem.evaluate("(el) => el.tagName")
+        #     # ggf. aria-label, alt etc. abrufen
+        #     aria_label = await elem.get_attribute("aria-label")
+        #     bounding_boxes.append({
+        #         "tag": tag_name,
+        #         "bbox": box,
+        #         "ariaLabel": aria_label,
+        #     })
 
-# Encode images to base64
-encoded_images = {}
-for image in images:
-    with open(os.path.join(input_folder, image), "rb") as img_file:
-        encoded_images[image] = base64.b64encode(img_file.read()).decode('utf-8')
+        # Accessibility-Snapshot
+        a11y_snapshot = await page.accessibility.snapshot()
 
-# print(encoded_images["test_youtube.png"])
+        # TODO: Here axe-core
+        
+        await browser.close()
 
-# Upload images to imgbb
-expiration = 600 # 10 min
-
-url = f"https://api.imgbb.com/1/upload?expiration={expiration}&key={imgbb_api_key}"
+    return dom_html, bounding_boxes, a11y_snapshot
 
 
-data = {"image": encoded_images["test_youtube.png"]}
-response = requests.post(url, data=data)
+async def main():
+    # Api key for huggingface
+    keys_path = os.path.join(DIR_PATH, '..', 'keys.json')
+    with open(keys_path) as f:
+        huggingface_token = json.load(f)["huggingface"]["api_key"]
 
-print(response.json())
+    login(huggingface_token)
+
+    dataset = load_dataset(DATASETS[0], split="train", streaming=True)
+
+    # Counter as ID
+    counter = 1
+
+    for example in dataset:
+        img = example["image"]
+        # img.show()
+        text = example["text"]
+
+        # Save image and html
+        path = f"{DIR_PATH}/{counter}"
+        img.save(f"{path}.png")
+        with open(f"{path}.html", "w") as f:
+            f.write(text)
+
+        dom_html, bounding_boxes, a11y_snapshot = await process_html_file(f"{path}.html")
+
+
+        counter += 1
+        # Break after first
+        break
+
+
+if __name__ == "__main__":
+    asyncio.run(main())

@@ -6,12 +6,10 @@
 ### /practical:
 - **`keys.json`**: Contains the API-Keys for the different LLMs & ImgBB. Format: 
     "openai": {
-      "api_key": "...",
-      "model": "gpt-4o"
+      "api_key": "..."
     },
     "claude": {
-      "api_key": "...",
-      "model": "claude-3"
+      "api_key": "..."
     },
 - **`pipeline.py`**: Contains the Pipeline class which is responsible for the whole process of Image2Code.
 
