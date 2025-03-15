@@ -33,19 +33,21 @@ async def process_html_file(html_path):
 
         # TODO: CHeck again if correct
         bounding_boxes = []
-        # for elem in elements:
-        #     box = await elem.bounding_box()
-        #     tag_name = await elem.evaluate("(el) => el.tagName")
-        #     # ggf. aria-label, alt etc. abrufen
-        #     aria_label = await elem.get_attribute("aria-label")
-        #     bounding_boxes.append({
-        #         "tag": tag_name,
-        #         "bbox": box,
-        #         "ariaLabel": aria_label,
-        #     })
+        for element in elements:
+            # get bounding box, tag name and aria-label for each element
+            bounding_box = await element.bounding_box()
+            tag_name = await element.evaluate("(elem) => elem.tagName")
+            aria_label = await element.get_attribute("aria-label")
 
-        # Accessibility-Snapshot
-        a11y_snapshot = await page.accessibility.snapshot()
+            # All information into dict
+            bounding_boxes.append({
+                "tag": tag_name,
+                "bbox": bounding_box,
+                "ariaLabel": aria_label,
+            })
+
+        # Accessibility-Snapshot - Infos here: https://ambient.digital/wissen/blog/a11y-was-ist-das/
+        accessibility_tree = await page.accessibility.snapshot()
 
         # TODO: Here axe-core
         
