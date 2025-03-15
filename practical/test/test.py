@@ -16,6 +16,11 @@ DATASETS = ["SALT-NLP/Design2Code-hf", "biglab/webui-7k-elements", "xcodemind/we
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 IMAGE_PATH = f"{DIR_PATH}/Data/images"
 HTML_PATH = f"{DIR_PATH}/Data/code"
+NODE_MODULES_PATH = f"/usr/local/lib/node_modules"
+
+# Use axe-core, infos here: https://hackmd.io/@gabalafou/ByvwfEC0j
+AXE_CORE_PATH = "/usr/local/lib/node_modules/axe-core/axe.min.js"
+
 
 async def process_html_file(html_path):
     # Browser Session
@@ -25,13 +30,13 @@ async def process_html_file(html_path):
         page = await browser.new_page()
         await page.goto(f"file://{os.path.abspath(html_path)}")
 
-        # DOM
+        # 1. DOM
         dom_html = await page.content()
 
         # List Elemente
         elements = await page.query_selector_all("*")
 
-        # TODO: CHeck again if correct
+        # 2. Bounding-Boxes
         bounding_boxes = []
         for element in elements:
             # get bounding box, tag name and aria-label for each element
@@ -46,14 +51,27 @@ async def process_html_file(html_path):
                 "ariaLabel": aria_label,
             })
 
+        # 3. Accessibility Tree
         # Accessibility-Snapshot - Infos here: https://ambient.digital/wissen/blog/a11y-was-ist-das/
         accessibility_tree = await page.accessibility.snapshot()
 
-        # TODO: Here axe-core
+        # 4. Violations
+        # 4.1 Axe-Core
+        # axe-core inject
+        await page.add_script_tag(path=AXE_CORE_PATH)
+        axe_results = await page.evaluate("""
+            async () => {
+                return await axe.run();
+            }
+        """)
+
+        axe_violations = axe_results["violations"]
+
+        # 4.2 TODO: Other violations
         
         await browser.close()
 
-    return dom_html, bounding_boxes, a11y_snapshot
+    return dom_html, bounding_boxes, accessibility_tree, axe_violations
 
 
 async def main():
@@ -80,7 +98,7 @@ async def main():
         with open(f"{path}.html", "w") as f:
             f.write(text)
 
-        dom_html, bounding_boxes, a11y_snapshot = await process_html_file(f"{path}.html")
+        dom_html, bounding_boxes, accessibility_tree, axe_violations = await process_html_file(f"{path}.html")
 
 
         counter += 1
