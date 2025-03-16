@@ -17,6 +17,8 @@ DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 IMAGE_PATH = f"{DIR_PATH}/Data/images"
 HTML_PATH = f"{DIR_PATH}/Data/code"
 NODE_MODULES_PATH = f"/usr/local/lib/node_modules"
+DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'Data')
+
 
 # Use axe-core, infos here: https://hackmd.io/@gabalafou/ByvwfEC0j
 AXE_CORE_PATH = "/usr/local/lib/node_modules/axe-core/axe.min.js"
@@ -78,8 +80,6 @@ async def process_html_file(html_path):
 async def create_data_entry(image_path):
     dom_html, bounding_boxes, accessibility_tree, axe_violations = await process_html_file(image_path)
 
-    DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'Data')
-
     # save information as json
     with open(f"{DATA_PATH}/dom_html.json", "w") as f:
         json.dump(dom_html, f)
@@ -114,7 +114,7 @@ async def main():
         text = example["text"]
 
         # Save image and html
-        path = f"{DIR_PATH}/{counter}"
+        path = f"{DATA_PATH}/{counter}"
         img.save(f"{path}.png")
         with open(f"{path}.html", "w") as f:
             f.write(text)
