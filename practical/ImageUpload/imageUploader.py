@@ -46,28 +46,47 @@ class ImageUploader:
         except Exception as e:
             logger.error(f"Error uploading image {name}: {str(e)}")
 
-    def upload_image(self):
-        input_folder = os.path.join(os.path.dirname(__file__), '..', 'Data', 'Input')
-        images = [f for f in os.listdir(input_folder) if os.path.isfile(os.path.join(input_folder, f))]
-        # print(images)
 
-        # Encode images to base64
-        encoded_images = {}
-        for image in images:
-            with open(os.path.join(input_folder, image), "rb") as img_file:
-                encoded_images[image] = base64.b64encode(img_file.read()).decode('utf-8')
+    def upload_single_image(self, image_path):
+        try:
+            image_name = os.path.basename(image_path)
 
-        expiration = 600 # 10 min
+            with open(image_path, "rb") as file:
+                encoded_image = base64.b64encode(file.read()).decode('utf-8')
+            
+            expiration = 600 # 10 min
+            url = f"https://api.imgbb.com/1/upload?expiration={expiration}&key={self.imgbb_api_key}"
 
-        url = f"https://api.imgbb.com/1/upload?expiration={expiration}&key={self.imgbb_api_key}"
-
-        # Links for the images on imgbb
-        links = {}
-        for(image, encoded_image) in encoded_images.items():
             data = {"image": encoded_image}
-            self.get_imgbb_links(links, image, data, url)
+            links = {}
+            self.get_imgbb_links(links, image_name, data, url)
+            
+            if image_name in links:
+                return links[image_name]
+            return None
+        except Exception as e:
+            logger.error(f"Error uploading single image {image_path}: {str(e)}")
+            return None
 
-        # Return the links of the images which are now accessible for the LLMs
+
+    def upload_images(self):
+        input_folder = os.path.join(os.path.dirname(__file__), '..', 'Data', 'Input')
+        links = {}
+
+        try:
+            images = [f for f in os.listdir(input_folder) if os.path.isfile(os.path.join(input_folder, f))]
+            # print(images)
+            for image in images:
+                image_path = os.path.join(input_folder, image)
+                image_url = self.upload_single_image(image_path)
+
+                if image_url:
+                    links[image] = image_url
+
+        except Exception as e:
+            logger.error(f"Error with Images: {str(e)}")
+            return {}
+        
         return links
         
 

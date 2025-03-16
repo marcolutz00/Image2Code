@@ -75,6 +75,26 @@ async def process_html_file(html_path):
     return dom_html, bounding_boxes, accessibility_tree, axe_violations
 
 
+async def create_data_entry(image_path):
+    dom_html, bounding_boxes, accessibility_tree, axe_violations = await process_html_file(image_path)
+
+    DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'Data')
+
+    # save information as json
+    with open(f"{DATA_PATH}/dom_html.json", "w") as f:
+        json.dump(dom_html, f)
+
+    with open(f"{DATA_PATH}/bounding_boxes.json", "w") as f:
+        json.dump(bounding_boxes, f)
+    
+    with open(f"{DATA_PATH}/accessibility_tree.json", "w") as f:
+        json.dump(accessibility_tree, f)
+    
+    with open(f"{DATA_PATH}/axe_violations.json", "w") as f:
+        json.dump(axe_violations, f)
+    
+
+
 async def main():
     # Api key for huggingface
     keys_path = os.path.join(DIR_PATH, '..', 'keys.json')
@@ -99,7 +119,7 @@ async def main():
         with open(f"{path}.html", "w") as f:
             f.write(text)
 
-        dom_html, bounding_boxes, accessibility_tree, axe_violations = await process_html_file(f"{path}.html")
+        await create_data_entry(f"{path}.html")
 
 
         counter += 1
