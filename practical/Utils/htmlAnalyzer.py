@@ -3,7 +3,6 @@ from huggingface_hub import login
 from PIL import Image
 import os
 import json
-import asyncio
 from playwright.async_api import async_playwright
 import os 
 import datetime
@@ -84,7 +83,7 @@ async def create_data_entry(name, html_path):
     data = {
         "general": {
             "source": html_path,
-            "date": datetime.datetime.now(),
+            "date": datetime.datetime.now().isoformat()
         },
         "dom": dom_html,
         "bounding_boxes": bounding_boxes,
@@ -99,37 +98,3 @@ async def create_data_entry(name, html_path):
         json.dump(data, f)
 
 
-async def main():
-    # Api key for huggingface
-    keys_path = os.path.join(DIR_PATH, '..', 'keys.json')
-    with open(keys_path) as f:
-        huggingface_token = json.load(f)["huggingface"]["api_key"]
-
-    login(huggingface_token)
-
-    dataset = load_dataset(DATASETS[0], split="train", streaming=True)
-
-    # Counter as ID
-    counter = 1
-
-    for example in dataset:
-        img = example["image"]
-        # img.show()
-        text = example["text"]
-
-        # Save image and html
-        path = f"{DATA_PATH}/{counter}"
-        img.save(f"{path}.png")
-        with open(f"{path}.html", "w") as f:
-            f.write(text)
-
-        await create_data_entry(f"{path}.html")
-
-
-        counter += 1
-        # Break after first
-        break
-
-
-if __name__ == "__main__":
-    asyncio.run(main())

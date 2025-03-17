@@ -90,7 +90,7 @@ async def main():
     image_externally_hosted = True
 
     image_dir = os.path.join(INPUT_PATH, 'images')
-    test_image = os.path.join(image_dir, 'test_w3.png')
+    test_image = os.path.join(image_dir, '1.png')
 
     image_information = upload_image(single_image=True, image_path=test_image)
     
@@ -98,11 +98,14 @@ async def main():
     client = LLMClient(strategy)
     
     # 5. Let LLMs create code out of image(s)
+    # 6. Analyze outputs
     for image_name, link in image_information.items():
         result = await process_image(client, image_name, link, prompt, image_externally_hosted)
         print(f"Short summary: {result[:50]} ... (see more in path)")
+
+        await htmlAnalyzer.create_data_entry(image_name, os.path.join(OUTPUT_PATH, MODEL, 'html', f"{image_name}.html"))
     
-    # 6. Analyze outputs
+    
 
 
 if __name__ == "__main__":
