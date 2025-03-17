@@ -6,6 +6,7 @@ import json
 import asyncio
 from playwright.async_api import async_playwright
 import os 
+import datetime
 
 '''
 Important: 
@@ -20,7 +21,7 @@ NODE_MODULES_PATH = f"/usr/local/lib/node_modules"
 DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'Data')
 
 
-# Use axe-core, infos here: https://hackmd.io/@gabalafou/ByvwfEC0j
+#  axe-core, infos here: https://hackmd.io/@gabalafou/ByvwfEC0j
 AXE_CORE_PATH = "/usr/local/lib/node_modules/axe-core/axe.min.js"
 
 
@@ -77,22 +78,25 @@ async def process_html_file(html_path):
     return dom_html, bounding_boxes, accessibility_tree, axe_violations
 
 
-async def create_data_entry(image_path):
-    dom_html, bounding_boxes, accessibility_tree, axe_violations = await process_html_file(image_path)
+async def create_data_entry(name, html_path):
+    dom_html, bounding_boxes, accessibility_tree, axe_violations = await process_html_file(html_path)
 
-    # save information as json
-    with open(f"{DATA_PATH}/dom_html.json", "w") as f:
-        json.dump(dom_html, f)
+    data = {
+        "general": {
+            "source": html_path,
+            "date": datetime.datetime.now(),
+        },
+        "dom": dom_html,
+        "bounding_boxes": bounding_boxes,
+        "accessibility_tree": accessibility_tree,
+        "axe_violations": axe_violations
+    }
 
-    with open(f"{DATA_PATH}/bounding_boxes.json", "w") as f:
-        json.dump(bounding_boxes, f)
-    
-    with open(f"{DATA_PATH}/accessibility_tree.json", "w") as f:
-        json.dump(accessibility_tree, f)
-    
-    with open(f"{DATA_PATH}/axe_violations.json", "w") as f:
-        json.dump(axe_violations, f)
-    
+    json_dir = os.path.join(html_path, '..', 'json')
+    json_path = os.path.join(json_dir, f"{name}.json")
+
+    with open(json_path, "w") as f:
+        json.dump(data, f)
 
 
 async def main():

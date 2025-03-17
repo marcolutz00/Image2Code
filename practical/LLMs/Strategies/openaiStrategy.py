@@ -18,9 +18,7 @@ class OpenAIStrategy(LLMStrategy):
             model=self.used_model,
 
             messages=[
-                {"role": "system", "content": f"Imagine that you are a senior frontend developper focusing on implementing React Code from UI-Images. Please only answer with the code, meaning without any explanation."},
-                # {"role": "system", "content": f"Imagine that you are a are trying to explain the image to someone. Please describe the image in a few words."},
-
+                {"role": "system", "content": f"Imagine that you are a senior frontend developper focusing on implementing HTML/CSS from UI-Images. It is the goal to copy the image as precise as possible. Please only answer with the code, meaning without any explanation."},
                 {"role": "user", "content": 
                     [
                         {"type": "text", "text": f"{prompt}"},

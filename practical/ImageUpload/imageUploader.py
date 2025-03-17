@@ -6,7 +6,9 @@ import logging
 from datetime import datetime
 
 # Api keys needed for the image upload to imgbb
-keys_path = os.path.join(os.path.dirname(__file__), '..', 'keys.json')
+KEYS_PATH = os.path.join(os.path.dirname(__file__), '..', 'keys.json')
+# Expiration time for the image on imgbb
+EXPIRATION = 600 # 10 min
 
 # Log directory
 log_dir = os.path.join(os.path.dirname(__file__), '..', 'logs')
@@ -27,7 +29,7 @@ logger.addHandler(file_handler)
 
 class ImageUploader:
     def __init__(self):
-        with open(keys_path) as f:
+        with open(KEYS_PATH) as f:
             keys = json.load(f)
             self.imgbb_api_key = keys["imgbb"]["api_key"]
 
@@ -54,15 +56,16 @@ class ImageUploader:
             with open(image_path, "rb") as file:
                 encoded_image = base64.b64encode(file.read()).decode('utf-8')
             
-            expiration = 600 # 10 min
-            url = f"https://api.imgbb.com/1/upload?expiration={expiration}&key={self.imgbb_api_key}"
+            
+            url = f"https://api.imgbb.com/1/upload?expiration={EXPIRATION}&key={self.imgbb_api_key}"
 
             data = {"image": encoded_image}
             links = {}
             self.get_imgbb_links(links, image_name, data, url)
             
             if image_name in links:
-                return links[image_name]
+                return links
+            
             return None
         except Exception as e:
             logger.error(f"Error uploading single image {image_path}: {str(e)}")
