@@ -1,8 +1,13 @@
 from skimage.metrics import structural_similarity as ssim
 from skimage.io import imread
 import os
+import sys
 
-DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'Data', 'Input')
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import Utils.utils as utils
+
+
+DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'Data', 'Input', 'images')
 
 class VisualBenchmarks:
     '''
@@ -31,21 +36,10 @@ class VisualBenchmarks:
         Maybe try this: https://www.geeksforgeeks.org/html-dom-comparedocumentposition-method/
 
     '''
-    def domSimilarity(self, image1, image2):
-        print("test")
-    
-
-    def codeQuality(self, code1, code2):
-        print("test")
 
     
 
-    def cutColorChannels(self, image):
-        if(image.shape[2] == 4):
-            return image[:, :, :3]
-    
-
-
+# Tests
 obj = VisualBenchmarks()
 image1_path = os.path.join(DATA_PATH, 'test_w3.png')
 image2_path = os.path.join(DATA_PATH, 'test_w3.png')
@@ -56,9 +50,9 @@ image2 = imread(image2_path)
 image3 = imread(image3_path)
 
 # We only need 3 color channels, so we can ignore the 4th channel
-image1 = obj.cutColorChannels(image1)
-image2 = obj.cutColorChannels(image2)
-image3 = obj.cutColorChannels(image3)
+image1 = utils.cutColorChannels(image1)
+image2 = utils.cutColorChannels(image2)
+image3 = utils.cutColorChannels(image3)
 
 ssim_val = obj.ssim(image1, image2)
 print(ssim_val)

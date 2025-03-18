@@ -6,6 +6,9 @@ import base64
 import os
 from . import tokenCounter as tc
 
+'''
+    Util-Functions for API-Calls
+'''
 # Load Keys
 def util_load_keys(company):
     config_path = Path(__file__).resolve().parent.parent / "keys.json"
@@ -26,6 +29,9 @@ def util_save_code(code, file_name="generated_code.html"):
     print(f"Code gespeichert als {file_name}")
 
 
+'''
+    Util-Functions for HTML/CSS Analysis
+'''
 # Check first if any compiler errors
 def util_validate_html(generatedHtml_path):
     # check if mistakes
@@ -37,6 +43,9 @@ def util_validate_html(generatedHtml_path):
         return False
 
 
+'''
+    Util-Functions for Images & Screenshots
+'''
 # Rendering the code and doing a screenshot of it afterwards (headless)
 def util_render_and_screenshot(generatedHtml_path, screenshot_path):
     with sync_playwright() as playwright:
@@ -59,5 +68,10 @@ def util_encode_image(self, image_data):
     
     return b64_img
 
+
+# needed for SSIM - only 3 color channels necessary, 4th channel is alpha and can be deleted
+def cutColorChannels(image):
+    if(image.shape[2] == 4):
+        return image[:, :, :3]
 
 
