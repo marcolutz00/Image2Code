@@ -40,7 +40,7 @@ def util_validate_html(generatedHtml_path):
 # Rendering the code and doing a screenshot of it afterwards (headless)
 def util_render_and_screenshot(generatedHtml_path, screenshot_path):
     with sync_playwright() as playwright:
-        chromium = playwright.chromium # oder "firefox" oder "webkit".
+        chromium = playwright.chromium # other: "firefox" oder "webkit".
         browser = chromium.launch(headless=True)
         page = browser.new_page()
         page.goto(generatedHtml_path)

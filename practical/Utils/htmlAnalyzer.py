@@ -1,25 +1,15 @@
-from datasets import load_dataset
-from huggingface_hub import login
 from PIL import Image
 import os
 import json
 from playwright.async_api import async_playwright
 import os 
 import datetime
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from practical.Utils.utils import util_render_and_screenshot
 
-'''
-Important: 
-SALt-NLP/Design2Code-hf -> 77.6 MB
-xcodemind/webcode2m -> 1.1 TB
-'''
-DATASETS = ["SALT-NLP/Design2Code-hf", "biglab/webui-7k-elements", "xcodemind/webcode2m"]
+
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
-IMAGE_PATH = f"{DIR_PATH}/Data/images"
-HTML_PATH = f"{DIR_PATH}/Data/code"
-NODE_MODULES_PATH = f"/usr/local/lib/node_modules"
-DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'Data')
-
-
 #  axe-core, infos here: https://hackmd.io/@gabalafou/ByvwfEC0j
 AXE_CORE_PATH = "/usr/local/lib/node_modules/axe-core/axe.min.js"
 
@@ -77,7 +67,8 @@ async def process_html_file(html_path):
     return dom_html, bounding_boxes, accessibility_tree, axe_violations
 
 
-async def create_data_entry(name, html_path):
+async def create_data_entry(name, html_path, llm_output):
+    # 1. Analyze HTML
     dom_html, bounding_boxes, accessibility_tree, axe_violations = await process_html_file(html_path)
 
     data = {
@@ -96,5 +87,12 @@ async def create_data_entry(name, html_path):
 
     with open(json_path, "w") as f:
         json.dump(data, f)
+
+    # 2. Do screenshot -> only necessary if LLM-Output
+    if llm_output:
+        image_path = os.path.join(html_path, '..', 'images', f"{name}.png")
+        await util_render_and_screenshot(html_path, image_path)
+
+
 
 

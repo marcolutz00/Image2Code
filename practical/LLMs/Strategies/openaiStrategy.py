@@ -17,6 +17,7 @@ class OpenAIStrategy(LLMStrategy):
         response = self.client.chat.completions.create(
             model=self.used_model,
 
+            # Informatino here: https://platform.openai.com/docs/guides/images?api-mode=chat
             messages=[
                 {"role": "system", "content": f"Imagine that you are a senior frontend developper focusing on implementing HTML/CSS from UI-Images. It is the goal to copy the image as precise as possible. Please only answer with the code, meaning without any explanation."},
                 {"role": "user", "content": 
@@ -26,6 +27,8 @@ class OpenAIStrategy(LLMStrategy):
                             "type": "image_url",
                             "image_url": {
                                 "url": f"{image_data}",
+                                # High detail for better results but also more expensive (default: "auto")
+                                "detail": "high",
                             },
                         },
                     ],

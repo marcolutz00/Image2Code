@@ -71,8 +71,8 @@ async def analyze_outputs(image_name):
     output_html_path = os.path.join(OUTPUT_PATH, MODEL, 'html', f"{image_name}.html")
 
     # Create DOM, Bounding-Boxes, Accessibility-Tree, Accessibility Violations of Input and Output
-    input_json_path = htmlAnalyzer.create_data_entry(image_name, input_html_path)
-    output_json_path = htmlAnalyzer.create_data_entry(image_name, output_html_path)
+    await htmlAnalyzer.create_data_entry(image_name, input_html_path, False)
+    await htmlAnalyzer.create_data_entry(image_name, output_html_path, True)
 
     # TODO: Now use Benchmarks to compare the two outputs
 
@@ -98,14 +98,16 @@ async def main():
     client = LLMClient(strategy)
     
     # 5. Let LLMs create code out of image(s)
-    # 6. Analyze outputs
     for image_name, link in image_information.items():
         result = await process_image(client, image_name, link, prompt, image_externally_hosted)
         print(f"Short summary: {result[:50]} ... (see more in path)")
 
-        await htmlAnalyzer.create_data_entry(image_name, os.path.join(OUTPUT_PATH, MODEL, 'html', f"{image_name}.html"))
+        # 6. Analyze outputs for Input & Output
+        await analyze_outputs(image_name)
     
-    
+
+    # Tests:
+    # await analyze_outputs('1.png')
 
 
 if __name__ == "__main__":
