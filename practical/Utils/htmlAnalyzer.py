@@ -82,7 +82,9 @@ async def create_data_entry(name, html_path, llm_output):
         "axe_violations": axe_violations
     }
 
-    json_dir = os.path.join(html_path, '..', 'json')
+    html_dir = os.path.dirname(html_path)
+
+    json_dir = os.path.join(html_dir, '..', 'json')
     json_path = os.path.join(json_dir, f"{name}.json")
 
     with open(json_path, "w") as f:
@@ -90,7 +92,7 @@ async def create_data_entry(name, html_path, llm_output):
 
     # 2. Do screenshot -> only necessary if LLM-Output
     if llm_output:
-        image_path = os.path.join(html_path, '..', 'images', f"{name}.png")
+        image_path = os.path.join(html_dir, '..', 'images', f"{name}.png")
         await util_render_and_screenshot(html_path, image_path)
 
 

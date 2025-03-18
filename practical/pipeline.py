@@ -66,6 +66,9 @@ async def analyze_outputs(image_name):
         1. Structural Similarity. Create Accessibility-Tree, Bounding-Boxes, DOM-Similarity, Code-Quality
         2. Visual Similarity: Create Screenshots 
     '''
+    # get basename
+    image_name = os.path.splitext(image_name)[0]
+
     # 1. Structural Similarity
     input_html_path = os.path.join(INPUT_PATH, 'html', f"{image_name}.html")
     output_html_path = os.path.join(OUTPUT_PATH, MODEL, 'html', f"{image_name}.html")
@@ -92,22 +95,22 @@ async def main():
     image_dir = os.path.join(INPUT_PATH, 'images')
     test_image = os.path.join(image_dir, '1.png')
 
-    image_information = upload_image(single_image=True, image_path=test_image)
+    # image_information = upload_image(single_image=True, image_path=test_image)
     
     # 4. Create LLM-Client for model strategy
     client = LLMClient(strategy)
     
     # 5. Let LLMs create code out of image(s)
-    for image_name, link in image_information.items():
-        result = await process_image(client, image_name, link, prompt, image_externally_hosted)
-        print(f"Short summary: {result[:50]} ... (see more in path)")
+    # for image_name, link in image_information.items():
+    #     result = await process_image(client, image_name, link, prompt, image_externally_hosted)
+    #     print(f"Short summary: {result[:50]} ... (see more in path)")
 
-        # 6. Analyze outputs for Input & Output
-        await analyze_outputs(image_name)
+    #     # 6. Analyze outputs for Input & Output
+    #     await analyze_outputs(image_name)
     
 
     # Tests:
-    # await analyze_outputs('1.png')
+    await analyze_outputs('1.png')
 
 
 if __name__ == "__main__":

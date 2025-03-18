@@ -5,16 +5,36 @@ import os
 DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'Data', 'Input')
 
 class VisualBenchmarks:
-    # https://scikit-image.org/docs/0.24.x/auto_examples/transform/plot_ssim.html
+    '''
+        SSIM: Structural Similarity Index
+        Compares images based on luminance, contrast and structure (see Wiki)
+        https://scikit-image.org/docs/0.24.x/auto_examples/transform/plot_ssim.html
+    '''
     def ssim(self, image1, image2):
         return ssim(image1, image2, win_size=7, channel_axis=-1)
     
+    '''
+        tbd.
+        Bounding-Boxes: 
+        Compares two images based on the bounding boxes of the elements
+        Problems: Different amount of elements in input and generated code
+        How to compare? Maybe matching of elements first - but how to match?
+    '''
     def boundingBoxes(self, code1, code2):
         print("test")
 
+    '''
+        tbd 
+        DOM-Similarity:
+        Compares two images based on the DOM-Tree
+        Similar problems as with bounding boxes - how to compare?
+        Maybe try this: https://www.geeksforgeeks.org/html-dom-comparedocumentposition-method/
+
+    '''
     def domSimilarity(self, image1, image2):
         print("test")
     
+
     def codeQuality(self, code1, code2):
         print("test")
 
