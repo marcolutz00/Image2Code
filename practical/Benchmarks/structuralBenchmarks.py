@@ -4,6 +4,7 @@ import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import Utils.utils as utils
 import Benchmarks.Implementation.treeBleu as treeBleu
+import Benchmarks.Implementation.textSimilarity as textSimilarity
 
 class StructuralBenchmarks:
     def __init__(self):
@@ -11,6 +12,15 @@ class StructuralBenchmarks:
 
     def domSimilarity(self, code1, code2):
         print("test")
+
+    
+    '''
+        Text-Similarity:
+        Is based on the SequenceMatcher from the difflib library
+    '''
+    def textSimilarity(self, code1_path, code2_path):
+        score = textSimilarity.text_similarity_score(code1_path, code2_path)
+        self.obj_structuralBenchmark["textSimilarity"] = score
     
 
     '''
