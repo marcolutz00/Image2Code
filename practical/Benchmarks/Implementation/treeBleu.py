@@ -1,15 +1,19 @@
 from bs4 import BeautifulSoup
+# Info BS4: https://www.twilio.com/de-de/blog/web-scraping-und-parsen-von-html-python-mit-beautiful-soup , https://www.crummy.com/software/BeautifulSoup/bs4/doc/
 import os
 
 DIR_PATH = os.path.join(os.path.dirname(__file__))
-
-# Info BS4: https://www.twilio.com/de-de/blog/web-scraping-und-parsen-von-html-python-mit-beautiful-soup , https://www.crummy.com/software/BeautifulSoup/bs4/doc/
+# For tests
+DATA_PATH = os.path.join(DIR_PATH, '..', '..', 'Data')
+INPUT_HTML_PATH = os.path.join(DATA_PATH, 'Input', 'html')
+OUTPUT_HTML_PATH = os.path.join(DATA_PATH, 'Output', 'openai', 'html')
 
 
 def rec_get_tree_height1(bs4_obj, storage_subtrees):
     unnecessary_elements = ["meta", "script", "style", "link"]
 
     elements = bs4_obj.find_all(recursive=False)
+
     # only names of html elements
     names = []
     for element in elements:
@@ -18,7 +22,7 @@ def rec_get_tree_height1(bs4_obj, storage_subtrees):
 
     if names:
         subtree_height1 = f"{bs4_obj.name} -> {', '.join(names)}"
-        storage_subtrees.append(subtree_height1)
+        storage_subtrees.add(subtree_height1)
         # print(subtree_height1)
     
     for element in elements:
@@ -35,9 +39,9 @@ def treeBleu_score(code1, code2):
     bs4_obj1 = BeautifulSoup(code1, 'html.parser')
     bs4_obj2 = BeautifulSoup(code2, 'html.parser')
 
-    # Storage for found 1-height subtrees
-    storage_subtrees1 = []
-    storage_subtrees2 = []
+    # Storage for found 1-height subtrees -> important set, to use .intersection()
+    storage_subtrees1 = set()
+    storage_subtrees2 = set()
     
     # Get 1-height subtrees
     rec_get_tree_height1(bs4_obj1, storage_subtrees1)
@@ -56,7 +60,11 @@ def treeBleu_score(code1, code2):
 
 
 # Tests 
-with open (f"{DIR_PATH}/1.html", "r", encoding="utf-8") as f:
-    example_html = f.read()
+# with open (f"{INPUT_HTML_PATH}/1.html", "r", encoding="utf-8") as f:
+#     example_html_input = f.read()
 
-treeBleu_score(example_html, "g")
+# with open (f"{OUTPUT_HTML_PATH}/1.html", "r", encoding="utf-8") as f:
+#     example_html_output = f.read()
+
+# scoreTest = treeBleu_score(example_html_input, example_html_output)
+# print(scoreTest)

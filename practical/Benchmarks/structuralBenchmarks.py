@@ -6,6 +6,9 @@ import Utils.utils as utils
 import Benchmarks.Implementation.treeBleu as treeBleu
 
 class StructuralBenchmarks:
+    def __init__(self):
+        obj_structuralBenchmark = {}
+
     def domSimilarity(self, code1, code2):
         print("test")
     
@@ -24,5 +27,6 @@ class StructuralBenchmarks:
         It compares the amount of common 1-height subtrees in input and output code
     '''
     def treebleu(self, code1, code2):
-        print("test")
+        score = treeBleu.treeBleu_score(code1, code2)
+        self.obj_structuralBenchmark["treebleu"] = score
     

@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-from playwright.sync_api import sync_playwright
+from playwright.async_api import async_playwright
 from pathlib import Path
 import json
 import base64
@@ -47,14 +47,14 @@ def util_validate_html(generatedHtml_path):
     Util-Functions for Images & Screenshots
 '''
 # Rendering the code and doing a screenshot of it afterwards (headless)
-def util_render_and_screenshot(generatedHtml_path, screenshot_path):
-    with sync_playwright() as playwright:
+async def util_render_and_screenshot(generatedHtml_path, screenshot_path):
+    async with async_playwright() as playwright:
         chromium = playwright.chromium # other: "firefox" oder "webkit".
-        browser = chromium.launch(headless=True)
-        page = browser.new_page()
-        page.goto(generatedHtml_path)
-        page.screenshot(path=screenshot_path)
-        browser.close()
+        browser = await chromium.launch(headless=True)
+        page = await browser.new_page()
+        await page.goto(f"file://{os.path.abspath(generatedHtml_path)}")
+        await page.screenshot(path=screenshot_path, full_page=True)
+        await browser.close()
 
     print(f"Screenshot saved in {screenshot_path}")
 

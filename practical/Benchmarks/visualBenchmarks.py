@@ -5,6 +5,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 import Utils.utils as utils
+import Benchmarks.Implementation.clipScore as clipScore 
 
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'Data', 'Input', 'images')
@@ -36,6 +37,13 @@ class VisualBenchmarks:
         Maybe try this: https://www.geeksforgeeks.org/html-dom-comparedocumentposition-method/
 
     '''
+
+    '''
+        CLIP-Score is based on a transformer model which maps the images (or text) to a shared 
+        vector space. At the end, we can compare the cosine similarity between the two images. 
+    '''
+    def clipValue(self, image1_path, image2_path):
+        return clipScore.clip_score(image1_path, image2_path)
 
     
 
