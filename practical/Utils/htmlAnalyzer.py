@@ -10,8 +10,7 @@ from practical.Utils.utils import util_render_and_screenshot
 
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
-#  axe-core, infos here: https://hackmd.io/@gabalafou/ByvwfEC0j
-AXE_CORE_PATH = "/usr/local/lib/node_modules/axe-core/axe.min.js"
+
 
 
 async def process_html_file(html_path):
@@ -47,29 +46,13 @@ async def process_html_file(html_path):
         # Accessibility-Snapshot - Infos here: https://ambient.digital/wissen/blog/a11y-was-ist-das/
         accessibility_tree = await page.accessibility.snapshot()
 
-        # 4. Violations
-        # 4.1 Axe-Core
-        # axe-core inject
-        await page.add_script_tag(path=AXE_CORE_PATH)
-        axe_results = await page.evaluate("""
-            async () => {
-                return await axe.run();
-            }
-        """)
 
-        axe_violations = axe_results["violations"]
-
-        # 4.2 TODO: Other violations: Add them manually or semi-manually (WAVE, ...)
-        # Alternatively: Some Tools (e.g. WAVE) need webserver -> Use Ngrok for short-term hosting
-        
-        await browser.close()
-
-    return dom_html, bounding_boxes, accessibility_tree, axe_violations
+    return dom_html, bounding_boxes, accessibility_tree
 
 
 async def create_data_entry(name, html_path, llm_output):
     # 1. Analyze HTML
-    dom_html, bounding_boxes, accessibility_tree, axe_violations = await process_html_file(html_path)
+    dom_html, bounding_boxes, accessibility_tree = await process_html_file(html_path)
 
     data = {
         "general": {
@@ -78,8 +61,7 @@ async def create_data_entry(name, html_path, llm_output):
         },
         "dom": dom_html,
         "bounding_boxes": bounding_boxes,
-        "accessibility_tree": accessibility_tree,
-        "axe_violations": axe_violations
+        "accessibility_tree": accessibility_tree
     }
 
     html_dir = os.path.dirname(html_path)
