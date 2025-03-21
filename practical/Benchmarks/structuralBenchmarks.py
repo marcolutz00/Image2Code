@@ -10,26 +10,16 @@ class StructuralBenchmarks:
     def __init__(self):
         obj_structuralBenchmark = {}
 
-    def domSimilarity(self, code1, code2):
-        print("test")
 
     
     '''
         Text-Similarity:
-        Is based on the SequenceMatcher from the difflib library
+        Is based on the SequenceMatcher from the difflib library    
     '''
     def textSimilarity(self, code1_path, code2_path):
         score = textSimilarity.text_similarity_score(code1_path, code2_path)
         self.obj_structuralBenchmark["textSimilarity"] = score
     
-
-    '''
-        tbd
-        Code-Quality:
-        Is the created HTML/CSS of good quality and without errors?
-    '''
-    def codeQuality(self, code1, code2):
-        print("test")
 
     '''
         Treebleu:

@@ -37,7 +37,7 @@ def clip_score(image1_path, image2_path):
 
 
 # Tests
-image1_path = f"{INPUT_IMAGE_PATH}/1.png"
-image2_path = f"{OUTPUT_IMAGE_PATH}/1.png"
+# image1_path = f"{INPUT_IMAGE_PATH}/1.png"
+# image2_path = f"{OUTPUT_IMAGE_PATH}/1.png"
 
-print(clip_score(image1_path, image2_path))
+# print(clip_score(image1_path, image2_path))
