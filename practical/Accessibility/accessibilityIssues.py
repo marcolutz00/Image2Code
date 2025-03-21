@@ -3,6 +3,7 @@ import os
 import asyncio
 import subprocess
 import json
+from pathlib import Path
 
 AXE_CORE_PATH = "/usr/local/lib/node_modules/axe-core/axe.min.js"
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -57,15 +58,54 @@ async def pa11y(html_path):
     return output_cmd.stdout
 
 
+# 3. Google Lighthouse : https://www.npmjs.com/package/lighthouse
+# Implementation: https://medium.com/@olimpiuseulean/use-python-to-automate-google-lighthouse-reports-and-keep-a-historical-record-of-these-65f378325d64
+async def google_lighthouse(html_path):
+    local_html = os.path.abspath(html_path)
+    local_html_dir = Path(local_html).parent
+    local_html_name = Path(local_html).name
+
+    # Important lighthouse can't acccess local files, thus webserver
+    server_process = await asyncio.create_subprocess_exec(
+        "python",
+        "-m",
+        "http.server",
+        "8000",
+        "--bind",
+        "127.0.0.1",
+        cwd=str(local_html_dir),
+        stdout=asyncio.subprocess.PIPE,
+        stderr=asyncio.subprocess.PIPE
+    )
+
+    await asyncio.sleep(1)
+
+    localhost_url = f"http://127.0.0.1:8000/{local_html_name}"
+
+    lighthouse_command = ["lighthouse", localhost_url, "--output=json", "--chrome-flags=--headless", "--quiet", "--output-path=stdout", "--only-categories=accessibility"]
+    output_cmd = subprocess.run(lighthouse_command, capture_output=True, text=True)
+
+    # kill server  
+    server_process.terminate()
+
+    if output_cmd.stderr:
+        print(output_cmd.stderr)
+        return
+    
+    # TODO: Further anlysis of output: .categories.accessibility.score, ...
+    output_cmd_json = json.loads(output_cmd.stdout)
+    return output_cmd_json
+
 
 async def getAccessibilityIssues(html_path):
     axe_core_results = await axe_core(html_path)
     pa11y_results = await pa11y(html_path)
+    lighthouse_results = await google_lighthouse(html_path)
 
-    return axe_core_results, pa11y_results
+    return axe_core_results, pa11y_results, lighthouse_results
 
 
 
 
 # Tests
-# asyncio.run(getAccessibilityIssues(f"{OUTPUT_DATA_PATH}/1.html"))
+asyncio.run(getAccessibilityIssues(f"{OUTPUT_DATA_PATH}/1.html"))
