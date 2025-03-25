@@ -43,7 +43,7 @@ async def pa11y(html_path):
     output_type = "json"
 
     local_html = f"file://{os.path.abspath(html_path)}"
-    pa11y_command = ["pa11y", local_html, "--reporter", output_type] # in order to analyze output better --reporter json (or csv)
+    pa11y_command = ["pa11y", local_html, "--runner", "htmlcs", "--reporter", output_type] # in order to analyze output better --reporter json (or csv)
 
     output_cmd = subprocess.run(pa11y_command, capture_output=True, text=True)
 
@@ -94,7 +94,13 @@ async def google_lighthouse(html_path):
     
     # TODO: Further anlysis of output: .categories.accessibility.score, ...
     output_cmd_json = json.loads(output_cmd.stdout)
-    return output_cmd_json
+
+    # Important fields
+    important_output = output_cmd_json["audits"]
+
+    lighthouse_report = open(f"{DIR_PATH}/lighthouse_report.json", "w")
+    json.dump(important_output, lighthouse_report)
+    return important_output
 
 
 async def getAccessibilityIssues(html_path):
