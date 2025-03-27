@@ -78,5 +78,6 @@ async def create_data_entry(name, html_path, llm_output):
         await util_render_and_screenshot(html_path, image_path)
 
 
+    return data
 
 
