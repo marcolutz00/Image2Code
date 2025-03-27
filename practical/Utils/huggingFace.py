@@ -23,7 +23,6 @@ async def filter_entries(dataset, picks):
     """
         Filters the dataset based on the id
     """
-
     filtered_entries = []
     # Counter as ID per data entry
     counter = 1
@@ -39,24 +38,12 @@ async def filter_entries(dataset, picks):
             if len(filtered_entries) == len(picks):
                 break
 
-            
-
         counter += 1
-
-        # Image / Screenshots
-        # img = data_entry["image"]
-        # img.show()
-        
-        # HTML/CSS
-        # html = data_entry["text"]
-
-        # Test: Break after first
-        # break
 
     return Dataset.from_list(filtered_entries)
 
 
-async def create_new_dataset():
+async def create_new_dataset(hf_dataset_name=None):
     # cherry-picks 
     # Design2Code - amount picked: 28
     picks_design2code = [ 2, 3, 5, 6, 14, 18, 23, 28, 32, 34, 38, 48, 51, 58, 77, 81, 111, 116, 120, 125, 129, 136, 145, 147, 158, 164, 169, 176 ]
@@ -78,30 +65,48 @@ async def create_new_dataset():
     dataset_final = concatenate_datasets([design2code_filtered, webcode2m_filtered])
 
     # Save dataset
-    dataset_final.save_to_disk(DATASET_PATH)
-    print("ready")
+    if hf_dataset_name:
+        # upload dataset to huggingface
+        await upload_dataset(dataset_final, hf_dataset_name)
+    else:
+        dataset_final.save_to_disk(DATASET_PATH)
+
+    print("Dataset stored.")
+    return dataset_final
 
 
-async def load_existing_dataset():
-    # cherry-picks 
-    dataset = load_from_disk(DATASET_PATH) 
-    return dataset
-
-
-async def upload_dataset():
+async def upload_dataset(dataset, hf_dataset_name="marcolutz/Image2Code"):
     with open(KEYS_PATH) as f:
         hf_writer_token = json.load(f)["huggingface"]["writer_token"]
 
-    dataset = await load_existing_dataset()
     dataset.push_to_hub(
-        repo_id="marcolutz/Image2Code",
+        repo_id=hf_dataset_name,
         token=hf_writer_token,
         private=True,
         embed_external_files=True
     )
 
-    print("done")
+    print("Upload done ...")
+
+
+async def get_dataset(hf_dataset_name="marcolutz/Image2Code"):
+    with open(KEYS_PATH) as f:
+        hf_token = json.load(f)["huggingface"]["reader_token"]
+
+    dataset = load_dataset(
+        path=hf_dataset_name, 
+        token=hf_token
+    )
+
+    return dataset
+
+async def update_accessibility_dataset():
+    dataset = get_dataset("marcolutz/Image2Code")
+
+    # TODO: Add accessibility issues
+    print(dataset)
+    
+
     
 # Tests
-# asyncio.run(create_new_dataset()) 
-asyncio.run(upload_dataset())
+# asyncio.run(update_accessibility_dataset())
