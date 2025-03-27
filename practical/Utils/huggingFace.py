@@ -14,7 +14,7 @@ DATASETS_HF = ["SALT-NLP/Design2Code-hf", "xcodemind/webcode2m"]
 
 async def login_hugging_face():
     with open(KEYS_PATH) as f:
-        huggingface_token = json.load(f)["huggingface"]["api_key"]
+        huggingface_token = json.load(f)["huggingface"]["reader_token"]
 
     login(huggingface_token)
 
@@ -85,18 +85,23 @@ async def create_new_dataset():
 async def load_existing_dataset():
     # cherry-picks 
     dataset = load_from_disk(DATASET_PATH) 
-
-    counter = 1
-
-    for data_entry in dataset:
-        img = data_entry["image"]
-        # store images in folder
-        img.save(f"{DATASET_PATH}/{counter}.png")
-
-        counter += 1
-
     return dataset
+
+
+async def upload_dataset():
+    with open(KEYS_PATH) as f:
+        hf_writer_token = json.load(f)["huggingface"]["writer_token"]
+
+    dataset = await load_existing_dataset()
+    dataset.push_to_hub(
+        repo_id="marcolutz/Image2Code",
+        token=hf_writer_token,
+        private=True,
+        embed_external_files=True
+    )
+
+    print("done")
     
 # Tests
 # asyncio.run(create_new_dataset()) 
-asyncio.run(load_existing_dataset())
+asyncio.run(upload_dataset())
