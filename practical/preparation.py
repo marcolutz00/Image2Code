@@ -1,6 +1,7 @@
 import asyncio
 import os
 import sys
+import json
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from practical.Utils import utils_dataset
@@ -40,21 +41,27 @@ async def main():
 
     # Configuration
     create_new_dataset = False
-    store_in_data_folder = True
-    enrich_with_accessibility = False
+    store_in_data_folder = False
+    enrich_with_accessibility = True
 
     dataset = None
 
     if create_new_dataset:
-        dataset = await utils_dataset.create_new_dataset(hf_dataset_name=None)
+        dataset = await utils_dataset.create_new_dataset(hf_dataset_name=DATASET_HF)
     else:
         dataset = await utils_dataset.get_dataset_hf(DATASET_HF)
 
     if store_in_data_folder:
         utils_dataset.store_dataset_in_dir(dataset, DATA_PATH)
-
     if enrich_with_accessibility:
-        dataset = await accessibilityIssues.getAccessibilityIssues(dataset)
+        counter = 1
+        for data_entry in dataset:
+            accessibility_issues_json = await accessibilityIssues.get_accessibility_issues(os.path.join(DATA_PATH, "Input", "html", f"{counter}.html"))
+            
+            with open(os.path.join(DATA_PATH, "Input", "json", f"{counter}.json"), "w") as f:
+                json.dump(accessibility_issues_json, f)
+
+            counter += 1
 
     return dataset
 

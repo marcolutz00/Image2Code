@@ -64,6 +64,12 @@ async def create_new_dataset(hf_dataset_name=None):
     # Concatenate datasets
     dataset_final = concatenate_datasets([design2code_filtered, webcode2m_filtered])
 
+    # add id
+    id_counter = 0
+    for data_entry in dataset_final:
+        data_entry["id"] = id_counter
+        id_counter += 1
+
     # Save dataset
     if hf_dataset_name:
         # upload dataset to huggingface

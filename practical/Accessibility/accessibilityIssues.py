@@ -98,20 +98,25 @@ async def google_lighthouse(html_path):
     # Important fields
     important_output = output_cmd_json["audits"]
 
-    lighthouse_report = open(f"{DIR_PATH}/lighthouse_report.json", "w")
-    json.dump(important_output, lighthouse_report)
+    # lighthouse_report = open(f"{DIR_PATH}/lighthouse_report.json", "w")
+    # json.dump(important_output, lighthouse_report)
+
     return important_output
 
 
-async def getAccessibilityIssues(html_path):
+async def get_accessibility_issues(html_path):
     axe_core_results = await axe_core(html_path)
     pa11y_results = await pa11y(html_path)
     lighthouse_results = await google_lighthouse(html_path)
 
-    return axe_core_results, pa11y_results, lighthouse_results
+    return {
+        "axe_core": axe_core_results, 
+        "pa11y": pa11y_results, 
+        "lighthouse": lighthouse_results
+    }
 
 
 
 
 # Tests
-asyncio.run(getAccessibilityIssues(f"{OUTPUT_DATA_PATH}/1.html"))
+# asyncio.run(get_accessibility_issues(f"{OUTPUT_DATA_PATH}/1.html"))
