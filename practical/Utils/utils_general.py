@@ -4,7 +4,6 @@ from pathlib import Path
 import json
 import base64
 import os
-from . import tokenCounter as tc
 
 '''
     Util-Functions for API-Calls
@@ -26,7 +25,7 @@ def util_save_code(code, file_name="generated_code.html"):
     # Store as HTML
     with open(file_name, "w", encoding="utf-8") as f:
         f.write(code)
-    print(f"Code gespeichert als {file_name}")
+    print(f"Code stored as {file_name}")
 
 
 '''
@@ -62,9 +61,6 @@ async def util_render_and_screenshot(generatedHtml_path, screenshot_path):
 # Some improvements for the b64 encoding
 def util_encode_image(self, image_data):
     b64_img = base64.b64encode(image_data).decode("utf-8")
-
-    amount_of_token = tc.count_tokens(b64_img, self.used_model)
-    print(f"Amount of token {amount_of_token}")
     
     return b64_img
 
@@ -73,5 +69,8 @@ def util_encode_image(self, image_data):
 def cutColorChannels(image):
     if(image.shape[2] == 4):
         return image[:, :, :3]
+
+
+
 
 

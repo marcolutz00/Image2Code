@@ -6,7 +6,7 @@ import os
 import datetime
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from practical.Utils.utils import util_render_and_screenshot
+from practical.Utils.utils_general import util_render_and_screenshot
 
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))

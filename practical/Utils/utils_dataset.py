@@ -67,7 +67,7 @@ async def create_new_dataset(hf_dataset_name=None):
     # Save dataset
     if hf_dataset_name:
         # upload dataset to huggingface
-        await upload_dataset(dataset_final, hf_dataset_name)
+        await upload_dataset_hf(dataset_final, hf_dataset_name)
     else:
         dataset_final.save_to_disk(DATASET_PATH)
 
@@ -75,7 +75,7 @@ async def create_new_dataset(hf_dataset_name=None):
     return dataset_final
 
 
-async def upload_dataset(dataset, hf_dataset_name="marcolutz/Image2Code"):
+async def upload_dataset_hf(dataset, hf_dataset_name="marcolutz/Image2Code"):
     with open(KEYS_PATH) as f:
         hf_writer_token = json.load(f)["huggingface"]["writer_token"]
 
@@ -89,22 +89,46 @@ async def upload_dataset(dataset, hf_dataset_name="marcolutz/Image2Code"):
     print("Upload done ...")
 
 
-async def get_dataset(hf_dataset_name="marcolutz/Image2Code"):
+async def get_dataset_hf(hf_dataset_name="marcolutz/Image2Code"):
     with open(KEYS_PATH) as f:
         hf_token = json.load(f)["huggingface"]["reader_token"]
 
     dataset = load_dataset(
         path=hf_dataset_name, 
-        token=hf_token
+        token=hf_token,
+        split="train",
     )
 
     return dataset
 
-async def update_accessibility_dataset():
-    dataset = get_dataset("marcolutz/Image2Code")
+# Updates dataset with accessibility issues
+async def update_dataset_hf_accessibility():
+    dataset = get_dataset_hf("marcolutz/Image2Code")
 
     # TODO: Add accessibility issues
     print(dataset)
+
+
+# Store dataset in directory
+def store_dataset_in_dir(dataset, path):
+    input_dir = os.path.join(path, "input")
+    html_dir = os.path.join(input_dir, "html")
+    image_dir = os.path.join(input_dir, "images")
+
+    counter = 1
+    
+    for data_entry in dataset:
+        image = data_entry["image"]
+        text = data_entry["text"]
+
+        # Save image in imaage_dir
+        image.save(os.path.join(image_dir, f"{counter}.png"))
+
+        # Save html
+        with open(os.path.join(html_dir, f"{counter}.html"), "w") as f:
+            f.write(text)
+        
+        counter += 1
     
 
     

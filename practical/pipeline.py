@@ -6,7 +6,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from practical.LLMs.apiCalls import LLMClient
 from LLMs.Strategies.openaiStrategy import OpenAIStrategy
 from ImageUpload.imageUploader import ImageUploader
-import practical.Utils.htmlAnalyzer as htmlAnalyzer
+import practical.Utils.utils_html as utils_html
 import asyncio
 
 KEYS_PATH = os.path.join(os.path.dirname(__file__), 'keys.json')
@@ -74,8 +74,8 @@ async def analyze_outputs(image_name):
     output_html_path = os.path.join(OUTPUT_PATH, MODEL, 'html', f"{image_name}.html")
 
     # Create DOM, Bounding-Boxes, Accessibility-Tree, Accessibility Violations of Input and Output
-    await htmlAnalyzer.create_data_entry(image_name, input_html_path, False)
-    await htmlAnalyzer.create_data_entry(image_name, output_html_path, True)
+    await utils_html.create_data_entry(image_name, input_html_path, False)
+    await utils_html.create_data_entry(image_name, output_html_path, True)
 
     # TODO: Now use Benchmarks to compare the two outputs
 

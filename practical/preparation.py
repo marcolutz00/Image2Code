@@ -3,7 +3,9 @@ import os
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from practical.Utils import huggingFace
+from practical.Utils import utils_dataset
+from practical.Utils import utils_html
+from practical.Accessibility import accessibilityIssues
 
 '''
 This file is used to prepare all necessary data for the pipeline.
@@ -13,6 +15,9 @@ Datasets:
 SALt-NLP/Design2Code-hf -> https://huggingface.co/datasets/SALT-NLP/Design2Code-hf
 xcodemind/webcode2m -> https://huggingface.co/datasets/xcodemind/webcode2m 
 '''
+
+DATA_PATH = os.path.join(os.path.dirname(__file__), 'Data')
+DATASET_HF = "marcolutz/Image2Code"
 
 
 async def main():
@@ -28,22 +33,29 @@ async def main():
 
         If you do not need to create a new dataset or enrich it with accessibility information,
         set both to False.
+
+        store_in_data_folder = True 
+        This stores the dataset in the data folder. Necessary for the pipeline
     '''
 
     # Configuration
     create_new_dataset = False
-    enrich_with_accessibility = True
+    store_in_data_folder = True
+    enrich_with_accessibility = False
 
     dataset = None
 
     if create_new_dataset:
-        dataset = await huggingFace.create_new_dataset(hf_dataset_name=None)
+        dataset = await utils_dataset.create_new_dataset(hf_dataset_name=None)
     else:
-        dataset = await huggingFace.get_dataset()
+        dataset = await utils_dataset.get_dataset_hf(DATASET_HF)
+
+    if store_in_data_folder:
+        utils_dataset.store_dataset_in_dir(dataset, DATA_PATH)
 
     if enrich_with_accessibility:
-        dataset = await huggingFace.enrich_dataset(dataset)
-    
+        dataset = await accessibilityIssues.getAccessibilityIssues(dataset)
+
     return dataset
 
 if __name__ == "__main__":

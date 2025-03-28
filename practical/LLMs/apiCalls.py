@@ -1,5 +1,5 @@
 from pathlib import Path
-from practical.Utils.utils import util_encode_image
+from practical.Utils.utils_general import util_encode_image
 
 
 class LLMClient:

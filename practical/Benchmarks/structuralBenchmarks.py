@@ -2,7 +2,7 @@ import os
 import sys
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-import Utils.utils as utils
+import practical.Utils.utils_general as utils_general
 import Benchmarks.Implementation.treeBleu as treeBleu
 import Benchmarks.Implementation.textSimilarity as textSimilarity
 
