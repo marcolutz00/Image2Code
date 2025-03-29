@@ -35,13 +35,13 @@ async def main():
         If you do not need to create a new dataset or enrich it with accessibility information,
         set both to False.
 
-        store_in_data_folder = True 
-        This stores the dataset in the data folder. Necessary for the pipeline
+        store_dataset_in_data_dir = True 
+        This stores the dataset in the data directory. Necessary for the pipeline
     '''
 
     # Configuration
     create_new_dataset = False
-    store_in_data_folder = False
+    store_dataset_in_data_dir = False
     enrich_with_accessibility = True
 
     dataset = None
@@ -51,8 +51,9 @@ async def main():
     else:
         dataset = await utils_dataset.get_dataset_hf(DATASET_HF)
 
-    if store_in_data_folder:
+    if store_dataset_in_data_dir:
         utils_dataset.store_dataset_in_dir(dataset, DATA_PATH)
+        
     if enrich_with_accessibility:
         counter = 1
         for data_entry in dataset:

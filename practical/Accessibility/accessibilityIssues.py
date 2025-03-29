@@ -4,6 +4,9 @@ import asyncio
 import subprocess
 import json
 from pathlib import Path
+import sys
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+from practical.Accessibility import accessibilityMapping
 
 AXE_CORE_PATH = "/usr/local/lib/node_modules/axe-core/axe.min.js"
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -92,7 +95,7 @@ async def google_lighthouse(html_path):
         print(output_cmd.stderr)
         return
     
-    # TODO: Further anlysis of output: .categories.accessibility.score, ...
+    
     output_cmd_json = json.loads(output_cmd.stdout)
 
     # Important fields
@@ -109,11 +112,9 @@ async def get_accessibility_issues(html_path):
     pa11y_results = await pa11y(html_path)
     lighthouse_results = await google_lighthouse(html_path)
 
-    return {
-        "axe_core": axe_core_results, 
-        "pa11y": pa11y_results, 
-        "lighthouse": lighthouse_results
-    }
+    accessibility_issues_map = accessibilityMapping.full_matching(pa11y_results, axe_core_results, lighthouse_results)
+
+    return accessibility_issues_map
 
 
 
