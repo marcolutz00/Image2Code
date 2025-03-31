@@ -92,6 +92,10 @@ def lighthouse_mapping(issues, wcag_issues_dict):
         if issue_data.get("scoreDisplayMode") in ["notApplicable", "manual"]:
             continue
 
+        # Skip if score = 1 , since then lighthouse is correct
+        if issue_data.get("score") == 1:
+            continue
+
         if "description" not in issue_data:
             continue
 
