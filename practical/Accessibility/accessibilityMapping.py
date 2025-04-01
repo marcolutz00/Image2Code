@@ -1,4 +1,12 @@
 import re
+import json
+import sys
+import os
+
+# The json is used to map the htmlcodesniffer issues to the axe-core issues
+DIR_PATH = os.path.dirname(os.path.realpath(__file__))
+CSANDAXEMAPPER_JSON_PATH = os.path.join(DIR_PATH, 'mappingCsandAxe.json')
+
 
 '''
     This function is used to map the issues found by different accessibility testing tools
@@ -8,13 +16,26 @@ import re
     based on both the id and the url.
 '''
 
+def map_htmlcsniffer_and_axecore(id, htmlcsniffer=True):
+    with open(CSANDAXEMAPPER_JSON_PATH, "r") as f:
+        cs_and_axe_mapping = json.load(f)
+
+    # Check if the id is in the mapping
+    if htmlcsniffer:
+        for mapping in cs_and_axe_mapping:
+            for cs_id, details in mapping.items():
+                if cs_id == id:
+                    return {
+                        
+                    }
+    
 
 
 # Pa11y only shows the wcag id, but not the url
 def pa11y_mapping(issues, wcag_issues_dict):
+    # Load the json file
     for issue in issues:
-        issue_id = issue["code"].split(".")[3]
-        issue_id = "wcag" + str(issue_id).replace("_", "")
+        issue_id = issue["code"].split("WCAG2AA.")[1]
 
         full_issue = {
             "id": issue.get("code", ""),
@@ -42,13 +63,6 @@ def pa11y_mapping(issues, wcag_issues_dict):
 def axe_core_mapping(issues, wcag_issues_dict):
     for issue in issues:
         issue_url = issue["helpUrl"].split("?")[0]
-
-        # Find right tag (z.B. wcag311, wcag421)
-        issue_id = None
-        for tag in issue["tags"]:
-            if tag.startswith("wcag") and tag not in ["wcag2a", "wcag2aa", "wcag2aaa"]:
-                issue_id = tag
-                break
         
         full_issue = {
             "id": issue.get("id", ""),
