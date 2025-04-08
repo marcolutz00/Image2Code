@@ -95,7 +95,7 @@ async def upload_dataset_hf(dataset, hf_dataset_name="marcolutz/Image2Code"):
     print("Upload done ...")
 
 
-async def get_dataset_hf(hf_dataset_name="marcolutz/Image2Code"):
+async def get_dataset_hf(hf_dataset_name="marcolutz/Image2Code",):
     with open(KEYS_PATH) as f:
         hf_token = json.load(f)["huggingface"]["reader_token"]
 
@@ -107,12 +107,22 @@ async def get_dataset_hf(hf_dataset_name="marcolutz/Image2Code"):
 
     return dataset
 
+async def get_dataset_hf_locally(hf_dataset_path=DATASET_PATH):
+
+    dataset = load_dataset(
+        path=hf_dataset_path,
+        split="train",
+    )
+
+    return dataset
+
 # Updates dataset with accessibility issues
 async def update_dataset_hf_accessibility():
-    dataset = get_dataset_hf("marcolutz/Image2Code")
+    dataset = await get_dataset_hf("marcolutz/Image2Code")
 
     # TODO: Add accessibility issues
-    print(dataset)
+    # store_dataset_in_dir(dataset, os.path.join(CURRENT_DIR_PATH, '..', 'Data'))
+
 
 
 # Store dataset in directory
@@ -139,4 +149,4 @@ def store_dataset_in_dir(dataset, path):
 
     
 # Tests
-# asyncio.run(update_accessibility_dataset())
+# asyncio.run(update_dataset_hf_accessibility())

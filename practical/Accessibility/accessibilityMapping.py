@@ -142,7 +142,7 @@ def axe_core_mapping(issues, wcag_issues_dict):
         
         found = False
         for key, issues_list in wcag_issues_dict.items():
-            existing_wcag_id, existing_url, impact, amount = key
+            existing_wcag_id, existing_url, existing_impact, amount = key
             if (htmlcs_id is not None and htmlcs_id == existing_wcag_id) or (axe_url == existing_url):
                 issues_list.append(full_issue)
                 found = True

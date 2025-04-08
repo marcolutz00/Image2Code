@@ -50,6 +50,7 @@ async def main():
         dataset = await utils_dataset.create_new_dataset(hf_dataset_name=DATASET_HF)
     else:
         dataset = await utils_dataset.get_dataset_hf(DATASET_HF)
+        # dataset = await utils_dataset.get_dataset_hf_locally(DATASET_HF)
 
     if store_dataset_in_data_dir:
         utils_dataset.store_dataset_in_dir(dataset, DATA_PATH)
