@@ -3,7 +3,7 @@ import os
 import json
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from practical.LLMs.apiCalls import LLMClient
+from practical.LLMs.LLMClient import LLMClient
 from LLMs.Strategies.openaiStrategy import OpenAIStrategy
 from ImageUpload.imageUploader import ImageUploader
 import practical.Utils.utils_html as utils_html
@@ -45,7 +45,7 @@ async def process_image(client, image_name, link, prompt, externally_hosted=True
     # LLM processes iamge and generates code 
 
     # Generate code
-    result = await client.generate_code(prompt, link, externally_hosted)
+    result = await client.generate_frontend_code(prompt, link, externally_hosted)
     
     base_name = os.path.splitext(image_name)[0]
     output_dir = os.path.join(OUTPUT_PATH, MODEL, 'html')

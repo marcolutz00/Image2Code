@@ -12,7 +12,7 @@ class OpenAIStrategy(LLMStrategy):
         self.used_model = MODEL
         self.client = OpenAI(api_key=api_key)
 
-    async def api_call(self, prompt, image_data):
+    async def api_frontend_generation(self, prompt, image_data):
 
         response = self.client.chat.completions.create(
             model=self.used_model,

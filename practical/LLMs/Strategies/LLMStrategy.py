@@ -2,5 +2,5 @@ from abc import ABC, abstractmethod
 
 class LLMStrategy(ABC):
     @abstractmethod
-    def api_call(self):
+    def api_frontend_generation(self):
         pass

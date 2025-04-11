@@ -7,6 +7,8 @@ from pathlib import Path
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from practical.Accessibility import accessibilityMapping
+from practical.Accessibility import accessibilityMapping_automatically
+
 
 AXE_CORE_PATH = "/usr/local/lib/node_modules/axe-core/axe.min.js"
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -105,6 +107,15 @@ async def google_lighthouse(html_path):
     # json.dump(important_output, lighthouse_report)
 
     return important_output
+
+async def create_automatic_mapping(html_path):
+    axe_core_results = await axe_core(html_path)
+    pa11y_results = await pa11y(html_path)
+    lighthouse_results = await google_lighthouse(html_path)
+
+    general_accessibility_map = await accessibilityMapping_automatically.full_matching_automatically(pa11y_results, axe_core_results, lighthouse_results)
+
+    return general_accessibility_map
 
 
 async def get_accessibility_issues(html_path):
