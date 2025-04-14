@@ -58,11 +58,13 @@ async def main():
     if enrich_with_accessibility:
         counter = 1
         for data_entry in dataset:
+            print(counter)
+
             accessibility_issues_json = await accessibilityIssues.get_accessibility_issues(os.path.join(DATA_PATH, "Input", "html", f"{counter}.html"))
             
             with open(os.path.join(DATA_PATH, "Input", "json", f"{counter}.json"), "w") as f:
                 json.dump(accessibility_issues_json, f)
-
+            
             counter += 1
 
     return dataset
