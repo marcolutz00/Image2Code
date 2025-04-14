@@ -38,6 +38,7 @@ async def main():
 
     counter = 1
     for data_entry in dataset:
+        print("Start: ", counter)
         generated_accessibility_map = await accessibilityIssues.create_automatic_mapping(os.path.join(DATA_PATH, "Input", "html", f"{counter}.html"))
         counter += 1
 
