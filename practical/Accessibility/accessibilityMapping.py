@@ -146,14 +146,15 @@ def axe_core_mapping(issues, wcag_issues_dict):
                 "description": issue.get("description", ""),
                 "impact": issue.get("impact", ""),
                 "helpUrl": issue.get("helpUrl", ""),
-                "nodes": issue_detail,
-                "original_issue": issue
+                "nodes": issue_detail
             }
         
             found = False
             for key, issues_list in list(wcag_issues_dict.items()):
                 existing_wcag_id, existing_url, existing_impact, existing_amount, existing_name = key
-                if (htmlcs_id is not None and htmlcs_id_tuple == existing_wcag_id) or (axe_url_tuple == existing_url):
+
+                # Important: Works only if URL unique in mapping
+                if axe_url_tuple == existing_url:
                     issues_list.append(full_issue)
                     found = True
 
@@ -161,7 +162,7 @@ def axe_core_mapping(issues, wcag_issues_dict):
 
             # if no match found, create new entry
             if not found:
-                wcag_issues_dict[(None, axe_url_tuple, impact, 1, name)] = [full_issue]
+                wcag_issues_dict[(htmlcs_id_tuple, axe_url_tuple, impact, 1, name)] = [full_issue]
 
 
 # Lighthouse only shows the url
@@ -190,6 +191,8 @@ def lighthouse_mapping(issues, wcag_issues_dict):
 
             htmlcs_id, axe_url, impact, name = map_htmlcsniffer_and_axecore(issue_url, False)
 
+            htmlcs_id_tuple = tuple(htmlcs_id) if isinstance(htmlcs_id, list) else htmlcs_id
+            axe_url_tuple = tuple(axe_url) if isinstance(axe_url, list) else axe_url
 
             found = False
             for key, issues_list in list(wcag_issues_dict.items()):
@@ -197,7 +200,7 @@ def lighthouse_mapping(issues, wcag_issues_dict):
 
                 assert issue_data.get("details") is not None
 
-                if axe_url == existing_url:
+                if axe_url_tuple == existing_url:
                     for issue_detail in issue_data.get("details", {}).get("items", []):
                         issues_list.append({
                             "id": issue_id,
@@ -212,20 +215,17 @@ def lighthouse_mapping(issues, wcag_issues_dict):
 
                     break
             
-                # if no match found, create new entry
-                if not found:
-                    htmlcs_id_tuple = tuple(htmlcs_id) if isinstance(htmlcs_id, list) else htmlcs_id
-                    axe_url_tuple = tuple(axe_url) if isinstance(axe_url, list) else axe_url
-
-                    for issue_detail in issue_data.get("details", {}).get("items", []):
-                        wcag_issues_dict[(htmlcs_id_tuple, axe_url_tuple, impact, 1, name)] = [{
-                            "id": issue_id,
-                            "source": "lighthouse",
-                            "title": issue_data.get("title", ""),
-                            "description": description,
-                            "score": issue_data.get("score"),
-                            "details": issue_detail
-                        }]
+            # if no match found, create new entry
+            if not found:
+                for issue_detail in issue_data.get("details", {}).get("items", []):
+                    wcag_issues_dict[(htmlcs_id_tuple, axe_url_tuple, impact, 1, name)] = [{
+                        "id": issue_id,
+                        "source": "lighthouse",
+                        "title": issue_data.get("title", ""),
+                        "description": description,
+                        "score": issue_data.get("score"),
+                        "details": issue_detail
+                    }]
 
 
 

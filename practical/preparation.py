@@ -60,6 +60,10 @@ async def main():
         for data_entry in dataset:
             print(counter)
 
+            # if counter < 8:
+            #     counter += 1 
+            #     continue
+ 
             accessibility_issues_json = await accessibilityIssues.get_accessibility_issues(os.path.join(DATA_PATH, "Input", "html", f"{counter}.html"))
             
             with open(os.path.join(DATA_PATH, "Input", "json", f"{counter}.json"), "w") as f:
