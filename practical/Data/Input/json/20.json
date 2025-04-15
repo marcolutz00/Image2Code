@@ -1,0 +1,97 @@
+[
+  {
+    "wcag_id": ["Principle1.Guideline1_1.1_1_1.H37"],
+    "url": ["https://dequeuniversity.com/rules/axe/4.10/image-alt"],
+    "impact": "high",
+    "amount": 1,
+    "name": "Alt-Text; Images;",
+    "issues": [
+      {
+        "source": "Manual-Inspection",
+        "description": "Images no alt-text"
+      }
+    ]
+  },
+  {
+    "wcag_id": [
+      "Principle1.Guideline1_4.1_4_3.G18",
+      "Principle1.Guideline1_4.1_4_3.G18.Fail",
+      "Principle1.Guideline1_4.1_4_3.G145",
+      "Principle1.Guideline1_4.1_4_3.G145.Fail",
+      "Principle1.Guideline1_4.1_4_6.G17",
+      "Principle1.Guideline1_4.1_4_6.G18"
+    ],
+    "url": [
+      "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+      "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+    ],
+    "impact": "moderate",
+    "amount": 26,
+    "name": "Color Contrast; Text;",
+    "issues": [
+      {
+        "source": "Manual-Inspection",
+        "description": "Low contrast for text"
+      }
+    ]
+  },
+  {
+    "htmlcs_id": [null],
+    "axe_url": [
+      "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
+    ],
+    "amount": 1,
+    "impact": "moderate",
+    "name": "Links; Distinguishable Color;",
+    "issues": [
+      {
+        "source": "Manual-Inspection",
+        "description": "Link should be distinguishable from text not only by color"
+      }
+    ]
+  },
+  {
+    "wcag_id": [null],
+    "url": [
+      "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+      "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+      "https://dequeuniversity.com/rules/axe/4.10/region"
+    ],
+    "impact": "low",
+    "amount": 1,
+    "name": "Landmark & Region; Missing & Unique Landmarks;",
+    "issues": [
+      {
+        "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+        "source": "axe-core",
+        "title": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+        "description": "Ensure landmarks are unique",
+        "impact": "moderate",
+        "helpUrl": "https://dequeuniversity.com/rules/axe/4.10/landmark-unique?application=axeAPI",
+        "nodes": {
+          "any": [
+            {
+              "id": "landmark-is-unique",
+              "data": { "role": "navigation", "accessibleText": null },
+              "relatedNodes": [
+                {
+                  "html": "<nav class=\"buttons container\">\n   <a href=\"#\" class=\"skew\">\n    <span class=\"content\">\n     Contact Us\n    </span>\n   </a>\n   <a href=\"#\" class=\"skew\">\n    <span class=\"content\">\n     Members\n    </span>\n   </a>\n  </nav>",
+                  "target": [".buttons"]
+                },
+                { "html": "<nav>", "target": [".eight > nav"] }
+              ],
+              "impact": "moderate",
+              "message": "The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+            }
+          ],
+          "all": [],
+          "none": [],
+          "impact": "moderate",
+          "html": "<nav>",
+          "target": ["header > nav"],
+          "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+        }
+      }
+    ]
+  }
+]
