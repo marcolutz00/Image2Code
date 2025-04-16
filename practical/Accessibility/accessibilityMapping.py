@@ -102,7 +102,7 @@ def pa11y_mapping(issues, wcag_issues_dict):
         htmlcs_id_tuple = tuple(htmlcs_id) if isinstance(htmlcs_id, list) else htmlcs_id
         
         full_issue = {
-            "id": issue.get("code", ""),
+            "id": issue_id,
             "source": "pa11y",
             "title": issue.get("message", ""),
             "description": issue.get("context", ""),
@@ -203,7 +203,7 @@ def lighthouse_mapping(issues, wcag_issues_dict):
                 if axe_url_tuple == existing_url:
                     for issue_detail in issue_data.get("details", {}).get("items", []):
                         issues_list.append({
-                            "id": issue_id,
+                            "id": issue_url,
                             "source": "lighthouse",
                             "title": issue_data.get("title", ""),
                             "description": description,
@@ -219,7 +219,7 @@ def lighthouse_mapping(issues, wcag_issues_dict):
             if not found:
                 for issue_detail in issue_data.get("details", {}).get("items", []):
                     wcag_issues_dict[(htmlcs_id_tuple, axe_url_tuple, impact, 1, name)] = [{
-                        "id": issue_id,
+                        "id": issue_url,
                         "source": "lighthouse",
                         "title": issue_data.get("title", ""),
                         "description": description,
