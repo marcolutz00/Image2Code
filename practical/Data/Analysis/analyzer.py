@@ -108,17 +108,17 @@ def list_and_add_issues(data, sources_dict):
             max_amount = max(axe_core["amount"], pa11y["amount"], lighthouse["amount"])
 
             if axe_core.get("amount") == max_amount:
-                ISSUES_DICT[name]["sources"]["axe-core"]["ids_of_max"].append(axe_core.get("issues"))
+                ISSUES_DICT[name]["sources"]["axe-core"]["ids_of_max"] += axe_core.get("issues")
                 ISSUES_DICT[name]["sources"]["axe-core"]["count_of_max"] += max_amount
                 sources_dict["axe-core"]["max"] += max_amount
 
             elif pa11y.get("amount") == max_amount:
-                ISSUES_DICT[name]["sources"]["pa11y"]["ids_of_max"].append(pa11y.get("issues"))
+                ISSUES_DICT[name]["sources"]["pa11y"]["ids_of_max"] += pa11y.get("issues")
                 ISSUES_DICT[name]["sources"]["pa11y"]["count_of_max"] += max_amount
                 sources_dict["pa11y"]["max"] += max_amount
 
             elif lighthouse.get("amount") == max_amount:
-                ISSUES_DICT[name]["sources"]["lighthouse"]["ids_of_max"].append(lighthouse.get("issues"))
+                ISSUES_DICT[name]["sources"]["lighthouse"]["ids_of_max"] += lighthouse.get("issues")
                 ISSUES_DICT[name]["sources"]["lighthouse"]["count_of_max"] += max_amount
                 sources_dict["lighthouse"]["max"] += max_amount
 
@@ -134,6 +134,16 @@ def create_rankings():
     sorted_issues = sorted(ISSUES_DICT.items(), key=lambda x: x[1]['total_amount'], reverse=True)
     
     return sorted_issues
+
+
+
+# Create dics of how often which precise issue has been found -> no categories but precise issue ID
+def create_overview_amount_ids(distribution_of_ids, source):
+    for id in source["ids_of_max"]:
+        if id in distribution_of_ids:
+            distribution_of_ids[id] += 1
+        else:
+            distribution_of_ids[id] = 1
 
 
 
@@ -176,10 +186,14 @@ def json_analyzer(path):
         key, values = sorted_issues[i]
         print(f"{i+1}. {key} - {values['impact']} - {values['total_amount']}")
 
+        distribution_of_ids = {}
         for source in ISSUES_DICT[key]["sources"]:
-            ISSUES_DICT[key]["sources"].get(source)["count_of_max"]
             print(f"Source: {source} with: Max = {ISSUES_DICT[key]["sources"].get(source)["count_of_max"]}, Total = {ISSUES_DICT[key]["sources"][source]["count_of_all"]}")
-    
+            create_overview_amount_ids(distribution_of_ids, ISSUES_DICT[key]["sources"][source])
+
+        # print ids
+        print("IDs: " + ", ".join([f"{key}:{value}" for key, value in distribution_of_ids.items()]) if distribution_of_ids else "Keine IDs gefunden")  
+
     print("Amount final: ", amount_total)
     print("Average per File: ", float(amount_total/53))
 
