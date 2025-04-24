@@ -1,13 +1,14 @@
 from datasets import load_dataset, load_from_disk, concatenate_datasets, Dataset
 from huggingface_hub import login
-from PIL import Image
 import os
 import json
-import asyncio
+import re
+import pyarrow as pa
 
 
 CURRENT_DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 KEYS_PATH = os.path.join(CURRENT_DIR_PATH, '..', 'keys.json')
+DATA_INPUT_PATH = os.path.join(CURRENT_DIR_PATH, '..', 'Data', 'Input')
 DATASET_PATH = os.path.join(CURRENT_DIR_PATH, '..', '..', '..', 'Dataset')
 DATASETS_HF = ["SALT-NLP/Design2Code-hf", "xcodemind/webcode2m"]
 
@@ -29,9 +30,10 @@ async def filter_entries(dataset, picks):
 
     for data_entry in dataset:
         if counter in picks:
-            filtered = {k: data_entry[k] for k in ['image', 'text']}
-            # TODO: Fill with accessibility issues
-            filtered["accessibility"] = ""
+            filtered = {
+                'image': data_entry['image'],
+                'text': convert_latin1_to_utf8(data_entry['text']) 
+            }
             filtered_entries.append(filtered)
 
             # break if max picks reached
@@ -54,7 +56,7 @@ async def create_new_dataset(hf_dataset_name=None):
     await login_hugging_face()
 
     # dataset = load_dataset(dataset_name, split="train")
-    design2code = load_dataset(DATASETS_HF[0], split="train", streaming=True)
+    design2code = load_dataset(DATASETS_HF[0], split="train", streaming=True    )
     webcode2m = load_dataset(DATASETS_HF[1], split="train", streaming=True)
 
     # Filter entries
@@ -116,20 +118,66 @@ async def get_dataset_hf_locally(hf_dataset_path=DATASET_PATH):
 
     return dataset
 
-# Updates dataset with accessibility issues
-async def update_dataset_hf_accessibility():
-    dataset = await get_dataset_hf("marcolutz/Image2Code")
 
-    # TODO: Add accessibility issues
-    # store_dataset_in_dir(dataset, os.path.join(CURRENT_DIR_PATH, '..', 'Data'))
+# Citation: https://stackoverflow.com/questions/4813061/non-alphanumeric-list-order-from-os-listdir
+def sorted_alphanumeric(data):
+    convert = lambda text: int(text) if text.isdigit() else text.lower()
+    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 
+    return sorted(data, key=alphanum_key)
 
 
+'''
+    Updates dataset with accessibility issues
+    The issues will be stored as Strings
+'''
+async def update_dataset_hf_accessibility(hf_dataset_name="marcolutz/Image2Code"):
+    dataset = await get_dataset_hf(hf_dataset_name)
+
+    # If column already in dataset, then delete
+    if "accessibility" in dataset.column_names:
+        dataset = dataset.remove_columns("accessibility")
+
+    # Add accessibility issues
+    length_dataset = len(dataset)
+
+    accessibility_issues_json_path = os.path.join(DATA_INPUT_PATH, 'json', 'manual')
+    accessibility_issues_json_strings = []
+
+    name_files_sorted = sorted_alphanumeric(os.listdir(accessibility_issues_json_path))
+
+    for file in name_files_sorted:
+        file_path = os.path.join(accessibility_issues_json_path, file)
+        with open(file_path, 'r') as f:
+            accessibility_issue_json = json.load(f)
+
+            # Make sure that they always have the same structure
+            assert(isinstance(accessibility_issue_json, list))
+
+            accessibility_issue_string = json.dumps(accessibility_issue_json)
+
+            accessibility_issues_json_strings.append(accessibility_issue_string)
+    
+    # Check if length is the same
+    assert(length_dataset == len(accessibility_issues_json_strings))
+
+    dataset = dataset.add_column("accessibility", accessibility_issues_json_strings)
+
+    await upload_dataset_hf(dataset, hf_dataset_name)
+
+    print("Dataset updated with accessibility issues...")
+
+
+def convert_latin1_to_utf8(entry):
+    try:
+        return entry.encode("latin-1").decode("utf-8")
+    except UnicodeDecodeError:
+        return entry
 
 # Store dataset in directory
 def store_dataset_in_dir(dataset, path):
     input_dir = os.path.join(path, "input")
     html_dir = os.path.join(input_dir, "html")
-    image_dir = os.path.join(input_dir, "images")
+    # image_dir = os.path.join(input_dir, "images")
 
     counter = 1
     
@@ -138,10 +186,10 @@ def store_dataset_in_dir(dataset, path):
         text = data_entry["text"]
 
         # Save image in imaage_dir
-        image.save(os.path.join(image_dir, f"{counter}.png"))
+        # image.save(os.path.join(image_dir, f"{counter}.png"))
 
         # Save html
-        with open(os.path.join(html_dir, f"{counter}.html"), "w") as f:
+        with open(os.path.join(html_dir, f"{counter}.html"), "w", encoding='utf-8') as f:
             f.write(text)
         
         counter += 1

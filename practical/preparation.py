@@ -2,6 +2,8 @@ import asyncio
 import os
 import sys
 import json
+from PIL import Image
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from practical.Utils import utils_dataset
@@ -40,38 +42,56 @@ async def main():
     '''
 
     # Configuration
-    create_new_dataset = False
-    store_dataset_in_data_dir = False
-    enrich_with_accessibility = True
+    # If no own dataset exists in HuggingFace yet
+    create_new_dataset = True
+    # Store the dataset locally in Data Directory
+    store_dataset_in_data_dir = True
+    # Print Images of Dataset
+    show_images_dataset = False
 
     dataset = None
 
     if create_new_dataset:
         dataset = await utils_dataset.create_new_dataset(hf_dataset_name=DATASET_HF)
+        enrich_with_accessibility_issues(dataset)
     else:
         dataset = await utils_dataset.get_dataset_hf(DATASET_HF)
         # dataset = await utils_dataset.get_dataset_hf_locally(DATASET_HF)
 
     if store_dataset_in_data_dir:
         utils_dataset.store_dataset_in_dir(dataset, DATA_PATH)
-        
-    if enrich_with_accessibility:
-        counter = 1
-        for data_entry in dataset:
-            print(counter)
 
-            # if counter < 8:
-            #     counter += 1 
-            #     continue
- 
-            accessibility_issues_json = await accessibilityIssues.get_accessibility_issues(os.path.join(DATA_PATH, "Input", "html", f"{counter}.html"))
-            
-            with open(os.path.join(DATA_PATH, "Input", "json", f"{counter}.json"), "w") as f:
-                json.dump(accessibility_issues_json, f)
-            
-            counter += 1
+    if show_images_dataset:
+        for data_entry in dataset:
+            image = data_entry.get("image")
+            image.show()
+       
 
     return dataset
 
+
+async def enrich_with_accessibility_issues(dataset):
+    counter = 1
+    for data_entry in dataset:
+        # image = data_entry.get("image")
+        # image.show()
+        # print(counter)
+
+        # if counter < 8:
+        #     counter += 1 
+        #     continue
+
+        accessibility_issues_json = await accessibilityIssues.get_accessibility_issues(os.path.join(DATA_PATH, "Input", "html", f"{counter}.html"))
+        
+        with open(os.path.join(DATA_PATH, "Input", "json", f"{counter}.json"), "w") as f:
+            json.dump(accessibility_issues_json, f)
+        
+        counter += 1
+    
+    await utils_dataset.update_dataset_hf_accessibility(DATASET_HF)
+
+
+
 if __name__ == "__main__":
-    asyncio.run(main())
+    dataset = asyncio.run(main())    
+    # asyncio.run(enrich_with_accessibility_issues(dataset))
