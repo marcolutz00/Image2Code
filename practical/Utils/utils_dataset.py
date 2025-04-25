@@ -126,51 +126,71 @@ def sorted_alphanumeric(data):
 
 
 '''
-    Updates dataset with accessibility issues
-    The issues will be stored as Strings
+    Updates dataset according to column
+    TODO: image
 '''
-async def update_dataset_hf_accessibility(hf_dataset_name="marcolutz/Image2Code"):
+async def update_dataset_hf(hf_dataset_name, column):
+    if column == "accessibility":
+        accessibility_issues_json_path = os.path.join(DATA_INPUT_PATH, 'json', 'manual')
+        return await update_dataset_hf_column(hf_dataset_name, column, accessibility_issues_json_path)
+    elif column == "text":
+        html_path = os.path.join(DATA_INPUT_PATH, 'html')
+        return await update_dataset_hf_column(hf_dataset_name, column, html_path)
+    elif column == "image":
+        images_path = os.path.join(DATA_INPUT_PATH, 'images')
+        pass
+    else:
+        raise ValueError("There are only 3 columns in the dataset")
+    
+# Updates dataset Accessibility - Issues will be stored as Strings
+async def update_dataset_hf_column(hf_dataset_name, column_name, data_path):
     dataset = await get_dataset_hf(hf_dataset_name)
 
     # If column already in dataset, then delete
-    if "accessibility" in dataset.column_names:
-        dataset = dataset.remove_columns("accessibility")
+    if column_name in dataset.column_names:
+        dataset = dataset.remove_columns(column_name)
 
     # Add accessibility issues
     length_dataset = len(dataset)
 
-    accessibility_issues_json_path = os.path.join(DATA_INPUT_PATH, 'json', 'manual')
-    accessibility_issues_json_strings = []
+    updated_data_string = []
 
-    name_files_sorted = sorted_alphanumeric(os.listdir(accessibility_issues_json_path))
+    name_files_sorted = sorted_alphanumeric(os.listdir(data_path))
 
     for file in name_files_sorted:
-        file_path = os.path.join(accessibility_issues_json_path, file)
-        with open(file_path, 'r') as f:
-            accessibility_issue_json = json.load(f)
-
-            # Make sure that they always have the same structure
+        file_path = os.path.join(data_path, file)
+        if file.startswith(".") or os.path.isdir(file_path):
+            continue
+        if column_name == 'accessibility':
+            with open(file_path, 'r') as f:
+                accessibility_issue_json = json.load(f)
+                # Make sure that they always have the same structure
             assert(isinstance(accessibility_issue_json, list))
-
             accessibility_issue_string = json.dumps(accessibility_issue_json)
+            updated_data_string.append(accessibility_issue_string)
+        elif column_name == 'text':
+            with open(file_path, "r", encoding='utf-8') as f:
+                html = f.read()
+            updated_data_string.append(html)
 
-            accessibility_issues_json_strings.append(accessibility_issue_string)
     
     # Check if length is the same
-    assert(length_dataset == len(accessibility_issues_json_strings))
+    assert(length_dataset == len(updated_data_string))
 
-    dataset = dataset.add_column("accessibility", accessibility_issues_json_strings)
+    dataset = dataset.add_column(column_name, updated_data_string)
 
     await upload_dataset_hf(dataset, hf_dataset_name)
 
-    print("Dataset updated with accessibility issues...")
+    print(f"Dataset updated with {column_name} issues...")
+
+    return dataset
 
 
 # Store dataset in directory
 def store_dataset_in_dir(dataset, path):
     input_dir = os.path.join(path, "input")
     html_dir = os.path.join(input_dir, "html")
-    # image_dir = os.path.join(input_dir, "images")
+    image_dir = os.path.join(input_dir, "images")
 
     counter = 1
     
@@ -179,7 +199,7 @@ def store_dataset_in_dir(dataset, path):
         text = data_entry["text"]
 
         # Save image in imaage_dir
-        # image.save(os.path.join(image_dir, f"{counter}.png"))
+        image.save(os.path.join(image_dir, f"{counter}.png"))
 
         # Save html
         with open(os.path.join(html_dir, f"{counter}.html"), "w", encoding='utf-8') as f:

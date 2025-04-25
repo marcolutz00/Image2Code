@@ -45,9 +45,12 @@ async def main():
     # If no own dataset exists in HuggingFace yet
     create_new_dataset = False
     # Store the dataset locally in Data Directory
-    store_dataset_in_data_dir = True
+    store_dataset_in_data_dir = False
     # Print Images of Dataset
     show_images_dataset = False
+    # Update Column in Dataset
+    update_column_dataset = True
+    update_column = "text"
 
     dataset = None
 
@@ -65,6 +68,9 @@ async def main():
         for data_entry in dataset:
             image = data_entry.get("image")
             image.show()
+    
+    if update_column_dataset and update_column != None:
+        dataset = await utils_dataset.update_dataset_hf(DATASET_HF, update_column)
        
 
     return dataset
