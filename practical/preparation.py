@@ -43,7 +43,7 @@ async def main():
 
     # Configuration
     # If no own dataset exists in HuggingFace yet
-    create_new_dataset = True
+    create_new_dataset = False
     # Store the dataset locally in Data Directory
     store_dataset_in_data_dir = True
     # Print Images of Dataset

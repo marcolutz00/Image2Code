@@ -11,7 +11,6 @@ import re
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 HTML_PATH= os.path.join(DIR_PATH, '..', 'Input', 'html')
-HTML_PATH_ADJUSTED = os.path.join(DIR_PATH, '..', 'Input', 'html', 'adjusted')
 
 # Regex whcich checks if already a href attribute exists or not.
 # If not, add an empty attribute
@@ -21,7 +20,7 @@ def add_empty_href(html):
 
 def start():
     for file in os.listdir(HTML_PATH):
-        if os.path.isdir(os.path.join(HTML_PATH, file)):
+        if os.path.isdir(os.path.join(HTML_PATH, file)) or file.startswith("."):
             continue
 
         with open(os.path.join(HTML_PATH, file), 'r', encoding='utf-8') as f:
@@ -29,7 +28,7 @@ def start():
         
         adjusted_html = add_empty_href(html)
 
-        with open(os.path.join(HTML_PATH_ADJUSTED, file), 'w', encoding='utf-8') as w:
+        with open(os.path.join(HTML_PATH, file), 'w', encoding='utf-8') as w:
             w.write(adjusted_html)
         
 

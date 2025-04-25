@@ -3,7 +3,6 @@ from huggingface_hub import login
 import os
 import json
 import re
-import pyarrow as pa
 
 
 CURRENT_DIR_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -32,7 +31,7 @@ async def filter_entries(dataset, picks):
         if counter in picks:
             filtered = {
                 'image': data_entry['image'],
-                'text': convert_latin1_to_utf8(data_entry['text']) 
+                'text': data_entry['text']
             }
             filtered_entries.append(filtered)
 
@@ -56,7 +55,7 @@ async def create_new_dataset(hf_dataset_name=None):
     await login_hugging_face()
 
     # dataset = load_dataset(dataset_name, split="train")
-    design2code = load_dataset(DATASETS_HF[0], split="train", streaming=True    )
+    design2code = load_dataset(DATASETS_HF[0], split="train", streaming=True)
     webcode2m = load_dataset(DATASETS_HF[1], split="train", streaming=True)
 
     # Filter entries
@@ -166,12 +165,6 @@ async def update_dataset_hf_accessibility(hf_dataset_name="marcolutz/Image2Code"
 
     print("Dataset updated with accessibility issues...")
 
-
-def convert_latin1_to_utf8(entry):
-    try:
-        return entry.encode("latin-1").decode("utf-8")
-    except UnicodeDecodeError:
-        return entry
 
 # Store dataset in directory
 def store_dataset_in_dir(dataset, path):
