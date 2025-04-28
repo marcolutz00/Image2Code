@@ -49,8 +49,8 @@ async def main():
     # Print Images of Dataset
     show_images_dataset = False
     # Update Column in Dataset
-    update_column_dataset = True
-    update_column = "text"
+    update_column_dataset = False
+    update_column = None
 
     dataset = None
 
@@ -89,8 +89,8 @@ async def enrich_with_accessibility_issues(dataset):
 
         accessibility_issues_json = await accessibilityIssues.get_accessibility_issues(os.path.join(DATA_PATH, "Input", "html", f"{counter}.html"))
         
-        with open(os.path.join(DATA_PATH, "Input", "json", f"{counter}.json"), "w") as f:
-            json.dump(accessibility_issues_json, f)
+        # with open(os.path.join(DATA_PATH, "Input", "json", f"{counter}.json"), "w") as f:
+        #     json.dump(accessibility_issues_json, f)
         
         counter += 1
     
@@ -100,4 +100,4 @@ async def enrich_with_accessibility_issues(dataset):
 
 if __name__ == "__main__":
     dataset = asyncio.run(main())    
-    # asyncio.run(enrich_with_accessibility_issues(dataset))
+    asyncio.run(enrich_with_accessibility_issues(dataset))
