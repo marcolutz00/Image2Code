@@ -37,9 +37,10 @@ async def axe_core(html_path):
             }
         """)
 
-        axe_violations = axe_results["violations"]
+        # axe_violations = axe_results["violations"]
 
-    return axe_violations
+    # return axe_violations
+    return axe_results
 
 
 # 2. Pa11y (npm) infos here: https://www.npmjs.com/package/pa11y
@@ -101,7 +102,13 @@ async def google_lighthouse(html_path):
     output_cmd_json = json.loads(output_cmd.stdout)
 
     # Important fields
-    important_output = output_cmd_json["audits"]
+    audits = output_cmd_json["audits"]
+    categories = output_cmd_json["categories"]
+
+    important_output = {
+        "audits": audits,
+        "categories": categories
+    }
 
     # lighthouse_report = open(f"{DIR_PATH}/lighthouse_report.json", "w")
     # json.dump(important_output, lighthouse_report)
@@ -120,6 +127,7 @@ async def create_automatic_mapping(html_path):
 
 async def get_accessibility_issues(html_path):
     axe_core_results = await axe_core(html_path)
+    axe_core_violations = axe_core_results["violations"]
     pa11y_results = await pa11y(html_path)
     lighthouse_results = await google_lighthouse(html_path)
 

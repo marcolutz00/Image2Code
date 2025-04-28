@@ -44,19 +44,28 @@ def update_amount(wcag_issues_dict):
 
 
 # Convert it to json readable format
-def prepare_wcag_issues_json(wcag_issues_dict):
-    output = []
+def prepare_wcag_issues_json(wcag_issues_dict, total_nodes_checked, lighthouse_accessibility_score):
+    issues = []
 
+    total_nodes_failed = 0
     for (wcag_id, url, impact, amount, name), issues_list in wcag_issues_dict.items():
         item = {
             "wcag_id": wcag_id,
             "url": url,
             "impact": impact,
-            "amount": amount,
             "name": name,
+            "amount_nodes_failed": amount,
             "issues": issues_list
         }
-        output.append(item)
+        total_nodes_failed += amount
+        issues.append(item)
+    
+    output = {
+        "lighthouse_accessibility_score": lighthouse_accessibility_score,
+        "total_nodes_checked": total_nodes_checked,
+        "total_nodes_failed": total_nodes_failed,
+        "issues": issues
+    }
 
     return output
 
@@ -125,7 +134,7 @@ def pa11y_mapping(issues, wcag_issues_dict):
             wcag_issues_dict[(htmlcs_id_tuple, axe_url_tuple, impact, 1, name)] = [full_issue]
 
 
-# Axe-core shows the url and wcag id
+# Axe-core shows the url and wcag id of all the violations
 def axe_core_mapping(issues, wcag_issues_dict):
     for issue in issues:
         issue_url = issue["helpUrl"].split("?")[0]
@@ -145,7 +154,6 @@ def axe_core_mapping(issues, wcag_issues_dict):
                 "title": issue.get("help", ""),
                 "description": issue.get("description", ""),
                 "impact": issue.get("impact", ""),
-                "helpUrl": issue.get("helpUrl", ""),
                 "nodes": issue_detail
             }
         
@@ -163,6 +171,20 @@ def axe_core_mapping(issues, wcag_issues_dict):
             # if no match found, create new entry
             if not found:
                 wcag_issues_dict[(htmlcs_id_tuple, axe_url_tuple, impact, 1, name)] = [full_issue]
+
+
+# Calculates the amount of issues which have been tested by Axe-Core
+def axe_core_nodes_checked(axe_core_violations, axe_core_incomplete, axe_core_passes):
+    amount_nodes_checked = 0
+
+    for issues_per_category in [axe_core_violations, axe_core_incomplete, axe_core_passes]:
+        for issue in issues_per_category:
+            nodes = issue.get("nodes")
+            assert len(nodes) > 0
+
+            amount_nodes_checked += len(nodes)
+
+    return amount_nodes_checked
 
 
 # Lighthouse only shows the url
@@ -231,16 +253,47 @@ def lighthouse_mapping(issues, wcag_issues_dict):
 
 # Main function to call all mappings
 def full_matching(pa11y, axe_core, lighthouse):
-    wcag_issues_dict = {}
+    '''
+        wcag_issues_dict_automatic : contains all automatic found issues which do not require human checking
+        wcag_issues_dict_manual : contains all issues which have to be checked manually again
+    '''
+    wcag_issues_dict_automatic = {}
+    wcag_issues_dict_manual = {}
 
-    pa11y_mapping(pa11y, wcag_issues_dict)
-    axe_core_mapping(axe_core, wcag_issues_dict)
-    lighthouse_mapping(lighthouse, wcag_issues_dict)
+    '''
+        1. Axe-Core differentiates in 4 categories:
+        passes : rule tested, all elements okay
+        violations : rule tested, at least 1 error
+        incomplete : rule needs human judgement
+        inapplicable : rule can't be tested, since web-page does not contain an element which fits the rule
+    '''
+    axe_core_violations = axe_core["violations"]
+    axe_core_incomplete = axe_core["incomplete"]
+    axe_core_passes = axe_core["passes"]
+    axe_core_mapping(axe_core_violations, wcag_issues_dict_automatic)
+    axe_core_mapping(axe_core_incomplete, wcag_issues_dict_manual)
 
-    wcag_issues_dict = update_amount(wcag_issues_dict)
+    total_nodes_checked = axe_core_nodes_checked(axe_core_violations, axe_core_incomplete, axe_core_passes)
 
-    wcag_issues_dict = prepare_wcag_issues_json(wcag_issues_dict)
+    '''
+        2. Pa11y only shows errors/violations
+    '''
+    pa11y_mapping(pa11y, wcag_issues_dict_automatic)
 
-    return wcag_issues_dict
+
+    '''
+        3. Lighthouse returns multiple informations
+        audits : all WCAG-rules similar to axe-core, however no information about the amount of nodes tested
+        categories : Information about categories tested (in this case only "accessibility"). Interesting: Lighthouse releases final score. Can be used as another benchmark
+    '''
+    lighthouse_audits = lighthouse["audits"]
+    lighthouse_accessibility_score = lighthouse.get("accessibility")["score"]
+    lighthouse_mapping(lighthouse_audits, wcag_issues_dict_automatic)
+
+    wcag_issues_dict_automatic = update_amount(wcag_issues_dict_automatic)
+
+    wcag_issues_dict_automatic = prepare_wcag_issues_json(wcag_issues_dict_automatic, total_nodes_checked, lighthouse_accessibility_score)
+
+    return wcag_issues_dict_automatic
     
 
