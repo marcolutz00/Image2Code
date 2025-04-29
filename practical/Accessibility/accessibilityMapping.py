@@ -60,10 +60,32 @@ def prepare_wcag_issues_json(wcag_issues_dict, total_nodes_checked, lighthouse_a
         total_nodes_failed += amount
         issues.append(item)
     
-    output = {
+    automatic_results = {
         "lighthouse_accessibility_score": lighthouse_accessibility_score,
         "total_nodes_checked": total_nodes_checked,
         "total_nodes_failed": total_nodes_failed,
+    }
+
+    manual_results = {
+        "total_SC": "8",
+        "failed_SC": "to be defined",
+        "details": {
+            "1.4.4": "tbd",
+            "1.4.10": "tbd",
+            "1.4.11": "tbd",
+            "1.4.12": "tbd",
+            "2.1.1 + 2.1.2": "tbd",
+            "2.4.3": "tbd",
+            "2.4.6": "tbd",
+            "2.4.7": "tbd",
+        }
+    }
+
+    # TODO: Overall Status definieren (ROT, GRÜN, GELB, ...)
+    output = {
+        "automatic": automatic_results,
+        "manual": manual_results,
+        "overall_status": "to be defined",
         "issues": issues
     }
 
@@ -273,6 +295,7 @@ def full_matching(pa11y, axe_core, lighthouse):
     axe_core_mapping(axe_core_violations, wcag_issues_dict_automatic)
     axe_core_mapping(axe_core_incomplete, wcag_issues_dict_manual)
 
+    # get the amount of nodes which have been checked by axe-core
     total_nodes_checked = axe_core_nodes_checked(axe_core_violations, axe_core_incomplete, axe_core_passes)
 
     '''
@@ -287,13 +310,15 @@ def full_matching(pa11y, axe_core, lighthouse):
         categories : Information about categories tested (in this case only "accessibility"). Interesting: Lighthouse releases final score. Can be used as another benchmark
     '''
     lighthouse_audits = lighthouse["audits"]
-    lighthouse_accessibility_score = lighthouse.get("accessibility")["score"]
+    lighthouse_accessibility_score = lighthouse["categories"].get("accessibility").get("score")
     lighthouse_mapping(lighthouse_audits, wcag_issues_dict_automatic)
 
     wcag_issues_dict_automatic = update_amount(wcag_issues_dict_automatic)
 
-    wcag_issues_dict_automatic = prepare_wcag_issues_json(wcag_issues_dict_automatic, total_nodes_checked, lighthouse_accessibility_score)
+    wcag_issues_dict_automatic_json = prepare_wcag_issues_json(wcag_issues_dict_automatic, total_nodes_checked, lighthouse_accessibility_score)
 
-    return wcag_issues_dict_automatic
+
+    # TODO: Manual inspection noch hinzufügen.
+    return wcag_issues_dict_automatic_json
     
 

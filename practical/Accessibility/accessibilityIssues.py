@@ -127,13 +127,12 @@ async def create_automatic_mapping(html_path):
 
 async def get_accessibility_issues(html_path):
     axe_core_results = await axe_core(html_path)
-    axe_core_violations = axe_core_results["violations"]
     pa11y_results = await pa11y(html_path)
     lighthouse_results = await google_lighthouse(html_path)
 
-    accessibility_issues_map = accessibilityMapping.full_matching(pa11y_results, axe_core_results, lighthouse_results)
+    accessibility_issues_map_json = accessibilityMapping.full_matching(pa11y_results, axe_core_results, lighthouse_results)
 
-    return accessibility_issues_map
+    return accessibility_issues_map_json
 
 
 
