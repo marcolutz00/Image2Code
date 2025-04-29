@@ -91,7 +91,7 @@ body, p, h1, h2, h3, h4, h5, h6 {
 ## 7  Focus Visible (SC 2.4.7 AA)
 | **Goal** | Keyboard focus indicator is always visible and has sufficient contrast. |
 | **Test Steps** | 
-1. Tab to each control – visible ring/border appears.
+1. Tab to each control – Check if visible ring/border appears.
 |
 | **Affected users** | Low‑vision keyboard users |
 | **Reference** | <https://www.w3.org/WAI/WCAG22/quickref/#focus-visible> |
@@ -103,11 +103,9 @@ To be defined
 
 ```json
 {
-  "page": "https://example.com/register",
   "manual_checks": {
     "1.4.4": "fail",
     "1.4.10": "pass",
-    "1.4.11": "pass",
     "1.4.12": "pass",
     "2.1.1": "pass",
     "2.4.3": "pass",
