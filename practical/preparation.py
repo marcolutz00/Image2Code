@@ -94,7 +94,7 @@ async def enrich_with_accessibility_issues(dataset):
         
         counter += 1
     
-    await utils_dataset.update_dataset_hf_accessibility(DATASET_HF)
+    await utils_dataset.update_dataset_hf(DATASET_HF, "accessibility")
 
 
 

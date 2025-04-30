@@ -67,8 +67,8 @@ def prepare_wcag_issues_json(wcag_issues_dict, total_nodes_checked, lighthouse_a
     }
 
     manual_results = {
-        "total_SC": "to be defined",
-        "failed_SC": "to be defined",
+        "total_SC": "tbd",
+        "failed_SC": "tbd",
         "checks": {
             "1.4.4": "tbd",
             "1.4.10": "tbd",
@@ -84,8 +84,8 @@ def prepare_wcag_issues_json(wcag_issues_dict, total_nodes_checked, lighthouse_a
     output = {
         "automatic": automatic_results,
         "manual": manual_results,
-        "overall_status": "to be defined",
-        "issues": issues
+        "overall_status": "tbd",
+        "automatic_issues": issues
     }
 
     return output
@@ -116,10 +116,10 @@ def map_htmlcsniffer_and_axecore(id, htmlcsniffer=True):
     
     if htmlcsniffer:
         # if no htmlcs_id entry in cs_and_axe_mapping corresponds to this issue, then return "tbd"
-        return id, None, "to be defined", "to be defined"
+        return id, None, "tbd", "tbd"
     else:
         # if no axe_url entry in cs_and_axe_mapping corresponds to this issue, then return "tbd"
-        return None, id, "to be defined", "to be defined"
+        return None, id, "tbd", "tbd"
 
 
 # Pa11y only shows the wcag id, but not the url
