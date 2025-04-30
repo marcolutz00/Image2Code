@@ -9,8 +9,6 @@ import matplotlib.pyplot as plt
 CURR_DIR = os.path.dirname(os.path.realpath(__file__))
 INPUT_JSON_DIR = os.path.join(CURR_DIR, '..', 'Input', 'json', 'manual')
 
-ISSUES_DICT = {}
-
 '''
     This function returns a map describing which accessibility issue has been found by which source.
 
@@ -18,27 +16,29 @@ ISSUES_DICT = {}
     which has reported the most amount of details will get the amount.
     Only exception: If there is an entry with Manual-Inspection, then Manual-Inspection will get the amount.
 '''
-
 # Issues are going to be listed
-def list_and_add_issues(data, sources_dict):
-    global ISSUES_DICT
+def list_and_add_issues(data, sources_dict, issues_dict):
+    automatic = data.get("automatic")
+    automatic_lighthouse_accessibility_score = automatic.get("lighthouse_accessibility_score")
+    automatic_total_nodes_checked = automatic.get("total_nodes_checked")
+    automatic_total_nodes_failed = automatic.get("total_nodes_failed")
 
-    amount_total = 0
+    manual = data.get("manual")
+    manual_checks = manual.get("checks")
 
-    for accessibility_issue in data:
+
+    for accessibility_issue in data.get("automatic_issues"):
         wcag_id = accessibility_issue.get('wcag_id')
         url = accessibility_issue.get('axe_url')
         impact = accessibility_issue.get('impact')
-        amount = accessibility_issue.get('amount')
+        amount_nodes_failed = accessibility_issue.get('amount_nodes_failed')
         name = accessibility_issue.get('name')
         issues = accessibility_issue.get('issues')
 
-        amount_total += amount
-
-        if name not in ISSUES_DICT:
-            ISSUES_DICT[name] = {
+        if name not in issues_dict:
+            issues_dict[name] = {
                 "impact": impact,
-                "total_amount": 0,
+                "amount_nodes_failed": 0,
                 "sources": {
                     "Manual-Inspection": {"count_of_max": 0, "count_of_all": 0, "ids_of_max": [], "ids_of_all": []},
                     "axe-core": {"count_of_max": 0, "count_of_all": 0, "ids_of_max": [], "ids_of_all": []},
@@ -47,7 +47,7 @@ def list_and_add_issues(data, sources_dict):
                 }
             }
 
-        ISSUES_DICT[name]["total_amount"] += amount
+        issues_dict[name]["amount_nodes_failed"] += amount_nodes_failed
 
         axe_core = {
             "amount": 0,
@@ -69,24 +69,24 @@ def list_and_add_issues(data, sources_dict):
             issue_id = issue.get("id")
             issue_description = issue.get("description")
 
-            if source in ISSUES_DICT[name]["sources"]:
+            if source in issues_dict[name]["sources"]:
                 if source == "Manual-Inspection":
-                    ISSUES_DICT[name]["sources"][source]["count_of_all"] += amount
-                    ISSUES_DICT[name]["sources"][source]["count_of_max"] += amount
+                    issues_dict[name]["sources"][source]["count_of_all"] += amount_nodes_failed
+                    issues_dict[name]["sources"][source]["count_of_max"] += amount_nodes_failed
 
-                    sources_dict["Manual-Inspection"]["max"] += amount
-                    sources_dict["Manual-Inspection"]["absolute"] += amount
+                    sources_dict["Manual-Inspection"]["max"] += amount_nodes_failed
+                    sources_dict["Manual-Inspection"]["absolute"] += amount_nodes_failed
 
                     found = True
 
-                    for i in range(amount):
-                        ISSUES_DICT[name]["sources"][source]["ids_of_max"].append(issue_description)
-                        ISSUES_DICT[name]["sources"][source]["ids_of_all"].append(issue_description)
+                    for i in range(amount_nodes_failed):
+                        issues_dict[name]["sources"][source]["ids_of_max"].append(issue_description)
+                        issues_dict[name]["sources"][source]["ids_of_all"].append(issue_description)
 
                     continue
 
-                ISSUES_DICT[name]["sources"][source]["count_of_all"] += 1
-                ISSUES_DICT[name]["sources"][source]["ids_of_all"].append(issue_id)
+                issues_dict[name]["sources"][source]["count_of_all"] += 1
+                issues_dict[name]["sources"][source]["ids_of_all"].append(issue_id)
 
                 if not found:
                     if source == "axe-core":
@@ -108,30 +108,29 @@ def list_and_add_issues(data, sources_dict):
             max_amount = max(axe_core["amount"], pa11y["amount"], lighthouse["amount"])
 
             if axe_core.get("amount") == max_amount:
-                ISSUES_DICT[name]["sources"]["axe-core"]["ids_of_max"] += axe_core.get("issues")
-                ISSUES_DICT[name]["sources"]["axe-core"]["count_of_max"] += max_amount
+                issues_dict[name]["sources"]["axe-core"]["ids_of_max"] += axe_core.get("issues")
+                issues_dict[name]["sources"]["axe-core"]["count_of_max"] += max_amount
                 sources_dict["axe-core"]["max"] += max_amount
 
             elif pa11y.get("amount") == max_amount:
-                ISSUES_DICT[name]["sources"]["pa11y"]["ids_of_max"] += pa11y.get("issues")
-                ISSUES_DICT[name]["sources"]["pa11y"]["count_of_max"] += max_amount
+                issues_dict[name]["sources"]["pa11y"]["ids_of_max"] += pa11y.get("issues")
+                issues_dict[name]["sources"]["pa11y"]["count_of_max"] += max_amount
                 sources_dict["pa11y"]["max"] += max_amount
 
             elif lighthouse.get("amount") == max_amount:
-                ISSUES_DICT[name]["sources"]["lighthouse"]["ids_of_max"] += lighthouse.get("issues")
-                ISSUES_DICT[name]["sources"]["lighthouse"]["count_of_max"] += max_amount
+                issues_dict[name]["sources"]["lighthouse"]["ids_of_max"] += lighthouse.get("issues")
+                issues_dict[name]["sources"]["lighthouse"]["count_of_max"] += max_amount
                 sources_dict["lighthouse"]["max"] += max_amount
 
 
 
-    return amount_total
+    return automatic_total_nodes_checked, automatic_total_nodes_failed
 
 
 # Ranking based on amount sorting
-def create_rankings():
-    global ISSUES_DICT
+def create_rankings(issues_dict):
     # sort issues_dict by amount
-    sorted_issues = sorted(ISSUES_DICT.items(), key=lambda x: x[1]['total_amount'], reverse=True)
+    sorted_issues = sorted(issues_dict.items(), key=lambda x: x[1]['amount_nodes_failed'], reverse=True)
     
     return sorted_issues
 
@@ -146,12 +145,18 @@ def create_overview_amount_ids(distribution_of_ids, source):
             distribution_of_ids[id] = 1
 
 
+# Analyzes the manual checks and sets the corresponding values
+def manual_issues_analyzer(path):
+    for file in os.listdir(path):
+        with open(os.path.join(INPUT_JSON_DIR, file), 'rw') as f:
+            data = json.load(f)
 
 
 def json_analyzer(path):
-    global ISSUES_DICT
+    issues_dict = {}
+    amount_nodes_checked_all_files = 0
+    amount_nodes_failed_all_files = 0
 
-    amount_total = 0
     sources = {
         "Manual-Inspection": {
             "max": 0,
@@ -176,30 +181,34 @@ def json_analyzer(path):
             # print("Analyzed: ", file)
             data = json.load(f)
         
-        amount = list_and_add_issues(data, sources)
-        amount_total += amount
+        amount_nodes_checked_file, amount_nodes_failed_file = list_and_add_issues(data, sources, issues_dict)
+        amount_nodes_checked_all_files += amount_nodes_checked_file
+        amount_nodes_failed_all_files += amount_nodes_failed_file
 
     
-    sorted_issues = create_rankings()
+    sorted_issues = create_rankings(issues_dict)
 
     for i in range(len(sorted_issues)):
         key, values = sorted_issues[i]
-        print(f"{i+1}. {key} - {values['impact']} - {values['total_amount']}")
+        print(f"{i+1}. {key} - {values['impact']} - {values['amount_nodes_failed']}")
 
         distribution_of_ids = {}
-        for source in ISSUES_DICT[key]["sources"]:
-            print(f"Source: {source} with: Max = {ISSUES_DICT[key]["sources"].get(source)["count_of_max"]}, Total = {ISSUES_DICT[key]["sources"][source]["count_of_all"]}")
-            create_overview_amount_ids(distribution_of_ids, ISSUES_DICT[key]["sources"][source])
+        for source in issues_dict[key]["sources"]:
+            print(f"Source: {source} with: Max = {issues_dict[key]["sources"].get(source)["count_of_max"]}, Total = {issues_dict[key]["sources"][source]["count_of_all"]}")
+            create_overview_amount_ids(distribution_of_ids, issues_dict[key]["sources"][source])
 
         # print ids
         print("IDs: " + ", ".join([f"{key}:{value}" for key, value in distribution_of_ids.items()]) if distribution_of_ids else "Keine IDs gefunden")  
 
-    print("Amount final: ", amount_total)
-    print("Average per File: ", float(amount_total/53))
+    print("Amount Checks final: ", amount_nodes_checked_all_files)
+    print("Amount Issues final: ", amount_nodes_failed_all_files)
+    print("Average Issues per File: ", float(amount_nodes_failed_all_files/53))
 
     print("stop")
                 
 
+def main():
+    json_analyzer(INPUT_JSON_DIR)
 
-
-json_analyzer(INPUT_JSON_DIR)
+if __name__ == "__main__":
+    main()

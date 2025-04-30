@@ -165,7 +165,6 @@ async def update_dataset_hf_column(hf_dataset_name, column_name, data_path):
             with open(file_path, 'r') as f:
                 accessibility_issue_json = json.load(f)
                 # Make sure that they always have the same structure
-            assert(isinstance(accessibility_issue_json, list))
             accessibility_issue_string = json.dumps(accessibility_issue_json)
             updated_data_string.append(accessibility_issue_string)
         elif column_name == 'text':
