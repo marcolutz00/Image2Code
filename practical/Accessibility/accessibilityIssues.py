@@ -130,9 +130,9 @@ async def get_accessibility_issues(html_path):
     pa11y_results = await pa11y(html_path)
     lighthouse_results = await google_lighthouse(html_path)
 
-    accessibility_issues_map_json = accessibilityMapping.full_matching(pa11y_results, axe_core_results, lighthouse_results)
+    issues_automatic_json, issues_overview_json = accessibilityMapping.integrate_accessibility_tools_results(pa11y_results, axe_core_results, lighthouse_results)
 
-    return accessibility_issues_map_json
+    return issues_automatic_json, issues_overview_json
 
 
 

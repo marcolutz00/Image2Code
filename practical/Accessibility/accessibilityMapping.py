@@ -15,8 +15,8 @@ CSANDAXEMAPPER_JSON_PATH = os.path.join(DIR_PATH, 'mappingCsAndAxeCore.json')
     based on both the id and the url.
 '''
 
-# update amount to get the maximum of pa11y, axe-core and lighthouse per 
-def update_amount(wcag_issues_dict):
+# update amount to get the maximum of pa11y, axe-core and lighthouse
+def calculate_max_issue_counts(wcag_issues_dict):
     wcag_issues_dict_clone = wcag_issues_dict.copy()
 
     for key, issues_list in wcag_issues_dict.items():
@@ -44,7 +44,7 @@ def update_amount(wcag_issues_dict):
 
 
 # Convert it to json readable format
-def prepare_wcag_issues_json(wcag_issues_dict, total_nodes_checked, lighthouse_accessibility_score):
+def create_accessibility_report(wcag_issues_dict):
     issues = []
 
     total_nodes_failed = 0
@@ -59,16 +59,8 @@ def prepare_wcag_issues_json(wcag_issues_dict, total_nodes_checked, lighthouse_a
         }
         total_nodes_failed += amount
         issues.append(item)
-    
-    automatic_results = {
-        "lighthouse_accessibility_score": lighthouse_accessibility_score,
-        "total_nodes_checked": total_nodes_checked,
-        "total_nodes_failed": total_nodes_failed,
-    }
 
     manual_results = {
-        "total_checks": "tbd",
-        "failed_checks": "tbd",
         "checks": {
             "1.4.4": "tbd",
             "1.4.10": "tbd",
@@ -80,15 +72,42 @@ def prepare_wcag_issues_json(wcag_issues_dict, total_nodes_checked, lighthouse_a
         }
     }
 
-    # TODO: Overall Status definieren (ROT, GRÜN, GELB, ...)
     output = {
-        "automatic": automatic_results,
         "manual": manual_results,
-        "overall_status": "tbd",
-        "automatic_issues": issues
+        "automatic": issues
     }
 
-    return output
+    return output, total_nodes_failed
+
+
+# Convert the overview of issues to json-readable format
+def create_overview_report(lighthouse_accessibility_score, total_nodes_checked, total_nodes_failed):
+    automatic_results = {
+        "lighthouse_accessibility_score": lighthouse_accessibility_score,
+        "total_nodes_checked": total_nodes_checked,
+        "total_nodes_failed": total_nodes_failed
+    }
+
+    manual_results = {
+        "total_checks": "tbd",
+        "failed_checks": "tbd",
+    }
+
+    details_issues = {
+        "impact": "tbd",
+        "names": "tbd"
+    }
+
+    accessibility = {
+        "overall_status": "tbd",
+        "benchmark": "tbd",
+        "automatic_checks": automatic_results,
+        "manual_checks": manual_results,
+        "details_checks": details_issues
+    }
+
+    return accessibility
+
 
 
 def map_htmlcsniffer_and_axecore(id, htmlcsniffer=True):
@@ -123,7 +142,7 @@ def map_htmlcsniffer_and_axecore(id, htmlcsniffer=True):
 
 
 # Pa11y only shows the wcag id, but not the url
-def pa11y_mapping(issues, wcag_issues_dict):
+def process_pa11y_issues(issues, wcag_issues_dict):
     # Load the json file
     for issue in issues:
         issue_id = issue["code"].split("WCAG2AA.")[1]
@@ -156,7 +175,7 @@ def pa11y_mapping(issues, wcag_issues_dict):
 
 
 # Axe-core shows the url and wcag id of all the violations
-def axe_core_mapping(issues, wcag_issues_dict):
+def process_axe_core_issues(issues, wcag_issues_dict):
     for issue in issues:
         issue_url = issue["helpUrl"].split("?")[0]
 
@@ -195,7 +214,7 @@ def axe_core_mapping(issues, wcag_issues_dict):
 
 
 # Calculates the amount of issues which have been tested by Axe-Core
-def axe_core_nodes_checked(axe_core_violations, axe_core_incomplete, axe_core_passes):
+def count_axe_core_tested_nodes(axe_core_violations, axe_core_incomplete, axe_core_passes):
     amount_nodes_checked = 0
 
     for issues_per_category in [axe_core_violations, axe_core_incomplete, axe_core_passes]:
@@ -209,7 +228,7 @@ def axe_core_nodes_checked(axe_core_violations, axe_core_incomplete, axe_core_pa
 
 
 # Lighthouse only shows the url
-def lighthouse_mapping(issues, wcag_issues_dict):
+def process_lighthouse_issues(issues, wcag_issues_dict):
     for issue_id, issue_data in issues.items():
         # Skip if scoreDisplayMode is null since lighthouse shows all
         if issue_data.get("scoreDisplayMode") in ["notApplicable", "manual"]:
@@ -273,13 +292,13 @@ def lighthouse_mapping(issues, wcag_issues_dict):
 
 
 # Main function to call all mappings
-def full_matching(pa11y, axe_core, lighthouse):
+def integrate_accessibility_tools_results(pa11y, axe_core, lighthouse):
     '''
-        wcag_issues_dict_automatic : contains all automatic found issues which do not require human checking
-        wcag_issues_dict_manual : contains all issues which have to be checked manually again
+        issues_automatic : contains all automatic found issues which do not require human checking
+        issues_manual : contains all issues which have to be checked manually again
     '''
-    wcag_issues_dict_automatic = {}
-    wcag_issues_dict_manual = {}
+    issues_automatic = {}
+    issues_manual = {}
 
     '''
         1. Axe-Core differentiates in 4 categories:
@@ -291,17 +310,16 @@ def full_matching(pa11y, axe_core, lighthouse):
     axe_core_violations = axe_core["violations"]
     axe_core_incomplete = axe_core["incomplete"]
     axe_core_passes = axe_core["passes"]
-    axe_core_mapping(axe_core_violations, wcag_issues_dict_automatic)
-    axe_core_mapping(axe_core_incomplete, wcag_issues_dict_manual)
+    process_axe_core_issues(axe_core_violations, issues_automatic)
+    process_axe_core_issues(axe_core_incomplete, issues_manual)
 
     # get the amount of nodes which have been checked by axe-core
-    total_nodes_checked = axe_core_nodes_checked(axe_core_violations, axe_core_incomplete, axe_core_passes)
+    total_nodes_checked = count_axe_core_tested_nodes(axe_core_violations, axe_core_incomplete, axe_core_passes)
 
     '''
         2. Pa11y only shows errors/violations
     '''
-    pa11y_mapping(pa11y, wcag_issues_dict_automatic)
-
+    process_pa11y_issues(pa11y, issues_automatic)
 
     '''
         3. Lighthouse returns multiple informations
@@ -310,14 +328,13 @@ def full_matching(pa11y, axe_core, lighthouse):
     '''
     lighthouse_audits = lighthouse["audits"]
     lighthouse_accessibility_score = lighthouse["categories"].get("accessibility").get("score")
-    lighthouse_mapping(lighthouse_audits, wcag_issues_dict_automatic)
+    process_lighthouse_issues(lighthouse_audits, issues_automatic)
 
-    wcag_issues_dict_automatic = update_amount(wcag_issues_dict_automatic)
+    issues_automatic = calculate_max_issue_counts(issues_automatic)
+    issues_automatic_json, total_nodes_failed = create_accessibility_report(issues_automatic)
 
-    wcag_issues_dict_automatic_json = prepare_wcag_issues_json(wcag_issues_dict_automatic, total_nodes_checked, lighthouse_accessibility_score)
+    issues_overview_json = create_overview_report(lighthouse_accessibility_score, total_nodes_checked, total_nodes_failed)
 
-
-    # TODO: Manual inspection noch hinzufügen.
-    return wcag_issues_dict_automatic_json
+    return issues_automatic_json, issues_overview_json
     
 
