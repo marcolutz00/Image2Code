@@ -94,8 +94,6 @@ def create_overview_report(lighthouse_accessibility_score, total_nodes_checked, 
     }
 
     details_issues = {
-        "impact": "tbd",
-        "names": "tbd"
     }
 
     accessibility = {

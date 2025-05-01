@@ -1,13 +1,14 @@
 import os
 import json
-import matplotlib.pyplot as plt
+import copy
 
 '''
     Analysis of .json files which contain the accessibility issues of html files
 '''
 
 CURR_DIR = os.path.dirname(os.path.realpath(__file__))
-INPUT_JSON_DIR = os.path.join(CURR_DIR, '..', 'Input', 'json', 'manual')
+INPUT_INSIGHTS_DIR = os.path.join(CURR_DIR, '..', 'Input', 'insights')
+INPUT_ACCESSIBILITY_DIR = os.path.join(CURR_DIR, '..', 'Input', 'accessibility', 'manual')
 
 '''
     This function returns a map describing which accessibility issue has been found by which source.
@@ -17,114 +18,75 @@ INPUT_JSON_DIR = os.path.join(CURR_DIR, '..', 'Input', 'json', 'manual')
     Only exception: If there is an entry with Manual-Inspection, then Manual-Inspection will get the amount.
 '''
 # Issues are going to be listed
-def analyze_accessibility_issues(data, sources_dict, issues_dict):
+def analyze_accessibility_issues(data, global_issues_dict):
+    # While global_issues_dict serves for all files, local_issues_dict does only serve for one file
+    local_issues_dict = {}
+
     automatic = data.get("automatic")
-    automatic_lighthouse_accessibility_score = automatic.get("lighthouse_accessibility_score")
-    automatic_total_nodes_checked = automatic.get("total_nodes_checked")
-    automatic_total_nodes_failed = automatic.get("total_nodes_failed")
 
-    manual = data.get("manual")
-    manual_checks = manual.get("checks")
+    amount_nodes_failed_file = 0
 
-
-    for accessibility_issue in data.get("automatic_issues"):
+    for accessibility_issue in automatic:
         wcag_id = accessibility_issue.get('wcag_id')
-        url = accessibility_issue.get('axe_url')
+        url = accessibility_issue.get('url')
         impact = accessibility_issue.get('impact')
-        amount_nodes_failed = accessibility_issue.get('amount_nodes_failed')
+        amount = accessibility_issue.get('amount_nodes_failed')
+        assert amount != None
         name = accessibility_issue.get('name')
-        issues = accessibility_issue.get('issues')
+        issues_details = accessibility_issue.get('issues')
+        
+        issue_object = create_issues_dict_entry(wcag_id, url)
+        issue_object["impact"] = impact
+        issue_object["amount_nodes_failed"] = amount
 
-        if name not in issues_dict:
-            issues_dict[name] = {
-                "impact": impact,
-                "amount_nodes_failed": 0,
-                "sources": {
-                    "Manual-Inspection": {"count_of_max": 0, "count_of_all": 0, "ids_of_max": [], "ids_of_all": []},
-                    "axe-core": {"count_of_max": 0, "count_of_all": 0, "ids_of_max": [], "ids_of_all": []},
-                    "pa11y": {"count_of_max": 0, "count_of_all": 0, "ids_of_max": [], "ids_of_all": []},
-                    "lighthouse": {"count_of_max": 0, "count_of_all": 0, "ids_of_max": [], "ids_of_all": []}
-                }
-            }
+        local_issues_dict[name] = issue_object
 
-        issues_dict[name]["amount_nodes_failed"] += amount_nodes_failed
+        if name not in global_issues_dict:
+            issue_object_copy = copy.deepcopy(issue_object)
+            global_issues_dict[name] = issue_object_copy
+        
 
-        axe_core = {
-            "amount": 0,
-            "issues": []
-        }
-        pa11y = {
-            "amount": 0,
-            "issues": []
-        }
-        lighthouse = {
-            "amount": 0,
-            "issues": []
-        }
-        found = False
+        amount_nodes_failed_file += amount
 
+        for issues_detail in issues_details:
+            source = issues_detail.get("source")
+            issue_id = issues_detail.get("id")
+            issue_description = issues_detail.get("description")
 
-        for issue in issues:
-            source = issue.get("source")
-            issue_id = issue.get("id")
-            issue_description = issue.get("description")
-
-            if source in issues_dict[name]["sources"]:
+            if source in local_issues_dict[name]["sources"]:
                 if source == "Manual-Inspection":
-                    issues_dict[name]["sources"][source]["count_of_all"] += amount_nodes_failed
-                    issues_dict[name]["sources"][source]["count_of_max"] += amount_nodes_failed
+                    local_issues_dict[name]["sources"][source]["amount"] += amount
+                    global_issues_dict[name]["sources"][source]["amount"] += amount
 
-                    sources_dict["Manual-Inspection"]["max"] += amount_nodes_failed
-                    sources_dict["Manual-Inspection"]["absolute"] += amount_nodes_failed
-
-                    found = True
-
-                    for i in range(amount_nodes_failed):
-                        issues_dict[name]["sources"][source]["ids_of_max"].append(issue_description)
-                        issues_dict[name]["sources"][source]["ids_of_all"].append(issue_description)
+                    for i in range(amount):
+                        local_issues_dict[name]["sources"][source]["ids"].append(issue_description)
+                        global_issues_dict[name]["sources"][source]["ids"].append(issue_description)
 
                     continue
 
-                issues_dict[name]["sources"][source]["count_of_all"] += 1
-                issues_dict[name]["sources"][source]["ids_of_all"].append(issue_id)
-
-                if not found:
-                    if source == "axe-core":
-                        axe_core["amount"] += 1
-                        axe_core["issues"].append(issue_id)
-                    elif source == "pa11y":
-                        pa11y["amount"] += 1
-                        pa11y["issues"].append(issue_id)
-                    elif source == "lighthouse":
-                        lighthouse["amount"] += 1
-                        lighthouse["issues"].append(issue_id)
-        
-        sources_dict["axe-core"]["absolute"] += axe_core["amount"]
-        sources_dict["pa11y"]["absolute"] += pa11y["amount"]
-        sources_dict["lighthouse"]["absolute"] += lighthouse["amount"]
+                local_issues_dict[name]["sources"][source]["amount"] += 1
+                local_issues_dict[name]["sources"][source]["ids"].append(issue_id)
+                global_issues_dict[name]["sources"][source]["amount"] += 1
+                global_issues_dict[name]["sources"][source]["ids"].append(issue_id)
 
 
-        if not found:   
-            max_amount = max(axe_core["amount"], pa11y["amount"], lighthouse["amount"])
-
-            if axe_core.get("amount") == max_amount:
-                issues_dict[name]["sources"]["axe-core"]["ids_of_max"] += axe_core.get("issues")
-                issues_dict[name]["sources"]["axe-core"]["count_of_max"] += max_amount
-                sources_dict["axe-core"]["max"] += max_amount
-
-            elif pa11y.get("amount") == max_amount:
-                issues_dict[name]["sources"]["pa11y"]["ids_of_max"] += pa11y.get("issues")
-                issues_dict[name]["sources"]["pa11y"]["count_of_max"] += max_amount
-                sources_dict["pa11y"]["max"] += max_amount
-
-            elif lighthouse.get("amount") == max_amount:
-                issues_dict[name]["sources"]["lighthouse"]["ids_of_max"] += lighthouse.get("issues")
-                issues_dict[name]["sources"]["lighthouse"]["count_of_max"] += max_amount
-                sources_dict["lighthouse"]["max"] += max_amount
+    return amount_nodes_failed_file
 
 
+def create_issues_dict_entry(id, url):
+    return {
+        "id": id,
+        "url": url,
+        "impact": "tbd",
+        "amount_nodes_failed": 0,
+        "sources": {
+            "Manual-Inspection": {"amount": 0, "ids": []},
+            "axe-core": {"amount": 0, "ids": []},
+            "pa11y": {"amount": 0, "ids": []},
+            "lighthouse": {"amount": 0, "ids": []}
+        }
+    }
 
-    return automatic_total_nodes_checked, automatic_total_nodes_failed
 
 
 # Ranking based on amount sorting
@@ -138,7 +100,7 @@ def sort_issues_by_amount(issues_dict):
 
 # Create dics of how often which precise issue has been found -> no categories but precise issue ID
 def count_issue_occurrences(distribution_of_ids, source):
-    for id in source["ids_of_max"]:
+    for id in source["ids"]:
         if id in distribution_of_ids:
             distribution_of_ids[id] += 1
         else:
@@ -183,63 +145,44 @@ def analyze_manual_checks(catalog_file_path, json_file_path):
 
 
 
-def analyze_all_json_files(path):
-    issues_dict = {}
-    amount_nodes_checked_all_files = 0
-    amount_nodes_failed_all_files = 0
-
-    sources = {
-        "Manual-Inspection": {
-            "max": 0,
-            "absolute": 0
-        },
-        "pa11y": {
-            "max": 0,
-            "absolute": 0
-        },
-        "axe-core": {
-            "max": 0,
-            "absolute": 0
-        },
-        "lighthouse": {
-            "max": 0,
-            "absolute": 0
-        }
-    }
-
-    for file in os.listdir(path):
-        with open(os.path.join(INPUT_JSON_DIR, file)) as f:
-            # print("Analyzed: ", file)
-            data = json.load(f)
-        
-        amount_nodes_checked_file, amount_nodes_failed_file = analyze_accessibility_issues(data, sources, issues_dict)
-        amount_nodes_checked_all_files += amount_nodes_checked_file
-        amount_nodes_failed_all_files += amount_nodes_failed_file
-
-    
-    sorted_issues = sort_issues_by_amount(issues_dict)
-
+def print_result_files(sorted_issues, issues_dict):
     for i in range(len(sorted_issues)):
         key, values = sorted_issues[i]
         print(f"{i+1}. {key} - {values['impact']} - {values['amount_nodes_failed']}")
 
         distribution_of_ids = {}
         for source in issues_dict[key]["sources"]:
-            print(f"Source: {source} with: Max = {issues_dict[key]["sources"].get(source)["count_of_max"]}, Total = {issues_dict[key]["sources"][source]["count_of_all"]}")
+            print(f"Source: {source} with {issues_dict[key]["sources"].get(source)["amount"]} issues found")
             count_issue_occurrences(distribution_of_ids, issues_dict[key]["sources"][source])
 
         # print ids
         print("IDs: " + ", ".join([f"{key}:{value}" for key, value in distribution_of_ids.items()]) if distribution_of_ids else "Keine IDs gefunden")  
 
-    print("Amount Checks final: ", amount_nodes_checked_all_files)
-    print("Amount Issues final: ", amount_nodes_failed_all_files)
-    print("Average Issues per File: ", float(amount_nodes_failed_all_files/53))
-
-    print("stop")
                 
 
 def main():
-    analyze_all_json_files(INPUT_JSON_DIR)
+    issues_dict = {}
+    amount_nodes_failed_all_files = 0
+
+    for file in os.listdir(INPUT_ACCESSIBILITY_DIR):
+        base_name = file.split(".")[0]
+        insight_name = f'overview_{base_name}.json'
+
+        with open(os.path.join(INPUT_INSIGHTS_DIR, insight_name)) as ir:
+            insight_data = json.load(ir)
+        
+        with open(os.path.join(INPUT_ACCESSIBILITY_DIR, file)) as ar:
+            accessibility_data = json.load(ar)
+
+        amount_nodes_failed_all_files += analyze_accessibility_issues(accessibility_data, issues_dict)
+    
+    sorted_issues = sort_issues_by_amount(issues_dict)
+
+    print_result_files(sorted_issues, issues_dict)
+
+    print("Amount Issues final: ", amount_nodes_failed_all_files)
+    print("Average Issues per File: ", float(amount_nodes_failed_all_files/53))
+
 
 if __name__ == "__main__":
     main()
