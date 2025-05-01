@@ -145,37 +145,9 @@ def count_issue_occurrences(distribution_of_ids, source):
             distribution_of_ids[id] = 1
 
 
-# Updates manual overview of checks (fields: 'total_SC' and 'failed_SC') per json file
-def update_manual_checks (json_file_path, amount_manual_checks):
-    with open(json_file_path, 'r') as fr:
-        data = json.load(fr)
 
-        amount_passed = 0
-        amount_failed = 0
-
-        if "manual" in data and "checks" in data["manual"]:
-            for check_id, status in data["manual"]["checks"].items():
-                if status.lower() == "pass":
-                    amount_passed += 1
-                elif status.lower() == "fail":
-                    amount_failed += 1
-                else: 
-                    raise(f"Unknown status: {status} for check ID: {check_id}")
-        
-        # Check if amount correct
-        assert amount_failed + amount_passed == amount_manual_checks
-
-        data["manual"]["total_checks"] = amount_failed + amount_passed
-        data["manual"]["failed_checks"] = amount_failed
-        
-    with open(json_file_path, 'w') as fw:
-        json.dump(data, fw)
-
-
-
-
-# Analyzes the manual checks and sets the corresponding values
-def process_manual_checks(catalog_file_path, json_file_path):
+# Analyzes the manual checks
+def analyze_manual_checks(catalog_file_path, json_file_path):
     with open(catalog_file_path) as tc:
         test_catalog = json.load(tc)
 
@@ -236,8 +208,6 @@ def analyze_all_json_files(path):
     }
 
     for file in os.listdir(path):
-        update_manual_checks(os.path.join(INPUT_JSON_DIR, file), 7)
-
         with open(os.path.join(INPUT_JSON_DIR, file)) as f:
             # print("Analyzed: ", file)
             data = json.load(f)
