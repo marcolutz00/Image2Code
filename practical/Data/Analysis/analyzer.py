@@ -17,7 +17,7 @@ INPUT_JSON_DIR = os.path.join(CURR_DIR, '..', 'Input', 'json', 'manual')
     Only exception: If there is an entry with Manual-Inspection, then Manual-Inspection will get the amount.
 '''
 # Issues are going to be listed
-def list_and_add_issues(data, sources_dict, issues_dict):
+def analyze_accessibility_issues(data, sources_dict, issues_dict):
     automatic = data.get("automatic")
     automatic_lighthouse_accessibility_score = automatic.get("lighthouse_accessibility_score")
     automatic_total_nodes_checked = automatic.get("total_nodes_checked")
@@ -128,7 +128,7 @@ def list_and_add_issues(data, sources_dict, issues_dict):
 
 
 # Ranking based on amount sorting
-def create_rankings(issues_dict):
+def sort_issues_by_amount(issues_dict):
     # sort issues_dict by amount
     sorted_issues = sorted(issues_dict.items(), key=lambda x: x[1]['amount_nodes_failed'], reverse=True)
     
@@ -137,7 +137,7 @@ def create_rankings(issues_dict):
 
 
 # Create dics of how often which precise issue has been found -> no categories but precise issue ID
-def create_overview_amount_ids(distribution_of_ids, source):
+def count_issue_occurrences(distribution_of_ids, source):
     for id in source["ids_of_max"]:
         if id in distribution_of_ids:
             distribution_of_ids[id] += 1
@@ -145,14 +145,73 @@ def create_overview_amount_ids(distribution_of_ids, source):
             distribution_of_ids[id] = 1
 
 
+# Updates manual overview of checks (fields: 'total_SC' and 'failed_SC') per json file
+def update_manual_checks (json_file_path, amount_manual_checks):
+    with open(json_file_path, 'r') as fr:
+        data = json.load(fr)
+
+        amount_passed = 0
+        amount_failed = 0
+
+        if "manual" in data and "checks" in data["manual"]:
+            for check_id, status in data["manual"]["checks"].items():
+                if status.lower() == "pass":
+                    amount_passed += 1
+                elif status.lower() == "fail":
+                    amount_failed += 1
+                else: 
+                    raise(f"Unknown status: {status} for check ID: {check_id}")
+        
+        # Check if amount correct
+        assert amount_failed + amount_passed == amount_manual_checks
+
+        data["manual"]["total_checks"] = amount_failed + amount_passed
+        data["manual"]["failed_checks"] = amount_failed
+        
+    with open(json_file_path, 'w') as fw:
+        json.dump(data, fw)
+
+
+
+
 # Analyzes the manual checks and sets the corresponding values
-def manual_issues_analyzer(path):
-    for file in os.listdir(path):
-        with open(os.path.join(INPUT_JSON_DIR, file), 'rw') as f:
-            data = json.load(f)
+def process_manual_checks(catalog_file_path, json_file_path):
+    with open(catalog_file_path) as tc:
+        test_catalog = json.load(tc)
+
+    with open(json_file_path) as f:
+        data = json.load(f)
+    
+    passed_checks = []
+    failed_checks = []
+
+    # get manual checks from json files
+    if "manual" in data and "checks" in data["manual"]:
+        manual_checks = data["manual"]["checks"]
+
+        for check_id, status in manual_checks.items():
+            if check_id in test_catalog:
+                check_description = test_catalog[check_id]
+                result_overview = {
+                    "id": check_id,
+                    "name": check_description["name"],
+                    "url": check_description["url"],
+                    "status": status
+                }
+
+                # Assign the issues to right array, depending on status
+                if status.lower() == "pass":
+                    passed_checks.append(result_overview)
+                elif status.lower() == "fail":
+                    failed_checks.append(result_overview)
+                else: 
+                    raise(f"Unknown status: {status} for check ID: {check_id}")
+    
+    return passed_checks, failed_checks
 
 
-def json_analyzer(path):
+
+def analyze_all_json_files(path):
     issues_dict = {}
     amount_nodes_checked_all_files = 0
     amount_nodes_failed_all_files = 0
@@ -177,16 +236,18 @@ def json_analyzer(path):
     }
 
     for file in os.listdir(path):
+        update_manual_checks(os.path.join(INPUT_JSON_DIR, file), 7)
+
         with open(os.path.join(INPUT_JSON_DIR, file)) as f:
             # print("Analyzed: ", file)
             data = json.load(f)
         
-        amount_nodes_checked_file, amount_nodes_failed_file = list_and_add_issues(data, sources, issues_dict)
+        amount_nodes_checked_file, amount_nodes_failed_file = analyze_accessibility_issues(data, sources, issues_dict)
         amount_nodes_checked_all_files += amount_nodes_checked_file
         amount_nodes_failed_all_files += amount_nodes_failed_file
 
     
-    sorted_issues = create_rankings(issues_dict)
+    sorted_issues = sort_issues_by_amount(issues_dict)
 
     for i in range(len(sorted_issues)):
         key, values = sorted_issues[i]
@@ -195,7 +256,7 @@ def json_analyzer(path):
         distribution_of_ids = {}
         for source in issues_dict[key]["sources"]:
             print(f"Source: {source} with: Max = {issues_dict[key]["sources"].get(source)["count_of_max"]}, Total = {issues_dict[key]["sources"][source]["count_of_all"]}")
-            create_overview_amount_ids(distribution_of_ids, issues_dict[key]["sources"][source])
+            count_issue_occurrences(distribution_of_ids, issues_dict[key]["sources"][source])
 
         # print ids
         print("IDs: " + ", ".join([f"{key}:{value}" for key, value in distribution_of_ids.items()]) if distribution_of_ids else "Keine IDs gefunden")  
@@ -208,7 +269,7 @@ def json_analyzer(path):
                 
 
 def main():
-    json_analyzer(INPUT_JSON_DIR)
+    analyze_all_json_files(INPUT_JSON_DIR)
 
 if __name__ == "__main__":
     main()

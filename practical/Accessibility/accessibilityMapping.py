@@ -67,8 +67,8 @@ def prepare_wcag_issues_json(wcag_issues_dict, total_nodes_checked, lighthouse_a
     }
 
     manual_results = {
-        "total_SC": "tbd",
-        "failed_SC": "tbd",
+        "total_checks": "tbd",
+        "failed_checks": "tbd",
         "checks": {
             "1.4.4": "tbd",
             "1.4.10": "tbd",
