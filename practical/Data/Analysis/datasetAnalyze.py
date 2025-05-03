@@ -2,7 +2,14 @@ import os
 import json
 import copy
 import datetime
-import pathlib
+from pathlib import Path
+import sys
+
+PROJECT_ROOT = Path(__file__).absolute().parents[2]
+sys.path.append(str(PROJECT_ROOT))
+
+
+from Benchmarks import accessibilityBenchmarks
 
 '''
     Analysis of .json files which contain the accessibility issues of html files
@@ -21,7 +28,7 @@ INPUT_ACCESSIBILITY_DIR = os.path.join(CURR_DIR, '..', 'Input', 'accessibility',
     Only exception: If there is an entry with Manual-Inspection, then Manual-Inspection will get the amount.
 '''
 
-# Issues are going to be listed
+# Analyzes the accessibility issues of all files
 def analyze_accessibility_issues(global_issues_dict):
     amount_automatic_nodes_failed_all_files = 0
     amount_manual_checks_failed_all_files = 0
@@ -46,15 +53,79 @@ def analyze_accessibility_issues(global_issues_dict):
         amount_automatic_nodes_failed_all_files += automatic_checks_result['amount_nodes_failed']
         amount_manual_checks_failed_all_files += manual_checks_result['amount_checks_failed']
 
-        overwrite_insights(insight_data, automatic_checks_result, manual_checks_result)
+        benchmarks_result = calculcate_benchmarks(insight_data, automatic_checks_result, manual_checks_result)
 
-        with open(os.path.join(INPUT_INSIGHTS_DIR, insight_name), 'w', encoding='utf-8') as iw:
-            json.dump(insight_data, iw, ensure_ascii=False)
+        overwrite_insights(insight_data, automatic_checks_result, manual_checks_result, benchmarks_result)
+
+        write_json_result(insight_data, os.path.join(INPUT_INSIGHTS_DIR, insight_name))
     
     return amount_automatic_nodes_failed_all_files, amount_manual_checks_failed_all_files
 
 
-# Analyzes the manual checks
+# Classify the accessibility issues into categories
+def classify_accessibility_issues(checks_result, name):
+    amount_nodes_critical = 0
+    amount_nodes_serious = 0
+    amount_nodes_moderate = 0
+    amount_nodes_minor = 0
+
+    # Get the amount of critical, serious, moderate and minor issues
+    for issue in checks_result[name].values():
+        if issue["impact"] == "critical":
+            amount_nodes_critical += issue["amount_nodes_failed"]
+        elif issue["impact"] == "serious":
+            amount_nodes_serious += issue["amount_nodes_failed"]
+        elif issue["impact"] == "moderate":
+            amount_nodes_moderate += issue["amount_nodes_failed"]
+        elif issue["impact"] == "minor":
+            amount_nodes_minor += issue["amount_nodes_failed"]
+        else:   
+            raise(f"Unknown impact: {issue['impact']} for issue: {issue['name']}")
+        
+    return amount_nodes_critical, amount_nodes_serious, amount_nodes_moderate, amount_nodes_minor
+
+# Calculates the benchmarks for the accessibility issues
+def calculcate_benchmarks(insight_data, automatic_checks_result, manual_checks_result):
+    # 1. Benchmark for Automatic checks
+    amount_nodes_failed = automatic_checks_result['amount_nodes_failed']
+    amount_nodes_checked = insight_data["automatic_checks"]["total_nodes_checked"]
+    amount_nodes_critical, amount_nodes_serious, amount_nodes_moderate, amount_nodes_minor = classify_accessibility_issues(automatic_checks_result, "issues_details")
+
+    # Inaccessibility rate
+    automatic_inaccessibility_rate = accessibilityBenchmarks.calculate_inaccessibility_rate(amount_nodes_failed, amount_nodes_checked)
+    # Impact-weighted inaccessibility rate
+    automatic_impact_weighted_inaccessibility_rate = accessibilityBenchmarks.calculate_impact_weighted_inaccessibility_rate(amount_nodes_critical, amount_nodes_serious, amount_nodes_moderate, amount_nodes_minor)
+
+    # 2. Benchmark for Manual checks
+    amount_nodes_failed = manual_checks_result['amount_checks_failed']
+    amount_nodes_checked = manual_checks_result["amount_checks"]
+    amount_nodes_critical, amount_nodes_serious, amount_nodes_moderate, amount_nodes_minor = classify_accessibility_issues(manual_checks_result, "objects_checks_failed")
+
+    # Inaccessibility rate
+    manual_inaccessibility_rate = accessibilityBenchmarks.calculate_inaccessibility_rate(amount_nodes_failed, amount_nodes_checked)
+    # Impact-weighted inaccessibility rate
+    manual_impact_weighted_inaccessibility_rate = accessibilityBenchmarks.calculate_impact_weighted_inaccessibility_rate(amount_nodes_critical, amount_nodes_serious, amount_nodes_moderate, amount_nodes_minor)
+
+
+    # 3. Get status
+    automatic_status = accessibilityBenchmarks.calculate_status(automatic_inaccessibility_rate, automatic_impact_weighted_inaccessibility_rate)
+    manual_status = accessibilityBenchmarks.calculate_status(manual_inaccessibility_rate, manual_impact_weighted_inaccessibility_rate)
+
+    return {
+        "automatic_checks": {
+            "inaccessibility_rate": automatic_inaccessibility_rate,
+            "impact_weighted_inaccessibility_rate": automatic_impact_weighted_inaccessibility_rate,
+            "status": automatic_status
+        },
+        "manual_checks": {
+            "inaccessibility_rate": manual_inaccessibility_rate,
+            "impact_weighted_inaccessibility_rate": manual_impact_weighted_inaccessibility_rate,
+            "status": manual_status
+        }
+    }
+
+
+# Analyzes the manual checks 
 def analyze_manual_accessibility_issues(data, global_issues_dict, catalog_file_path):
     with open(catalog_file_path) as tc:
         test_catalog = json.load(tc)
@@ -111,7 +182,7 @@ def analyze_manual_accessibility_issues(data, global_issues_dict, catalog_file_p
     
     return output
 
-
+# Create dictionary for each accessibility issue (automatic tests)
 def analyze_automatic_accessibility_issues(data, global_issues_dict):
     # While global_issues_dict serves for all files, local_issues_dict does only serve for one file
     local_issues_dict = {}
@@ -171,7 +242,8 @@ def analyze_automatic_accessibility_issues(data, global_issues_dict):
 
     return output
 
-
+# Get the relative issues: Relative issues are those which have found the biggest amount of an issue in a file
+# relative = max(amount of issues found by axe-core, pa11y, lighthouse)
 def get_relative_issues(global_issues_dict, local_issues_dict):
     for name, issue in local_issues_dict.items():
         found = False
@@ -183,7 +255,8 @@ def get_relative_issues(global_issues_dict, local_issues_dict):
                 global_issues_dict[name]["sources"][source]["amount_relative"] = current_amount + source_data["amount"]
                 
 
-def overwrite_insights(insight_data, automatic_data, manual_data):
+# Overwrite the overview_[file_name].json file with the new data
+def overwrite_insights(insight_data, automatic_data, manual_data, benchmarks_result):
     if insight_data["automatic_checks"]["total_nodes_failed"] != automatic_data["amount_nodes_failed"]:
         print("Change of total_nodes_failed, probably due to manual inspection")
         insight_data["automatic_checks"]["total_nodes_failed"] = automatic_data["amount_nodes_failed"]
@@ -204,10 +277,25 @@ def overwrite_insights(insight_data, automatic_data, manual_data):
 
     for name, issue in manual_data["objects_checks_failed"].items():
         insight_data["details_checks"][name] = issue
+
+    
+    # Define benchmarks
+    insight_data["benchmark"] = {
+        "automatic_ir": benchmarks_result["automatic_checks"]["inaccessibility_rate"],
+        "automatic_iw-ir": benchmarks_result["automatic_checks"]["impact_weighted_inaccessibility_rate"],
+        "manual_ir": benchmarks_result["manual_checks"]["inaccessibility_rate"],
+        "manual_iw-ir": benchmarks_result["manual_checks"]["impact_weighted_inaccessibility_rate"],
+    }
+
+    # Define status
+    insight_data["overall_status"] = {
+        "automatic": benchmarks_result["automatic_checks"]["status"],
+        "manual": benchmarks_result["manual_checks"]["status"]
+    }
+
         
     
-
-
+# Creates default dictionary for each accessibility issue
 def create_issues_dict_entry():
     return {
         "impact": "tbd",
@@ -241,7 +329,7 @@ def count_issue_occurrences(distribution_of_ids, source):
 
 
 
-
+# Create json output 
 def build_json_output(sorted_issues, issues_dict, total_auto_nodes, total_manual_failed, files_processed):
     issues_json = []
     for rank, (name, values) in enumerate(sorted_issues, start=1):
@@ -269,11 +357,11 @@ def build_json_output(sorted_issues, issues_dict, total_auto_nodes, total_manual
 
     return {"summary": summary_json, "issues": issues_json}
 
+# Write json result to file
 def write_json_result(content, out_path):
-    out_path = pathlib.Path(out_path)
+    out_path = Path(out_path)
     with out_path.open("w", encoding="utf-8") as fh:
         json.dump(content, fh, ensure_ascii=False, indent=2)
-    print(f"Ergebnisse in {out_path} geschrieben")
 
 
 def main():

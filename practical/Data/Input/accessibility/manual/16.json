@@ -528,12 +528,46 @@
         ]
       },
       {
-        "wcag_id": null,
-        "url": "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
-        "impact": "tbd",
-        "name": "tbd",
-        "amount_nodes_failed": 2,
+        "wcag_id": [null],
+        "url": [
+          "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+          "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+          "https://dequeuniversity.com/rules/axe/4.10/region",
+          "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level"
+        ],
+        "impact": "moderate",
+        "name": "Landmark & Region; Missing & Unique Landmarks;",
+        "amount_nodes_failed": 1,
         "issues": [
+          {
+            "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+            "source": "axe-core",
+            "title": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+            "description": "Ensure landmarks are unique",
+            "impact": "moderate",
+            "nodes": {
+              "any": [
+                {
+                  "id": "landmark-is-unique",
+                  "data": { "role": "navigation", "accessibleText": null },
+                  "relatedNodes": [
+                    {
+                      "html": "<nav id=\"menu\" role=\"navigation\">",
+                      "target": ["#menu"]
+                    }
+                  ],
+                  "impact": "moderate",
+                  "message": "The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "moderate",
+              "html": "<nav class=\"top-menu hide-mobile clearfix\" data-menuchosen=\"main-menu\" role=\"navigation\">",
+              "target": [".top-menu"],
+              "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+            }
+          },
           {
             "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
             "source": "axe-core",
@@ -580,48 +614,6 @@
               "html": "<aside class=\"subscribe-form\">",
               "target": [".subscribe-form"],
               "failureSummary": "Fix any of the following:\n  The null landmark is contained in another landmark."
-            }
-          }
-        ]
-      },
-      {
-        "wcag_id": [null],
-        "url": [
-          "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
-          "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
-          "https://dequeuniversity.com/rules/axe/4.10/region"
-        ],
-        "impact": "moderate",
-        "name": "Landmark & Region; Missing & Unique Landmarks;",
-        "amount_nodes_failed": 1,
-        "issues": [
-          {
-            "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
-            "source": "axe-core",
-            "title": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
-            "description": "Ensure landmarks are unique",
-            "impact": "moderate",
-            "nodes": {
-              "any": [
-                {
-                  "id": "landmark-is-unique",
-                  "data": { "role": "navigation", "accessibleText": null },
-                  "relatedNodes": [
-                    {
-                      "html": "<nav id=\"menu\" role=\"navigation\">",
-                      "target": ["#menu"]
-                    }
-                  ],
-                  "impact": "moderate",
-                  "message": "The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
-                }
-              ],
-              "all": [],
-              "none": [],
-              "impact": "moderate",
-              "html": "<nav class=\"top-menu hide-mobile clearfix\" data-menuchosen=\"main-menu\" role=\"navigation\">",
-              "target": [".top-menu"],
-              "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
             }
           }
         ]
