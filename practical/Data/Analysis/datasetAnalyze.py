@@ -164,6 +164,7 @@ def analyze_manual_accessibility_issues(data, global_issues_dict, catalog_file_p
                     if name not in global_issues_dict:
                         global_issues_dict[name] = {
                             "id": name,
+                            "impact": check_impact,
                             "sources": "Manual-Inspection",
                             "amount_nodes_failed": 1
                         }
@@ -319,24 +320,31 @@ def sort_issues_by_amount(issues_dict):
 
 
 
-# Create dics of how often which precise issue has been found -> no categories but precise issue ID
-def count_issue_occurrences(distribution_of_ids, source):
-    for id in source["ids"]:
-        if id in distribution_of_ids:
-            distribution_of_ids[id] += 1
-        else:
-            distribution_of_ids[id] = 1
-
-
-
-# Create json output 
-def build_json_output(sorted_issues, issues_dict, total_auto_nodes, total_manual_failed, files_processed):
+# Merge dicts
+def build_ranking(sorted_issues, issues_dict, automatic):
     issues_json = []
+    if automatic:
+        distribution_of_sources = {
+            "absolute": {},
+            "relative": {}
+        }
+    else:
+        distribution_of_sources = {}
+
     for rank, (name, values) in enumerate(sorted_issues, start=1):
         distribution_of_ids = {}
-        for source, source_values in issues_dict[name]["sources"].items():
-            for id_ in source_values["ids"]:
-                distribution_of_ids[id_] = distribution_of_ids.get(id_, 0) + 1
+        if automatic:
+            for source, source_values in issues_dict[name]["sources"].items():
+                distribution_of_sources["absolute"][source] = distribution_of_sources["absolute"].get(source, 0) + source_values["amount"]
+                distribution_of_sources["relative"][source] = distribution_of_sources["relative"].get(source, 0) + source_values["amount_relative"]
+                for id in source_values["ids"]:
+                    distribution_of_ids[id] = distribution_of_ids.get(id, 0) + 1
+        else:
+            id = values["id"]
+            source = values["sources"]
+            for i in range(values["amount_nodes_failed"]):
+                distribution_of_sources[source] = distribution_of_sources.get(source, 0) + 1
+                distribution_of_ids[id] = distribution_of_ids.get(id, 0) + 1
 
         issues_json.append({
             "rank": rank,
@@ -347,15 +355,30 @@ def build_json_output(sorted_issues, issues_dict, total_auto_nodes, total_manual
             "ids_distribution": distribution_of_ids
         })
 
+    return issues_json, distribution_of_sources
+
+
+
+# Create json output 
+def build_json_output(sorted_issues_automatic, sorted_issues_manual, issues_dict_automatic, issues_dict_manual, total_auto_nodes, total_manual_failed, files_processed):
+    issues_json_automatic, distribution_source_automatic = build_ranking(sorted_issues_automatic, issues_dict_automatic, True)
+    issues_json_manual, distribution_source_manual = build_ranking(sorted_issues_manual, issues_dict_manual, False)
+
     summary_json = {
         "timestamp": datetime.datetime.now().isoformat(timespec="seconds"),
         "files_processed": files_processed,
         "total_automatic_nodes_failed": total_auto_nodes,
         "total_manual_checks_failed": total_manual_failed,
-        "average_nodes_failed_per_file": round(total_auto_nodes / files_processed, 2) if files_processed else 0
+        "average_automatic_nodes_failed_per_file": round(total_auto_nodes / files_processed, 2) if files_processed else 0,
+        "average_manual_checks_failed_per_file": round(total_manual_failed / files_processed, 2) if files_processed else 0,
     }
 
-    return {"summary": summary_json, "issues": issues_json}
+    return {"summary": summary_json, 
+            "issues_automatic": issues_json_automatic, 
+            "distribution_sources_automatic": distribution_source_automatic, 
+            "issues_manual": issues_json_manual,
+            "distribution_sources_manual": distribution_source_manual
+            }
 
 # Write json result to file
 def write_json_result(content, out_path):
@@ -372,17 +395,22 @@ def main():
 
     amount_automatic_nodes_failed_all_files, amount_manual_checks_failed_all_files = analyze_accessibility_issues(issues_dict)
     
-    sorted_issues = sort_issues_by_amount(issues_dict["automatic"])
+    sorted_issues_automatic = sort_issues_by_amount(issues_dict["automatic"])
+    sorted_issues_manual = sort_issues_by_amount(issues_dict["manual"])
 
     json_output_final = build_json_output(
-        sorted_issues,
+        sorted_issues_automatic,
+        sorted_issues_manual,
         issues_dict["automatic"],
-        total_auto_nodes=amount_automatic_nodes_failed_all_files,
-        total_manual_failed=amount_manual_checks_failed_all_files,
-        files_processed=len(os.listdir(INPUT_ACCESSIBILITY_DIR))
+        issues_dict["manual"],
+        amount_automatic_nodes_failed_all_files,
+        amount_manual_checks_failed_all_files,
+        len(os.listdir(INPUT_ACCESSIBILITY_DIR))
     )
-    out_path = os.path.join(CURR_DIR, 'AnalysisAccessibilityIssues.json')
+
+    out_path = os.path.join(CURR_DIR, 'analysisAccessibilityIssues.json')
     write_json_result(json_output_final, out_path)
+
 
 if __name__ == "__main__":
     main()
