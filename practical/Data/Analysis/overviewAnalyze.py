@@ -19,10 +19,17 @@ def analyze_overview_files(directory: str) -> None:
     # ── 1. Daten einsammeln ─────────────────────────────────────────────
     rows = []
     for fname in sorted(os.listdir(directory)):
+        # Skip if dir
+        if os.path.isdir(os.path.join(directory, fname)):
+            continue
+
         number = fname.split("_")[1]
         number = number.split(".")[0]
-        if number.isdigit() and int(number) < 29:
-            continue
+
+        # Test for datasets
+        # if number.isdigit() and int(number) < 29:
+        #     continue
+
         if fname.startswith("overview_") and fname.endswith(".json"):
             with open(Path(directory) / fname, encoding="utf-8") as fh:
                 data = json.load(fh)

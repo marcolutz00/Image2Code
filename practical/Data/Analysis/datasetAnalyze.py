@@ -26,6 +26,9 @@ INPUT_ACCESSIBILITY_DIR = os.path.join(CURR_DIR, '..', 'Input', 'accessibility',
     Therefore, we are looking into the details of each accessibility issue reported. The source (axe-core, lighthouse, pa11y)
     which has reported the most amount of details will get the amount.
     Only exception: If there is an entry with Manual-Inspection, then Manual-Inspection will get the amount.
+
+
+    TODO: Was wenn issue not defined?
 '''
 
 # Analyzes the accessibility issues of all files
@@ -35,6 +38,7 @@ def analyze_accessibility_issues(global_issues_dict):
 
     for file in os.listdir(INPUT_ACCESSIBILITY_DIR):
         base_name = file.split(".")[0]
+        print(f"Processing file: {base_name}")
         insight_name = f'overview_{base_name}.json'
 
         with open(os.path.join(INPUT_INSIGHTS_DIR, insight_name)) as ir:

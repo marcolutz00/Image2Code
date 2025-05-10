@@ -90,10 +90,10 @@ async def enrich_with_accessibility_issues(dataset):
         issues_automatic_json, issues_overview_json = await accessibilityIssues.get_accessibility_issues(os.path.join(DATA_PATH, "Input", "html", f"{counter}.html"))
         
         with open(os.path.join(DATA_PATH, "Input", "accessibility", f"{counter}.json"), "w") as f:
-            json.dump(issues_automatic_json, f)
+            json.dump(issues_automatic_json, f, ensure_ascii=False, indent=2)
         
         with open(os.path.join(DATA_PATH, "Input", "insights", f"overview_{counter}.json"), "w") as f:
-            json.dump(issues_overview_json, f)
+            json.dump(issues_overview_json, f, ensure_ascii=False, indent=2)
         
         counter += 1
     

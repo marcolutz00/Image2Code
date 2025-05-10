@@ -56,7 +56,9 @@
               },
               {
                 "id": "non-empty-title",
-                "data": { "messageKey": "noAttr" },
+                "data": {
+                  "messageKey": "noAttr"
+                },
                 "relatedNodes": [],
                 "impact": "minor",
                 "message": "Element has no title attribute"
@@ -66,7 +68,9 @@
             "none": [],
             "impact": "minor",
             "html": "<h2>\n       &nbsp;\n      </h2>",
-            "target": ["#third_col > h2:nth-child(3)"],
+            "target": [
+              "#third_col > h2:nth-child(3)"
+            ],
             "failureSummary": "Fix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
           }
         },
@@ -117,7 +121,9 @@
             "any": [
               {
                 "id": "has-lang",
-                "data": { "messageKey": "noLang" },
+                "data": {
+                  "messageKey": "noLang"
+                },
                 "relatedNodes": [],
                 "impact": "serious",
                 "message": "The <html> element does not have a lang attribute"
@@ -127,7 +133,9 @@
             "none": [],
             "impact": "serious",
             "html": "<html xmlns=\"\">",
-            "target": ["html"],
+            "target": [
+              "html"
+            ],
             "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute"
           }
         },
@@ -162,11 +170,11 @@
               "selector": "html",
               "boundingRect": {
                 "top": 0,
-                "bottom": 808,
+                "bottom": 826,
                 "left": 0,
                 "right": 980,
                 "width": 980,
-                "height": 808
+                "height": 826
               },
               "snippet": "<html xmlns=\"\">",
               "nodeLabel": "html",
@@ -177,11 +185,14 @@
       ]
     },
     {
-      "wcag_id": [null],
+      "wcag_id": [
+        null
+      ],
       "url": [
         "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
         "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
-        "https://dequeuniversity.com/rules/axe/4.10/region"
+        "https://dequeuniversity.com/rules/axe/4.10/region",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level"
       ],
       "impact": "moderate",
       "name": "Landmark & Region; Missing & Unique Landmarks;",
@@ -207,7 +218,9 @@
             "none": [],
             "impact": "moderate",
             "html": "<html xmlns=\"\">",
-            "target": ["html"],
+            "target": [
+              "html"
+            ],
             "failureSummary": "Fix all of the following:\n  Document does not have a main landmark"
           }
         },
@@ -221,7 +234,9 @@
             "any": [
               {
                 "id": "region",
-                "data": { "isIframe": false },
+                "data": {
+                  "isIframe": false
+                },
                 "relatedNodes": [],
                 "impact": "moderate",
                 "message": "Some page content is not contained by landmarks"
@@ -231,122 +246,10 @@
             "none": [],
             "impact": "moderate",
             "html": "<div id=\"container\">",
-            "target": ["#container"],
+            "target": [
+              "#container"
+            ],
             "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
-          }
-        }
-      ]
-    },
-    {
-      "wcag_id": [
-        "Principle1.Guideline1_1.1_1_1.H37",
-        "Principle1.Guideline1_1.1_1_1.H67.1",
-        "Principle1.Guideline1_1.1_1_1.H36"
-      ],
-      "url": [
-        "https://dequeuniversity.com/rules/axe/4.10/image-alt",
-        "https://dequeuniversity.com/rules/axe/4.10/input-image-alt"
-      ],
-      "impact": "critical",
-      "name": "Alt-Text; Images;",
-      "amount_nodes_failed": 1,
-      "issues": [
-        {
-          "id": "Principle1.Guideline1_1.1_1_1.H37",
-          "source": "pa11y",
-          "title": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
-          "description": "<img id=\"lightboxImage\">",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
-            "type": "error",
-            "typeCode": 1,
-            "message": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
-            "context": "<img id=\"lightboxImage\">",
-            "selector": "#lightboxImage",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        }
-      ]
-    },
-    {
-      "wcag_id": [
-        "Principle1.Guideline1_1.1_1_1.H30.2",
-        "Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId",
-        "Principle4.Guideline4_1.4_1_2.H91.A.NoContent"
-      ],
-      "url": ["https://dequeuniversity.com/rules/axe/4.10/link-name"],
-      "impact": "serious",
-      "name": "Links; Missing descriptive content of <a>;",
-      "amount_nodes_failed": 4,
-      "issues": [
-        {
-          "id": "Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
-          "source": "pa11y",
-          "title": "Anchor element found with a valid href attribute, but no link content has been supplied.",
-          "description": "<a href=\"#\" id=\"prevLink\">\n      </a>",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
-            "type": "error",
-            "typeCode": 1,
-            "message": "Anchor element found with a valid href attribute, but no link content has been supplied.",
-            "context": "<a href=\"#\" id=\"prevLink\">\n      </a>",
-            "selector": "#prevLink",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
-          "source": "pa11y",
-          "title": "Anchor element found with a valid href attribute, but no link content has been supplied.",
-          "description": "<a href=\"#\" id=\"nextLink\">\n      </a>",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
-            "type": "error",
-            "typeCode": 1,
-            "message": "Anchor element found with a valid href attribute, but no link content has been supplied.",
-            "context": "<a href=\"#\" id=\"nextLink\">\n      </a>",
-            "selector": "#nextLink",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "Principle1.Guideline1_1.1_1_1.H30.2",
-          "source": "pa11y",
-          "title": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
-          "description": "<a href=\"#\" id=\"loadingLink\">\n       <img src=\"rick.jpg\">\n  ...</a>",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H30.2",
-            "type": "error",
-            "typeCode": 1,
-            "message": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
-            "context": "<a href=\"#\" id=\"loadingLink\">\n       <img src=\"rick.jpg\">\n  ...</a>",
-            "selector": "#loadingLink",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "Principle1.Guideline1_1.1_1_1.H30.2",
-          "source": "pa11y",
-          "title": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
-          "description": "<a href=\"#\" id=\"bottomNavClose\">\n       <img src=\"rick.jpg\">\n  ...</a>",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H30.2",
-            "type": "error",
-            "typeCode": 1,
-            "message": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
-            "context": "<a href=\"#\" id=\"bottomNavClose\">\n       <img src=\"rick.jpg\">\n  ...</a>",
-            "selector": "#bottomNavClose",
-            "runner": "htmlcs",
-            "runnerExtras": {}
           }
         }
       ]
