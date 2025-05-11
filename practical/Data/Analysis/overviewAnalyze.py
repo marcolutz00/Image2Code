@@ -9,14 +9,13 @@ import matplotlib.pyplot as plt
 CURR_DIR = os.path.dirname(os.path.realpath(__file__))
 INPUT_INSIGHTS_DIR = os.path.join(CURR_DIR, '..', 'Input', 'insights')
 
-def analyze_overview_files(directory: str) -> None:
-    """
-    Liest alle overview_*.json-Dateien in *directory*,
-    zeigt eine Tabelle mit IR / IW-IR (automatic & manual)
-    und erstellt einen Box-Plot, der die Verteilung illustriert.
-    """
+"""
+    Reads all overview_*.json files and creates a table with IR / IW-IR
+    Both for automatic and manual checks.
+    Creates a box plot for the distribution.
+"""
+def analyze_overview_files(directory):
 
-    # ── 1. Daten einsammeln ─────────────────────────────────────────────
     rows = []
     for fname in sorted(os.listdir(directory)):
         # Skip if dir
@@ -31,24 +30,24 @@ def analyze_overview_files(directory: str) -> None:
         #     continue
 
         if fname.startswith("overview_") and fname.endswith(".json"):
-            with open(Path(directory) / fname, encoding="utf-8") as fh:
+            with open(os.path.join(directory, fname), encoding="utf-8") as fh:
                 data = json.load(fh)
 
             rows.append({
-                "file"        : fname,
-                "auto_status" : data["overall_status"]["automatic"],
+                "file": fname,
+                "auto_status": data["overall_status"]["automatic"],
                 "manual_status":data["overall_status"]["manual"],
-                "auto_ir"     : data["benchmark"]["automatic_ir"],
-                "auto_iwir"   : data["benchmark"]["automatic_iw-ir"],
-                "manual_ir"   : data["benchmark"]["manual_ir"],
-                "manual_iwir" : data["benchmark"]["manual_iw-ir"],
+                "auto_ir": data["benchmark"]["automatic_ir"],
+                "auto_iwir": data["benchmark"]["automatic_iw-ir"],
+                "manual_ir": data["benchmark"]["manual_ir"],
+                "manual_iwir": data["benchmark"]["manual_iw-ir"],
             })
 
     if not rows:
-        print("⚠️  Keine overview_*.json-Dateien gefunden.\n")
+        print("No file 'overview_*' found.")
         return
 
-    # ── 2. Tabelle drucken ─────────────────────────────────────────────
+    # Create table
     header = (
         "File".ljust(20)
         + "Auto-Status".ljust(14)
@@ -58,9 +57,11 @@ def analyze_overview_files(directory: str) -> None:
         + "Manual IR".rjust(12)
         + "Manual IW-IR".rjust(16)
     )
-    sep = "-" * len(header)
+
+    seperator = "-" * len(header)
     print(header)
-    print(sep)
+    print(seperator)
+
     for r in rows:
         print(
             f"{r['file']:<20}"
@@ -72,20 +73,22 @@ def analyze_overview_files(directory: str) -> None:
             f"{r['manual_iwir']:>16.4f}"
         )
 
-    # ── 3. Zusammenfassung ─────────────────────────────────────────────
-    auto_status_cnt   = Counter(r["auto_status"]   for r in rows)
-    manual_status_cnt = Counter(r["manual_status"] for r in rows)
+    
+    # Summary
+    auto_status_counter   = Counter(r["auto_status"]   for r in rows)
+    manual_status_counter = Counter(r["manual_status"] for r in rows)
 
-    print("\n── Zusammenfassung ──")
-    print(f"Dateien gesamt: {len(rows)}")
-    print(f"Ø Automatic IR     : {mean(r['auto_ir']   for r in rows):.4f}")
-    print(f"Ø Automatic IW-IR  : {mean(r['auto_iwir'] for r in rows):.4f}")
-    print(f"Ø Manual IR        : {mean(r['manual_ir']   for r in rows):.4f}")
-    print(f"Ø Manual IW-IR     : {mean(r['manual_iwir'] for r in rows):.4f}")
-    print("\nStatus-Verteilung (Automatic):", dict(auto_status_cnt))
-    print("Status-Verteilung (Manual)   :", dict(manual_status_cnt))
+    print("\n Summary")
+    print(f"Total filest: {len(rows)}")
+    print(f"Average Automatic IR     : {mean(r['auto_ir']   for r in rows):.4f}")
+    print(f"Average Automatic IW-IR  : {mean(r['auto_iwir'] for r in rows):.4f}")
+    print(f"Average Manual IR        : {mean(r['manual_ir']   for r in rows):.4f}")
+    print(f"Average Manual IW-IR     : {mean(r['manual_iwir'] for r in rows):.4f}")
+    print("\nStatus-Distribution (Automatic):", dict(auto_status_counter))
+    print("Status-Distribution (Manual)   :", dict(manual_status_counter))
 
-    # ── 4. Box-Plot erstellen ──────────────────────────────────────────
+
+    # boxplot (can be deleted later)
     plt.figure(figsize=(8, 6))
     plt.boxplot(
         [
@@ -95,10 +98,10 @@ def analyze_overview_files(directory: str) -> None:
             [r["manual_iwir"]for r in rows],
         ],
         labels=["Auto IR", "Auto IW-IR", "Manual IR", "Manual IW-IR"],
-        showmeans=True,             # Mittelwert als Raute
+        showmeans=True, 
     )
     plt.ylabel("Rate")
-    plt.title("Verteilung der Benchmarks (IR & IW-IR)")
+    plt.title("Distribution of Benchmarks (IR & IW-IR)")
     plt.grid(axis="y")
     plt.tight_layout()
     plt.show()
@@ -106,5 +109,4 @@ def analyze_overview_files(directory: str) -> None:
 
 # analyze_overview_files(r"..\Input\insights")
 if __name__ == "__main__":
-    # Beispielaufruf:
     analyze_overview_files(INPUT_INSIGHTS_DIR)
