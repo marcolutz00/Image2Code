@@ -72,10 +72,10 @@ async def main():
     # Store the dataset locally in Data Directory
     store_dataset_in_data_dir = False
     # Print Images of Dataset
-    show_images_dataset = True
+    show_images_dataset = False
     # Update Column in Dataset
-    update_column_dataset = False
-    update_column = None
+    update_column_dataset = True
+    update_column = 'image'
 
     dataset = None
 
