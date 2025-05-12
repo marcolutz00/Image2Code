@@ -1,8 +1,10 @@
-from datasets import load_dataset, load_from_disk, concatenate_datasets, Dataset
+from datasets import load_dataset, concatenate_datasets, Dataset
 from huggingface_hub import login
 import os
 import json
 import re
+import asyncio
+from datasets import Image
 
 
 CURRENT_DIR_PATH = os.path.dirname(os.path.realpath(__file__))
@@ -13,6 +15,9 @@ DATASETS_HF = ["SALT-NLP/Design2Code-hf", "xcodemind/webcode2m"]
 
 
 async def login_hugging_face():
+    '''
+        login to HuggingFace
+    '''
     with open(KEYS_PATH) as f:
         huggingface_token = json.load(f)["huggingface"]["reader_token"]
 
@@ -45,6 +50,9 @@ async def filter_entries(dataset, picks):
 
 
 async def create_new_dataset(hf_dataset_name=None):
+    '''
+        Creates a new dataset based on the 2 Datasets: Design2Code and WebCode2M
+    '''
     # cherry-picks 
     # Design2Code - amount picked: 28
     picks_design2code = [ 2, 3, 5, 6, 14, 18, 23, 28, 32, 34, 38, 48, 51, 58, 77, 81, 111, 116, 120, 125, 129, 136, 145, 147, 158, 164, 169, 176 ]
@@ -83,6 +91,9 @@ async def create_new_dataset(hf_dataset_name=None):
 
 
 async def upload_dataset_hf(dataset, hf_dataset_name="marcolutz/Image2Code"):
+    '''
+        uploads the dataset to HuggingFace
+    '''
     with open(KEYS_PATH) as f:
         hf_writer_token = json.load(f)["huggingface"]["writer_token"]
 
@@ -96,7 +107,10 @@ async def upload_dataset_hf(dataset, hf_dataset_name="marcolutz/Image2Code"):
     print("Upload done ...")
 
 
-async def get_dataset_hf(hf_dataset_name="marcolutz/Image2Code",):
+async def get_dataset_hf(hf_dataset_name="marcolutz/Image2Code"):
+    '''
+        gets the dataset if stored remotely
+    '''
     with open(KEYS_PATH) as f:
         hf_token = json.load(f)["huggingface"]["reader_token"]
 
@@ -105,45 +119,52 @@ async def get_dataset_hf(hf_dataset_name="marcolutz/Image2Code",):
         token=hf_token,
         split="train",
     )
-
     return dataset
 
 async def get_dataset_hf_locally(hf_dataset_path=DATASET_PATH):
-
+    '''
+        gets the dataset if stored on disk
+    '''
     dataset = load_dataset(
         path=hf_dataset_path,
         split="train",
     )
-
     return dataset
 
 
-# Citation: https://stackoverflow.com/questions/4813061/non-alphanumeric-list-order-from-os-listdir
 def sorted_alphanumeric(data):
+    '''
+        Citation: https://stackoverflow.com/questions/4813061/non-alphanumeric-list-order-from-os-listdir
+    '''
     convert = lambda text: int(text) if text.isdigit() else text.lower()
     alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 
     return sorted(data, key=alphanum_key)
 
 
-'''
-    Updates dataset according to column
-    TODO: image
-'''
+
 async def update_dataset_hf(hf_dataset_name, column):
+    '''
+        Updates dataset according to column
+    '''
     if column == "accessibility":
         accessibility_issues_json_path = os.path.join(DATA_INPUT_PATH, 'json', 'manual')
-        return await update_dataset_hf_column(hf_dataset_name, column, accessibility_issues_json_path)
+        return await _update_dataset_hf_column(hf_dataset_name, column, accessibility_issues_json_path)
     elif column == "text":
         html_path = os.path.join(DATA_INPUT_PATH, 'html')
-        return await update_dataset_hf_column(hf_dataset_name, column, html_path)
+        return await _update_dataset_hf_column(hf_dataset_name, column, html_path)
     elif column == "image":
-        images_path = os.path.join(DATA_INPUT_PATH, 'images')
-        pass
+        images_path = os.path.join(DATA_INPUT_PATH, 'images', 'new')
+        return await _update_dataset_hf_column(hf_dataset_name, column, images_path)
     else:
         raise ValueError("There are only 3 columns in the dataset")
     
-# Updates dataset Accessibility - Issues will be stored as Strings
-async def update_dataset_hf_column(hf_dataset_name, column_name, data_path):
+
+async def _update_dataset_hf_column(hf_dataset_name, column_name, data_path):
+    '''
+        Private
+        Updates dataset for the the 2 columns: Accessibility and HTML 
+        Column Accessibility: Issues will be stored as Strings
+    '''
     dataset = await get_dataset_hf(hf_dataset_name)
 
     # If column already in dataset, then delete
@@ -153,30 +174,36 @@ async def update_dataset_hf_column(hf_dataset_name, column_name, data_path):
     # Add accessibility issues
     length_dataset = len(dataset)
 
-    updated_data_string = []
+    updated_data = []
 
     name_files_sorted = sorted_alphanumeric(os.listdir(data_path))
 
     for file in name_files_sorted:
+        if os.path.isdir(os.path.join(data_path, file)) or file.startswith("."):
+            continue
+
         file_path = os.path.join(data_path, file)
         if file.startswith(".") or os.path.isdir(file_path):
             continue
         if column_name == 'accessibility':
             with open(file_path, 'r') as f:
                 accessibility_issue_json = json.load(f)
-                # Make sure that they always have the same structure
             accessibility_issue_string = json.dumps(accessibility_issue_json)
-            updated_data_string.append(accessibility_issue_string)
+            updated_data.append(accessibility_issue_string)
         elif column_name == 'text':
             with open(file_path, "r", encoding='utf-8') as f:
                 html = f.read()
-            updated_data_string.append(html)
+            updated_data.append(html)
+        elif column_name == 'image':
+            updated_data.append({"path": file_path})
 
-    
     # Check if length is the same
-    assert(length_dataset == len(updated_data_string))
+    assert(length_dataset == len(updated_data))
 
-    dataset = dataset.add_column(column_name, updated_data_string)
+    dataset = dataset.add_column(column_name, updated_data)
+
+    if column_name == "image":
+        dataset = dataset.cast_column(column_name, Image(decode=True))
 
     await upload_dataset_hf(dataset, hf_dataset_name)
 
@@ -185,8 +212,10 @@ async def update_dataset_hf_column(hf_dataset_name, column_name, data_path):
     return dataset
 
 
-# Store dataset in directory
 def store_dataset_in_dir(dataset, path):
+    '''
+        Stores dataset in directory
+    '''
     input_dir = os.path.join(path, "input")
     html_dir = os.path.join(input_dir, "html")
     image_dir = os.path.join(input_dir, "images")
@@ -209,4 +238,5 @@ def store_dataset_in_dir(dataset, path):
 
     
 # Tests
-# asyncio.run(update_dataset_hf_accessibility())
+if __name__ == '__main__':
+    asyncio.run(update_dataset_hf("marcolutz/Image2Code", "image"))

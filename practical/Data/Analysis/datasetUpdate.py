@@ -103,7 +103,12 @@ def update_json_manual_checks(json_file_path, amount_manual_checks):
         json.dump(data, fw)
 
 
+
 def _render_fullpage(driver, out_image_path, dpr=1):
+    '''
+        Private Helper function:
+        Goal - get the full size of the website in order to take a correct screenshot
+    '''
     WIDTH = 1280
     MAX_HEIGHT = 15000 # just random height
     SCROLL_COUNT = 4 
