@@ -73,9 +73,9 @@ async def main():
     store_dataset_in_data_dir = False
     # Print Images of Dataset
     show_images_dataset = False
-    # Update Column in Dataset
-    update_column_dataset = True
-    update_column = 'image'
+    # Update Column in Dataset - possible columns: text, image, accessibility
+    update_column_dataset = False
+    update_column = None
 
     dataset = None
 

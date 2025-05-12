@@ -16,23 +16,36 @@ OUTPUT_PATH = os.path.join(DATA_PATH, 'Output')
 MODEL = "openai"
 
 
-def get_prompt():
+def _get_prompt(externally_hosted):
+    '''
+        returns prompt
+    '''
+
+    base = """Please convert the following image into HTML/CSS. 
+            Please copy everything you see, including header, nav-bars, elements, style, text, color, components and more.
+            Return the generated HTML/CSS without any further description or text. """
+    
     # Prompt for LLm
-    return ("Please convert the following image into HTML/CSS. "
-            "Please copy everything you see, including header, nav-bars, elements, style, text, color, components and more. "
-            "Return the generated HTML/CSS without any further description or text. "
-            "The image is externally hosted and can be found via the following URL.")
+    if externally_hosted:
+        return (base + "The image is externally hosted and can be found via the following URL.")
+    else:
+        return (base + "The image is b64 encoded and can is attached to this prompt.")
 
 
-def load_api_key(model):
+def _load_api_key(model):
+    '''
+        loads api_key
+    '''
     # API-Key for model
     with open(KEYS_PATH) as f:
         keys = json.load(f)
         return keys[model]["api_key"]
 
 
-def upload_image(single_image=True, image_path=None):
-    # Upload either one image or all images in path
+def _upload_image(single_image=True, image_path=None):
+    '''
+        Upload either one image or all images in path to IMGBB 
+    '''
     uploader = ImageUploader()
     
     if single_image and image_path:
@@ -41,16 +54,16 @@ def upload_image(single_image=True, image_path=None):
         return uploader.upload_images()
 
 
-async def process_image(client, image_name, link, prompt, externally_hosted=True):
-    # LLM processes iamge and generates code 
-
-    # Generate code
+async def _process_image(client, image_name, link, prompt, externally_hosted=True):
+    '''
+        Sends API-CAll to LLM and lets it create output.
+        The Output is then stored to the Output Directory
+    '''
     result = await client.generate_frontend_code(prompt, link, externally_hosted)
     
     base_name = os.path.splitext(image_name)[0]
     output_dir = os.path.join(OUTPUT_PATH, MODEL, 'html')
     
-    # Store result
     output_html_path = os.path.join(output_dir, f"{base_name}.html")
     with open(output_html_path, "w", encoding="utf-8") as f:
         f.write(result)
@@ -60,7 +73,7 @@ async def process_image(client, image_name, link, prompt, externally_hosted=True
     return result
 
 
-async def analyze_outputs(image_name):
+async def _analyze_outputs(image_name):
     ''''
         Analyze outputs: 
         1. Structural Similarity. Create Accessibility-Tree, Bounding-Boxes, DOM-Similarity, Code-Quality
@@ -83,17 +96,16 @@ async def analyze_outputs(image_name):
 
 async def main():
     # 1. Load prompt
-    prompt = get_prompt()
+    prompt = _get_prompt()
     
     # 2. Load API-Key and define model strategy
-    api_key = load_api_key(MODEL)
+    api_key = _load_api_key(MODEL)
     strategy = OpenAIStrategy(api_key=api_key)
     
     # 3. Upload image(s)
     image_externally_hosted = True
 
     image_dir = os.path.join(INPUT_PATH, 'images')
-    test_image = os.path.join(image_dir, '1.png')
 
     # image_information = upload_image(single_image=True, image_path=test_image)
     
@@ -110,7 +122,7 @@ async def main():
     
 
     # Tests:
-    await analyze_outputs('1.png')
+    await _analyze_outputs('1.png')
 
 
 if __name__ == "__main__":
