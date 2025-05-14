@@ -22,15 +22,16 @@ def _get_prompt(externally_hosted):
         returns prompt
     '''
 
-    base = """Please convert the following image into HTML/CSS. 
-            Please copy everything you see, including header, nav-bars, elements, style, text, color, components and more.
-            Return the generated HTML/CSS without any further description or text. """
+    # base = """Please convert the following image into HTML/CSS. 
+    #         Please copy everything you see, including header, nav-bars, elements, style, text, color, components and more.
+    #         Return the generated HTML/CSS without any further description or text. """
+    base = """Please describe what you see on the image."""
     
     # Prompt for LLm
     if externally_hosted:
         return (base + "The image is externally hosted and can be found via the following URL.")
     else:
-        return (base + "The image is b64 encoded and can is attached to this prompt.")
+        return (base + "The image is encoded and is attached to this prompt.")
 
 
 def _load_api_key(model):
@@ -55,21 +56,20 @@ def _upload_image(single_image=True, image_path=None):
         return uploader.upload_images()
 
 
-async def _process_image(client, image_name, link, prompt, model):
+async def _process_image(client, image_information, prompt, model):
     '''
         Sends API-CAll to LLM and lets it create output.
         The Output is then stored to the Output Directory
     '''
-    result = await client.generate_frontend_code(prompt, link)
+    result = await client.generate_frontend_code(prompt, image_information)
     
-    base_name = os.path.splitext(image_name)[0]
     output_dir = os.path.join(OUTPUT_PATH, model, 'html')
     
-    output_html_path = os.path.join(output_dir, f"{base_name}.html")
+    output_html_path = os.path.join(output_dir, f"{image_information["name"]}.html")
     with open(output_html_path, "w", encoding="utf-8") as f:
         f.write(result)
     
-    print(f"Result for {image_name} stored here: {output_html_path}")
+    print(f"Result for {image_information["name"]}.html stored here: {output_html_path}")
     
     return result
 
@@ -112,6 +112,7 @@ def _get_model_strategy(name):
         case "gemini":
             strategy = GeminiStrategy(api_key=_load_api_key("gemini"))
             externally_hosted = False
+            return strategy, externally_hosted
         case _:
             raise ValueError(f"Model {name} not supported.")
 
@@ -120,21 +121,27 @@ def _get_model_strategy(name):
 async def main():
     model = "gemini"
 
-    # 1. Load prompt
-    prompt = _get_prompt()
-    
-    # 2. Load API-Key and define model strategy
+    # 1. Load API-Key and define model strategy
     strategy, images_externally_hosted = _get_model_strategy(model)
+
+    # 2. Load prompt
+    prompt = _get_prompt(images_externally_hosted)
 
     # 3. Create LLM-Client for model strategy
     client = LLMClient(strategy)
     
-    # 3. Determine if 1. Upload image(s) necessary, or 2. Encoding of Images
     image_dir = os.path.join(INPUT_PATH, 'images')
     
     for image in os.listdir(image_dir):
         if os.path.isfile(os.path.join(image_dir, image)) and image.endswith('.png'):
-            image_information = None
+            image_information = {
+                "name": os.path.splitext(image)[0],
+                "link": None,
+                "bytes": None
+            }
+            result = None
+
+             # 4. Determine if 1. Upload image(s) necessary, or 2. Encoding of Images
             if images_externally_hosted:
                 image_information = _upload_image(single_image=True, image_path=os.path.join(image_dir, image))
 
@@ -143,25 +150,25 @@ async def main():
 
                  # 4. Let LLMs create code out of image(s)
                 for image_name, link in image_information.items():
-                    result = await _process_image(client, image_name, link, prompt)
-                    print(f"Short summary: {result[:50]} ... (see more in path)")
+                    image_information["link"] = link
+                    result = await _process_image(client, image_information, prompt, model)
 
-                    # 6. Analyze outputs for Input & Output
-                    # await _analyze_outputs(image_name)
+                    
             else:
-                with open(image_information, "rb") as image_file:
+                with open(os.path.join(image_dir, image), "rb") as image_file:
                     image_data = image_file.read()
+                image_information["bytes"] = image_data
 
                 # Encode the image data to Base64
                 # b64_image_data = util_encode_image(image_data)
                 
-                    result = await _process_image(client, image_name, link, prompt)
-                    print(f"Short summary: {result[:50]} ... (see more in path)")
-                await (prompt, image_data)
-                    with open(os.path.join(), 'rb') as f:
-                        image_bytes = f.read()
+                result = await _process_image(client, image_information, prompt, model)
+            
 
-   
+            print(f"Short summary: {result[:50]} ... (see more in path)")
+
+        # 6. Analyze outputs for Input & Output
+        # await _analyze_outputs(image_name)
     
 
     # Tests:

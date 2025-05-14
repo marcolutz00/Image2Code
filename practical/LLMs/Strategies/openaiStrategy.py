@@ -12,8 +12,7 @@ class OpenAIStrategy(LLMStrategy):
         self.used_model = MODEL
         self.client = OpenAI(api_key=api_key)
 
-    async def api_frontend_generation(self, prompt, image_data):
-
+    async def api_frontend_generation(self, prompt, image_information):
         response = self.client.chat.completions.create(
             model=self.used_model,
 
@@ -26,7 +25,7 @@ class OpenAIStrategy(LLMStrategy):
                         {
                             "type": "image_url",
                             "image_url": {
-                                "url": f"{image_data}",
+                                "url": f"{image_information["url"]}",
                                 # High detail for better results but also more expensive (default: "auto")
                                 "detail": "high",
                             },

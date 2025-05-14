@@ -9,8 +9,7 @@ class LLMClient:
         self.strategy = strategy
 
     async def generate_frontend_code(self, prompt, image_information):
-        image_data = image_information
-        return await self.strategy.api_frontend_generation(prompt, image_data)
+        return await self.strategy.api_frontend_generation(prompt, image_information)
             
 
     async def generate_accessibility_matching(self, prompt, current_map, accessibility_data):

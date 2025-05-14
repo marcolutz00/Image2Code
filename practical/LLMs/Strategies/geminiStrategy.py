@@ -18,7 +18,7 @@ class GeminiStrategy(LLMStrategy):
         self.used_model = MODEL
         self.client = genai.Client(api_key=api_key)
 
-    async def api_frontend_generation(self, prompt, image_data):
+    async def api_frontend_generation(self, prompt, image_information):
         '''
             Important! 
             1. image_data as bytes, like this:
@@ -30,7 +30,7 @@ class GeminiStrategy(LLMStrategy):
             model='gemini-2.0-flash',
             contents=[
                 types.Part.from_bytes(
-                    data=image_data,
+                    data=image_information["bytes"],
                     mime_type='image/png',
                 ),
                 prompt
