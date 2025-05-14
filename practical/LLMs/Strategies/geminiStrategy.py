@@ -26,18 +26,23 @@ class GeminiStrategy(LLMStrategy):
                 image_data = f.read()
             2. Only png images
         '''
+        with open(image_information["path"], "rb") as image_file:
+            image_data = image_file.read()
+
         response = self.client.models.generate_content(
             model='gemini-2.0-flash',
             contents=[
                 types.Part.from_bytes(
-                    data=image_information["bytes"],
+                    data=image_data,
                     mime_type='image/png',
                 ),
                 prompt
             ]
         )
 
-        return response.text
+        tokens_used = response.usage_metadata
+
+        return response.text, tokens_used
 
     async def api_accessibility_matching(self, prompt, current_map, accessibility_data):
         message = f'Prompt: {prompt}, Current Map: {current_map}, New Data: {accessibility_data}'

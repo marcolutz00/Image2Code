@@ -2,6 +2,7 @@ from .LLMStrategy import LLMStrategy
 from openai import OpenAI
 from pathlib import Path
 import os
+import base64
 
 # ToDo: Define Model
 MODEL = "gpt-4o"
@@ -12,26 +13,53 @@ class OpenAIStrategy(LLMStrategy):
         self.used_model = MODEL
         self.client = OpenAI(api_key=api_key)
 
-    async def api_frontend_generation(self, prompt, image_information):
-        response = self.client.chat.completions.create(
-            model=self.used_model,
 
-            # Informatino here: https://platform.openai.com/docs/guides/images?api-mode=chat
-            messages=[
-                {"role": "system", "content": f"Imagine that you are a senior frontend developper focusing on implementing HTML/CSS from UI-Images. It is the goal to copy the image as precise as possible. Please only answer with the code, meaning without any explanation."},
-                {"role": "user", "content": 
-                    [
-                        {"type": "text", "text": f"{prompt}"},
+    async def api_frontend_generation(self, prompt, image_information):
+        with open(image_information["path"], "rb") as image_file:
+            image_data = base64.b64encode(image_file.read()).decode("utf-8")
+
+        response = self.client.responses.create(
+            model="gpt-4.1",
+            input=[
+                {
+                    "role": "system", "content": f"Imagine that you are a senior frontend developper focusing on implementing HTML/CSS from UI-Images. It is the goal to copy the image as precise as possible. Please only answer with the code, meaning without any explanation.",
+                    "role": "user",
+                    "content": [
+                        { "type": "input_text", "text": prompt },
                         {
-                            "type": "image_url",
-                            "image_url": {
-                                "url": f"{image_information["url"]}",
-                                # High detail for better results but also more expensive (default: "auto")
-                                "detail": "high",
-                            },
+                            "type": "input_image",
+                            "image_url": f"data:image/jpeg;base64,{image_data}",
                         },
                     ],
                 }
-            ]
+            ],
         )
-        return response.choices[0].message.content
+
+        # response = self.client.chat.completions.create(
+        #     model=self.used_model,
+
+        #     # Informatino here: https://platform.openai.com/docs/guides/images?api-mode=chat
+        #     messages=[
+        #         {"role": "system", "content": f"Imagine that you are a senior frontend developper focusing on implementing HTML/CSS from UI-Images. It is the goal to copy the image as precise as possible. Please only answer with the code, meaning without any explanation."},
+        #         {"role": "user", "content": 
+        #             [
+        #                 {"type": "text", "text": f"{prompt}"},
+        #                 {
+        #                     "type": "image_url",
+        #                     "image_url": {
+        #                         "url": f"{image_information["url"]}",
+        #                         # High detail for better results but also more expensive (default: "auto")
+        #                         "detail": "high",
+        #                     },
+        #                 },
+        #             ],
+        #         }
+        #     ]
+        # )
+
+        tokens_used = {
+            "input_tokens": response.usage.input_tokens,
+            "output_tokens": response.usage.output_tokens,
+            "total_tokens": response.usage.total_tokens
+        }
+        return response.output_text, tokens_used
