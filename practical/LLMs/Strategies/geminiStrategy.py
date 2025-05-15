@@ -25,20 +25,23 @@ class GeminiStrategy(LLMStrategy):
             with open('path/to/small-sample.jpg', 'rb') as f:
                 image_data = f.read()
             2. Only png images
+
+            TODO: Add temperature
         '''
         with open(image_information["path"], "rb") as image_file:
             image_data = image_file.read()
 
         response = self.client.models.generate_content(
-            model='gemini-2.0-flash',
+            model=self.used_model,
             contents=[
-                types.Part.from_bytes(
-                    data=image_data,
-                    mime_type='image/png',
-                ),
-                prompt
+            types.Part.from_bytes(
+                data=image_data,
+                mime_type='image/jpeg',
+            ),
+            prompt
             ]
         )
+
 
         tokens_used = response.usage_metadata
 
@@ -49,12 +52,12 @@ class GeminiStrategy(LLMStrategy):
 
         response = self.client.models.generate_content(
             model=self.used_model,
-            contents=[message],
-            config=types.GenerateContentConfig(
-                # temperature can range between 0.0 - 2.0. Creative answers should have a higher score, but if exactness is more important, than smaller score
-                temperature=0.1,
-                system_instruction=SYSTEM_INSTRUCTION_MAPPING
-            )
+            contents=[message]
+            # config=types.GenerateContentConfig(
+            #     # temperature can range between 0.0 - 2.0. Creative answers should have a higher score, but if exactness is more important, than smaller score
+            #     temperature=0,
+            #     system_instruction=SYSTEM_INSTRUCTION_MAPPING
+            # )
         )
 
         return response.text

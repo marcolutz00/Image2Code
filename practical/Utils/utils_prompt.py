@@ -3,21 +3,29 @@ def _get_base_prompt():
         returns prompt
     '''
 
-    base = """Your task is to meticulously replicate the provided UI image using HTML and CSS. 
-    Pay close attention to every detail, including:  
-    * **Layout:** Structure the HTML to match the image's arrangement of elements. 
-    * **Styling:** Accurately reproduce colors, fonts, spacing, and other visual attributes using CSS. 
-    * **Content:** Include all text, icons, and other visual elements present in the image. 
-    * **Placeholders:** Treat any blue-filled boxes as image placeholders. 
+    base = """
+    Your task is to replicate the provided UI mock-up pixel-perfectly using HTML and CSS.
+    Pay close attention to every detail and follow these guidelines:  
+    1. **Layout**  
+    Structure the markup so the spatial arrangement of every element exactly matches the screenshot.
+    
+    2. **Styling**  
+    Reproduce fonts, colors, spacing, sizes, borders, shadows, and any other visual details as closely as possible.
 
-    Important for images:
-    Use the `<img>` tag with a empty src but appropriate `height` and `width` attributes to represent these.  
-    The content of the image is not important, but only the fact, that it is marked as one in HTML/CSS
-    You will provide the complete HTML and CSS code in one file required to render the image.
+    3. **Content**  
+    Include all visible text, icons, and graphic elements.
 
-    Now, convert the following image into HTML/CSS code. 
-    Remember to copy everything you see as precisely as possible. 
-    Return only the complete HTML and CSS code, without any additional text or explanations."""
+    4. **Image placeholders**  
+    Blue boxes represent images. Use  
+    `<img src="src/rick.jpg" width="…" height="…" alt="">`  
+    to reserve space; the actual image content is irrelevant. 
+    However, the appropriate height and width is very important.
+
+    5. **Delivery format**  
+    Output **only** the complete HTML and CSS code in **one file**—no additional comments or explanations.
+
+
+    Now convert the following image into HTML/CSS according to these requirements."""
     # base = """Please describe what you see on the image."""
     
     # Prompt for LLm
@@ -53,8 +61,8 @@ def _get_zero_shot_prompt():
         Accessibility add-on
         --------------------
         Apply the following WCAG 2.1 principles **even if this requires small visual deviations**:
-        WCAG url: {url_wcag}
-        Memorization for you: {memory_wcag}
+        1. WCAG url: {url_wcag}
+        2. Memorization for you: {memory_wcag}
     """
 
     return f"{base}\n\n{zero_shot_prompt}\n\nThe image is encoded and attached to this prompt."
@@ -87,3 +95,14 @@ def get_prompt(prompt_strategy):
         case _:
             raise ValueError(f"Prompt Strategy {prompt_strategy} is not supported.")
 
+
+
+def get_system_instructions():
+    return ('''
+        You are a senior front-end engineer. 
+        When asked, you output a single self-contained HTML5 document 
+        with embedded CSS that reproduces the requested UI as faithfully as possible. 
+        Return only raw code (no Markdown fences, no explanations). 
+        Use semantic elements when obvious, keep the CSS concise and well-structured, 
+        and never embed images as base64 unless explicitly instructed.
+    ''')

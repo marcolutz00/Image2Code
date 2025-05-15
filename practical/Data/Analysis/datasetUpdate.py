@@ -148,7 +148,7 @@ def update_images():
         take screenshots again.
         Example: Blue Boxes from design2code, instead of images
     '''
-    new_image_dir = os.path.join(IMAGE_PATH, "new")
+    new_image_dir = os.path.join(IMAGE_PATH)
 
     if not os.path.exists(new_image_dir):
         os.makedirs(new_image_dir)  

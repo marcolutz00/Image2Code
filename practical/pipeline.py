@@ -18,7 +18,7 @@ OUTPUT_PATH = os.path.join(DATA_PATH, 'Output')
 
 
 
-async def _process_image(client, image_information, prompt, model):
+async def _process_image(client, image_information, prompt, model, prompt_strategy):
     '''
         Sends API-CAll to LLM and lets it create output.
         The Output is then stored to the Output Directory
@@ -31,7 +31,7 @@ async def _process_image(client, image_information, prompt, model):
 
     result_clean = utils_html.clean_html_result(result_raw)
     
-    output_dir = os.path.join(OUTPUT_PATH, model, 'html')
+    output_dir = os.path.join(OUTPUT_PATH, model, 'html', prompt_strategy)
     
     output_html_path = os.path.join(output_dir, f"{image_information["name"]}.html")
     with open(output_html_path, "w", encoding="utf-8") as f:
@@ -64,7 +64,7 @@ async def _analyze_outputs(image_name, model):
 
 async def main():
     model = "gemini"
-    prompt_strategy = "naive"
+    prompt_strategy = "zero-shot"
 
     # 1. Load API-Key and define model strategy
     strategy = utils_general.get_model_strategy(model)
@@ -88,7 +88,7 @@ async def main():
                 "path": image_path
             }
             
-            result = await _process_image(client, image_information, prompt, model)
+            result = await _process_image(client, image_information, prompt, model, prompt_strategy)
 
             print("----------- Done -----------\n")
 

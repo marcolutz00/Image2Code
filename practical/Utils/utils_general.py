@@ -22,7 +22,7 @@ def util_load_keys(source):
     with open(config_path, "r", encoding="utf-8") as f:
         keys_json = json.load(f)
 
-    api_key = keys_json[source]
+    api_key = keys_json[source]["api_key"]
 
     return api_key
 
