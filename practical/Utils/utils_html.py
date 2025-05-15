@@ -1,10 +1,11 @@
-from PIL import Image
 import os
 import json
 from playwright.async_api import async_playwright
 import os 
 import datetime
 import sys
+import re
+from bs4 import BeautifulSoup
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from practical.Utils.utils_general import util_render_and_screenshot
 
@@ -79,5 +80,18 @@ async def create_data_entry(name, html_path, llm_output):
 
 
     return data
+
+
+def clean_html_result(result):
+    '''
+        Output of LLMs can contain other stuff. Everything is deleted except <html> and everything between...
+        If no final </html> is found, than just tkae the string
+    '''
+    pattern = re.compile(r"<!DOCTYPE html.*?(?:</html>|$)",  # schnappt bis </html> ODER bis String-Ende
+                         re.DOTALL | re.IGNORECASE)
+    clean_result = pattern.search(result).group(0)
+    return clean_result
+
+
 
 
