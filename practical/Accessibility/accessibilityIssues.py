@@ -7,7 +7,7 @@ from pathlib import Path
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from practical.Accessibility import accessibilityMapping
-from practical.Accessibility import accessibilityMapping_automatically
+from practical.Accessibility.old import accessibilityMapping_automatically
 
 
 AXE_CORE_PATH = "/usr/local/lib/node_modules/axe-core/axe.min.js"
@@ -22,7 +22,7 @@ OUTPUT_DATA_PATH = os.path.join(DATA_PATH, 'Output', 'openai', 'html')
 '''
 
 # 1. axe-core (npm) infos here: https://hackmd.io/@gabalafou/ByvwfEC0j
-async def axe_core(html_path):
+async def _axe_core(html_path):
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         page = await browser.new_page()
@@ -45,7 +45,7 @@ async def axe_core(html_path):
 
 # 2. Pa11y (npm) infos here: https://www.npmjs.com/package/pa11y
 # Uses HTML_CodeSniffer under the hood
-async def pa11y(html_path):
+async def _pa11y(html_path):
     output_type = "json"
 
     local_html = f"file://{os.path.abspath(html_path)}"
@@ -66,7 +66,7 @@ async def pa11y(html_path):
 
 # 3. Google Lighthouse : https://www.npmjs.com/package/lighthouse
 # Implementation: https://medium.com/@olimpiuseulean/use-python-to-automate-google-lighthouse-reports-and-keep-a-historical-record-of-these-65f378325d64
-async def google_lighthouse(html_path):
+async def _google_lighthouse(html_path):
     local_html = os.path.abspath(html_path)
     local_html_dir = Path(local_html).parent
     local_html_name = Path(local_html).name
@@ -115,25 +115,51 @@ async def google_lighthouse(html_path):
 
     return important_output
 
-async def create_automatic_mapping(html_path):
-    axe_core_results = await axe_core(html_path)
-    pa11y_results = await pa11y(html_path)
-    lighthouse_results = await google_lighthouse(html_path)
+async def _create_automatic_mapping(html_path):
+    axe_core_results = await _axe_core(html_path)
+    pa11y_results = await _pa11y(html_path)
+    lighthouse_results = await _google_lighthouse(html_path)
 
     general_accessibility_map = await accessibilityMapping_automatically.full_matching_automatically(pa11y_results, axe_core_results, lighthouse_results)
 
     return general_accessibility_map
 
 
-async def get_accessibility_issues(html_path):
-    axe_core_results = await axe_core(html_path)
-    pa11y_results = await pa11y(html_path)
-    lighthouse_results = await google_lighthouse(html_path)
+async def _get_accessibility_issues(html_path):
+    axe_core_results = await _axe_core(html_path)
+    pa11y_results = await _pa11y(html_path)
+    lighthouse_results = await _google_lighthouse(html_path)
 
     issues_automatic_json, issues_overview_json = accessibilityMapping.integrate_accessibility_tools_results(pa11y_results, axe_core_results, lighthouse_results)
 
     return issues_automatic_json, issues_overview_json
 
+
+async def enrich_with_accessibility_issues(file, html_path, accessibility_path, insights_path):
+    '''
+        Enrich the dataset with accessibility issues from:
+        1. axe-core
+        2. pa11y
+        3. google lighthouse
+
+        At the end, the information is stores
+    '''
+    base_name = file.split(".")[0]
+
+    print(f"Checking accessibility issues for {base_name} ...")
+
+    # Accessibility Issues analyze
+    issues_automatic_json, issues_overview_json = await _get_accessibility_issues(html_path)
+    
+    with open(accessibility_path, "w") as f:
+        json.dump(issues_automatic_json, f, ensure_ascii=False, indent=2)
+
+    with open(insights_path, "w") as f:
+        json.dump(issues_overview_json, f, ensure_ascii=False, indent=2)
+
+    print(f"Accessibility issues for {base_name} stored in {accessibility_path} and {insights_path}")
+    
+    
 
 
 

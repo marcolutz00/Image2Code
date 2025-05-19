@@ -23,28 +23,6 @@ DATA_PATH = os.path.join(os.path.dirname(__file__), 'Data')
 DATASET_HF = "marcolutz/Image2Code"
 
 
-async def enrich_with_accessibility_issues(dataset):
-    counter = 1
-    for data_entry in dataset:
-        # image = data_entry.get("image")
-        # image.show()
-        # print(counter)
-
-        # if counter < 8:
-        #     counter += 1 
-        #     continue
-
-        issues_automatic_json, issues_overview_json = await accessibilityIssues.get_accessibility_issues(os.path.join(DATA_PATH, "Input", "html", f"{counter}.html"))
-        
-        with open(os.path.join(DATA_PATH, "Input", "accessibility", f"{counter}.json"), "w") as f:
-            json.dump(issues_automatic_json, f, ensure_ascii=False, indent=2)
-        
-        with open(os.path.join(DATA_PATH, "Input", "insights", f"overview_{counter}.json"), "w") as f:
-            json.dump(issues_overview_json, f, ensure_ascii=False, indent=2)
-        
-        counter += 1
-    
-    await utils_dataset.update_dataset_hf(DATASET_HF, "accessibility")
 
 
 

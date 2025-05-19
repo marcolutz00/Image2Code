@@ -5,7 +5,15 @@ import os
 import datetime
 import sys
 import re
-from bs4 import BeautifulSoup
+import time
+import pathlib
+import base64
+from PIL import Image
+from io import BytesIO
+from selenium import webdriver 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.chrome.options import Options
+
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from practical.Utils.utils_general import util_render_and_screenshot
 
@@ -92,6 +100,127 @@ def clean_html_result(result):
     clean_result = pattern.search(result).group(0)
     return clean_result
 
+
+def _get_page_size(driver, width=1280, max_height=15_000):
+    """
+        Gets the page size (height, width)
+    """
+    driver.set_window_size(width, 1000)
+
+    # load page
+    WebDriverWait(driver, 10).until(
+        lambda d: d.execute_script("return document.readyState") == "complete"
+    )
+    height = driver.execute_script(
+        "return Math.max(document.body.scrollHeight, "
+        "document.documentElement.scrollHeight)"
+    )
+    return width, min(height, max_height)
+
+
+def _determine_size(html1_path, html2_path):
+    '''
+        Determines the max size of the 2 HTMLs 
+        Important to get a screenshot which has the same size
+    '''
+
+    options = Options()  
+    options.add_argument("--headless")
+
+    sizes = []
+    for html in (html1_path, html2_path):
+        d = webdriver.Chrome(options=options)
+        try:
+            d.get(pathlib.Path(html).resolve().as_uri())
+            sizes.append(_get_page_size(d))
+        finally:
+            d.quit()
+    
+    max_w = max(w for w, h in sizes)
+    max_h = max(h for w , h in sizes)
+    return max_w, max_h
+
+
+
+def _render_fullpage_with_screenshot(driver, image_path, dpr=1, target_width=1280, target_height=None):
+    '''
+        Private Helper function:
+        Goal - get the full size of the website in order to take a correct screenshot
+    '''
+    driver.set_window_size(target_width, target_height or 1000)
+    # sometimes scrolling is necessary to see full webpage
+    scroll_count = 4
+
+    # check dynamically if scroll necessary
+    for i in range(scroll_count):
+        time.sleep(0.2)
+        temp_height = driver.execute_script("return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)")
+
+        desired_height = min(temp_height, target_height) if target_height else temp_height
+        # check if height difference
+        if desired_height > driver.get_window_size()["height"]:
+            driver.set_window_size(target_width, desired_height )
+
+    
+
+    b64_encoded = driver.execute_cdp_cmd("Page.captureScreenshot", {"fromSurface": True, "captureBeyondViewport": True})["data"]
+
+    img = base64.b64decode(b64_encoded)
+
+    if dpr != 1:
+        im = Image.open(BytesIO(img))
+        if im.width != target_width:
+            ratio = target_width / im.width
+            im = im.resize((target_width, int(im.height * ratio)), Image.LANCZOS)
+        im.save(image_path)
+    else:
+        pathlib.Path(image_path).write_bytes(img)
+
+
+def _take_screenshots(html_path, image_path, max_width, max_height):
+    '''
+        creates driver, loads html and then calls _render_fullpage_with_screenshot in order to 
+        take a screenshot
+    '''
+    options = Options()
+    options.add_argument('--headless')  
+    driver = webdriver.Chrome(options=options)
+
+    try:
+        driver.get(pathlib.Path(html_path).resolve().as_uri())
+        WebDriverWait(driver, 10).until(lambda d: d.execute_script("return document.readyState") == "complete")
+
+
+        dp_ratio = driver.execute_script("return window.devicePixelRatio")
+        _render_fullpage_with_screenshot(driver, image_path, dp_ratio, max_width, max_height)
+    except Exception as e:
+        print(f"Error for file {html_path.split("/")[-1]}: {e}")
+
+    finally:
+        driver.quit()
+
+
+def save_screenshots(html_path, image_path, html2_path = None, image2_path = None):
+    '''
+        Take a screenshot of the *full* page.
+    '''
+    max_width=1280 
+    max_height=None
+
+    if(html2_path != None):
+        max_width, max_height = _determine_size(html_path, html2_path)
+        print("Pair Screenshot for File: ", html_path.split("/")[-1])
+        _take_screenshots(html_path, image_path, max_width, max_height)
+        _take_screenshots(html2_path, image2_path, max_width, max_height)
+    else:
+        print("Single Screenshot for File: ", html_path.split("/")[-1])
+        _take_screenshots(html_path, image_path, max_width, max_height)
+
+
+
+    
+
+    
 
 
 

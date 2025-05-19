@@ -16,21 +16,9 @@ class VisualBenchmarks:
         https://scikit-image.org/docs/0.24.x/auto_examples/transform/plot_ssim.html
 
         Important: The images need to have the same size !!
-
-        TODO: How to handle different sizes?
     '''
     def ssim(self, image1_path, image2_path):
         return ssim.ssim_score(image1_path, image2_path)
-    
-    '''
-        tbd.
-        Bounding-Boxes: 
-        Compares two images based on the bounding boxes of the elements
-        Problems: Different amount of elements in input and generated code
-        How to compare? Maybe matching of elements first - but how to match?
-    '''
-    def boundingBoxes(self, code1, code2):
-        print("test")
 
 
     '''

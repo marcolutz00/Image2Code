@@ -141,6 +141,8 @@ def map_htmlcsniffer_and_axecore(id, htmlcsniffer=True):
 
 # Pa11y only shows the wcag id, but not the url
 def process_pa11y_issues(issues, wcag_issues_dict):
+    if issues is None or len(issues) == 0:
+        return
     # Load the json file
     for issue in issues:
         issue_id = issue["code"].split("WCAG2AA.")[1]
@@ -174,6 +176,9 @@ def process_pa11y_issues(issues, wcag_issues_dict):
 
 # Axe-core shows the url and wcag id of all the violations
 def process_axe_core_issues(issues, wcag_issues_dict):
+    if issues is None or len(issues) == 0:
+        return
+    
     for issue in issues:
         issue_url = issue["helpUrl"].split("?")[0]
 
@@ -227,6 +232,9 @@ def count_axe_core_tested_nodes(axe_core_violations, axe_core_incomplete, axe_co
 
 # Lighthouse only shows the url
 def process_lighthouse_issues(issues, wcag_issues_dict):
+    if issues is None or len(issues) == 0:
+        return
+    
     for issue_id, issue_data in issues.items():
         # Skip if scoreDisplayMode is null since lighthouse shows all
         if issue_data.get("scoreDisplayMode") in ["notApplicable", "manual"]:
@@ -324,8 +332,13 @@ def integrate_accessibility_tools_results(pa11y, axe_core, lighthouse):
         audits : all WCAG-rules similar to axe-core, however no information about the amount of nodes tested
         categories : Information about categories tested (in this case only "accessibility"). Interesting: Lighthouse releases final score. Can be used as another benchmark
     '''
-    lighthouse_audits = lighthouse["audits"]
-    lighthouse_accessibility_score = lighthouse["categories"].get("accessibility").get("score")
+    if lighthouse is None:
+        lighthouse_audits = None
+        lighthouse_accessibility_score = None
+    else:
+        lighthouse_audits = lighthouse["audits"]
+        lighthouse_accessibility_score = lighthouse["categories"].get("accessibility").get("score")
+        
     process_lighthouse_issues(lighthouse_audits, issues_automatic)
 
     issues_automatic = calculate_max_issue_counts(issues_automatic)

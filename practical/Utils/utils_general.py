@@ -5,8 +5,9 @@ import json
 import base64
 import os
 import sys
+import shutil
 
-sys.path.append(os.path.dirname(os.path.abspath(__file__)))
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from LLMs.Strategies.openaiStrategy import OpenAIStrategy
 from LLMs.Strategies.geminiStrategy import GeminiStrategy
 from LLMs.Strategies.llamaStrategy import LlamaStrategy
@@ -117,4 +118,42 @@ def get_model_strategy(name):
             raise ValueError(f"Model {name} not supported.")
 
 
+def util_create_dir_structure():
+    '''
+        Creates the necessary folder structures for the project
+    '''
+    base = Path(__file__).resolve().parent.parent
+    data_path = base / "Data"
+    input_path = data_path / "Input"
+    output_path = data_path / "Output"
 
+    # placeholder.jpg
+    placeholder_path = base / "Utils" /"placeholder.jpg"
+
+    # Create if not exist
+    input_path.mkdir(parents=True, exist_ok=True)
+    output_path.mkdir(parents=True, exist_ok=True)
+
+    (input_path / "images").mkdir(parents=True, exist_ok=True)
+    (input_path / "html" / "src").mkdir(parents=True, exist_ok=True)
+    shutil.copy(placeholder_path, input_path / "html" / "src" / "placeholder.jpg")
+
+    models = ["openai", "gemini", "llama", "qwen"]
+    sub_folders = ["accessibility", "html", "images", "insights"]
+    prompt_strategies = ["naive", "zero-shot", "few-shot", "reason"]
+
+    for model in models:
+        for sub_folder in sub_folders:
+            (output_path / model / sub_folder).mkdir(parents=True, exist_ok=True)
+            for prompt_strategy in prompt_strategies:
+                (output_path / model / sub_folder / prompt_strategy).mkdir(parents=True, exist_ok=True)
+                if sub_folder == "html":
+                    (output_path / model / sub_folder / prompt_strategy / "src").mkdir(parents=True, exist_ok=True)
+                    shutil.copy(placeholder_path, output_path / model / sub_folder / prompt_strategy / "src" / "placeholder.jpg")
+
+    print("Directory structure created successfully!")
+
+
+if __name__ == "__main__":
+    # Example usage
+    util_create_dir_structure()

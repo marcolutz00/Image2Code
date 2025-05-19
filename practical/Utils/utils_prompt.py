@@ -17,7 +17,7 @@ def _get_base_prompt():
 
     4. **Image placeholders**  
     Blue boxes represent images. Use  
-    `<img src="src/rick.jpg" width="…" height="…" alt="">`  
+    `<img src="src/placeholder.jpg" width="…" height="…" alt="">`  
     to reserve space; the actual image content is irrelevant. 
     However, the appropriate height and width is very important.
 
@@ -46,23 +46,20 @@ def _get_zero_shot_prompt():
     # Wcag 2.1
     url_wcag = "https://www.w3.org/TR/WCAG21/"
     # Just some citation of the wcag website above, to guide the LLM correctly
-    memory_wcag = """
-        Abstract
-
-        Web Content Accessibility Guidelines (WCAG) 2.1 covers a wide range of recommendations for making web content more accessible. 
-        Following these guidelines will make content more accessible to a wider range of people with disabilities, including accommodations 
-        for blindness and low vision, deafness and hearing loss, limited movement, speech disabilities, photosensitivity, and combinations of these, 
-        and some accommodation for learning disabilities and cognitive limitations; but will not address every user need for people with these disabilities. 
-        These guidelines address accessibility of web content on any kind of device (including desktops, laptops, kiosks, and mobile devices). Following these 
-        guidelines will also often make web content more usable to users in general.
-    """
 
     zero_shot_prompt = f"""
-        Accessibility add-on
+        Accessibility-first Reminder
         --------------------
-        Apply the following WCAG 2.1 principles **even if this requires small visual deviations**:
-        1. WCAG url: {url_wcag}
-        2. Memorization for you: {memory_wcag}
+        It is *EXTREMELY* important that your HTML/CSS **complies with WCAG 2.1**.   
+        If pixel accuracy ever clashes with accessibility, **accessibility takes priority**
+
+        Remember the four WCAG Principles:
+        * **Perceivable**  – Information must be detectable by every user.  
+        * **Operable**     – Interface elements must be usable through any input method.  
+        * **Understandable** – Content and interactions must be comprehensible and predictable.  
+        * **Robust**       – Code must be reliable across current and future technologies, including assistive tools.
+
+        Refer to the full spec if in doubt: {url_wcag}
     """
 
     return f"{base}\n\n{zero_shot_prompt}\n\nThe image is encoded and attached to this prompt."

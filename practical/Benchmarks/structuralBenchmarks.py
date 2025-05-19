@@ -10,8 +10,6 @@ class StructuralBenchmarks:
     def __init__(self):
         obj_structuralBenchmark = {}
 
-
-    
     '''
         Text-Similarity:
         Is based on the SequenceMatcher from the difflib library    

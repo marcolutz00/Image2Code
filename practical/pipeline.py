@@ -2,14 +2,18 @@ import sys
 import os
 import json
 import time
+import asyncio
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
+from practical.Benchmarks.visualBenchmarks import VisualBenchmarks
+from practical.Benchmarks.structuralBenchmarks import StructuralBenchmarks
+from practical.Benchmarks.accessibilityBenchmarks import AccessibilityBenchmarks
 from practical.LLMs.LLMClient import LLMClient
 import practical.Utils.utils_html as utils_html
 import practical.Utils.utils_dataset as utils_dataset
 import practical.Utils.utils_general as utils_general
 import practical.Utils.utils_prompt as utils_prompt
-import asyncio
+import practical.Accessibility.accessibilityIssues as accessibilityIssues
 
 KEYS_PATH = os.path.join(os.path.dirname(__file__), 'keys.json')
 DATA_PATH = os.path.join(os.path.dirname(__file__), 'Data')
@@ -42,29 +46,53 @@ async def _process_image(client, image_information, prompt, model, prompt_strate
     return result_clean
 
 
-async def _analyze_outputs(image_name, model):
+async def _analyze_outputs(image, model, prompt_strategy):
     ''''
         Analyze outputs: 
         1. Structural Similarity. Create Accessibility-Tree, Bounding-Boxes, DOM-Similarity, Code-Quality
         2. Visual Similarity: Create Screenshots 
     '''
     # get basename
-    image_name = os.path.splitext(image_name)[0]
+    image_name = os.path.splitext(image)[0]
 
-    # 1. Structural Similarity
     input_html_path = os.path.join(INPUT_PATH, 'html', f"{image_name}.html")
-    output_html_path = os.path.join(OUTPUT_PATH, model, 'html', f"{image_name}.html")
+    input_accessibility_path = os.path.join(INPUT_PATH, 'accessibility', f"{image_name}.json")
+    input_images_path = os.path.join(INPUT_PATH, 'images', f"{image_name}.png")
+    input_insight_path = os.path.join(INPUT_PATH, 'insights', f"overview_{image_name}.json")
+    output_html_path = os.path.join(OUTPUT_PATH, model, 'html', prompt_strategy, f"{image_name}.html")
+    output_accessibility_path = os.path.join(OUTPUT_PATH, model, 'accessibility', prompt_strategy, f"{image_name}.json")
+    output_images_path = os.path.join(OUTPUT_PATH, model, 'images', prompt_strategy, f"{image_name}.png")
+    output_insight_path = os.path.join(OUTPUT_PATH, model, 'insights', prompt_strategy, f"overview_{image_name}.json")
 
-    # Create DOM, Bounding-Boxes, Accessibility-Tree, Accessibility Violations of Input and Output
-    await utils_html.create_data_entry(image_name, input_html_path, False)
-    await utils_html.create_data_entry(image_name, output_html_path, True)
+    # Temp file for original html, but will be deleted afterwards
+    output_original_images_path = os.path.join(OUTPUT_PATH, model, 'images', prompt_strategy, f"original_{image_name}.png")
 
-    # TODO: Now use Benchmarks to compare the two outputs
 
+    # 1. Take Screenshots
+    utils_html.save_screenshots(output_html_path, output_images_path, input_html_path, output_original_images_path)
+
+    # 2. Calculate Benchmarks
+    # 2.1 Visual Benchmarks
+    obj_visual_benchmarks = VisualBenchmarks()
+    # Important: SSIM need same size images, clip value does not care
+    ssim_score = obj_visual_benchmarks.ssim(output_original_images_path, output_images_path)
+    clip_value = obj_visual_benchmarks.clipValue(input_images_path, output_images_path)
+
+    # 2.2 Structural Benchmarks
+    obj_structural_benchmarks = StructuralBenchmarks()
+    text_similarity_score = obj_structural_benchmarks.textSimilarity(input_html_path, output_html_path)
+    tree_bleu_score = obj_structural_benchmarks.treebleu(input_html_path, output_html_path)
+
+    # 3. Delete temp Screenshot
+    os.remove(output_original_images_path)
+
+    # 4. Analyze Accessibility Issues
+    # await accessibilityIssues.enrich_with_accessibility_issues(image_name, input_html_path, input_accessibility_path, input_insight_path)
+    await accessibilityIssues.enrich_with_accessibility_issues(image_name, output_html_path, output_accessibility_path, output_insight_path)
 
 async def main():
     model = "gemini"
-    prompt_strategy = "zero-shot"
+    prompt_strategy = "naive" # option naive, zero-shot
 
     # 1. Load API-Key and define model strategy
     strategy = utils_general.get_model_strategy(model)
@@ -83,21 +111,23 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
+            # if int(image.split(".")[0]) < 23:
+            #     continue
+
             image_information = {
                 "name": os.path.splitext(image)[0],
                 "path": image_path
             }
             
-            result = await _process_image(client, image_information, prompt, model, prompt_strategy)
+            # 4. Start the API Call and store information locally
+            # result = await _process_image(client, image_information, prompt, model, prompt_strategy)
+
+            # 5. Analyze outputs for Input & Output
+            await _analyze_outputs(image, model, prompt_strategy)
+
 
             print("----------- Done -----------\n")
 
-        # 6. Analyze outputs for Input & Output
-        # await _analyze_outputs(image_name)
-    
-
-    # Tests:
-    # await _analyze_outputs('1.png')
 
 
 if __name__ == "__main__":
