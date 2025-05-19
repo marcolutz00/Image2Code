@@ -7,7 +7,7 @@ THRESHOLD_LOW = 0.1
 
 class AccessibilityBenchmarks:
 
-    def calculate_inaccessibility_rate(amount_failed_nodes, total_nodes):
+    def calculate_inaccessibility_rate(self, amount_failed_nodes, total_nodes):
         '''
             Calculation of the inaccessibility rate based on the number of failed 
             nodes without impact
@@ -16,7 +16,7 @@ class AccessibilityBenchmarks:
         return amount_failed_nodes / total_nodes if total_nodes > 0 else 0
 
 
-    def calculate_impact_weighted_inaccessibility_rate(amount_critical, amount_serious, amount_moderate, amount_minor):
+    def calculate_impact_weighted_inaccessibility_rate(self, amount_critical, amount_serious, amount_moderate, amount_minor):
         '''
             Calculation of the impact-weighted inaccessibility rate based on the number of failed nodes 
             while considering the severity of the issues
@@ -33,7 +33,7 @@ class AccessibilityBenchmarks:
         )
 
 
-    def calculate_status(inaccessibility_rate, impact_weighted_inaccessibility_rate):
+    def calculate_status(self, inaccessibility_rate, impact_weighted_inaccessibility_rate):
         '''
             Final status:     IR          IW-IR         Interpretation
             Red:              high        high          Many issues, many serious/critical

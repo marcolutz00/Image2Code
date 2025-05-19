@@ -10,7 +10,7 @@ def ssim_score(image1_path, image2_path):
     image1 = imread(image1_path)
     image2 = imread(image2_path)
 
-    image1 = utils_general.cutColorChannels(image1)
-    image2 = utils_general.cutColorChannels(image2)
+    # image1 = utils_general.cutColorChannels(image1)
+    # image2 = utils_general.cutColorChannels(image2)
 
     return ssim(image1, image2, win_size=7, channel_axis=-1)

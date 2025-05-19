@@ -151,19 +151,42 @@ def _render_fullpage_with_screenshot(driver, image_path, dpr=1, target_width=128
     # sometimes scrolling is necessary to see full webpage
     scroll_count = 4
 
-    # check dynamically if scroll necessary
+    # check dynamically if scroll necessar<
+    prev_height = 0
     for i in range(scroll_count):
         time.sleep(0.2)
         temp_height = driver.execute_script("return Math.max(document.body.scrollHeight, document.documentElement.scrollHeight)")
 
+        # if no furhter scroll necessary -> break
+        if abs(temp_height - prev_height) < 5:
+            break
+
+        prev_height = temp_height
+        
         desired_height = min(temp_height, target_height) if target_height else temp_height
         # check if height difference
         if desired_height > driver.get_window_size()["height"]:
             driver.set_window_size(target_width, desired_height )
 
     
+    if target_height is None:
+        options = {
+            "fromSurface": True,
+            "captureBeyondViewport": True
+        }
+    else:
+        options = {
+            "fromSurface": True,
+            "captureBeyondViewport": False,
+            "clip": {
+                "x": 0, "y": 0,
+                "width":  target_width  * dpr,
+                "height": target_height * dpr,
+                "scale": 1
+            }
+        }
 
-    b64_encoded = driver.execute_cdp_cmd("Page.captureScreenshot", {"fromSurface": True, "captureBeyondViewport": True})["data"]
+    b64_encoded = driver.execute_cdp_cmd("Page.captureScreenshot", options)["data"]
 
     img = base64.b64decode(b64_encoded)
 

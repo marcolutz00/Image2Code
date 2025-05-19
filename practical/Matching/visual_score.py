@@ -580,8 +580,13 @@ def visual_eval_v3_multi(input_list, debug=False):
 
 
 if __name__ == "__main__":
-    original_html = os.path.join(os.path.dirname(__file__), 'original.html')
-    predict_html_list = os.path.join(os.path.dirname(__file__), 'generated.html')
+    DIR_PATH = os.path.dirname(os.path.realpath(__file__))
+    INPUT_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Input', 'html', '1.html')
+    OUTPUT_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Output', 'gemini', 'html', 'naive', '1.html')
+    original_html = INPUT_PATH
+    predict_html_list = OUTPUT_PATH
+    # original_html = os.path.join(os.path.dirname(__file__), 'original.html')
+    # predict_html_list = os.path.join(os.path.dirname(__file__), 'generated.html')
 
     # Predicted html (generated is a list), while original is a single html
     input_list = [[predict_html_list], original_html]

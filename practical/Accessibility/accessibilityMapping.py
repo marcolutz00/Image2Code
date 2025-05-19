@@ -82,6 +82,7 @@ def create_accessibility_report(wcag_issues_dict):
 
 # Convert the overview of issues to json-readable format
 def create_overview_report(lighthouse_accessibility_score, total_nodes_checked, total_nodes_failed):
+
     automatic_results = {
         "lighthouse_accessibility_score": lighthouse_accessibility_score,
         "total_nodes_checked": total_nodes_checked,
@@ -103,6 +104,7 @@ def create_overview_report(lighthouse_accessibility_score, total_nodes_checked, 
         "manual_checks": manual_results,
         "details_checks": details_issues
     }
+
 
     return accessibility
 

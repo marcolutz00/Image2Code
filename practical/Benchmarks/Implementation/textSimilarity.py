@@ -1,18 +1,25 @@
 from difflib import SequenceMatcher
 from bs4 import BeautifulSoup
-import os
-
-DIR_PATH = os.path.join(os.path.dirname(__file__))
-# For tests
-DATA_PATH = os.path.join(DIR_PATH, '..', '..', 'Data')
-INPUT_HTML_PATH = os.path.join(DATA_PATH, 'Input', 'html')
-OUTPUT_HTML_PATH = os.path.join(DATA_PATH, 'Output', 'openai', 'html')
 
 
-'''
-    Find only text in HTML (incl. some cleaning)
-'''
-def get_text_from_html(html_path):
+def _clean_html(text):
+    '''
+        Clean HTML text
+    '''
+    # remove whitespace and linebreaks
+    text = text.split()
+    text = ' '.join(text)
+
+    # to lowercase
+    text = text.lower()
+
+    return text
+
+
+def _get_text_from_html(html_path):
+    '''
+        Find only text in HTML (incl. some cleaning)
+    '''
     with open(html_path, 'r', encoding='utf-8') as f:
         soup = BeautifulSoup(f, 'html.parser')
     
@@ -22,18 +29,18 @@ def get_text_from_html(html_path):
 
     text = soup.get_text()
 
-    # remove all newlines and tabs
-    text = text.split()
-    text = ' '.join(text)
+    clean_text = _clean_html(text)
 
-    return text
+    return clean_text
 
 
+def text_similarity_score(html1_path, html2_path):
+    '''
+        Calculation of similarity with SequenceMatcher
+    '''
 
-# Calculation of similarity with SequenceMatcher
-def text_similarity_score(code1, code2):
-    text1 = get_text_from_html(code1)
-    text2 = get_text_from_html(code1)
+    text1 = _get_text_from_html(html1_path)
+    text2 = _get_text_from_html(html2_path)
 
     seq_match = SequenceMatcher(None, text1, text2)
 
@@ -41,13 +48,4 @@ def text_similarity_score(code1, code2):
 
     return score
 
-
-
-
-# Tests
-# html_original = f"{INPUT_HTML_PATH}/1.html"
-# html_generated = f"{OUTPUT_HTML_PATH}/1.html"
-
-# score = text_similarity_score(html_original, html_generated)
-# print(score)
 

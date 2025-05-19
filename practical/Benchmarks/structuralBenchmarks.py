@@ -8,23 +8,33 @@ import Benchmarks.Implementation.textSimilarity as textSimilarity
 
 class StructuralBenchmarks:
     def __init__(self):
-        obj_structuralBenchmark = {}
+        self.structural_benchmark = {}
 
-    '''
-        Text-Similarity:
-        Is based on the SequenceMatcher from the difflib library    
-    '''
-    def textSimilarity(self, code1_path, code2_path):
-        score = textSimilarity.text_similarity_score(code1_path, code2_path)
-        self.obj_structuralBenchmark["textSimilarity"] = score
-    
+    def text_similarity(self, html1_path, html2_path):
+        '''
+            Text-Similarity:
+            Is based on the SequenceMatcher from the difflib library    
+        '''
+        score = textSimilarity.text_similarity_score(html1_path, html2_path)
+        self.structural_benchmark["text_similarity"] = score
 
-    '''
-        Treebleu:
-        Treebleu was presented in the following paper: https://arxiv.org/pdf/2404.06369
-        It compares the amount of common 1-height subtrees in input and output code
-    '''
-    def treebleu(self, code1, code2):
-        score = treeBleu.treeBleu_score(code1, code2)
-        self.obj_structuralBenchmark["treebleu"] = score
+
+    def tree_bleu(self, html1_path, html2_path):
+        '''
+            Treebleu:
+            Treebleu was presented in the following paper: https://arxiv.org/pdf/2404.06369
+            It compares the amount of common 1-height subtrees in input and output html
+        '''
+        score = treeBleu.treeBleu_score(html1_path, html2_path)
+        self.structural_benchmark["tree_bleu"] = score
+
+    def calculate_and_get_structural_benchmarks(self, html1_path, html2_path):
+        '''
+            Calculate all structural benchmarks
+        '''
+        # Calculate the benchmarks
+        self.text_similarity(html1_path, html2_path)
+        self.tree_bleu(html1_path, html2_path)
+
+        return self.structural_benchmark
     

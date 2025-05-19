@@ -13,6 +13,7 @@ import practical.Utils.utils_html as utils_html
 import practical.Utils.utils_dataset as utils_dataset
 import practical.Utils.utils_general as utils_general
 import practical.Utils.utils_prompt as utils_prompt
+import practical.Data.Analysis.datasetAnalyze as datasetAnalyze
 import practical.Accessibility.accessibilityIssues as accessibilityIssues
 
 KEYS_PATH = os.path.join(os.path.dirname(__file__), 'keys.json')
@@ -46,6 +47,14 @@ async def _process_image(client, image_information, prompt, model, prompt_strate
     return result_clean
 
 
+def _write_benchmarks_to_file(benchmarks, file_path):
+    '''
+        Write the benchmarks to a file
+    '''
+    with open(file_path, "w") as f:
+        json.dump(benchmarks, f, ensure_ascii=False, indent=2)
+
+
 async def _analyze_outputs(image, model, prompt_strategy):
     ''''
         Analyze outputs: 
@@ -63,32 +72,48 @@ async def _analyze_outputs(image, model, prompt_strategy):
     output_accessibility_path = os.path.join(OUTPUT_PATH, model, 'accessibility', prompt_strategy, f"{image_name}.json")
     output_images_path = os.path.join(OUTPUT_PATH, model, 'images', prompt_strategy, f"{image_name}.png")
     output_insight_path = os.path.join(OUTPUT_PATH, model, 'insights', prompt_strategy, f"overview_{image_name}.json")
+    output_benchmark_path = os.path.join(OUTPUT_PATH, model, 'insights', prompt_strategy, f"benchmark_{image_name}.json")
 
-    # Temp file for original html, but will be deleted afterwards
-    output_original_images_path = os.path.join(OUTPUT_PATH, model, 'images', prompt_strategy, f"original_{image_name}.png")
-
+    # Temp files for original html, but will be deleted afterwards
+    input_ss_images_path = os.path.join(OUTPUT_PATH, model, 'images', prompt_strategy,  f"ss_input_{image_name}.png")
+    output_ss_images_path = os.path.join(OUTPUT_PATH, model, 'images', prompt_strategy, f"ss_output_{image_name}.png")
 
     # 1. Take Screenshots
-    utils_html.save_screenshots(output_html_path, output_images_path, input_html_path, output_original_images_path)
+    # 1.1 One clean screenshot of the generated HTML
+    utils_html.save_screenshots(output_html_path, output_images_path)
+    # 1.2 Two screenshots of the input HTML and output HTML with the same size
+    utils_html.save_screenshots(output_html_path, output_ss_images_path, input_html_path, input_ss_images_path)
 
     # 2. Calculate Benchmarks
     # 2.1 Visual Benchmarks
     obj_visual_benchmarks = VisualBenchmarks()
     # Important: SSIM need same size images, clip value does not care
-    ssim_score = obj_visual_benchmarks.ssim(output_original_images_path, output_images_path)
-    clip_value = obj_visual_benchmarks.clipValue(input_images_path, output_images_path)
+    visual_benchmarks = obj_visual_benchmarks.calculate_and_get_visual_benchmarks(input_images_path, input_ss_images_path, output_images_path, output_ss_images_path)
 
     # 2.2 Structural Benchmarks
     obj_structural_benchmarks = StructuralBenchmarks()
-    text_similarity_score = obj_structural_benchmarks.textSimilarity(input_html_path, output_html_path)
-    tree_bleu_score = obj_structural_benchmarks.treebleu(input_html_path, output_html_path)
+    structural_benchmarks = obj_structural_benchmarks.calculate_and_get_structural_benchmarks(input_html_path, output_html_path)
 
-    # 3. Delete temp Screenshot
-    os.remove(output_original_images_path)
+    # 2.3 Write Benchmarks to file
+    benchmark_object = {
+        "visual": visual_benchmarks,
+        "structural": structural_benchmarks
+    }
+    _write_benchmarks_to_file(benchmark_object, output_benchmark_path)
+
+    # 3. Delete temp Screenshots
+    os.remove(input_ss_images_path)
+    os.remove(output_ss_images_path)
 
     # 4. Analyze Accessibility Issues
     # await accessibilityIssues.enrich_with_accessibility_issues(image_name, input_html_path, input_accessibility_path, input_insight_path)
-    await accessibilityIssues.enrich_with_accessibility_issues(image_name, output_html_path, output_accessibility_path, output_insight_path)
+    # await accessibilityIssues.enrich_with_accessibility_issues(image_name, output_html_path, output_accessibility_path, output_insight_path)
+
+
+def _overwrite_insights(accessibility_dir, insight_dir):
+     # 5. Analyze and calculate accessibility benchmarks
+    datasetAnalyze.overwrite_insights(accessibility_dir, insight_dir)
+
 
 async def main():
     model = "gemini"
@@ -123,10 +148,21 @@ async def main():
             # result = await _process_image(client, image_information, prompt, model, prompt_strategy)
 
             # 5. Analyze outputs for Input & Output
-            await _analyze_outputs(image, model, prompt_strategy)
+            # await _analyze_outputs(image, model, prompt_strategy)
 
 
             print("----------- Done -----------\n")
+
+    # 6. Overwrite insights
+    # _overwrite_insights(
+    #     os.path.join(INPUT_PATH, 'accessibility'),
+    #     os.path.join(INPUT_PATH, 'insights')
+    # )
+    _overwrite_insights(
+        os.path.join(OUTPUT_PATH, model, 'accessibility', prompt_strategy),
+        os.path.join(OUTPUT_PATH, model, 'insights', prompt_strategy)
+    )
+
 
 
 

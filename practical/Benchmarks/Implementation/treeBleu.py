@@ -1,15 +1,11 @@
 from bs4 import BeautifulSoup
 # Info BS4: https://www.twilio.com/de-de/blog/web-scraping-und-parsen-von-html-python-mit-beautiful-soup , https://www.crummy.com/software/BeautifulSoup/bs4/doc/
-import os
-
-DIR_PATH = os.path.join(os.path.dirname(__file__))
-# For tests
-DATA_PATH = os.path.join(DIR_PATH, '..', '..', 'Data')
-INPUT_HTML_PATH = os.path.join(DATA_PATH, 'Input', 'html')
-OUTPUT_HTML_PATH = os.path.join(DATA_PATH, 'Output', 'openai', 'html')
 
 
 def rec_get_tree_height1(bs4_obj, storage_subtrees):
+    '''
+        Recursive function to seee the 1-height subtrees of the html tree
+    '''
     unnecessary_elements = ["meta", "script", "style", "link"]
 
     elements = bs4_obj.find_all(recursive=False)
@@ -30,14 +26,20 @@ def rec_get_tree_height1(bs4_obj, storage_subtrees):
             rec_get_tree_height1(element, storage_subtrees)
 
 
-'''
-    Treebleu-Score according to paper: https://arxiv.org/pdf/2404.06369
-'''
 
-# Important Code1 is Input (Reference) and Code2 is Output (Generated)
-def treeBleu_score(code1, code2):
-    bs4_obj1 = BeautifulSoup(code1, 'html.parser')
-    bs4_obj2 = BeautifulSoup(code2, 'html.parser')
+def treeBleu_score(html1_path, html2_path):
+    '''
+        Treebleu-Score according to paper: https://arxiv.org/pdf/2404.06369
+    '''
+
+    # Read HTML files
+    with open(html1_path, "r", encoding="utf-8") as f:
+        html1 = f.read()
+    with open(html2_path, "r", encoding="utf-8") as f:
+        html2 = f.read()
+
+    bs4_obj1 = BeautifulSoup(html1, 'html.parser')
+    bs4_obj2 = BeautifulSoup(html2, 'html.parser')
 
     # Storage for found 1-height subtrees -> important set, to use .intersection()
     storage_subtrees1 = set()
@@ -56,15 +58,3 @@ def treeBleu_score(code1, code2):
     treebleu_score = amount_intersection / len(storage_subtrees1)
 
     return treebleu_score
-
-
-
-# Tests 
-# with open (f"{INPUT_HTML_PATH}/1.html", "r", encoding="utf-8") as f:
-#     example_html_input = f.read()
-
-# with open (f"{OUTPUT_HTML_PATH}/1.html", "r", encoding="utf-8") as f:
-#     example_html_output = f.read()
-
-# scoreTest = treeBleu_score(example_html_input, example_html_output)
-# print(scoreTest)
