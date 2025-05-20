@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>This area is password protected</title>
+  <meta name="viewport" content="width=1000">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #f2f2f2;
+      min-height: 100vh;
+    }
+    body {
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .container {
+      background: #474747;
+      margin-top: 140px;
+      padding: 38px 44px 34px 44px;
+      border-radius: 0;
+      box-shadow: none;
+      width: 470px;
+      box-sizing: border-box;
+    }
+    .container h1 {
+      margin: 0;
+      color: #fff;
+      font-size: 2em;
+      font-weight: bold;
+      line-height: 1.1;
+      border-bottom: 2px solid #b6b6b6;
+      padding-bottom: 10px;
+      margin-bottom: 25px;
+      letter-spacing: 0.5px;
+    }
+    .container label {
+      display: block;
+      color: #fff;
+      font-size: 1em;
+      margin-bottom: 16px;
+      font-weight: normal;
+      cursor: pointer;
+    }
+    .form-row {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      gap: 10px;
+    }
+    .container input[type="password"] {
+      font-size: 1.25em;
+      padding: 7px 8px 7px 8px;
+      border-radius: 4px;
+      border: 2px solid #4077d3;
+      outline: none;
+      flex: 1 1 270px;
+      min-width: 260px;
+      max-width: 310px;
+      background: #fff;
+      color: #222;
+      box-sizing: border-box;
+      margin-right: 0;
+      transition: border-color 0.2s;
+    }
+    .container input[type="password"]:focus {
+      border-color: #285ea7;
+    }
+    .container button[type="submit"] {
+      background: #bebebe;
+      color: #222;
+      font-weight: bold;
+      font-size: 1.15em;
+      padding: 5px 18px 7px 18px;
+      border: none;
+      border-radius: 2px;
+      box-shadow: none;
+      cursor: pointer;
+      transition: background 0.15s;
+      min-width: 78px;
+      min-height: 37px;
+      margin-left: 4px;
+    }
+    .container button[type="submit"]:hover,
+    .container button[type="submit"]:focus {
+      background: #d4d4d4;
+      outline: 2px solid #222;
+      outline-offset: 1px;
+    }
+    @media (max-width: 600px) {
+      .container {
+        width: 96vw;
+        padding: 20px 3vw;
+        min-width: 0;
+      }
+      .container input[type="password"] {
+        min-width: 0;
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <main>
+    <section class="container" aria-labelledby="pw-title">
+      <h1 id="pw-title">This area is password protected</h1>
+      <form autocomplete="off" aria-label="Password Login">
+        <label for="password-input">Please enter the password below</label>
+        <div class="form-row">
+          <input 
+            type="password" 
+            name="password" 
+            id="password-input" 
+            aria-required="true" 
+            required 
+            autocomplete="current-password"
+          >
+          <button type="submit">Login</button>
+        </div>
+      </form>
+    </section>
+  </main>
+</body>
+</html>

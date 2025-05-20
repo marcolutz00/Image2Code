@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Perry Home Team Blog Testimonial UI</title>
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: #fff;
+      color: #222;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      width: 100vw;
+      box-sizing: border-box;
+    }
+    .top-bar {
+      width: 100vw;
+      background: #ac9457;
+      height: 24px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 10;
+    }
+    .top-contact {
+      width: 100vw;
+      background: transparent;
+      height: 20px;
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: 11;
+      font-size: 13px;
+      font-family: Arial, Helvetica, sans-serif;
+      padding-left: 170px;
+      padding-top: 3px;
+      color: #222;
+      letter-spacing: 0.5px;
+    }
+    .top-contact span {
+      color: #222;
+      font-weight: normal;
+    }
+    .top-contact .sep {
+      color: #ac9457;
+    }
+    .separator {
+      width: 100vw;
+      height: 40px;
+      background: #111;
+      margin-top: 24px;
+    }
+
+    .content {
+      width: 91vw;
+      max-width: 1060px;
+      margin: 75px auto 0 auto;
+      padding-bottom: 50px;
+      box-sizing: border-box;
+    }
+    .blue-img {
+      width: 100px;
+      height: 100px;
+      background: #1a19fd;
+      display: block;
+      margin-bottom: 31px;
+      margin-top: 25px;
+    }
+    .post-title {
+      font-size: 30px;
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0 0 16px 0;
+      font-weight: normal;
+    }
+    .post-body {
+      font-size: 15px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #222;
+      line-height: 22px;
+      margin-bottom: 75px;
+      margin-right: 2vw;
+    }
+
+    .comment-section {
+      margin-bottom: 40px;
+    }
+    .comment-header {
+      font-size: 20px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-weight: normal;
+      margin-bottom: 10px;
+    }
+    .comment-subheader {
+      font-size: 15px;
+      color: #333;
+      margin-bottom: 8px;
+    }
+    .comment-label {
+      display: block;
+      font-size: 15px;
+      margin-bottom: 4px;
+      margin-top: 18px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .required-star {
+      color: #000;
+    }
+    .comment-textarea {
+      width: 100%;
+      height: 48px;
+      font-size: 15px;
+      border: none;
+      background: #eaeaea;
+      margin-bottom: 16px;
+      resize: none;
+      font-family: Arial, Helvetica, sans-serif;
+      box-sizing: border-box;
+      padding: 6px 8px;
+    }
+    .field-inline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      margin-bottom: 10px;
+    }
+    .field-inline input[type="text"], 
+    .field-inline input[type="email"],
+    .field-inline input[type="url"] {
+      font-size: 15px;
+      font-family: Arial, Helvetica, sans-serif;
+      border: 1px solid #aaa;
+      height: 22px;
+      min-width: 200px;
+      box-sizing: border-box;
+      padding: 2px 4px;
+      background: #fff;
+    }
+    .single-input {
+      margin-bottom: 10px;
+      min-width: 200px;
+    }
+    .checkbox-row {
+      display: flex;
+      align-items: center;
+      margin-bottom: 14px;
+      margin-top: 6px;
+    }
+    .checkbox-row input[type=checkbox] {
+      margin-right: 6px;
+      accent-color: #c0c0c0;
+      width: 16px;
+      height: 16px;
+    }
+    .comment-form-bottom-row {
+      display: flex;
+      flex-direction: row;
+      margin-top: 22px;
+      margin-bottom: 22px;
+      gap: 10px;
+      align-items: flex-end;
+    }
+    .captcha-big {
+      width: 170px;
+      height: 37px;
+      border: 2px solid #111;
+      box-sizing: border-box;
+    }
+    .captcha-small {
+      width: 85px;
+      height: 37px;
+      border: 1px solid #aaa;
+      margin-left: 8px;
+      box-sizing: border-box;
+    }
+    .captcha-enter {
+      width: 85px;
+      height: 37px;
+      border: 1px solid #aaa;
+      margin-left: 8px;
+      box-sizing: border-box;
+    }
+
+    .submit-row {
+      margin-top: 23px;
+      width: 100%;
+      background: #eaeaea;
+      height: 30px;
+      border: none;
+    }
+
+    .sidebar {
+      margin-top: 38px;
+      font-size: 15px;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #222;
+      margin-bottom: 90px;
+    }
+    .sidebar .sidebar-title {
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 15px;
+    }
+    .sidebar .sidebar-link {
+      margin-bottom: 7px;
+      display: block;
+      color: #222;
+      text-decoration: none;
+    }
+
+    .sidebar .sidebar-link:visited {
+      color: #222;
+    }
+    .sidebar .sidebar-link:last-child {
+      margin-bottom: 0;
+    }
+    .sidebar .recent-comments {
+      margin-top: 18px;
+      font-weight: normal;
+    }
+
+    /* Footer */
+    .footer {
+      width: 100vw;
+      background: #111;
+      color: #f9f9f9;
+      font-family: Arial, Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      height: 180px;
+      position: relative;
+    }
+    .footer-inner {
+      width: 1060px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      gap: 36px;
+      padding-top: 25px;
+      box-sizing: border-box;
+    }
+    .footer-left {
+      width: 100px;
+      flex-shrink: 0;
+    }
+    .footer-blue-img {
+      width: 100px;
+      height: 100px;
+      background: #1a19fd;
+      margin-bottom: 0;
+      display: block;
+    }
+
+    .footer-col {
+      color: #fff;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      margin-right: 36px;
+      min-width: 220px;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .footer-col h4 {
+      color: #ffd500;
+      margin-bottom: 9px;
+      margin-top: 0;
+      font-size: 15px;
+      letter-spacing: 0;
+    }
+    .footer-contact-info {
+      color: #c0c0c0;
+      margin-bottom: 7px;
+      font-size: 15px;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .footer-contact-info a {
+      color: #ffd500;
+      text-decoration: none;
+    }
+    .footer-links {
+      margin-top: 0;
+      padding-left: 0;
+      list-style: none;
+      margin-bottom: 0;
+      font-size: 15px;
+    }
+    .footer-links li {
+      margin-bottom: 6px;
+    }
+    .footer-links li:last-child {
+      margin-bottom: 0;
+    }
+    .footer-links a {
+      color: #ffd500;
+      text-decoration: underline;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    .footer-cols {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      gap: 44px;
+    }
+    .footer-real-estate-icons {
+      display: inline-block;
+      vertical-align: middle;
+      margin-right: 2px;
+      margin-top: -4px;
+    }
+    .footer-icon-group {
+      display: inline-block;
+    }
+    .footer-icon {
+      width: 22px;
+      height: 17px;
+      background: #a4ff67;
+      display: inline-block;
+      border-radius: 2px;
+      margin-right: 3px;
+      margin-bottom: 0;
+      border: 1px solid #baa;
+    }
+    .footer-separator {
+      width: 100vw;
+      height: 36px;
+      background: #fafafa;
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 15px;
+      color: #ac9457;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding-left: 176px;
+      border: none;
+    }
+    .footer-separator .footer-copyright {
+      color: #888;
+      font-size: 14px;
+      margin-left: 13px;
+    }
+    .footer-socials {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-left: 0px;
+      height: 36px;
+      margin-bottom: -3px;
+      vertical-align: middle;
+    }
+    .footer-socials .circle {
+      border: 1px solid #ccc;
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      margin-right: 12px;
+      background: #fff;
+      display: inline-block;
+    }
+    .footer-socials .circle:last-child {
+      margin-right: 0;
+    }
+
+    @media (max-width: 1100px) {
+      .content, .footer-inner {
+        width: 97vw;
+        max-width: 100vw;
+        margin-left: 10px;
+        margin-right: 10px;
+      }
+      .footer-separator {
+        padding-left: 26px;
+      }
+    }
+    @media (max-width: 750px) {
+      .footer-inner {
+        flex-direction: column;
+        gap: 10px;
+        width: 95vw;
+      }
+      .footer-cols {
+        flex-direction: column;
+        gap: 8px;
+      }
+      .content {
+        padding-left: 0;
+        padding-right: 0;
+      }
+    }
+    .sidebar {
+      margin-bottom: 50px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar"></div>
+  <div class="top-contact">
+    <span>JUSTIN PERREY</span> <span class="sep">|</span> <span>317-286-6588</span>
+  </div>
+  <div class="separator"></div>
+
+  <div class="content">
+    <img src="src/placeholder.jpg" class="blue-img" width="100" height="100" alt="">
+    <div class="post-title">Omg !!!!</div>
+    <div class="post-body">
+      How do I start with the confidence -trust-love and appreciation I have for the Perry Home Team!!!! Let's just say they have successfully navigated us through (under difficult circumstances in a crazy market and world) over SEVEN positive experiences in the past 3 years. If you want your DREAM house you could never find -need to sell your parents house QUICK -want to set your kids up RIGHT – need to move your sister CLOSE – might want to DABBLE in a fixer-upper look no further as they really do it ALL! We met/interviewed sooo many other realtors but when met Justin and his team just felt at HOME – hmmm guess their name is appropriate
+    </div>
+
+    <div class="comment-section">
+      <div class="comment-header">Submit a Comment</div>
+      <div class="comment-subheader">Your email address will not be published. Required fields are marked <span class="required-star">*</span></div>
+      <form>
+        <label class="comment-label" for="comment">Comment <span class="required-star">*</span></label>
+        <textarea class="comment-textarea" id="comment" name="comment"></textarea>
+
+        <div class="field-inline">
+          <label for="name" style="margin-top: 4.5px;">Name <span class="required-star">*</span></label>
+          <input type="text" id="name" name="name" class="single-input" style="margin-left:8px;">
+        </div>
+        <div class="field-inline">
+          <label for="email" style="margin-top: 4.5px;">Email <span class="required-star">*</span></label>
+          <input type="text" id="email" name="email" class="single-input" style="margin-left:5px;">
+        </div>
+        <div class="field-inline">
+          <label for="website" style="margin-top: 4.5px;">Website</label>
+          <input type="text" id="website" name="website" class="single-input" style="margin-left:32px;">
+        </div>
+
+        <div class="checkbox-row">
+          <input type="checkbox" id="saveinfo" name="saveinfo">
+          <label for="saveinfo" style="font-size:14px; color:#333; margin-top:2px;">Save my name, email, and website in this browser for the next time I comment.</label>
+        </div>
+
+        <div class="comment-form-bottom-row">
+          <input class="captcha-big" type="text" disabled>
+          <input class="captcha-small" type="text">
+          <input class="captcha-enter" type="text">
+        </div>
+
+        <input type="submit" class="submit-row" value="">
+      </form>
+    </div>
+
+    <div class="sidebar">
+      <div>Recent Posts</div>
+      <div>April Blog Posts!</div>
+      <div>March Blog Posts!</div>
+      <div>February Blog Posts!</div>
+      <div>September Blog Posts!</div>
+      <div>Recent Comments</div>
+    </div>
+
+  </div>
+
+  <div class="footer">
+    <div class="footer-inner">
+      <div class="footer-left">
+        <img src="src/placeholder.jpg" class="footer-blue-img" width="100" height="100" alt="">
+      </div>
+      <div class="footer-cols">
+        <div class="footer-col">
+          <div style="color:#ffd500; font-weight: bold; margin-bottom:7px; font-size:15px;">GET IN TOUCH</div>
+          <div class="footer-contact-info">Justin Perrey</div>
+          <div class="footer-contact-info"><a href="mailto:justin@perryhometeam.com">justin@perryhometeam.com</a></div>
+          <div class="footer-contact-info">(317)-286-6588</div>
+          <div class="footer-contact-info">7900 E US 36<br>Avon, IN 46123</div>
+        </div>
+        <div class="footer-col">
+          <div style="color:#ffd500; font-weight: bold; margin-bottom:7px; font-size:15px;">EXPLORE</div>
+          <ul class="footer-links">
+            <li><a href="#">Meet Our Agents</a></li>
+            <li><a href="#">Our Client Testimonials</a></li>
+            <li><a href="#">FREE Instant Home Evaluation</a></li>
+            <li><a href="#">Mortgage Calculator</a></li>
+            <li><a href="#">Blog</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <div style="color:#ffd500; font-weight: bold; margin-bottom:7px; font-size:15px;">REAL ESTATE SEARCH</div>
+          <ul class="footer-links">
+            <li><a href="#">Search Indianapolis</a></li>
+            <li><a href="#">Search West Indy</a></li>
+            <li>
+              <span class="footer-icon-group">
+                <span class="footer-icon"></span>
+                <span class="footer-icon"></span>
+                <span class="footer-icon"></span>
+                <span class="footer-icon"></span>
+                <span class="footer-icon"></span>
+              </span>
+            </li>
+            <li><a href="#">Search North Indy</a></li>
+            <li><a href="#">Search Downtown Indy</a></li>
+            <li><a href="#">Search South Indy</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer-separator">
+    <span style="font-weight:bold;">CONNECT WITH US :</span>
+    <span class="footer-copyright" style="margin-left:13px; color:#888;">
+      © 2021 The Perry Home Team | All Rights Reserved
+    </span>
+    <span class="footer-socials" style="margin-left:40px;">
+      <span class="circle"></span>
+      <span class="circle"></span>
+      <span class="circle"></span>
+    </span>
+  </div>
+</body>
+</html>

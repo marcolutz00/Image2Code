@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segway Guided Tours</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #fff;
+            color: #000;
+            padding-top: 20px;
+            min-height: 50px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        header a {
+            color: #000;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 14px;
+        }
+
+        header ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            float: right;
+            margin-top: 10px;
+        }
+
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        header #branding {
+            float: left;
+        }
+
+        header #branding h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+
+        section#newsletter {
+            padding: 15px;
+            color: #fff;
+            background: #35424a;
+        }
+
+        section#newsletter h1 {
+            float: left;
+        }
+
+        section#newsletter form {
+            float: right;
+            margin-top: 15px;
+        }
+
+        section#newsletter input[type="email"] {
+            padding: 4px;
+            height: 25px;
+            width: 250px;
+        }
+
+        .main {
+            background-color: #f5f5f5;
+            padding: 20px;
+        }
+
+        article#main-col {
+            float: left;
+            width: 65%;
+        }
+
+        aside#sidebar {
+            float: right;
+            width: 30%;
+            margin-top: 10px;
+        }
+
+       #sidebar div {
+            margin-bottom: 20px;
+       }
+
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #3c9f91;
+            text-align: left;
+            font-size: 12px;
+        }
+
+        .highlight, .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+
+        /* Search Bar */
+        .search-bar {
+            background: #fff;
+            padding: 20px;
+        }
+        .search-bar input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+        .search-bar button {
+            background: #3c9f91;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+        }
+
+        /* List Section */
+        .list-section {
+            background: #fff;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .list-section h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .list-section p {
+            font-size: 14px;
+            color: #666;
+        }
+
+        .breadcrumb {
+            padding: 10px 20px;
+            background: #fff;
+            margin-bottom: 10px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .breadcrumb a {
+            color: #666;
+            text-decoration: none;
+        }
+        .location-list {
+            margin-top: 20px;
+        }
+
+        .location-list h2 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .location-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .location-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        .location-list li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .location-list li a:hover {
+            text-decoration: underline;
+        }
+        .tour-stats {
+            background-color: #76b8ae;
+            color: #fff;
+            padding: 50px 0;
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .tour-stats div {
+            display: inline-block;
+            width: 20%;
+            margin: 0 5%;
+        }
+
+        .tour-stats h3 {
+            font-size: 3em;
+            margin-bottom: 0;
+        }
+        .tour-stats p {
+            font-size: 1em;
+            margin-top: 0;
+        }
+        .bottom-bar {
+            background-color: #3c9f91;
+            color: #fff;
+            text-align: center;
+            padding: 30px 0;
+        }
+        .bottom-bar a {
+            color: #fff;
+            text-decoration: none;
+            background-color: #338e81;
+            padding: 10px 20px;
+            border-radius: 5px;
+        }
+        .footer-section {
+            background-color: #fff;
+            padding: 20px;
+        }
+        .footer-links {
+            padding: 20px;
+        }
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer-links li {
+            display: inline;
+            padding: 0 10px;
+        }
+
+        .green-bg {
+            background-color: #3c9f91;
+            color: white;
+        }
+
+        .green-bg a {
+            color: white;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <h1><span class="highlight">SEGWAY</span> Guided TOURS</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Find Segway Tours</a></li>
+                    <li><a href="#">Browse Tours</a></li>
+                    <li><a href="#">For Tour Operators</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="search-bar">
+        <div class="container">
+            <input type="text" placeholder="Tour Location...">
+            <button type="submit">FIND</button>
+        </div>
+    </section>
+
+    <section class="breadcrumb">
+        <div class="container">
+            <a href="#">/</a> <a href="#">USA</a> / SOUTH CAROLINA
+        </div>
+    </section>
+
+    <section class="list-section">
+        <div class="container">
+            <h1>List of 6 Segway Tours in South Carolina</h1>
+            <p>South Carolina List Date: 11/3/23</p>
+            <div style="background-color: blue; width: 50%; height: 50px; color: white;">South Carolina</div>
+            <br>
+            <div style="background-color: blue; width: 30%; height: 250px;"></div>
+            <br>
+            <h2>SOUTH CAROLINA SEGWAY TOURS</h2>
+            <p>Discover South Carolina on one of these six Segway tours. Experience the sights and sounds of South Carolina's cities and landmarks with an up-close and personal tour on the Segway® PT.</p>
+            <div class="location-list">
+                <h2>USA >></h2>
+                <h2>SOUTH CAROLINA >></h2>
+                <ul>
+                    <li><h2>CHARLESTON >></h2>
+                        <ul>
+                            <li><a href="#">Segway of Charleston >></a></li>
+                        </ul>
+                    </li>
+                    <li><h2>GREENVILLE >></h2>
+                        <ul>
+                            <li><a href="#">Carolina Segway >></a></li>
+                            <li><a href="#">Greenville Glides >></a></li>
+                        </ul>
+                    </li>
+                    <li><h2>HILTON HEAD ISLAND >></h2>
+                        <ul>
+                            <li><a href="#">Hilton Head Segway >></a></li>
+                        </ul>
+                    </li>
+                    <li><h2>LITTLE RIVER >></h2>
+                        <ul>
+                            <li><a href="#">Myrtle Beach Segway >></a></li>
+                            <li><a href="#">Myrtle Beach Segway >></a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+            <p style="text-align:right">Showing 6 South Carolina tours of 636 tours Worldwide</p>
+            <hr>
+            <section class="footer-section">
+                <h2>South Carolina Segway Tours</h2>
+                <p>Whether South Carolina is your home state or your next travel destination, one of these Segway tours can add
+                exciting new fun to your next business trip, vacation or weekend plans.</p>
+                <p>Looking for adventure tours beyond South Carolina's six Segway tours? Use our Directory to find <a href="#">Segway Tours</a>
+                across the United States and around the world and experience touring on a Segway PT for yourself!</p>
+            </section>
+        </div>
+    </section>
+
+    <section class="tour-stats">
+        <div>
+            <h3>636</h3>
+            <p>WORLDWIDE</p>
+        </div>
+        <div>
+            <h3>56</h3>
+            <p>COUNTRIES</p>
+        </div>
+        <div>
+            <h3>198</h3>
+            <p>REGIONS</p>
+        </div>
+        <div>
+            <h3>442</h3>
+            <p>CITIES</p>
+        </div>
+    </section>
+
+    <section class="bottom-bar green-bg">
+        <h2>Find a Tour on a Segway® PT now!</h2>
+        <a href="#">Find a Tour Now</a>
+    </section>
+        
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">HOME</a></li>
+                    <li><a href="#">FIND SEGWAY TOURS</a></li>
+                    <li><a href="#">BROWSE TOURS</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">ABOUT SGT</a></li>
+                    <li><a href="#">SEGWAY MINIPRO</a></li>
+                    <li><a href="#">FOR TOUR OPERATORS</a></li>
+                </ul>
+                <ul>
+                    <li><a href="#">LEGALESE</a></li>
+                    <li><a href="#">SITEMAP</a></li>
+                </ul>
+            </div>
+            <p>©2004-2023 SegwayGuidedTours.com</p>
+        </div>
+    </footer>
+</body>
+</html>

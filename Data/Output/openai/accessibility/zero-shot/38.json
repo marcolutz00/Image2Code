@@ -1,0 +1,409 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr"
+      ],
+      "impact": "serious",
+      "name": "Aria Attributes; Prohibited Attributes;",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr",
+          "source": "axe-core",
+          "title": "Elements must only use permitted ARIA attributes",
+          "description": "Ensure ARIA attributes are not prohibited for an element's role",
+          "impact": "serious",
+          "nodes": {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "aria-prohibited-attr",
+                "data": {
+                  "role": null,
+                  "nodeName": "span",
+                  "messageKey": "noRoleSingular",
+                  "prohibited": [
+                    "aria-label"
+                  ]
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute cannot be used on a span with no valid role attribute."
+              }
+            ],
+            "impact": "serious",
+            "html": "<span aria-label=\"phone icons\" style=\"display:inline-block; margin-top:4px;\">\n              <img src=\"src/placeholder.jpg\" width=\"66\" height=\"18\" alt=\"\" aria-hidden=\"true\" style=\"vertical-align:middle; margin-bottom:2px;\">\n            </span>",
+            "target": [
+              "span[aria-label=\"phone icons\"]"
+            ],
+            "failureSummary": "Fix all of the following:\n  aria-label attribute cannot be used on a span with no valid role attribute."
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr",
+          "source": "axe-core",
+          "title": "Elements must only use permitted ARIA attributes",
+          "description": "Ensure ARIA attributes are not prohibited for an element's role",
+          "impact": "serious",
+          "nodes": {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "aria-prohibited-attr",
+                "data": {
+                  "role": null,
+                  "nodeName": "div",
+                  "messageKey": "noRoleSingular",
+                  "prohibited": [
+                    "aria-label"
+                  ]
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute cannot be used on a div with no valid role attribute."
+              }
+            ],
+            "impact": "serious",
+            "html": "<div class=\"footer-socials\" aria-label=\"Social links\" style=\"margin-left:45px; margin-top:14px;\">\n          <span class=\"social-circle\" tabindex=\"0\"></span>\n          <span class=\"social-circle\" tabindex=\"0\"></span>\n          <span class=\"social-circle\" tabindex=\"0\"></span>\n        </div>",
+            "target": [
+              ".footer-socials"
+            ],
+            "failureSummary": "Fix all of the following:\n  aria-label attribute cannot be used on a div with no valid role attribute."
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr",
+          "source": "lighthouse",
+          "title": "Elements use prohibited ARIA attributes",
+          "description": "Using ARIA attributes in roles where they are prohibited can mean that important information is not communicated to users of assistive technologies. [Learn more about prohibited ARIA roles](https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-SPAN",
+              "path": "1,HTML,1,BODY,4,FOOTER,0,DIV,0,DIV,1,DIV,2,DIV,5,SPAN",
+              "selector": "div.footer-content > div.footer-cols > div.footer-col > span",
+              "boundingRect": {
+                "top": 1868,
+                "bottom": 1890,
+                "left": 819,
+                "right": 885,
+                "width": 66,
+                "height": 22
+              },
+              "snippet": "<span aria-label=\"phone icons\" style=\"display:inline-block; margin-top:4px;\">",
+              "nodeLabel": "phone icons",
+              "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on a span with no valid role attribute."
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr",
+          "source": "lighthouse",
+          "title": "Elements use prohibited ARIA attributes",
+          "description": "Using ARIA attributes in roles where they are prohibited can mean that important information is not communicated to users of assistive technologies. [Learn more about prohibited ARIA roles](https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-DIV",
+              "path": "1,HTML,1,BODY,4,FOOTER,0,DIV,1,DIV,1,DIV",
+              "selector": "footer > div.footer-main > div.footer-bottom > div.footer-socials",
+              "boundingRect": {
+                "top": 2005,
+                "bottom": 2039,
+                "left": 874,
+                "right": 1024,
+                "width": 150,
+                "height": 34
+              },
+              "snippet": "<div class=\"footer-socials\" aria-label=\"Social links\" style=\"margin-left:45px; margin-top:14px;\">",
+              "nodeLabel": "Social links",
+              "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on a div with no valid role attribute."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_4.1_4_3.G18",
+        "Principle1.Guideline1_4.1_4_3.G18.Fail",
+        "Principle1.Guideline1_4.1_4_3.G145",
+        "Principle1.Guideline1_4.1_4_3.G145.Fail",
+        "Principle1.Guideline1_4.1_4_6.G17",
+        "Principle1.Guideline1_4.1_4_6.G18"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+      ],
+      "impact": "serious",
+      "name": "Color Contrast; Text;",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#97936c",
+                  "bgColor": "#ffffff",
+                  "contrastRatio": 3.13,
+                  "fontSize": "11.3pt (15px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"footer-bottom\">",
+                    "target": [
+                      ".footer-bottom"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.13 (foreground color: #97936c, background color: #ffffff, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"footer-bottom-inner\">\n          <span><b>CONNECT WITH US :</b></span>\n          &nbsp;© 2021 The Perry Home Team | All Rights Reserved\n        </div>",
+            "target": [
+              ".footer-bottom-inner"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.13 (foreground color: #97936c, background color: #ffffff, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#d3ac47",
+                  "bgColor": "#ffffff",
+                  "contrastRatio": 2.15,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "bold",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"footer-bottom\">",
+                    "target": [
+                      ".footer-bottom"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.15 (foreground color: #d3ac47, background color: #ffffff, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<b>CONNECT WITH US :</b>",
+            "target": [
+              "b"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #d3ac47, background color: #ffffff, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-2-DIV",
+              "path": "1,HTML,1,BODY,4,FOOTER,0,DIV,1,DIV,0,DIV",
+              "selector": "footer > div.footer-main > div.footer-bottom > div.footer-bottom-inner",
+              "boundingRect": {
+                "top": 1973,
+                "bottom": 1991,
+                "left": 24,
+                "right": 1001,
+                "width": 977,
+                "height": 18
+              },
+              "snippet": "<div class=\"footer-bottom-inner\">",
+              "nodeLabel": "CONNECT WITH US :\n © 2021 The Perry Home Team | All Rights Reserved",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.13 (foreground color: #97936c, background color: #ffffff, font size: 11.3pt (15px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-3-DIV",
+                    "path": "1,HTML,1,BODY,4,FOOTER,0,DIV,1,DIV",
+                    "selector": "body > footer > div.footer-main > div.footer-bottom",
+                    "boundingRect": {
+                      "top": 1965,
+                      "bottom": 2059,
+                      "left": 0,
+                      "right": 1024,
+                      "width": 1024,
+                      "height": 94
+                    },
+                    "snippet": "<div class=\"footer-bottom\">",
+                    "nodeLabel": "CONNECT WITH US :\n © 2021 The Perry Home Team | All Rights Reserved"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-B",
+              "path": "1,HTML,1,BODY,4,FOOTER,0,DIV,1,DIV,0,DIV,0,SPAN,0,B",
+              "selector": "div.footer-bottom > div.footer-bottom-inner > span > b",
+              "boundingRect": {
+                "top": 1973,
+                "bottom": 1990,
+                "left": 51,
+                "right": 230,
+                "width": 180,
+                "height": 17
+              },
+              "snippet": "<b>",
+              "nodeLabel": "CONNECT WITH US :",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.15 (foreground color: #d3ac47, background color: #ffffff, font size: 12.0pt (16px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-3-DIV",
+                    "path": "1,HTML,1,BODY,4,FOOTER,0,DIV,1,DIV",
+                    "selector": "body > footer > div.footer-main > div.footer-bottom",
+                    "boundingRect": {
+                      "top": 1965,
+                      "bottom": 2059,
+                      "left": 0,
+                      "right": 1024,
+                      "width": 1024,
+                      "height": 94
+                    },
+                    "snippet": "<div class=\"footer-bottom\">",
+                    "nodeLabel": "CONNECT WITH US :\n © 2021 The Perry Home Team | All Rights Reserved"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-9-A",
+              "path": "1,HTML,1,BODY,4,FOOTER,0,DIV,0,DIV,1,DIV,2,DIV,3,A",
+              "selector": "div.footer-content > div.footer-cols > div.footer-col > a.footer-link",
+              "boundingRect": {
+                "top": 1844,
+                "bottom": 1861,
+                "left": 819,
+                "right": 937,
+                "width": 118,
+                "height": 17
+              },
+              "snippet": "<a href=\"#\" class=\"footer-link\">",
+              "nodeLabel": "Search West Indy",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (118.1px by 17px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 21.6px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-10-A",
+                    "path": "1,HTML,1,BODY,4,FOOTER,0,DIV,0,DIV,1,DIV,2,DIV,1,A",
+                    "selector": "div.footer-content > div.footer-cols > div.footer-col > a.footer-link",
+                    "boundingRect": {
+                      "top": 1822,
+                      "bottom": 1839,
+                      "left": 819,
+                      "right": 951,
+                      "width": 132,
+                      "height": 17
+                    },
+                    "snippet": "<a href=\"#\" class=\"footer-link\">",
+                    "nodeLabel": "Search Indianapolis"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

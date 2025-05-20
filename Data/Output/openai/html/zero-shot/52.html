@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>123. A Thief on the Sidewalk</title>
+  <meta name="viewport" content="width=900">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      background: #C0C0C0;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      color: #000;
+      min-width: 900px;
+      min-height: 768px;
+    }
+    /* Modal close button */
+    .modal-close {
+      position: absolute;
+      left: 12px;
+      top: 16px;
+      width: 24px;
+      height: 24px;
+      background: #e0e0e0;
+      border: 1px solid #444;
+      border-radius: 2px;
+      cursor: pointer;
+      font-size: 18px;
+      line-height: 22px;
+      text-align: center;
+      color: #000;
+      transition: background 0.2s;
+    }
+    .modal-close:focus {
+      outline: 2px solid #005FCC;
+      outline-offset: 2px;
+    }
+    /* Left auth box */
+    .auth-box {
+      position: absolute;
+      left: 16px;
+      top: 48px;
+      width: 320px;
+      background: none;
+      color: #000;
+    }
+    .auth-box label {
+      font-size: 20px;
+      font-weight: normal;
+      display: block;
+      margin-bottom: 18px;
+      margin-top: 0;
+    }
+    .auth-box input[type="text"], 
+    .auth-box input[type="password"] {
+      display: block;
+      width: 97%;
+      height: 28px;
+      margin-bottom: 7px;
+      font-size: 16px;
+      box-sizing: border-box;
+      border: 1px solid #888;
+      border-radius: 2px;
+      background: #fff;
+      color: #000;
+      padding: 3px 7px;
+    }
+    .auth-box a {
+      color: #045ec6;
+      text-decoration: underline;
+      font-size: 15px;
+    }
+    .auth-links {
+      margin-top: 0;
+      margin-bottom: 12px;
+      font-size: 15px;
+    }
+    .auth-links span {
+      display: inline-block;
+      margin-right: 8px;
+    }
+    .auth-box .forgot-header {
+      font-size: 14px;
+      margin-top: 14px;
+      margin-bottom: 7px;
+      color: #222;
+    }
+    .auth-box input[type="email"] {
+      display: block;
+      width: 97%;
+      height: 28px;
+      margin-bottom: 12px;
+      font-size: 16px;
+      border: 1px solid #888;
+      border-radius: 2px;
+      background: #fff;
+      color: #000;
+      padding: 3px 7px;
+    }
+    .auth-box input[type="submit"] {
+      display: inline-block;
+      background: #fff;
+      border: 1px solid #888;
+      border-radius: 2px;
+      color: #111;
+      font-size: 17px;
+      padding: 4px 21px;
+      cursor: pointer;
+      margin-left: 0;
+    }
+    .auth-box input[type="submit"]:focus {
+      outline: 2px solid #005FCC;
+      outline-offset: 2px;
+    }
+
+    /* Main Reading Box */
+    .main-title {
+      position: absolute;
+      left: 420px;
+      top: 245px;
+      right: 0;
+      text-align: center;
+      font-size: 20px;
+      font-weight: normal;
+      color: #222;
+      letter-spacing: 0.5px;
+    }
+    .reading-box {
+      position: absolute;
+      left: 384px;
+      top: 282px;
+      width: 720px;
+      background: #fff;
+      border: 1px solid #222;
+      box-sizing: border-box;
+      padding: 0;
+      min-height: 429px;
+      box-shadow: none;
+      color: #222;
+    }
+    .text-container {
+      margin: 32px 24px 24px 24px;
+      font-size: 16px;
+      line-height: 1.15;
+      color: #000;
+    }
+    .reading-box hr {
+      height: 1px;
+      border: none;
+      background: #222;
+      margin: 0;
+    }
+
+    /* Blue image placeholders */
+    .img-placeholder {
+      display: inline-block;
+      vertical-align: middle;
+      background: #2879d0;
+      border: 1px solid #2066ab;
+      border-radius: 2px;
+      margin: 0 2px;
+      box-sizing: border-box;
+    }
+
+    /* All blanks must have min width to preserve spacing */
+    .blank-1 { width: 110px; height: 28px; }
+    .blank-2 { width: 180px; height: 28px; }
+    .blank-3 { width: 260px; height: 28px; }
+    .blank-4 { width: 90px; height: 28px; }
+    .blank-5 { width: 95px; height: 28px; }
+    .blank-6 { width: 110px; height: 28px; }
+    .blank-7 { width: 110px; height: 28px; }
+    .blank-8 { width: 90px;  height: 28px; }
+    .blank-9 { width: 90px;  height: 28px; }
+    .blank-10 { width: 95px; height: 28px; }
+    .blank-11 { width: 110px; height: 28px; }
+    .blank-12 { width: 170px; height: 28px; }
+    .blank-13 { width: 120px; height: 28px; }
+    .blank-14 { width: 100px; height: 28px; }
+    .blank-15 { width: 150px; height: 28px; }
+    .blank-16 { width: 110px; height: 28px; }
+    .blank-17 { width: 140px; height: 28px; }
+
+    /* Buttons at bottom of reading box */
+    .reading-actions {
+      margin-top: 24px;
+      margin-bottom: 0;
+      text-align: center;
+      width: 100%;
+    }
+    .reading-actions button {
+      background: #f2f2f2;
+      border: 1px solid #888;
+      border-radius: 2px;
+      color: #111;
+      font-size: 16px;
+      padding: 4px 24px;
+      margin: 0 8px;
+      cursor: pointer;
+    }
+    .reading-actions button:focus {
+      outline: 2px solid #005FCC;
+      outline-offset: 2px;
+    }
+
+    .footer-link {
+      display: block;
+      margin: 32px auto 0 auto;
+      width: 62px;
+      text-align: center;
+      color: #035FF5;
+      font-size: 15px;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .footer-link:focus {
+      outline: 2px solid #005FCC;
+      outline-offset: 2px;
+    }
+
+    /* Accessibility */
+    .img-placeholder[role="img"] {
+      outline: none;
+    }
+    @media (max-width: 1150px) {
+      .reading-box, .main-title { left: 8px !important; width: 97vw !important; }
+      .reading-box {min-width: 300px;}
+    }
+  </style>
+</head>
+<body>
+  <button class="modal-close" aria-label="Close dialog">x</button>
+  <div class="auth-box" aria-labelledby="login-header">
+    <label id="login-header" for="login-username">Login</label>
+    <input id="login-username" type="text" name="username" autocomplete="username" aria-label="Username">
+    <input id="login-password" type="password" name="password" autocomplete="current-password" aria-label="Password">
+    <input id="login-additional" type="text" name="other" aria-label="Extra field">
+    <div class="auth-links">
+      <span><a href="#" tabindex="0">Forgot password?</a></span>
+      <span>Don't have an Account? <a href="#" tabindex="0">Register Now!</a></span>
+    </div>
+    <div class="forgot-header">Forgot Password</div>
+    <input aria-label="Email address" type="email" name="forgot" autocomplete="email">
+    <input type="submit" value="Submit">
+  </div>
+  <div class="main-title">123. A Thief on the Sidewalk</div>
+  <section class="reading-box" role="main" aria-labelledby="reading-title">
+    <hr>
+    <div class="text-container" id="reading-title" tabindex="0">
+      She looked at the man walking along the 
+      <span class="img-placeholder blank-1" role="img" aria-label="Blank input"></span> 
+      next to the nice houses. He didn't live 
+      <span class="img-placeholder blank-2" role="img" aria-label="Blank input"></span> 
+      any of those houses. She had seen this 
+      <span class="img-placeholder blank-3" role="img" aria-label="Blank input"></span> 
+      several times before. He looked like a criminal. 
+      <span class="img-placeholder blank-4" role="img" aria-label="Blank input"></span> 
+      knew not to judge a book by its 
+      <span class="img-placeholder blank-5" role="img" aria-label="Blank input"></span>
+      , but this man was no good. She drove 
+      <span class="img-placeholder blank-6" role="img" aria-label="Blank input"></span>
+      him. He looked at her car as she 
+      <span class="img-placeholder blank-7" role="img" aria-label="Blank input"></span>
+      by. She continued driving. She watched him in 
+      <span class="img-placeholder blank-8" role="img" aria-label="Blank input"></span>
+      rear view mirror. She got to the corner 
+      <span class="img-placeholder blank-9" role="img" aria-label="Blank input"></span>
+      stopped. She continued to watch him walking in 
+      <span class="img-placeholder blank-10" role="img" aria-label="Blank input"></span> 
+      direction. Suddenly, he turned left up a driveway. 
+      <span class="img-placeholder blank-11" role="img" aria-label="Blank input"></span> 
+      red SUV was parked in the driveway right 
+      <span class="img-placeholder blank-12" role="img" aria-label="Blank input"></span> 
+      to the sidewalk. She saw him walk up 
+      <span class="img-placeholder blank-13" role="img" aria-label="Blank input"></span>
+      the driver's door and put his hand on 
+      <span class="img-placeholder blank-14" role="img" aria-label="Blank input"></span>
+      handle. He returned to the sidewalk and continued 
+      <span class="img-placeholder blank-15" role="img" aria-label="Blank input"></span>
+      in her direction. What was that all about, 
+      <span class="img-placeholder blank-16" role="img" aria-label="Blank input"></span>
+      wondered. Then she realized that he had tested 
+      <span class="img-placeholder blank-17" role="img" aria-label="Blank input"></span>
+      door to see if it was locked. He <u>is</u> a criminal, she thought. That's what he does. 
+      <u>A criminal</u> just walks through our neighborhoods looking for cars to break into. She called the police. She described 
+      <u>the man</u>. The officer said he knew who the man 
+      <u>was</u>. Residents called two or three times a week 
+      <u>to report</u> him for walking around. They had to catch 
+      <u>him</u> with stolen goods. "But he was testing that 
+      <u>car door</u> to see if it was unlocked," she 
+      <u>insisted</u>. "I'm sorry," said the officer. "That's not against 
+      <u>the law</u>. If you see him actually steal something, 
+      <u>give us a call.</u>"
+    </div>
+    <div class="reading-actions">
+      <button type="button">Check</button>
+      <button type="button">Hint</button>
+    </div>
+    <a href="#" class="footer-link" tabindex="0">CLOSE</a>
+  </section>
+</body>
+</html>

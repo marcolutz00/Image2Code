@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meet amazing singles today</title>
+  <meta name="viewport" content="width=768,initial-scale=1">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:900,700,600,500,400&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      background: #f7f7f7;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #222;
+      font-size: 18px;
+      line-height: 1.7;
+      width: 100%;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      min-width: 320px;
+      overflow-x: hidden;
+      background: #f7f7f7;
+    }
+    .hero-section {
+      position: relative;
+      background: #293e76;
+      min-height: 520px;
+      width: 100%;
+      overflow: hidden;
+      padding-bottom: 30px;
+    }
+    .hero-img1 {
+      position: absolute;
+      top: 40px;
+      left: 56px;
+      width: 180px;
+      height: 180px;
+      background: #1800ff;
+      border-radius: 0;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-img1 img {
+      width: 180px;
+      height: 180px;
+      display: block;
+    }
+    .hero-img2 {
+      position: absolute;
+      top: 180px;
+      right: 56px;
+      width: 330px;
+      height: 330px;
+      background: #1800ff;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .hero-img2 img {
+      width: 330px;
+      height: 330px;
+      display: block;
+    }
+    .hero-signin {
+      position: absolute;
+      top: 56px;
+      right: 56px;
+      z-index: 2;
+    }
+    .hero-signin-btn {
+      background: #36d5f5;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      border: none;
+      border-radius: 7px;
+      padding: 13px 32px;
+      cursor: pointer;
+      box-shadow: none;
+      transition: background 0.2s;
+      outline-offset: 3px;
+      letter-spacing: 0.01em;
+    }
+    .hero-main {
+      position: relative;
+      z-index: 20;
+      max-width: 480px;
+      margin: 230px 0 0 100px;
+    }
+    @media (max-width: 900px) {
+      .hero-main {
+        margin-left: 36px;
+      }
+      .hero-img2 {
+        right: 20px;
+      }
+      .hero-signin {
+        right: 20px;
+      }
+      .hero-img1 {
+        left: 20px;
+      }
+    }
+    @media (max-width: 750px) {
+      .hero-img2 {
+        display: none;
+      }
+    }
+    .hero-title {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 40px;
+      font-weight: 900;
+      color: #fff;
+      margin: 0 0 14px 0;
+      letter-spacing: -1.2px;
+      line-height: 1.1;
+    }
+    .hero-sub {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 8px;
+      margin-top: 0;
+    }
+    .hero-create {
+      color: #fff;
+      font-weight: 700;
+      font-size: 18px;
+      margin-bottom: 26px;
+      margin-top: 18px;
+      letter-spacing: 0.01em;
+    }
+    .hero-actions {
+      margin-bottom: 13px;
+      display: flex;
+      flex-direction: row;
+      gap: 16px;
+    }
+    .hero-join-btn {
+      background: #fff;
+      color: #fc426a;
+      font-weight: 700;
+      border: none;
+      border-radius: 7px;
+      padding: 13px 35px;
+      font-size: 18px;
+      box-shadow: none;
+      cursor: pointer;
+      border: 2px solid #fff;
+      transition: background 0.2s, color 0.2s;
+      outline-offset: 3px;
+    }
+    .hero-join-btn:focus,
+    .hero-signin-btn:focus {
+      outline: 2px solid #2626ce;
+      outline-offset: 3px;
+    }
+    .hero-actions .hero-signin-btn {
+      background: #36d5f5;
+      color: #fff;
+      font-weight: 600;
+      border: none;
+      border-radius: 7px;
+      padding: 13px 35px;
+      font-size: 18px;
+      cursor: pointer;
+      margin-left: 0;
+      box-shadow: none;
+      transition: background 0.2s;
+    }
+    .hero-mature-link {
+      font-size: 15px;
+      color: #e6e6e6;
+      margin-top: 17px;
+      text-decoration: none;
+      display: block;
+      width: fit-content;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumb {
+      font-size: 15px;
+      color: #868686;
+      margin-top: 46px;
+      margin-bottom: 12px;
+      text-align: center;
+      width: 100%;
+      line-height: 1.25;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .breadcrumb a, .breadcrumb span {
+      color: #868686;
+      text-decoration: none;
+      outline-offset: 2px;
+    }
+    .breadcrumb .current {
+      color: #36d5f5;
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* Main content */
+    .main-section {
+      background: #fff;
+      border-radius: 0 0 8px 8px;
+      padding: 0 24px 28px 24px;
+      margin: 0 auto;
+      max-width: 800px;
+      text-align: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .main-header {
+      font-size: 30px;
+      font-weight: 900;
+      color: #161c27;
+      margin-top: 21px;
+      margin-bottom: 27px;
+    }
+    .main-text {
+      font-size: 18px;
+      font-weight: 400;
+      margin-bottom: 27px;
+      color: #222;
+      margin-top: 0;
+    }
+    .main-subsection {
+      color: #222;
+      margin-bottom: 21px;
+      font-size: 18px;
+      font-weight: 400;
+    }
+    .main-subsection a {
+      color: #36d5f5;
+      text-decoration: underline;
+      font-weight: 500;
+      outline-offset: 2px;
+    }
+    .main-list {
+      text-align: center;
+      margin: 0 0 23px 0;
+      padding: 0;
+      list-style-type: none;
+      font-size: 17px;
+      font-weight: 500;
+      color: #161c27;
+      line-height: 2.1;
+    }
+    .main-secondary-header {
+      font-size: 23px;
+      font-weight: 800;
+      margin-top: 26px;
+      margin-bottom: 13px;
+      color: #161c27;
+      letter-spacing: -0.5px;
+    }
+    .main-secondary-text {
+      font-size: 17px;
+      color: #222;
+      margin-bottom: 13px;
+      margin-top: 0;
+      font-weight: 400;
+    }
+    .main-last {
+      font-size: 17px;
+      color: #222;
+      margin-bottom: 23px;
+      font-weight: 400;
+      margin-top: 0;
+    }
+    .main-badges {
+      display: flex;
+      flex-direction: row;
+      gap: 17px;
+      justify-content: center;
+      margin-bottom: 15px;
+      flex-wrap: wrap;
+    }
+    .badge {
+      display: inline-block;
+      background: #f4faff;
+      border-radius: 30px;
+      padding: 10px 29px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #36d5f5;
+      margin-bottom: 8px;
+      box-shadow: none;
+      border: none;
+      outline-offset: 2px;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+      text-align: center;
+      text-decoration: none;
+    }
+    .badge:focus {
+      outline: 2px solid #2626ce;
+    }
+
+    /* Region navigation block */
+    .region-nav-wrapper {
+      background: #21728a;
+      width: 100%;
+      padding: 36px 0 32px 0;
+      margin-top: 48px;
+      box-sizing: border-box;
+      min-height: 80px;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .region-nav-title {
+      color: #fff;
+      font-size: 18px;
+      font-weight: 600;
+      text-align: center;
+      margin-bottom: 19px;
+    }
+    .region-nav-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 26px;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .region-nav-list li {
+      background: #25899c;
+      border-radius: 21px;
+      padding: 8px 36px;
+      color: #fff;
+      font-size: 18px;
+      font-weight: 500;
+      margin: 0;
+      text-align: center;
+      min-width: 120px;
+      margin-bottom: 0;
+      outline-offset: 2px;
+    }
+    .footer {
+      background: #232c3a;
+      color: #fff;
+      width: 100%;
+      padding: 52px 0 0 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.8;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      min-height: 180px;
+      margin-top: 0;
+    }
+    .footer-content {
+      width: 90%;
+      max-width: 1200px;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      margin: 0 auto 0 auto;
+    }
+    .footer-logo {
+      font-weight: 700;
+      font-size: 17px;
+      margin-bottom: 16px;
+      color: #fff;
+      letter-spacing: -0.1px;
+    }
+    .footer-ssl {
+      font-weight: 600;
+      font-size: 14px;
+      color: #fff;
+      margin-bottom: 0;
+    }
+    .footer-list {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+      color: #fff;
+      font-size: 16px;
+      font-weight: 400;
+    }
+    .footer-list li {
+      margin-bottom: 8px;
+    }
+    .footer-section-title {
+      font-weight: 700;
+      margin-bottom: 14px;
+      font-size: 17px;
+      color: #fff;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: row;
+      gap: 62px;
+    }
+    .footer-pages, .footer-company {
+      min-width: 170px;
+    }
+    .footer-pages li a,
+    .footer-company li a {
+      color: #d5f7fb;
+      text-decoration: none;
+      font-size: 16px;
+      font-weight: 400;
+      outline-offset: 2px;
+    }
+    .footer-pages li a:focus,
+    .footer-company li a:focus {
+      outline: 2px solid #2626ce;
+    }
+    .footer-bottom {
+      font-size: 13px;
+      color: #e2e7ed;
+      margin: 34px auto 0 auto;
+      width: 90%;
+      max-width: 1200px;
+      padding-bottom: 22px;
+      text-align: left;
+      line-height: 1.6;
+      text-align: center;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    @media (max-width: 900px) {
+      .main-section {
+        padding-left: 5vw;
+        padding-right: 5vw;
+      }
+      .footer-content {
+        flex-direction: column;
+        gap: 24px;
+        align-items: flex-start;
+      }
+      .footer-links {
+        gap: 24px;
+      }
+    }
+    @media (max-width: 600px) {
+      .hero-main {
+        margin-left: 20px;
+        margin-top: 170px;
+        max-width: 98vw;
+      }
+      .footer-content, .footer-bottom {
+        width: 98vw;
+        min-width: 0;
+      }
+      .region-nav-wrapper {
+        min-width: 0;
+      }
+      .main-section {
+        max-width: 99vw;
+        margin: 0;
+        padding-left: 2vw;
+        padding-right: 2vw;
+      }
+    }
+    @media (max-width: 450px) {
+      .hero-main {
+        margin-left: 8px;
+        margin-top: 90px;
+      }
+      .hero-img1, .hero-img2 {
+        display: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero-section" aria-label="intro banner">
+    <div class="hero-img1" aria-hidden="true">
+      <img src="src/placeholder.jpg" width="180" height="180" alt="">
+    </div>
+    <div class="hero-img2" aria-hidden="true">
+      <img src="src/placeholder.jpg" width="330" height="330" alt="">
+    </div>
+    <nav class="hero-signin" aria-label="Sign in">
+      <button class="hero-signin-btn" type="button" aria-label="Sign in">Sign in</button>
+    </nav>
+    <section class="hero-main" aria-label="Amazing singles promo">
+      <h1 class="hero-title">Meet amazing singles today</h1>
+      <div class="hero-sub">
+        Just say g’day to local singles looking for fun excitement and romance in your area right now
+      </div>
+      <div class="hero-create">Create your free profile to see your matches</div>
+      <form class="hero-actions" aria-label="Join or Sign in" action="#">
+        <button class="hero-join-btn" type="submit">Join for free now</button>
+        <button class="hero-signin-btn" type="button">Sign in</button>
+      </form>
+      <a href="#" class="hero-mature-link">Over 50? Try our mature dating site</a>
+    </section>
+  </header>
+  <main>
+    <nav class="breadcrumb" role="navigation" aria-label="Breadcrumb">
+      <a href="#" tabindex="0">Home</a> &nbsp;›&nbsp;
+      <a href="#" tabindex="0">Singles</a> &nbsp;›&nbsp;
+      <a href="#" tabindex="0">Gold Coast</a> &nbsp;›&nbsp;
+      <span class="current" aria-current="page">Bonogin</span>
+    </nav>
+    <section class="main-section" aria-labelledby="main-header">
+      <h2 class="main-header" id="main-header">Singles Bonogin</h2>
+      <p class="main-text">
+        Finding singles in Bonogin is fun and easy with justsaygday.com. As one of Australia’s leading matchmaking websites you have a great chance of meeting that special someone missing in your life.
+      </p>
+      <p class="main-text">
+        Life as a single girl of guy in Bonogin can be fun but most of us are looking for someone to share the ups and downs of life, share experiences and cuddle up on those cold winter nights. With new members registering on Australia’s hottest online dating website every month looking for friendship and romance, your dream date may be just a couple of click away.
+      </p>
+      <p class="main-subsection">
+        Finding a date is fun and easy with our desktop and convenient mobile applications. Our latest smartphone application is the most powerful yet and best of all, there is no application to download and no fiddly installation instructions to follow, just sign up for free and visit
+        <a href="https://justsaygday.com" target="_blank" rel="noopener noreferrer">justsaygday.com</a>
+        from any mobile device for instant access to the mobile application. From the mobile application you can access all the popular features as if you were on the desktop site as well as some mobile enhanced features like:
+      </p>
+      <ul class="main-list" aria-label="Mobile features">
+        <li>Who’s near me - find singles near you with the latest geo-location technologies without giving away your exact location</li>
+        <li>Upload photos and videos directly from your phones camera</li>
+        <li>Send ‘icebreakers’ and ‘winks’</li>
+        <li>Advanced personality matching and automated suggestions</li>
+      </ul>
+      <div class="main-secondary-header">Find the guy who's right for you</div>
+      <div class="main-secondary-text">
+        What’s your idea of the perfect guy? Outgoing, sensitive, wild, gentle, tall, big, slim?
+      </div>
+      <div class="main-last">
+        Find someone to share your life with. The next person you say g’day to might be the one.
+      </div>
+      <div class="main-badges" aria-label="Quick links">
+        <a href="#" class="badge">Search single women in Bonogin</a>
+        <a href="#" class="badge">Search single men in Bonogin</a>
+        <a href="#" class="badge">Dating in Bonogin</a>
+      </div>
+    </section>
+    <nav class="region-nav-wrapper" aria-label="Singles in nearby suburbs">
+      <div class="region-nav-title">Singles in</div>
+      <ul class="region-nav-list">
+        <li>Advancetown</li>
+        <li>Arundel</li>
+        <li>Arundel Bc</li>
+        <li>Arundel Dc</li>
+      </ul>
+    </nav>
+  </main>
+  <footer class="footer" aria-label="site footer">
+    <div class="footer-content">
+      <div>
+        <div class="footer-logo">Just Say G’day</div>
+        <div class="footer-ssl">SSL secureScamalytics</div>
+      </div>
+      <div class="footer-links">
+        <div class="footer-pages">
+          <div class="footer-section-title" style="margin-bottom:12px;">Pages</div>
+          <ul class="footer-list">
+            <li><a href="#">Local singles</a></li>
+            <li><a href="#">Mature dating</a></li>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Completing your dating profile</a></li>
+          </ul>
+        </div>
+        <div class="footer-company">
+          <div class="footer-section-title" style="margin-bottom:12px;">Company</div>
+          <ul class="footer-list">
+            <li><a href="#">Terms</a></li>
+            <li><a href="#">Privacy</a></li>
+            <li><a href="#">Cookies</a></li>
+            <li><a href="#">Facebook</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © Copyright notice - Site design and content copyright justsaygday.com<br>
+      Individuals pictured are models and are used for illustrative purposes only.
+    </div>
+  </footer>
+</body>
+</html>

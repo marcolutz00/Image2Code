@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Seahorse.org &gt; Lost Password Form</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <style>
+    html {
+      background: #f4f4f9;
+      color: #222;
+      font-family: Verdana, Arial, Helvetica, sans-serif;
+      font-size: 13px;
+    }
+    body {
+      margin: 8px 0;
+      padding: 0;
+      background: #f4f4f9;
+    }
+    a {
+      color: #143b94;
+      text-decoration: underline;
+    }
+    a:focus {
+      outline: 2px solid #0055cc;
+      outline-offset: 1px;
+    }
+    .container {
+      width: 97vw;
+      min-width: 964px;
+      max-width: 1024px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #b3b7be;
+      box-sizing: border-box;
+      padding-bottom: 0;
+    }
+    header {
+      border-bottom: 1px solid #b3b7be;
+      padding: 0;
+    }
+    .header-bar {
+      background: #0000cc;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      margin-bottom: 4px;
+    }
+    .header-bar img {
+      display: block;
+    }
+    .nav-bar {
+      padding: 6px 8px 0 8px;
+      font-size: 13px;
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      border-bottom: 1px solid #dfdfdf;
+    }
+    .nav-left a {
+      font-weight: bold;
+      color: #222;
+      text-decoration: none;
+      margin-right: 12px;
+    }
+    .nav-left a + a {
+      font-weight: normal;
+      text-decoration: underline;
+      color: #143b94;
+      margin-left: 0;
+    }
+    .nav-right {
+      text-align: right;
+      white-space: nowrap;
+      font-size: 13px;
+    }
+    .nav-right a {
+      text-decoration: underline;
+      color: #143b94;
+      margin-left: 4px;
+      font-weight: normal;
+    }
+    .welcome-bar {
+      background: #ece0e0;
+      font-size: 13px;
+      color: #333;
+      padding: 5px 8px 5px 12px;
+      border-bottom: 1px solid #e7eefd;
+      font-family: Verdana, Arial, sans-serif;
+      letter-spacing: 0;
+    }
+    .welcome-bar span {
+      color: #8b8b8b;
+      margin-left: 2px;
+    }
+    main {
+      padding: 0;
+      margin: 0;
+      background: #fff;
+    }
+    .page-titlebar {
+      margin-top: 22px;
+      margin-bottom: 18px;
+      display: flex;
+      align-items: start;
+    }
+    .page-titlebar img {
+      width: 210px;
+      height: 170px;
+      margin-right: 36px;
+      background: #0000cc;
+      border: none;
+      display: block;
+    }
+    .breadcrumbs {
+      padding-top: 20px;
+    }
+    .breadcrumbs a {
+      color: #143b94;
+      font-weight: bold;
+      text-decoration: underline;
+      font-size: 16px;
+    }
+    .breadcrumbs {
+      font-size: 16px;
+    }
+    .breadcrumbs .sep {
+      color: #666;
+      padding: 0 2px;
+    }
+    .formheader-row {
+      background: #e3e8ef;
+      border-top: 2px solid #b3b7be;
+      border-bottom: 2px solid #b3b7be;
+      padding: 0;
+      margin-bottom: 0;
+    }
+    .form-step-indicator {
+      width: 18px;
+      height: 18px;
+      background: #0000cc;
+      border: 1px solid #b3b7be;
+      display: inline-block;
+      vertical-align: middle;
+      margin: 0 8px 0 2px;
+      border-radius: 3px;
+    }
+    .form-content {
+      background: #e3e8ef;
+      padding: 0;
+    }
+    .form-block {
+      padding: 0 10px 14px 10px;
+      font-size: 13px;
+      color: #222;
+      border-bottom: 1px solid #d1dae5;
+    }
+    .form-block:last-child {
+      border-bottom: none;
+    }
+    .form-section-heading {
+      background: #e3e8ef;
+      font-weight: bold;
+      padding: 7px 10px 4px 6px;
+      margin: 0 0 5px 0;
+      font-size: 13px;
+      border-bottom: none;
+      color: #222;
+      font-family: Verdana, Arial, sans-serif;
+      letter-spacing: 0;
+    }
+    fieldset {
+      border: none;
+      margin: 0 0 10px 0;
+      padding: 0;
+      min-width: 0;
+    }
+    legend {
+      font-size: 14px;
+      font-weight: bold;
+      padding: 0 0 3px 2px;
+      color: #222;
+    }
+    .helptext {
+      color: #222;
+      font-size: 13px;
+      margin-bottom: 6px;
+    }
+    .strong-text {
+      font-weight: bold;
+    }
+    label {
+      font-weight: bold;
+      color: #222;
+      font-size: 13px;
+      margin-bottom: 2px;
+      margin-right: 5px;
+    }
+    .form-fields {
+      margin: 12px 0 10px 0;
+      display: flex;
+      flex-direction: column;
+      gap: 9px;
+    }
+    .input-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 5px;
+    }
+    .input-row input[type="text"], 
+    .input-row input[type="email"] {
+      width: 170px;
+      height: 22px;
+      border: 1px solid #7f9db9;
+      background: #eaf2fb;
+      font-size: 13px;
+      color: #222;
+      padding: 2px 6px;
+    }
+    .input-wide {
+      width: 360px;
+      max-width: 97vw;
+    }
+    .form-section {
+      background: #dbe5f1;
+      border-top: 2px solid #b3b7be;
+      border-bottom: 2px solid #b3b7be;
+      margin-bottom: 12px;
+    }
+    .security-row {
+      display: flex;
+      gap: 26px;
+      align-items: flex-start;
+      margin: 18px 4px 0 0;
+    }
+    .security-img {
+      width: 200px;
+      height: 148px;
+      background: #0000cc;
+      margin: 0 14px 0 0;
+      display: block;
+      border: none;
+    }
+    .security-desc {
+      flex: 1;
+      min-width: 200px;
+    }
+    .security-desc label {
+      font-weight: normal;
+    }
+    .security-desc p {
+      margin: 0 0 8px 0;
+      font-size: 13px;
+      color: #222;
+    }
+    .security-desc input[type="text"] {
+      width: 170px;
+      height: 22px;
+      border: 1px solid #7f9db9;
+      background: #eaf2fb;
+      font-size: 13px;
+      color: #222;
+      padding: 2px 6px;
+      margin-top: 2px;
+      margin-left: 0;
+      display: block;
+    }
+    .input-block {
+      margin-top: 12px;
+      margin-bottom: 0;
+    }
+    .spacer {
+      margin: 18px 0;
+      background: transparent;
+    }
+    .spacer input[type="text"] {
+      width: 312px;
+      height: 22px;
+      border: 1px solid #7f9db9;
+      background: #eaf2fb;
+      font-size: 13px;
+      color: #222;
+      padding: 2px 6px;
+      margin-bottom: 0;
+      margin-left: 0;
+    }
+
+    /* Footer area */
+    footer {
+      width: 100%;
+      margin-top: 18px;
+      background: transparent;
+    }
+    .footer-main {
+      background: #75839b;
+      color: #222;
+      padding: 22px 0 10px 0;
+      border-top: 2px solid #b3b7be;
+      border-bottom: 2px solid #b3b7be;
+      margin-bottom: 0;
+      width: 100%;
+    }
+    .footer-content-row {
+      display: flex;
+      align-items: flex-start;
+      padding: 0 0 0 46px;
+      min-height: 126px;
+    }
+    .footer-img {
+      width: 160px;
+      height: 118px;
+      background: #0000cc;
+      margin-right: 42px;
+      margin-top: 0;
+      display: block;
+      border: none;
+      flex-shrink: 0;
+    }
+    .footer-desc {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      color: #143b94;
+      font-size: 13px;
+      margin-top: 20px;
+    }
+    .footer-links {
+      color: #143b94;
+      font-size: 13px;
+      text-align: left;
+      margin-bottom: 11px;
+    }
+    .footer-links a {
+      color: #143b94;
+      font-size: 13px;
+      text-decoration: underline;
+      font-weight: bold;
+    }
+    .footer-meta {
+      color: #222;
+      font-size: 13px;
+      margin-top: 7px;
+      font-family: Verdana, Arial, sans-serif;
+    }
+    .footer-meta span {
+      margin-left: 22px;
+      color: #222;
+    }
+    .lower-footer {
+      padding: 10px 12px 6px 12px;
+      font-size: 12px;
+      color: #222;
+      text-align: left;
+      background: #e7e7e7;
+      border-top: 1px solid #b3b7be;
+      font-family: Verdana, Arial, sans-serif;
+      margin-bottom: 0;
+      border-bottom-left-radius: 3px;
+      border-bottom-right-radius: 3px;
+    }
+    @media (max-width: 1024px) {
+      .container {
+        min-width: 0;
+        width: 100vw;
+      }
+    }
+    @media (max-width: 780px) {
+      .page-titlebar {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+      .page-titlebar img {
+        margin-bottom: 16px;
+        margin-right: 0;
+      }
+      .footer-content-row {
+        flex-direction: column;
+        align-items: flex-start;
+        padding-left: 8px;
+      }
+      .footer-img {
+        margin-bottom: 14px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container" role="main" aria-label="Lost Password Form">
+    <header>
+      <div class="header-bar" aria-hidden="true">
+        <img src="src/placeholder.jpg" width="1005" height="60" alt="">
+      </div>
+      <div class="nav-bar" role="navigation" aria-label="Site navigation">
+        <div class="nav-left">
+          <a href="#" tabindex="0">homepage</a><a href="#" tabindex="0">Conditions of use</a>
+        </div>
+        <div class="nav-right">
+          <a href="#" tabindex="0">Blogs</a>
+          <a href="#" tabindex="0">Gallery</a>
+          <a href="#" tabindex="0">Library</a>
+          <a href="#" tabindex="0">Shop</a>
+          <a href="#" tabindex="0">Members</a>
+          <a href="#" tabindex="0">SEARCH</a>
+          <a href="#" tabindex="0">FORUM</a>
+          <a href="#" tabindex="0">Help</a>
+        </div>
+      </div>
+      <div class="welcome-bar">
+        Welcome Guest! 
+        <span>
+          (<a href="#" tabindex="0">Log In</a> | 
+          <a href="#" tabindex="0">Register</a> )
+        </span>
+      </div>
+    </header>
+    <main>
+      <div class="page-titlebar">
+        <img src="src/placeholder.jpg" width="210" height="170" alt="" aria-hidden="true">
+        <div class="breadcrumbs" aria-label="Breadcrumb">
+          <a href="#" tabindex="0">Seahorse.org</a> 
+          <span class="sep">&gt;</span> 
+          Lost Password Form
+        </div>
+      </div>
+      <form aria-labelledby="form-title" autocomplete="off">
+        <div class="formheader-row" role="region" aria-label="Form Section">
+          <span style="vertical-align:middle;"><span class="form-step-indicator" aria-hidden="true"></span></span>
+        </div>
+        <div class="form-content">
+          <div class="form-section-heading" id="form-title">How to reset your password</div>
+          <div class="form-block helptext">
+            Enter your account username in the field below. The username is case insensitive.<br>
+            Once you have submitted the form, you will receive an email asking for validation of this request to ensure that no malicious use has occurred. This email will also contain a link that you must click for futher instruction.
+          </div>
+          <div class="form-block strong-text" style="font-weight: bold;">
+            Please complete the form fully
+          </div>
+          <div class="form-block">
+            <fieldset>
+              <legend class="visually-hidden">Account identification</legend>
+              <div class="form-fields">
+                <div class="input-row">
+                  <label for="username">Enter your account username</label>
+                  <input type="text" id="username" name="username" autocomplete="username" aria-describedby="username-info">
+                </div>
+                <div class="input-row">
+                  <span style="font-weight: bold;">OR Enter your email address</span>
+                  <input type="email" id="email" name="email" class="input-wide" autocomplete="email" aria-describedby="email-info">
+                </div>
+              </div>
+            </fieldset>
+          </div>
+        </div>
+        <div class="form-section" role="region" aria-label="Security Code">
+          <div class="form-section-heading">Security Code Confirmation</div>
+          <div class="form-block">
+            <div class="security-row">
+              <img src="src/placeholder.jpg" width="200" height="148" class="security-img" alt="Security code graphic">
+              <div class="security-desc">
+                <p>Confirm security code<br>
+                Please enter the 6 character<br>
+                code shown in the image. If<br>
+                you cannot read the code,<br>
+                click the image to generate<br>
+                a new one. Case sensitive.</p>
+                <label for="security-code" class="visually-hidden">Enter security code</label>
+                <input type="text" id="security-code" name="security-code" maxlength="6" aria-label="Enter security code" autocomplete="off">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="spacer">
+          <input type="text" aria-label="Spacer field" tabindex="-1" style="width:312px;height:22px;border:1px solid #7f9db9;background:#eaf2fb;font-size:13px;color:#222;padding:2px 6px;" disabled>
+        </div>
+      </form>
+    </main>
+    <footer>
+      <div class="footer-main" role="contentinfo">
+        <div class="footer-content-row">
+          <img src="src/placeholder.jpg" width="160" height="118" class="footer-img" alt="">
+          <div class="footer-desc">
+            <div class="footer-links">
+              <a href="#" tabindex="0">Lo-Fi Version</a>
+              <span class="footer-meta">Time is now: 30th November 2023 - 10:02 AM</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="lower-footer">
+        Powered By IP.Board &copy; 2023 IPS, Inc.<br>
+        Licensed to: Seahorse Dot Org Limited
+      </div>
+    </footer>
+  </div>
+  <style>
+    .visually-hidden {
+      position: absolute !important;
+      height: 1px; width: 1px;
+      overflow: hidden;
+      clip: rect(1px,1px,1px,1px);
+      white-space: nowrap;
+      border: 0 !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  </style>
+</body>
+</html>

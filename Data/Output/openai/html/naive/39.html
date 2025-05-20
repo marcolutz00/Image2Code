@@ -1,0 +1,433 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Orchard School Of Motoring</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #120278;
+      min-height: 100vh;
+    }
+    body {
+      margin: 0;
+      padding: 0;
+      min-height: 100vh;
+      font-family: 'Roboto', Arial, sans-serif;
+    }
+    .wrapper {
+      background: #fff;
+      width: 95vw;
+      max-width: 1100px;
+      min-width: 950px;
+      margin: 20px auto 0 auto;
+      border-radius: 0;
+      border: none;
+      min-height: 80vh;
+      box-sizing: border-box;
+      position: relative;
+      z-index: 1;
+      padding-bottom: 0;
+    }
+
+    /* Header section */
+    .header-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: space-between;
+      width: 100%;
+      margin-top: 0;
+      padding-top: 20px;
+      position: relative;
+    }
+    .logo-link {
+      margin-left: 24px;
+      margin-top: 0;
+    }
+    .logo-box {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2.2em;
+      background: transparent;
+      color: #8480dd;
+      font-weight: 700;
+      border: 3px solid #a698d8;
+      padding: 8px 26px 8px 26px;
+      border-radius: 12px;
+      box-sizing: border-box;
+      display: inline-block;
+      margin-bottom: 10px;
+      margin-top: 0;
+    }
+    .purchase-lessons-link {
+      margin-left: 24px;
+      margin-top: 12px;
+      display: inline-block;
+    }
+    .purchase-lessons-box {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2em;
+      background: transparent;
+      color: #8480dd;
+      font-weight: 700;
+      border: 3px solid #a698d8;
+      padding: 8px 14px;
+      border-radius: 12px;
+      box-sizing: border-box;
+      display: inline-block;
+      margin: 0;
+    }
+    .nav {
+      margin-top: 7px;
+      margin-left: 30px;
+      margin-right: 80px;
+      display: flex;
+      flex-direction: row;
+      gap: 25px;
+      align-items: flex-start;
+    }
+    .nav a {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.25em;
+      color: #b6aee8;
+      text-decoration: none;
+      font-weight: 700;
+      margin-right: 0;
+      transition: color 0.2s;
+      margin-top: 2px;
+    }
+    .nav a:last-child {
+      margin-right: 0;
+    }
+
+    /* Right header info */
+    .header-info {
+      margin-top: -5px;
+      margin-right: 22px;
+      text-align: right;
+      max-width: 370px;
+    }
+    .header-title {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 2em;
+      font-weight: 700;
+      color: #23231c;
+      margin-top: 0;
+      margin-bottom: 3px;
+      margin-right: 0;
+      letter-spacing: -0.5px;
+      line-height: 1.04;
+    }
+    .author {
+      font-family: 'Roboto', Arial, sans-serif;
+      font-size: 1em;
+      color: #333;
+      font-weight: 400;
+      margin-top: 0;
+      margin-bottom: 0;
+    }
+    .author span {
+      color: #888;
+      font-size: 0.98em;
+    }
+
+    /* CTA Button */
+    .cta-btn-bar {
+      width: 350px;
+      display: flex;
+      align-items: center;
+      background: transparent;
+      position: absolute;
+      left: 390px;
+      top: 60px;
+    }
+    .cta-btn {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      color: #fff;
+      background: #282828;
+      border-radius: 4px;
+      padding: 3px 16px 3px 16px;
+      font-size: 1.12em;
+      border: none;
+      outline: 2px solid #282828;
+      margin: 0;
+      letter-spacing: 0.1px;
+      position: relative;
+      z-index: 2;
+      text-decoration: none;
+      transition: background 0.2s;
+    }
+
+    /* Main content section */
+    .content-body {
+      margin: 0 0 0 0;
+      padding: 0;
+    }
+    .image-caption-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      margin-left: 18px;
+      margin-top: 17px;
+      z-index: 10;
+    }
+    .post-meta {
+      font-size: 1em;
+      color: #222;
+      font-family: 'Roboto', Arial, sans-serif;
+      margin-top: 5px;
+      margin-right: 12px;
+      letter-spacing: 0.05px;
+    }
+    .main-img {
+      background: #1e1eff;
+      margin: 8px 0 0 30px;
+      border: none;
+      display: block;
+    }
+
+    .main-content-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      padding-top: 22px;
+      margin-bottom: 0;
+      margin-left: 18px;
+      margin-right: 14px;
+    }
+    .main-content-left {
+      width: 74%;
+    }
+    .main-content-right {
+      width: 19%;
+      margin-left: 2.6%;
+      margin-top: 18px;
+      display: block;
+      text-align: right;
+    }
+    .sideform-title {
+      font-size: 1.23em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      color: #222;
+      writing-mode: vertical-rl;
+      text-orientation: mixed;
+      letter-spacing: 0.6px;
+      margin: 0 auto 8px auto;
+      text-align: center;
+    }
+    .sideform-text {
+      font-size: 1em;
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #161616;
+      margin-top: 6px;
+      text-align: left;
+      writing-mode: inherit;
+    }
+    .sideform-link {
+      color: #231af4;
+      font-size: 1em;
+      text-decoration: underline;
+    }
+
+    /* Main heading and text */
+    .main-heading {
+      margin: 0 0 12px 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 1.5em;
+      font-weight: 700;
+      color: #222;
+    }
+    .main-p {
+      margin: 0 0 14px 0;
+      font-size: 1em;
+      color: #181818;
+      font-family: 'Roboto', Arial, sans-serif;
+      line-height: 1.27em;
+      letter-spacing: 0;
+      font-weight: 400;
+    }
+    .main-code {
+      font-size: 1em;
+      color: #222;
+      background: none;
+      padding: 0;
+      margin-bottom: 12px;
+      font-family: 'Roboto', Arial, sans-serif;
+      letter-spacing: 0;
+      word-break: break-all;
+    }
+
+    .map-img {
+      display: block;
+      background: #1e1eff;
+      margin: 20px 0 12px 60px;
+    }
+
+    /* Big red link button */
+    .red-link-bar {
+      background: #fff;
+      width: 100%;
+      padding: 0 0 0 0;
+      text-align: center;
+      margin: 0;
+      border-radius: 0 0 0 0;
+      position: relative;
+      z-index: 20;
+      border-bottom: none;
+    }
+    .red-link {
+      display: inline-block;
+      margin: 10px 0 8px 0;
+      padding: 6px 18px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #fff;
+      font-size: 1.12em;
+      font-weight: 700;
+      text-decoration: underline;
+      background: #ee2220;
+      border: 3px solid #ffe860;
+      border-radius: 4px;
+      transition: background 0.2s;
+    }
+
+    /* Footer section */
+    .footer-wrap {
+      background: #111115;
+      min-height: 170px;
+      padding: 36px 0 0px 0;
+      width: 100%;
+      text-align: center;
+      position: relative;
+    }
+    .footer-main-img-row {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      width: 100%;
+      margin-top: 0;
+      margin-bottom: 23px;
+    }
+    .footer-img {
+      background: #1e1eff;
+      display: block;
+      margin: 0 auto 10px auto;
+    }
+    .footer-caption {
+      font-family: 'Roboto', Arial, sans-serif;
+      color: #000;
+      font-size: 0.98em;
+      margin-top: 3px;
+    }
+
+    .footer-policy-bar {
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center;
+      width: 100%;
+      margin-top: 25px;
+      color: #fff;
+      font-size: 1em;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      background: none;
+      gap: 18px;
+    }
+    .footer-policy-bar a {
+      color: #f6ffa8;
+      text-decoration: underline;
+      margin-right: 22px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+    }
+    .footer-policy-bar a:last-child {
+      margin-right: 0;
+    }
+    @media (max-width: 1050px) {
+      .wrapper { min-width: 800px; }
+      .header-row, .main-content-row { flex-direction: column; }
+      .main-content-right { width: 100%; margin-left: 0; }
+      .main-content-left { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+
+    <!-- HEADER ROW -->
+    <div class="header-row">
+      <div>
+        <a href="#" class="logo-link">
+          <span class="logo-box">Orchard School Of Motoring</span>
+        </a><br>
+        <a href="#" class="purchase-lessons-link">
+          <span class="purchase-lessons-box">Purchase Lessons</span>
+        </a>
+      </div>
+      <div class="nav">
+        <a href="#">Home</a>
+        <a href="#">Shop</a>
+      </div>
+      <div class="header-info">
+        <div class="header-title">Driving Schools St<br>Austell Cornwall</div>
+        <div class="author">
+          by Richard Boyle | <span>Nov 14, 2017 | Driving Lessons St Austell, Local Test Passes, Test</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="cta-btn-bar">
+      <a href="#" class="cta-btn">Become A Driving Instructor</a>
+    </div>
+
+    <div class="content-body">
+      <div class="image-caption-row">
+        <span class="post-meta">Passes St Austell | 0 comments</span>
+      </div>
+      <img src="src/placeholder.jpg" alt="" class="main-img" width="400" height="260" style="background:#1e1eff;">
+      <div class="main-content-row">
+        <div class="main-content-left">
+          <h2 class="main-heading">Driving Schools St Austell Cornwall</h2>
+          <div class="main-p">
+            Congratulations to Jonathon Waugh of St Austell who passed his practical driving test on the 14th of November. Well done on this great achievement, now you can enjoy the freedom a full licence brings. Jonathon has already got a car so he will be able to drive himself to work and college, when he can afford car insurance. Best wishes from your Driving Instructor Richard Boyle and the Customer Services team here at Orchard School of Motoring. Driving Schools St Austell Cornwall
+          </div>
+          <div class="main-code">[wpseo_map id="1597" width="400" height="300" zoom="-1" map_style="roadmap" scrollable="0" draggable="0" show_route="0" show_state="0"]</div>
+          <img src="src/placeholder.jpg" alt="" class="map-img" width="400" height="130" style="background:#1e1eff;">
+        </div>
+        <div class="main-content-right">
+          <div class="sideform-title">
+            Submit a<br>Comment
+          </div>
+          <div class="sideform-text">
+            You<br>
+            must be<br>
+            <a href="#" class="sideform-link">logged in</a><br>
+            to post a com<br>ment.
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="red-link-bar">
+      <a href="#" class="red-link">Visit Our St Austell Page for Lesson Information and Bookings.</a>
+    </div>
+  </div>
+
+  <div class="footer-wrap">
+    <div class="footer-main-img-row">
+      <img src="src/placeholder.jpg" alt="" class="footer-img" width="180" height="90" style="background:#1e1eff;">
+    </div>
+    <div class="footer-caption">Orchard Driving School Money Back Guarantee</div>
+    <div class="footer-policy-bar">
+      <a href="#">GDPR Privacy Policy</a>
+      <span>This Website is built and Managed by ADI Success</span>
+    </div>
+  </div>
+</body>
+</html>

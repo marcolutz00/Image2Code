@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Capacity Jokes</title>
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: 'Times New Roman', Times, serif;
+    background: #fff;
+    color: #333;
+    font-size: 15px;
+    margin: 0;
+    padding: 0;
+}
+a {
+    color: #5b66a0;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+#header {
+    width: 100%;
+    background: none;
+}
+#nav-main {
+    width: 720px;
+    margin: 0 auto;
+    padding-top: 10px;
+}
+.top-bar {
+    background: #fbe96e;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    width: 100%;
+    min-height: 32px;
+}
+#nav-links {
+    display: flex;
+    gap: 18px;
+    margin-left: 0;
+}
+#nav-links a {
+    color: #3b3200;
+    font-weight: normal;
+    font-size: 16px;
+    padding: 0 0px;
+    line-height: 32px;
+}
+#search-bar {
+    margin-left: auto;
+    margin-right: 0;
+    padding-right: 1px;
+    display: flex;
+    align-items: center;
+}
+#search-bar input[type="text"] {
+    font-size: 15px;
+    width: 110px;
+    height: 22px;
+    border: 1px solid #beae4e;
+    background: #fffde8;
+    padding: 2px 4px;
+    border-radius: 2px;
+    outline: none;
+}
+
+#subnav {
+    width: 720px;
+    margin: 0 auto;
+    background: #fff6ae;
+    border-bottom: 1px solid #e8dfae;
+    font-size: 16px;
+    padding: 8px 0 6px 0;
+}
+#subnav a {
+    color: #a47400;
+    font-weight: bold;
+    margin-right: 20px;
+    padding: 0 0;
+}
+#contentwrap {
+    width: 720px;
+    margin: 0 auto;
+    display: flex;
+    padding-bottom: 22px;
+    padding-top: 8px;
+}
+#main-content {
+    flex: 1 1 510px;
+    min-width: 0;
+    margin-right: 15px;
+}
+#sidebar {
+    flex: 0 0 205px;
+    min-width: 205px;
+    font-size: 13px;
+}
+.section {
+    background: #f8f8f8;
+    border: 1px solid #bcbcbc;
+    border-radius: 3px 3px 0 0;
+    margin-bottom: 13px;
+    padding-bottom: 16px;
+}
+.section-title {
+    background: #e5e5e5;
+    font-weight: bold;
+    padding: 8px 12px;
+    font-size: 17px;
+    border-radius: 3px 3px 0 0;
+    border-bottom: 1px solid #bcbcbc;
+}
+.section-content {
+    padding: 8px 13px 0 13px;
+}
+.joke-title {
+    font-size: 16px;
+    font-weight: bold;
+    color: #553c16;
+    margin: 11px 0 5px 0;
+}
+.joke-content {
+    margin-bottom: 2px;
+    line-height: 1.2;
+}
+.joke-meta {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    margin: -1px 0 6px 0;
+}
+.joke-meta .vote {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    line-height: 1.1;
+}
+.joke-meta .vote-icon {
+    width: 13px;
+    height: 13px;
+    display: inline-block;
+    vertical-align: middle;
+}
+.joke-meta .up {
+    color: #ffb700;
+}
+.joke-meta .down {
+    color: #ffbb82;
+    margin-left: 4px;
+}
+.joke-meta .comments {
+    margin-left: 6px;
+    color: #bbb;
+    font-size: 13px;
+}
+.joke-meta .comments a {
+    color: #bbb;
+}
+.joke-meta .comments a:hover {
+    color: #555;
+}
+.joke-divider {
+    height: 1px;
+    background: #eaeaea;
+    border: none;
+    margin: 13px 0 0 0;
+}
+.morejokes-link {
+    font-weight: bold;
+    padding: 2px 5px;
+    background: #fffbe1;
+    border-radius: 2px;
+    color: #725f00;
+    display: inline-block;
+    margin: 8px 0 0 0;
+    font-size: 15px;
+}
+#external-links-section {
+    background: none;
+    border: 1px solid #d6d6d6;
+    border-radius: 3px 3px 0 0;
+    font-size: 15px;
+    margin-bottom: 8px;
+    margin-top: 0;
+}
+#external-links-title {
+    background: #ededed;
+    font-weight: normal;
+    padding: 6px 10px 4px 9px;
+    font-size: 15px;
+    border-radius: 3px 3px 0 0;
+    border-bottom: 1px solid #d6d6d6;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+#external-links-title a {
+    font-size: 12px;
+    color: #868686;
+    margin-left: 5px;
+}
+#external-links-list {
+    padding: 6px 11px;
+    height: 13px;
+    color: #bbb;
+    font-size: 13px;
+}
+
+#recent-activity-section {
+    margin-top: 0;
+    border: 1px solid #d6d6d6;
+    border-radius: 3px 3px 0 0;
+    background: none;
+}
+#recent-activity-title {
+    background: #ededed;
+    font-weight: normal;
+    padding: 6px 10px 4px 9px;
+    font-size: 15px;
+    border-radius: 3px 3px 0 0;
+    border-bottom: 1px solid #d6d6d6;
+}
+#recent-activity-list {
+    padding: 7px 13px 14px 13px;
+    font-size: 15px;
+}
+#recent-activity-list a {
+    color: #5b66a0;
+    border-bottom: 1px dashed #b2bbdf;
+    text-decoration: none;
+}
+#recent-activity-list span {
+    color: #bbb;
+    font-size: 13px;
+}
+#recent-activity-list .item {
+    margin-bottom: 2px;
+}
+#recent-activity-list .item:last-child {
+    margin-bottom: 0;
+}
+
+#sidebar .sidebar-section {
+    margin-bottom: 20px;
+}
+.sidebar-section label {
+    color: #6b6b6b;
+    font-size: 13px;
+    display: block;
+    margin-bottom: 4px;
+}
+#buddha-form input[type="text"] {
+    border: 1px solid #dadada;
+    padding: 4px 5px;
+    font-size: 14px;
+    color: #8a8a8a;
+    background: #fafafa;
+    width: 170px;
+    margin-bottom: 2px;
+    outline: none;
+}
+
+.sidebar-section .sidebar-title {
+    font-weight: bold;
+    color: #444;
+    margin-bottom: 11px;
+    margin-top: 0;
+    font-size: 15px;
+}
+.sidebar-section .related-tags {
+    line-height: 1.15;
+    color: #686868;
+    margin-bottom: 20px;
+}
+.sidebar-section .related-tags a {
+    color: #686868;
+    margin-right: 6px;
+    font-size: 13px;
+}
+
+.sidebar-section .authors {
+    font-size: 12px;
+    margin-bottom: 3px;
+}
+.sidebar-section .top-authors-bar {
+    background: none;
+    font-size: 13px;
+    margin: 0 0 1px 0;
+    color: #a58100;
+}
+.sidebar-section .author-icon {
+    width: 13px;
+    vertical-align: text-bottom;
+    margin-right: 2px;
+}
+.sidebar-section .author-count {
+    color: #888;
+    font-size: 12px;
+}
+.sidebar-section .author-name {
+    color: #a58100;
+    font-weight: bold;
+}
+.sidebar-section .recent-comments {
+    font-size: 13px;
+    margin-bottom: 10px;
+    color: #525252;
+}
+.sidebar-section .recent-comments .comment-author {
+    color: #0073a6;
+    font-weight: bold;
+}
+.sidebar-section .recent-comments .comment {
+    margin-bottom: 2px;
+}
+.sidebar-section .tell-joke-label {
+    margin-top: 25px;
+    font-size: 14px;
+    font-weight: bold;
+    color: #444;
+}
+.sidebar-section .tell-joke-link {
+    color: #a47400;
+    text-decoration: underline;
+    margin-top: 6px;
+    display: block;
+    font-size: 15px;
+}
+
+#footer {
+    width: 720px;
+    margin: 38px auto 0 auto;
+    text-align: center;
+    font-size: 13px;
+    color: #8d8d92;
+    margin-bottom: 8px;
+}
+#footer-links {
+    margin-top: 5px;
+    margin-bottom: 9px;
+}
+#footer-links a {
+    color: #8d8d92;
+    text-decoration: underline;
+    margin: 0 7px;
+    font-size: 13px;
+}
+#footer-bottom {
+    font-size: 12px;
+    color: #b7b7b6;
+    margin-top: 1px;
+}
+#footer-bottom strong {
+    color: #666;
+}
+::-webkit-input-placeholder { color:#b7b7b6; }
+::-moz-placeholder { color:#b7b7b6; }
+:-ms-input-placeholder { color:#b7b7b6; }
+::placeholder { color:#b7b7b6; }
+
+@media (max-width: 800px) {
+    #nav-main, #subnav, #contentwrap, #footer {
+        width: 100%;
+        min-width: 0;
+    }
+}
+
+</style>
+</head>
+<body>
+<div id="header">
+    <div id="nav-main">
+        <div class="top-bar">
+            <div id="nav-links">
+                <a href="#">Funny Jokes</a>
+                <a href="#">Top Rated</a>
+                <a href="#">Most Discussed</a>
+                <a href="#">Recent</a>
+            </div>
+            <div id="search-bar">
+                <input type="text" placeholder="Search jokes">
+            </div>
+        </div>
+    </div>
+    <div id="subnav">
+        <a href="#">One-liners</a>
+        <a href="#">Blonde</a>
+        <a href="#">Hairline</a>
+        <a href="#">Chuck Norris</a>
+    </div>
+</div>
+<div id="contentwrap">
+    <div id="main-content">
+        <div class="section">
+            <div class="section-title">Capacity Jokes</div>
+            <div class="section-content">
+                <div class="joke-title">Funny Jokes</div>
+                <div class="joke-content">Picard "Mr</div>
+                <div class="joke-content">Picard "Mr. LaForge, have you had any success with your attempts at finding a weakness in the Borg? more...</div>
+                <div class="joke-meta">
+                    <span class="vote">
+                        <span class="up" title="Like">&#128077;</span>
+                        <span>1</span>
+                        <span class="down" title="Dislike" style="margin-left:7px">&#128078;</span>
+                        <span>0</span>
+                    </span>
+                    <span class="comments"><a href="#">comments ( 0 )</a></span>
+                </div>
+
+                <div class="joke-title">Bell Labs Proves Existence of Dark Suckers</div>
+                <div class="joke-content">Bell Labs Proves Existence of Dark Suckers For years it has been believed that electric bulbs emitted light. more...</div>
+                <div class="joke-meta">
+                    <span class="vote">
+                        <span class="up" title="Like">&#128077;</span>
+                        <span>1</span>
+                        <span class="down" title="Dislike" style="margin-left:7px">&#128078;</span>
+                        <span>0</span>
+                    </span>
+                    <span class="comments"><a href="#">comments ( 0 )</a></span>
+                </div>
+
+                <div class="joke-title">Windows and The Borg</div>
+                <div class="joke-content">
+                    Picard: "Mr. LaForge, have you had any success with your <br>
+                    attempts at finding a weakness in the Borg? And Mr. Data, have you been <br>
+                    able to access their command pathways?" <br>
+                    Geordi: "Yes, Captain. In fact, we found the answer by<br>
+                    searching through our archives on late Twentieth-century computing<br>
+                    technology." <br>
+                    Geordi presses a key, and a logo appears on the computer screen.<br>
+                    Riker looks puzzled. "What the hell is 'Microsoft'?"<br>
+                    Data turns to answer.<br>
+                    this program, for some reason called 'Windows', through the Borg command <br>
+                    pathways. Once inside their root command unit, it will begin consuming <br>
+                    system resources at an unstoppable rate." <br>
+                    Picard: "But the Borg have the ability to adapt. Won't <br>
+                    they alter their processing systems to increase their storage capacity?"<br>
+                    Data: "Yes, Captain. But when 'Windows' detects this, it <br>
+                    creates a new version of itself more...
+                </div>
+                <div class="joke-meta">
+                    <span class="vote">
+                        <span class="up" title="Like">&#128077;</span>
+                        <span>0</span>
+                        <span class="down" title="Dislike" style="margin-left:7px">&#128078;</span>
+                        <span>0</span>
+                    </span>
+                    <span class="comments"><a href="#">comments ( 0 )</a></span>
+                </div>
+
+                <div class="joke-title">Bell Labs Proves Existence of Dark Suckers</div>
+                <div class="joke-content">Bell Labs Proves Existence of Dark Suckers For years it has been believed that electric bulbs emitted light.However, recent information from Bell Labs has proven otherwise. more...</div>
+                <div class="joke-meta">
+                    <span class="vote">
+                        <span class="up" title="Like">&#128077;</span>
+                        <span>0</span>
+                        <span class="down" title="Dislike" style="margin-left:7px">&#128078;</span>
+                        <span>0</span>
+                    </span>
+                    <span class="comments"><a href="#">comments ( 0 )</a></span>
+                </div>
+
+                <div class="joke-title">What's the fluid capacity of Monica Lewinsky's mouth?</div>
+                <div class="joke-content">What's the fluid capacity of Monica Lewinsky's mouth? 1 U. S. leader</div>
+                <div class="joke-meta">
+                    <span class="vote">
+                        <span class="up" title="Like">&#128077;</span>
+                        <span>0</span>
+                        <span class="down" title="Dislike" style="margin-left:7px">&#128078;</span>
+                        <span>0</span>
+                    </span>
+                    <span class="comments"><a href="#">comments ( 0 )</a></span>
+                </div>
+
+                <div class="morejokes-link">
+                    More Jokes
+                </div>
+            </div>
+        </div>
+        <div id="external-links-section">
+            <div id="external-links-title">
+                External Links
+                <a href="#">Add a Useful Link</a>
+            </div>
+            <div id="external-links-list">&nbsp;</div>
+        </div>
+        <div id="recent-activity-section">
+            <div id="recent-activity-title">Recent Activity</div>
+            <div id="recent-activity-list">
+                <div class="item">Picard "Mr</div>
+                <div class="item">Senator questions judge's role in lesbian wedding <span>by Anonym</span></div>
+                <div class="item"><a href="#">You have the capacity to learn from</a> <span>by Anonym</span></div>
+                <div class="item">Dark Suckers by Anonym</div>
+                <div class="item">Senator questions judge's role in lesbian wedding</div>
+                <div class="item">Bell Labs Proves Existence of Dark Suckers</div>
+                <div class="item">Senator questions judge's role in lesbian wedding</div>
+            </div>
+        </div>
+    </div>
+    <div id="sidebar">
+        <div class="sidebar-section" style="margin-bottom:23px;">
+            <label for="buddha-email">Follow Joke Buddha</label>
+            <form id="buddha-form">
+                <input type="text" id="buddha-email" placeholder="Get a Joke of the Day to your email">
+            </form>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Related Topics</div>
+            <div class="related-tags">
+                Ability Adapt Answer Apparently Begin Believe Borg Capacity Captain Command Compensate Data Deep Found Geordi Hours Increase Logo Microsoft Pathways Picard Processing Reason Resources Riker Scanners Something Space <strong>Storage Unit</strong>
+            </div>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Top Authors</div>
+            <div class="top-authors-bar">
+                <span class="vote">
+                    <span class="up">&#128077;</span>
+                    <span>1</span>
+                    <span class="down" style="margin-left:7px">&#128078;</span>
+                    <span>0</span>
+                </span>
+                <span style="margin-left:13px;">SWEETLY BEAT</span>
+                <span class="author-count" style="margin-left:10px">1 joke</span>
+            </div>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title">Recent Comments</div>
+            <div class="recent-comments">
+                <div class="comment"><span class="comment-author">Alex:</span> Good one!</div>
+                <div class="comment"><span class="comment-author">Jack:</span> I think the joke should be worded differently.</div>
+                <div class="comment"><span class="comment-author">Douglas:</span> Funniest thing ever</div>
+                <div class="comment"><span class="comment-author">tdajei™:</span> In the much shorter version of this joke the song used was 'My country 'tis' of thee'.</div>
+                <div class="comment"><span class="comment-author">Jerome Byanski:</span> Works for me</div>
+            </div>
+        </div>
+        <div class="sidebar-section">
+            <div class="sidebar-title" style="margin-top:17px;">Know a Funny Joke?</div>
+            <div class="tell-joke-label" style="font-weight: normal;margin-top:7px;">Tell a Joke</div>
+        </div>
+    </div>
+</div>
+<div id="footer">
+    JokeBuddha.com &copy; 2010-2023
+    <div id="footer-links">
+        <a href="#">Terms &amp; Privacy</a>
+    </div>
+    <div id="footer-bottom">
+        We love good humor and obviously hilarious jokes followed by a healthy laughter!
+    </div>
+</div>
+</body>
+</html>

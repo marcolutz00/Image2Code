@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Citrus Fruits Price Inflation Calculator</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      color: #222;
+      background: #fff;
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* HEADER */
+    .header-bar {
+      width: 100%;
+      background: #a81616;
+      color: #fff;
+      height: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1;
+      top: 0;
+      left: 0;
+      z-index: 30;
+      position: relative;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      margin-left: 16px;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+    .header-star {
+      font-size: 17px;
+      margin-right: 7px;
+    }
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      margin-right: 17px;
+      font-size: 14px;
+    }
+    .header-right a {
+      color: #FFA56B;
+      text-decoration: none;
+      font-weight: 400;
+      margin-left: 0;
+    }
+
+    /* MAIN HEADING */
+    .main-heading {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 700;
+      margin-top: 38px;
+      margin-bottom: 32px;
+      letter-spacing: -0.5px;
+      line-height: 1.2;
+    }
+
+    /* LAYOUT */
+    .container {
+      max-width: 968px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      padding: 0 20px 36px 20px;
+    }
+    .sidebar {
+      width: 330px;
+      min-width: 330px;
+      margin-bottom: 0;
+    }
+    .main-content {
+      flex: 1 1 0;
+      padding-left: 55px;
+      max-width: 650px;
+    }
+    @media (max-width: 900px) {
+      .container {
+        flex-direction: column;
+        padding: 0 12px;
+      }
+      .sidebar {
+        width: 100%;
+        min-width: 0;
+        margin-bottom: 35px;
+      }
+      .main-content {
+        padding-left: 0;
+        max-width: 100%;
+      }
+    }
+
+    /* SIDEBAR */
+    .calc-box {
+      background: #fff;
+      border-radius: 10px;
+      box-shadow: 0 2px 9px rgba(0,0,0,0.06);
+      padding: 27px 28px 22px 28px;
+      margin-bottom: 18px;
+      border: 1px solid #ededed;
+    }
+    .calc-title {
+      font-size: 20px;
+      font-weight: 700;
+      margin-bottom: 24px;
+      line-height: 1.1;
+      letter-spacing: -0.03em;
+    }
+    .calc-label {
+      display: block;
+      font-size: 15px;
+      color: #343434;
+      font-weight: 500;
+      margin-bottom: 7px;
+      margin-top: 16px;
+    }
+    .calc-input {
+      width: 100%;
+      font-size: 15px;
+      font-family: inherit;
+      padding: 13px 16px;
+      border-radius: 6px;
+      border: 1.5px solid #dedede;
+      background: #fafbfb;
+      margin-bottom: 0;
+      transition: border-color 0.15s;
+      outline: none;
+      box-sizing: border-box;
+    }
+    .calc-input:focus {
+      border-color: #1fa750;
+    }
+    .calc-dollar {
+      font-size: 15px;
+      position: absolute;
+      left: 15px;
+      top: 14px;
+      color: #656565;
+      font-weight: 500;
+      pointer-events: none;
+    }
+    .calc-group {
+      position: relative;
+    }
+    .calc-btn {
+      margin-top: 27px;
+      width: 100%;
+      background: #26cc67;
+      font-size: 17px;
+      color: #fff;
+      font-weight: 700;
+      padding: 14px 18px 12px 18px;
+      border-radius: 8px;
+      border: none;
+      box-shadow: 0 1.5px 6px rgba(25,130,65,0.1);
+      cursor: pointer;
+      letter-spacing: -0.03em;
+      transition: max-width .2s;
+      transition: background 0.14s;
+      display: block;
+      margin-bottom: 5px;
+    }
+    .calc-btn:hover {
+      background: #1ca955;
+    }
+    .see-inflation {
+      margin-top: 24px;
+      font-size: 15px;
+      color: #303846;
+    }
+    .see-inflation ul {
+      margin: 10px 0 0 18px;
+      padding: 0;
+    }
+    .see-inflation li {
+      margin: 2px 0 2px 0;
+      padding: 0;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+    .see-inflation a {
+      color: #1d48ca;
+      text-decoration: underline;
+      transition: color .13s;
+    }
+    .see-inflation a:hover {
+      color: #0e2d77;
+    }
+
+    /* MAIN CONTENT */
+    .section-title {
+      font-size: 19px;
+      font-weight: 700;
+      margin-bottom: 23px;
+      line-height: 1.18;
+    }
+    .main-content p, .main-content ul, .main-content div, .main-content table {
+      font-size: 16px;
+      line-height: 1.62;
+      margin-bottom: 18px;
+      color: #282828;
+      letter-spacing: 0;
+    }
+    .main-content b, .main-content strong {
+      font-weight: 700;
+    }
+    .inflation-green {
+      color: #26cc67;
+      font-weight: 500;
+    }
+    .inflation-yellow {
+      color: #b3aa16;
+      font-weight: 500;
+    }
+    .inflation-orange {
+      color: #f77534;
+      font-weight: 500;
+    }
+    .inflation-grey {
+      color: #585858;
+    }
+    .highlight-yellow {
+      background: #fffbe3;
+      padding: 0 1px;
+      border-radius: 2.5px;
+    }
+    .main-content .highlight {
+      color: #de9100;
+      font-weight: 700;
+      letter-spacing: 0;
+    }
+    .main-content .note {
+      font-size: 14px;
+      color: #555;
+    }
+    .main-content ul {
+      list-style: disc;
+      margin-left: 22px;
+    }
+    .main-content a {
+      color: #1151c5;
+      text-decoration: underline;
+      transition: color .14s;
+    }
+    .main-content a:hover {
+      color: #12397d;
+    }
+    /* Large Gray Box */
+    .cpi-info-box {
+      border-radius: 10px;
+      border: 1px solid #ededed;
+      background: #fafafa;
+      padding: 25px 32px 13px 32px;
+      margin-bottom: 28px;
+      font-size: 16px;
+      color: #222;
+      line-height: 1.5;
+    }
+    .cpi-info-title {
+      font-size: 17px;
+      font-weight: 700;
+      font-style: italic;
+      margin-bottom: 13px;
+    }
+    .cpi-info-sub {
+      font-size: 15px;
+      font-style: italic;
+      color: #313131;
+      margin-bottom: 13px;
+    }
+    .cpi-years {
+      font-size: 15px;
+      color: #4b4b4b;
+      margin-bottom: 0;
+    }
+    /* Price Change Links */
+    .price-change-box {
+      background: #f5f5f5;
+      border: 1px solid #ededed;
+      border-radius: 7px;
+      padding: 10px 17px 10px 17px;
+      margin-bottom: 18px;
+      font-size: 16px;
+      color: #312e2e;
+    }
+    .price-change-links {
+      margin: 0;
+      font-size: 16px;
+      color: #312e2e;
+      display: inline;
+    }
+    .price-change-links a {
+      color: #1b44b8;
+      text-decoration: underline;
+    }
+    .price-change-links a:hover {
+      color: #032a73;
+    }
+
+    /* Buying Power Table */
+    .main-content table {
+      border-collapse: collapse;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+    .main-content th, .main-content td {
+      border: 1px solid #cecfcf;
+      padding: 8.5px 13px;
+      font-size: 16px;
+      background: #fff;
+    }
+    .main-content th {
+      background: #fbe495;
+      font-weight: 700;
+      text-align: left;
+      color: #343434;
+    }
+    .main-content tr td:first-child {
+      font-weight: 700;
+      color: #2c2b2a;
+    }
+    .main-content .note {
+      margin-top: 0;
+      margin-bottom: 2px;
+      font-size: 14px;
+    }
+    /* Small CPI Table */
+    .main-content .small-cpi-table {
+      width: 100%;
+      margin: 17px 0 12px 0;
+      font-size: 15px;
+    }
+    .main-content .small-cpi-table th, 
+    .main-content .small-cpi-table td {
+      border: 1px solid #e2e2df;
+      padding: 6px 12px;
+      font-family: 'Roboto', Arial, sans-serif;
+      background: #fff;
+    }
+    .main-content .small-cpi-table th {
+      background: #eee;
+      font-weight: 700;
+    }
+    /* Inflation Formula */
+    .main-content .inflation-formula {
+      font-family: 'Source Code Pro', 'Consolas', 'Menlo', monospace;
+      background: #f7f7f7;
+      font-size: 15px;
+      color: #3f3f47;
+      padding: 7px 11px 7px 11px;
+      border-radius: 4px;
+      margin: 5px 0 10px 0;
+      display: inline-block;
+    }
+    /* Other countries */
+    .other-countries ul {
+      margin: 8px 0 2px 20px;
+      list-style: disc;
+      font-size: 15px;
+      color: #29292d;
+    }
+    .other-countries li {
+      margin-top: 1px;
+      margin-bottom: 1px;
+    }
+    .other-countries a {
+      color: #144fba;
+    }
+    .other-countries a:hover {
+      color: #032231;
+    }
+    /* Footer */
+    .footer {
+      width: 100%;
+      margin: 48px 0 13px 0;
+      padding: 0;
+      font-size: 13.2px;
+      color: #8c8c8c;
+      text-align: center;
+      font-family: 'Roboto', Arial, sans-serif;
+      letter-spacing: 0;
+    }
+    .footer a {
+      color: #214dbe ;
+      text-decoration: underline;
+    }
+    .footer a:hover {
+      color: #042258;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar">
+    <div class="header-left">
+      <span class="header-star">★</span>
+      Citrus fruits price inflation since 2022
+    </div>
+    <div class="header-right">
+      <a href="#">U.S.</a>
+      <a href="#">Canada</a>
+      <a href="#">U.K.</a>
+      <a href="#">Australia</a>
+      <a href="#">Europe</a>
+      <a href="#">Venezuela</a>
+    </div>
+  </div>
+  <h1 class="main-heading">
+    Citrus fruits priced at <span class="highlight">$20 in 2022</span> → <span class="highlight">$19.66 in 2023</span>
+  </h1>
+  <div class="container">
+    <aside class="sidebar">
+      <div class="calc-box">
+        <div class="calc-title">Citrus Fruits Inflation Calculator</div>
+        <label class="calc-label" for="cost">Cost</label>
+        <div class="calc-group">
+          <span class="calc-dollar">$</span>
+          <input id="cost" class="calc-input" type="text" style="padding-left:28px;" autocomplete="off">
+        </div>
+        <label class="calc-label" for="start-year" style="margin-top:15px;">Start year</label>
+        <input id="start-year" class="calc-input" type="text" autocomplete="off">
+        <label class="calc-label" for="end-year" style="margin-top:15px;">End year</label>
+        <input id="end-year" class="calc-input" type="text" autocomplete="off">
+        <button class="calc-btn">Calculate Inflation</button>
+        <div class="see-inflation">
+          See price inflation for:
+          <ul>
+            <li><a href="#">Wireless telephone services</a></li>
+            <li><a href="#">Minneapolis-St Paul, Minnesota</a></li>
+            <li><a href="#">Televisions</a></li>
+            <li><a href="#">Full list of CPI categories</a></li>
+          </ul>
+        </div>
+      </div>
+    </aside>
+    <main class="main-content">
+      <div class="section-title">Prices for Citrus Fruits, 2022-2023 ($20)</div>
+      <p>
+        According to the U.S. Bureau of Labor Statistics, prices for citrus fruits are 
+        <span class="inflation-yellow">1.69% lower</span> in 2023 versus 2022 (a $0.34 difference in value).
+      </p>
+      <p>
+        <b>Between 2022 and 2023:</b> <span style="color:#2cba60;">Citrus</span> fruits experienced an average inflation rate of 
+        <span class="inflation-green">-1.69%</span> per year. In other words, citrus fruits costing $20 in the year 2022 would cost 
+        $19.66 in 2023 for an equivalent purchase. Compared to the overall inflation rate of 3.97% during this same period, 
+        inflation for citrus fruits was significantly lower.
+      </p>
+      <p>
+        <b>In the year 2022:</b> Pricing changed by 11.58%, which is significantly above the average yearly change for citrus fruits during the 2022–2023 time period. Compared to 
+        <a href="#">inflation for all items</a> in 2022 (8%), inflation for citrus fruits was much higher.
+      </p>
+      <div class="cpi-info-box">
+        <div class="cpi-info-title">Price Inflation for Citrus fruits since 1997</div>
+        <div class="cpi-info-sub">
+          Consumer Price Index, U.S. Bureau of Labor Statistics
+        </div>
+        <div class="cpi-years">
+          Years with the largest changes in pricing: 1998 (28.08%), 1999 (24.12%), and 2000 (−14.63%).
+        </div>
+      </div>
+      <div class="price-change-box">
+        <span style="font-weight:700;">View price changes for other categories</span>
+        <span class="price-change-links">
+          <a href="#">Financial services</a> · 
+          <a href="#">Medical care</a> ·
+          <a href="#">Bread</a> ·
+          <a href="#">Televisions</a>
+          · <a href="#">More</a>
+        </span>
+      </div>
+      <div class="section-title" style="margin-top: 33px;">Buying power of $20.00 since 2022</div>
+      <p>
+        Below are calculations of equivalent buying power for Citrus Fruits, over time, for $20 beginning in 2022. Each of the amounts below is equivalent in terms of what it could buy at the time:
+      </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Year</th>
+            <th>USD Value</th>
+            <th>Inflation Rate</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>2022</td>
+            <td>$20.00</td>
+            <td>11.58%</td>
+          </tr>
+          <tr>
+            <td>2023</td>
+            <td>$19.66</td>
+            <td>-1.69%*</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="note">
+        * Not final. See <a href="#">inflation summary</a> for latest details.<br>
+        ** Extended periods of 0% inflation usually indicate incomplete underlying data. This can manifest as a sharp increase in inflation later on.
+      </div>
+      <p style="margin-bottom:4px;font-size:15px;">
+        Raw Consumer Price Index data from U.S. Bureau of Labor Statistics for <b>Citrus fruits</b>:
+      </p>
+      <table class="small-cpi-table">
+        <tr>
+          <th>Year</th>
+          <td>1997</td>
+          <td>1998</td>
+          <td>1999</td>
+          <td>2000</td>
+          <td>2001</td>
+          <td>2002</td>
+          <td>2003</td>
+          <td>2004</td>
+          <td>2005</td>
+        </tr>
+        <tr>
+          <th>CPI</th>
+          <td>100.000</td>
+          <td>128.077</td>
+          <td>158.969</td>
+          <td>135.708</td>
+          <td>141.992</td>
+          <td>150.338</td>
+          <td>152.462</td>
+          <td>162.131</td>
+          <td>176.034</td>
+        </tr>
+      </table>
+      <div class="section-title" style="font-size:17.8px;margin-top:39px;">Adjust citrus fruits prices for inflation</div>
+      <p>Start with the inflation rate formula:</p>
+      <div class="inflation-formula">CPI in 2023 / CPI in 2022 × 2022 USD value = 2023 USD value</div>
+      <p>Then plug in historical CPI values from above. The CPI for Citrus fruits was 299.766 in the year 2022 and 294.714 in 2023:</p>
+      <div class="inflation-formula">294.714 / 299.766 × $20 = <b>$19.66</b></div>
+      <p>
+        Therefore, according to U.S. Bureau of Labor Statistics, $20 in 2022 has the same "purchasing power" as <b>$19.66</b> in 2023 (in the CPI category of <span style="color:#339b5e;">Citrus fruits</span>).
+      </p>
+      <p><b>Source:</b>
+        U.S. Bureau of Labor Statistics began tracking the <a href="#">Consumer Price Index</a> for Citrus fruits in 1997. In addition to citrus fruits, the index produces monthly data on changes in prices paid by urban consumers for a variety of goods and services.
+      </p>
+      <p>
+        <a href="#">&raquo; Read more about inflation and investment.</a>
+      </p>
+      <div class="other-countries">
+        In other countries:
+        <ul>
+          <li><a href="#">Canada Inflation</a></li>
+          <li><a href="#">U.K. Inflation</a></li>
+          <li><a href="#">Australia Inflation</a></li>
+          <li><a href="#">Euro Inflation</a></li>
+          <li><a href="#">Venezuela Inflation</a></li>
+        </ul>
+      </div>
+    </main>
+  </div>
+  <div class="footer">
+    © Official Data Foundation / Alioth LLC. 
+    <a href="#">Contact</a> · 
+    <a href="#">Privacy policy</a>
+  </div>
+</body>
+</html>

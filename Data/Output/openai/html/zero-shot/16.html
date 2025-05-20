@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Pink Rose Cottage</title>
+  <meta name="viewport" content="width=1100">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Quicksand:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-main: #dcf2f5;
+      --bg-card: #faf5e8;
+      --beige-border: #edf4e8;
+      --accent: #b7e0e7;
+      --heading: #484444;
+      --text: #22211a;
+      --sidebar: #f6f1e2;
+      --focus: #84d1dd;
+      --nav-link: #898477;
+      --button: #eef3e3;
+      --input-bg: #fff;
+      --input-border: #bbbfa7;
+      --blue: #211ef0;
+      --red: #d63f48;
+    }
+
+    html, body {
+      height: 100%;
+      background: var(--bg-main);
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Quicksand', Arial, sans-serif;
+      color: var(--text);
+      min-width: 1100px;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    /* Header */
+    header {
+      width: 100%;
+      background: transparent;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 0.5em;
+      min-height: 64px;
+      margin-top: 22px;
+    }
+    .site-title {
+      font-family: 'Pacifico', cursive;
+      font-size: 2.4em;
+      color: var(--heading);
+      margin-left: 30px;
+      margin-top: 0;
+      margin-bottom: 0;
+      text-shadow: 0 2px 0 #f8ece7;
+      overflow: visible;
+    }
+
+    .header-controls {
+      margin-right: 20px;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .header-auth {
+      display: flex;
+      gap: 6px;
+      align-items: center;
+    }
+    .header-auth button {
+      font-size: 1em;
+      padding: 2.5px 11px;
+      border: 1px solid #cfd8cf;
+      background: #f6f7f3;
+      border-radius: 10px;
+      cursor: pointer;
+      color: #555554;
+      margin-right: 2px;
+    }
+    .header-currency {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 4px;
+    }
+    .header-currency label {
+      white-space: nowrap;
+      font-size: 0.99em;
+      margin-bottom: 2px;
+    }
+    .header-currency select {
+      padding: 2px 8px 2px 8px;
+      border-radius: 7px;
+      border: 1px solid #e2e7d7;
+      background: #fff;
+      font-size: 1em;
+      color: #47443a;
+      /* override to match visually? */
+      width: 63px;
+      text-align: right;
+    }
+    .header-cart {
+      display: flex;
+      align-items: flex-end;
+      margin-left: 23px;
+      margin-right: 2px;
+    }
+    .header-cart .cart-count {
+      font-size: 2em;
+      font-weight: bold;
+      color: #231c10;
+      margin-right: 3px;
+      line-height: 1;
+      min-width: 24px;
+    }
+    .header-cart .cart-label {
+      font-size: 0.99em;
+      color: #373231;
+      margin-bottom: 2px;
+      margin-left: 1px;
+      text-align: left;
+      font-family: 'Quicksand', Arial, sans-serif;
+    }
+
+    /* Nav Bar */
+    nav {
+      display: flex;
+      background: var(--accent);
+      margin: 0 10px 16px 10px;
+      padding: 0;
+      border-radius: 14px;
+      height: 41px;
+      align-items: center;
+      box-shadow: 0 1.5px 0 0 #e2dfc7;
+    }
+    .nav-list {
+      margin: 0 auto 0 0;
+      padding: 0;
+      list-style: none;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      height: 100%;
+    }
+    .nav-list li {
+      height: 100%;
+    }
+    .nav-list a {
+      display: flex;
+      align-items: center;
+      height: 100%;
+      text-decoration: none;
+      font-family: 'Quicksand', Arial, sans-serif;
+      font-size: 1.18em;
+      color: var(--nav-link);
+      font-weight: 700;
+      border-radius: 14px;
+      padding: 0 32px;
+      transition: background 0.1s;
+    }
+    .nav-list a:focus,
+    .nav-list a:hover {
+      background: var(--focus);
+      outline: none;
+    }
+
+    /* Main Content Layout */
+    .main-content-wrap {
+      display: flex;
+      gap: 24px;
+      min-height: 750px;
+      margin: 0 10px;
+      align-items: flex-start;
+    }
+    aside.sidebar {
+      width: 250px;
+      flex-shrink: 0;
+      padding: 0;
+      margin: 0;
+      background: var(--sidebar);
+      border-radius: 16px;
+      box-shadow: 0 2px 0 0 #e2dfc7;
+      min-height: 1020px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      padding-top: 16px;
+      padding-bottom: 20px;
+    }
+
+    /* Search */
+    .sidebar .search-box {
+      padding: 0 16px 15px 16px;
+      margin-bottom: 2px;
+    }
+    .sidebar label[for="search"] {
+      display: none;
+    }
+    .sidebar #search {
+      width: 100%;
+      padding: 6px 7px;
+      border-radius: 6px;
+      border: 1px solid #d6dabd;
+      font-size: 1.03em;
+      font-family: 'Quicksand', Arial, sans-serif;
+      background: var(--input-bg);
+      color: var(--text);
+      margin-top: 0;
+      margin-bottom: 2px;
+    }
+    .sidebar .search-box button {
+      display: none;
+    }
+
+    /* Sidebar Navigation */
+    .sidebar-nav {
+      list-style: none;
+      padding: 0 8px 0 8px;
+      margin: 0 0 0 0;
+      flex: 1 0 auto;
+    }
+    .sidebar-nav li {
+      margin-bottom: 6px;
+      font-size: 1.17em;
+    }
+    .sidebar-nav button,
+    .sidebar-nav .category-main {
+      background: #f4ebda;
+      color: #90a594;
+      width: 100%;
+      border: none;
+      text-align: left;
+      padding: 8px 18px 8px 14px;
+      border-radius: 9px;
+      box-shadow: 0 0.5px 0 #efe3da;
+      font-size: 1em;
+      font-family: 'Quicksand', Arial, sans-serif;
+      cursor: pointer;
+      transition: background 0.15s;
+      font-weight: 500;
+      outline: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .sidebar-nav .category-main:focus,
+    .sidebar-nav button:focus {
+      background: #e3efde;
+      color: #6a8175;
+    }
+    .sidebar-nav .category-main {
+      background: #f4ebda;
+      color: #90a594;
+      border: none;
+      font-weight: bold;
+      padding-left: 14px;
+      padding-right: 8px;
+    }
+    /* Expand chevron, visually only */
+    .sidebar-nav .category-main:after {
+      content: '';
+      margin-left: auto;
+    }
+    .sidebar-nav .category-main[aria-expanded="false"]:after {
+      content: '▾';
+      font-size: 0.98em;
+      color: #bbba99;
+    }
+    .sidebar-nav .category-main[aria-expanded="true"]:after {
+      content: '▴';
+      font-size: 0.98em;
+      color: #bbba99;
+    }
+    .sidebar-nav .category {
+      margin-bottom: 0;
+    }
+    .sidebar-nav .category .subcat-list {
+      display: none;
+      padding: 0 0 0 12px;
+      border-left: 1.5px dotted #ded5c2;
+      margin: 3px 0 2px 7px;
+    }
+    /* No subcategories shown visually in this mock */
+
+    /* Last item is not a group: */
+    .sidebar-nav .category-main.no-chevron:after {
+      content: '';
+      display: none;
+    }
+
+    /* Social area */
+    .sidebar .social-contact {
+      margin: 30px 16px 0px 16px;
+      padding: 16px 0 14px 0;
+      background: var(--bg-card);
+      border-radius: 9px;
+      min-height: 48px;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      box-shadow: 0 1px 0 #ede6d9;
+    }
+    .sidebar .social-contact label {
+      font-size: 1.03em;
+      font-weight: 700;
+      color: #999;
+      margin-bottom: 8px;
+      margin-left: 2px;
+      font-family: 'Quicksand', Arial, sans-serif;
+    }
+    .sidebar .social-icons {
+      display: flex;
+      gap: 14px;
+      align-items: center;
+      margin-left: 2px;
+      margin-top: 2px;
+    }
+    .sidebar .social-icons a:focus-visible {
+      outline: 2px solid #319fd6;
+    }
+    .sidebar .circle {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      display: inline-block;
+      margin-right: 1px;
+      background: var(--blue);
+      border: 1.5px solid #e5eaea;
+      box-sizing: border-box;
+      outline: none;
+    }
+    .sidebar .circle[aria-label="Facebook"],
+    .sidebar .circle[aria-label="Twitter"] {
+      background: var(--blue);
+    }
+    .sidebar .circle[aria-label="Pinterest"] {
+      background: var(--red);
+    }
+
+    /* Newsletter section */
+    .sidebar .newsletter {
+      background: var(--bg-card);
+      border-radius: 9px;
+      margin: 22px 16px 0px 16px;
+      padding: 13px 14px 16px 14px;
+      box-shadow: 0 1px 0 #ede6d9;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+    }
+    .sidebar .newsletter label {
+      font-size: 14px;
+      font-weight: 700;
+      color: #999;
+      margin-bottom: 4px;
+      margin-left: 1px;
+      font-family: 'Quicksand', Arial, sans-serif;
+    }
+    .sidebar .newsletter-desc {
+      color: #565340;
+      font-size: 0.96em;
+      margin-bottom: 7px;
+      margin-left: 2px;
+      margin-top: 5px;
+    }
+    .sidebar .newsletter-form {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      margin-top: 4px;
+    }
+    .sidebar .newsletter-form input[type="email"] {
+      background: #fff;
+      border: 1.5px solid #d4d4c1;
+      border-radius: 6px;
+      font-size: 1em;
+      padding: 7px 7px 7px 7px;
+      margin-bottom: 8px;
+      color: #35383b;
+      font-family: 'Quicksand', Arial, sans-serif;
+    }
+    .sidebar .newsletter-form input[type="email"]:focus {
+      outline: 2px solid #86cde8;
+      border-color: #7fb6da;
+    }
+    .sidebar .newsletter-form button[type="submit"] {
+      background: #7db6da;
+      color: #fff;
+      font-size: 1.02em;
+      font-weight: bold;
+      border: none;
+      border-radius: 10px;
+      padding: 6px 23px;
+      cursor: pointer;
+      transition: background 0.18s;
+      font-family: 'Quicksand', Arial, sans-serif;
+      box-shadow: 0 1px 0 #cfdbe8;
+      min-height: 31px;
+      margin-bottom: 2px;
+    }
+    .sidebar .newsletter-form button:focus {
+      outline: 2px solid #2b68a0;
+      background: #4790c7;
+    }
+
+    /* Main content */
+    .main-content {
+      flex: 1 1 0;
+      background: var(--bg-card);
+      border-radius: 18px;
+      padding: 28px 24px 40px 24px;
+      min-height: 870px;
+      box-sizing: border-box;
+      box-shadow: 0 2px 0 #e2dfc7;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    /* Big featured image placeholder */
+    .main-content .banner-img-block {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 22px;
+      min-height: 192px;
+    }
+    .main-content .banner-img {
+      background: var(--blue);
+      border-radius: 7px;
+    }
+
+    /* Welcome Message */
+    .main-content .welcome-section {
+      margin-bottom: 13px;
+      margin-top: -6px;
+      text-align: center;
+    }
+    .main-content .welcome-section em {
+      font-family: 'Quicksand', Arial, sans-serif;
+      font-style: italic;
+      font-weight: 700;
+    }
+    .main-content .welcome-section p {
+      font-size: 1.11em;
+      color: #353531;
+      margin: 8px 0 0 0;
+      line-height: 1.43;
+      font-family: 'Quicksand', Arial, sans-serif;
+    }
+
+    /* Featured Products Title */
+    .main-content h2 {
+      font-size: 1.5em;
+      font-family: 'Quicksand', Arial, sans-serif;
+      color: #40382d;
+      margin: 24px 0 18px 0;
+      font-weight: bold;
+      letter-spacing: 0.2px;
+    }
+
+    /* Product Grid */
+    .products-grid {
+      display: flex;
+      gap: 32px;
+      flex-wrap: wrap;
+      margin-bottom: 36px;
+    }
+    .product-card {
+      width: 225px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      box-sizing: border-box;
+      background: none;
+    }
+    .product-card img {
+      display: block;
+      background: var(--blue);
+      border-radius: 4px;
+      width: 166px;
+      height: 166px;
+      margin-bottom: 14px;
+      object-fit: cover;
+    }
+    .product-title {
+      font-size: 1.07em;
+      color: #39322c;
+      font-family: 'Quicksand', Arial, sans-serif;
+      margin-bottom: 5px;
+      margin-top: 0;
+      font-weight: 500;
+      min-height: 52px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .product-price {
+      font-size: 1.22em;
+      font-weight: 400;
+      color: #574b33;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+
+    /* Footer */
+    footer {
+      width: 100%;
+      margin: 60px 0 0px 0;
+      background: transparent;
+      font-family: 'Quicksand', Arial, sans-serif;
+    }
+    .footer-row {
+      width: 925px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .footer-logos {
+      display: flex;
+      gap: 12px;
+      margin-top: 0;
+      margin-bottom: 20px;
+    }
+    .footer-logos img {
+      width: 48px;
+      height: 48px;
+      background: var(--blue);
+      border-radius: 5px;
+    }
+    .footer-links {
+      margin: 0 0 11px 0;
+      display: flex;
+      gap: 28px;
+      font-size: 1.12em;
+      color: #232221;
+      opacity: 0.88;
+      justify-content: center;
+      align-items: center;
+    }
+    .footer-links a {
+      text-decoration: none;
+      color: #2e2621;
+      font-family: 'Quicksand', Arial, sans-serif;
+      padding: 1px 2px;
+    }
+    .footer-links a:focus,
+    .footer-links a:hover {
+      text-decoration: underline;
+      outline: 2px solid #7db6da;
+    }
+    .footer-copy {
+      text-align: center;
+      color: #686360;
+      font-size: 0.98em;
+      margin: 0 0 11px 0;
+      font-family: 'Quicksand', Arial, sans-serif;
+      opacity: 0.84;
+    }
+
+    /* Accessibility overrides */
+
+    a:focus {
+      outline: 2px dotted #165fdc;
+      outline-offset: 2px;
+    }
+    button:focus {
+      outline: 2px solid #105093;
+      outline-offset: 2px;
+    }
+    [tabindex="0"]:focus {
+      outline: 2px solid #165fdc;
+      outline-offset: 2px;
+    }
+    ::selection { background: #d3edea; }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <h1 class="site-title">The Pink Rose Cottage</h1>
+      <div class="header-controls" aria-label="Account and cart options">
+        <div class="header-auth">
+          <button type="button" aria-label="Log in">Log in</button>
+          <button type="button" aria-label="Sign up">Sign up</button>
+        </div>
+        <div class="header-currency">
+          <label id="currency-label" for="currency-selector" class="visually-hidden">Pick a currency</label>
+          <button type="button" aria-haspopup="listbox" aria-expanded="false" id="currency-selector" style="padding:5px 10px; background:#f8faf7; border:1.5px solid #cfcfc8; border-radius:10px; font-size:1em; color:#393934; margin-bottom:0; cursor:pointer;">Pick a currency<br><span style="font-size:0.87em; color:#392f30;">USD</span></button>
+        </div>
+        <div class="header-cart" aria-label="Cart">
+          <span class="cart-count" aria-live="polite" aria-atomic="true">0</span>
+          <span class="cart-label">items in<br>your cart</span>
+        </div>
+      </div>
+    </header>
+    <nav aria-label="Main navigation">
+      <ul class="nav-list">
+        <li><a href="#" aria-current="page">Home</a></li>
+        <li><a href="#">Contact</a></li>
+        <li><a href="#">New Products</a></li>
+        <li><a href="#">Clearance</a></li>
+      </ul>
+    </nav>
+    <div class="main-content-wrap">
+      <aside class="sidebar" aria-label="Shop categories and info">
+        <div class="search-box">
+          <label for="search">Search products</label>
+          <input type="search" id="search" placeholder="Search..." aria-label="Search products">
+          <button type="submit" aria-label="Submit search"></button>
+        </div>
+        <ul class="sidebar-nav" aria-label="Shop Categories">
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Cozy Cottage and Farmhouse Decor</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Vintage &amp; Antique Linens</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Vintage Bride &amp; Wedding</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Tea Time</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Vintage Hand Painted China</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Shabby &amp; Shiny Silver</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Vintage Kitchen</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Homer Laughlin Fiestaware</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Vintage Laundry Room</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Ladies Vintage Vanity</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Jewelry</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Cottage Garden</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Vintage Ephemera</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Vintage Travel Souvenirs</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Vintage Children’s Items</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Vintage Sewing Notions</button>
+          </li>
+          <li class="category">
+            <button class="category-main" aria-expanded="false">Vintage Holidays</button>
+          </li>
+          <li class="category">
+            <span class="category-main no-chevron" tabindex="0" role="button">Book Nook</span>
+          </li>
+        </ul>
+        <div class="social-contact" aria-label="Stay in touch">
+          <label>Stay in touch</label>
+          <div class="social-icons">
+            <a href="#" tabindex="0" class="circle" aria-label="Facebook" style="background:#211ef0;"></a>
+            <a href="#" tabindex="0" class="circle" aria-label="Twitter" style="background:#211ef0;"></a>
+            <a href="#" tabindex="0" class="circle" aria-label="Pinterest" style="background:#d63f48;"></a>
+          </div>
+        </div>
+        <div class="newsletter" aria-label="Newsletter">
+          <label for="newsletter-email">Newsletter</label>
+          <div class="newsletter-desc">Sign up to our newsletter for the latest news and special offers...</div>
+          <form class="newsletter-form" action="#" method="post" autocomplete="off">
+            <input type="email" id="newsletter-email" name="email" aria-label="type your email..." placeholder="type your email..." required>
+            <button type="submit">Subscribe</button>
+          </form>
+        </div>
+      </aside>
+      <main class="main-content" aria-main="true">
+        <section class="banner-img-block" aria-label="Banner image">
+          <img class="banner-img" src="src/placeholder.jpg" width="292" height="184" alt="">
+        </section>
+        <section class="welcome-section" aria-label="Welcome message">
+          <div><em>Thank you for visiting The Pink Rose Cottage!</em></div>
+          <p>
+            Here you’ll find all the little extras that make your home cottage cozy.<br>
+            We also have beautiful extras for the lady, from wonderful vintage powder compacts, to unusual vintage purses and handbags, to sparkling costume jewelry.<br>
+            <br>
+            The place to shop for cozy cottage, shabby chic decor and trinkets!
+          </p>
+        </section>
+        <h2>Featured Products</h2>
+        <section class="products-grid" aria-label="Featured products">
+          <article class="product-card">
+            <img src="src/placeholder.jpg" width="166" height="166" alt="">
+            <div class="product-title">Heidi Daus Cornucopia Brooch Heidi’s Harvest Pin</div>
+            <div class="product-price">$150.00</div>
+          </article>
+          <article class="product-card">
+            <img src="src/placeholder.jpg" width="166" height="166" alt="">
+            <div class="product-title">Heidi Daus Squirrel Sparkle Fall Rhinestone Pin</div>
+            <div class="product-price">$125.00</div>
+          </article>
+          <article class="product-card">
+            <img src="src/placeholder.jpg" width="166" height="166" alt="">
+            <div class="product-title">Heidi Daus Precious Pumpkin Pavé Fall Brooch Pin</div>
+            <div class="product-price">$150.00</div>
+          </article>
+          <article class="product-card">
+            <img src="src/placeholder.jpg" width="166" height="166" alt="">
+            <div class="product-title">Vintage McCoy Pottery Purple and White Chrysanthemum Vase</div>
+            <div class="product-price">$55.00</div>
+          </article>
+        </section>
+      </main>
+    </div>
+    <footer>
+      <div class="footer-row">
+        <div class="footer-logos" aria-label="Payment logos">
+          <img src="src/placeholder.jpg" width="48" height="48" alt="">
+          <img src="src/placeholder.jpg" width="48" height="48" alt="">
+          <img src="src/placeholder.jpg" width="48" height="48" alt="">
+          <img src="src/placeholder.jpg" width="48" height="48" alt="">
+          <img src="src/placeholder.jpg" width="48" height="48" alt="">
+          <img src="src/placeholder.jpg" width="48" height="48" alt="">
+          <img src="src/placeholder.jpg" width="48" height="48" alt="">
+        </div>
+        <nav class="footer-links" aria-label="Footer navigation">
+          <a href="#">Search</a>
+          <a href="#">Contact</a>
+          <a href="#">About Us</a>
+          <a href="#">Cleaning Silver</a>
+        </nav>
+        <div class="footer-copy">Copyright &copy; 2023 The Pink Rose Cottage . All Rights Reserved.</div>
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

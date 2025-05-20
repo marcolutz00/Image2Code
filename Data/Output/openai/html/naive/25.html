@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Meet amazing singles today - Just Say G'day</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;400&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-bg: #283f78;
+      --button-pink: #ff4d99;
+      --button-blue: #43e2ff;
+      --button-hover-pink: #e1468a;
+      --button-hover-blue: #24bcd3;
+      --text-dark: #212529;
+      --text-gray: #616161;
+      --text-light: #fff;
+      --breadcrumb-gray: #888;
+      --breadcrumb-blue: #43b0fb;
+      --tag-bg: #f3f8fc;
+      --tag-blue: #32b5ea;
+      --footer-bg: #16213a;
+      --footer-bar-bg: #226581;
+      --shadow-card: 0 2px 8px 0 rgba(0,0,0,.07);
+    }
+    html, body {
+      min-height: 100%;
+      margin: 0;
+      padding: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      background: #fff;
+      color: var(--text-dark);
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Hero Section */
+    .hero {
+      position: relative;
+      background: var(--primary-bg);
+      min-height: 480px;
+      padding-bottom: 50px;
+    }
+    .hero-signin-btn {
+      position: absolute;
+      top: 48px;
+      right: 58px;
+      background: var(--button-blue);
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 400;
+      padding: 11px 36px;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .hero-signin-btn:hover {
+      background: var(--button-hover-blue);
+    }
+    .hero-inner {
+      width: 1160px;
+      max-width: 94vw;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+      padding-top: 48px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      justify-content: flex-start;
+      min-height: 440px;
+    }
+    .hero-image-1 {
+      margin-right: 56px;
+      margin-top: 0;
+      width: 180px;
+      height: 180px;
+      background: #180cff;
+      flex-shrink: 0;
+      border-radius: 0;
+      box-sizing: border-box;
+    }
+    .hero-image-2 {
+      margin-left: 80px;
+      margin-top: 57px;
+      width: 380px;
+      height: 280px;
+      background: #180cff;
+      flex-shrink: 0;
+      border-radius: 0;
+      box-sizing: border-box;
+    }
+    .hero-content {
+      min-width: 420px;
+      max-width: 500px;
+      margin-top: 40px;
+      flex: 1 1 auto;
+    }
+    .hero-content h1 {
+      color: #fff;
+      font-size: 44px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      margin: 0 0 18px 0;
+      letter-spacing: -1px;
+      line-height: 1.07;
+    }
+    .hero-content p {
+      color: #fff;
+      font-size: 18px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 400;
+      margin: 0 0 13px 0;
+      line-height: 1.28;
+    }
+    .hero-content .bold {
+      font-weight: 700;
+    }
+    .hero-buttons {
+      margin-top: 17px;
+      display: flex;
+      flex-direction: row;
+      gap: 18px;
+    }
+    .hero-buttons button,
+    .hero-buttons .join-btn {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 18px;
+      border-radius: 8px;
+      padding: 11px 36px;
+      border: none;
+      box-sizing: border-box;
+      cursor: pointer;
+      font-weight: 700;
+      transition: box-shadow 0.2s, background 0.2s, color 0.2s;
+    }
+    .hero-buttons .join-btn {
+      background: #fff;
+      color: var(--button-pink);
+      border: 2px solid #fff;
+      margin-right: 0;
+      box-shadow: var(--shadow-card);
+    }
+    .hero-buttons .join-btn:hover {
+      background: var(--button-pink);
+      color: #fff;
+    }
+    .hero-buttons .signin-btn {
+      background: var(--button-blue);
+      color: #fff;
+      margin-left: 0;
+      box-shadow: var(--shadow-card);
+      font-weight: 700;
+    }
+    .hero-buttons .signin-btn:hover {
+      background: var(--button-hover-blue);
+    }
+    .hero-content .mature-link {
+      margin-top: 21px;
+      color: #fff;
+      font-size: 15px;
+      display: block;
+      font-family: 'Montserrat', Arial, sans-serif;
+      letter-spacing: 0.01em;
+      opacity: 0.86;
+    }
+
+    /* Breadcrumbs */
+    .breadcrumbs {
+      font-size: 14px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0 auto;
+      margin-top: 42px;
+      margin-bottom: 21px;
+      width: 94vw;
+      max-width: 840px;
+      color: var(--breadcrumb-gray);
+      letter-spacing: 0.01em;
+    }
+    .breadcrumbs a, .breadcrumbs span {
+      color: var(--breadcrumb-gray);
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .breadcrumbs .current {
+      color: var(--breadcrumb-blue);
+      font-weight: 700;
+    }
+
+    /* Main Content */
+    .main-content {
+      margin: 0 auto;
+      padding: 0 15px 40px 15px;
+      max-width: 840px;
+      width: 100vw;
+      text-align: center;
+    }
+    .main-content h2 {
+      font-size: 32px;
+      font-weight: 700;
+      margin-top: 0;
+      margin-bottom: 20px;
+      font-family: 'Montserrat', Arial, sans-serif;
+    }
+    .main-content p {
+      font-size: 17px;
+      line-height: 1.38;
+      color: var(--text-gray);
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 0 0 20px 0;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+    .main-content .main-desc,
+    .main-content .secondary-desc {
+      margin-bottom: 17px;
+      color: var(--text-dark);
+      font-size: 17px;
+    }
+    .main-content .main-desc {
+      margin-bottom: 28px;
+    }
+    .main-content .features-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 32px 0;
+      color: var(--text-gray);
+      text-align: center;
+      font-size: 16px;
+      line-height: 2;
+      font-family: 'Montserrat', Arial, sans-serif;
+      letter-spacing: 0.01em;
+    }
+    .main-content .features-list li {
+      margin-bottom: 2px;
+    }
+    .main-content .find-guy-title {
+      font-size: 24px;
+      font-weight: 700;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin: 32px 0 18px 0;
+      color: var(--text-dark);
+    }
+    .main-content .tags-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 18px;
+      margin-top: 27px;
+      margin-bottom: 14px;
+    }
+    .main-content .tag {
+      padding: 12px 24px;
+      background: var(--tag-bg);
+      color: var(--tag-blue);
+      border-radius: 18px;
+      font-size: 16px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: var(--shadow-card);
+      border: none;
+      transition: background 0.15s, color 0.15s;
+    }
+    .main-content .tag:hover {
+      background: #e1eefc;
+      color: #0e6eba;
+    }
+    .main-content a {
+      color: #32b5ea;
+      text-decoration: underline;
+    }
+
+    /* Footer */
+    .footer-bar {
+      width: 100%;
+      background: var(--footer-bar-bg);
+      padding: 40px 0 22px 0;
+      min-height: 85px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .footer-bar-inner {
+      max-width: 954px;
+      width: 94vw;
+      margin: 0 auto;
+    }
+    .footer-bar-title {
+      color: #fff;
+      font-size: 20px;
+      font-weight: 700;
+      font-family: 'Montserrat', Arial, sans-serif;
+      margin-bottom: 13px;
+      text-align: left;
+    }
+    .footer-bar-list {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+    .footer-bar-list .f-tag {
+      display: inline-block;
+      background: #26789e;
+      color: #fff;
+      border-radius: 22px;
+      font-size: 17px;
+      min-width: 160px;
+      padding: 8px 0;
+      margin-bottom: 0;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 500;
+      text-align: center;
+      transition: background 0.2s;
+      border: none;
+      box-shadow: var(--shadow-card);
+    }
+
+    .footer {
+      background: var(--footer-bg);
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 16px;
+      padding: 38px 0 0 0;
+    }
+    .footer-inner {
+      max-width: 954px;
+      width: 94vw;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      gap: 18px;
+      flex-wrap: wrap;
+      padding-bottom: 28px;
+    }
+    .footer-section {
+      min-width: 200px;
+    }
+    .footer-section-title {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 16px;
+      margin-top: 0;
+    }
+    .footer-section ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .footer-section ul li {
+      margin-bottom: 7px;
+      color: #efefef;
+      font-weight: 400;
+      font-size: 15px;
+    }
+    .footer-section .ssl {
+      font-weight: 700;
+      font-size: 15px;
+      margin-top: 12px;
+      display: block;
+      color: #fff;
+    }
+
+    .footer-bottom {
+      font-size: 13px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #b9bfc3;
+      text-align: left;
+      opacity: 0.9;
+      padding-bottom: 16px;
+      padding-top: 0;
+      margin: 0 auto;
+      width: 94vw;
+      max-width: 954px;
+    }
+
+    @media (max-width: 1260px) {
+      .hero-inner {
+        width: 100vw;
+      }
+      .footer-bar-inner, .footer-inner, .footer-bottom, .main-content, .breadcrumbs {
+        width: 98vw;
+        max-width: 98vw;
+      }
+    }
+    @media (max-width: 1000px) {
+      .hero-inner {
+        flex-direction: column;
+        align-items: flex-start;
+        min-height: 0;
+      }
+      .hero-image-1 {
+        margin: 0 0 24px 0;
+      }
+      .hero-image-2 {
+        margin-top: 28px;
+        margin-left: 0;
+        align-self: flex-end;
+      }
+      .footer-bar-list {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .footer-inner {
+        flex-direction: column;
+        gap: 32px;
+      }
+    }
+    @media (max-width: 700px) {
+      .hero-inner {
+        padding-top: 24px;
+      }
+      .breadcrumbs, .main-content, .footer-bar-inner, .footer-inner, .footer-bottom {
+        padding-left: 4vw;
+        padding-right: 4vw;
+      }
+      .footer-bottom {
+        font-size: 12px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="hero">
+    <button class="hero-signin-btn">Sign in</button>
+    <div class="hero-inner">
+      <img src="src/placeholder.jpg" width="180" height="180" alt="" class="hero-image-1">
+      <div class="hero-content">
+        <h1>Meet amazing singles<br>today</h1>
+        <p>Just say g'day to local singles looking for fun<br>excitement and romance in your area right now</p>
+        <p class="bold">Create your free profile to see your matches</p>
+        <div class="hero-buttons">
+          <button class="join-btn">Join for free now</button>
+          <button class="signin-btn">Sign in</button>
+        </div>
+        <span class="mature-link">Over 50? Try our mature dating site</span>
+      </div>
+      <img src="src/placeholder.jpg" width="380" height="280" alt="" class="hero-image-2">
+    </div>
+  </div>
+
+  <div class="breadcrumbs">
+    Home &nbsp;&gt;&nbsp; Singles &nbsp;&gt;&nbsp; Gold Coast &nbsp;&gt;&nbsp; <span class="current">Bonogin</span>
+  </div>
+  <div class="main-content">
+    <h2>Singles Bonogin</h2>
+    <p class="main-desc">
+      Finding singles in Bonogin is fun and easy with justsaygday.com. As one of Australia's leading matchmaking websites you have a great chance of meeting that special someone missing in your life.
+    </p>
+    <p class="secondary-desc">
+      Life as a single girl of guy in Bonogin can be fun but most of us are looking for someone to share the ups and downs of life, share experiences and cuddle up on those cold winter nights. With new members registering on Australia's hottest online dating website every month looking for friendship and romance, your dream date may be just a couple of click away.<br><br>
+      Finding a date is fun and easy with our desktop and convenient mobile applications. Our latest smartphone application is the most powerful yet and best of all, there is no application to download and no fiddly installation instructions to follow, just sign up for free and visit <a href="#">justsaygday.com</a> from any mobile device for instant access to the mobile application. From the mobile application you can access all the popular features as if you were on the desktop site as well as some mobile enhanced features like:
+    </p>
+    <ul class="features-list">
+      <li>Who's near me - find singles near you with the latest geo-location technologies without giving away your exact location</li>
+      <li>Upload photos and videos directly from your phones camera</li>
+      <li>Send 'icebreakers' and 'winks'</li>
+      <li>Advanced personality matching and automated suggestions</li>
+    </ul>
+    <div class="find-guy-title">Find the guy who's right for you</div>
+    <p class="main-desc">
+      What's your idea of the perfect guy? Outgoing, sensitive, wild, gentle, tall, big, slim?
+    </p>
+    <p>
+      Find someone to share your life with. The next person you say g'day to might be the one.
+    </p>
+    <div class="tags-group">
+      <button class="tag">Search single women in Bonogin</button>
+      <button class="tag">Search single men in Bonogin</button>
+      <button class="tag">Dating in Bonogin</button>
+    </div>
+  </div>
+
+  <div class="footer-bar">
+    <div class="footer-bar-inner">
+      <div class="footer-bar-title">Singles in</div>
+      <div class="footer-bar-list">
+        <span class="f-tag">Advancetown</span>
+        <span class="f-tag">Arundel</span>
+        <span class="f-tag">Arundel Bc</span>
+        <span class="f-tag">Arundel Dc</span>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-inner">
+      <div class="footer-section">
+        <div class="footer-section-title">Just Say G’day</div>
+        <span class="ssl">SSL secureScamalytics</span>
+      </div>
+      <div class="footer-section">
+        <div class="footer-section-title">Pages</div>
+        <ul>
+          <li>Local singles</li>
+          <li>Mature dating</li>
+          <li>Blog</li>
+          <li>Completing your dating profile</li>
+        </ul>
+      </div>
+      <div class="footer-section">
+        <div class="footer-section-title">Company</div>
+        <ul>
+          <li>Terms</li>
+          <li>Privacy</li>
+          <li>Cookies</li>
+          <li>Facebook</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      © Copyright notice - Site design and content copyright justsaygday.com<br>
+      Individuals pictured are models and are used for illustrative purposes only.
+    </div>
+  </footer>
+</body>
+</html>

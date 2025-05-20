@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>3rd Annual MIIA Sporting Clay Shoot</title>
+  <meta name="viewport" content="width=1024">
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700,400&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100vh;
+      margin: 0;
+      background: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #393939;
+      font-size: 18px;
+      line-height: 1.5;
+      letter-spacing: 0.01em;
+      display: block;
+    }
+
+    /* Navigation buttons */
+    .top-buttons {
+      position: absolute;
+      top: 64px;
+      right: 160px;
+      display: flex;
+      gap: 8px;
+      z-index: 1;
+    }
+    .nav-btn {
+      display: inline-block;
+      background: #7d736b;
+      color: #fff;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 18px;
+      padding: 18px 38px 18px 38px;
+      border: none;
+      outline: none;
+      border-radius: 0;
+      cursor: pointer;
+      margin: 0;
+      position: relative;
+      min-width: 150px;
+      box-sizing: border-box;
+      overflow: hidden;
+      text-align: center;
+      clip-path: polygon(8% 0%,100% 0%,92% 100%,0% 100%);
+      margin-right: 0;
+      margin-left: 0;
+      text-decoration: none;
+    }
+    .nav-btn:focus {
+      outline: 3px solid #2c6bce;
+      outline-offset: 2px;
+    }
+
+    .main-container {
+      margin: 120px auto 0 auto;
+      width: 880px;
+      min-height: 680px;
+      display: block;
+      position: relative;
+      background: none;
+    }
+    @media (max-width: 950px) {
+      .main-container {
+        width: 95vw;
+        margin-left: 0;
+        margin-right: 0;
+      }
+      .top-buttons {
+        right: 3vw;
+      }
+    }
+    .main-title {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 34px;
+      color: #3b78c6;
+      margin-top: 0;
+      margin-bottom: 0.2em;
+      letter-spacing: 0.01em;
+    }
+    .event-date {
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-weight: 700;
+      color: #393939;
+      font-size: 32px;
+      margin-top: 0;
+      margin-bottom: 34px;
+      letter-spacing: 0.01em;
+    }
+    .event-content-wrapper {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      margin-top: 0;
+    }
+    .event-image-wrapper {
+      flex: none;
+    }
+    .event-image-wrapper img {
+      display: block;
+      width: 350px;
+      height: 350px;
+      background: #1208fe;
+      object-fit: cover;
+      margin-right: 40px;
+      /* Hide the image visually but keep for screen readers if no src is available */
+    }
+    .event-text {
+      flex: 1 1 0;
+      min-width: 0;
+      color: #393939;
+      font-size: 18px;
+      font-weight: 400;
+      font-family: 'Montserrat', Arial, sans-serif;
+      letter-spacing: 0.01em;
+    }
+    .event-text a {
+      color: #3b78c6;
+      text-decoration: underline;
+      font-weight: 400;
+    }
+    .event-text a:focus {
+      outline: 3px solid #2c6bce;
+      outline-offset: 2px;
+    }
+    .back-link {
+      display: block;
+      font-family: 'Montserrat', Arial, sans-serif;
+      color: #1578d6;
+      font-size: 18px;
+      margin-top: 12px;
+      margin-bottom: 0;
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .back-link:focus {
+      outline: 3px solid #2c6bce;
+      outline-offset: 2px;
+    }
+    /* Footer */
+    .footer {
+      width: 100%;
+      text-align: left;
+      margin-top: 90px;
+      margin-left: 160px;
+      margin-bottom: 20px;
+      color: #dbdbdb;
+      font-family: 'Montserrat', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      line-height: 2.0;
+    }
+    .footer-links {
+      display: inline-block;
+      margin-bottom: 6px;
+      color: #dbdbdb;
+    }
+    .footer-links a {
+      color: #dbdbdb;
+      text-decoration: underline;
+      margin-right: 20px;
+      font-weight: 400;
+      font-size: 16px;
+    }
+    .footer-links a:last-child { margin-right: 0; }
+    .footer-phone {
+      color: #dbdbdb;
+      font-size: 18px;
+      letter-spacing: 0.01em;
+      margin-top: 10px;
+      font-family: 'Montserrat', Arial, sans-serif;
+      display: block;
+    }
+    /* Accessibility: focus state for all links and buttons */
+    a:focus, button:focus, .footer-links a:focus {
+      outline: 3px solid #2c6bce;
+      outline-offset: 2px;
+    }
+    @media (max-width: 1120px) {
+      .main-container {
+        width: 94vw;
+      }
+      .footer {
+        margin-left: 30px;
+      }
+      .top-buttons {
+        right: 30px;
+      }
+    }
+    @media (max-width: 880px) {
+      .main-container, .footer {
+        width: 98vw;
+        margin-left: 8px;
+      }
+      .event-content-wrapper {
+        flex-direction: column;
+      }
+      .event-image-wrapper img {
+        margin-right: 0;
+        margin-bottom: 20px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-buttons" role="navigation" aria-label="Main links">
+    <a href="#" class="nav-btn" tabindex="0">Contact Us</a>
+    <a href="#" class="nav-btn" tabindex="0">Members</a>
+  </div>
+  <main class="main-container">
+    <h1 class="main-title">3rd Annual MIIA Sporting Clay Shoot</h1>
+    <div class="event-date">11.9.2018</div>
+    <div class="event-content-wrapper">
+      <div class="event-image-wrapper">
+        <img src="src/placeholder.jpg" width="350" height="350" alt="Sporting clay shoot event (placeholder image)">
+      </div>
+      <div class="event-text">
+        <p>The ATA Comp Fund was one of the proud sponsors and participants in the Montgomery Independent Insurance Agents' 3rd Annual Clay Shoot at the Lower Wetumpka Shotgun Sports Club.  In its 3rd year of putting on the event, the MIIA was able to raise proceeds for the Hope Inspired Ministries.  Always a fun time, MIIA!</p>
+        <p>Check out more photos on our <a href="#" tabindex="0">Facebook</a> page!</p>
+        <a href="#" class="back-link" tabindex="0">&lt; Back To News</a>
+      </div>
+    </div>
+  </main>
+  <footer class="footer" aria-label="Footer">
+    <div class="footer-links">
+      <a href="#" tabindex="0">ABOUT</a>
+      <a href="#" tabindex="0">WHY ATA FUND</a>
+      <a href="#" tabindex="0">APPLY</a>
+      <a href="#" tabindex="0">CLAIMS</a>
+    </div>
+    <div class="footer-phone">[PHONE REDACTED]</div>
+  </footer>
+</body>
+</html>

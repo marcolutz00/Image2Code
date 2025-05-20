@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>FETCH 5.8 Support Message Board</title>
+  <meta name="viewport" content="width=980">
+  <style>
+    html {
+      box-sizing: border-box;
+      font-size: 16px;
+    }
+    *, *:before, *:after {
+      box-sizing: inherit;
+    }
+    body {
+      background: #fff;
+      color: #222;
+      margin: 0;
+      font-family: 'Georgia', serif;
+      font-size: 15px;
+      min-width: 980px;
+    }
+    .header-bar {
+      background: #293E54;
+      height: 8px;
+      width: 100%;
+      margin: 0;
+      border: none;
+    }
+    .header-bar.secondary {
+      background: #fff;
+      height: 5px;
+      border-top: 2px solid #F2F2F2;
+      margin-bottom: 24px;
+    }
+    .container {
+      width: 720px;
+      margin: 40px auto 0 auto;
+    }
+    .hero {
+      background: #1F3C5D;
+      color: #fff;
+      border-radius: 0;
+      height: 230px;
+      padding: 32px 0 0 0;
+      position: relative;
+      margin-bottom: 36px;
+    }
+    .hero-inner {
+      width: 580px;
+      margin: 0 auto;
+      padding-left: 18px;
+      padding-right: 18px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: #223A54;
+      padding: 7px 21px 7px 17px;
+      border-radius: 0;
+      font-family: 'Arial', 'Helvetica Neue', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: 1.5px;
+      margin-bottom: 16px;
+      margin-right: 8px;
+      color: #fff;
+      line-height: 1;
+    }
+    .hero-badge .hero-version {
+      color: #60a7d5;
+      font-weight: 400;
+      font-size: 0.92em;
+      letter-spacing: normal;
+      margin-left: 8px;
+    }
+    .hero-title {
+      font-family: 'Georgia', serif;
+      font-weight: 500;
+      font-size: 2.2rem;
+      line-height: 1.20;
+      margin: 2px 0 16px 0;
+      color: #fff;
+    }
+    .hero-support-link {
+      display: inline-block;
+      color: #60a7d5;
+      text-decoration: underline;
+      font-family: 'Arial', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1em;
+      font-weight: 400;
+      letter-spacing: 0.2px;
+      transition: color 0.1s;
+      outline: none;
+      border: none;
+      border-bottom: 1.5px solid #3A6994;
+      padding-bottom: 0;
+      margin-bottom: 4px;
+      background: transparent;
+      box-shadow: none;
+      cursor: pointer;
+    }
+    .hero-support-link:focus,
+    .hero-support-link:hover {
+      color: #338ecb;
+      text-decoration: underline;
+    }
+    .underline {
+      display: block;
+      margin-top: 8px;
+      border-bottom: 1.5px solid #295882;
+      width: 106px;
+    }
+
+    /* Main content */
+    main {
+      margin-top: 15px;
+      margin-bottom: 30px;
+    }
+    .discussion-header {
+      font-family: 'Arial', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1.08em;
+      font-weight: bold;
+      color: #8E4824;
+      margin-top: 0;
+      margin-bottom: 5px;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+    .discussion-header .post-count {
+      color: #666;
+      text-transform: none;
+      font-size: 0.97em;
+      font-weight: normal;
+    }
+    .archived-message {
+      background: #E87F71;
+      border: 1px solid #B74741;
+      color: #222;
+      border-radius: 2.5px;
+      font-size: 0.98em;
+      line-height: 1.4em;
+      padding: 7px 16px 7px 16px;
+      margin-bottom: 18px;
+      margin-top: 8px;
+    }
+    .discussion-meta {
+      font-family: 'Arial', 'Helvetica Neue', Arial, sans-serif;
+      font-size: 1em;
+      color: #514848;
+      margin-bottom: 8px;
+      margin-top: 12px;
+      list-style: disc inside;
+      padding-left: 14px;
+    }
+    .discussion-meta strong {
+      font-weight: 700;
+    }
+
+    .post-list {
+      margin: 0 0 0 0;
+      padding: 0;
+      border-top: 1px solid #EAEAEA;
+      border-bottom: 1px solid #EAEAEA;
+      background: none;
+    }
+    .post {
+      padding: 22px 0 8px 0;
+      border-bottom: 1px solid #EAEAEA;
+    }
+    .post:last-child {
+      border-bottom: none;
+    }
+    .post-header {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 1px;
+      gap: 10px;
+      font-size: 1em;
+      font-family: 'Arial', 'Helvetica Neue', Arial, sans-serif;
+    }
+    .post-author {
+      font-weight: bold;
+      color: #434848;
+      font-size: 1.06em;
+    }
+    .post-role {
+      color: #969C98;
+      font-weight: normal;
+      font-size: 0.92em;
+      margin-left: 4px;
+      margin-bottom: 1.5px;
+    }
+    .post-body {
+      font-family: "Georgia", serif;
+      color: #363636;
+      font-weight: 400;
+      margin-left: 0.5px;
+      font-size: 1em;
+      line-height: 1.5em;
+      margin-bottom: 7px;
+      margin-top: 2.5px;
+    }
+    .post-footer {
+      font-family: 'Arial', 'Helvetica Neue', Arial, sans-serif;
+      color: #999999;
+      font-size: 0.93em;
+      margin-top: 2px;
+      letter-spacing: 0.03em;
+    }
+    .post-footer .footer-link {
+      color: #81A6CC;
+      text-decoration: underline;
+      margin-left: 9px;
+      font-size: 1em;
+      outline: none;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      cursor: pointer;
+    }
+    .post-footer .footer-link:focus,
+    .post-footer .footer-link:hover {
+      color: #338ecb;
+      text-decoration: underline;
+    }
+
+    .bottom-divider {
+      border-bottom: 1px solid #EAEAEA;
+      margin-top: 24px;
+      margin-bottom: 18px;
+    }
+    .topic-closed {
+      font-family: 'Arial', 'Helvetica Neue', Arial, sans-serif;
+      color: #245782;
+      background: none;
+      font-weight: normal;
+      font-size: 1.09em;
+      margin-bottom: 7px;
+      margin-top: 0;
+    }
+    .topic-closed-desc {
+      color: #444;
+      font-family: "Georgia", serif;
+      font-size: 1em;
+      margin-bottom: 1.1em;
+      margin-top: 1px;
+    }
+
+    .return-link {
+      display: block;
+      font-size: 0.97em;
+      font-family: 'Arial', 'Helvetica Neue', Arial, sans-serif;
+      color: #295882;
+      text-align: right;
+      text-decoration: underline;
+      margin-bottom: 40px;
+      margin-top: 10px;
+      outline: none;
+      border: none;
+      background: transparent;
+      box-shadow: none;
+      cursor: pointer;
+    }
+    .return-link:focus,
+    .return-link:hover {
+      color: #338ecb;
+      text-decoration: underline;
+    }
+
+    .site-footer {
+      border-top: 1.5px solid #DFDFDF;
+      margin-top: 40px;
+      padding-top: 12px;
+      font-size: 0.92em;
+      text-align: center;
+      color: #B4B4B4;
+      font-family: 'Arial', 'Helvetica Neue', Arial, sans-serif;
+      letter-spacing: 0.05em;
+      margin-bottom: 9px;
+    }
+
+    /* Accessibility */
+    a, button, .footer-link, .return-link, .hero-support-link {
+      outline-offset: 2px;
+      outline-color: #338ecb;
+    }
+    a:focus, button:focus, .footer-link:focus, .return-link:focus, .hero-support-link:focus {
+      outline: 2.5px solid #338ecb;
+    }
+  </style>
+</head>
+<body>
+  <div class="header-bar"></div>
+  <div class="header-bar secondary"></div>
+  <main class="container" aria-label="Main content">
+    <section class="hero" aria-label="Fetch Software Support Banner">
+      <div class="hero-inner">
+        <div class="hero-badge" aria-label="Fetch version">
+          FETCH <span class="hero-version">5.8</span>
+        </div>
+        <h1 class="hero-title">Your best friend for file transfer.</h1>
+        <a href="#" class="hero-support-link">SUPPORT</a>
+        <div class="underline" aria-hidden="true"></div>
+      </div>
+    </section>
+
+    <section aria-labelledby="topic-heading">
+      <h2 id="topic-heading" class="discussion-header">
+        FILE NAME CHARACTERS <span class="post-count">(2 posts)</span>
+      </h2>
+      <div class="archived-message" role="status">
+        This is an archived topic. The information in it is likely to be out-of-date and no longer applicable to current versions of Fetch.
+      </div>
+      <ul class="discussion-meta" aria-label="Thread meta">
+        <li>
+          Started 21 years ago by <span>gorenstein</span>
+        </li>
+        <li>
+          <strong>Latest reply</strong> 21 years ago from <span>Jim Matthews</span>
+        </li>
+      </ul>
+      <div class="post-list" aria-label="Posts">
+        <article class="post">
+          <div class="post-header">
+            <span class="post-author">gorenstein</span>
+            <span class="post-role" aria-label="User role">Member</span>
+          </div>
+          <div class="post-body">
+            In uploading files from a Mac to a Windows system, certain characters that are not valid in Windows file names are "escaped". For example a forward slash (/) is converted to '%2F'.<br><br>
+            Other such characters go unescaped and cause transfers to fail. Examples are asterisks (*) and double quotes (").<br><br>
+            Since Fetch is capable of escaping some illegal characters, is there any way to get it to do the others?<br><br>
+            Also, is there some way to provide a more desirable substitution. For example, I would prefer to have the forward slashes wind up as dashes.
+          </div>
+          <div class="post-footer">
+            POSTED 21 YEARS AGO
+            <a href="#" class="footer-link" aria-label="Permalink to this post">#</a>
+          </div>
+        </article>
+        <article class="post">
+          <div class="post-header">
+            <span class="post-author">Jim Matthews</span>
+            <span class="post-role" aria-label="Admin role">Administrator</span>
+          </div>
+          <div class="post-body">
+            There isn't currently a way to do this, but it's a great suggestion.<br><br>
+            Thanks,<br>
+            Jim Matthews<br>
+            Fetch Softworks
+          </div>
+          <div class="post-footer">
+            POSTED 21 YEARS AGO
+            <a href="#" class="footer-link" aria-label="Permalink to this post">#</a>
+          </div>
+        </article>
+      </div>
+      <div class="bottom-divider"></div>
+      <h3 class="topic-closed">Topic closed</h3>
+      <div class="topic-closed-desc">
+        This topic has been closed.
+      </div>
+      <a href="#" class="return-link" aria-label="Return to Message Board">Return to Message Board</a>
+    </section>
+  </main>
+  <footer class="site-footer" aria-label="Copyright and credits">
+    © COPYRIGHT 2000 &ndash; 2023 FROM YOUR FRIENDS AT FETCH SOFTWORKS
+  </footer>
+</body>
+</html>

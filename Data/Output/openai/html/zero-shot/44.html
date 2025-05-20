@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Followers - UI Mockup</title>
+  <meta name="viewport" content="width=1024">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+    }
+    body {
+      font-family: Arial, Helvetica, 'Segoe UI', sans-serif;
+      color: #000;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      min-width: 1024px;
+    }
+    /* Header Bar */
+    .topbar {
+      width: 100vw;
+      min-width: 1024px;
+      background: #fff;
+      border-bottom: 1px solid #ededed;
+      height: 48px;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 32px 0 24px;
+    }
+    .topbar-left {
+      font-size: 14px;
+      color: #444;
+      letter-spacing: 0.01em;
+    }
+    .topbar-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+    }
+    .topbar-actions .signup-btn {
+      background: #15c455;
+      color: #fff;
+      font-weight: 400;
+      font-size: 14px;
+      border: none;
+      border-radius: 24px;
+      padding: 4px 18px;
+      cursor: pointer;
+      margin-right: 3px;
+      line-height: 1.7;
+      transition: filter 0.2s;
+    }
+    .topbar-actions .signup-btn:focus {
+      outline: 2px solid #276d32;
+      outline-offset: 0;
+    }
+    .topbar-actions .signin-link {
+      font-size: 14px;
+      color: #222;
+      background: none;
+      border: none;
+      padding: 0;
+      margin: 0 12px 0 0;
+      cursor: pointer;
+      text-decoration: none;
+    }
+    .topbar-actions .user-avatar {
+      margin-left: 25px;
+    }
+    .topbar-actions .user-avatar img {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: #00f;
+      display: block;
+      object-fit: cover;
+      border: none;
+    }
+    main {
+      margin: 0;
+      background: #fff;
+      min-width: 1024px;
+    }
+    .container {
+      margin: 64px auto 0 auto;
+      width: 840px;
+    }
+    /* Navigation Tabs */
+    .tabs {
+      display: flex;
+      gap: 44px;
+      font-size: 15px;
+      color: #333;
+      font-weight: 400;
+      margin-bottom: 38px;
+      margin-left: 3px;
+    }
+    .tab {
+      border: none;
+      background: none;
+      font-size: 15px;
+      color: #333;
+      padding: 0 0 10px 0;
+      cursor: pointer;
+      border-bottom: 2px solid transparent;
+      outline: none;
+    }
+    .tab[aria-current="page"], .tab.active {
+      font-weight: 600;
+      color: #111;
+      border-bottom: 2px solid #111;
+      cursor: default;
+    }
+
+    /* Headline */
+    .followers-header {
+      font-size: 26px;
+      font-weight: 600;
+      margin-bottom: 36px;
+      margin-left: 3px;
+      margin-top: 0;
+    }
+
+    /* Followers list */
+    .followers-list {
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    .follower-row {
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      gap: 32px;
+      min-height: 56px;
+      position: relative;
+    }
+    .follower-avatar {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .follower-avatar img {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #00f;
+      display: block;
+      object-fit: cover;
+      border: none;
+    }
+    .follower-info {
+      min-width: 200px;
+      max-width: 370px;
+      display: flex;
+      flex-direction: column;
+      gap: 7px;
+      flex: 1 1 370px;
+    }
+    .follower-name {
+      font-size: 18px;
+      font-weight: 500;
+      color: #111;
+      margin-bottom: 0;
+      margin-top: 2px;
+      line-height: 1.35;
+    }
+    .follower-bio {
+      font-size: 15px;
+      font-weight: 400;
+      color: #666;
+      margin-top: 0;
+      margin-bottom: 0;
+      line-height: 1.41;
+      letter-spacing: 0.01em;
+      max-width: 340px;
+      word-break: break-word;
+    }
+    .follower-follow {
+      flex: 0 0 auto;
+      margin-left: auto;
+      align-self: flex-start;
+      margin-top: 2px;
+    }
+    .follow-btn {
+      background: #15c455;
+      color: #fff;
+      outline: none;
+      border: none;
+      font-size: 16px;
+      font-weight: 400;
+      border-radius: 32px;
+      padding: 6px 28px;
+      cursor: pointer;
+      transition: filter 0.2s;
+      min-width: 90px;
+      min-height: 38px;
+      box-shadow: 0 1px 2px #0001;
+      margin-right: 0;
+      margin-top: 0;
+    }
+    .follow-btn:focus {
+      outline: 2px solid #276d32;
+      outline-offset: 1px;
+    }
+    @media (max-width: 1050px) {
+      .container {
+        width: 97vw;
+        min-width: 0;
+        margin-left: 8px;
+        margin-right: 8px;
+      }
+      .topbar, main {
+        min-width: 0;
+        width: 100vw;
+      }
+    }
+    @media (max-width: 800px) {
+      .container {
+        width: 100vw;
+        padding: 0 4vw;
+      }
+      .followers-list {
+        gap: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="topbar" role="banner">
+    <div class="topbar-left">Open in app</div>
+    <div class="topbar-actions">
+      <button class="signup-btn" type="button">Sign up</button>
+      <a href="#" class="signin-link">Sign in</a>
+      <span class="user-avatar">
+        <img src="src/placeholder.jpg" width="32" height="32" alt="Your profile"/>
+      </span>
+    </div>
+  </div>
+  <main>
+    <div class="container">
+      <nav aria-label="Section navigation" style="margin-bottom:0;">
+        <div class="tabs" role="tablist">
+          <button class="tab" role="tab" aria-selected="false" tabindex="0">Postcards from a Distant Land</button>
+          <button class="tab active" role="tab" aria-current="page" aria-selected="true" tabindex="0">Followers</button>
+        </div>
+      </nav>
+      <h1 class="followers-header">12 Followers</h1>
+      <section class="followers-list" aria-label="Followers">
+        <!-- Follower 1 -->
+        <div class="follower-row">
+          <span class="follower-avatar">
+            <img src="src/placeholder.jpg" width="42" height="42" alt="A&amp;M Space avatar"/>
+          </span>
+          <div class="follower-info">
+            <span class="follower-name">A&M Space</span>
+          </div>
+          <span class="follower-follow">
+            <button class="follow-btn" type="button" aria-label="Follow A&amp;M Space">Follow</button>
+          </span>
+        </div>
+        <!-- Follower 2 -->
+        <div class="follower-row">
+          <span class="follower-avatar">
+            <img src="src/placeholder.jpg" width="42" height="42" alt="Maple Wellington avatar"/>
+          </span>
+          <div class="follower-info">
+            <span class="follower-name">Maple Wellington</span>
+            <span class="follower-bio">High School Teacher based in Bern</span>
+          </div>
+          <span class="follower-follow">
+            <button class="follow-btn" type="button" aria-label="Follow Maple Wellington">Follow</button>
+          </span>
+        </div>
+        <!-- Follower 3 -->
+        <div class="follower-row">
+          <span class="follower-avatar">
+            <img src="src/placeholder.jpg" width="42" height="42" alt="CJ Amberwood avatar"/>
+          </span>
+          <div class="follower-info">
+            <span class="follower-name">CJ Amberwood</span>
+            <span class="follower-bio">Thinker. Author. Explorer of edges. Top writer in Writing. Founder, "Just Curious" pub, exploring creativity in 3m or less. Pour some coffee, stop in ..!</span>
+          </div>
+          <span class="follower-follow">
+            <button class="follow-btn" type="button" aria-label="Follow CJ Amberwood">Follow</button>
+          </span>
+        </div>
+        <!-- Follower 4 -->
+        <div class="follower-row">
+          <span class="follower-avatar">
+            <img src="src/placeholder.jpg" width="42" height="42" alt="June Miller avatar"/>
+          </span>
+          <div class="follower-info">
+            <span class="follower-name">June Miller</span>
+          </div>
+          <span class="follower-follow"></span>
+        </div>
+        <!-- Follower 5 -->
+        <div class="follower-row">
+          <span class="follower-avatar">
+            <img src="src/placeholder.jpg" width="42" height="42" alt="Suparnna Anilkumar avatar"/>
+          </span>
+          <div class="follower-info">
+            <span class="follower-name">Suparnna Anilkumar</span>
+            <span class="follower-bio">I have more doppelgängers than you have friends.</span>
+          </div>
+          <span class="follower-follow">
+            <button class="follow-btn" type="button" aria-label="Follow Suparnna Anilkumar">Follow</button>
+          </span>
+        </div>
+        <!-- Follower 6 -->
+        <div class="follower-row">
+          <span class="follower-avatar">
+            <img src="src/placeholder.jpg" width="42" height="42" alt="Tim Alan avatar"/>
+          </span>
+          <div class="follower-info">
+            <span class="follower-name">Tim Alan</span>
+          </div>
+          <span class="follower-follow">
+            <button class="follow-btn" type="button" aria-label="Follow Tim Alan">Follow</button>
+          </span>
+        </div>
+        <!-- Follower 7 -->
+        <div class="follower-row">
+          <span class="follower-avatar">
+            <img src="src/placeholder.jpg" width="42" height="42" alt="Liv Oliver avatar"/>
+          </span>
+          <div class="follower-info">
+            <span class="follower-name">Liv Oliver</span>
+          </div>
+          <span class="follower-follow"></span>
+        </div>
+        <!-- Follower 8 -->
+        <div class="follower-row">
+          <span class="follower-avatar">
+            <img src="src/placeholder.jpg" width="42" height="42" alt="Renuka Shyamsundar Belamkar avatar"/>
+          </span>
+          <div class="follower-info">
+            <span class="follower-name">Renuka Shyamsundar Belamkar</span>
+          </div>
+          <span class="follower-follow">
+            <button class="follow-btn" type="button" aria-label="Follow Renuka Shyamsundar Belamkar">Follow</button>
+          </span>
+        </div>
+      </section>
+    </div>
+  </main>
+</body>
+</html>

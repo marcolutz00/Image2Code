@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>How to Upload Videos to YouTube if Access to Website is Blocked</title>
+  <link href="https://fonts.googleapis.com/css?family=Montserrat:700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      background: #fff;
+      font-family: 'Arial', sans-serif;
+      color: #222;
+      font-size: 16px;
+      line-height: 1.6;
+      box-sizing: border-box;
+    }
+    body {
+      width: 800px;
+      margin: 0 auto;
+      background: #fff;
+    }
+    .header {
+      width: 100%;
+      margin-top: 36px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+    }
+    .header-left {
+      display: flex;
+      flex-direction: column;
+    }
+    .site-title {
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      letter-spacing: 0.01em;
+      margin-bottom: 2px;
+      color: #222;
+    }
+    .site-desc {
+      font-size: 13px;
+      color: #979a9c;
+      margin-bottom: 0;
+      margin-top: 0;
+      font-family: Arial, sans-serif;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+    }
+    .header-right {
+      margin-top: 8px;
+    }
+    .header-search {
+      color: #22a090;
+      font-size: 13px;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      text-decoration: none;
+      letter-spacing: 0.01em;
+    }
+    .hero {
+      width: 100vw;
+      margin-left: calc(-1 * (100vw - 800px) / 2);
+      background: #33a393;
+      margin-top: 32px;
+      padding-top: 60px;
+      padding-bottom: 64px;
+      box-sizing: border-box;
+      min-width: 800px;
+      min-height: 192px;
+    }
+    .hero-title {
+      width: 800px;
+      margin: 0 auto;
+      color: #fff;
+      font-size: 38px;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin-bottom: 0;
+    }
+    .content {
+      width: 730px;
+      margin: 42px auto 0 auto;
+      font-size: 16px;
+      color: #222;
+    }
+    .post-date {
+      color: #979a9c;
+      font-size: 14px;
+      margin-bottom: 32px;
+      margin-top: 0;
+      letter-spacing: 0.01em;
+      font-family: Arial, sans-serif;
+    }
+    .first-letter {
+      float: left;
+      font-size: 38px;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      font-weight: 700;
+      color: #33a393;
+      line-height: 0.85;
+      margin-right: 4px;
+      margin-top: 2px;
+    }
+    .lead-link {
+      color: #33a393;
+      text-decoration: underline;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+      font-weight: normal;
+    }
+    .content a {
+      color: #33a393;
+      text-decoration: underline;
+      font-weight: normal;
+      font-family: Arial, sans-serif;
+      font-size: 16px;
+    }
+    .content p {
+      margin-top: 18px;
+      margin-bottom: 18px;
+    }
+    .p-related {
+      margin-top: 18px;
+    }
+    .section-share {
+      width: 100%;
+      margin-top: 16px;
+      margin-bottom: 46px;
+      display: flex;
+      flex-direction: row;
+    }
+    .section-share-spacer {
+      flex: 1;
+    }
+    .section-share-btn {
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      color: #33a393;
+      text-transform: uppercase;
+      font-size: 14px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      margin-left: 0;
+    }
+    /* Blog posts section */
+    .popular-posts-section {
+      width: 730px;
+      margin: 72px auto 0 auto;
+    }
+    .popular-title {
+      font-size: 14px;
+      color: #222;
+      font-weight: 700;
+      font-family: Arial, sans-serif;
+      letter-spacing: 0.01em;
+      margin-bottom: 30px;
+      margin-top: 0;
+    }
+    .blog-post {
+      margin-bottom: 48px;
+      position: relative;
+      min-height: 100px;
+      padding-bottom: 10px;
+    }
+    .blog-post-title {
+      font-size: 28px;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      line-height: 1.2;
+      font-weight: 700;
+      color: #33a393;
+      margin-top: 0;
+      margin-bottom: 10px;
+      letter-spacing: 0.01em;
+    }
+    .blog-date {
+      color: #979a9c;
+      font-size: 14px;
+      margin-bottom: 8px;
+      margin-top: 0;
+      font-family: Arial, sans-serif;
+      letter-spacing: 0.01em;
+    }
+    .blog-desc {
+      font-size: 16px;
+      color: #222;
+      margin-bottom: 20px;
+      margin-top: 0;
+    }
+    .blog-post-controls {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-top: 0;
+    }
+    .blog-share {
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      color: #33a393;
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      margin-right: 34px;
+      text-decoration: none;
+    }
+    .blog-readmore {
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      color: #33a393;
+      text-transform: uppercase;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
+      text-decoration: none;
+      margin-left: auto;
+      display: inline-block;
+    }
+    .blog-img {
+      position: absolute;
+      right: 0;
+      top: 0;
+      width: 183px;
+      height: 190px;
+      background: #222;
+      display: block;
+    }
+    .blog-img img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      background: #2271e7;
+    }
+    /* last / digital inspiration post special */
+    .powered-section {
+      background: transparent;
+      margin-top: 40px;
+      text-align: left;
+    }
+    .powered-content {
+      text-align: center;
+      margin-top: 45px;
+      margin-bottom: 8px;
+    }
+    .powered-by {
+      color: #33a393;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      text-align: center;
+      text-transform: none;
+      letter-spacing: 0.01em;
+      display: block;
+    }
+    .footer-copyright {
+      font-size: 12px;
+      color: #979a9c;
+      text-align: center;
+      margin-bottom: 30px;
+      margin-top: 2px;
+      letter-spacing: 0.01em;
+    }
+    /* Remove float for first letter at mobile widths */
+    @media (max-width: 900px) {
+      body {
+        width: 100vw;
+        min-width: unset;
+      }
+      .hero {
+        width: 100vw;
+        min-width: unset;
+      }
+      .hero-title {
+        width: auto;
+        padding-left: 24px;
+        padding-right: 24px;
+      }
+      .content, .popular-posts-section {
+        width: 97vw;
+        min-width: unset;
+        max-width: unset;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+    }
+    @media (max-width: 750px) {
+      body, .hero, .content, .popular-posts-section {
+        width: 100vw !important;
+        min-width: 0 !important;
+        padding: 0 4vw;
+      }
+      .hero-title {
+        width: 100vw !important;
+      }
+    }
+    /* Hide blue image box except for the right position in the targeted post */
+    .blog-img {
+      display: none;
+    }
+    .blog-post.has-img .blog-img {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <div class="site-title">DIGITAL INSPIRATION</div>
+      <div class="site-desc">Tips and Tricks for Google Workspace users</div>
+    </div>
+    <div class="header-right">
+      <a class="header-search" href="#">SEARCH</a>
+    </div>
+  </div>
+  <div class="hero">
+    <div class="hero-title">
+      How to Upload Videos to YouTube if<br>Access to Website is Blocked
+    </div>
+  </div>
+  <div class="content">
+    <div class="post-date">July 25, 2007</div>
+    <p>
+      <span class="first-letter">R</span><span class="lead-link">ichard, who works for a large Fortune 100 company, recently wrote on Facebook</span> that he cannot upload screencast video clips to YouTube since the company he works for has blocked access to YouTube and other video sharing websites though the firewall.
+    </p>
+    <p>
+      One of the available options is to use your <a href="#">mobile phone</a> for uploading videos on YouTube - just create a mobile profile on YouTube from a computer outside the organization's firewall and then email the video to YouTube as an MMS message.
+    </p>
+    <p class="p-related">
+      Related: <a href="#">How to Access Blocked Websites</a>
+    </p>
+    <p>
+      The second more versatile option is the one-to-many <a href="#">Hey!Spread</a> - this is an online service to help you upload a video clip to multiple video sharing websites in one go.
+    </p>
+    <p>
+      You upload the video to Hey!Spread servers and they in turn upload it to the various other video sites including YouTube, MySpace, PhotoBucket, MetaCafe, Google, Yahoo! video, DailyMotion, etc.
+    </p>
+    <p>
+      Chances are high that access to Hey!Spread is open in your company - they'll send you an email confirmation as soon as your video is uploaded successfully to the different sites.
+    </p>
+    <div class="section-share">
+      <div class="section-share-spacer"></div>
+      <a href="#" class="section-share-btn">SHARE</a>
+    </div>
+  </div>
+  <div class="popular-posts-section">
+    <div class="popular-title">Popular posts from this blog</div>
+    <div class="blog-post">
+      <div class="blog-post-title">How to Download Contacts from Facebook To Outlook Address Book</div>
+      <div class="blog-date">October 15, 2007</div>
+      <div class="blog-desc">
+        Facebook users are not too pleased with the "walled garden" approach of Facebook. The reason is simple - while you can easily import your Outlook address book and GMail contacts into Facebook, the reverse path is closed. &nbsp;&nbsp;&nbsp;&nbsp; &hellip;
+      </div>
+      <div class="blog-post-controls">
+        <a class="blog-share" href="#">SHARE</a>
+        <a class="blog-readmore" href="#">READ MORE</a>
+      </div>
+    </div>
+    <div class="blog-post has-img" style="min-height:210px;">
+      <div class="blog-post-title">Learn to Create a Firefox Search Plugin in Less Than 2 Minutes</div>
+      <div class="blog-date">September 23, 2006</div>
+      <div class="blog-desc">
+        Almost every blog has a site search form where you just type in the search query and press enter to digg through the archives of that blog . The only drawback here is that you first have to visit the site homepage to locate the search box. &nbsp;&nbsp;&nbsp;&nbsp; &hellip;
+      </div>
+      <div class="blog-img">
+        <img src="src/placeholder.jpg" width="183" height="190" alt="">
+      </div>
+      <div class="blog-post-controls">
+        <a class="blog-share" href="#">SHARE</a>
+        <a class="blog-readmore" href="#">READ MORE</a>
+      </div>
+    </div>
+    <div class="blog-post">
+      <div class="blog-post-title">Digital Inspiration</div>
+      <div class="blog-date">October 25, 2007</div>
+      <div class="blog-desc">
+        Digital Inspiration is a popular tech blog by Amit Agarwal . Our popular Google Scripts include Gmail Mail Merge (send personalized emails with Gmail ), Document Studio (generate PDFs from Google Forms ) and  File Upload Forms ( receive files in Google Drive).
+      </div>
+      <div class="blog-post-controls">
+        <a class="blog-share" href="#">SHARE</a>
+        <a class="blog-readmore" href="#">READ MORE</a>
+      </div>
+    </div>
+    <div class="powered-section">
+      <div class="powered-content">
+        <span class="powered-by">Powered by Blogger</span>
+        <div class="footer-copyright">
+          2004-2023 Digital Inspiration
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

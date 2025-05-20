@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Pink Rose Cottage</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Open+Sans:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+    }
+    body {
+      background: #d8efe9;
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', Arial, sans-serif;
+      min-width: 1085px;
+    }
+    .container {
+      width: 1100px;
+      margin: 0 auto;
+    }
+    header {
+      width: 100%;
+      height: 85px;
+      position: relative;
+      margin-bottom: 15px;
+    }
+    .site-title {
+      position: absolute;
+      left: 0;
+      top: 25px;
+      font-family: 'Pacifico', cursive;
+      font-size: 38px;
+      color: #65534a;
+      letter-spacing: 1.5px;
+    }
+    .header-right {
+      position: absolute;
+      right: 0;
+      top: 17px;
+      display: flex;
+      align-items: flex-end;
+    }
+    .header-buttons {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      margin-right: 25px;
+    }
+    .header-buttons .btn {
+      border-radius: 13px;
+      background: #ecf1ea;
+      color: #7a8179;
+      font-size: 14px;
+      padding: 2px 14px 2.5px 14px;
+      border: 1px solid #bfc9c2;
+      margin-bottom: 4px;
+      box-shadow: 0 1px 2px #eee;
+      cursor: pointer;
+      font-family: 'Open Sans', Arial, sans-serif;
+      margin-right: 3px;
+    }
+    .pick-currency {
+      border-radius: 13px;
+      background: #ecf1ea;
+      color: #7a8179;
+      font-size: 14px;
+      padding: 2px 12px 2px 10px;
+      border: 1px solid #bfc9c2;
+      margin-bottom: 5px;
+      box-shadow: 0 1px 2px #eee;
+      font-family: 'Open Sans', Arial, sans-serif;
+      margin-top: 23px;
+      display: flex;
+      align-items: center;
+    }
+    .pick-currency select, .pick-currency option {
+      border: none;
+      background: transparent;
+      font-size: 14px;
+      color: #7a8179;
+      font-family: 'Open Sans', Arial, sans-serif;
+    }
+    .cart-info {
+      font-size: 24px;
+      font-weight: 400;
+      color: #322e25;
+      margin-left: 20px;
+      margin-bottom: 5px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      text-align: left;
+      letter-spacing: 0.3px;
+    }
+    .cart-info span {
+      font-size: 13px;
+      display: block;
+      font-weight: 400;
+    }
+    nav.main-nav {
+      width: 100%;
+      background: #f6f4e7;
+      border-radius: 13px;
+      height: 48px;
+      margin-bottom: 21px;
+      box-shadow: 0 1px 2px #e6edd4;
+      display: flex;
+      align-items: center;
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-size: 20px;
+    }
+    .nav-links {
+      width: 530px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 48px;
+    }
+    .nav-link {
+      color: #968b75;
+      text-decoration: none;
+      font-size: 19px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      margin: 0 12px;
+      border-radius: 8px;
+      padding: 5px 15px;
+      transition: background 0.2s;
+    }
+    .nav-link:hover {
+      background: #edeaca;
+    }
+    /* Page main structure */
+    .main-content-area {
+      display: flex;
+      min-height: 790px;
+      margin-bottom: 37px;
+    }
+    .sidebar {
+      width: 272px;
+      background: #fff;
+      border-radius: 13px;
+      box-shadow: 0 1px 3.5px #e6edd4;
+      padding: 22px 0 15px 0;
+      margin-right: 24px;
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-search {
+      width: 88%;
+      margin: 0 auto 11px auto;
+    }
+    .sidebar-search input[type="text"] {
+      width: 100%;
+      font-size: 16px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      padding: 7px 6px;
+      margin-bottom: 9px;
+      box-sizing: border-box;
+    }
+    .sidebar-menu {
+      margin: 0;
+      list-style: none;
+      padding-left: 0;
+      margin-left: 0;
+      margin-bottom: 25px;
+    }
+    .sidebar-menu li {
+      background: #f6f4e7;
+      border-radius: 11px;
+      font-family: 'Pacifico', cursive;
+      color: #8ec3a4;
+      margin-bottom: 7px;
+      padding: 9px 14px;
+      font-size: 18px;
+      box-shadow: 0 0.5px 1.5px #e6edd4;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      transition: background 0.2s;
+    }
+    .sidebar-menu li.active,
+    .sidebar-menu li:hover {
+      background: #edeaca;
+    }
+    .sidebar-menu li .arrow {
+      font-size: 12px;
+      color: #a39979;
+      margin-left: 10px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-style: normal;
+    }
+    .sidebar-footer {
+      margin-top: 20px;
+      padding: 0 20px;
+    }
+    .social-section {
+      background: #f6f4e7;
+      border-radius: 11px;
+      padding: 15px 12px 12px 18px;
+      margin-bottom: 20px;
+    }
+    .social-title {
+      font-size: 18px;
+      color: #968b75;
+      font-family: 'Open Sans', Arial, sans-serif;
+      margin-bottom: 7px;
+    }
+    .social-icons {
+      display: flex;
+      margin-top: 12px;
+    }
+    .social-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      margin-right: 13px;
+      display: inline-block;
+    }
+    .social-icon.blue { background: #234baa; }
+    .social-icon.red { background: #e94155; }
+    .social-icon.red2 { background: #cb2a2c; }
+    .newsletter-section {
+      background: #f6f4e7;
+      border-radius: 11px;
+      padding: 13px 12px 19px 18px;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    .newsletter-title {
+      font-size: 18px;
+      color: #968b75;
+      font-family: 'Open Sans', Arial, sans-serif;
+      margin-bottom: 7px;
+    }
+    .newsletter-desc {
+      font-size: 14px;
+      color: #494949;
+      margin-bottom: 10px;
+    }
+    .newsletter-form input[type="text"] {
+      width: 93%;
+      padding: 5px 0 5px 7px;
+      font-size: 15px;
+      border-radius: 4px;
+      margin-bottom: 8px;
+      border: 1px solid #c5cab9;
+      font-family: 'Open Sans', Arial, sans-serif;
+      background: #fff;
+      box-sizing: border-box;
+    }
+    .newsletter-form button {
+      padding: 6px 24px 6px 24px;
+      border-radius: 13px;
+      border: 1px solid #bfc9c2;
+      background: #8ec3a4;
+      color: #fff;
+      font-size: 17px;
+      cursor: pointer;
+      box-shadow: 0 1px 2px #eee;
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-weight: 700;
+    }
+    /* Main content panel */
+    .main-panel {
+      background: #f6f4e7;
+      border-radius: 18px;
+      box-shadow: 0 1px 2px #e6edd4;
+      flex: 1;
+      padding: 35px 45px 35px 43px;
+      min-width: 800px;
+      box-sizing: border-box;
+      min-height: 802px;
+      display: flex;
+      flex-direction: column;
+    }
+    .main-promo {
+      background: #fff;
+      border-radius: 14px;
+      box-shadow: 0px 1.2px 3px #e6edd4;
+      padding: 21px 30px 26px 30px;
+      margin-bottom: 26px;
+      text-align: center;
+      min-height: 257px;
+      position: relative;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      flex-direction: column;
+    }
+    .promo-img {
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      align-items: flex-start;
+      position: absolute;
+      left: 0;
+      top: 21px;
+      height: 182px;
+      pointer-events: none;
+    }
+    .promo-img img {
+      background: #170aff;
+      display: block;
+      border-radius: 0;
+      margin: 0 auto;
+      box-sizing: border-box;
+    }
+    .promo-text-block {
+      margin-top: 168px;
+      width: 100%;
+      text-align: center;
+      color: #706c60;
+      font-size: 15px;
+    }
+    .promo-text-block em {
+      font-style: italic;
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: #6b614d;
+      display: block;
+      margin-bottom: 7px;
+    }
+    .product-section-title {
+      margin-top: 30px;
+      font-size: 22px;
+      font-weight: 700;
+      font-family: 'Open Sans', Arial, sans-serif;
+      color: #6b614d;
+      margin-left: 8px;
+      margin-bottom: 26px;
+      text-align: left;
+    }
+    .featured-products {
+      display: flex;
+      justify-content: flex-start;
+      align-items: flex-start;
+      width: 100%;
+      gap: 36px;
+      margin-bottom: 45px;
+      margin-left: 2px;
+    }
+    .fp-item {
+      width: 196px;
+      text-align: center;
+      margin-bottom: 12px;
+    }
+    .fp-img {
+      width: 170px;
+      height: 160px;
+      background: #170aff;
+      margin: 0 auto 11px auto;
+      border-radius: 0;
+      display: block;
+      object-fit: cover;
+    }
+    .fp-title {
+      font-size: 16px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      color: #57513c;
+      min-height: 36px;
+      font-weight: 400;
+      margin-bottom: 8px;
+    }
+    .fp-price {
+      color: #65534a;
+      font-size: 19px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      margin-top: 0;
+      margin-bottom: 5px;
+      font-weight: 400;
+    }
+    /* Footer section */
+    .page-footer-wrap {
+      width: 100%;
+      background: transparent;
+      margin-top: 0;
+      margin-bottom: 35px;
+      text-align: center;
+    }
+    .footer-icons-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 18px;
+      margin-bottom: 30px;
+    }
+    .footer-icon {
+      width: 38px;
+      height: 38px;
+      background: #170aff;
+      display: inline-block;
+      border-radius: 0;
+    }
+    .footer-links {
+      font-size: 15px;
+      color: #6b614d;
+      font-family: 'Open Sans', Arial, sans-serif;
+      margin-bottom: 6px;
+    }
+    .footer-link {
+      color: #6b614d;
+      text-decoration: none;
+      margin: 0 13px;
+      font-size: 15px;
+      transition: color 0.2s;
+    }
+    .footer-link:hover {
+      color: #8ec3a4;
+    }
+    .footer-copy {
+      margin-top: 12px;
+      font-size: 13px;
+      color: #6b614d;
+      font-family: 'Open Sans', Arial, sans-serif;
+      margin-bottom: 0;
+    }
+    /* Remove spurious input spinners on some browsers */
+    input[type="text"]::-webkit-input-placeholder { color: #545454 !important; opacity: 1;}
+    input[type="text"]::-moz-placeholder          { color: #545454 !important; opacity: 1;}
+    input[type="text"]:-ms-input-placeholder      { color: #545454 !important; opacity: 1;}
+    input[type="text"]::placeholder               { color: #545454 !important; opacity: 1;}
+    /* Responsive (not needed for pixel-perfect) */
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="site-title">The Pink Rose Cottage</div>
+      <div class="header-right">
+        <div class="header-buttons">
+          <div>
+            <button class="btn">Log in</button>
+            <button class="btn">Sign up</button>
+          </div>
+          <div class="pick-currency">
+            Pick a currency
+            <span style="display:inline-block;margin-left:14px;border-radius:7px;background:#edeaca;font-size:14px;border:1px solid #c5cab9;padding:0px 9px;line-height:19px;min-width:36px;">USD</span>
+          </div>
+        </div>
+        <div class="cart-info">
+          0<span>items in your cart</span>
+        </div>
+      </div>
+    </header>
+    <nav class="main-nav">
+      <div class="nav-links">
+        <a class="nav-link" href="#">Home</a>
+        <a class="nav-link" href="#">Contact</a>
+        <a class="nav-link" href="#">New Products</a>
+        <a class="nav-link" href="#">Clearance</a>
+      </div>
+    </nav>
+    <div class="main-content-area">
+      <aside class="sidebar">
+        <form class="sidebar-search">
+          <input type="text" placeholder="Search..." />
+        </form>
+        <ul class="sidebar-menu">
+          <li>Cozy Cottage and<br>Farmhouse Decor <span class="arrow">&#9660;</span></li>
+          <li>Vintage &amp; Antique Linens <span class="arrow">&#9660;</span></li>
+          <li>Vintage Bride &amp; Wedding <span class="arrow">&#9660;</span></li>
+          <li>Tea Time <span class="arrow">&#9660;</span></li>
+          <li>Vintage Hand Painted China <span class="arrow">&#9660;</span></li>
+          <li>Shabby &amp; Shiny Silver <span class="arrow">&#9660;</span></li>
+          <li>Vintage Kitchen <span class="arrow">&#9660;</span></li>
+          <li>Homer Laughlin Fiestaware <span class="arrow">&#9660;</span></li>
+          <li>Vintage Laundry Room <span class="arrow">&#9660;</span></li>
+          <li>Ladies Vintage Vanity <span class="arrow">&#9660;</span></li>
+          <li>Jewelry <span class="arrow">&#9660;</span></li>
+          <li>Cottage Garden <span class="arrow">&#9660;</span></li>
+          <li>Vintage Ephemera <span class="arrow">&#9660;</span></li>
+          <li>Vintage Travel Souvenirs <span class="arrow">&#9660;</span></li>
+          <li>Vintage Children’s Items <span class="arrow">&#9660;</span></li>
+          <li>Vintage Sewing Notions <span class="arrow">&#9660;</span></li>
+          <li>Vintage Holidays <span class="arrow">&#9660;</span></li>
+          <li>Book Nook <span class="arrow">&#9660;</span></li>
+        </ul>
+        <div class="sidebar-footer">
+          <div class="social-section">
+            <div class="social-title">Stay in touch</div>
+            <div class="social-icons">
+              <div class="social-icon blue"></div>
+              <div class="social-icon red"></div>
+              <div class="social-icon red2"></div>
+            </div>
+          </div>
+          <div class="newsletter-section">
+            <div class="newsletter-title">Newsletter</div>
+            <div class="newsletter-desc">
+              Sign up to our newsletter for the latest<br>
+              news and special offers...
+            </div>
+            <form class="newsletter-form">
+              <input type="text" placeholder="type your email..." />
+              <br>
+              <button type="submit">Subscribe</button>
+            </form>
+          </div>
+        </div>
+      </aside>
+      <main class="main-panel">
+        <div class="main-promo">
+          <div class="promo-img">
+            <img src="src/placeholder.jpg" width="218" height="182" alt="">
+          </div>
+          <div class="promo-text-block">
+            <em>Thank you for visiting The Pink Rose Cottage!</em>
+            Here you'll find all the little extras that make your home cottage cozy.<br>
+            We also have beautiful extras for the lady, from wonderful vintage powder compacts, to unusual vintage purses<br>
+            and handbags, to sparkling costume jewelry.<br><br>
+            The place to shop for cozy cottage, shabby chic decor and trinkets!<br>
+          </div>
+        </div>
+        <div class="product-section-title">Featured Products</div>
+        <div class="featured-products">
+          <div class="fp-item">
+            <img class="fp-img" src="src/placeholder.jpg" width="170" height="160" alt="">
+            <div class="fp-title">Heidi Daus Cornucopia Brooch Heidi's Harvest Pin</div>
+            <div class="fp-price">$150.00</div>
+          </div>
+          <div class="fp-item">
+            <img class="fp-img" src="src/placeholder.jpg" width="170" height="160" alt="">
+            <div class="fp-title">Heidi Daus Squirrel Sparkle Fall Rhinestone Pin</div>
+            <div class="fp-price">$125.00</div>
+          </div>
+          <div class="fp-item">
+            <img class="fp-img" src="src/placeholder.jpg" width="170" height="160" alt="">
+            <div class="fp-title">Heidi Daus Precious Pumpkin Pavé Fall Brooch Pin</div>
+            <div class="fp-price">$150.00</div>
+          </div>
+          <div class="fp-item">
+            <img class="fp-img" src="src/placeholder.jpg" width="170" height="160" alt="">
+            <div class="fp-title">Vintage McCoy Pottery Purple and White Chrysanthemum Vase</div>
+            <div class="fp-price">$55.00</div>
+          </div>
+        </div>
+      </main>
+    </div>
+    <footer class="page-footer-wrap">
+      <div class="footer-icons-row">
+        <div class="footer-icon"></div>
+        <div class="footer-icon"></div>
+        <div class="footer-icon"></div>
+        <div class="footer-icon"></div>
+        <div class="footer-icon"></div>
+        <div class="footer-icon"></div>
+        <div class="footer-icon"></div>
+        <div class="footer-icon"></div>
+      </div>
+      <div class="footer-links">
+        <a href="#" class="footer-link">Search</a>
+        <a href="#" class="footer-link">Contact</a>
+        <a href="#" class="footer-link">About Us</a>
+        <a href="#" class="footer-link">Cleaning Silver</a>
+      </div>
+      <div class="footer-copy">
+        Copyright &copy; 2023 The Pink Rose Cottage . All Rights Reserved.
+      </div>
+    </footer>
+  </div>
+</body>
+</html>

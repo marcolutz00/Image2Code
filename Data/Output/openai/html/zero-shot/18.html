@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</title>
+  <meta name="viewport" content="width=1024">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      min-height: 100%;
+      margin: 0;
+      font-family: 'Arial', 'Helvetica Neue', Arial, Helvetica, sans-serif;
+      background: #383838;
+      color: #fff;
+      font-size: 16px;
+      line-height: 1.5;
+    }
+    .header {
+      background: #6dd36c;
+      padding: 32px 0 0 0;
+      border-bottom: 1px solid #b9ebb7;
+    }
+    .container {
+      width: 700px;
+      margin: 0 auto;
+    }
+    .top-bar {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      padding-bottom: 0.2em;
+    }
+    .site-title {
+      font-size: 22px;
+      color: #414141;
+      font-weight: 400;
+      letter-spacing: 0.01em;
+      margin-bottom: 2px;
+    }
+    .site-tagline {
+      font-size: 14px;
+      color: #414141;
+      font-weight: 400;
+      margin-bottom: 0;
+      margin-top: 0;
+      letter-spacing: 0.02em;
+    }
+    .main-nav {
+      display: flex;
+      gap: 32px;
+      font-size: 16px;
+      margin-top: 12px;
+    }
+    .main-nav a {
+      color: #414141;
+      text-decoration: none;
+      font-weight: 400;
+    }
+    .main-nav a:focus,
+    .main-nav a:hover {
+      text-decoration: underline;
+      outline: 2px solid #414141;
+      outline-offset: 2px;
+    }
+    .green-divider {
+      height: 1px;
+      background: #b9ebb7;
+      border: none;
+      margin: 20px 0 0 0;
+    }
+    .post-title {
+      margin: 40px 0 20px 0;
+      font-size: 30px;
+      line-height: 1.1;
+      font-weight: bold;
+      color: #fff;
+    }
+    .post-meta {
+      color: #414141;
+      font-size: 15px;
+      margin-bottom: 5px;
+      margin-top: 0px;
+      letter-spacing: 0.01em;
+    }
+    .post-meta a {
+      color: #414141;
+      text-decoration: underline;
+    }
+    .post-meta a:focus,
+    .post-meta a:hover {
+      outline: 2px solid #414141;
+      outline-offset: 2px;
+      text-decoration: underline;
+    }
+    .post-tags {
+      color: #414141;
+      font-size: 15px;
+      margin-bottom: 20px;
+    }
+    .content-container {
+      background: #383838;
+      padding: 48px 0 32px 0;
+      min-height: 500px;
+    }
+    .post-content {
+      color: #d7d7d7;
+      font-size: 17px;
+      font-weight: 400;
+    }
+    .post-content a {
+      color: #85d86a;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .post-content a:focus,
+    .post-content a:hover {
+      outline: 2px solid #85d86a;
+      outline-offset: 2px;
+      text-decoration: underline;
+    }
+    .green-user {
+      color: #85d86a;
+      font-weight: bold;
+      font-size: 15px;
+      font-family: inherit;
+    }
+    .post-content strong {
+      color: #fff;
+      font-weight: bold;
+    }
+    .blockquote {
+      font-size: 16px;
+      background: none;
+      border-left: 3px solid #676767;
+      margin: 30px 0;
+      padding: 12px 20px 12px 20px;
+      color: #8a8a8a;
+      font-style: italic;
+    }
+    .blockquote em, .blockquote code {
+      color: #b9ebb7;
+      font-style: italic;
+    }
+    .blockquote .mention {
+      color: #85d86a;
+      font-style: normal;
+      font-weight: bold;
+    }
+    .blockquote .blockquote-date {
+      font-style: normal;
+      color: #85d86a;
+      font-weight: bold;
+    }
+    .update-note {
+      font-size: 16px;
+      color: #fff;
+      font-family: Arial, sans-serif;
+      margin: 48px 0 40px 0;
+      font-weight: bold;
+      line-height: 1.3;
+    }
+    .update-note strong {
+      font-weight: bold;
+      font-family: inherit;
+    }
+    .update-note .green-user {
+      font-weight: bold;
+      color: #85d86a;
+    }
+    .bottom-icons {
+      text-align: center;
+      margin-top: 40px;
+      margin-bottom: 28px;
+    }
+    .icon-square {
+      display: inline-block;
+      width: 30px;
+      height: 30px;
+      background: #1fc71f;
+      border-radius: 4px;
+      margin-right: 10px;
+      vertical-align: middle;
+      margin-top: 0px;
+      margin-bottom: 0px;
+      outline: none;
+      border: none;
+    }
+    .icon-square:last-child {
+      margin-right: 0;
+    }
+    /* Ensure focusable and accessible icons */
+    .icon-square:focus {
+      outline: 2px solid #fff;
+      outline-offset: 2px;
+    }
+    @media (max-width: 799px) {
+      .container {
+        width: 95vw;
+        min-width: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="header" role="banner">
+    <div class="container">
+      <div class="top-bar">
+        <div>
+          <div class="site-title">David Simpson</div>
+          <div class="site-tagline">deliver. iterate.</div>
+        </div>
+        <nav class="main-nav" aria-label="Main navigation">
+          <a href="#">Blog</a>
+          <a href="#">About</a>
+          <a href="#">Projects</a>
+          <a href="#">Apps</a>
+        </nav>
+      </div>
+      <hr class="green-divider" aria-hidden="true">
+      <h1 class="post-title">
+        Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17
+      </h1>
+      <div class="post-meta">
+        Posted by David Simpson on May 22, 2014.
+        <a href="#">Return to index</a> .
+      </div>
+      <div class="post-tags">
+        Tags:
+      </div>
+    </div>
+  </header>
+  <main class="content-container" role="main">
+    <div class="container">
+      <section class="post-content">
+        <strong>Following yesterdays <a href="#">Atlassian security advisory for Confluence</a></strong>
+        , it looks like there are some added steps required for people who have user macros.
+        Be careful folks.<br>
+        <span class="green-user">@BergerofLondon</span> spotted this first:
+        <blockquote class="blockquote">
+          <span style="color:#8a8a8a;">Following upgrade to Confluence 5.5.1 the values of parameters in user macros cannot be evaluated the same way. Discovered this the hard way</span><br>
+          &mdash; Berger (@BergerofLondon) <span class="blockquote-date">May 22, 2014</span>
+        </blockquote>
+
+        <blockquote class="blockquote">
+          <span style="color:#8a8a8a;">You can't use the same shorthand you use for standard variables. <span style="color:#b9ebb7;">#if</span> ($paramistrue) will always evaluate as true.</span><br>
+          &mdash; Berger (@BergerofLondon) <span class="blockquote-date">May 22, 2014</span>
+        </blockquote>
+
+        <blockquote class="blockquote">
+          <span style="color:#8a8a8a;">You now have to use things like <span style="color:#b9ebb7;">#if</span> ($paramistrue == true) or <span style="color:#b9ebb7;">#if</span> ($paramistrue == false).</span><br>
+          &mdash; Berger (@BergerofLondon) <span class="blockquote-date">May 22, 2014</span>
+        </blockquote>
+
+        <blockquote class="blockquote">
+          <span class="mention">@baitman</span> For strings I can no longer do <span style="color:#b9ebb7;">#if</span> ($paramfoo), I have to do <span style="color:#b9ebb7;">#if</span> ($paramfoo.length() &gt; 0). Which is crazy.<br>
+          &mdash; Berger (@BergerofLondon) <span class="blockquote-date">May 22, 2014</span>
+        </blockquote>
+        
+        <blockquote class="blockquote">
+          <span class="mention">@baitman</span> Also, if you're upgrading to 5.5.1 to fix the security vulnerability double-check that it's upgraded xwork to 1.17. Ours wasn't.<br>
+          &mdash; Berger (@BergerofLondon) <span class="blockquote-date">May 22, 2014</span>
+        </blockquote>
+
+        <div class="update-note" style="margin-top:40px;">
+          The update to <strong>atlassian-xwork-core-1.17.jar</strong> means you have to be more specific with your coding. Thanks to <span class="green-user">@BergerofLondon</span> for the heads up.
+        </div>
+      </section>
+      <nav class="bottom-icons" aria-label="Page navigation">
+        <button class="icon-square" aria-label="Page 1"></button>
+        <button class="icon-square" aria-label="Page 2"></button>
+        <button class="icon-square" aria-label="Page 3"></button>
+        <button class="icon-square" aria-label="Page 4"></button>
+      </nav>
+    </div>
+  </main>
+</body>
+</html>

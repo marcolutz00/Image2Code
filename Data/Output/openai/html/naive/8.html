@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Segway Guided Tours - South Carolina</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700,400italic,700italic" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+    }
+    body {
+      background: #f2f2f2;
+      margin: 0;
+      padding: 0;
+      font-family: 'Open Sans', Arial, sans-serif;
+      color: #222;
+      font-size: 15px;
+      min-width: 1140px;
+    }
+    /* Top nav */
+    .top-nav {
+      background: #fff;
+      border-bottom: 1px solid #ececec;
+      height: 60px;
+      width: 100%;
+      position: fixed;
+      left: 0;
+      top: 0;
+      z-index: 100;
+    }
+    .top-nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      height: 60px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      margin-left: 0;
+      font-size: 26px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      color: #aaa;
+      display: flex;
+      align-items: center;
+    }
+    .logo span {
+      font-weight: 400;
+      font-style: italic;
+      color: #3e3e3e;
+    }
+    .main-nav {
+      display: flex;
+      font-size: 15px;
+      font-weight: 400;
+    }
+    .main-nav a {
+      color: #888;
+      text-decoration: none;
+      margin-left: 24px;
+      transition: color 0.15s;
+    }
+    .main-nav a:hover {
+      color: #14A085;
+    }
+    /* Top whitespace */
+    .body-pad {
+      height: 60px;
+      width: 100%;
+    }
+    /* Search box */
+    .search-bar-container {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      margin-top: 50px;
+      margin-bottom: 18px;
+    }
+    .search-bar {
+      background: #fff;
+      width: 660px;
+      height: 40px;
+      display: flex;
+      box-shadow: 0 1px 4px 0 rgba(0,0,0,0.04);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+    .search-bar input[type="text"] {
+      font-size: 18px;
+      color: #aaa;
+      border: none;
+      outline: none;
+      padding: 0 20px;
+      width: 100%;
+      font-family: 'Open Sans', Arial, sans-serif;
+      background: transparent;
+    }
+    .search-bar button {
+      border: none;
+      background: #26a087;
+      color: #fff;
+      width: 120px;
+      font-size: 17px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background .15s;
+      letter-spacing: 1px;
+    }
+    .search-bar button:hover {
+      background: #218876;
+    }
+    /* Main content section */
+    .main-container {
+      width: 1100px;
+      margin: 0 auto;
+      margin-top: 24px;
+      display: flex;
+      min-height: 650px;
+    }
+    .left-col {
+      width: 730px;
+    }
+    .right-col {
+      width: 230px;
+      margin-left: 40px;
+    }
+    /* Breadcrumbs */
+    .breadcrumbs {
+      padding-top: 7px;
+      padding-bottom: 7px;
+      font-size: 13px;
+      color: #aaa;
+      font-family: 'Open Sans', Arial, sans-serif;
+    }
+    .breadcrumbs a {
+      color: #62a1db;
+      text-decoration: none;
+    }
+    .breadcrumbs span {
+      margin: 0 4px;
+    }
+    /* Content card */
+    .content-card {
+      background: #fff;
+      border-radius: 2px;
+      box-shadow: 0 1px 4px 0 rgba(0,0,0,.04);
+      padding: 35px 38px 30px 38px;
+      margin-bottom: 24px;
+    }
+    .content-card h1 {
+      font-size: 26px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-weight: 400;
+      margin: 0;
+      margin-bottom: 2px;
+      color: #222;
+    }
+    .content-card .sub-label {
+      color: #888;
+      font-size: 12px;
+      margin-bottom: 23px;
+      margin-top: 7px;
+    }
+    .main-img-container {
+      position: relative;
+      /* Necessary for absolute positioning side tag */
+      margin-bottom: 30px;
+    }
+    .main-img-container img {
+      display: block;
+      background: #1616ff;
+      width: 100%;
+      height: 350px;
+    }
+    .main-img-tag {
+      position: absolute;
+      left: 0;
+      top: 19px;
+      background: #21aaa0;
+      color: #fff;
+      font-weight: 600;
+      font-size: 17px;
+      padding: 6px 18px 6px 10px;
+      border-radius: 0 3px 3px 0;
+      font-family: 'Open Sans', Arial, sans-serif;
+      box-shadow: 0 1px 3px 0 rgba(0,0,0,.10);
+    }
+    /* Segway tours explanation & list */
+    .segway-section-title {
+      margin-top: 0;
+      margin-bottom: 5px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #222;
+      letter-spacing: 0;
+    }
+    .segway-card-desc {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 19px;
+      margin-top: 1px;
+    }
+    .tour-listing {
+      background: #fafbfc;
+      border-radius: 2px;
+      border: 1px solid #eee;
+      margin: 13px 0 6px 0;
+      padding: 20px 24px 18px 24px;
+    }
+    .tour-listing > div {
+      margin-bottom: 10px;
+    }
+    .tour-listing ul, .tour-listing li {
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+    .tour-listing a {
+      color: #3181bb;
+      text-decoration: none;
+      font-size: 15px;
+    }
+    .tour-listing a:hover {
+      text-decoration: underline;
+    }
+    .tour-listing .main-list {
+      font-weight: 600;
+    }
+    .tour-listing .main-list,
+    .tour-listing .second-list,
+    .tour-listing .third-list,
+    .tour-listing .fourth-list,
+    .tour-listing .fifth-list {
+      margin-bottom: 3px;
+      margin-top: 1px;
+    }
+    .tour-listing .main-list {
+      margin-top: 10px;
+      margin-bottom: 10px;
+    }
+    .tour-listing .second-list,
+    .tour-listing .third-list,
+    .tour-listing .fourth-list,
+    .tour-listing .fifth-list {
+      font-weight: 600;
+      margin-left: 12px;
+    }
+    .tour-listing .third-list,
+    .tour-listing .fourth-list,
+    .tour-listing .fifth-list {
+      margin-left: 24px;
+    }
+    .tour-listing .tour-option {
+      margin-left: 37px;
+      margin-bottom: 2px;
+      font-weight: 400;
+    }
+    .card-footer {
+      margin-top: 13px;
+      color: #888;
+      font-size: 13px;
+      text-align: right;
+    }
+    /* Right column image (blue box) */
+    .right-placeholder img {
+      display: block;
+      margin-top: 45px;
+      width: 210px;
+      height: 210px;
+      background: #1616ff;
+    }
+    /* Lower content card */
+    .lower-card {
+      background: #fff;
+      border-radius: 2px;
+      box-shadow: 0 1px 4px 0 rgba(0,0,0,.04);
+      padding: 24px 32px 22px 32px;
+      width: 936px;
+      margin: 0 auto;
+      margin-top: 27px;
+      margin-bottom: 50px;
+    }
+    .lower-card h2 {
+      margin: 0 0 12px 0;
+      font-size: 21px;
+      font-weight: 400;
+      color: #222;
+      font-family: 'Open Sans',Arial,sans-serif;
+    }
+    .lower-card p {
+      margin: 0 0 8px 0;
+      font-size: 15px;
+      color: #444;
+    }
+    .lower-card a {
+      color: #3181bb;
+      text-decoration: none;
+    }
+    .lower-card a:hover {
+      text-decoration: underline;
+    }
+    /* Stats section */
+    .stats-section {
+      background: #a2a2a2;
+      padding: 44px 0 39px 0;
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 90px;
+    }
+    .stats-block {
+      display: flex;
+      flex-direction: row;
+      gap: 110px;
+    }
+    .stat {
+      text-align: center;
+      min-width: 80px;
+    }
+    .stats-num {
+      color: #fff;
+      font-size: 32px;
+      font-weight: 600;
+      font-family: 'Open Sans', Arial, sans-serif;
+      display: block;
+    }
+    .stats-label {
+      color: #e7e7e7;
+      font-size: 15px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      opacity: 0.8;
+      margin-top: 1px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.2px;
+    }
+    /* CTA Block */
+    .cta-section {
+      background: #26a087;
+      text-align: center;
+      padding: 60px 0 53px 0;
+    }
+    .cta-section h2 {
+      color: #fff;
+      font-size: 27px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-weight: 400;
+      margin-bottom: 38px;
+      margin-top: 0;
+    }
+    .cta-section .cta-btn {
+      background: #225e52;
+      color: #fff;
+      border: none;
+      border-radius: 1px;
+      font-size: 18px;
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-weight: 600;
+      padding: 13px 41px;
+      cursor: pointer;
+      margin-top: 0;
+      box-shadow: 0 3px 8px 0 rgba(0,0,0,.04);
+      transition: background .15s;
+    }
+    .cta-section .cta-btn:hover {
+      background: #194238;
+    }
+    /* Footer */
+    .footer {
+      width: 100%;
+      background: #fff;
+      padding: 35px 0 18px 0;
+      min-height: 68px;
+      border-top: 1px solid #eaeaea;
+      color: #888;
+      font-size: 13px;
+      font-family: 'Open Sans', Arial, sans-serif;
+    }
+    .footer-content {
+      width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      flex-wrap: wrap;
+    }
+    .footer-links {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      gap: 60px;
+    }
+    .footer-links div {
+      margin-bottom: 8px;
+    }
+    .footer-links a {
+      color: #888;
+      text-decoration: none;
+      display: block;
+      margin-bottom: 8px;
+      transition: color .15s;
+    }
+    .footer-links a:hover {
+      color: #16b889;
+    }
+    .footer-legal {
+      display: flex;
+      flex-direction: column;
+      font-size: 13px;
+      color: #aaa;
+      justify-content: flex-end;
+      align-items: flex-end;
+    }
+    @media (max-width: 1199px) {
+      .main-container, .footer-content {
+        width: 98vw;
+        min-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+      .lower-card {
+        width: 94vw;
+        min-width: 600px;
+      }
+    }
+    @media (max-width: 960px) {
+      .main-container {
+        flex-direction: column;
+      }
+      .right-col {
+        margin-left: 0;
+        margin-top: 0;
+      }
+      .lower-card, .main-container, .footer-content {
+        width: 99vw;
+        min-width: 320px;
+      }
+      .cta-section h2 {
+        font-size: 18px;
+      }
+      .stats-section {
+        gap: 20px;
+        padding-left: 15px;
+        padding-right: 15px;
+      }
+      .stats-block {
+        gap: 18px;
+      }
+      .content-card {
+        padding: 14px 7vw 12px 4vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-nav">
+    <div class="top-nav-inner">
+      <div class="logo">
+        SEGWAY <span>Guided TOURS</span>
+      </div>
+      <div class="main-nav">
+        <a href="#">Home</a>
+        <a href="#">Find Segway Tours</a>
+        <a href="#">Browse Tours</a>
+        <a href="#">For Tour Operators</a>
+      </div>
+    </div>
+  </div>
+  <div class="body-pad"></div>
+  <div class="search-bar-container">
+    <form class="search-bar">
+      <input type="text" placeholder="Tour Location...">
+      <button type="submit">FIND</button>
+    </form>
+  </div>
+  <div class="main-container">
+    <div class="left-col">
+      <div class="breadcrumbs">
+        / <a href="#">USA</a> <span>/</span> <a href="#">SOUTH CAROLINA</a>
+      </div>
+      <div class="content-card">
+        <h1>List of 6 Segway Tours in South Carolina</h1>
+        <div class="sub-label">South Carolina List Date: 11/3/23</div>
+        <div class="main-img-container">
+          <img src="src/placeholder.jpg" width="654" height="350" alt="">
+          <div class="main-img-tag">South Carolina</div>
+        </div>
+        <div class="segway-section-title">SOUTH CAROLINA SEGWAY TOURS</div>
+        <div class="segway-card-desc">
+          Discover South Carolina on one of these six Segway tours. Experience the sights and sounds of South Carolina's cities and landmarks with an up-close and personal tour on the Segway® PT.
+        </div>
+        <div class="tour-listing">
+          <div class="main-list">USA &gt;&gt;</div>
+          <div class="second-list">SOUTH CAROLINA &gt;&gt;</div>
+          <div class="third-list">CHARLESTON &gt;&gt;</div>
+          <div class="tour-option"><a href="#">Segway of Charleston &gt;&gt;</a></div>
+          <div class="third-list">GREENVILLE &gt;&gt;</div>
+          <div class="tour-option"><a href="#">Carolina Segway &gt;&gt;</a></div>
+          <div class="tour-option"><a href="#">Greenville Glides &gt;&gt;</a></div>
+          <div class="third-list">HILTON HEAD ISLAND &gt;&gt;</div>
+          <div class="tour-option"><a href="#">Hilton Head Segway &gt;&gt;</a></div>
+          <div class="third-list">LITTLE RIVER &gt;&gt;</div>
+          <div class="tour-option"><a href="#">Myrtle Beach Segway &gt;&gt;</a></div>
+          <div class="tour-option"><a href="#">Myrtle Beach Segway &gt;&gt;</a></div>
+        </div>
+        <div class="card-footer">
+          Showing 6 South Carolina tours of 636 tours Worldwide
+        </div>
+      </div>
+    </div>
+    <div class="right-col">
+      <div class="right-placeholder">
+        <img src="src/placeholder.jpg" width="210" height="210" alt="">
+      </div>
+    </div>
+  </div>
+  <div class="lower-card">
+    <h2>South Carolina Segway Tours</h2>
+    <p>
+      Whether South Carolina is your home state or your next travel destination, one of these Segway tours can add exciting new fun to your next business trip, vacation or weekend plans.
+    </p>
+    <p>
+      Looking for adventure tours beyond South Carolina’s six Segway tours? Use our Directory to <a href="#">find Segway Tours</a> across the United States and around the world and experience touring on a Segway PT for yourself!
+    </p>
+  </div>
+  <div class="stats-section">
+    <div class="stats-block">
+      <div class="stat">
+        <span class="stats-num">636</span>
+        <span class="stats-label">WORLDWIDE</span>
+      </div>
+      <div class="stat">
+        <span class="stats-num">56</span>
+        <span class="stats-label">COUNTRIES</span>
+      </div>
+      <div class="stat">
+        <span class="stats-num">198</span>
+        <span class="stats-label">REGIONS</span>
+      </div>
+      <div class="stat">
+        <span class="stats-num">442</span>
+        <span class="stats-label">CITIES</span>
+      </div>
+    </div>
+  </div>
+  <div class="cta-section">
+    <h2>Find a Tour on a Segway® PT now!</h2>
+    <button class="cta-btn">Find a Tour Now</button>
+  </div>
+  <div class="footer">
+    <div class="footer-content">
+      <div class="footer-links" style="gap:50px;">
+        <div>
+          <a href="#">HOME</a>
+          <a href="#">FIND SEGWAY TOURS</a>
+          <a href="#">BROWSE TOURS</a>
+        </div>
+        <div>
+          <a href="#">ABOUT SGT</a>
+          <a href="#">SEGWAY MINIPRO</a>
+          <a href="#">FOR TOUR OPERATORS</a>
+        </div>
+        <div>
+          <a href="#">LEGALESE</a>
+          <a href="#">SITEMAP</a>
+        </div>
+      </div>
+      <div class="footer-legal">
+        <div>&copy;2004-2023 SegwayGuidedTours.com</div>
+        <div>osswe.com SegwayGuidedTours.com</div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

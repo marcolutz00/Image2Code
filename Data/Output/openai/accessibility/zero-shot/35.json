@@ -1,0 +1,269 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr"
+      ],
+      "impact": "critical",
+      "name": "Aria Attributes; Allowed Attributes;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr",
+          "source": "axe-core",
+          "title": "Elements must only use supported ARIA attributes",
+          "description": "Ensure an element's role supports its ARIA attributes",
+          "impact": "critical",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-allowed-attr",
+                "data": [
+                  "aria-level=\"2\""
+                ],
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute is not allowed: aria-level=\"2\""
+              }
+            ],
+            "none": [],
+            "impact": "critical",
+            "html": "<div class=\"post-title\" aria-level=\"2\">\n        Mountain bike trail development organization ADSVMQ officially transfers mtn bike trail development activities to Vélo Québec\n      </div>",
+            "target": [
+              ".post-title"
+            ],
+            "failureSummary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-level=\"2\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr",
+          "source": "lighthouse",
+          "title": "`[aria-*]` attributes do not match their roles",
+          "description": "Each ARIA `role` supports a specific subset of `aria-*` attributes. Mismatching these invalidates the `aria-*` attributes. [Learn how to match ARIA attributes to their roles](https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-DIV",
+              "path": "1,HTML,1,BODY,0,DIV,0,HEADER,3,DIV",
+              "selector": "body > div.container > header > div.post-title",
+              "boundingRect": {
+                "top": 199,
+                "bottom": 319,
+                "left": 9,
+                "right": 891,
+                "width": 882,
+                "height": 120
+              },
+              "snippet": "<div class=\"post-title\" aria-level=\"2\">",
+              "nodeLabel": "Mountain bike trail development organization ADSVMQ officially transfers mtn bi…",
+              "explanation": "Fix all of the following:\n  ARIA attribute is not allowed: aria-level=\"2\""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_4.1_4_3.G18",
+        "Principle1.Guideline1_4.1_4_3.G18.Fail",
+        "Principle1.Guideline1_4.1_4_3.G145",
+        "Principle1.Guideline1_4.1_4_3.G145.Fail",
+        "Principle1.Guideline1_4.1_4_6.G17",
+        "Principle1.Guideline1_4.1_4_6.G18"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+      ],
+      "impact": "serious",
+      "name": "Color Contrast; Text;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#848474",
+                  "bgColor": "#22282a",
+                  "contrastRatio": 3.93,
+                  "fontSize": "11.2pt (14.88px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<body>",
+                    "target": [
+                      "body"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.93 (foreground color: #848474, background color: #22282a, font size: 11.2pt (14.88px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"post-date-bar\" aria-label=\"Post date\">THURSDAY, AUGUST 09, 2012</div>",
+            "target": [
+              ".post-date-bar"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.93 (foreground color: #848474, background color: #22282a, font size: 11.2pt (14.88px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 3.94:1. Recommendation:  change background to #161c1e.",
+          "description": "<div class=\"post-date-bar\" aria-label=\"Post date\">THURSDAY, AUGUST 09, 2012</div>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 3.94:1. Recommendation:  change background to #161c1e.",
+            "context": "<div class=\"post-date-bar\" aria-label=\"Post date\">THURSDAY, AUGUST 09, 2012</div>",
+            "selector": "html > body > div:nth-child(1) > header > div:nth-child(3)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": null,
+      "url": "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+          "source": "axe-core",
+          "title": "Banner landmark should not be contained in another landmark",
+          "description": "Ensure the banner landmark is at top level",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "landmark-is-top-level",
+                "data": {
+                  "role": null
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "The null landmark is contained in another landmark."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<header>",
+            "target": [
+              "header"
+            ],
+            "failureSummary": "Fix any of the following:\n  The null landmark is contained in another landmark."
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+        "https://dequeuniversity.com/rules/axe/4.10/region",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level"
+      ],
+      "impact": "moderate",
+      "name": "Landmark & Region; Missing & Unique Landmarks;",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"bottom-area\" aria-label=\"Sidebar and navigation\">",
+            "target": [
+              ".bottom-area"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"footer-linkbar\" aria-label=\"Footer links\">\n    <a href=\"#\" tabindex=\"0\">Mountain bike trail development organization ADSVMQ officially transfers mtn bike trail development activities to Vélo Québec</a>\n  </div>",
+            "target": [
+              ".footer-linkbar"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        }
+      ]
+    }
+  ]
+}

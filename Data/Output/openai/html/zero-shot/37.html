@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Rome to Regain Control of the World</title>
+<meta name="viewport" content="width=1024">
+<style>
+    html {
+        height: 100%;
+    }
+    body {
+        background: #fff;
+        color: #000;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 15px;
+        margin: 0;
+        padding: 0;
+        min-width: 1024px;
+        min-height: 100vh;
+    }
+    a {
+        color: #0000ee;
+    }
+    a:focus {
+        outline: 2px dashed #444;
+        outline-offset: 2px;
+    }
+
+    /* Left sidebar menu */
+    .sidebar {
+        position: absolute;
+        top: 346px;
+        left: 0;
+        width: 180px;
+        color: #ebb179;
+        font-size: 14px;
+        line-height: 1.2;
+        font-family: Arial, Helvetica, sans-serif;
+        z-index: 2;
+        word-break: break-word;
+    }
+    .sidebar .section-title {
+        font-weight: bold;
+        font-size: 13px;
+        margin: 10px 0 2px 0;
+        color: #ebb179;
+    }
+    .sidebar .menu-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+    .sidebar .menu-list li {
+        margin-bottom: 2px;
+    }
+    .sidebar .highlight {
+        font-style: italic;
+        font-weight: bold;
+        color: #ebb179;
+        text-decoration: underline;
+    }
+    .sidebar .highlight2 {
+        font-style: italic;
+        text-decoration: underline;
+        color: #ebb179;
+        font-size:13px;
+    }
+
+    /* Placeholders for blue image blocks */
+    .img-placeholder {
+        background: #1100ff;
+        display: block;
+    }
+
+    /* Top images */
+    .img-top1 {
+        position: absolute;
+        top: 13px;
+        left: 303px;
+        width: 191px;
+        height: 191px;
+    }
+    .img-top2 {
+        position: absolute;
+        top: 214px;
+        left: 303px;
+        width: 191px;
+        height: 191px;
+    }
+    .img-top3 {
+        position: absolute;
+        top: 109px;
+        right: 73px;
+        width: 191px;
+        height: 191px;
+    }
+    /* Mid left image */
+    .img-midleft {
+        position: absolute;
+        top: 440px;
+        left: 0px;
+        width: 252px;
+        height: 191px;
+    }
+    /* Middle image */
+    .img-middle {
+        position: absolute;
+        top: 416px;
+        left: 303px;
+        width: 191px;
+        height: 191px;
+    }
+    /* Bottom image */
+    .img-bottom {
+        display: block;
+        margin: 32px auto 0 auto;
+        width: 252px;
+        height: 191px;
+        background: #1100ff;
+    }
+    /* Bottom left image and copyright */
+    .img-bottomleft-wrap {
+        position: absolute;
+        left: 0;
+        bottom: 0;
+        width: 252px;
+    }
+    .img-bottomleft {
+        display: block;
+        width: 252px;
+        height: 191px;
+        background: #1100ff;
+    }
+    .img-bottomleft-caption {
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 13px;
+        color: #ebb179;
+        margin-top: 4px;
+        margin-left: 3px;
+    }
+
+    /* Page navigation */
+    .pagination-top {
+        position: absolute;
+        left: 300px;
+        top: 414px;
+        font-size: 15px; 
+    }
+    .pagination-bottom {
+        display: block;
+        margin: 26px 0 0 303px;
+        font-size: 15px;
+    }
+    .pagination a, .pagination span {
+        text-decoration: none;
+        color: #0000ee;
+        margin-right: 2px;
+    }
+    .pagination .active, .pagination span.active {
+        text-decoration: underline;
+    }
+
+    /* Main content */
+    .content-container {
+        max-width: 660px;
+        margin: 670px auto 0 323px;
+    }
+    .main-title {
+        margin-top: 0.4em;
+        color: #7a1a00;
+        font-size: 1.7em;
+        font-weight: bold;
+        font-family: Arial, Helvetica, sans-serif;
+        line-height: 1.2;
+    }
+    .main-subtitle {
+        font-style: italic;
+        color: #bb4000;
+        font-weight: bold;
+        font-size: 1.12em;
+        font-family: Arial, Helvetica, sans-serif;
+        margin: 0.4em 0 1.1em 0;
+        display: block;
+    }
+    .content-container p {
+        margin: 0 0 1em 0;
+        line-height: 1.28;
+    }
+    .content-container blockquote {
+        background: #f7ffec;
+        border-left: 4px solid #b3c89a;
+        padding: .8em 1.1em .8em 1.05em;
+        font-size: 1em;
+        margin: 18px 32px 18px 8px;
+        color: #404939;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+    .content-container blockquote cite {
+        font-style: normal;
+    }
+    .content-container em {
+        color: #bb4000;
+    }
+    .content-container .highlight2 {
+        color: #ebb179;
+        font-style: italic;
+        font-size: 1em;
+        text-decoration: underline;
+        font-weight: normal;
+    }
+    .send-comments {
+        margin-top: 36px;
+        margin-bottom: 8px;
+        font-weight: bold;
+        font-size: 1.23em;
+        color: #000;
+    }
+    .contact-email {
+        color: #2220dd;
+        text-decoration: underline;
+        font-weight: bold;
+        font-size: 1.07em;
+        font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Responsive fix for image placement at small browser heights */
+    @media (max-width: 1100px) {
+        .img-top3 { right: 10px; }
+    }
+</style>
+</head>
+<body>
+    <img src="src/placeholder.jpg" class="img-placeholder img-top1" width="191" height="191" alt="">
+    <img src="src/placeholder.jpg" class="img-placeholder img-top2" width="191" height="191" alt="">
+    <img src="src/placeholder.jpg" class="img-placeholder img-top3" width="191" height="191" alt="">
+    <img src="src/placeholder.jpg" class="img-placeholder img-midleft" width="252" height="191" alt="">
+    <img src="src/placeholder.jpg" class="img-placeholder img-middle" width="191" height="191" alt="">
+
+    <nav aria-label="Pagination" class="pagination pagination-top">
+        <a href="#" aria-label="Previous page">&lt; Prev</a>
+        <a href="#">1</a>
+        <a href="#">2</a>
+        <span class="active" aria-current="page">3</span>
+        <a href="#">4</a>
+        <a href="#">5</a>
+        <a href="#">6</a>
+        <a href="#" aria-label="Next page">Next&gt;</a>
+    </nav>
+
+    <aside class="sidebar" aria-label="Section navigation">
+        <ul class="menu-list">
+            <li>9/11 Attacks</li>
+            <li>Crimes of Katrina</li>
+            <li>Crisis in the Bible</li>
+            <li>Rising Costs</li>
+            <li>Mad Cow Disease</li>
+            <li class="section-title">Moses Hall</li>
+            <li>His Gallery</li>
+            <li>-- Rocks &amp; Herbs --</li>
+            <li class="highlight">Rome to Regain</li>
+            <li>The Prediction</li>
+            <li>2004 Election</li>
+            <li><span class="highlight2">Keys of This Blood</span></li>
+            <li>A Constitution?</li>
+            <li>Sovereignty</li>
+            <li>Vatican Bank</li>
+        </ul>
+        <ul class="menu-list" style="margin-top:20px;">
+            <li>Slavery Revoked</li>
+            <li>Sunday Laws</li>
+            <li>Sunday Law</li>
+            <li>Two World Wars</li>
+        </ul>
+        <div style="margin-top:36px;font-size:13px;">Printer-friendly<br>Version</div>
+    </aside>
+
+    <div class="content-container" role="main">
+        <h1 class="main-title">Rome to Regain Control of the World</h1>
+        <span class="main-subtitle">
+            "The Struggle for World Dominion"
+        </span>
+        <p>
+        A rather thick book was published in 1990 by Vatican insider Malachi Martin. Martin has a lengthy list of qualifications. On the back of another of his books, we read the following accolade:
+        </p>
+        <blockquote>
+            &#8220;Malachi Martin served three popes as diplomat and spy, speaks seventeen languages, is a renowned Biblical scholar and a professor at Rome's Pontifical Biblical Institute. He helped translate the Dead Sea Scrolls&mdash;<cite>Decline and Fall of the Roman Church</cite>.&#8221;
+        </blockquote>
+        <p>
+        Know any other churches engaged in espionage? Would it not be better for Roman Catholic politicians if the Vatican never engaged in espionage?
+        </p>
+        <p>
+        The lengthy book we want to draw attention to by Martin is entitled <span class="highlight2">Keys of This Blood: The Struggle for World Dominion Between Pope John Paul, Mikhail Gorbachev &amp; the Capitalist West</span> (bold added). Incredible, isn&#8217;t it? The title on the cover boldly proclaims that John Paul wants to take over the world, and the massive contents purportedly lays out his plans for accomplishing this.
+        </p>
+        <p>
+        The cover of Martin's book calls John Paul's endeavors "the struggle for world dominion." Ellen White called the papacy's endeavors "a fierce and determined conflict to regain control of the world." Kind of similar, isn&#8217;t it?
+        </p>
+        <p>
+        But Ellen White's prediction is not just that the papacy would regain its power, but that it would commence again to persecute. Consider the following extract from <span class="highlight2">The Keys of This Blood</span>.
+        </p>
+        <blockquote>
+            In [the eyes] of groups like: "Adventists, Baptists and Evangelical sects", their regard and respect for democratic principles impose upon them the obligation&mdash;the religious, as well as the civil and political obligation&mdash;to defend every person&#8217;s right to be wrong. Every person must have the right not only to believe in Hell of the Damned and Heaven of the Saved. Every person must literally be assured the right to choose Hell over Heaven. That obligation carried to that extreme not only sets the Minimalists apart from John Paul; it sets them against him, as well.
+            <br><b>
+            It sets them apart from the Holy Father, because democratic principles can never take precedence over divine revelation. No one can be forced to believe in Heaven or Hell, or to choose the one over the other. Nevertheless, it is axiomatic for John Paul that no one has the right&mdash;democratic or otherwise&mdash;to a moral wrong. . . .<span aria-hidden="true">&mdash;&mdash;p. 287</span>.
+            </b>
+        </blockquote>
+        <p>
+        Martin thus calls freedom of conscience an extreme, and says that groups that advocate such a freedom are "against" John Paul. In other words, Martin claims that, similar to the popes of yesteryear, today's papacy still does not believe in freedom of conscience, and would not allow such a freedom to be a part of the new world order it seeks to create.
+        </p>
+        <p>
+        Who defines a "moral wrong"? Rome answers, "The papacy." Now if no man has a right to commit a moral wrong, and if the papacy is the one that defines what is and isn't a moral wrong, then is there anything at all that might prevent a return of persecution if the papacy regains its lost supremacy?
+        </p>
+        <nav aria-label="Pagination" class="pagination pagination-bottom">
+            <a href="#" aria-label="Previous page">&lt; Prev</a>
+            <a href="#">1</a>
+            <a href="#">2</a>
+            <span class="active" aria-current="page">3</span>
+            <a href="#">4</a>
+            <a href="#">5</a>
+            <a href="#">6</a>
+            <a href="#" aria-label="Next page">Next&gt;</a>
+        </nav>
+        <img src="src/placeholder.jpg" class="img-placeholder img-bottom" width="252" height="191" alt="">
+        <div class="send-comments">Send in comments and questions to:</div>
+        <a href="mailto:Truth-Sleuth@TruthOrFables.net" class="contact-email">Truth-Sleuth@TruthOrFables.net</a>.
+    </div>
+
+    <div class="img-bottomleft-wrap" aria-hidden="true">
+        <img src="src/placeholder.jpg" class="img-placeholder img-bottomleft" width="252" height="191" alt="">
+        <div class="img-bottomleft-caption">TruthOfFables</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Spawn Plane Radius Question - Forum Replica</title>
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #fafbfc;
+      color: #444;
+      font-family: 'Open Sans', Arial, sans-serif;
+      font-size: 15px;
+      line-height: 1.6;
+      min-width: 1000px;
+      margin: 0;
+      padding: 0;
+    }
+    a {
+      color: #2d74da;
+      text-decoration: none;
+    }
+    a:hover {
+      text-decoration: underline;
+    }
+    /* Top Bar */
+    .top-bar {
+      width: 100%;
+      height: 45px;
+      background: #fff;
+      border-bottom: 1px solid #e5e8ee;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      font-size: 14px;
+      box-sizing: border-box;
+      padding: 0;
+    }
+    .top-links {
+      margin-right: 50px;
+      display: flex;
+      align-items: center;
+      height: 100%;
+    }
+    .top-links a {
+      color: #6a6a6a;
+      margin-left: 20px;
+      font-weight: 400;
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .top-links a:hover {
+      color: #222;
+    }
+    .top-links .new-convo {
+      margin-left: 32px;
+      background: #2d74da;
+      color: #fff;
+      border-radius: 3px;
+      padding: 5px 16px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background 0.2s;
+      border: none;
+    }
+    .top-links .new-convo:hover {
+      background: #265fb3;
+    }
+    /* Main Container */
+    .container {
+      max-width: 1140px;
+      margin: 35px auto 0 auto;
+      display: flex;
+      justify-content: flex-start;
+      min-height: calc(100vh - 110px);
+    }
+    /* Left (main) content */
+    .main-content {
+      width: 730px;
+      background: #fff;
+      margin-right: 30px;
+      box-sizing: border-box;
+      border: 1px solid #e5e8ee;
+    }
+    .thread-header {
+      border-bottom: 1px solid #e5e8ee;
+      padding: 19px 23px 18px 23px;
+      background: #fcfcfd;
+      display: flex;
+      align-items: center;
+    }
+    .thread-title {
+      font-size: 20px;
+      font-weight: 400;
+      color: #444;
+      flex: none;
+    }
+    .thread-chip {
+      margin-left: 15px;
+      background: #e6eafd;
+      color: #3862c1;
+      font-size: 13px;
+      font-weight: 600;
+      border-radius: 3px;
+      padding: 4px 14px 3px 13px;
+      display: inline-block;
+      margin-top: 1px;
+    }
+    /* Post meta */
+    .thread-meta {
+      padding: 14px 19px 0px 23px;
+      display: flex;
+      align-items: center;
+    }
+    .meta-chip {
+      font-size: 13px;
+      color: #909090;
+      background: #f3f4f6;
+      border-radius: 3px;
+      padding: 4px 12px 3px 12px;
+      margin-right: 9px;
+      font-weight: 400;
+    }
+    /* Posts */
+    .posts-area {
+      padding: 5px 23px 20px 23px;
+      background: #fff;
+    }
+    .post {
+      display: flex;
+      margin-bottom: 27px;
+      align-items: flex-start;
+    }
+    .post:last-child {
+      margin-bottom: 0;
+    }
+    .avatar {
+      flex: none;
+      margin-top: 2px;
+      margin-right: 20px;
+    }
+    .avatar img {
+      display: block;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #e5e8ee;
+    }
+    /* Special avatar coloring for different users */
+    .avatar.fletcher img {
+      background: #263ee6;
+    }
+    .avatar.angusdlx img {
+      background: #e5e8ee;
+      border: 1px solid #dedede;
+    }
+    .avatar.friznit img {
+      background: #b3b3b3;
+    }
+    .post-body {
+      flex: 1 1 0%;
+      min-width: 0;
+    }
+    .post-header {
+      display: flex;
+      align-items: center;
+      margin-bottom: 3px;
+      font-size: 15px;
+      font-weight: 600;
+      color: #3c3c3c;
+    }
+    .post-header .username {
+      margin-right: 14px;
+      font-weight: 600;
+      color: #3c3c3c;
+    }
+    .post-header .date {
+      font-size: 13px;
+      font-weight: 400;
+      color: #7c7c7c;
+      margin-right: 8px;
+    }
+    .post-header .label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #6f7ac2;
+      background: #f1f3f8;
+      border-radius: 3px;
+      padding: 2px 7px;
+      margin-left: 8px;
+    }
+    .post-content {
+      font-size: 15px;
+      font-weight: 400;
+      color: #444;
+      line-height: 1.68;
+      margin: 0 0 8px 0;
+      word-break: break-word;
+    }
+    /* Divider between posts */
+    .post-divider {
+      height: 1px;
+      background: #ececec;
+      margin: 12px 0 8px 0;
+      border: none;
+    }
+    /* Loginbar (reply box at bottom) */
+    .loginbar {
+      background: #fafbfc;
+      border-top: 1px solid #e5e8ee;
+      padding: 20px 23px 22px 23px;
+      text-align: left;
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+    }
+    .loginbar .avatar {
+      margin: 0 20px 0 0;
+    }
+    .loginbar a {
+      color: #2d74da;
+      font-weight: 600;
+      margin: 0 4px 0 0;
+      text-decoration: none;
+    }
+    .loginbar a:hover {
+      text-decoration: underline;
+    }
+    /* Sidebar */
+    .sidebar {
+      width: 300px;
+      min-width: 230px;
+      margin-top: -1px;
+      background: none;
+      font-size: 15px;
+    }
+    .search-bar {
+      display: flex;
+      margin-bottom: 28px;
+    }
+    .search-bar input {
+      border: 1px solid #e5e8ee;
+      border-radius: 3px 0 0 3px;
+      background: #fff;
+      padding: 7px 14px 7px 13px;
+      font-size: 15px;
+      outline: none;
+      flex: 1;
+      height: 37px;
+      transition: border-color 0.2s;
+      box-sizing: border-box;
+    }
+    .search-bar button {
+      border: 1px solid #e5e8ee;
+      border-left: none;
+      border-radius: 0 3px 3px 0;
+      background: #f4f5f7;
+      color: #415981;
+      font-family: inherit;
+      font-size: 15px;
+      font-weight: 500;
+      cursor: pointer;
+      width: 44px;
+      height: 37px;
+      transition: background 0.2s;
+    }
+    .sidebar-btn {
+      width: 100%;
+      display: block;
+      margin-bottom: 28px;
+    }
+    .sidebar-btn button {
+      width: 100%;
+      background: #2d74da;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-size: 15px;
+      padding: 9px 0 8px 0;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: none;
+    }
+    .sidebar-btn button:hover {
+      background: #265fb3;
+    }
+    .sidebar-list-section {
+      border: 1px solid #e5e8ee;
+      border-radius: 3px;
+      background: #fff;
+      padding: 20px 19px 17px 19px;
+      margin-bottom: 19px;
+    }
+    .sidebar-label {
+      font-size: 15px;
+      font-weight: 400;
+      color: #909090;
+      margin-bottom: 13px;
+    }
+    .sidebar-list {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+    .sidebar-list li {
+      padding: 1px 0 5px 0;
+      color: #457be3;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+    }
+    .sidebar-list .selected {
+      border-left: 3px solid #457be3;
+      padding-left: 7px;
+      color: #315ed2;
+      background: #f6f8fd;
+      font-weight: 700;
+      height: 24px;
+    }
+    .sidebar-list .date {
+      color: #909090;
+      font-size: 13px;
+      font-weight: 400;
+      margin-left: 6px;
+    }
+    .sidebar-list li:last-child {
+      padding-bottom: 0;
+      margin-bottom: 0;
+    }
+    .sidebar-list .inactive {
+      border: none;
+      color: #9bb0da;
+      font-weight: 500;
+      background: none;
+      padding-left: 0;
+      height: 21px;
+    }
+    /* Go to Top and Footer */
+    .footer-bar {
+      width: 100%;
+      text-align: left;
+      font-size: 13px;
+      color: #9a9a9a;
+      margin-top: 45px;
+      margin-bottom: 9px;
+      padding-left: 50px;
+    }
+    .footer-row {
+      width: 100%;
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      margin-bottom: 1px;
+    }
+    .footer-powered {
+      width: 100%;
+      text-align: right;
+      font-size: 13px;
+      color: #99a1aa;
+      padding-right: 49px;
+      padding-top: 3px;
+      margin-bottom: 10px;
+      margin-top: 0;
+    }
+    /* Scrollbar tweaks for aesthetics */
+    ::-webkit-scrollbar-thumb { background: #f2f5fa }
+    ::-webkit-scrollbar { width: 10px; background: #edf0f8 }
+    /* Responsive tweak */
+    @media (max-width: 1100px) {
+      .container {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      .main-content {
+        width: 100%;
+        margin-right: 0;
+      }
+      .sidebar {
+        width: 100%;
+        min-width: 0;
+        margin-top: 25px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar">
+    <div class="top-links">
+      <a href="#">Sign Up</a>
+      <a href="#">Log In</a>
+      <a href="#" class="new-convo">New Conversation</a>
+    </div>
+  </div>
+  <div class="container">
+    <div class="main-content">
+      <div class="thread-header">
+        <span class="thread-title">Spawn Plane Radius Question</span>
+        <span class="thread-chip">Mission Makers</span>
+      </div>
+      <div class="thread-meta">
+        <span class="meta-chip">5 YEARS AGO</span>
+      </div>
+      <div class="posts-area">
+        <!-- Post 1 -->
+        <div class="post">
+          <div class="avatar fletcher">
+            <img src="src/placeholder.jpg" width="50" height="50" alt="">
+          </div>
+          <div class="post-body">
+            <div class="post-header">
+              <span class="username">Fletcher</span>
+              <span class="date">4 Sep 2018</span>
+            </div>
+            <div class="post-content">
+              Good evening gents/ladies.<br>
+              <br>
+              On the Virtual AI System module radius setting, this needs to be set in order to actually see anything on the ground right? If I'm doing a high altitude bomb run and use the camera to lock on to a target I'll need to have that radius set to the altitude I'm bombing from?<br>
+              <br>
+              I was just wondering because if I set my plane radius to let's say 3000m and my jet goes mach 1 lol I'll see a fps drop like crazy because my system is trying to load all the objects popping up at one time.<br>
+              <br>
+              Thanks for any info.
+            </div>
+          </div>
+        </div>
+        <!-- Post 2 -->
+        <div class="post">
+          <div class="avatar angusdlx">
+            <img src="src/placeholder.jpg" width="50" height="50" alt="">
+          </div>
+          <div class="post-body">
+            <div class="post-header">
+              <span class="username" style="color:#b7b7b7;">AngusDLX</span>
+              <span class="date">4 Sep 2018</span>
+            </div>
+            <div class="post-content">
+              The camera is not taken into account in the spawn radius but the aircraft.<br>
+              <br>
+              I had terrible experiences playing with attack jets on ALiVE precisely because of the spawn radius in airplanes. If you increase too much, spawn / despawn will actually cause fps drop! (not because of ALiVE but because of the amount of objects appearing and disappearing, especially in areas with many enemies).<br>
+              <br>
+              My only way was to set the spawn radius at 200 (so the bots that are at an airport for example are visible) and use a drone to move to the attack area to spawn the targets. The problem is that sometimes the AR-2 Darter gets drunk (ArmaBUG) and takes too long to get to the destination or worse, is killed before arriving.<br>
+              <br>
+              SpyderBlack gave some tips on how to replace this drone with an object that will call ALiVE_spawnSources and generate the spawn in a specific location but I could not get it to work.<br>
+              <br>
+              One possibility could also be: Once the ALiVE generates an air-related task like CAS, SEAD for example, it creates an object using spawnSources and deletes it as soon as the object is destroyed. I do not know if it would be possible but it is a suggestion to the devs.<br>
+              <br>
+              So players on planes can view and attack their targets at a safe distance without knocking down their own fps or everyone present. As I said, more than 1 plane on the server can create many problems when the spawn radius is high.
+            </div>
+          </div>
+        </div>
+        <!-- Post 3 -->
+        <hr class="post-divider">
+        <div class="post" style="margin-bottom:9px;">
+          <div class="avatar fletcher">
+            <img src="src/placeholder.jpg" width="50" height="50" alt="">
+          </div>
+          <div class="post-body">
+            <div class="post-header">
+              <span class="username">Fletcher</span>
+              <span class="date">4 Sep 2018</span>
+            </div>
+            <div class="post-content">
+              Oh ok thanks man!
+            </div>
+          </div>
+        </div>
+        <!-- Post 4 -->
+        <div class="post" style="margin-bottom:11px;">
+          <div class="avatar friznit">
+            <img src="src/placeholder.jpg" width="50" height="50" alt="">
+          </div>
+          <div class="post-body">
+            <div class="post-header">
+              <span class="username">Friznit</span>
+              <span class="date">5 Sep 2018</span>
+              <span class="label">Administrator</span>
+            </div>
+            <div class="post-content">
+              That's not a bad idea actually. We could potentially add a capability for players to place a "Target" marker over an intended objective which spawns an invisible object that calls ALiVE_spawnSources.
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="loginbar">
+        <div class="avatar">
+          <img src="src/placeholder.jpg" width="45" height="45" alt="">
+        </div>
+        <div>
+          <a href="#">Log In</a>
+          or
+          <a href="#">Sign Up</a>
+          to reply!
+        </div>
+      </div>
+    </div>
+    <!-- Sidebar Start -->
+    <div class="sidebar">
+      <form class="search-bar" action="#">
+        <input type="text" placeholder="Search" style="background:#fff;">
+        <button type="submit">&#128269;</button>
+      </form>
+      <div class="sidebar-btn">
+        <button>Post a Reply</button>
+      </div>
+      <div class="sidebar-list-section">
+        <div class="sidebar-label">Original Post</div>
+        <ul class="sidebar-list">
+          <li class="selected">2018</li>
+          <li style="padding-left:29px;color:#2647a7;font-weight:400;background:none;height:auto;">
+            <span class="date" style="color:#bababa;font-size:13px;">September</span>
+          </li>
+          <li class="inactive" style="color:#9bb0da;font-weight:400;">Latest</li>
+        </ul>
+      </div>
+    </div>
+    <!-- Sidebar End -->
+  </div>
+  <div class="footer-bar">
+    Go to top
+  </div>
+  <div class="footer-powered">
+    Powered by esoTalk
+  </div>
+</body>
+</html>

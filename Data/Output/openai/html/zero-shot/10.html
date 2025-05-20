@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>The Rosado Wrap Bracelet</title>
+  <meta name="viewport" content="width=1200">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap');
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+      background: #fff;
+      color: #13ecec;
+      margin: 0;
+      min-width: 1200px;
+      min-height: 100vh;
+      position: relative;
+    }
+    a {
+      color: #13ecec;
+      text-decoration: none;
+    }
+    header {
+      width: 100%;
+      border-bottom: 1px solid #13ecec;
+      background: #fff;
+      height: 76px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      position: relative;
+      z-index: 2;
+    }
+    .header-inner {
+      width: 100%;
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      padding: 0 16px;
+      justify-content: space-between;
+    }
+    .header-logo {
+      margin-left: 24px;
+      margin-right: 36px;
+      width: 48px;
+      height: 48px;
+      flex: 0 0 48px;
+    }
+    nav {
+      flex: 1;
+      text-align: center;
+      margin-left: 0;
+    }
+    nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: inline-flex;
+      gap: 48px;
+      font-size: 16px;
+      letter-spacing: 0.05em;
+      font-weight: 400;
+      vertical-align: middle;
+    }
+    nav ul li {
+      display: inline-block;
+    }
+    nav ul li a {
+      color: #13ecec;
+      text-decoration: none;
+      transition: color 0.2s;
+      outline: none;
+    }
+    nav ul li a:focus,
+    nav ul li a:hover {
+      text-decoration: underline;
+      color: #0bc;
+    }
+    .header-cart {
+      margin-right: 24px;
+      font-size: 15px;
+      letter-spacing: 0.1em;
+      color: #13ecec;
+    }
+
+    /* Main content layout */
+    main {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 0 40px 0;
+      min-height: 800px;
+    }
+    .main-title {
+      text-align: center;
+      margin-top: 64px;
+      margin-bottom: 0;
+      letter-spacing: 0.32em;
+      font-size: 28px;
+      font-weight: 400;
+    }
+    .main-price {
+      text-align: center;
+      margin-top: 18px;
+      margin-bottom: 44px;
+      font-size: 20px;
+      letter-spacing: 0.32em;
+      font-weight: 400;
+    }
+    .main-content {
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      column-gap: 56px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .main-image {
+      flex: 0 0 520px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    .main-image-large {
+      width: 520px;
+      height: 400px;
+      object-fit: cover;
+      margin-bottom: 32px;
+    }
+    .main-image-small-row {
+      display: flex;
+      gap: 32px;
+      margin-top: 0;
+    }
+    .main-image-small {
+      width: 140px;
+      height: 140px;
+      object-fit: cover;
+    }
+    .side-details {
+      flex: 1;
+      min-width: 320px;
+      max-width: 380px;
+      margin-top: 0;
+      margin-left: 10px;
+    }
+    .product-description {
+      color: #13ecec;
+      font-size: 15px;
+      line-height: 1.55;
+      letter-spacing: 0.02em;
+      margin-bottom: 18px;
+      font-family: 'Montserrat', Arial, Helvetica, sans-serif;
+    }
+    .product-form {
+      margin-bottom: 44px;
+    }
+    .product-select-label {
+      font-size: 15px;
+      color: #13ecec;
+      letter-spacing: 0.08em;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .product-select {
+      width: 100%;
+      font-family: inherit;
+      font-size: 15px;
+      padding: 9px 10px 10px 10px;
+      border: 1px solid #13ecec;
+      background: #fff;
+      color: #179eaa;
+      border-radius: 0;
+      margin-bottom: 22px;
+      outline: none;
+      box-sizing: border-box;
+      transition: border 0.2s;
+    }
+    .product-select:focus {
+      border-color: #0bc;
+    }
+    .add-to-cart-btn {
+      width: 100%;
+      font-family: inherit;
+      font-size: 15px;
+      color: #13ecec;
+      background: #fff;
+      border: 1px solid #13ecec;
+      padding: 16px 0;
+      cursor: pointer;
+      transition: background 0.15s, color 0.15s;
+      border-radius: 0;
+      margin-bottom: 38px;
+      letter-spacing: 0.05em;
+    }
+    .add-to-cart-btn:focus,
+    .add-to-cart-btn:hover {
+      background: #13ecec;
+      color: #fff;
+      outline: 2px solid #13ecec;
+      outline-offset: 1px;
+    }
+    .share-section {
+      margin-top: 30px;
+      border-top: 1px solid #13ecec;
+      padding-top: 28px;
+      text-align: center;
+    }
+    .share-title {
+      font-size: 14px;
+      letter-spacing: 0.45em;
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: #13ecec;
+    }
+    .share-icons {
+      display: flex;
+      justify-content: center;
+      gap: 22px;
+      margin-top: 10px;
+    }
+    .share-icon-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid #13ecec;
+      background: #fff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.18s, border 0.18s;
+      outline: none;
+    }
+    .share-icon-btn:focus,
+    .share-icon-btn:hover {
+      background: #e3ffff;
+      border: 2px solid #0bc;
+    }
+    .share-icon {
+      width: 28px;
+      height: 28px;
+      background: #13ecec;
+      border: none;
+      display: inline-block;
+    }
+    /* Footer */
+    footer {
+      border-top: 1px solid #13ecec;
+      width: 100vw;
+      min-width: 1200px;
+      padding: 0;
+      margin: 0;
+      background: #fff;
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      height: 46px;
+    }
+    .footer-inner {
+      max-width: 1280px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 46px;
+      padding: 0 24px;
+      font-size: 14px;
+      color: #828282;
+      background: transparent;
+    }
+    .footer-badge {
+      display: inline-block;
+      background: #cfcfcf;
+      color: #fff;
+      border-radius: 4px;
+      padding: 4px 10px 3px 10px;
+      font-size: 12px;
+      letter-spacing: 0.05em;
+      margin-left: 7px;
+    }
+    .footer-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 15px;
+      letter-spacing: 0.06em;
+    }
+    .footer-links a {
+      color: #13ecec;
+      text-decoration: none;
+      position: relative;
+      padding: 0 3px;
+      background: transparent;
+      transition: color 0.15s;
+      outline: none;
+    }
+    .footer-links a:focus,
+    .footer-links a:hover {
+      text-decoration: underline;
+      color: #0bc;
+    }
+    /* Custom resize for demonstration */
+    @media (max-width: 1280px) {
+      .main-content,
+      main {
+        padding: 0 12px;
+        min-width: 0;
+        width: 100%;
+      }
+      .footer-inner {
+        max-width: 100vw;
+        padding: 0 12px;
+      }
+    }
+    @media (max-width: 1024px) {
+      .main-content {
+        flex-direction: column;
+        align-items: center;
+      }
+      .side-details {
+        margin-left: 0;
+        margin-top: 40px;
+        width: 96vw;
+        max-width: 98vw;
+      }
+    }
+    /* WCAG: ensure focus styles, readable color contrast, proper button styling, and logical tab order */
+
+    /* Visually hidden for accessibility (if needed) */
+    .sr-only {
+      position: absolute;
+      left: -10000px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
+  </style>
+</head>
+<body>
+  <header role="banner">
+    <div class="header-inner" aria-label="Main site navigation">
+      <img src="src/placeholder.jpg" width="48" height="48" alt="" class="header-logo" aria-hidden="true" />
+      <nav aria-label="Site">
+        <ul>
+          <li><a href="#">Products</a></li>
+          <li><a href="#">Who We Are</a></li>
+          <li><a href="#">Size Chart</a></li>
+          <li><a href="#">Policies</a></li>
+        </ul>
+      </nav>
+      <div class="header-cart" aria-label="Shopping cart status">
+        0 / $0.00
+      </div>
+    </div>
+  </header>
+  <main id="main-content" tabindex="-1">
+    <h1 class="main-title" style="font-family:'Montserrat',Arial,sans-serif;font-weight:400;text-transform:uppercase;">
+      THE ROSADO WRAP BRACELET
+    </h1>
+    <div class="main-price" aria-label="Product price" style="font-weight:400;text-transform:uppercase;">
+      $ 20.00
+    </div>
+    <section class="main-content">
+      <div class="main-image" aria-label="Product images">
+        <img src="src/placeholder.jpg" width="520" height="400" alt="" class="main-image-large" aria-hidden="true" />
+        <div class="main-image-small-row">
+          <img src="src/placeholder.jpg" width="140" height="140" alt="" class="main-image-small" aria-hidden="true" />
+          <img src="src/placeholder.jpg" width="140" height="140" alt="" class="main-image-small" aria-hidden="true" />
+        </div>
+      </div>
+      <aside class="side-details">
+        <div class="product-description" id="desc">
+          Dyed pink wooden tube beads. 4mm turquoise beads. 6 gold pewter spacers strung on elastic cord to create a quadruple wrap!<br><br>
+          This listing is for one wrap bracelet. Each wrap bracelet is sold individually at $20.00 each.<br><br>
+          **For sizing measurements, please refer the Size Chart Page.**<br>
+          **This bracelet can be customized with silver spacers.**
+        </div>
+        <form class="product-form" aria-labelledby="desc">
+          <label for="size" class="sr-only">Choose a size</label>
+          <select id="size" class="product-select" name="size" aria-label="Choose a size">
+            <option value="small" selected>Small (S)</option>
+          </select>
+          <button type="submit" class="add-to-cart-btn" aria-label="Add bracelet to cart">Add to Cart</button>
+        </form>
+        <div class="share-section">
+          <div class="share-title" aria-label="Share this product">SHARE</div>
+          <div class="share-icons" role="group" aria-label="Share on social">
+            <button class="share-icon-btn" aria-label="Share on platform 1">
+              <span class="share-icon" aria-hidden="true"></span>
+            </button>
+            <button class="share-icon-btn" aria-label="Share on platform 2">
+              <span class="share-icon" aria-hidden="true"></span>
+            </button>
+            <button class="share-icon-btn" aria-label="Share on platform 3">
+              <span class="share-icon" aria-hidden="true"></span>
+            </button>
+          </div>
+        </div>
+      </aside>
+    </section>
+  </main>
+  <footer role="contentinfo">
+    <div class="footer-inner">
+      <div>
+        <span class="footer-badge" aria-label="Powered by Bigcartel">bigcartel</span>
+      </div>
+      <div class="footer-links">
+        <a href="#">Home</a>
+        <a href="#">Contact</a>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

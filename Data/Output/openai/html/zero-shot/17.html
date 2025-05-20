@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Recent Temperature Trends in Ottawa, Ontario</title>
+<meta name="viewport" content="width=1024">
+<style>
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    background: #fff;
+    color: #3d392f;
+    font-size: 16px;
+    min-width: 1024px;
+}
+
+/* Global links and inline styles */
+a {
+    color: #0171c6;
+    text-decoration: underline;
+}
+a:visited {
+    color: #7b3932;
+}
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible {
+    outline: #0171c6 solid 3px !important;
+    outline-offset: 2px;
+}
+
+/* Header */
+.header-title {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #636363;
+    margin-top: 38px;
+    margin-left: 250px;
+    margin-bottom: 0.2em;
+    letter-spacing: 0;
+}
+.hr-bar {
+    margin-left: 250px;
+    border: none;
+    border-top: 2px dotted #B8B7AD;
+    color: #B8B7AD;
+    background: transparent;
+    height: 2px;
+    margin-bottom: 0;
+    width: calc(100% - 250px - 60px);
+}
+
+/* Layout */
+.main-container {
+    display: flex;
+    flex-direction: row;
+    margin-top: 0;
+}
+.sidebar {
+    width: 340px;
+    min-width: 340px;
+    margin-right: 30px;
+    margin-left: 38px;
+    margin-top: 15px;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+}
+.content {
+    flex: 1 1 0%;
+    margin-top: 3px;
+    max-width: 900px;
+}
+
+/* Sidebar Styles */
+.eminf-logo {
+    font-family: "Times New Roman", Times, serif;
+    color: #d1a21c;
+    font-weight: bold;
+    font-size: 2.35em;
+    letter-spacing: 0.01em;
+    margin-right: 3px;
+    margin-top: 7px;
+    margin-bottom: 0;
+}
+.eminf-slogan {
+    color: #d1a21c;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.9em;
+    letter-spacing: 0.19em;
+    font-weight: normal;
+    margin-top: -2px;
+    margin-bottom: 15px;
+    margin-left: 3.5px;
+}
+
+.sidebar-section {
+    margin-bottom: 0.8em;
+}
+.sidebar-title {
+    font-weight: bold;
+    letter-spacing: 0.05em;
+    font-size: 1.09em;
+    margin-bottom: 0.15em;
+    margin-top: 0.86em;
+    display: flex;
+    align-items: center;
+}
+.sidebar-title .close-x {
+    font-size: 1em;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: normal;
+    margin-right: 5px;
+    color: #222;
+    cursor: default;
+    user-select: none;
+}
+.sidebar-list {
+    font-size: 0.95em;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    color: #444;
+}
+.sidebar-list li {
+    line-height: 1.7;
+    margin-bottom: 0;
+}
+.sidebar-hr {
+    border: none;
+    border-top: 1px dotted #B8B7AD;
+    background: transparent;
+    height: 1px;
+    margin: 9px 0 11px 0;
+    width: 92%;
+}
+.sidebar-label {
+    color: #d1a21c;
+    font-size: 0.85em;
+    font-weight: bold;
+    font-family: "Times New Roman", Times, serif;
+    letter-spacing: 0.07em;
+    margin-top: 2.5em;
+    display: block;
+    text-align: left;
+    text-transform: uppercase;
+    margin-bottom: 22px;
+}
+.sidebar-list .indent {
+    margin-left: 17px;
+    font-size: .96em;
+    color: #444;
+}
+
+/* Content Styles */
+.nav-links {
+    margin-top: 3px;
+    margin-bottom: 16px;
+    font-size: 1em;
+    line-height: 1.7;
+}
+.nav-links a {
+    color: #d1a21c;
+    text-decoration: underline;
+    margin-left: 0;
+    margin-right: 17px;
+    font-weight: normal;
+    letter-spacing: 0.03em;
+    position: relative;
+}
+.nav-links a:last-child {
+    margin-right: 0;
+}
+.section-title {
+    font-weight: bold;
+    color: #a48413;
+    font-size: 1em;
+    letter-spacing: 0.02em;
+    margin-bottom: 0.4em;
+}
+.temp-desc {
+    font-size: 1em;
+    color: #35322a;
+    margin-bottom: 18px;
+    margin-top: 0;
+    line-height: 1.4;
+    max-width: 695px;
+}
+.temp-desc a {
+    color: #0171c6;
+    text-decoration: underline;
+    border-bottom: 1px dotted #B8B7AD;
+}
+.temp-desc a:visited {
+    color: #7b3932;
+}
+.table-container {
+    margin-top: 15px;
+    margin-bottom: 16px;
+    outline: 1.5px dotted #B8B7AD;
+    padding: 13px 10px 15px 12px;
+    background: #fff;
+    width: 672px;
+    min-width: 672px;
+    max-width: 672px;
+}
+.temp-table-caption {
+    font-size: 0.93em;
+    color: #35322a;
+    text-align: center;
+    font-family: Verdana, Arial, Helvetica, sans-serif;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    font-weight: normal;
+}
+.temp-table-legend {
+    text-align: center;
+    font-size: 0.98em;
+    margin-bottom: 11px;
+}
+.temp-table-legend span {
+    margin: 0 7px;
+}
+.lower-bound {
+    color: #0994c8;
+    font-weight: bold;
+}
+.average-value {
+    font-weight: normal;
+    color: #2b2e32;
+}
+.upper-bound {
+    color: #b93d28;
+    font-weight: bold;
+}
+
+.temp-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 2px;
+    font-size: 0.99em;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.temp-table thead th {
+    background: #f5e8d2;
+    color: #453300;
+    font-size: 1em;
+    font-weight: bold;
+    padding: 2px 8px;
+    border: 1px solid #e1b77b;
+    text-align: center;
+}
+.temp-table tbody th.row-label {
+    background: #f5e8d2;
+    color: #856e44;
+    font-size: .94em;
+    font-weight: normal;
+    width: 23px;
+    border: 1px solid #e1b77b;
+    text-align: right;
+    padding: 0 8px 0 0;
+    letter-spacing: 0.01em;
+}
+.temp-table td {
+    border: 1px solid #e1b77b;
+    padding: 2.5px 6px 2.5px 6px;
+    text-align: center;
+    background: transparent;
+    vertical-align: middle;
+    font-size: 1em;
+    color: #333;
+    line-height: 1.47;
+}
+.temp-table td .lower-bound {
+    color: #0994c8;
+    font-weight: bold;
+}
+.temp-table td .average-value {
+    color: #222;
+    font-weight: normal;
+}
+.temp-table td .upper-bound {
+    color: #b93d28;
+    font-weight: bold;
+}
+.temp-table td {
+    min-width: 32px;
+}
+
+.temp-table tbody tr {
+    background: transparent;
+}
+.temp-table .row-label {
+    background: #f5e8d2;
+}
+.temp-table .empty-cell {
+    background: #fff;
+    border: none;
+}
+
+/* Footer */
+.footer {
+    text-align: center;
+    margin: 44px 0 16px 0;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1em;
+    color: #d1a21c;
+    letter-spacing: 0.1em;
+    word-spacing: 0.11em;
+}
+.footer small {
+    font-size: 0.97em;
+    color: #d1a21c;
+    letter-spacing: 0.09em;
+    font-family: inherit;
+    font-variant: small-caps;
+}
+
+/* Accessibility extras */
+:focus-visible {
+    outline: 3px solid #0171c6 !important;
+    outline-offset: 2px !important;
+}
+</style>
+</head>
+<body>
+<header>
+    <div class="header-title" id="main-heading">Recent Temperature Trends in Ottawa, Ontario</div>
+    <hr class="hr-bar" aria-hidden="true">
+</header>
+<main>
+    <div class="main-container">
+        <nav class="sidebar" aria-label="Site menu">
+            <div>
+                <div class="eminf-logo" aria-hidden="true">EmInf</div>
+                <div class="eminf-slogan">Empirical and Inferential<br>Interpretations</div>
+            </div>
+            <div class="sidebar-section">
+                <div class="sidebar-title">
+                    <span class="close-x" aria-hidden="true" style="font-size: 1em;">×</span>
+                    Temperature Trends
+                </div>
+                <ul class="sidebar-list" aria-label="Temperature Trends Menu">
+                    <li class="indent">Recent Data</li>
+                    <li class="indent">Historical Data for USA</li>
+                </ul>
+                <hr class="sidebar-hr" aria-hidden="true">
+            </div>
+            <ul class="sidebar-list" aria-label="Site Map">
+                <li class="sidebar-section" style="margin-top:0;margin-bottom:1em;">
+                    Sitemap
+                </li>
+                <li class="sidebar-section" style="margin-bottom:0;margin-top:0;">
+                    HTML in a Nutshell
+                </li>
+                <li class="sidebar-section" style="margin-bottom:0;margin-top:0;">
+                    CSS Overview
+                </li>
+                <li class="sidebar-section" style="margin-bottom:0;margin-top:0;">
+                    JavaScript Examples
+                </li>
+                <li class="sidebar-section" style="margin-bottom:0;margin-top:0;">
+                    Environmental Data Notes
+                </li>
+                <li class="sidebar-section" style="margin-bottom:0;margin-top:0;">
+                    Statistics Notes
+                </li>
+                <li class="sidebar-section" style="margin-bottom:0;margin-top:0;">
+                    Trips from Waterloo
+                </li>
+                <li class="sidebar-section" style="margin-bottom:0;margin-top:0;">
+                    The Mennonite Country
+                </li>
+                <li class="sidebar-section" style="margin-bottom:0;margin-top:0;">
+                    Archive
+                </li>
+            </ul>
+            <div class="sidebar-label" aria-label="Site authors">Dana &amp; Jaroslav Mohapl</div>
+        </nav>
+        <section class="content" aria-label="Temperature summary and data table">
+            <nav class="nav-links" aria-label="Page navigation">
+                <a href="#" tabindex="0">Extrema</a>
+                <a href="#" tabindex="0">Summary</a>
+                <a href="#" tabindex="0">Monthly Summary</a>
+                <a href="#" tabindex="0">Warming Trends</a>
+                <a href="#" tabindex="0">Day Counts</a>
+                <a href="#" tabindex="0">To Fahrenheit</a>
+            </nav>
+            <div class="section-title" id="temp-trends-title">Temperature Trends in Ottawa, Ontario</div>
+            <p class="temp-desc">
+                Average daily temperatures in Ottawa, Ontario, including the lower and upper bounds of the 95% confidence interval. 
+                Due to the possibility of missing data, the actual 
+                <a href="#" tabindex="0">day counts</a> used in the average and confidence interval calculations are provided. The table is also offered in degrees of 
+                <a href="#" tabindex="0">Fahrenheit</a>.
+            </p>
+            <div class="table-container" role="region" aria-labelledby="summ-table-caption">
+                <div class="temp-table-caption" id="summ-table-caption">
+                    Average daily temperatures (C) for Ottawa, Ontario
+                </div>
+                <div class="temp-table-legend" aria-hidden="true">
+                    <span class="lower-bound">Lower Bound</span>
+                    <span class="average-value">Average Temperature</span>
+                    <span class="upper-bound">Upper Bound</span>
+                </div>
+                <table class="temp-table" aria-describedby="summ-table-caption">
+                    <thead>
+                        <tr>
+                            <th scope="col" aria-hidden="true"></th>
+                            <th scope="col">January</th>
+                            <th scope="col">February</th>
+                            <th scope="col">March</th>
+                            <th scope="col">April</th>
+                            <th scope="col">May</th>
+                            <th scope="col">June</th>
+                            <th scope="col">July</th>
+                            <th scope="col">August</th>
+                            <th scope="col">September</th>
+                            <th scope="col">October</th>
+                            <th scope="col">November</th>
+                            <th scope="col">December</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="row-label">1</th>
+                            <td>
+                                <span class="lower-bound">-12</span>
+                                <span class="average-value">-8</span>
+                                <span class="upper-bound">-4</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">-11</span>
+                                <span class="average-value">-8</span>
+                                <span class="upper-bound">-5</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">-7</span>
+                                <span class="average-value">-5</span>
+                                <span class="upper-bound">-2</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">2</span>
+                                <span class="average-value">4</span>
+                                <span class="upper-bound">6</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">8</span>
+                                <span class="average-value">10</span>
+                                <span class="upper-bound">12</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">15</span>
+                                <span class="average-value">17</span>
+                                <span class="upper-bound">19</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">19</span>
+                                <span class="average-value">20</span>
+                                <span class="upper-bound">22</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">21</span>
+                                <span class="average-value">22</span>
+                                <span class="upper-bound">24</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">18</span>
+                                <span class="average-value">19</span>
+                                <span class="upper-bound">21</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">10</span>
+                                <span class="average-value">12</span>
+                                <span class="upper-bound">14</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">4</span>
+                                <span class="average-value">6</span>
+                                <span class="upper-bound">8</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">-4</span>
+                                <span class="average-value">-1</span>
+                                <span class="upper-bound">2</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="row-label">2</th>
+                            <td>
+                                <span class="lower-bound">-12</span>
+                                <span class="average-value">-9</span>
+                                <span class="upper-bound">-6</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">-9</span>
+                                <span class="average-value">-7</span>
+                                <span class="upper-bound">-5</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">-6</span>
+                                <span class="average-value">-4</span>
+                                <span class="upper-bound">-2</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">2</span>
+                                <span class="average-value">4</span>
+                                <span class="upper-bound">6</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">9</span>
+                                <span class="average-value">12</span>
+                                <span class="upper-bound">14</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">15</span>
+                                <span class="average-value">17</span>
+                                <span class="upper-bound">19</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">19</span>
+                                <span class="average-value">20</span>
+                                <span class="upper-bound">22</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">21</span>
+                                <span class="average-value">22</span>
+                                <span class="upper-bound">24</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">17</span>
+                                <span class="average-value">18</span>
+                                <span class="upper-bound">20</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">9</span>
+                                <span class="average-value">12</span>
+                                <span class="upper-bound">14</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">3</span>
+                                <span class="average-value">5</span>
+                                <span class="upper-bound">7</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">-5</span>
+                                <span class="average-value">-2</span>
+                                <span class="upper-bound">1</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <th scope="row" class="row-label">3</th>
+                            <td>
+                                <span class="lower-bound">-11</span>
+                                <span class="average-value">-8</span>
+                                <span class="upper-bound">-5</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">-11</span>
+                                <span class="average-value">-8</span>
+                                <span class="upper-bound">-5</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">-9</span>
+                                <span class="average-value">-6</span>
+                                <span class="upper-bound">-3</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">2</span>
+                                <span class="average-value">4</span>
+                                <span class="upper-bound">6</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">9</span>
+                                <span class="average-value">12</span>
+                                <span class="upper-bound">14</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">14</span>
+                                <span class="average-value">16</span>
+                                <span class="upper-bound">17</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">19</span>
+                                <span class="average-value">21</span>
+                                <span class="upper-bound">22</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">21</span>
+                                <span class="average-value">22</span>
+                                <span class="upper-bound">23</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">17</span>
+                                <span class="average-value">19</span>
+                                <span class="upper-bound">21</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">9</span>
+                                <span class="average-value">11</span>
+                                <span class="upper-bound">13</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">2</span>
+                                <span class="average-value">4</span>
+                                <span class="upper-bound">6</span>
+                            </td>
+                            <td>
+                                <span class="lower-bound">-6</span>
+                                <span class="average-value">-3</span>
+                                <span class="upper-bound">0</span>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+    </div>
+</main>
+<footer class="footer" aria-label="Copyright information">
+    <small>
+        Copyright &copy; 2004 - 2023 by EmInf. All rights reserved.
+    </small>
+</footer>
+</body>
+</html>

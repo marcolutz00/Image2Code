@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Template : Incel Forums - Incel Wiki</title>
+  <meta name="viewport" content="width=1024">
+  <style>
+    html, body {
+      background: #f8f9fa;
+      color: #222;
+      font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+      margin: 0;
+      padding: 0;
+      font-size: 16px;
+      height: 100%;
+      min-height: 100%;
+    }
+    body {
+      min-width: 1024px;
+    }
+
+    /* Utility */
+    a {
+      color: #0645ad;
+      text-decoration: underline;
+    }
+    a:visited {
+      color: #0b0080;
+    }
+    a:focus {
+      outline: 2px solid #000;
+      outline-offset: 2px;
+    }
+    .bold { font-weight: bold; }
+
+    /* Top bar */
+    .top-bar {
+      height: 38px;
+      width: 100%;
+      background: transparent;
+      border-bottom: 1px solid #a2a9b1;
+      position: relative;
+      z-index: 10;
+      margin-bottom: 0;
+      font-size: 13px;
+      color: #222;
+    }
+    .top-bar-inner {
+      width: 1247px;
+      max-width: 100vw;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 38px;
+    }
+    .top-left, .top-center, .top-right {
+      display: flex;
+      align-items: center;
+      height: 38px;
+    }
+    .top-left {
+      padding-left: 175px;
+      flex: 1;
+    }
+    .top-center {
+      flex: 1;
+      justify-content: flex-start;
+      color: #222;
+    }
+    .top-right {
+      flex: 1 1 0;
+      justify-content: flex-end;
+      gap: 20px;
+      color: #555;
+      padding-right: 24px;
+    }
+    .top-right .user-msg {
+      font-size: 12px;
+      color: #555;
+    }
+    .top-links {
+      color: #0645ad;
+      gap: 8px;
+      display: flex;
+      align-items: center;
+      font-size: 13px;
+    }
+    .top-links a {
+      margin-right: 8px;
+      color: #0645ad;
+      text-decoration: underline;
+    }
+    .top-links a:last-child {
+      margin-right: 0;
+    }
+    .search-bar {
+      height: 24px;
+      width: 240px;
+      margin-left: 15px;
+      border: 1px solid #a2a9b1;
+      border-radius: 2px;
+      font-size: 15px;
+      background: #fff;
+      padding: 3px 8px;
+    }
+
+    /* Sidebar */
+    .sidebar {
+      position: absolute;
+      left: 0;
+      top: 39px;
+      width: 185px;
+      background: #f8f9fa;
+      border-right: 1px solid #a2a9b1;
+      font-size: 15px;
+      min-height: calc(100vh - 39px);
+      padding-bottom: 40px;
+      z-index: 2;
+      box-sizing: border-box;
+    }
+    .sidebar-sec {
+      margin-bottom: 17px;
+    }
+    .sidebar-section-title {
+      font-size: 13px;
+      color: #222;
+      font-weight: bold;
+      margin: 10px 0 6px 0;
+    }
+    .sidebar .sidebar-link {
+      display: block;
+      padding: 1.5px 0 1.5px 17px;
+      color: #0645ad;
+      font-size: 15px;
+      text-decoration: underline;
+      line-height: 1.375;
+      border-radius: 2px;
+    }
+    .sidebar .sidebar-link:focus {
+      background-color: #e9ecef;
+      outline: 2px solid #000;
+    }
+    .sidebar .sidebar-link.bold {
+      font-weight: bold;
+      color: #222;
+      text-decoration: none;
+    }
+    .sidebar .sidebar-link.psl {
+      color: #060b33;
+      font-weight: bold;
+    }
+    .chat-discord {
+      background: #ebedf1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #5865f2;
+      font-weight: bold;
+      border-radius: 6px;
+      border: 1px solid #b2b7be;
+      margin: 15px 18px 20px 18px;
+      height: 34px;
+      cursor: pointer;
+      font-size: 16px;
+      box-sizing: border-box;
+      width: 145px;
+    }
+    .chat-discord span {
+      color: #222;
+      margin-left: 1px;
+      margin-right: 3px;
+    }
+    .chat-discord .discord-strong {
+      color: #5865f2;
+      font-weight: bold;
+      margin-left: 2px;
+    }
+    .sidebar .sidebar-sec-other {
+      margin-bottom: 16px;
+      margin-top: 13px;
+    }
+    .sidebar .sidebar-sec-tools {
+      margin-top: 19px;
+      margin-bottom: 0;
+    }
+    hr.sidebar-hr {
+      border: none;
+      border-top: 1px solid #a2a9b1;
+      margin: 10px 0 10px 0;
+      width: 83%;
+    }
+
+    /* Main Content */
+    .mw-body {
+      margin-left: 202px;
+      margin-top: 26px;
+      padding-bottom: 20px;
+      min-height: 700px;
+      max-width: 1040px;
+    }
+    .namespace-header {
+      color: #222;
+      font-size: 15px;
+      margin-bottom: 13px;
+    }
+    .namespace-tabs {
+      display: flex;
+      gap: 10px;
+      font-size: 13px;
+      margin-bottom: 15px;
+      color: #222;
+    }
+    .namespace-tabs a {
+      color: #0645ad;
+      text-decoration: underline;
+      padding: 0 3px 0 0;
+    }
+
+    .mw-content {
+      background: transparent;
+      padding-bottom: 15px;
+    }
+    .mw-content h1 {
+      font-size: 2rem;
+      font-weight: 400;
+      margin: 18px 0 10px 0;
+      line-height: 1.2;
+      font-family: 'Georgia', 'Times New Roman', Times, serif;
+      letter-spacing:0px;
+      border: none;
+      color: #222;
+    }
+    .mw-content hr {
+      border: 0;
+      border-top: 1px solid #a2a9b1;
+      margin: 18px 0 15px 0;
+    }
+    .mw-content p, .mw-content {
+      font-size: 1rem;
+      color: #222;
+      margin: 0 0 16px 0;
+      line-height: 1.6;
+    }
+    .mw-content strong {
+      font-weight: bold;
+    }
+    .warning-desc {
+      font-size: 15px;
+      color: #222;
+      margin-bottom: 9px;
+      margin-top: 0;
+      line-height: 1.5;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    /* Navbox Card */
+    .navbox-container {
+      background: #ffffff;
+      width: 710px;
+      margin: 24px auto 24px auto;
+      border-radius: 12px;
+      box-shadow: 0 1.5px 5px 0 rgba(32,48,16,0.13);
+      padding: 0px;
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      justify-content: flex-start;
+      border: none;
+      outline: none;
+    }
+    .navbox-inner {
+      background: #308d12;
+      border-radius: 12px;
+      border: 1.5px solid #217302;
+      box-shadow: 0 2px 6px 0 rgba(22, 36, 14, 0.12);
+      padding: 0 0 20px 0;
+      width: 100%;
+      margin: 0;
+    }
+    .navbox-header {
+      color: #fff;
+      text-align: center;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 2.1rem;
+      font-weight: bold;
+      letter-spacing: 0;
+      padding: 18px 32px 8px 32px;
+      line-height: 1.09;
+    }
+    .navbox-table {
+      display: table;
+      width: 96%;
+      margin: 0 auto;
+      border-collapse: separate;
+      border-spacing: 0;
+      background: none;
+    }
+    .navbox-tr {
+      display: table-row;
+      background: none;
+      border-collapse: separate;
+    }
+    .navbox-td-title {
+      background: #fff;
+      display: table-cell;
+      vertical-align: middle;
+      text-align: left;
+      width: 150px;
+      min-width: 150px;
+      font-family: Arial, Helvetica, sans-serif;
+      font-size: 1.3rem;
+      font-weight: bold;
+      color: #162d7e;
+      border-top: 4px solid #fff;
+      border-bottom: 4px solid #fff;
+      border-right: 3px solid #2d7600;
+      border-left: none;
+      padding: 20px 0 19px 0;
+      letter-spacing: -0.01em;
+      line-height: 1.15;
+      background-clip: padding-box;
+    }
+    .navbox-td-title.one {
+      border-top: none;
+      border-radius: 7px 0 0 0;
+      padding-top: 21px;
+    }
+    .navbox-td-title.last {
+      border-bottom: none;
+      border-radius: 0 0 0 7px;
+      padding-bottom: 21px;
+    }
+
+    .navbox-td-content {
+      background: #fff;
+      display: table-cell;
+      vertical-align: top;
+      text-align: left;
+      font-size: 1rem;
+      font-family: Arial, Helvetica, sans-serif;
+      color: #154197;
+      font-weight: normal;
+      padding: 12px 10px 12px 15px;
+      border-bottom: 2px solid #2d7600;
+      border-top: 2px solid #2d7600;
+      border-left: none;
+      border-right: none;
+      line-height: 1.26;
+    }
+    .navbox-tr.last .navbox-td-content {
+      border-bottom: none;
+    }
+    .navbox-tr.one .navbox-td-title,
+    .navbox-tr.one .navbox-td-content {
+      border-top: none;
+    }
+    .navbox-tr.last .navbox-td-title,
+    .navbox-tr.last .navbox-td-content {
+      border-bottom: none;
+    }
+    .navbox-td-title {
+      padding-left: 17px;
+      padding-right: 0;
+    }
+    .navbox-td-content {
+      padding-left: 15px;
+      padding-right: 15px;
+      font-size: 1.03rem;
+    }
+
+    /* Specific coloring in cells */
+    .navbox-td-content {
+      color: #154197;
+      margin-bottom: 3px;
+    }
+    .navbox-content-red {
+      color: #aa170d;
+    }
+    .navbox-content-red a, .navbox-content-red span {
+      color: #a6121c !important;
+      font-weight: normal;
+    }
+    .navbox-links a {
+      color: #154197;
+      text-decoration: underline;
+      font-weight: normal;
+      font-size: 15px;
+      transition: color 0.17s;
+    }
+    .navbox-links .user {
+      color: #0e4689;
+    }
+    .navbox-links .mod {
+      color: #13a60a;
+      font-weight: bold;
+    }
+    .navbox-links .exmod {
+      color: #4753e3;
+      font-weight: normal;
+    }
+    .navbox-links .banned {
+      color: #a6121c;
+      font-weight: normal;
+    }
+    .navbox-links .admin,
+    .navbox-links .founder {
+      color: #7a0286;
+      font-weight: bold;
+    }
+    .navbox-content-red a,
+    .navbox-content-red span {
+      color: #b92424 !important;
+      font-weight: normal;
+    }
+    .navbox-content-red {
+      color: #b92a13 !important;
+      font-weight: normal;
+    }
+    .navbox-content-red .creator {
+      color: #b92a13;
+      font-weight: normal;
+    }
+    .navbox-content-red .admin {
+      color: #b92a13 !important;
+      font-weight: normal;
+    }
+
+    /* Special row: Red */
+    .navbox-td-content .navbox-links .red,
+    .navbox-content-red {
+      color: #b92a13 !important;
+    }
+
+    /* For the red links in love-shy.net row: */
+    .navbox-love-shy {
+      color: #b92a13;
+      font-weight: normal;
+    }
+    .navbox-td-content span {
+      color: inherit;
+    }
+
+    /* Category box */
+    .mw-categorybox {
+      background: #f8f9fa;
+      border: 1px solid #a2a9b1;
+      padding: 10px 18px 10px 16px;
+      margin: 28px 0 12px 0;
+      width: 508px;
+      font-size: 1rem;
+      color: #222;
+      border-radius: 3px;
+    }
+    .mw-categorybox a {
+      color: #0645ad;
+      text-decoration: underline;
+    }
+
+    /* Meta */
+    .mw-meta {
+      margin: 19px 0 10px 0;
+      color: #222;
+      font-size: 13px;
+    }
+    .mw-meta-bottom {
+      font-size: 13px;
+      margin: 2px 0 4px 0;
+      color: #222;
+    }
+
+    /* Footer */
+    .mw-footer {
+      margin-left: 202px;
+      font-size: 13px;
+      color: #222;
+      padding-bottom: 18px;
+      margin-bottom: 0;
+      margin-top: 13px;
+      width: 90%;
+      min-width: 500px;
+      max-width: 1080px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 18px;
+      letter-spacing: 0.01em;
+      align-items: baseline;
+    }
+    .mw-footer a {
+      color: #0645ad;
+      text-decoration: underline;
+      margin-right: 12px;
+    }
+
+
+    /* WCAG: Focus styles for all interactive elements */
+    a:focus, button:focus, input:focus, textarea:focus {
+      outline: 2px solid #003366;
+      outline-offset: 2px;
+    }
+  </style>
+</head>
+<body>
+  <div class="top-bar" role="banner" aria-label="Site navigation header">
+    <div class="top-bar-inner">
+      <div class="top-left" aria-label="namespace">
+        <span class="namespace-header bold">Template</span>
+        <span style="margin: 0 7px 0 7px; color: #222;">|</span>
+        <span class="namespace-header" style="color: #0645ad; font-weight: 400;"><a href="#" tabindex="0">Discussion</a></span>
+      </div>
+      <div class="top-center"></div>
+      <div class="top-right" aria-label="site controls">
+        <span class="user-msg" aria-label="user not logged in">
+          Not logged in |
+          <a href="#" tabindex="0">Talk</a>
+          <a href="#" tabindex="0">Contributions</a>
+          <a href="#" tabindex="0">Log in</a>
+        </span>
+        <div class="top-links" aria-label="page actions">
+          <a href="#" tabindex="0">Edit source</a>
+          <a href="#" tabindex="0">View history</a>
+        </div>
+        <form role="search" aria-label="Wiki search" style="margin-left: 12px;">
+          <label for="search" class="visually-hidden">Search Incel Wiki</label>
+          <input type="search" id="search" class="search-bar" placeholder="Search Incel Wiki" aria-label="Search Incel Wiki">
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <aside class="sidebar" aria-label="Wiki page menu">
+    <button class="chat-discord" aria-label="Chat on Discord" tabindex="0">
+        <span>Chat on</span>
+        <span class="discord-strong">Discord</span>
+    </button>
+    <nav>
+      <div class="sidebar-sec" aria-label="Incel FAQ &amp; History">
+        <div class="sidebar-section-title">Incel FAQ &amp; History</div>
+        <a href="#" class="sidebar-link" tabindex="0">Inceldom FAQ</a>
+        <a href="#" class="sidebar-link" tabindex="0">Incelsophere Timeline</a>
+        <a href="#" class="sidebar-link" tabindex="0">Incel Glossary</a>
+        <a href="#" class="sidebar-link" tabindex="0">Demographics Of Inceldom</a>
+      </div>
+      <div class="sidebar-sec" aria-label="Important Pages">
+        <div class="sidebar-section-title">Important Pages</div>
+        <a href="#" class="sidebar-link" tabindex="0">Scientific Blackpill</a>
+        <a href="#" class="sidebar-link" tabindex="0">Blackpill</a>
+        <a href="#" class="sidebar-link psl" tabindex="0">PSL</a>
+      </div>
+      <div class="sidebar-sec" aria-label="Rules &amp; Disclaimer">
+        <div class="sidebar-section-title">Rules &amp; Disclaimer</div>
+        <a href="#" class="sidebar-link" tabindex="0">Editing Rules</a>
+        <a href="#" class="sidebar-link" tabindex="0">General Disclaimer</a>
+      </div>
+      <div class="sidebar-sec-other" aria-label="Other">
+        <div class="sidebar-section-title">Other</div>
+        <a href="#" class="sidebar-link" tabindex="0">Random Page</a>
+        <a href="#" class="sidebar-link" tabindex="0">Recent Changes</a>
+        <a href="#" class="sidebar-link" tabindex="0">Special Pages</a>
+      </div>
+      <div class="sidebar-sec-tools" aria-label="Tools">
+        <div class="sidebar-section-title">Tools</div>
+        <a href="#" class="sidebar-link" tabindex="0">What links here</a>
+      </div>
+    </nav>
+  </aside>
+
+  <main class="mw-body" aria-label="Main content">
+    <div class="namespace-tabs">
+      <!-- This is visual language, not links. -->
+    </div>
+    <section class="mw-content" aria-labelledby="main-title">
+      <h1 id="main-title">Template : Incel Forums</h1>
+      <hr aria-hidden="true">
+      <p class="warning-desc" style="font-size: 16px;">
+        ONLY USE THIS FOR NOTABLE PEOPLE, DO NOT ADD FORUM MEMBERS WHO HAVE NO PUBLIC PRESENCE OUTSIDE THEIR RESPECTIVE FORUM OR ANY POSITION OF AUTHORITY. If you have made a Forum-Admin-related page please add it to this list under the appropriate section.
+      </p>
+
+      <div class="navbox-container" role="region" aria-labelledby="forum-navbox-header">
+        <div class="navbox-inner">
+          <div id="forum-navbox-header" class="navbox-header">Incel Forum Navbox</div>
+          <div class="navbox-table" role="table">
+            <div class="navbox-tr one" role="row">
+              <div class="navbox-td-title one" role="rowheader" style="color:#143ca1;">Incels.is</div>
+              <div class="navbox-td-content navbox-links" role="cell" style="color:#154197;">
+                <a href="#" class="user" tabindex="0">SergeantIncel (former admin)</a> &bull;
+                <a href="#" class="user" tabindex="0">Master (former admin)</a> &bull;
+                <span class="mod">Fat Link (mod)</span> &bull;
+                <span class="mod">AmIjustDreaming (mod)</span> &bull;
+                <a href="#" class="user" tabindex="0">Knajjd (mod)</a> &bull;
+                <span class="exmod">Blickpall (ex-mod)</span> &bull;
+                <a href="#" class="user" tabindex="0">Mahlo (user)</a> &bull;
+                <span class="banned">Jack Peterson (user/banned)</span> &bull;
+                <a href="#" class="user" tabindex="0">Grotesque Subhuman (user/banned)</a> &bull;
+                <a href="#" class="user" tabindex="0">itsOVER (user/banned)</a> &bull;
+                <a href="#" class="user" tabindex="0">NKL (user)</a> &bull;
+                <a href="#" class="user" tabindex="0">NEETandTidy (user/banned)</a> &bull;
+                <a href="#" class="user" tabindex="0">Jett112 (user)</a> &bull;
+                <a href="#" class="user" tabindex="0">Limerencel (user)</a> &bull;
+                <span>BrendioEEE (user/banned)</span> &bull;
+                <a href="#" class="user" tabindex="0">BummerDrummer (user)</a> &bull;
+                <span>mylifetrash (user/banned)</span> &bull;
+                <a href="#" class="user" tabindex="0">fukurou (user/banned)</a> &bull;
+                <a href="#" class="user" tabindex="0">RegisterUserName (user/banned)</a> &bull;
+                <a href="#" tabindex="0">I Ban appeal</a>
+              </div>
+            </div>
+            <div class="navbox-tr" role="row">
+              <div class="navbox-td-title" style="color:#186abb;">Love-shy.net</div>
+              <div class="navbox-td-content navbox-content-red navbox-love-shy" role="cell">
+                <span class="creator">ieatboogers (creator/admin/historian)</span>
+              </div>
+            </div>
+            <div class="navbox-tr last" role="row">
+              <div class="navbox-td-title last" style="color:#186abb;">Social Anxiety Support</div>
+              <div class="navbox-td-content navbox-links" role="cell">
+                <span class="founder">ChrisA (founder)</span> &bull;
+                <span class="admin">Andrew "Drew" Mohebbi (third admin/dead)</span> &bull;
+                <span class="banned">wmu’14 (member)</span> &bull;
+                <span>ravens (member)</span> &bull; 
+                <span>DesiseAfterAll (banned)</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mw-categorybox" style="clear:both;" role="region" aria-label="Categories">
+        Category : <a href="#" tabindex="0">Nav box template</a>
+      </div>
+
+      <div class="mw-meta" style="margin-top:17px;">
+        This page was last edited on 17 June 2022, at 14:36.
+      </div>
+      <div class="mw-meta-bottom">
+        This page has been accessed 5,005 times.
+      </div>
+    </section>
+
+    <footer class="mw-footer" role="contentinfo" aria-label="Site footer">
+      <a href="#" tabindex="0">Privacy policy</a>
+      <a href="#" tabindex="0">About Incel Wiki</a>
+      <a href="#" tabindex="0">Disclaimers</a>
+      <a href="#" tabindex="0">Mobile view</a>
+    </footer>
+  </main>
+</body>
+</html>
