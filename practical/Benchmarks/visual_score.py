@@ -23,8 +23,8 @@ from collections import Counter
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from Matching.ocr_free_utils import get_blocks_ocr_free
-from Matching.dedup_post_gen import check_repetitive_content
+from Benchmarks.ocr_free_utils import get_blocks_ocr_free
+from Benchmarks.dedup_post_gen import check_repetitive_content
 from bs4 import BeautifulSoup, NavigableString, Comment
 import re
 import math
@@ -397,180 +397,206 @@ def calculate_clip_similarity_with_blocks(image_path1, image_path2, blocks1, blo
     return similarity
 
 
-def truncate_repeated_html_elements(soup, max_count=50):
-    content_counts = {}
+# def truncate_repeated_html_elements(soup, max_count=50):
+#     content_counts = {}
 
-    for element in soup.find_all(True):
-        if isinstance(element, (NavigableString, Comment)):
-            continue
+#     for element in soup.find_all(True):
+#         if isinstance(element, (NavigableString, Comment)):
+#             continue
         
-        try:
-            element_html = str(element)
-        except:
-            element.decompose()
-            continue
-        content_counts[element_html] = content_counts.get(element_html, 0) + 1
+#         try:
+#             element_html = str(element)
+#         except:
+#             element.decompose()
+#             continue
+#         content_counts[element_html] = content_counts.get(element_html, 0) + 1
 
-        if content_counts[element_html] > max_count:
-            element.decompose()
+#         if content_counts[element_html] > max_count:
+#             element.decompose()
 
-    return str(soup)
-
-
-def make_html(filename):
-    with open(filename, 'r') as file:
-        content = file.read()
-
-    if not re.search(r'<html[^>]*>', content, re.IGNORECASE):
-        new_content = f'<html><body><p>{content}</p></body></html>'
-        with open(filename, 'w') as file:
-            file.write(new_content)
+#     return str(soup)
 
 
-def pre_process(html_file):
-    check_repetitive_content(html_file)
-    make_html(html_file)
-    with open(html_file, 'r') as file:
-        soup = BeautifulSoup(file, 'html.parser')
-    soup_str = truncate_repeated_html_elements(soup)
-    with open(html_file, 'w') as file:
-        file.write(soup_str)
+# def make_html(filename):
+#     with open(filename, 'r') as file:
+#         content = file.read()
+
+#     if not re.search(r'<html[^>]*>', content, re.IGNORECASE):
+#         new_content = f'<html><body><p>{content}</p></body></html>'
+#         with open(filename, 'w') as file:
+#             file.write(new_content)
+
+
+# def pre_process(html_file):
+#     check_repetitive_content(html_file)
+#     make_html(html_file)
+#     with open(html_file, 'r') as file:
+#         soup = BeautifulSoup(file, 'html.parser')
+#     soup_str = truncate_repeated_html_elements(soup)
+#     with open(html_file, 'w') as file:
+#         file.write(soup_str)
 
 
 def visual_eval_v3_multi(input_list, debug=False):
-    predict_html_list, original_html = input_list[0], input_list[1]
-    predict_img_list = [html.replace(".html", ".png") for html in predict_html_list]
-    # try:
-    predict_blocks_list = []
-    for predict_html in predict_html_list:
-        predict_img = predict_html.replace(".html", ".png")
-        # This will help fix some html syntax error
-        pre_process(predict_html)
-        os.system(f'python3 "{CURR_PATH}/screenshot_single.py" --html "{predict_html}" --png "{predict_img}"')
-        predict_blocks = get_blocks_ocr_free(predict_img)
-        predict_blocks_list.append(predict_blocks)
+    predict_html, original_html, predict_img, original_img = input_list[0], input_list[1], input_list[2], input_list[3]
 
-    original_img = original_html.replace(".html", ".png")
+    # This will help fix some html syntax error
+    # pre_process(predict_html)
+    os.system(f'python3 "{CURR_PATH}/screenshot_single.py" --html "{predict_html}" --png "{predict_img}"')
+    predict_blocks = get_blocks_ocr_free(predict_img, predict_html)
+
     os.system(f'python3 "{CURR_PATH}/screenshot_single.py" --html "{original_html}" --png "{original_img}"')
-    original_blocks = get_blocks_ocr_free(original_img)
+    original_blocks = get_blocks_ocr_free(original_img, original_html)
     original_blocks = merge_blocks_by_bbox(original_blocks)
 
     # Consider context similarity for block matching
     consecutive_bonus, window_size = 0.1, 1
 
-    return_score_list = []
+    return_score = None
 
-    for k, predict_blocks in enumerate(predict_blocks_list):
-        if len(predict_blocks) == 0:
-            print("[Warning] No detected blocks in: ", predict_img_list[k])
-            final_clip_score = calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks, original_blocks)
-            return_score_list.append([0.0, 0.2 * final_clip_score, (0.0, 0.0, 0.0, 0.0, final_clip_score)])
+    if len(predict_blocks) == 0:
+        print("[Warning] No detected blocks in: ", predict_img)
+        final_clip_score = calculate_clip_similarity_with_blocks(predict_img, original_img, predict_blocks, original_blocks)
+        return_score = {
+            'sum_areas': 0.0,
+            'final_score': 0.2 * final_clip_score,
+            'final_size_score': 0.0,
+            'final_matched_text_score': 0.0,
+            'final_position_score': 0.0,
+            'final_text_color_score': 0.0,
+            'final_clip_score': final_clip_score
+        }
+        
+        
+    elif len(original_blocks) == 0:
+        print("[Warning] No detected blocks in: ", original_img)
+        final_clip_score = calculate_clip_similarity_with_blocks(predict_img, original_img, predict_blocks, original_blocks)
+        return_score = {
+            'sum_areas': 0.0,
+            'final_score': 0.2 * final_clip_score,
+            'final_size_score': 0.0,
+            'final_matched_text_score': 0.0,
+            'final_position_score': 0.0,
+            'final_text_color_score': 0.0,
+            'final_clip_score': final_clip_score
+        }
+
+    if debug:
+        print(predict_blocks)
+        print(original_blocks)
+
+    predict_blocks = merge_blocks_by_bbox(predict_blocks)
+    predict_blocks_m, original_blocks_m, matching = find_possible_merge(predict_blocks, deepcopy(original_blocks), consecutive_bonus, window_size, debug=debug)
+    
+    filtered_matching = []
+    for i, j in matching:
+        text_similarity = SequenceMatcher(None, predict_blocks_m[i]['text'], original_blocks_m[j]['text']).ratio()
+        # Filter out matching with low similarity
+        if text_similarity < 0.5:
             continue
-         
-        elif len(original_blocks) == 0:
-            print("[Warning] No detected blocks in: ", original_img)
-            final_clip_score = calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks, original_blocks)
-            return_score_list.append([0.0, 0.2 * final_clip_score, (0.0, 0.0, 0.0, 0.0, final_clip_score)])
-            continue
+        filtered_matching.append([i, j, text_similarity])
+    matching = filtered_matching
+
+    indices1 = [item[0] for item in matching]
+    indices2 = [item[1] for item in matching]
+
+    matched_list = []
+    sum_areas = []
+    matched_areas = []
+    matched_text_scores = []
+    position_scores = []
+    text_color_scores = []
+
+    unmatched_area_1 = 0.0
+    for i in range(len(predict_blocks_m)):
+        if i not in indices1:
+            unmatched_area_1 += predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3]
+    unmatched_area_2 = 0.0
+    for j in range(len(original_blocks_m)):
+        if j not in indices2:
+            unmatched_area_2 += original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3]
+    sum_areas.append(unmatched_area_1 + unmatched_area_2)
+
+    for i, j, text_similarity in matching:
+        sum_block_area = predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3] + original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3]
+
+        # Consider the max postion shift, either horizontally or vertically
+        position_similarity = 1 - calculate_distance_max_1d(predict_blocks_m[i]['bbox'][0] + predict_blocks_m[i]['bbox'][2] / 2, \
+                                                predict_blocks_m[i]['bbox'][1] + predict_blocks_m[i]['bbox'][3] / 2, \
+                                                original_blocks_m[j]['bbox'][0] + original_blocks_m[j]['bbox'][2] / 2, \
+                                                original_blocks_m[j]['bbox'][1] + original_blocks_m[j]['bbox'][3] / 2)
+        # Normalized ciede2000 formula
+        text_color_similarity = color_similarity_ciede2000(predict_blocks_m[i]['color'], original_blocks_m[j]['color'])
+        matched_list.append([predict_blocks_m[i]['bbox'], original_blocks_m[j]['bbox']])
+
+        # validation check
+        if min(predict_blocks_m[i]['bbox'][2], original_blocks_m[j]['bbox'][2], predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][3]) == 0:
+            print(f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}")
+        assert calculate_ratio(predict_blocks_m[i]['bbox'][2], original_blocks_m[j]['bbox'][2]) > 0 and calculate_ratio(predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][3]) > 0, f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}"
+
+        sum_areas.append(sum_block_area)
+        matched_areas.append(sum_block_area)
+        matched_text_scores.append(text_similarity)
+        position_scores.append(position_similarity)
+        text_color_scores.append(text_color_similarity)
 
         if debug:
-            print(predict_blocks)
-            print(original_blocks)
+            print(f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}")
+            print(SequenceMatcher(None, predict_blocks_m[i]['text'], original_blocks_m[j]['text']).ratio())
+            print("text similarity score", text_similarity)
+            print("position score", position_similarity)
+            print("color score", text_color_similarity)
+            print("----------------------------------")
+            pass
+    """
+    if debug:
+        img1 = cv2.imread(predict_img_list[k])
+        img2 = cv2.imread(original_img)
+        img1_with_boxes, img2_with_boxes = draw_matched_bboxes(img1, img2, matched_list)
     
-        predict_blocks = merge_blocks_by_bbox(predict_blocks)
-        predict_blocks_m, original_blocks_m, matching = find_possible_merge(predict_blocks, deepcopy(original_blocks), consecutive_bonus, window_size, debug=debug)
-        
-        filtered_matching = []
-        for i, j in matching:
-            text_similarity = SequenceMatcher(None, predict_blocks_m[i]['text'], original_blocks_m[j]['text']).ratio()
-            # Filter out matching with low similarity
-            if text_similarity < 0.5:
-                continue
-            filtered_matching.append([i, j, text_similarity])
-        matching = filtered_matching
+        plt.figure(figsize=(20, 10))
+        plt.subplot(1, 2, 1)
+        plt.imshow(cv2.cvtColor(img1_with_boxes, cv2.COLOR_BGR2RGB))
+        plt.axis('off')
+        plt.subplot(1, 2, 2)
+        plt.imshow(cv2.cvtColor(img2_with_boxes, cv2.COLOR_BGR2RGB))
+        plt.axis('off')
+        plt.show()
+    # """
 
-        indices1 = [item[0] for item in matching]
-        indices2 = [item[1] for item in matching]
+    if len(matched_areas) > 0:
+        sum_sum_areas = np.sum(sum_areas)
 
-        matched_list = []
-        sum_areas = []
-        matched_areas = []
-        matched_text_scores = []
-        position_scores = []
-        text_color_scores = []
-    
-        unmatched_area_1 = 0.0
-        for i in range(len(predict_blocks_m)):
-            if i not in indices1:
-                unmatched_area_1 += predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3]
-        unmatched_area_2 = 0.0
-        for j in range(len(original_blocks_m)):
-            if j not in indices2:
-                unmatched_area_2 += original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3]
-        sum_areas.append(unmatched_area_1 + unmatched_area_2)
-    
-        for i, j, text_similarity in matching:
-            sum_block_area = predict_blocks_m[i]['bbox'][2] * predict_blocks_m[i]['bbox'][3] + original_blocks_m[j]['bbox'][2] * original_blocks_m[j]['bbox'][3]
+        final_size_score = np.sum(matched_areas) / np.sum(sum_areas)
+        final_matched_text_score = np.mean(matched_text_scores)
+        final_position_score = np.mean(position_scores)
+        final_text_color_score = np.mean(text_color_scores)
+        final_clip_score = calculate_clip_similarity_with_blocks(predict_img, original_img, predict_blocks, original_blocks)
+        final_score = 0.2 * (final_size_score + final_matched_text_score + final_position_score + final_text_color_score + final_clip_score)
+        return_score = {
+            'sum_areas': sum_sum_areas,
+            'final_score': final_score,
+            'final_size_score': final_size_score,
+            'final_matched_text_score': final_matched_text_score,
+            'final_position_score': final_position_score,
+            'final_text_color_score': final_text_color_score,
+            'final_clip_score': final_clip_score
+            
+        }
+    else:
+        print("[Warning] No matched blocks in: ", predict_img)
+        final_clip_score = calculate_clip_similarity_with_blocks(predict_img, original_img, predict_blocks, original_blocks)
+        return_score = {
+            'sum_areas': 0.0,
+            'final_score': 0.2 * final_clip_score,
+            'final_size_score': 0.0,
+            'final_matched_text_score': 0.0,
+            'final_position_score': 0.0,
+            'final_text_color_score': 0.0,
+            'final_clip_score': final_clip_score
+        }
 
-            # Consider the max postion shift, either horizontally or vertically
-            position_similarity = 1 - calculate_distance_max_1d(predict_blocks_m[i]['bbox'][0] + predict_blocks_m[i]['bbox'][2] / 2, \
-                                                    predict_blocks_m[i]['bbox'][1] + predict_blocks_m[i]['bbox'][3] / 2, \
-                                                    original_blocks_m[j]['bbox'][0] + original_blocks_m[j]['bbox'][2] / 2, \
-                                                    original_blocks_m[j]['bbox'][1] + original_blocks_m[j]['bbox'][3] / 2)
-            # Normalized ciede2000 formula
-            text_color_similarity = color_similarity_ciede2000(predict_blocks_m[i]['color'], original_blocks_m[j]['color'])
-            matched_list.append([predict_blocks_m[i]['bbox'], original_blocks_m[j]['bbox']])
-    
-            # validation check
-            if min(predict_blocks_m[i]['bbox'][2], original_blocks_m[j]['bbox'][2], predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][3]) == 0:
-                print(f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}")
-            assert calculate_ratio(predict_blocks_m[i]['bbox'][2], original_blocks_m[j]['bbox'][2]) > 0 and calculate_ratio(predict_blocks_m[i]['bbox'][3], original_blocks_m[j]['bbox'][3]) > 0, f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}"
-    
-            sum_areas.append(sum_block_area)
-            matched_areas.append(sum_block_area)
-            matched_text_scores.append(text_similarity)
-            position_scores.append(position_similarity)
-            text_color_scores.append(text_color_similarity)
-    
-            if debug:
-                print(f"{predict_blocks_m[i]} matched with {original_blocks_m[j]}")
-                print(SequenceMatcher(None, predict_blocks_m[i]['text'], original_blocks_m[j]['text']).ratio())
-                print("text similarity score", text_similarity)
-                print("position score", position_similarity)
-                print("color score", text_color_similarity)
-                print("----------------------------------")
-                pass
-        """
-        if debug:
-            img1 = cv2.imread(predict_img_list[k])
-            img2 = cv2.imread(original_img)
-            img1_with_boxes, img2_with_boxes = draw_matched_bboxes(img1, img2, matched_list)
-        
-            plt.figure(figsize=(20, 10))
-            plt.subplot(1, 2, 1)
-            plt.imshow(cv2.cvtColor(img1_with_boxes, cv2.COLOR_BGR2RGB))
-            plt.axis('off')
-            plt.subplot(1, 2, 2)
-            plt.imshow(cv2.cvtColor(img2_with_boxes, cv2.COLOR_BGR2RGB))
-            plt.axis('off')
-            plt.show()
-        # """
-
-        if len(matched_areas) > 0:
-            sum_sum_areas = np.sum(sum_areas)
-    
-            final_size_score = np.sum(matched_areas) / np.sum(sum_areas)
-            final_matched_text_score = np.mean(matched_text_scores)
-            final_position_score = np.mean(position_scores)
-            final_text_color_score = np.mean(text_color_scores)
-            final_clip_score = calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks, original_blocks)
-            final_score = 0.2 * (final_size_score + final_matched_text_score + final_position_score + final_text_color_score + final_clip_score)
-            return_score_list.append([sum_sum_areas, final_score, (final_size_score, final_matched_text_score, final_position_score, final_text_color_score, final_clip_score)])
-        else:
-            print("[Warning] No matched blocks in: ", predict_img_list[k])
-            final_clip_score = calculate_clip_similarity_with_blocks(predict_img_list[k], original_img, predict_blocks, original_blocks)
-            return_score_list.append([0.0, 0.2 * final_clip_score, (0.0, 0.0, 0.0, 0.0, final_clip_score)])
-    return return_score_list
+    return return_score
     
     # except:
     #     print("[Warning] Error not handled in: ", input_list)
@@ -581,14 +607,18 @@ def visual_eval_v3_multi(input_list, debug=False):
 
 if __name__ == "__main__":
     DIR_PATH = os.path.dirname(os.path.realpath(__file__))
-    INPUT_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Input', 'html', '1.html')
-    OUTPUT_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Output', 'gemini', 'html', 'naive', '1.html')
-    original_html = INPUT_PATH
-    predict_html_list = OUTPUT_PATH
+    INPUT_HTML_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Input', 'html')
+    INPUT_IMG_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Input', 'images')
+    OUTPUT_HTML_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Output', 'gemini', 'html', 'naive')
+    OUTPUT_IMG_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Output', 'gemini', 'images', 'naive')
+    original_html = os.path.join(INPUT_HTML_PATH, '1.html')
+    predict_html = os.path.join(OUTPUT_HTML_PATH, '1.html')
+    original_img = os.path.join(INPUT_IMG_PATH, '1.png')
+    predict_img = os.path.join(OUTPUT_IMG_PATH, '1.png')
     # original_html = os.path.join(os.path.dirname(__file__), 'original.html')
     # predict_html_list = os.path.join(os.path.dirname(__file__), 'generated.html')
 
     # Predicted html (generated is a list), while original is a single html
-    input_list = [[predict_html_list], original_html]
+    input_list = [predict_html, original_html, predict_img, original_img]
     score = visual_eval_v3_multi(input_list, debug=False)
     print(score)

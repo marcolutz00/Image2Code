@@ -229,11 +229,11 @@ def get_blocks_from_image_diff_pixels(image_path, html_text_color_tree, differen
     return blocks
 
 
-def get_itermediate_names(name):
-    return name.replace(".png", ".html"), name.replace(".png", "_p.html"), name.replace(".png", "_p_1.html"), name.replace(".png", "_p.png"), name.replace(".png", "_p_1.png")
+def get_itermediate_names(image_path, html_path):
+    return html_path, html_path.replace(".html", "_p.html"), html_path.replace(".html", "_p_1.html"), image_path.replace(".png", "_p.png"), image_path.replace(".png", "_p_1.png")
 
-def get_blocks_ocr_free(image_path):
-    html, p_html, p_html_1, p_png, p_png_1 = get_itermediate_names(image_path)
+def get_blocks_ocr_free(image_path, html_path):
+    html, p_html, p_html_1, p_png, p_png_1 = get_itermediate_names(image_path, html_path)
     process_html(html, p_html)
     process_html(html, p_html_1, offset=50)
 
