@@ -1,5 +1,4 @@
 from .LLMStrategy import LLMStrategy
-import base64
 from transformers import Qwen2_5_VLForConditionalGeneration, AutoTokenizer, AutoProcessor
 from qwen_vl_utils import process_vision_info
 import torch

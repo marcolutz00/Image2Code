@@ -78,11 +78,11 @@ async def _analyze_outputs(image, model, prompt_strategy):
     # 2. Calculate visual and structural Benchmarks
     # 2.1 get benchmarks
     input_list = [input_html_path, output_html_path, input_images_path, output_images_path]
-    # benchmark_score = visual_score.visual_eval_v3_multi(input_list)
+    benchmark_score = visual_score.visual_eval_v3_multi(input_list)
 
 
     # 2.2 Write Benchmarks to file
-    # _write_benchmarks_to_file(benchmark_score, output_benchmark_path)
+    _write_benchmarks_to_file(benchmark_score, output_benchmark_path)
 
 
     # 3. Analyze Accessibility Issues
@@ -100,8 +100,8 @@ def _overwrite_insights(accessibility_dir, insight_dir):
 
 
 async def main():
-    model = "openai" # option openai, gemini, (llama, qwen)
-    prompt_strategy = "zero-shot" # option naive, zero-shot
+    model = "llama" # option openai, gemini, (llama, qwen)
+    prompt_strategy = "naive" # option naive, zero-shot
 
     # 1. Load API-Key and define model strategy
     strategy = utils_general.get_model_strategy(model)
@@ -129,7 +129,7 @@ async def main():
             }
             
             # 4. Start the API Call and store information locally
-            # result = await _process_image(client, image_information, prompt, model, prompt_strategy)
+            result = await _process_image(client, image_information, prompt, model, prompt_strategy)
 
             # 5. Analyze outputs for Input & Output
             await _analyze_outputs(image, model, prompt_strategy)
