@@ -459,7 +459,7 @@ def visual_eval_v3_multi(input_list, debug=False):
         final_clip_score = calculate_clip_similarity_with_blocks(predict_img, original_img, predict_blocks, original_blocks)
         return_score = {
             'sum_areas': 0.0,
-            'final_score': 0.2 * final_clip_score,
+            'final_score': final_clip_score,
             'final_size_score': 0.0,
             'final_matched_text_score': 0.0,
             'final_position_score': 0.0,
@@ -473,7 +473,7 @@ def visual_eval_v3_multi(input_list, debug=False):
         final_clip_score = calculate_clip_similarity_with_blocks(predict_img, original_img, predict_blocks, original_blocks)
         return_score = {
             'sum_areas': 0.0,
-            'final_score': 0.2 * final_clip_score,
+            'final_score': final_clip_score,
             'final_size_score': 0.0,
             'final_matched_text_score': 0.0,
             'final_position_score': 0.0,
@@ -588,7 +588,7 @@ def visual_eval_v3_multi(input_list, debug=False):
         final_clip_score = calculate_clip_similarity_with_blocks(predict_img, original_img, predict_blocks, original_blocks)
         return_score = {
             'sum_areas': 0.0,
-            'final_score': 0.2 * final_clip_score,
+            'final_score': final_clip_score,
             'final_size_score': 0.0,
             'final_matched_text_score': 0.0,
             'final_position_score': 0.0,

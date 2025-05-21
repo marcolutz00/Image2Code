@@ -4,10 +4,10 @@ import os
 import json
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from practical.LLMs.LLMClient import LLMClient
-from practical.Utils import utils_dataset
+from LLMs.LLMClient import LLMClient
+from Utils import utils_dataset
 from LLMs.Strategies.geminiStrategy import GeminiStrategy
-from practical.Accessibility import accessibilityIssues
+from Accessibility import accessibilityIssues
 
 
 KEYS_PATH = os.path.join(os.path.dirname(__file__), '..', 'keys.json')

@@ -5,15 +5,15 @@ import time
 import asyncio
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-import practical.Benchmarks.visual_score as visual_score
-from practical.Benchmarks.accessibilityBenchmarks import AccessibilityBenchmarks
-from practical.LLMs.LLMClient import LLMClient
-import practical.Utils.utils_html as utils_html
-import practical.Utils.utils_dataset as utils_dataset
-import practical.Utils.utils_general as utils_general
-import practical.Utils.utils_prompt as utils_prompt
-import practical.Data.Analysis.datasetAnalyze as datasetAnalyze
-import practical.Accessibility.accessibilityIssues as accessibilityIssues
+import Benchmarks.visual_score as visual_score
+from Benchmarks.accessibilityBenchmarks import AccessibilityBenchmarks
+from LLMs.LLMClient import LLMClient
+import Utils.utils_html as utils_html
+import Utils.utils_dataset as utils_dataset
+import Utils.utils_general as utils_general
+import Utils.utils_prompt as utils_prompt
+import Data.Analysis.datasetAnalyze as datasetAnalyze
+import Accessibility.accessibilityIssues as accessibilityIssues
 
 KEYS_PATH = os.path.join(os.path.dirname(__file__), 'keys.json')
 DATA_PATH = os.path.join(os.path.dirname(__file__), 'Data')
@@ -78,20 +78,24 @@ async def _analyze_outputs(image, model, prompt_strategy):
     # 2. Calculate visual and structural Benchmarks
     # 2.1 get benchmarks
     input_list = [input_html_path, output_html_path, input_images_path, output_images_path]
-    benchmark_score = visual_score.visual_eval_v3_multi(input_list)
+    # benchmark_score = visual_score.visual_eval_v3_multi(input_list)
 
 
     # 2.2 Write Benchmarks to file
-    _write_benchmarks_to_file(benchmark_score, output_benchmark_path)
+    # _write_benchmarks_to_file(benchmark_score, output_benchmark_path)
 
 
     # 3. Analyze Accessibility Issues
     # await accessibilityIssues.enrich_with_accessibility_issues(image_name, input_html_path, input_accessibility_path, input_insight_path)
-    # await accessibilityIssues.enrich_with_accessibility_issues(image_name, output_html_path, output_accessibility_path, output_insight_path)
+    await accessibilityIssues.enrich_with_accessibility_issues(image_name, output_html_path, output_accessibility_path, output_insight_path)
 
 
 def _overwrite_insights(accessibility_dir, insight_dir):
-     # 5. Analyze and calculate accessibility benchmarks
+    '''
+       Calculates Insights:
+       Accessibility Violation Ranking and benchmarks are calculated
+       Place for the final insight overview: [*dir_accessibility*]/analysisAccessibilityIssues.json
+    '''
     datasetAnalyze.overwrite_insights(accessibility_dir, insight_dir)
 
 
@@ -116,7 +120,7 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            # if int(image.split(".")[0]) < 23:
+            # if int(image.split(".")[0]) not in [24]:
             #     continue
 
             image_information = {

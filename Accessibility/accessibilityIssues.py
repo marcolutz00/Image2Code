@@ -6,8 +6,8 @@ import json
 from pathlib import Path
 import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from practical.Accessibility import accessibilityMapping
-from practical.Accessibility.old import accessibilityMapping_automatically
+from Accessibility import accessibilityMapping
+from Accessibility.old import accessibilityMapping_automatically
 
 
 AXE_CORE_PATH = "/usr/local/lib/node_modules/axe-core/axe.min.js"
