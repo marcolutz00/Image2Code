@@ -100,7 +100,7 @@ def _overwrite_insights(accessibility_dir, insight_dir):
 
 
 async def main():
-    model = "llama" # option openai, gemini, (llama, qwen)
+    model = "qwen" # option openai, gemini, qwen
     prompt_strategy = "naive" # option naive, zero-shot
 
     # 1. Load API-Key and define model strategy

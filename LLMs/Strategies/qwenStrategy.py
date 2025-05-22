@@ -4,7 +4,7 @@ from qwen_vl_utils import process_vision_info
 import torch
 
 # ToDo: Define Model
-MODEL = "Qwen/Qwen2.5-VL-7B-Instruct"
+MODEL = "unsloth/Qwen2.5-VL-3B-Instruct-GGUF"
 MAX_TOKENS = 2048
 
 class QwenStrategy(LLMStrategy):
@@ -12,8 +12,11 @@ class QwenStrategy(LLMStrategy):
         self.used_model = MODEL
         self.max_tokens = MAX_TOKENS
         self.model = Qwen2_5_VLForConditionalGeneration.from_pretrained(
-            self.used_model, torch_dtype="auto", device_map="auto", attn_implementation="eager"
+            self.used_model,
+            attn_implementation="flash_attention_2",
+            device_map="auto",
         )
+        
         self.processor = AutoProcessor.from_pretrained(self.used_model)
 
 
@@ -39,7 +42,7 @@ class QwenStrategy(LLMStrategy):
         
         # Inference
         prompt_length = inputs.input_ids.shape[-1]
-        generation = self.model.generate(**inputs, max_new_tokens=self.max_tokens, return_dict_in_generate=True)
+        generation = self.model.generate(**inputs, max_new_tokens=min(128, self.max_tokens), return_dict_in_generate=True)
 
         response = self.processor.decode(generation.sequences[0][prompt_length:], skip_special_tokens=True)
 
