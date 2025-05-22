@@ -40,8 +40,8 @@
                 "id": "color-contrast",
                 "data": {
                   "fgColor": "#ffffff",
-                  "bgColor": "#4caf50",
-                  "contrastRatio": 2.77,
+                  "bgColor": "#4682b4",
+                  "contrastRatio": 4.1,
                   "fontSize": "10.0pt (13.3333px)",
                   "fontWeight": "normal",
                   "messageKey": null,
@@ -50,41 +50,67 @@
                 },
                 "relatedNodes": [
                   {
-                    "html": "<button type=\"submit\">Subscribe</button>",
+                    "html": "<button>Subscribe</button>",
                     "target": [
                       "button"
                     ]
                   }
                 ],
                 "impact": "serious",
-                "message": "Element has insufficient color contrast of 2.77 (foreground color: #ffffff, background color: #4caf50, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
+                "message": "Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #4682b4, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
               }
             ],
             "all": [],
             "none": [],
             "impact": "serious",
-            "html": "<button type=\"submit\">Subscribe</button>",
+            "html": "<button>Subscribe</button>",
             "target": [
               "button"
             ],
-            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #ffffff, background color: #4caf50, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #4682b4, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
           }
         },
         {
           "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
           "source": "pa11y",
-          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.78:1. Recommendation:  change background to #258829.",
-          "description": "<button type=\"submit\">Subscribe</button>",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 4.11:1. Recommendation:  change background to #3f7bad.",
+          "description": "<button>Subscribe</button>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
             "type": "error",
             "typeCode": 1,
-            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.78:1. Recommendation:  change background to #258829.",
-            "context": "<button type=\"submit\">Subscribe</button>",
-            "selector": "html > body > div > div:nth-child(3) > div:nth-child(1) > div:nth-child(4) > form > button",
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 4.11:1. Recommendation:  change background to #3f7bad.",
+            "context": "<button>Subscribe</button>",
+            "selector": "html > body > div > div:nth-child(7) > div:nth-child(1) > div:nth-child(3) > button",
             "runner": "htmlcs",
             "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-BUTTON",
+              "path": "1,HTML,1,BODY,0,DIV,12,DIV,1,DIV,4,DIV,2,BUTTON",
+              "selector": "div.clearfix > div.sidebar > div.newsletter > button",
+              "boundingRect": {
+                "top": 2073,
+                "bottom": 2105,
+                "left": 51,
+                "right": 134,
+                "width": 83,
+                "height": 32
+              },
+              "snippet": "<button>",
+              "nodeLabel": "Subscribe",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 4.1 (foreground color: #ffffff, background color: #4682b4, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
           }
         }
       ]
@@ -106,7 +132,7 @@
       ],
       "impact": "moderate",
       "name": "Landmark & Region; Missing & Unique Landmarks;",
-      "amount_nodes_failed": 2,
+      "amount_nodes_failed": 13,
       "issues": [
         {
           "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
@@ -155,9 +181,317 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<div class=\"container\">",
+            "html": "<h1 class=\"header\">The Pink Rose Cottage</h1>",
             "target": [
-              ".container"
+              "h1"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"navigation\">\n            <a href=\"#\">Home</a>\n            <a href=\"#\">Contact</a>\n            <a href=\"#\">New Products</a>\n            <a href=\"#\">Clearance</a>\n        </div>",
+            "target": [
+              ".navigation"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"login-signup\">\n            <a href=\"#\">Log in</a>\n            <a href=\"#\">Sign up</a>\n        </div>",
+            "target": [
+              ".login-signup"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"currency-picker\">\n            <select>\n                <option>USD</option>\n            </select>\n        </div>",
+            "target": [
+              ".currency-picker"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"items-in-cart\">\n            0 items in your cart\n        </div>",
+            "target": [
+              ".items-in-cart"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"search-bar\">\n            <input type=\"text\" placeholder=\"Search...\">\n        </div>",
+            "target": [
+              ".search-bar"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<ul>",
+            "target": [
+              "ul"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"stay-in-touch\">",
+            "target": [
+              ".stay-in-touch"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<label for=\"newsletter-email\">Sign up to our newsletter for the latest news and special offers...</label>",
+            "target": [
+              "label"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<input type=\"email\" id=\"newsletter-email\" placeholder=\"type your email...\">",
+            "target": [
+              "#newsletter-email"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"main-content\">",
+            "target": [
+              ".main-content"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"footer\">",
+            "target": [
+              ".footer"
             ],
             "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
           }
@@ -166,463 +500,615 @@
     },
     {
       "wcag_id": [
-        null
+        "Principle1.Guideline1_1.1_1_1.H30.2",
+        "Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId",
+        "Principle4.Guideline4_1.4_1_2.H91.A.NoContent"
       ],
       "url": [
-        "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
+        "https://dequeuniversity.com/rules/axe/4.10/link-name"
       ],
       "impact": "serious",
-      "name": "Links; Distinguishable Color;",
-      "amount_nodes_failed": 4,
+      "name": "Links; Missing descriptive content of <a>;",
+      "amount_nodes_failed": 6,
       "issues": [
         {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
           "source": "axe-core",
-          "title": "Links must be distinguishable without relying on color",
-          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "title": "Links must have discernible text",
+          "description": "Ensure links have discernible text",
           "impact": "serious",
           "nodes": {
             "any": [
               {
-                "id": "link-in-text-block",
-                "data": {
-                  "messageKey": "fgContrast",
-                  "contrastRatio": 1.66,
-                  "requiredContrastRatio": 3,
-                  "nodeColor": "#333333",
-                  "parentColor": "#000000"
-                },
-                "relatedNodes": [
-                  {
-                    "html": "<div class=\"footer\">",
-                    "target": [
-                      ".footer"
-                    ]
-                  }
-                ],
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
                 "impact": "serious",
-                "message": "The link has insufficient color contrast of 1.66:1 with the surrounding text. (Minimum contrast is 3:1, link text: #333333, surrounding text: #000000)"
+                "message": "Element does not have text that is visible to screen readers"
               },
               {
-                "id": "link-in-text-block-style",
+                "id": "aria-label",
                 "data": null,
-                "relatedNodes": [
-                  {
-                    "html": "<div class=\"footer\">",
-                    "target": [
-                      ".footer"
-                    ]
-                  }
-                ],
+                "relatedNodes": [],
                 "impact": "serious",
-                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
               }
             ],
             "all": [],
-            "none": [],
-            "impact": "serious",
-            "html": "<a href=\"#\">Search</a>",
-            "target": [
-              "a:nth-child(8)"
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is in tab order and does not have accessible text"
+              }
             ],
-            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.66:1 with the surrounding text. (Minimum contrast is 3:1, link text: #333333, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            "impact": "serious",
+            "html": "<a href=\"#\" class=\"facebook\"></a>",
+            "target": [
+              ".stay-in-touch > .social-icons > .facebook"
+            ],
+            "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
           }
         },
         {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
           "source": "axe-core",
-          "title": "Links must be distinguishable without relying on color",
-          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "title": "Links must have discernible text",
+          "description": "Ensure links have discernible text",
           "impact": "serious",
           "nodes": {
             "any": [
               {
-                "id": "link-in-text-block",
-                "data": {
-                  "messageKey": "fgContrast",
-                  "contrastRatio": 1.66,
-                  "requiredContrastRatio": 3,
-                  "nodeColor": "#333333",
-                  "parentColor": "#000000"
-                },
-                "relatedNodes": [
-                  {
-                    "html": "<div class=\"footer\">",
-                    "target": [
-                      ".footer"
-                    ]
-                  }
-                ],
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
                 "impact": "serious",
-                "message": "The link has insufficient color contrast of 1.66:1 with the surrounding text. (Minimum contrast is 3:1, link text: #333333, surrounding text: #000000)"
+                "message": "Element does not have text that is visible to screen readers"
               },
               {
-                "id": "link-in-text-block-style",
+                "id": "aria-label",
                 "data": null,
-                "relatedNodes": [
-                  {
-                    "html": "<div class=\"footer\">",
-                    "target": [
-                      ".footer"
-                    ]
-                  }
-                ],
+                "relatedNodes": [],
                 "impact": "serious",
-                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
               }
             ],
             "all": [],
-            "none": [],
-            "impact": "serious",
-            "html": "<a href=\"#\">Contact</a>",
-            "target": [
-              "a:nth-child(9)"
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is in tab order and does not have accessible text"
+              }
             ],
-            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.66:1 with the surrounding text. (Minimum contrast is 3:1, link text: #333333, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            "impact": "serious",
+            "html": "<a href=\"#\" class=\"pinterest\"></a>",
+            "target": [
+              ".stay-in-touch > .social-icons > .pinterest"
+            ],
+            "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
           }
         },
         {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
           "source": "axe-core",
-          "title": "Links must be distinguishable without relying on color",
-          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "title": "Links must have discernible text",
+          "description": "Ensure links have discernible text",
           "impact": "serious",
           "nodes": {
             "any": [
               {
-                "id": "link-in-text-block",
-                "data": {
-                  "messageKey": "fgContrast",
-                  "contrastRatio": 1.66,
-                  "requiredContrastRatio": 3,
-                  "nodeColor": "#333333",
-                  "parentColor": "#000000"
-                },
-                "relatedNodes": [
-                  {
-                    "html": "<div class=\"footer\">",
-                    "target": [
-                      ".footer"
-                    ]
-                  }
-                ],
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
                 "impact": "serious",
-                "message": "The link has insufficient color contrast of 1.66:1 with the surrounding text. (Minimum contrast is 3:1, link text: #333333, surrounding text: #000000)"
+                "message": "Element does not have text that is visible to screen readers"
               },
               {
-                "id": "link-in-text-block-style",
+                "id": "aria-label",
                 "data": null,
-                "relatedNodes": [
-                  {
-                    "html": "<div class=\"footer\">",
-                    "target": [
-                      ".footer"
-                    ]
-                  }
-                ],
+                "relatedNodes": [],
                 "impact": "serious",
-                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
               }
             ],
             "all": [],
-            "none": [],
-            "impact": "serious",
-            "html": "<a href=\"#\">About Us</a>",
-            "target": [
-              "a:nth-child(10)"
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is in tab order and does not have accessible text"
+              }
             ],
-            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.66:1 with the surrounding text. (Minimum contrast is 3:1, link text: #333333, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            "impact": "serious",
+            "html": "<a href=\"#\" class=\"instagram\"></a>",
+            "target": [
+              ".stay-in-touch > .social-icons > .instagram"
+            ],
+            "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
           }
         },
         {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
           "source": "axe-core",
-          "title": "Links must be distinguishable without relying on color",
-          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "title": "Links must have discernible text",
+          "description": "Ensure links have discernible text",
           "impact": "serious",
           "nodes": {
             "any": [
               {
-                "id": "link-in-text-block",
-                "data": {
-                  "messageKey": "fgContrast",
-                  "contrastRatio": 1.66,
-                  "requiredContrastRatio": 3,
-                  "nodeColor": "#333333",
-                  "parentColor": "#000000"
-                },
-                "relatedNodes": [
-                  {
-                    "html": "<div class=\"footer\">",
-                    "target": [
-                      ".footer"
-                    ]
-                  }
-                ],
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
                 "impact": "serious",
-                "message": "The link has insufficient color contrast of 1.66:1 with the surrounding text. (Minimum contrast is 3:1, link text: #333333, surrounding text: #000000)"
+                "message": "Element does not have text that is visible to screen readers"
               },
               {
-                "id": "link-in-text-block-style",
+                "id": "aria-label",
                 "data": null,
-                "relatedNodes": [
-                  {
-                    "html": "<div class=\"footer\">",
-                    "target": [
-                      ".footer"
-                    ]
-                  }
-                ],
+                "relatedNodes": [],
                 "impact": "serious",
-                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
               }
             ],
             "all": [],
-            "none": [],
-            "impact": "serious",
-            "html": "<a href=\"#\">Cleaning Silver</a>",
-            "target": [
-              "a:nth-child(11)"
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is in tab order and does not have accessible text"
+              }
             ],
-            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.66:1 with the surrounding text. (Minimum contrast is 3:1, link text: #333333, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            "impact": "serious",
+            "html": "<a href=\"#\" class=\"facebook\"></a>",
+            "target": [
+              ".footer > .social-icons > .facebook"
+            ],
+            "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
           }
         },
         {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "axe-core",
+          "title": "Links must have discernible text",
+          "description": "Ensure links have discernible text",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element does not have text that is visible to screen readers"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
+              }
+            ],
+            "all": [],
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is in tab order and does not have accessible text"
+              }
+            ],
+            "impact": "serious",
+            "html": "<a href=\"#\" class=\"pinterest\"></a>",
+            "target": [
+              ".footer > .social-icons > .pinterest"
+            ],
+            "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "axe-core",
+          "title": "Links must have discernible text",
+          "description": "Ensure links have discernible text",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element does not have text that is visible to screen readers"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
+              }
+            ],
+            "all": [],
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is in tab order and does not have accessible text"
+              }
+            ],
+            "impact": "serious",
+            "html": "<a href=\"#\" class=\"instagram\"></a>",
+            "target": [
+              ".footer > .social-icons > .instagram"
+            ],
+            "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
+          "source": "pa11y",
+          "title": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+          "description": "<a href=\"#\" class=\"facebook\"></a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+            "context": "<a href=\"#\" class=\"facebook\"></a>",
+            "selector": "html > body > div > div:nth-child(7) > div:nth-child(1) > div:nth-child(2) > div > a:nth-child(1)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
+          "source": "pa11y",
+          "title": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+          "description": "<a href=\"#\" class=\"pinterest\"></a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+            "context": "<a href=\"#\" class=\"pinterest\"></a>",
+            "selector": "html > body > div > div:nth-child(7) > div:nth-child(1) > div:nth-child(2) > div > a:nth-child(2)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
+          "source": "pa11y",
+          "title": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+          "description": "<a href=\"#\" class=\"instagram\"></a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+            "context": "<a href=\"#\" class=\"instagram\"></a>",
+            "selector": "html > body > div > div:nth-child(7) > div:nth-child(1) > div:nth-child(2) > div > a:nth-child(3)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
+          "source": "pa11y",
+          "title": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+          "description": "<a href=\"#\" class=\"facebook\"></a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+            "context": "<a href=\"#\" class=\"facebook\"></a>",
+            "selector": "html > body > div > div:nth-child(8) > div > a:nth-child(1)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
+          "source": "pa11y",
+          "title": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+          "description": "<a href=\"#\" class=\"pinterest\"></a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+            "context": "<a href=\"#\" class=\"pinterest\"></a>",
+            "selector": "html > body > div > div:nth-child(8) > div > a:nth-child(2)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
+          "source": "pa11y",
+          "title": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+          "description": "<a href=\"#\" class=\"instagram\"></a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+            "context": "<a href=\"#\" class=\"instagram\"></a>",
+            "selector": "html > body > div > div:nth-child(8) > div > a:nth-child(3)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
           "source": "lighthouse",
-          "title": "Links rely on color to be distinguishable.",
-          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "title": "Links do not have a discernible name",
+          "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name).",
           "score": 0,
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-1-A",
-              "path": "1,HTML,1,BODY,0,DIV,3,DIV,7,A",
-              "selector": "body > div.container > div.footer > a",
+              "lhId": "1-2-A",
+              "path": "1,HTML,1,BODY,0,DIV,12,DIV,1,DIV,2,DIV,1,DIV,0,A",
+              "selector": "div.sidebar > div.stay-in-touch > div.social-icons > a.facebook",
               "boundingRect": {
-                "top": 1882,
-                "bottom": 1899,
-                "left": 150,
-                "right": 201,
-                "width": 51,
-                "height": 17
+                "top": 1767,
+                "bottom": 1797,
+                "left": 51,
+                "right": 81,
+                "width": 30,
+                "height": 30
               },
-              "snippet": "<a href=\"#\">",
-              "nodeLabel": "Search",
-              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.66:1 with the surrounding text. (Minimum contrast is 3:1, link text: #333333, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
-            },
-            "subItems": {
-              "type": "subitems",
-              "items": [
-                {
-                  "relatedNode": {
-                    "type": "node",
-                    "lhId": "1-2-DIV",
-                    "path": "1,HTML,1,BODY,0,DIV,3,DIV",
-                    "selector": "body > div.container > div.footer",
-                    "boundingRect": {
-                      "top": 1856,
-                      "bottom": 1960,
-                      "left": -244,
-                      "right": 656,
-                      "width": 900,
-                      "height": 104
-                    },
-                    "snippet": "<div class=\"footer\">",
-                    "nodeLabel": "       Search Contact About Us Cleaning Silver\n\nCopyright © 2023 The Pink Rose …"
-                  }
-                }
-              ]
+              "snippet": "<a href=\"#\" class=\"facebook\">",
+              "nodeLabel": "div.sidebar > div.stay-in-touch > div.social-icons > a.facebook",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
             }
           }
         },
         {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
           "source": "lighthouse",
-          "title": "Links rely on color to be distinguishable.",
-          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "title": "Links do not have a discernible name",
+          "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name).",
           "score": 0,
           "details": {
             "node": {
               "type": "node",
               "lhId": "1-3-A",
-              "path": "1,HTML,1,BODY,0,DIV,3,DIV,8,A",
-              "selector": "body > div.container > div.footer > a",
+              "path": "1,HTML,1,BODY,0,DIV,12,DIV,1,DIV,2,DIV,1,DIV,1,A",
+              "selector": "div.sidebar > div.stay-in-touch > div.social-icons > a.pinterest",
               "boundingRect": {
-                "top": 1882,
-                "bottom": 1899,
-                "left": 225,
-                "right": 281,
-                "width": 55,
-                "height": 17
+                "top": 1801,
+                "bottom": 1831,
+                "left": 51,
+                "right": 81,
+                "width": 30,
+                "height": 30
               },
-              "snippet": "<a href=\"#\">",
-              "nodeLabel": "Contact",
-              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.66:1 with the surrounding text. (Minimum contrast is 3:1, link text: #333333, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
-            },
-            "subItems": {
-              "type": "subitems",
-              "items": [
-                {
-                  "relatedNode": {
-                    "type": "node",
-                    "lhId": "1-2-DIV",
-                    "path": "1,HTML,1,BODY,0,DIV,3,DIV",
-                    "selector": "body > div.container > div.footer",
-                    "boundingRect": {
-                      "top": 1856,
-                      "bottom": 1960,
-                      "left": -244,
-                      "right": 656,
-                      "width": 900,
-                      "height": 104
-                    },
-                    "snippet": "<div class=\"footer\">",
-                    "nodeLabel": "       Search Contact About Us Cleaning Silver\n\nCopyright © 2023 The Pink Rose …"
-                  }
-                }
-              ]
+              "snippet": "<a href=\"#\" class=\"pinterest\">",
+              "nodeLabel": "div.sidebar > div.stay-in-touch > div.social-icons > a.pinterest",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
             }
           }
         },
         {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
           "source": "lighthouse",
-          "title": "Links rely on color to be distinguishable.",
-          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "title": "Links do not have a discernible name",
+          "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name).",
           "score": 0,
           "details": {
             "node": {
               "type": "node",
               "lhId": "1-4-A",
-              "path": "1,HTML,1,BODY,0,DIV,3,DIV,9,A",
-              "selector": "body > div.container > div.footer > a",
+              "path": "1,HTML,1,BODY,0,DIV,12,DIV,1,DIV,2,DIV,1,DIV,2,A",
+              "selector": "div.sidebar > div.stay-in-touch > div.social-icons > a.instagram",
               "boundingRect": {
-                "top": 1882,
-                "bottom": 1899,
-                "left": 305,
-                "right": 371,
-                "width": 66,
-                "height": 17
+                "top": 1835,
+                "bottom": 1865,
+                "left": 51,
+                "right": 81,
+                "width": 30,
+                "height": 30
               },
-              "snippet": "<a href=\"#\">",
-              "nodeLabel": "About Us",
-              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.66:1 with the surrounding text. (Minimum contrast is 3:1, link text: #333333, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
-            },
-            "subItems": {
-              "type": "subitems",
-              "items": [
-                {
-                  "relatedNode": {
-                    "type": "node",
-                    "lhId": "1-2-DIV",
-                    "path": "1,HTML,1,BODY,0,DIV,3,DIV",
-                    "selector": "body > div.container > div.footer",
-                    "boundingRect": {
-                      "top": 1856,
-                      "bottom": 1960,
-                      "left": -244,
-                      "right": 656,
-                      "width": 900,
-                      "height": 104
-                    },
-                    "snippet": "<div class=\"footer\">",
-                    "nodeLabel": "       Search Contact About Us Cleaning Silver\n\nCopyright © 2023 The Pink Rose …"
-                  }
-                }
-              ]
+              "snippet": "<a href=\"#\" class=\"instagram\">",
+              "nodeLabel": "div.sidebar > div.stay-in-touch > div.social-icons > a.instagram",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
             }
           }
         },
         {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
           "source": "lighthouse",
-          "title": "Links rely on color to be distinguishable.",
-          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "title": "Links do not have a discernible name",
+          "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name).",
           "score": 0,
           "details": {
             "node": {
               "type": "node",
               "lhId": "1-5-A",
-              "path": "1,HTML,1,BODY,0,DIV,3,DIV,10,A",
-              "selector": "body > div.container > div.footer > a",
+              "path": "1,HTML,1,BODY,0,DIV,14,DIV,0,DIV,0,A",
+              "selector": "div.container > div.footer > div.social-icons > a.facebook",
               "boundingRect": {
-                "top": 1882,
-                "bottom": 1899,
-                "left": 395,
-                "right": 503,
-                "width": 108,
-                "height": 17
+                "top": 3629,
+                "bottom": 3659,
+                "left": 51,
+                "right": 81,
+                "width": 30,
+                "height": 30
               },
-              "snippet": "<a href=\"#\">",
-              "nodeLabel": "Cleaning Silver",
-              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.66:1 with the surrounding text. (Minimum contrast is 3:1, link text: #333333, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
-            },
-            "subItems": {
-              "type": "subitems",
-              "items": [
-                {
-                  "relatedNode": {
-                    "type": "node",
-                    "lhId": "1-2-DIV",
-                    "path": "1,HTML,1,BODY,0,DIV,3,DIV",
-                    "selector": "body > div.container > div.footer",
-                    "boundingRect": {
-                      "top": 1856,
-                      "bottom": 1960,
-                      "left": -244,
-                      "right": 656,
-                      "width": 900,
-                      "height": 104
-                    },
-                    "snippet": "<div class=\"footer\">",
-                    "nodeLabel": "       Search Contact About Us Cleaning Silver\n\nCopyright © 2023 The Pink Rose …"
-                  }
-                }
-              ]
+              "snippet": "<a href=\"#\" class=\"facebook\">",
+              "nodeLabel": "div.container > div.footer > div.social-icons > a.facebook",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
             }
           }
-        }
-      ]
-    },
-    {
-      "wcag_id": [
-        "Principle1.Guideline1_3.1_3_1.H42.2",
-        "Principle1.Guideline1_3.1_3_1.G141"
-      ],
-      "url": [
-        "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
-        "https://dequeuniversity.com/rules/axe/4.10/heading-order",
-        "https://dequeuniversity.com/rules/axe/4.10/empty-heading"
-      ],
-      "impact": "moderate",
-      "name": "Headings; Wrong Order, Empty & Missing Headings;",
-      "amount_nodes_failed": 1,
-      "issues": [
+        },
         {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
-          "source": "axe-core",
-          "title": "Page should contain a level-one heading",
-          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
-          "impact": "moderate",
-          "nodes": {
-            "any": [],
-            "all": [
-              {
-                "id": "page-has-heading-one",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "moderate",
-                "message": "Page must have a level-one heading"
-              }
-            ],
-            "none": [],
-            "impact": "moderate",
-            "html": "<html lang=\"en\">",
-            "target": [
-              "html"
-            ],
-            "failureSummary": "Fix all of the following:\n  Page must have a level-one heading"
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "lighthouse",
+          "title": "Links do not have a discernible name",
+          "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-6-A",
+              "path": "1,HTML,1,BODY,0,DIV,14,DIV,0,DIV,1,A",
+              "selector": "div.container > div.footer > div.social-icons > a.pinterest",
+              "boundingRect": {
+                "top": 3629,
+                "bottom": 3659,
+                "left": 101,
+                "right": 131,
+                "width": 30,
+                "height": 30
+              },
+              "snippet": "<a href=\"#\" class=\"pinterest\">",
+              "nodeLabel": "div.container > div.footer > div.social-icons > a.pinterest",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "lighthouse",
+          "title": "Links do not have a discernible name",
+          "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-7-A",
+              "path": "1,HTML,1,BODY,0,DIV,14,DIV,0,DIV,2,A",
+              "selector": "div.container > div.footer > div.social-icons > a.instagram",
+              "boundingRect": {
+                "top": 3629,
+                "bottom": 3659,
+                "left": 150,
+                "right": 180,
+                "width": 30,
+                "height": 30
+              },
+              "snippet": "<a href=\"#\" class=\"instagram\">",
+              "nodeLabel": "div.container > div.footer > div.social-icons > a.instagram",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
           }
         }
       ]
@@ -694,7 +1180,7 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<select>\n                        <option>USD</option>\n                    </select>",
+            "html": "<select>\n                <option>USD</option>\n            </select>",
             "target": [
               "select"
             ],
@@ -705,15 +1191,15 @@
           "id": "Principle4.Guideline4_1.4_1_2.H91.Select.Name",
           "source": "pa11y",
           "title": "This select element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<select>\n                        <optio...</select>",
+          "description": "<select>\n                <option>USD</o...</select>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Select.Name",
             "type": "error",
             "typeCode": 1,
             "message": "This select element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<select>\n                        <optio...</select>",
-            "selector": "html > body > div > div:nth-child(1) > div:nth-child(2) > div > select",
+            "context": "<select>\n                <option>USD</o...</select>",
+            "selector": "html > body > div > div:nth-child(4) > select",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -727,16 +1213,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-6-SELECT",
-              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,DIV,2,DIV,0,SELECT",
-              "selector": "div.header > div.login-signup > div.currency-cart > select",
+              "lhId": "1-8-SELECT",
+              "path": "1,HTML,1,BODY,0,DIV,6,DIV,0,SELECT",
+              "selector": "body > div.container > div.currency-picker > select",
               "boundingRect": {
-                "top": 38,
-                "bottom": 57,
-                "left": 605,
-                "right": 656,
-                "width": 51,
-                "height": 19
+                "top": 263,
+                "bottom": 292,
+                "left": 310,
+                "right": 371,
+                "width": 61,
+                "height": 29
               },
               "snippet": "<select>",
               "nodeLabel": "USD",
@@ -762,21 +1248,21 @@
       ],
       "impact": "critical",
       "name": "Label; Multiple Elements; Content missing",
-      "amount_nodes_failed": 4,
+      "amount_nodes_failed": 3,
       "issues": [
         {
           "id": "Principle1.Guideline1_3.1_3_1.F68",
           "source": "pa11y",
           "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-          "description": "<select>\n                        <optio...</select>",
+          "description": "<select>\n                <option>USD</o...</select>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
             "type": "error",
             "typeCode": 1,
             "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-            "context": "<select>\n                        <optio...</select>",
-            "selector": "html > body > div > div:nth-child(1) > div:nth-child(2) > div > select",
+            "context": "<select>\n                <option>USD</o...</select>",
+            "selector": "html > body > div > div:nth-child(4) > select",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -793,7 +1279,7 @@
             "typeCode": 1,
             "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
             "context": "<input type=\"text\" placeholder=\"Search...\">",
-            "selector": "html > body > div > div:nth-child(3) > div:nth-child(1) > input",
+            "selector": "html > body > div > div:nth-child(6) > input",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -810,24 +1296,7 @@
             "typeCode": 1,
             "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
             "context": "<input type=\"text\" placeholder=\"Search...\">",
-            "selector": "html > body > div > div:nth-child(3) > div:nth-child(1) > input",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
-          "source": "pa11y",
-          "title": "This emailinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<input type=\"email\" placeholder=\"type your email...\">",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
-            "type": "error",
-            "typeCode": 1,
-            "message": "This emailinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<input type=\"email\" placeholder=\"type your email...\">",
-            "selector": "html > body > div > div:nth-child(3) > div:nth-child(1) > div:nth-child(4) > form > input",
+            "selector": "html > body > div > div:nth-child(6) > input",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -854,20 +1323,20 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-6-SELECT",
-              "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,DIV,2,DIV,0,SELECT",
-              "selector": "div.header > div.login-signup > div.currency-cart > select",
+              "lhId": "1-10-A",
+              "path": "1,HTML,1,BODY,0,DIV,3,DIV,3,A",
+              "selector": "body > div.container > div.navigation > a",
               "boundingRect": {
-                "top": 38,
-                "bottom": 57,
-                "left": 605,
-                "right": 656,
-                "width": 51,
-                "height": 19
+                "top": 196,
+                "bottom": 214,
+                "left": 170,
+                "right": 242,
+                "width": 73,
+                "height": 18
               },
-              "snippet": "<select>",
-              "nodeLabel": "USD",
-              "explanation": "Fix any of the following:\n  Target has insufficient size (51px by 19px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 14.2px instead of at least 24px."
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Clearance",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (72.9px by 18px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
             },
             "subItems": {
               "type": "subitems",
@@ -875,19 +1344,19 @@
                 {
                   "relatedNode": {
                     "type": "node",
-                    "lhId": "1-7-A",
-                    "path": "1,HTML,1,BODY,0,DIV,0,DIV,1,DIV,1,A",
-                    "selector": "div.container > div.header > div.login-signup > a.no-underline",
+                    "lhId": "1-9-A",
+                    "path": "1,HTML,1,BODY,0,DIV,3,DIV,1,A",
+                    "selector": "body > div.container > div.navigation > a",
                     "boundingRect": {
-                      "top": 20,
-                      "bottom": 37,
-                      "left": 602,
-                      "right": 656,
-                      "width": 54,
-                      "height": 17
+                      "top": 178,
+                      "bottom": 196,
+                      "left": 150,
+                      "right": 205,
+                      "width": 55,
+                      "height": 18
                     },
-                    "snippet": "<a href=\"#\" class=\"no-underline\">",
-                    "nodeLabel": "Sign up"
+                    "snippet": "<a href=\"#\">",
+                    "nodeLabel": "Contact"
                   }
                 }
               ]

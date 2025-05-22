@@ -1,154 +1,141 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Fetch Forum</title>
-<style>
-body {
-    font-family: sans-serif;
-    line-height: 1.4;
-    color: #333;
-    margin: 0;
-    padding: 0;
-}
-
-.header {
-    background-color: #194569;
-    color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-}
-
-.header h1 {
-    font-size: 2.5em;
-    margin-bottom: 10px;
-}
-
-.header p {
-    font-size: 1.2em;
-}
-
-.support {
-    text-transform: uppercase;
-    font-size: 0.8em;
-    color: #fff;
-}
-
-.topic-title {
-    font-size: 1.5em;
-    margin-bottom: 10px;
-    padding-left: 20px;
-}
-
-.alert {
-    background-color: #f2dede;
-    color: #a94442;
-    padding: 10px;
-    margin-bottom: 20px;
-    border: 1px solid #ebccd1;
-    border-radius: 4px;
-    font-size: 0.9em;
-}
-
-.post {
-    padding: 20px;
-    border-bottom: 1px solid #eee;
-}
-
-.post h4 {
-    margin-bottom: 5px;
-}
-
-.post-meta {
-    font-size: 0.8em;
-    color: #777;
-}
-
-.post-date {
-    font-size: 0.8em;
-    color: #777;
-    padding-left: 20px;
-}
-
-.topic-closed {
-    padding: 20px;
-    background-color: #f9f9f9;
-    border: 1px solid #eee;
-    margin-top: 20px;
-    font-size: 0.9em;
-}
-
-.footer {
-    text-align: center;
-    font-size: 0.8em;
-    color: #777;
-    margin-top: 20px;
-    padding-bottom: 20px;
-}
-a {
-color: #194569;
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Forum</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+        .header {
+            background-color: #19426d;
+            color: white;
+            padding: 20px;
+        }
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 0.5em;
+        }
+        .header p {
+            font-size: 1.2em;
+        }
+        .support {
+            color: white;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        .container {
+            width: 80%;
+            margin: 20px auto;
+        }
+        .topic-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+        .archived {
+            background-color: #f2dede;
+            color: #a94442;
+            border: 1px solid #ebccd1;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+        .post {
+            margin-bottom: 20px;
+        }
+        .post-header {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        .post-content {
+            margin-bottom: 10px;
+        }
+        .topic-closed {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .topic-closed p {
+            margin: 0;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #777;
+            font-size: 0.8em;
+        }
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-
-<div class="header">
-    <h1>FETCH 5.8</h1>
-    <p>Your best friend for file transfer.</p>
-    <p class="support">SUPPORT</p>
-</div>
-
-<div class="topic">
-    <h2 class="topic-title">FILE NAME CHARACTERS <span style="font-size: 0.8em;">(2 posts)</span></h2>
-    <div class="alert">
-        This is an archived topic. The information in it is likely to be out-of-date and no longer applicable to current versions of Fetch.
+    <div class="header">
+        <h1>FETCH 5.8</h1>
+        <p>Your best friend for file transfer.</p>
+        <p><a href="#" class="support">SUPPORT</a></p>
     </div>
-    <div class="post-meta" style="padding-left: 20px; font-size: 0.9em;">
+    <div class="container">
+        <h2 class="topic-title">FILE NAME CHARACTERS (2 posts)</h2>
+        <div class="archived">
+            This is an archived topic. The information in it is likely to be out-of-date and no longer applicable to current
+            versions of Fetch.
+        </div>
         <ul>
-            <li>Started 21 years ago by <a href="#">gorenstein</a></li>
-            <li><b>Latest reply</b> 21 years ago from <a href="#">Jim Matthews</a></li>
+            <li>Started 21 years ago by gorenstein</li>
+            <li>Latest reply 21 years ago from Jim Matthews</li>
         </ul>
+        <div class="post">
+            <div class="post-header">
+                gorenstein <br>
+                Member
+            </div>
+            <div class="post-content">
+                In uploading files from a Mac to a Windows system, certain characters that are not valid in
+                Windows file names are "escaped". For example a forward slash (/) is converted to %2F.
+                <br><br>
+                Other such characters go unescaped and cause transfers to fail. Examples are asterisks (*) and
+                double quotes (").
+                <br><br>
+                Since Fetch is capable of escaping some illegal characters, is there any way to get it to do the
+                others?
+                <br><br>
+                Also, is there some way to provide a more desireable substitution. For example, I would prefer to
+                have the forward slashes wind up as dashes.
+            </div>
+            <div>POSTED 21 YEARS AGO #</div>
+        </div>
+        <div class="post">
+            <div class="post-header">
+                Jim Matthews <br>
+                Administrator
+            </div>
+            <div class="post-content">
+                There isn't currently a way to do this, but it's a great suggestion.
+                <br><br>
+                Thanks,
+                <br><br>
+                Jim Matthews <br>
+                Fetch Softworks
+            </div>
+            <div>POSTED 21 YEARS AGO #</div>
+        </div>
+        <a href="#">Return to Message Board</a>
+        <div class="topic-closed">
+            <h2>Topic closed</h2>
+            <p>This topic has been closed.</p>
+        </div>
     </div>
-
-    <div class="post">
-        <h4>gorenstein</h4>
-        <p style="font-size: 0.8em;">Member</p>
-        <p>In uploading files from a Mac to a Windows system, certain characters that are not valid in
-Windows file names are "escaped". For example a forward slash (/) is converted to %2F.</p>
-
-<p>Other such characters go unescaped and cause transfers to fail. Examples are asterisks (*) and
-double quotes (").</p>
-
-<p>Since Fetch is capable of escaping some illegal characters, is there any way to get it to do the
-others?</p>
-
-<p>Also, is there some way to provide a more desireable substitution. For example, I would prefer to
-have the forward slashes wind up as dashes.</p>
-
-        <p class="post-date">POSTED 21 YEARS AGO <a href="#">#</a></p>
+    <div class="footer">
+        © COPYRIGHT 2000 - 2023 FROM YOUR FRIENDS AT FETCH SOFTWORKS
     </div>
-
-    <div class="post">
-        <h4>Jim Matthews</h4>
-        <p style="font-size: 0.8em;">Administrator</p>
-        <p>There isn't currently a way to do this, but it's a great suggestion.</p>
-
-<p>Thanks,</p>
-
-<p>Jim Matthews
-Fetch Softworks</p>
-        <p class="post-date">POSTED 21 YEARS AGO <a href="#">#</a></p>
-    </div>
-<div style="text-align:right; margin-top: -10px;"><a href="#">Return to Message Board</a></div>
-    <div class="topic-closed">
-        <h4>Topic closed</h4>
-        <p>This topic has been closed.</p>
-    </div>
-</div>
-
-<div class="footer">
-    © COPYRIGHT 2000 - 2023 FROM YOUR FRIENDS AT FETCH SOFTWORKS
-</div>
-
 </body>
 </html>

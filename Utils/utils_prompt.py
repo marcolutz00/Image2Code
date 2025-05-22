@@ -16,10 +16,8 @@ def _get_base_prompt():
     Include all visible text, icons, and graphic elements.
 
     4. **Image placeholders**  
-    Blue boxes represent images. Use  
-    `<img src="src/placeholder.jpg" width="…" height="…" alt="">`  
-    to reserve space; the actual image content is irrelevant. 
-    However, the appropriate height and width is very important.
+    Blue boxes represent images. Use `<img>` and as a source the placeholder file `src="src/placeholder.jpg"`
+    to reserve space. However, the appropriate height and width is very important.
 
     5. **Delivery format**  
     Output **only** the complete HTML and CSS code in **one file**—no additional comments or explanations.

@@ -13,332 +13,6 @@
   "automatic": [
     {
       "wcag_id": [
-        "Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl",
-        "Principle2.Guideline2_4.2_4_2.H25.1.EmptyTitle"
-      ],
-      "url": [
-        "https://dequeuniversity.com/rules/axe/4.10/document-title"
-      ],
-      "impact": "serious",
-      "name": "Title; Document Title;",
-      "amount_nodes_failed": 1,
-      "issues": [
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/document-title",
-          "source": "axe-core",
-          "title": "Documents must have <title> element to aid in navigation",
-          "description": "Ensure each HTML document contains a non-empty <title> element",
-          "impact": "serious",
-          "nodes": {
-            "any": [
-              {
-                "id": "doc-has-title",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "serious",
-                "message": "Document does not have a non-empty <title> element"
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "serious",
-            "html": "<html>",
-            "target": [
-              "html"
-            ],
-            "failureSummary": "Fix any of the following:\n  Document does not have a non-empty <title> element"
-          }
-        },
-        {
-          "id": "Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl",
-          "source": "pa11y",
-          "title": "A title should be provided for the document, using a non-empty title element in the head section.",
-          "description": "<head>\n<meta name=\"viewport\" content=...</head>",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl",
-            "type": "error",
-            "typeCode": 1,
-            "message": "A title should be provided for the document, using a non-empty title element in the head section.",
-            "context": "<head>\n<meta name=\"viewport\" content=...</head>",
-            "selector": "html > head",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/document-title",
-          "source": "lighthouse",
-          "title": "Document doesn't have a `<title>` element",
-          "description": "The title gives screen reader users an overview of the page, and search engine users rely on it heavily to determine if a page is relevant to their search. [Learn more about document titles](https://dequeuniversity.com/rules/axe/4.10/document-title).",
-          "score": 0,
-          "details": {
-            "node": {
-              "type": "node",
-              "lhId": "1-0-HTML",
-              "path": "1,HTML",
-              "selector": "html",
-              "boundingRect": {
-                "top": 0,
-                "bottom": 568,
-                "left": 0,
-                "right": 412,
-                "width": 412,
-                "height": 568
-              },
-              "snippet": "<html>",
-              "nodeLabel": "html",
-              "explanation": "Fix any of the following:\n  Document does not have a non-empty <title> element"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "wcag_id": [
-        "Principle3.Guideline3_1.3_1_1.H57.2",
-        "Principle3.Guideline3_1.3_1_1.H57.3.Lang",
-        "Principle3.Guideline3_1.3_1_1.H57.3.XmlLang",
-        "Principle3.Guideline3_1.3_1_2.H58.1.Lang",
-        "Principle3.Guideline3_1.3_1_2.H58.1.XmlLang"
-      ],
-      "url": [
-        "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
-        "https://dequeuniversity.com/rules/axe/4.10/html-lang-valid",
-        "https://dequeuniversity.com/rules/axe/4.10/html-xml-lang-mismatch",
-        "https://dequeuniversity.com/rules/axe/4.10/valid-lang"
-      ],
-      "impact": "serious",
-      "name": "Language; Document Lang; Missing & Invalid",
-      "amount_nodes_failed": 1,
-      "issues": [
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
-          "source": "axe-core",
-          "title": "<html> element must have a lang attribute",
-          "description": "Ensure every HTML document has a lang attribute",
-          "impact": "serious",
-          "nodes": {
-            "any": [
-              {
-                "id": "has-lang",
-                "data": {
-                  "messageKey": "noLang"
-                },
-                "relatedNodes": [],
-                "impact": "serious",
-                "message": "The <html> element does not have a lang attribute"
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "serious",
-            "html": "<html>",
-            "target": [
-              "html"
-            ],
-            "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute"
-          }
-        },
-        {
-          "id": "Principle3.Guideline3_1.3_1_1.H57.2",
-          "source": "pa11y",
-          "title": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-          "description": "<html><head>\n<meta name=\"viewport\" co...</html>",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
-            "type": "error",
-            "typeCode": 1,
-            "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-            "context": "<html><head>\n<meta name=\"viewport\" co...</html>",
-            "selector": "html",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
-          "source": "lighthouse",
-          "title": "`<html>` element does not have a `[lang]` attribute",
-          "description": "If a page doesn't specify a `lang` attribute, a screen reader assumes that the page is in the default language that the user chose when setting up the screen reader. If the page isn't actually in the default language, then the screen reader might not announce the page's text correctly. [Learn more about the `lang` attribute](https://dequeuniversity.com/rules/axe/4.10/html-has-lang).",
-          "score": 0,
-          "details": {
-            "node": {
-              "type": "node",
-              "lhId": "1-0-HTML",
-              "path": "1,HTML",
-              "selector": "html",
-              "boundingRect": {
-                "top": 0,
-                "bottom": 568,
-                "left": 0,
-                "right": 412,
-                "width": 412,
-                "height": 568
-              },
-              "snippet": "<html>",
-              "nodeLabel": "html",
-              "explanation": "Fix any of the following:\n  The <html> element does not have a lang attribute"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "wcag_id": [
-        "Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
-        "Principle4.Guideline4_1.4_1_2.H91.InputSearch.Name",
-        "Principle4.Guideline4_1.4_1_2.H91.Textarea.Name",
-        "Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
-        "Principle4.Guideline4_1.4_1_2.H91.InputCheckbox.Name",
-        "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
-        "Principle1.Guideline1_3.1_3_1.F68",
-        "Principle4.Guideline4_1.4_1_2.H91.Fieldset.Name"
-      ],
-      "url": [
-        "https://dequeuniversity.com/rules/axe/4.10/label"
-      ],
-      "impact": "critical",
-      "name": "Label; Multiple Elements; Content missing",
-      "amount_nodes_failed": 2,
-      "issues": [
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
-          "source": "axe-core",
-          "title": "Form elements must have labels",
-          "description": "Ensure every form element has a label",
-          "impact": "critical",
-          "nodes": {
-            "any": [
-              {
-                "id": "implicit-label",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element does not have an implicit (wrapped) <label>"
-              },
-              {
-                "id": "explicit-label",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element does not have an explicit <label>"
-              },
-              {
-                "id": "aria-label",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "aria-label attribute does not exist or is empty"
-              },
-              {
-                "id": "aria-labelledby",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
-              },
-              {
-                "id": "non-empty-title",
-                "data": {
-                  "messageKey": "noAttr"
-                },
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element has no title attribute"
-              },
-              {
-                "id": "non-empty-placeholder",
-                "data": {
-                  "messageKey": "noAttr"
-                },
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element has no placeholder attribute"
-              },
-              {
-                "id": "presentational-role",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "critical",
-            "html": "<input type=\"password\" id=\"password\" name=\"password\">",
-            "target": [
-              "#password"
-            ],
-            "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
-          }
-        },
-        {
-          "id": "Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
-          "source": "pa11y",
-          "title": "This passwordinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<input type=\"password\" id=\"password\" name=\"password\">",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
-            "type": "error",
-            "typeCode": 1,
-            "message": "This passwordinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<input type=\"password\" id=\"password\" name=\"password\">",
-            "selector": "#password",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "Principle1.Guideline1_3.1_3_1.F68",
-          "source": "pa11y",
-          "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-          "description": "<input type=\"password\" id=\"password\" name=\"password\">",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
-            "type": "error",
-            "typeCode": 1,
-            "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-            "context": "<input type=\"password\" id=\"password\" name=\"password\">",
-            "selector": "#password",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
-          "source": "lighthouse",
-          "title": "Form elements do not have associated labels",
-          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
-          "score": 0,
-          "details": {
-            "node": {
-              "type": "node",
-              "lhId": "1-1-INPUT",
-              "path": "1,HTML,1,BODY,0,DIV,3,FORM,0,INPUT",
-              "selector": "body > div.container > form.password-form > input#password",
-              "boundingRect": {
-                "top": 313,
-                "bottom": 349,
-                "left": 31,
-                "right": 312,
-                "width": 281,
-                "height": 36
-              },
-              "snippet": "<input type=\"password\" id=\"password\" name=\"password\">",
-              "nodeLabel": "body > div.container > form.password-form > input#password",
-              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
-            }
-          }
-        }
-      ]
-    },
-    {
-      "wcag_id": [
         null
       ],
       "url": [
@@ -375,7 +49,7 @@
             ],
             "none": [],
             "impact": "moderate",
-            "html": "<html>",
+            "html": "<html lang=\"en\">",
             "target": [
               "html"
             ],
@@ -459,9 +133,9 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<input type=\"password\" id=\"password\" name=\"password\">",
+            "html": "<input type=\"password\" placeholder=\"Password\">",
             "target": [
-              "#password"
+              "input"
             ],
             "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
           }
@@ -501,11 +175,65 @@
             ],
             "none": [],
             "impact": "moderate",
-            "html": "<html>",
+            "html": "<html lang=\"en\">",
             "target": [
               "html"
             ],
             "failureSummary": "Fix all of the following:\n  Page must have a level-one heading"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputSearch.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.Textarea.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputCheckbox.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
+        "Principle1.Guideline1_3.1_3_1.F68",
+        "Principle4.Guideline4_1.4_1_2.H91.Fieldset.Name"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/label"
+      ],
+      "impact": "critical",
+      "name": "Label; Multiple Elements; Content missing",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
+          "source": "pa11y",
+          "title": "This passwordinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
+          "description": "<input type=\"password\" placeholder=\"Password\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This passwordinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
+            "context": "<input type=\"password\" placeholder=\"Password\">",
+            "selector": "html > body > div > input",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.F68",
+          "source": "pa11y",
+          "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
+          "description": "<input type=\"password\" placeholder=\"Password\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
+            "context": "<input type=\"password\" placeholder=\"Password\">",
+            "selector": "html > body > div > input",
+            "runner": "htmlcs",
+            "runnerExtras": {}
           }
         }
       ]

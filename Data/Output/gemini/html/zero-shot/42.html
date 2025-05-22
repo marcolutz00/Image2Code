@@ -1,227 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Expert Profile</title>
+    <title>Expertise Finder</title>
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f0f0f0;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            background-color: #f0f0f0;
         }
 
         .container {
-            width: 80%;
-            max-width: 900px;
-            margin: 20px auto;
-            background-color: #fff;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         .header {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .content {
             display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #eee;
+            gap: 20px;
         }
 
-        .profile-section {
-            display: flex;
-            margin-top: 20px;
-        }
-
-        .profile-image {
-            width: 200px;
-            height: 200px;
-            background-color: blue;
-            margin-right: 20px;
-        }
-
-        .profile-details {
+        .left-column {
             flex: 1;
         }
 
-        .profile-details h2 {
-            margin-top: 0;
-            margin-bottom: 5px;
+        .right-column {
+            flex: 2;
         }
 
-        .profile-details p {
-            margin: 5px 0;
-        }
-
-        .contact-info {
-            margin-top: 10px;
-        }
-
-        .contact-info a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .expertise-links {
-            display: flex;
-            margin-top: 20px;
-        }
-
-        .expertise {
-            width: 30%;
-            margin-right: 20px;
-            padding: 10px;
+        .info-box {
             background-color: #fff;
-            border: 1px solid #ddd;
+            padding: 20px;
+            border: 1px solid #ccc;
+            position: relative;
         }
 
-        .links {
-            width: 30%;
-            padding: 10px;
-            background-color: #fff;
-            border: 1px solid #ddd;
-        }
-
-        .expertise h3, .links h3 {
-            margin-top: 0;
-            margin-bottom: 10px;
-        }
-
-        .expertise ul, .links ul {
-            list-style: none;
-            padding: 0;
-        }
-
-        .expertise li, .links li {
-            margin-bottom: 5px;
-        }
-
-        .footer {
-            margin-top: 20px;
-            padding-top: 20px;
-            border-top: 1px solid #eee;
-            text-align: center;
-            font-size: 0.8em;
-            color: #666;
-        }
-
-        .blue-box {
+        .info-box img {
+            width: 100px;
+            height: 100px;
             background-color: blue;
-            width: 30px;
-            height: 30px;
-            margin-right: 5px;
-        }
+            margin-right: 20px;
+            position: absolute;
+            left: -120px;
+            top: 20px;
 
-        .top-bar {
-            width: 100%;
-            background-color: #e9ecef;
-            padding: 10px 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .top-bar-left {
-            display: flex;
-            align-items: center;
-            margin-left: 10%;
-        }
-
-        .top-bar-right {
-            margin-right: 10%;
-        }
-
-        .rectangle {
-            border: 1px solid black;
-            width: 300px;
-            height: 30px;
-            background-color: white;
         }
 
         .expert-in {
             background-color: #007bff;
-            color: white;
+            color: #fff;
             padding: 10px;
-            margin-bottom: 10px;
+            margin-top: 20px;
         }
 
-        .links-section {
-            background-color: #007bff;
-            color: white;
-            padding: 10px;
-            margin-bottom: 10px;
-        }
-
-        .expert-in ul li, .links-section ul li {
-            color: #007bff;
-        }
-
-        .expert-in ul, .links-section ul {
-            list-style-type: none;
+        .expert-in ul {
+            list-style: none;
             padding: 0;
+            margin: 0;
         }
-        .expertise ul li a, .links ul li a {
-            color: #007bff;
-            text-decoration: none;
-            display: block;
+
+        .expert-in li {
             padding: 5px 0;
+        }
+
+        .links {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        .links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .links li {
+            padding: 5px 0;
+        }
+
+        .footer {
+            text-align: left;
+            padding: 20px;
+            font-size: 12px;
+        }
+
+        .footer a {
+            color: blue;
+            text-decoration: none;
+        }
+
+        .header-placeholder {
+            width: 90px;
+            height: 30px;
+            background-color: blue;
+            margin-bottom: 20px;
+        }
+
+        .footer-powered {
+            width: 30px;
+            height: 30px;
+            background-color: blue;
+            float: right;
+        }
+        .contact-info{
+            padding: 10px;
+            border: 1px solid #ccc;
+            background-color: #f9f9f9;
+            margin-top: 10px;
         }
     </style>
 </head>
+
 <body>
-    <div class="top-bar">
-        <div class="top-bar-left">
-            <div class="blue-box"></div>
-            <div class="rectangle"></div>
-        </div>
-        <div class="top-bar-right"></div>
-    </div>
-
     <div class="container">
-        <div class="profile-section">
-            <div class="profile-image"></div>
-            <div class="profile-details">
-                <h2>Associate Professor</h2>
-                <p>Department of Physics</p>
-                <p>Edmonton, Alberta</p>
-                <p class="contact-info"><a href="mailto:carsten.krauss@ualberta.ca">carsten.krauss@ualberta.ca</a></p>
-                <p>Office:</p>
-                <p>(780) 492-7610</p>
+        <div class="header-placeholder"></div>
+        <div class="info-box">
+            <img src="src/placeholder.jpg" alt="Placeholder Image">
+            <h3>Associate Professor</h3>
+            <p>Department of Physics</p>
+            <div class="contact-info">
+            <p>Edmonton, Alberta</p>
+            <p><a href="mailto:carsten.krauss@ualberta.ca">carsten.krauss@ualberta.ca</a></p>
+            <p>Office:</p>
+            <p>(780) 492-7610</p>
             </div>
         </div>
 
-        <div class="expertise-links">
-            <div class="expertise">
-                <h3 class="expert-in">Expert In</h3>
-                <ul>
-                    <li><a href="#">Astrophysics</a></li>
-                    <li><a href="#">Dark matter detection</a></li>
-                    <li><a href="#">High energy physics</a></li>
-                    <li><a href="#">Neutrino physics</a></li>
-                    <li><a href="#">Particle physics</a></li>
-                    <li><a href="#">Radioactivity</a></li>
-                </ul>
+
+        <div class="content">
+            <div class="left-column">
+                <div class="expert-in">
+                    Expert In
+                    <ul>
+                        <li>Astrophysics</li>
+                        <li>Dark matter detection</li>
+                        <li>High energy physics</li>
+                        <li>Neutrino physics</li>
+                        <li>Particle physics</li>
+                        <li>Radioactivity</li>
+                    </ul>
+                </div>
             </div>
 
-            <div class="links">
-                <h3 class="links-section">Links</h3>
-                <ul>
-                    <li><a href="#">LinkedIn</a></li>
-                    <li><a href="#">Faculty Page</a></li>
-                    <li><a href="#">Faculty Page</a></li>
-                </ul>
+            <div class="right-column">
+                <div class="links">
+                    Links
+                    <ul>
+                        <li>LinkedIn</li>
+                        <li>Faculty Page</li>
+                        <li>Faculty Page</li>
+                    </ul>
+                </div>
             </div>
         </div>
-    </div>
 
-    <div class="footer">
-        <p>&copy; | Expertise Finder | Toronto (Canada) | 1-888-978-5418 | <a href="mailto:info@expertisefinder.com">info@expertisefinder.com</a> | <a href="#">Home</a> | <a href="#">Privacy</a> | <a href="#">User Agreement</a></p>
-        <p>Powered by</p>
-        <div class="blue-box"></div>
+        <div class="footer">
+            © | Expertise Finder | Toronto (Canada) | 1-888-978-5418 | <a
+                href="mailto:info@expertisefinder.com">info@expertisefinder.com</a> | <a href="#">Home</a> | <a
+                href="#">Privacy</a> | <a href="#">User Agreement</a>
+            <div class="footer-powered">Powered by</div>
+        </div>
     </div>
 </body>
+
 </html>

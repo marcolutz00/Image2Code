@@ -4,1165 +4,244 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Singles Bonogin</title>
+    <title>Just Say G'day</title>
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
+            background-color: #fff;
             color: #333;
             line-height: 1.6;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-
-        /* Header Styles */
-        .header {
-            background: #343a40;
-            color: white;
-            padding: 1rem 0;
-            text-align: center;
-        }
-
-        /* Main Content Styles */
-        .main-content {
-            padding: 20px 0;
-            text-align: center;
-        }
-
-        /* Footer Styles */
-        .footer {
-            background: #f4f4f4;
-            color: #777;
-            padding: 1rem 0;
-            text-align: center;
-            font-size: smaller;
         }
 
         /* Hero Section */
         .hero {
-            background-color: #283593;
+            background-color: #2142d1;
             color: #fff;
-            padding: 50px 0;
             text-align: left;
-        }
-
-        .hero .container {
-            width: 70%;
-            margin-left: 50px;
-            margin-right: auto;
+            padding: 100px 20px;
+            position: relative;
             overflow: hidden;
         }
 
+        .hero-content {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
         .hero h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+            font-size: 3em;
+            margin-bottom: 20px;
         }
 
         .hero p {
-            font-size: 1.2rem;
+            font-size: 1.2em;
             margin-bottom: 30px;
         }
 
-        .hero a {
-            background-color: #fff;
-            color: #283593;
-            padding: 10px 20px;
-            border-radius: 5px;
-            display: inline-block;
-            margin-right: 10px;
-        }
-
-        .hero a.secondary {
-            background-color: #5bc0de;
-            color: white;
-        }
-
-        .bluebox {
-            width: 172px;
-            height: 172px;
-            background-color: blue;
-            float: left;
-            margin-right: 20px;
-            margin-bottom: 20px;
-        }
-
-        .hero a:hover {
-            background-color: #ddd;
-            color: #283593;
-        }
-
-        .hero a.secondary:hover {
-            background-color: #46b8da;
-        }
-
-        /* Link Button Styling */
-        .link-button {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 10px 5px;
-            border-radius: 5px;
-            background-color: #f0f0f0;
-            color: #333;
-            border: 1px solid #ccc;
-            cursor: pointer;
-            text-decoration: none;
-        }
-
-        .link-button:hover {
-            background-color: #e0e0e0;
-        }
-
-        .footer-links {
+        .hero-buttons {
             display: flex;
-            flex-direction: column;
-            align-items: flex-start;
+            gap: 15px;
         }
 
-        .footer-links a {
-            display: block;
-            margin-bottom: 5px;
-            color: #777;
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive adjustments */
-        @media (max-width: 768px) {
-            .container {
-                width: 95%;
-            }
-
-            .hero .container {
-                width: 95%;
-                text-align: center;
-            }
-
-            .hero a {
-                margin: 10px;
-            }
-        }
-
-        .menu {
-            display: flex;
-            justify-content: center;
-            margin-bottom: 20px;
-        }
-
-        .menu a {
-            padding: 10px 20px;
-            background-color: #f0f0f0;
-            color: #333;
+        .hero-buttons a {
+            display: inline-block;
+            padding: 12px 24px;
             border-radius: 5px;
             text-decoration: none;
-            margin: 0 10px;
-        }
-
-        .menu a:hover {
-            background-color: #ddd;
-        }
-
-        .menu-item {
             color: #fff;
-            text-decoration: none;
-            padding: 8px 16px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            font-weight: bold;
         }
 
-        .menu-item:hover {
-            background-color: rgba(255, 255, 255, 0.1);
+        .hero-buttons a:first-child {
+            background-color: #fff;
+            color: #2142d1;
         }
 
-        .buttons {
-            display: flex;
+        .hero-buttons a:last-child {
+            background-color: #42c9ff;
         }
 
-        /* Footer */
-        .footer {
-            background-color: #26a69a;
-            color: white;
-            text-align: center;
-            padding: 20px;
+        .hero-bottom {
+            margin-top: 20px;
             font-size: 0.9em;
         }
 
-        .footer a {
-            color: white;
-            text-decoration: none;
+        /* Main Content */
+        main {
+            padding: 20px;
         }
 
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        /* Add more styles as needed to match the look and feel */
-        /* Button Styling */
-        .button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 15px 32px;
+        /* Singles Section */
+        .singles {
             text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
-        }
-
-        /* Style the list items */
-        .footer-list li {
-            margin-bottom: 5px;
-        }
-
-        .footer-container {
-            display: flex;
-            justify-content: space-around;
-            /* Distribute items evenly */
-            padding: 20px 0;
-            /* Give some space at the top and bottom */
-        }
-
-        .footer-section {
-            flex: 1;
-            /* Let each section take up equal space */
-            padding: 0 20px;
-            /* Add some padding on the sides */
-            text-align: left;
-            /* Align text to the left */
-        }
-
-        .footer-section h4 {
-            color: white;
-            /* Set the color of the heading */
-            margin-bottom: 10px;
-            /* Add some space below the heading */
-        }
-
-        /* Responsive design for smaller screens */
-        @media (max-width: 768px) {
-            .footer-container {
-                flex-direction: column;
-                /* Stack items vertically on smaller screens */
-                text-align: center;
-                /* Center align text */
-            }
-
-            .footer-section {
-                padding: 20px;
-                /* Add padding on all sides */
-            }
-        }
-
-        [role="button"] {
-            cursor: pointer;
-        }
-
-        /* Menu */
-        .menu a {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 0 10px;
-            background-color: #f0f0f0;
-            color: #333;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
-        .menu a:hover {
-            background-color: #ddd;
-        }
-
-        [role="button"] {
-            cursor: pointer;
-        }
-
-        /* New styles to match design */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        .hero {
-            background-color: #283593;
-            color: white;
-            padding: 80px 0;
-            text-align: left;
-        }
-
-        .hero .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
-        }
-
-        .buttons {
-            display: flex;
-        }
-
-        .buttons a {
-            background-color: white;
-            color: #283593;
-            padding: 15px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-right: 15px;
-            font-size: 1.2rem;
-        }
-
-        .buttons a.secondary {
-            background-color: #5bc0de;
-            color: white;
-        }
-
-        .buttons a:hover {
-            background-color: #ddd;
-        }
-
-        .main-content {
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .main-content h2 {
-            font-size: 2.8rem;
             margin-bottom: 30px;
         }
 
-        .main-content p {
-            font-size: 1.2rem;
+        .singles h1 {
+            font-size: 2.5em;
             margin-bottom: 20px;
         }
 
-        .main-content a {
-            color: #007bff;
-        }
-
-        .main-content a:hover {
-            text-decoration: underline;
-        }
-
-        /* Footer */
-        .footer {
-            background-color: #26a69a;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-            font-size: 1.1em;
-        }
-
-        .footer a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-container {
-            display: flex;
-            justify-content: space-around;
-            padding: 30px 0;
-        }
-
-        .footer-section {
-            flex: 1;
-            padding: 0 30px;
-            text-align: left;
-        }
-
-        .footer-section h4 {
-            color: white;
+        /* Paragraphs */
+        p {
             margin-bottom: 15px;
         }
 
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-section li {
-            margin-bottom: 8px;
-        }
-
-        .footer-section a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer-section a:hover {
-            text-decoration: underline;
-        }
-
-        /* Responsive design for smaller screens */
-        @media (max-width: 768px) {
-            .hero {
-                padding: 60px 0;
-                text-align: center;
-            }
-
-            .hero h1 {
-                font-size: 2.8rem;
-            }
-
-            .hero p {
-                font-size: 1.1rem;
-            }
-
-            .buttons {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .buttons a {
-                margin: 10px 0;
-                font-size: 1rem;
-            }
-
-            .main-content h2 {
-                font-size: 2.2rem;
-            }
-
-            .main-content p {
-                font-size: 1.1rem;
-            }
-
-            .footer-container {
-                flex-direction: column;
-                text-align: center;
-            }
-
-            .footer-section {
-                padding: 20px;
-            }
-        }
-
-        /* Button Styling */
-        .button {
-            background-color: #4CAF50;
-            border: none;
-            color: white;
-            padding: 15px 32px;
+        /* Find the Guy Section */
+        .find-guy {
             text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 16px;
-            margin: 4px 2px;
-            cursor: pointer;
+            margin-top: 40px;
         }
 
-        .single-in {
-            text-align: center;
-            font-size: 1.3em;
-            font-weight: bold;
-            margin-top: 20px;
-        }
-
-        .single-in a {
-            color: #4169E1;
-            text-decoration: none;
-            padding: 10px 20px;
-            border: 1px solid #4169E1;
-            border-radius: 5px;
-            margin: 5px;
-        }
-
-        .single-in a:hover {
-            background-color: #f0f8ff;
-        }
-
-        /* Add more styles as needed */
-        .home {
-            text-align: center;
-        }
-
-        .home a {
-            color: #007bff;
-        }
-
-        .footer-copyright {
-            background-color: white;
-            color: black;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-        }
-
-        .footer-copyright a {
-            color: black;
-            text-decoration: none;
-        }
-
-        .footer-copyright a:hover {
-            text-decoration: underline;
-        }
-
-        .singles {
-            text-align: center;
+        .find-guy h2 {
+            font-size: 2em;
             margin-bottom: 20px;
         }
 
-        /* Style the button */
-        .singles a {
-            display: inline-block;
-            margin: 5px;
-            padding: 10px 20px;
-            background-color: #f0f0f0;
-            color: #333;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        /* Style the button on hover */
-        .singles a:hover {
-            background-color: #ddd;
-        }
-
-        .page-footer {
-            font-size: 15px;
+        /* Link Buttons */
+        .link-buttons {
             text-align: center;
+            margin-top: 20px;
         }
 
-        .footer {
+        .link-buttons a {
+            display: inline-block;
+            padding: 8px 16px;
+            background-color: #e9f9ff;
+            color: #2142d1;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 0 5px;
+            font-size: 0.9em;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #0d495c;
+            color: #fff;
+            padding: 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .footer-column h4 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 5px;
+        }
+
+        .footer-column a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            text-align: left;
             margin-top: 20px;
             font-size: 0.8em;
-            text-align: center;
-            background-color: #26a69a;
-            /* Teal color */
-            color: white;
-            padding: 20px;
         }
-
-        .footer a {
-            color: white;
-            text-decoration: none;
-            /* Remove underline */
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-            /* Show underline on hover */
-        }
-
-        .single-bonogin {
-            font-size: 2em;
-            font-weight: bold;
-            margin-bottom: 20px;
-        }
-
-        .home a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        .home a:hover {
-            text-decoration: underline;
-        }
-
-        /* Style for text content */
-        .text-content {
-            width: 80%;
-            /* Adjust the width of the text content */
-            margin: auto;
-            /* Center the text content */
-            text-align: left;
-            /* Align the text to the left */
-            padding: 20px;
-            /* Add some padding around the text */
-        }
-
-        /* Style for headings */
-        .text-content h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
-        }
-
-        /* Style for paragraphs */
-        .text-content p {
-            font-size: 1em;
-            margin-bottom: 15px;
-            line-height: 1.5;
-        }
-
-        .buttons a {
-            background-color: white;
-            color: #283593;
-            padding: 15px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-right: 15px;
-            font-size: 1.2rem;
-            cursor: pointer;
-            display: inline-block;
-            text-align: center;
-        }
-        .menu-buttons {
-            text-align: center;
+        .single-in-container {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
             margin-top: 20px;
         }
 
-        .menu-buttons a {
-            display: inline-block;
-            padding: 10px 20px;
-            margin: 0 10px;
-            background-color: #f0f0f0;
-            color: #333;
-            border-radius: 5px;
-            text-decoration: none;
-        }
-
-        .menu-buttons a:hover {
-            background-color: #ddd;
-        }
-
-        /* New styles */
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-
-        .hero {
-            background-color: #283593;
-            color: white;
-            padding: 100px 0;
-            text-align: left;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero .container {
-            width: 70%;
-            margin-left: 50px;
-            margin-right: auto;
-            overflow: hidden;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
-        }
-
-        .buttons {
-            display: flex;
-        }
-
-        .buttons a {
-            background-color: white;
-            color: #283593;
-            padding: 15px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-right: 15px;
-            font-size: 1.2rem;
-        }
-
-        .buttons a.secondary {
-            background-color: #5bc0de;
-            color: white;
-        }
-
-        .buttons a:hover {
-            background-color: #ddd;
-        }
-
-        .main-content {
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .main-content h2 {
-            font-size: 2.8rem;
-            margin-bottom: 30px;
-        }
-
-        .main-content p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .main-content a {
-            color: #007bff;
-        }
-
-        .main-content a:hover {
-            text-decoration: underline;
-        }
-
-        .singles {
-            text-align: center;
-            margin-bottom: 20px;
-        }
-
-        .singles a {
-            display: inline-block;
-            margin: 5px;
-            padding: 10px 20px;
-            background-color: #f0f0f0;
-            color: #333;
-            border-radius: 5px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-        }
-
-        .singles a:hover {
-            background-color: #ddd;
-        }
-
-        .footer {
-            background-color: #26a69a;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-            font-size: 1.1em;
-        }
-
-        .footer a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-container {
-            display: flex;
-            justify-content: space-around;
-            padding: 30px 0;
-        }
-
-        .footer-section {
-            flex: 1;
-            padding: 0 30px;
-            text-align: left;
-        }
-
-        .footer-section h4 {
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-section li {
-            margin-bottom: 8px;
-        }
-
-        .footer-section a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer-section a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-copyright {
-            background-color: white;
-            color: black;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-        }
-
-        .footer-copyright a {
-            color: black;
-            text-decoration: none;
-        }
-
-        .footer-copyright a:hover {
-            text-decoration: underline;
-        }
-
-        /* Additional styles */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 200px;
-            height: 200px;
-            background-color: blue;
-            z-index: 1;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 400px;
-            height: 400px;
-            background-color: blue;
-            z-index: 1;
-        }
-
-        .sign-in {
-            background-color: #5bc0de !important;
-            color: white !important;
-        }
-
-        [role="button"] {
-            cursor: pointer;
-        }
-
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            color: #333;
-            line-height: 1.6;
-        }
-
-        a {
-            color: #007bff;
-            text-decoration: none;
-        }
-
-        a:hover {
-            text-decoration: underline;
-        }
-
-        .container {
-            width: 80%;
-            margin: auto;
-            overflow: hidden;
-        }
-
-        /* Hero Section */
-        .hero {
-            background-color: #283593;
-            color: white;
-            padding: 100px 0;
-            text-align: left;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero .container {
-            width: 70%;
-            margin-left: 50px;
-            margin-right: auto;
-            overflow: hidden;
-            position: relative;
-            z-index: 2;
-        }
-
-        .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 20px;
-        }
-
-        .hero p {
-            font-size: 1.4rem;
-            margin-bottom: 40px;
-        }
-
-        .buttons {
-            display: flex;
-        }
-
-        .buttons a {
-            background-color: white;
-            color: #283593;
-            padding: 15px 30px;
-            border-radius: 5px;
-            text-decoration: none;
-            margin-right: 15px;
-            font-size: 1.2rem;
-            text-align: center;
-        }
-
-        .buttons a.secondary {
-            background-color: #5bc0de;
-            color: white;
-        }
-
-        .buttons a:hover {
-            background-color: #ddd;
-        }
-
-        .main-content {
-            padding: 40px 0;
-            text-align: center;
-        }
-
-        .main-content h2 {
-            font-size: 2.8rem;
-            margin-bottom: 30px;
-        }
-
-        .main-content p {
-            font-size: 1.2rem;
-            margin-bottom: 20px;
-        }
-
-        .main-content a {
-            color: #007bff;
-        }
-
-        .main-content a:hover {
-            text-decoration: underline;
-        }
-
-        .footer {
-            background-color: #26a69a;
-            color: white;
-            text-align: center;
-            padding: 30px 0;
-            font-size: 1.1em;
-        }
-
-        .footer a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-container {
-            display: flex;
-            justify-content: space-around;
-            padding: 30px 0;
-        }
-
-        .footer-section {
-            flex: 1;
-            padding: 0 30px;
-            text-align: left;
-        }
-
-        .footer-section h4 {
-            color: white;
-            margin-bottom: 15px;
-        }
-
-        .footer-section ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .footer-section li {
-            margin-bottom: 8px;
-        }
-
-        .footer-section a {
-            color: white;
-            text-decoration: none;
-        }
-
-        .footer-section a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-copyright {
-            background-color: white;
-            color: black;
-            text-align: center;
-            padding: 20px;
-            font-size: 0.9em;
-        }
-
-        .footer-copyright a {
-            color: black;
-            text-decoration: none;
-        }
-
-        .footer-copyright a:hover {
-            text-decoration: underline;
-        }
-
-        /* Additional styles */
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 200px;
-            height: 200px;
-            background-color: blue;
-            z-index: 1;
-        }
-
-        .hero::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            width: 400px;
-            height: 400px;
-            background-color: blue;
-            z-index: 1;
-        }
-
-        .single-in {
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .single-in a {
-            color: #4169E1;
-            text-decoration: none;
-            padding: 10px 20px;
-            border: 1px solid #4169E1;
-            border-radius: 5px;
-            margin: 5px;
-        }
-
-        .single-in a:hover {
-            background-color: #f0f8ff;
+        .single-in-container a {
+        display: inline-block;
+        padding: 8px 16px;
+        background-color: #0d495c;
+        color: #fff;
+        text-decoration: none;
+        border-radius: 5px;
+        margin: 0 5px;
+        font-size: 0.9em;
         }
     </style>
 </head>
 
 <body>
     <div class="hero">
-        <div class="container">
-            <div class="bluebox"></div>
-            <h1>Meet amazing singles
-                today</h1>
-            <p>Just say g'day to local singles looking for fun
-                excitement and romance in your area right now</p>
+        <div class="hero-content">
+            <h1>Meet amazing singles today</h1>
+            <p>Just say g'day to local singles looking for fun excitement and romance in your area right now</p>
             <p>Create your free profile to see your matches</p>
-            <div class="buttons">
-                <a href="#" role="button">Join for free now</a>
-                <a href="#" class="secondary sign-in" role="button">Sign in</a>
+            <div class="hero-buttons">
+                <a href="#">Join for free now</a>
+                <a href="#">Sign in</a>
             </div>
-            <p>Over 50? Try our mature dating site</p>
+            <p class="hero-bottom">Over 50? Try our mature dating site</p>
         </div>
     </div>
 
-    <div class="menu">
-        <div class="home">
+    <main>
+        <section class="singles">
             <a href="#">Home</a>
             <a href="#">Singles</a>
             <a href="#">Gold Coast</a>
             <a href="#">Bonogin</a>
-        </div>
-    </div>
+            <h1>Singles Bonogin</h1>
+            <p>Finding singles in Bonogin is fun and easy with justsaygday.com. As one of Australia's leading matchmaking websites
+                you have a great chance of meeting that special someone missing in your life.</p>
+            <p>Life as a single girl of guy in Bonogin can be fun but most of us are looking for someone to share the ups and downs of
+                life, share experiences and cuddle up on those cold winter nights. With new members registering on Australia's
+                hottest online dating website every month looking for friendship and romance, your dream date may be just a couple
+                of click away.</p>
+            <p>Finding a date is fun and easy with our desktop and convenient mobile applications. Our latest smartphone
+                application is the most powerful yet and best of all, there is no application to download and no fiddly installation
+                instructions to follow, just sign up for free and visit justsaygday.com from any mobile device for instant access to the
+                mobile application. From the mobile application you can access all the popular features as if you were on the desktop
+                site as well as some mobile enhanced features like:</p>
+            <p>Who's near me - find singles near you with the latest geo-location technologies without giving away your exact
+                location</p>
+            <p>Upload photos and videos directly from your phones camera</p>
+            <p>Send 'icebreakers' and 'winks'</p>
+            <p>Advanced personality matching and automated suggestions</p>
+        </section>
 
-    <div class="main-content">
-        <h2 class="single-bonogin">Singles Bonogin</h2>
-        <p>Finding singles in Bonogin is fun and easy with justsaygday.com. As one of Australia's leading matchmaking
-            websites
-            you have a great chance of meeting that special someone missing in your life.</p>
+        <section class="find-guy">
+            <h2>Find the guy who's right for you</h2>
+            <p>What's your idea of the perfect guy? Outgoing, sensitive, wild, gentle, tall, big, slim?</p>
+            <p>Find someone to share your life with. The next person you say g'day to might be the one.</p>
+        </section>
 
-        <p>Life as a single girl of guy in Bonogin can be fun but most of us are looking for someone to share the ups and
-            downs of
-            life, share experiences and cuddle up on those cold winter nights. With new members registering on Australia's
-            hottest online dating website every month looking for friendship and romance, your dream date may be just a
-            couple
-            of click away.</p>
-
-        <p>Finding a date is fun and easy with our desktop and convenient mobile applications. Our latest smartphone
-            application is the most powerful yet and best of all, there is no application to download and no fiddly
-            installation
-            instructions to follow, just sign up for free and visit <a href="#">justsaygday.com</a> from any mobile device for instant access to the
-            mobile application. From the mobile application you can access all the popular features as if you were on
-            the desktop
-            site as well as some mobile enhanced features like:</p>
-
-        <p>Who's near me - find singles near you with the latest geo-location technologies without giving away your exact
-            location
-            Upload photos and videos directly from your phones camera
-            Send 'icebreakers' and 'winks'
-            Advanced personality matching and automated suggestions</p>
-
-        <h2>Find the guy who's right for you</h2>
-
-        <p>What's your idea of the perfect guy? Outgoing, sensitive, wild, gentle, tall, big, slim?</p>
-
-        <p>Find someone to share your life with. The next person you say g'day to might be the one.</p>
-
-        <div class="singles">
+        <section class="link-buttons">
             <a href="#">Search single women in Bonogin</a>
             <a href="#">Search single men in Bonogin</a>
             <a href="#">Dating in Bonogin</a>
-        </div>
-    </div>
+        </section>
+        <section class="single-in-container">
+            <a href="#">Advancetown</a>
+            <a href="#">Arundel</a>
+            <a href="#">Arundel Bc</a>
+            <a href="#">Arundel Dc</a>
+        </section>
+    </main>
 
-    <div class="menu-buttons">
-        <h2>Singles in</h2>
-        <a href="#">Advancetown</a>
-        <a href="#">Arundel</a>
-        <a href="#">Arundel Dc</a>
-        <a href="#">Arundel Bc</a>
-    </div>
-
-    <div class="footer">
-        <div class="footer-container">
-            <div class="footer-section">
+    <footer>
+        <div class="footer-grid">
+            <div class="footer-column">
                 <h4>Just Say G'day</h4>
                 <ul>
                     <li>SSL secureScamalytics</li>
                 </ul>
             </div>
-            <div class="footer-section">
+
+            <div class="footer-column">
                 <h4>Pages</h4>
                 <ul>
                     <li><a href="#">Local singles</a></li>
@@ -1171,22 +250,23 @@
                     <li><a href="#">Completing your dating profile</a></li>
                 </ul>
             </div>
-            <div class="footer-section">
+
+            <div class="footer-column">
                 <h4>Company</h4>
                 <ul>
                     <li><a href="#">Terms</a></li>
-                    <li><a href="#">Privacy</a></li>                    
+                    <li><a href="#">Privacy</a></li>
                     <li><a href="#">Cookies</a></li>
                     <li><a href="#">Facebook</a></li>
                 </ul>
             </div>
         </div>
-    </div>
 
-    <div class="footer-copyright">
-        © Copyright notice - Site design and content copyright justsaygday.com
-        Individuals pictured are models and are used for illustrative purposes only.
-    </div>
+        <div class="footer-bottom">
+            &copy; Copyright notice - Site design and content copyright justsaygday.com
+            Individuals pictured are models and are used for illustrative purposes only.
+        </div>
+    </footer>
 </body>
 
 </html>

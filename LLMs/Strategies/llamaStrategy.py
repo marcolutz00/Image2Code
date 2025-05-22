@@ -3,7 +3,7 @@ import base64
 import ollama
 
 # ToDo: Define Model
-MODEL = "meta-llama/Llama-3.2-11B-Vision"
+MODEL = "llama3.2-vision:latest"
 
 class LlamaStrategy(LLMStrategy):
     def __init__(self):
@@ -15,7 +15,7 @@ class LlamaStrategy(LLMStrategy):
             image_data = base64.b64encode(image_file.read()).decode("utf-8")
 
         response = ollama.chat(
-            model='llama3.2-vision',
+            model=self.used_model,
             messages=[{
                 'role': 'user',
                 'content': prompt,

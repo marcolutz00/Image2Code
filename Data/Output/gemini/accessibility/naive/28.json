@@ -13,97 +13,6 @@
   "automatic": [
     {
       "wcag_id": [
-        "Principle3.Guideline3_1.3_1_1.H57.2",
-        "Principle3.Guideline3_1.3_1_1.H57.3.Lang",
-        "Principle3.Guideline3_1.3_1_1.H57.3.XmlLang",
-        "Principle3.Guideline3_1.3_1_2.H58.1.Lang",
-        "Principle3.Guideline3_1.3_1_2.H58.1.XmlLang"
-      ],
-      "url": [
-        "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
-        "https://dequeuniversity.com/rules/axe/4.10/html-lang-valid",
-        "https://dequeuniversity.com/rules/axe/4.10/html-xml-lang-mismatch",
-        "https://dequeuniversity.com/rules/axe/4.10/valid-lang"
-      ],
-      "impact": "serious",
-      "name": "Language; Document Lang; Missing & Invalid",
-      "amount_nodes_failed": 1,
-      "issues": [
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
-          "source": "axe-core",
-          "title": "<html> element must have a lang attribute",
-          "description": "Ensure every HTML document has a lang attribute",
-          "impact": "serious",
-          "nodes": {
-            "any": [
-              {
-                "id": "has-lang",
-                "data": {
-                  "messageKey": "noLang"
-                },
-                "relatedNodes": [],
-                "impact": "serious",
-                "message": "The <html> element does not have a lang attribute"
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "serious",
-            "html": "<html>",
-            "target": [
-              "html"
-            ],
-            "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute"
-          }
-        },
-        {
-          "id": "Principle3.Guideline3_1.3_1_1.H57.2",
-          "source": "pa11y",
-          "title": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-          "description": "<html><head>\n<meta charset=\"UTF-8\">\n<...</html>",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
-            "type": "error",
-            "typeCode": 1,
-            "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-            "context": "<html><head>\n<meta charset=\"UTF-8\">\n<...</html>",
-            "selector": "html",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
-          "source": "lighthouse",
-          "title": "`<html>` element does not have a `[lang]` attribute",
-          "description": "If a page doesn't specify a `lang` attribute, a screen reader assumes that the page is in the default language that the user chose when setting up the screen reader. If the page isn't actually in the default language, then the screen reader might not announce the page's text correctly. [Learn more about the `lang` attribute](https://dequeuniversity.com/rules/axe/4.10/html-has-lang).",
-          "score": 0,
-          "details": {
-            "node": {
-              "type": "node",
-              "lhId": "1-0-HTML",
-              "path": "1,HTML",
-              "selector": "html",
-              "boundingRect": {
-                "top": 0,
-                "bottom": 1957,
-                "left": 0,
-                "right": 980,
-                "width": 980,
-                "height": 1957
-              },
-              "snippet": "<html>",
-              "nodeLabel": "html",
-              "explanation": "Fix any of the following:\n  The <html> element does not have a lang attribute"
-            }
-          }
-        }
-      ]
-    },
-    {
-      "wcag_id": [
         "Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
         "Principle4.Guideline4_1.4_1_2.H91.InputSearch.Name",
         "Principle4.Guideline4_1.4_1_2.H91.Textarea.Name",
@@ -185,9 +94,9 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<input type=\"password\" name=\"password\">",
+            "html": "<input type=\"password\" id=\"password\" name=\"password\">",
             "target": [
-              "input"
+              "#password"
             ],
             "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
           }
@@ -196,15 +105,15 @@
           "id": "Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
           "source": "pa11y",
           "title": "This passwordinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<input type=\"password\" name=\"password\">",
+          "description": "<input type=\"password\" id=\"password\" name=\"password\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
             "type": "error",
             "typeCode": 1,
             "message": "This passwordinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<input type=\"password\" name=\"password\">",
-            "selector": "html > body > div > div > input",
+            "context": "<input type=\"password\" id=\"password\" name=\"password\">",
+            "selector": "#password",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -213,15 +122,15 @@
           "id": "Principle1.Guideline1_3.1_3_1.F68",
           "source": "pa11y",
           "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-          "description": "<input type=\"password\" name=\"password\">",
+          "description": "<input type=\"password\" id=\"password\" name=\"password\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
             "type": "error",
             "typeCode": 1,
             "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-            "context": "<input type=\"password\" name=\"password\">",
-            "selector": "html > body > div > div > input",
+            "context": "<input type=\"password\" id=\"password\" name=\"password\">",
+            "selector": "#password",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -235,19 +144,19 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-1-INPUT",
-              "path": "1,HTML,1,BODY,0,DIV,2,DIV,0,INPUT",
-              "selector": "body > div.container > div.input-wrapper > input",
+              "lhId": "1-0-INPUT",
+              "path": "1,HTML,1,BODY,0,DIV,3,INPUT",
+              "selector": "body > div.container > input#password",
               "boundingRect": {
-                "top": 1023,
-                "bottom": 1056,
-                "left": 315,
-                "right": 596,
-                "width": 281,
-                "height": 33
+                "top": 443,
+                "bottom": 476,
+                "left": 53,
+                "right": 253,
+                "width": 200,
+                "height": 34
               },
-              "snippet": "<input type=\"password\" name=\"password\">",
-              "nodeLabel": "body > div.container > div.input-wrapper > input",
+              "snippet": "<input type=\"password\" id=\"password\" name=\"password\">",
+              "nodeLabel": "body > div.container > input#password",
               "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
             }
           }
@@ -292,7 +201,7 @@
             ],
             "none": [],
             "impact": "moderate",
-            "html": "<html>",
+            "html": "<html lang=\"en\">",
             "target": [
               "html"
             ],
@@ -376,9 +285,9 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<input type=\"password\" name=\"password\">",
+            "html": "<input type=\"password\" id=\"password\" name=\"password\">",
             "target": [
-              "input"
+              "#password"
             ],
             "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
           }
@@ -418,7 +327,7 @@
             ],
             "none": [],
             "impact": "moderate",
-            "html": "<html>",
+            "html": "<html lang=\"en\">",
             "target": [
               "html"
             ],

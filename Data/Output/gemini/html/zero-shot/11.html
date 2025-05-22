@@ -1,21 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Koding - AWS Autoscaling Lifecycle Hook</title>
+    <title>Document</title>
     <style>
         body {
             font-family: sans-serif;
             margin: 0;
             padding: 0;
             color: #333;
-            line-height: 1.6;
         }
 
         a {
-            color: #007bff;
             text-decoration: none;
+            color: #1e88e5;
         }
 
         a:hover {
@@ -28,12 +28,11 @@
             padding: 20px;
         }
 
-        nav {
-            background-color: #f8f9fa;
-            padding: 10px 20px;
+        header {
             display: flex;
             justify-content: space-between;
             align-items: center;
+            padding: 20px 0;
         }
 
         nav ul {
@@ -44,109 +43,93 @@
         }
 
         nav li {
-            margin-right: 20px;
+            margin-left: 20px;
         }
 
         nav a {
-            color: #6c757d;
+            color: #1e88e5;
+            font-size: 14px;
+            padding: 5px 10px;
+            border-radius: 3px;
         }
 
-        nav a.active {
-            color: #333;
-        }
-
-        aside {
-            width: 250px;
-            float: left;
-            padding-right: 20px;
+        nav a:hover {
+            background-color: #e3f2fd;
+            text-decoration: none;
         }
 
         main {
-            margin-left: 270px;
+            padding-top: 30px;
         }
 
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 10px;
+        aside {
+            width: 200px;
+            float: left;
         }
 
-        h2 {
-            font-size: 1.75rem;
-            margin-top: 30px;
-            margin-bottom: 15px;
-        }
-
-        ul.side-nav {
+        aside ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
-        ul.side-nav li {
-            margin-bottom: 5px;
+        aside li {
+            padding: 5px 0;
         }
 
-        ul.side-nav a {
+        aside a {
             color: #333;
             display: block;
             padding: 5px 10px;
         }
 
-        ul.side-nav a:hover {
-            background-color: #f8f9fa;
+        aside a:hover {
+            background-color: #f0f0f0;
             text-decoration: none;
         }
 
-        ul.side-nav ul {
-            padding-left: 15px;
-            margin-top: 5px;
-            margin-bottom: 5px;
-        }
-        .tab-buttons {
-            margin-top: 20px;
-            text-align: right;
+        article {
+            margin-left: 220px;
         }
 
-        .tab-buttons a {
-            display: inline-block;
-            padding: 8px 12px;
-            border: 1px solid #ddd;
-            background-color: #fff;
-            color: #555;
-            border-radius: 4px;
-            margin-left: 5px;
-        }
-
-        .tab-buttons a.active {
-            background-color: #eee;
-            font-weight: bold;
-        }
-
-        pre {
-            background-color: #f8f9fa;
-            padding: 10px;
-            overflow-x: auto;
-            border: 1px solid #ddd;
+        h1 {
+            font-size: 2.5em;
             margin-bottom: 20px;
         }
 
-        code {
-            font-family: monospace;
+        h2 {
+            font-size: 1.5em;
+            margin-top: 30px;
+            margin-bottom: 15px;
         }
 
-        /* Footer styles */
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            overflow-x: auto;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 14px;
+            line-height: 1.4;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
         footer {
-            background-color: #343a40;
+            background-color: #37474f;
             color: #fff;
-            padding: 40px 0;
+            padding: 30px 0;
             margin-top: 50px;
         }
 
         .footer-content {
-            display: flex;
-            justify-content: space-around;
             max-width: 960px;
             margin: 0 auto;
-            padding: 0 20px;
+            display: flex;
+            justify-content: space-around;
         }
 
         .footer-section {
@@ -154,108 +137,125 @@
         }
 
         .footer-section h4 {
-            margin-bottom: 20px;
-            font-size: 1.2rem;
+            font-size: 1.2em;
+            margin-bottom: 15px;
         }
 
         .footer-section ul {
             list-style: none;
             padding: 0;
+            margin: 0;
         }
 
         .footer-section li {
-            margin-bottom: 10px;
+            padding: 5px 0;
         }
 
         .footer-section a {
             color: #fff;
         }
 
-        .footer-section img {
-            width: 100px;
-            margin-bottom: 20px;
+        .footer-section a:hover {
+            text-decoration: underline;
         }
 
-        /* Argument Reference Styles */
-        .argument-reference ul {
-            list-style-type: none;
-            padding: 0;
+        .resource {
+            margin: 0;
+            font-family: monospace;
+            font-size: 14px;
+            line-height: 1.4;
+            background-color: #f5f5f5;
+            padding: 10px;
         }
 
-        .argument-reference li {
+        .tab-buttons {
             margin-bottom: 10px;
+            text-align: right;
         }
 
-        .argument-reference li:before {
-            content: "\2022";
-            color: #333;
-            display: inline-block;
-            width: 1em;
-            margin-left: -1em;
+        .tab-buttons button {
+            background-color: transparent;
+            border: none;
+            color: #1e88e5;
+            padding: 5px 10px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            font-size: 14px;
+        }
+
+        .tab-buttons button:hover {
+            border-bottom: 2px solid #1e88e5;
+        }
+
+        .tab-buttons button.active {
+            border-bottom: 2px solid #1e88e5;
+            font-weight: bold;
+        }
+
+        li {
+            margin-bottom: 5px;
+        }
+
+        li>strong {
+            font-weight: bold;
         }
     </style>
 </head>
-<body>
-    <nav>
-        <ul>
-            <li><a href="#">Features</a></li>
-            <li><a href="#">Open Source</a></li>
-            <li><a href="#">About</a></li>
-            <li><a href="#" class="active">Docs</a></li>
-        </ul>
-        <ul>
-            <li><a href="#">Login</a></li>
-            <li><a href="#">Register</a></li>
-        </ul>
-    </nav>
 
+<body>
     <div class="container">
-        <aside>
-            <ul class="side-nav">
-                <li><a href="#">Videos</a></li>
-                <li><a href="#">Getting started</a></li>
-                <li><a href="#">Getting more from Koding</a></li>
-                <li><a href="#">Stack Documentation</a></li>
-                <li><a href="#">Configuration</a>
-                    <ul>
-                        <li><a href="#">Providers</a>
-                            <ul>
-                                <li><a href="#">Archive</a></li>
-                                <li><a href="#">Atlas</a></li>
-                                <li><a href="#">AWS</a>
-                                    <ul>
-                                        <li><a href="#">Data Sources</a></li>
-                                        <li><a href="#">Resources</a>
-                                            <ul>
-                                                <li><a href="#">aws_alb</a></li>
-                                                <li><a href="#">aws_alb_listener</a></li>
-                                                <li><a href="#">aws_alb_listener_rule</a></li>
-                                                <li><a href="#">aws_alb_target_group</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                </li>
-                <li><a href="#">Azure Service Management</a></li>
-                <li><a href="#">Provisioners</a></li>
-            </ul>
-        </aside>
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Open Source</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Docs</a></li>
+                </ul>
+            </nav>
+            <nav>
+                <ul>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li>
+                </ul>
+            </nav>
+        </header>
 
         <main>
-            <h1>aws_autoscaling_lifecycle_hook</h1>
-            <p>Provides an AutoScaling Lifecycle Hook resource.</p>
+            <aside>
+                <ul>
+                    <li><a href="#">Videos</a></li>
+                    <li><a href="#">Getting started</a></li>                    
+                    <li><a href="#">Getting more from Koding</a></li>                    
+                    <li><a href="#">Stack Documentation</a></li>
+                    <li><a href="#">Configuration</a></li>
+                    <li><a href="#">Providers</a></li>
+                    <li><a href="#">Archive</a></li>
+                    <li><a href="#">Atlas</a></li>
+                    <li><a href="#">AWS</a></li>
+                    <li><a href="#">Data Sources</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">aws_alb</a></li>
+                    <li><a href="#">aws_alb_listener</a></li>
+                    <li><a href="#">aws_alb_listener_rule</a></li>
+                    <li><a href="#">aws_alb_target_group</a></li>
+                    <li><a href="#">Azure Service Management</a></li>
+                    <li><a href="#">Provisioners</a></li>
+                </ul>
+            </aside>
 
-            <h2>Example Usage</h2>
-            <div class="tab-buttons">
-                <a href="#" class="active">yaml</a>
-                <a href="#">hcl</a>
-            </div>
+            <article>
+                <h1>aws_autoscaling_lifecycle_hook</h1>
+                <p>Provides an AutoScaling Lifecycle Hook resource.</p>
 
-            <pre>
-                <code>
+                <h2>Example Usage</h2>
+
+                <div class="tab-buttons">
+                    <button class="active">yaml</button>
+                    <button>hcl</button>
+                </div>
+
+                <pre class="resource">
 resource:
   aws_autoscaling_group:
     foobar:
@@ -276,28 +276,67 @@ resource:
       default_result: CONTINUE
       heartbeat_timeout: 2000
       lifecycle_transition: 'autoscaling:EC2_INSTANCE_LAUNCHING'
-      notification_metadata: "{\n \"foo\": \"bar\"\n}"
+      notification_metadata: "{\n  \"foo\": \"bar\"\n}"
       notification_target_arn: 'arn:aws:sqs:us-east-1:444455556666:queue1*'
       role_arn: 'arn:aws:iam::123456789012:role/S3Access'
-                </code>
-            </pre>
+                </pre>
 
-            <h2>Argument Reference</h2>
-            <p>The following arguments are supported:</p>
-            <div class="argument-reference">
+                <h2>Argument Reference</h2>
+                <p>The following arguments are supported:</p>
                 <ul>
-                    <li><code>name</code> - (Required) The name of the lifecycle hook.</li>
-                    <li><code>autoscaling_group_name</code> - (Required) The name of the Auto Scaling group to which you want to assign the lifecycle hook</li>
-                    <li><code>default_result</code> - (Optional) Defines the action the Auto Scaling group should take when the lifecycle hook timeout elapses or if an unexpected failure occurs.</li>
-                    <li><code>heartbeat_timeout</code> - (Optional) Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult parameter</li>
+                    <li><strong>name</strong> - (Required) The name of the lifecycle hook.</li>
+                    <li><strong>autoscaling_group_name</strong> - (Required) The name of the Auto Scaling group to which you want to
+                        assign the lifecycle hook</li>
+                    <li><strong>default_result</strong> - (Optional) Defines the action the Auto Scaling group should take when the
+                        lifecycle hook timeout elapses or if an unexpected failure occurs.</li>
+                    <li><strong>heartbeat_timeout</strong> - (Optional) Defines the amount of time, in seconds, that can elapse before
+                        the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in
+                        the DefaultResult parameter</li>
                 </ul>
-            </div>
 
-            <p>See the source of this document at <a href="https://terraform.io">Terraform.io</a></p>
+                <p>See the source of this document at <a href="#">Terraform.io</a></p>
+            </article>
         </main>
     </div>
 
     <footer>
         <div class="footer-content">
             <div class="footer-section">
-                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGgAAABoCAYAAAAOaOQTAAAACXBIWXMAAAsTAAALEwEAmpwYAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAANLSURBVHgB7Z13ihJBFIWn4Rj4A422Y2c0sBfWwE1tBvW0lX2E7eN9g+mP4P+fU0hJk+g59r3kX4V+4b4/i6r65W57U0eY911W9mQY0f5d+M/H0x4n8e+3+D/hH47/H8Y2kFkLIOQsg5CyDkLIOW2hR/k3w7n8/5t8P3w1p+Y+e/X61h10h94v90D55p2l429H0967778Y+3yS+K70K8Q8Q8Q8Q8Q9n+r90j5/0c3q0L+n2x0q7+99z8837c53t6j479j0/0799+e7b9R781+78h34/p3735/gX72/l/N+O62210r19m30x63/7c115d541f/8n34Q8Q8Q8Q8Q8Q8Q9r+r6V0p0l260915163919j387f3023+97V9D0X8X83xR8x2kR8953543n+M9/8P4k/U/845+WzF3/2c8l/84/8+8R/6/3f/53/8m3/c3/8y3/8Q8Q8Q8Q8Q8Q8Q9p+r6l0p0v2o1w7u3+4q/t7r4f+77W9L057893o6+51+99N0r39k/r/483306/c/558i/6v65/7p4s/v/5J3/253/853/953/4Q8Q8Q8Q8Q8Q8Q9q+r6l0p0j2l1z7f397W3y/6X54/O9L0/6H43/d9L9j/y93k939b4t0f30+7e39d+i78/6n+v963+95/f19/15/65/f6h59/v/q9/75/3+Y8Q8Q8Q8Q8Q8Q9k+r8l0p0n1t03357d90/7j6344+7l/b1/6H298/10n79+1/212/b+L1l66+z0i57+u8U958v578g0j8x6j81/r+7+W/Q9/6u9y9p/y9n/l5X+L1B9b/hQ8Q8Q8Q8Q8Q8Q9k+r8l0p0n1t0116/833+39O/V1o/x/26X63q50o7/33x/813z9j+Y/3202d/7n4v1+8W+W/2b9j91/m09X+65v3/01v3/vX7W/x/993/7/k370/96r/78I+F/EPEPEPEPEPEPd/q/L0p0n1v0V1/x3o3x7u/7uN8X9p92//e/b291413+77e5/h/l/30+P/9/325//W915V/472v8j8m4n2/8f7P8n7P7P8n+L8n9H/J/S/jQ8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv8vT/3wXv3N//Vz79h5n8n0D7v633v+L3c/x/p8v1w63fLz9d/F+7/v5uN8X9D/O+0/zPtP837T/N/0/zv9P8P8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv4vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3+D/hH47/H8Y2kFkLIOQsg5CyDkLIOW2hR/k3w7n8/5t8P3w1p+Y+e/X61h10h94v90D55p2l429H0967778Y+3yS+K70K8Q8Q8Q8Q8Q9n+r90j5/0c3q0L+n2x0q7+99z8837c53t6j479j0/0799+e7b9R781+78h34/p3735/gX72/l/N+O62210r19m30x63/7c115d541f/8n34Q8Q8Q8Q8Q8Q8Q9r+r6V0p0l260915163919j387f3023+97V9D0X8X83xR8x2kR8953543n+M9/8P4k/U/845+WzF3/2c8l/84/8+8R/6/3f/53/8m3/c3/8y3/8Q8Q8Q8Q8Q8Q8Q9p+r6l0p0v2o1w7u3+4q/t7r4f+77W9L057893o6+51+99N0r39k/r/483306/c/558i/6v65/7p4s/v/5J3/253/853/953/4Q8Q8Q8Q8Q8Q8Q9q+r6l0p0j2l1z7f397W3y/6X54/O9L0/6H43/d9L9j/y93k939b4t0f30+7e39d+i78/6n+v963+95/f19/15/65/f6h59/v/q9/75/3+Y8Q8Q8Q8Q8Q8Q9k+r8l0p0n1t03357d90/7j6344+7l/b1/6H298/10n79+1/212/b+L1l66+z0i57+u8U958v578g0j8x6j81/r+7+W/Q9/6u9y9p/y9n/l5X+L1B9b/hQ8Q8Q8Q8Q8Q8Q9k+r8l0p0n1t0116/833+39O/V1o/x/26X63q50o7/33x/813z9j+Y/3202d/7n4v1+8W+W/2b9j91/m09X+65v3/01v3/vX7W/x/993/7/k370/96r/78I+F/EPEPEPEPEPEPd/q/L0p0n1v0V1/x3o3x7u/7uN8X9p92//e/b291413+77e5/h/l/30+P/9/325//W915V/472v8j8m4n2/8f7P8n7P7P8n+L8n9H/J/S/jQ8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv8vT/3wXv3N//Vz79h5n8n0D7v633v+L3c/x/p8v1w63fLz9d/F+7/v5uN8X9D/O+0/zPtP837T/N/0/zv9P8P8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv4vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3/D/n/A/B/w/w/4f8Q8Q8Q8Q8Q8Q93+r8vSnSfW/RXv6vX/17/7+O95/k/v/4//9q78/4H9/x/n69/68vj981r/5978/9f/H+3+N+3+H+3+D/hH47/H8Y2kFkLIOQsg5CyDkLIOW2hR/k3w7n8/5t8P3w1p+Y+e/X61h10h94v90D55p2l429H0967778Y+3yS+K70K8Q8Q8Q8Q8Q9n+r90j5/0c3
+                <h4>For Teams</h4>
+                <ul>
+                    <li><a href="#">Platform for Training</a></li>
+                    <li><a href="#">Pre-Sales Automation</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Get Started</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>About</h4>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Open Source</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>Contact</h4>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Email Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

@@ -100,8 +100,8 @@ def _overwrite_insights(accessibility_dir, insight_dir):
 
 
 async def main():
-    model = "qwen" # option openai, gemini, qwen
-    prompt_strategy = "naive" # option naive, zero-shot
+    model = "openai" # option openai, gemini, qwen
+    prompt_strategy = "zero-shot" # option naive, zero-shot
 
     # 1. Load API-Key and define model strategy
     strategy = utils_general.get_model_strategy(model)
@@ -120,7 +120,7 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            # if int(image.split(".")[0]) not in [24]:
+            # if int(image.split(".")[0]) < 11:
             #     continue
 
             image_information = {

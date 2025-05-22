@@ -19,7 +19,7 @@ class OpenAIStrategy(LLMStrategy):
             image_data = base64.b64encode(image_file.read()).decode("utf-8")
 
         response = self.client.responses.create(
-            model="gpt-4.1",
+            model=self.used_model,
             input=[
                 {
                     "role": "system", "content": f"Imagine that you are a senior frontend developper focusing on implementing HTML/CSS from UI-Images. It is the goal to copy the image as precise as possible. Please only answer with the code, meaning without any explanation.",

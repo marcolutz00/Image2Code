@@ -1,216 +1,203 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width">
-<title>Fetch</title>
-<style>
-body {
-    font-family: sans-serif;
-    line-height: 1.4;
-    color: #222;
-    margin: 0;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Forum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
 
-.header {
-    background-color: #194569;
-    color: #fff;
-    padding: 50px 20px;
-    text-align: left;
-    margin-bottom: 20px;
-}
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
 
-.header h1 {
-    font-size: 2.5em;
-    margin-bottom: 0.5em;
-}
+        .header {
+            background-color: #004080;
+            color: white;
+            padding: 30px;
+            margin-bottom: 20px;
+        }
 
-.header p {
-    font-size: 1.3em;
-}
+        .header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
 
-.container {
-    width: 80%;
-    margin: 0 auto;
-}
+        .header p {
+            font-size: 1.2em;
+        }
 
-.support {
-    color: #fff;
-    text-decoration: none;
-    display: inline-block;
-    padding: 8px 16px;
-    border: 1px solid #fff;
-    border-radius: 5px;
-    margin-top: 20px;
-}
+        .support {
+            color: #fff;
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: transparent;
+            border: 1px solid #fff;
+            text-decoration: none;
+            margin-top: 10px;
+        }
 
-.topic-header {
-    font-size: 1.3em;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+        .topic {
+            background-color: #f9f9f9;
+            padding: 15px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+        }
 
-.archived {
-    background-color: #f2dede;
-    color: #a94442;
-    padding: 15px;
-    margin-bottom: 20px;
-}
+        .topic h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
 
-.post {
-    margin-bottom: 20px;
-}
+        .topic ul {
+            list-style: none;
+            padding: 0;
+        }
 
-.author {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
+        .topic li {
+            margin-bottom: 5px;
+        }
 
-.date {
-    font-size: 0.8em;
-    color: #777;
-}
+        .topic li:before {
+            content: "\2022";
+            color: #333;
+            display: inline-block;
+            width: 1em;
+            margin-left: -1em;
+        }
 
-.footer {
-    text-align: center;
-    margin-top: 40px;
-    color: #777;
-}
+        .archived {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
 
-.topic-closed {
-    margin-top: 30px;
-    border-top: 1px solid #ccc;
-    padding-top: 20px;
-}
+        .post {
+            margin-bottom: 20px;
+            padding: 10px;
+        }
 
-.topic-closed p {
-    font-style: italic;
-}
+        .post .author {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-.author-info {
-    display: flex;
-    flex-direction: column;
-}
+        .post .meta {
+            font-size: 0.8em;
+            color: #777;
+            margin-bottom: 10px;
+        }
 
-.author-info .name {
-    font-weight: bold;
-}
+        .topic-closed {
+            margin-top: 20px;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
 
-.author-info .member {
-    font-size: 0.8em;
-    color: #777;
-}
-a {
-    color: #337ab7;
-    text-decoration: none;
-}
+        .topic-closed p {
+            font-style: italic;
+            color: #777;
+        }
 
-a:hover {
-    text-decoration: underline;
-}
-.post-date {
-    color: #999;
-    font-size: 0.8em;
-}
-.topic-header {
-    font-size: 1.3em;
-    margin-bottom: 10px;
-}
-.return-to-board {
-    text-align: right;
-    margin-top: 20px;
-}
-.list-style {
-    list-style-type: disc;
-    margin-left: 20px;
-}
-.name-info {
-    display: flex;
-    flex-direction: row;
-}
-.name-info > div {
-    margin: 10px;
-}
-</style>
+        .return-link {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .return-link a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            border-top: 1px solid #ddd;
+            color: #777;
+        }
+    </style>
 </head>
+
 <body>
+    <div class="container">
+        <div class="header">
+            <h1>FETCH <span style="font-size: 0.7em;">5.8</span></h1>
+            <p>Your best friend for file transfer.</p>
+            <a href="#" class="support">SUPPORT</a>
+        </div>
 
-<div class="header">
-    <h1>FETCH 5.8</h1>
-    <p>Your best friend for file transfer.</p>
-    <a class="support" href="#">SUPPORT</a>
-</div>
+        <div class="topic">
+            <h2>FILE NAME CHARACTERS <span style="font-size: 0.8em;">(2 posts)</span></h2>
+            <div class="archived">
+                This is an archived topic. The information in it is likely to be out-of-date and no longer applicable
+                to current
+                versions of Fetch.
+            </div>
+            <ul>
+                <li>Started 21 years ago by <span style="font-weight: bold;">gorenstein</span></li>
+                <li><span style="font-weight: bold;">Latest reply</span> 21 years ago from <span
+                        style="font-weight: bold;">Jim Matthews</span></li>
+            </ul>
 
-<div class="container">
-    <h2 class="topic-header">FILE NAME CHARACTERS <span style="font-size: 0.8em">(2 posts)</span></h2>
-
-    <div class="archived">
-        This is an archived topic. The information in it is likely to be out-of-date and no longer applicable to current
-        versions of Fetch.
-    </div>
-
-    <ul class="list-style">
-        <li>Started 21 years ago by <a href="#">gorenstein</a></li>
-        <li>Latest reply 21 years ago from <a href="#">Jim Matthews</a></li>
-    </ul>
-
-    <div class="post">
-        <div class="name-info">
-            <div>
-                <div class="author-info">
-                    <div class="name"><a href="#">gorenstein</a></div>
-                    <div class="member">Member</div>
+            <div class="post">
+                <div class="author" style="font-weight: normal;">
+                    <span style="font-weight: bold;">gorenstein</span>
+                    <span style="color: #777;">Member</span>
+                </div>
+                <p>In uploading files from a Mac to a Windows system, certain characters that are not valid in
+                    Windows file names are "escaped". For example a forward slash (/) is converted to %2F.</p>
+                <p>Other such characters go unescaped and cause transfers to fail. Examples are asterisks (*) and
+                    double quotes (").</p>
+                <p>Since Fetch is capable of escaping some illegal characters, is there any way to get it to do the
+                    others?</p>
+                <p>Also, is there some way to provide a more desireable substitution. For example, I would prefer
+                    to
+                    have the forward slashes wind up as dashes.</p>
+                <div class="meta">
+                    POSTED 21 YEARS AGO #
                 </div>
             </div>
-            <div>
-                In uploading files from a Mac to a Windows system, certain characters that are not valid in Windows file names are "escaped". For example a forward slash (/) is converted to %2F.
-                <br><br>
-                Other such characters go unescaped and cause transfers to fail. Examples are asterisks (*) and double quotes (").
-                <br><br>
-                Since Fetch is capable of escaping some illegal characters, is there any way to get it to do the others?
-                <br><br>
-                Also, is there some way to provide a more desireable substitution. For example, I would prefer to have the forward slashes wind up as dashes.
-                <br><br>
-                <span class="post-date">POSTED 21 YEARS AGO</span> <a href="#">#</a>
-            </div>
-        </div>
-    </div>
 
-    <div class="post">
-        <div class="name-info">
-            <div>
-                <div class="author-info">
-                    <div class="name"><a href="#">Jim Matthews</a></div>
-                    <div class="member">Administrator</div>
+            <div class="post">
+                <div class="author" style="font-weight: normal;">
+                    <span style="font-weight: bold;">Jim Matthews</span>
+                    <span style="color: #777;">Administrator</span>
+                </div>
+                <p>There isn't currently a way to do this, but it's a great suggestion.</p>
+                <p>Thanks,</p>
+                <p>Jim Matthews<br>
+                    Fetch Softworks</p>
+                <div class="meta">
+                    POSTED 21 YEARS AGO #
                 </div>
             </div>
-            <div>
-                There isn't currently a way to do this, but it's a great suggestion.
-                <br><br>
-                Thanks,
-                <br><br>
-                Jim Matthews
-                <br>
-                Fetch Softworks
-                <br><br>
-                <span class="post-date">POSTED 21 YEARS AGO</span> <a href="#">#</a>
+
+            <div class="topic-closed">
+                <h2>Topic closed</h2>
+                <p>This topic has been closed.</p>
             </div>
         </div>
-    </div>
-    
-    <div class="return-to-board">
-         <a href="#">Return to Message Board</a>
-    </div>
 
-    <div class="topic-closed">
-        <h3>Topic closed</h3>
-        <p>This topic has been closed.</p>
-    </div>
+        <div class="return-link">
+            <a href="#">Return to Message Board</a>
+        </div>
 
-    <div class="footer">
-        © COPYRIGHT 2000 - 2023 FROM YOUR FRIENDS AT FETCH SOFTWORKS
+        <div class="footer">
+            © COPYRIGHT 2000 - 2023 FROM YOUR FRIENDS AT FETCH SOFTWORKS
+        </div>
     </div>
-</div>
-
 </body>
+
 </html>

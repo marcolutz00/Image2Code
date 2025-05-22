@@ -1,315 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>GLYCOFRAGWORK</title>
-  <meta name="viewport" content="width=1024">
-  <style>
-    @media (max-width: 1050px) {
-      html { font-size: 14px; }
-      body { zoom: 0.9; } /* fallback for minimal scaling for accessibility reasons, avoid text scaling if possible */
-    }
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background: #000;
-      color: #fff;
-      font-family: Times New Roman, Times, serif;
-      font-size: 16px;
-      min-width: 1024px;
-      margin: 0;
-      padding: 0;
-      -webkit-font-smoothing: antialiased;
-    }
-    .container {
-      width: 1100px;
-      margin: 0 auto;
-      padding-bottom: 30px;
-    }
-    header {
-      width: 100%;
-      margin-top: 38px;
-      margin-bottom: 45px;
-      position: relative;
-      text-align: center;
-    }
-    .header-title {
-      font-size: 2.3rem;
-      font-weight: normal;
-      letter-spacing: 2px;
-      color: #fff;
-      margin-bottom: 10px;
-    }
-    .topnav {
-      position: absolute;
-      top: 2px;
-      right: 53px;
-      width: 205px;
-      display: flex;
-      justify-content: space-between;
-      font-size: 1rem;
-    }
-    .topnav a {
-      color: #251311;
-      text-decoration: none;
-      font-family: Times New Roman, Times, serif;
-      font-size: 1rem;
-      transition: color 0.15s;
-    }
-    .topnav a:last-child {
-      color: #fff;
-    }
-    .main-content {
-      width: 95%;
-      margin: 0 auto;
-      margin-bottom: 36px;
-    }
-    .welcome {
-      margin-top: 0;
-      margin-bottom: 48px;
-      text-align: left;
-      max-width: 950px;
-      margin-left: 0;
-    }
-    .welcome-title {
-      color: #ffd600;
-      font-size: 2rem;
-      font-weight: bold;
-      margin-bottom: 7px;
-    }
-    .welcome-desc {
-      color: #fff;
-      font-size: 1rem;
-      margin-bottom: 18px;
-      font-family: Times New Roman, Times, serif;
-      line-height: 1.22;
-      max-width: 995px;
-      margin-left: 0;
-      letter-spacing: 0.1px;
-    }
-    .welcome-note {
-      color: #fff;
-      font-size: 1rem;
-      margin-bottom: 0;
-      font-family: Times New Roman, Times, serif;
-      margin-left: 0;
-    }
-    .row {
-      display: flex;
-      justify-content: space-between;
-      gap: 60px;
-      margin-bottom: 0;
-    }
-    .col-half {
-      width: 47.7%;
-      min-width: 420px;
-      text-align: center;
-    }
-    .section-header {
-      color: #ff8800;
-      font-size: 1.35rem;
-      font-weight: bold;
-      padding-bottom: 3px;
-      margin-top: 0;
-      margin-bottom: 7px;
-      letter-spacing: 0.5px;
-      border-bottom: 1px solid #7c746d;
-    }
-    .left .section-header {
-      margin-left: -2px;
-    }
-    .right .section-header {
-      margin-right: -2px;
-    }
-    .section-content {
-      margin-top: 18px;
-      margin-bottom: 38px;
-      text-align: center;
-      font-size: 1rem;
-      color: #fff;
-    }
-    .news-date {
-      color: #fff;
-      font-size: 1rem;
-      font-family: Times New Roman, Times, serif;
-    }
-    .news-highlight {
-      color: #ffd600;
-      font-weight: bold;
-    }
-    .current-version {
-      color: #ffd600;
-      margin-left: 0;
-      font-size: 1rem;
-      font-family: Times New Roman, Times, serif;
-    }
-    .contact-section {
-      text-align: left;
-      margin-top: 7px;
-    }
-    .contact-label {
-      color: #ffd600;
-      font-weight: bold;
-    }
-    .contact-link {
-      color: #ff8800;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .contact-link2 {
-      color: #ffd600;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    .contact-email {
-      color: #fff;
-      text-decoration: none;
-      margin-left: 0.18em;
-      word-break: break-all;
-    }
-    .advisor-label {
-      font-weight: normal;
-      color: #fff;
-    }
-    .funding-section {
-      color: #fff;
-      font-size: 1rem;
-      text-align: center;
-      margin-top: 20px;
-      line-height: 1.3;
-    }
-    .divider {
-      border-top: 1px solid #7c746d;
-      margin: 24px 0 0 0;
-      height: 1px;
-      width: 100%;
-    }
-    .big-placeholder {
-      background: #888;
-      height: 60px;
-      width: 100%;
-      margin-top: 37px;
-      margin-bottom: 17px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .big-placeholder img {
-      display: block;
-    }
-    .footer {
-      margin: 0 auto;
-      width: 100%;
-      padding: 0 2.5vw 0 1.5vw;
-      font-size: 1rem;
-      color: #fff;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      min-height: 28px;
-      max-width: 1100px;
-      position: relative;
-    }
-    .footer-left {
-      font-size: 1rem;
-      color: #fff;
-      font-family: Times New Roman, Times, serif;
-      margin-bottom: 0.25em;
-    }
-    .footer-right {
-      font-size: 1rem;
-      color: #ffd600;
-      text-align: right;
-      margin-bottom: 0.25em;
-      font-family: Times New Roman, Times, serif;
-    }
-    .footer-right a {
-      color: #ffd600;
-      text-decoration: underline;
-    }
-    @media (max-width: 1120px) {
-      .container {
-        width: 99vw;
-        min-width: unset;
-      }
-      .footer { max-width: 99vw; }
-    }
-    /* Accessibility */
-    a:focus, a:active {
-      outline: 2px solid #ffd600;
-      outline-offset: 1px;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GlycoFragwork</title>
+    <style>
+        body {
+            background-color: black;
+            color: #fff;
+            font-family: 'Times New Roman', Times, serif;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+        header {
+            font-size: 36px;
+            margin-top: 20px;
+        }
+        nav {
+            font-size: 14px;
+            margin-top: 10px;
+        }
+        nav a {
+            color: #5f5a5a;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+        .main-content {
+            margin: 50px 0;
+        }
+        .welcome {
+            color: #f7c705;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .description {
+            font-size: 18px;
+            margin: 20px auto;
+            width: 60%;
+        }
+        section {
+            margin: 50px 0;
+            border-top: 1px solid #5f5a5a;
+            padding-top: 20px;
+        }
+        section h2 {
+            color: #f7c705;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .columns {
+            display: flex;
+            justify-content: space-around;
+            margin: 20px 0;
+        }
+        .column {
+            width: 45%;
+            text-align: left;
+        }
+        .column p {
+            margin: 10px 0;
+        }
+        .column strong {
+            color: #f7c705;
+        }
+        footer {
+            background-color: #7e7e7e;
+            color: black;
+            font-size: 14px;
+            padding: 20px 0;
+        }
+        .footer-link {
+            color: #f7c705;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
     <header>
-      <span class="header-title" aria-label="GLYCOFRAGWORK" tabindex="0">GLYCOFRAGWORK</span>
-      <nav aria-label="Main">
-        <div class="topnav">
-          <a href="#" aria-current="page" style="color:#251311;">home</a>
-          <a href="#" style="color:#fff;">download</a>
-        </div>
-      </nav>
+        GLYCOFRAGWORK
     </header>
-    <main class="main-content">
-      <section class="welcome" aria-labelledby="welcome-title">
-        <div class="welcome-title" id="welcome-title" tabindex="0">Welcome to GlycoFragwork</div>
-        <div class="welcome-desc">
-          GlycoFragwork analyzes multiple pre-aligned LC-MS/MS datasets, and reports a list (termed as a 'glycomap') of identified intact glycopeptides with their mass, elution time and abundance
+    <nav>
+        <a href="#">home</a>
+        <a href="#">download</a>
+    </nav>
+    <div class="main-content">
+        <div class="welcome">
+            Welcome to GlycoFragwork
         </div>
-        <div class="welcome-note">
-          Currently, it can be executed on Windows XP, Vista, 7 with .net framework 2.0 installed.
+        <div class="description">
+            GlycoFragwork analyzes multiple pre-aligned LC-MS/MS datasets, and reports a list 
+            (termed as a 'glycomap') of identified intact glycopeptides with their mass, 
+            elution time and abundance
+            <br><br>
+            Currently, it can be executed on Windows XP, Vista, 7 with .net framework 2.0 
+            installed.
         </div>
-      </section>
-      <div class="row">
-        <section class="col-half left" aria-labelledby="news-title">
-          <div class="section-header" id="news-title" tabindex="0">NEWS</div>
-          <div class="section-content news-date">
-            2013.03.23 First release version to public. <span class="news-highlight">NEW!!</span>
-          </div>
-          <div class="divider"></div>
-          <div class="section-header" id="contact-title" style="margin-top:27px" tabindex="0">CONTACT</div>
-          <div class="contact-section">
-            <span class="advisor-label">Advisor:</span>
-            <span class="contact-link"><a href="mailto:hatang@indiana.edu" class="contact-link" style="color:#ff8800;">Haixu Tang</a></span><br>
-            <span class="advisor-label">Email:</span>
-            <a href="mailto:hatang@indiana.edu" class="contact-email">hatang at indiana.edu</a><br><br>
-            <span class="contact-link"><a href="mailto:anmayam@indiana.edu" class="contact-link" style="color:#ff8800;">Anoop Mayampurath</a></span><br>
-            <span class="advisor-label">Email:</span>
-            <a href="mailto:anmayam@indiana.edu" class="contact-email">anmayam at indiana.edu</a><br><br>
-            <span class="contact-link2"><a href="mailto:chuyu@indiana.edu" class="contact-link2" style="color:#ffd600;">Chuan-Yih Yu</a></span><br>
-            <span class="advisor-label">Email:</span>
-            <a href="mailto:chuyu@indiana.edu" class="contact-email">chuyu at indiana.edu</a>
-          </div>
+        <section>
+            <h2>NEWS</h2>
+            <p>2013.03.23 First release version to public. <strong>NEW!!</strong></p>
         </section>
-        <section class="col-half right" aria-labelledby="current-version-title">
-          <div class="section-header" id="current-version-title" tabindex="0">Current Version</div>
-          <div class="section-content current-version">
-            Version 0.9
-          </div>
-          <div class="divider"></div>
-          <div class="section-header" id="funding-title" style="margin-top:27px" tabindex="0">Funding</div>
-          <div class="funding-section">
-            This work is supported by NSF grant DBI-0642897, 1R01GM093322-03 and a student fellowship from Persistent Systems.
-          </div>
+        <section class="columns">
+            <div class="column">
+                <h2>CONTACT</h2>
+                <p><strong>Advisor:</strong> Haixu Tang<br>Email: hatang at indiana.edu</p>
+                <p>Anoop Mayampurath<br>Email: ammayam at indiana.edu</p>
+                <p>Chuan-Yih Yu<br>Email: chuyu at indiana.edu</p>
+            </div>
+            <div class="column">
+                <h2>Current Version</h2>
+                <p>Version 0.9</p>
+                <h2>Funding</h2>
+                <p>This work is supported by NSF grant DBI-0642897, 1R01GM093322-03 and a student fellowship from Persistent Systems.</p>
+            </div>
         </section>
-      </div>
-      <div class="big-placeholder" aria-label="screenshot placeholder image">
-        <img src="src/placeholder.jpg" width="1100" height="60" alt="Placeholder image for screenshot">
-      </div>
-    </main>
-    <footer class="footer" role="contentinfo">
-      <div class="footer-left">
-        © Copyright 2009 COL Group, Indiana University
-      </div>
-      <div class="footer-right">
-        Web design released by <a href="#" style="color:#ffd600;text-decoration:underline;">Flash Gallery</a>
-      </div>
+    </div>
+    <footer>
+        <div>© Copyright 2009 COL Group, Indiana University</div>
+        <a class="footer-link" href="#">Web design released by Flash Gallery</a>
     </footer>
-  </div>
 </body>
 </html>

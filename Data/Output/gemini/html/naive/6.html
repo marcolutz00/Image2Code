@@ -3,196 +3,206 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LibriVox Mockup</title>
+    <title>LibriVox</title>
     <style>
         body {
-            font-family: sans-serif;
+            font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #f9f9f9;
             color: #333;
+            line-height: 1.6;
         }
 
         .container {
             width: 80%;
             margin: 20px auto;
-            background-color: white;
-            padding: 20px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        a {
+            color: #0645AD;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
         }
 
         /* Header */
         .header {
             text-align: right;
+            margin-bottom: 20px;
         }
 
         .header a {
             margin-left: 10px;
-            text-decoration: none;
-            color: #333;
         }
 
-        /* Search */
-        .search-area {
+        /* Search Box */
+        .search-box {
             text-align: right;
-            margin-top: 10px;
+            margin-bottom: 20px;
         }
 
-        .search-area input[type="text"] {
+        .search-box input[type="text"] {
             width: 200px;
             padding: 5px;
-            border: 1px solid #ccc;
+            margin-bottom: 5px;
         }
 
-        .search-area a {
-            display: block;
-            margin-top: 5px;
+        .search-box .advanced-search {
             font-size: 0.8em;
-            color: #777;
         }
 
-        /* Image Placeholder */
-        .image-placeholder {
+        /* Image placeholder */
+        img {
             background-color: blue;
             width: 150px;
-            height: 150px;
-            margin: 20px auto;
+            height: 200px;
+            display: block;
+            margin-bottom: 10px;
         }
 
-        /* Browse Catalog */
-        .browse-catalog {
-            margin-top: 20px;
-            text-align: center;
+        .catalog {
+            margin-bottom: 20px;
         }
 
-        .browse-catalog table {
+        .catalog-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .browse-table {
             width: 100%;
             border-collapse: collapse;
         }
 
-        .browse-catalog th {
-            background-color: #add8e6;
-            padding: 10px;
-            text-align: center;
+        .browse-table th {
+            background-color: #b0e2ff;
+            padding: 8px;
+            text-align: left;
         }
 
         /* Left Sidebar */
         .sidebar {
+            width: 30%;
             float: left;
-            width: 25%;
             padding-right: 20px;
         }
 
-        .sidebar div {
-            margin-bottom: 15px;
+        .sidebar-section {
+            background-color: #f0fdf4;
+            border: 1px solid #ddd;
             padding: 10px;
-            border: 1px solid #eee;
-            background-color: #fefefe;
+            margin-bottom: 15px;
         }
-         .sidebar a {
+
+        .sidebar-section h3 {
+            margin-top: 0;
+            font-size: 1.1em;
+        }
+
+        .sidebar-section p {
+            font-size: 0.9em;
+        }
+
+        .sidebar a {
             display: block;
-            margin-top: 5px;
-            font-size: 1em;
-            color: #0066cc;
-         }
-        .sidebar ul {
-            list-style-type: none;
-            padding: 0;
+            padding: 5px 0;
         }
-        .sidebar li {
-            margin-bottom: 5px;
+
+        .button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 8px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            border-radius: 4px;
         }
 
         /* Main Content */
         .main-content {
+            width: 65%;
             float: left;
-            width: 70%;
-            padding-left: 20px;
-            border-left: 1px solid #eee;
         }
-        .main-content .image-placeholder {
-            float: right;
+
+        .book-details {
+            margin-bottom: 20px;
         }
-        .clearfix {
+
+        .book-title {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .book-author {
+            font-style: italic;
+            margin-bottom: 10px;
+        }
+
+        .book-description {
+            margin-bottom: 15px;
+        }
+
+        .book-genre {
+            margin-bottom: 5px;
+        }
+
+        .book-language {
+            margin-bottom: 10px;
+        }
+
+        .download-links {
+            text-align: center;
+        }
+        /* Clearfix */
+        .clearfix::after {
+            content: "";
+            display: table;
             clear: both;
         }
-        /* Chapter Table */
         .chapter-table {
             width: 100%;
             border-collapse: collapse;
             margin-top: 20px;
         }
 
-        .chapter-table th {
-            background-color: #add8e6;
+        .chapter-table th, .chapter-table td {
             padding: 8px;
             text-align: left;
+            border-bottom: 1px solid #ddd;
         }
 
-        .chapter-table td {
-            padding: 8px;
-            border-bottom: 1px solid #eee;
-        }
-        .green-button {
-            background-color: #4CAF50; /* Green */
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        .rss-button {
-            background-color: #ffa500; /* Orange */
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            cursor: pointer;
-        }
-          .torrent-button {
-            background-color: #808080; /* Grey */
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            cursor: pointer;
-        }
-        .itunes-button {
-            background-color: #007bff; /* Blue */
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            font-size: 14px;
-            cursor: pointer;
+        .chapter-table th {
+            background-color: #b0e2ff;
         }
 
+        .chapter-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="header">
-            <a href="#">About</a> | <a href="#">Contact</a> | <a href="#">Forum</a> | <a href="#">Help</a>
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Forum</a>
+            <a href="#">Help</a>
         </div>
-        <div class="search-area">
+
+        <div class="search-box">
             <input type="text" placeholder="Search by Author, Title or Reader">
-            <a href="#">Advanced search</a>
+            <a href="#" class="advanced-search">Advanced search</a>
         </div>
-        <div class="image-placeholder"></div>
-        <p>Acoustical liberation of books in the public domain</p>
-        <div class="browse-catalog">
-            <table>
+
+        <img src="src/placeholder.jpg" alt="Placeholder Image">
+        <p style="text-align: center;">Acoustical liberation of books in the public domain</p>
+
+        <div class="catalog">
+            <h2 class="catalog-title">BROWSE THE CATALOG</h2>
+            <table class="browse-table">
                 <thead>
                     <tr>
                         <th>Author</th>
@@ -203,93 +213,102 @@
                 </thead>
             </table>
         </div>
+
         <div class="clearfix">
             <div class="sidebar">
-                <div>
-                    <a href="#">Donate to LibriVox</a>
+                <div class="sidebar-section">
+                    <h3>Donate to LibriVox</h3>
                 </div>
-                <div>
-                   <a href="#">Thank a reader</a>
-                    <p>LibriVox recordings are Public Domain in
-the USA. If you are not in the USA,
-please verify the copyright status of
-these works in your own country before
-downloading, otherwise you may be
-violating copyright laws.</p>
+
+                <div class="sidebar-section">
+                    <h3>Thank a reader</h3>
                 </div>
-                <div>
-                    Listen/Download ( <a href="#">help?</a> )
-                    <p>Whole book (zip file) <a href="#" class="green-button">Download</a></p>
-                    <p>Subscribe by iTunes <a href="#" class="itunes-button">iTunes</a></p>
-                    <p>RSS Feed <a href="#" class="rss-button">RSS</a></p>
-                    <p>Download torrent <a href="#" class="torrent-button">Torrent</a></p>
+
+                <div class="sidebar-section">
+                    <p>LibriVox recordings are Public Domain in the USA. If you are not in the USA, please verify the copyright status of these works in your own country before downloading, otherwise you may be violating copyright laws.</p>
                 </div>
-                 <div>
-                    <p><b>Production details</b></p>
+
+                <div class="sidebar-section">
+                    <h3>Listen/Download ( <a href="#">help?</a> )</h3>
+                    <a href="#" class="button">Download</a>
+                    <p>Whole book (zip file)</p>
+                    <a href="#" class="button">iTunes</a>
+                    <p>Subscribe by iTunes</p>
+                    <a href="#" class="button">RSS</a>
+                    <p>RSS Feed</p>
+                    <a href="#" class="button">Torrent</a>
+                    <p>Download torrent</p>
+                </div>
+
+                <div class="sidebar-section">
+                    <h3>Production details</h3>
                     <p>Running Time: 02:32:05</p>
                     <p>Zip file size: 71MB</p>
                     <p>Catalog date: 2018-09-12</p>
-                    <p>Read by: Jim Locke</p>
-                    <p>Book Coordinator: Jim Locke</p>
-                    <p>Meta Coordinator: DaveC</p>
-                    <p>Proof Listener: DaveC</p>
+                    <p>Read by: <a href="#">Jim Locke</a></p>
+                    <p>Book Coordinator: <a href="#">Jim Locke</a></p>
+                    <p>Meta Coordinator: <a href="#">DaveC</a></p>
+                    <p>Proof Listener: <a href="#">DaveC</a></p>
                 </div>
-                  <div>
-                     <b>Links</b>
-                     <a href="#">Internet Archive Page</a>
-                     <a href="#">Online text</a>
-                     <a href="#">Wikipedia - Josephine Brown</a>
-                     <a href="#">M4B Audiobook (70MB)</a>
-                  </div>
+
+                <div class="sidebar-section">
+                    <h3>Links</h3>
+                    <a href="#">Internet Archive Page</a>
+                    <a href="#">Online text</a>
+                    <a href="#">Wikipedia - Josephine Brown</a>
+                    <a href="#">M4B Audiobook (70MB)</a>
+                </div>
             </div>
+
             <div class="main-content">
-               <h1>Biography of an American Bondman, By His
-Daughter</h1>
-                <p><b>Josephine Brown</b> (1839 - 1874)</p>
-                <p>Josephine Brown's Biography of an American Bondsman faithfully follows
-the trajectory of her father's life as previously explored in his own
-narratives. She distills and summarizes the major revelatory moments of
-his autobiography while she also incorporates new anecdotal information
-and offers her own perspective on Brown's life.</p>
-                <p><b>Genre(s):</b> Biography & Autobiography</p>
-                <p><b>Language:</b> English</p>
-                 <div class="image-placeholder"></div>
-                 <p><a href="#">Download cover art</a></p>
-                 <p><a href="#">Download CD case insert</a></p>
-                 <table class="chapter-table">
-                    <thead>
-                        <tr>
+                <div class="book-details">
+                    <h2 class="book-title">Biography of an American Bondman, By His Daughter</h2>
+                    <p class="book-author">Josephine Brown (1839 - 1874)</p>
+                    <p class="book-description">Josephine Brown's Biography of an American Bondsman faithfully follows the trajectory of her father's life as previously explored in his own narratives. She distills and summarizes the major revelatory moments of his autobiography while she also incorporates new anecdotal information and offers her own perspective on Brown's life.</p>
+                    <p class="book-genre">Genre(s): Biography &amp; Autobiography</p>
+                    <p class="book-language">Language: English</p>
+
+                    <div style="float: right; text-align: center;">
+                         <img src="src/placeholder.jpg" alt="Placeholder Image">
+                         <div class="download-links">
+                           <a href="#">Download cover art</a><br>
+                           <a href="#">Download CD case insert</a>
+                         </div>
+                      </div>
+
+                </div>
+                  <table class="chapter-table">
+                       <thead>
+                          <tr>
                             <th>SECTION</th>
                             <th>CHAPTER</th>
                             <th>READER</th>
                             <th>TIME</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td>01</td>
-                            <td>Chapters 1 and 2</td>
-                            <td>Jim Locke</td>
-                            <td>00:14:18</td>
-                        </tr>
-                        <tr>
-                            <td>02</td>
-                            <td>Chapters 3 and 4</td>
-                            <td>Jim Locke</td>
-                            <td>00:07:04</td>
-                        </tr>
-                        <tr>
-                            <td>03</td>
-                            <td>Chapters 5 and 6</td>
-                            <td>Jim Locke</td>
-                            <td>00:09:26</td>
-                        </tr>
-                    </tbody>
-                 </table>
+                          </tr>
+                       </thead>
+                       <tbody>
+                           <tr>
+                              <td>01</td>
+                              <td>Chapters 1 and 2</td>
+                              <td>Jim Locke</td>
+                              <td>00:14:18</td>
+                           </tr>
+                           <tr>
+                              <td>02</td>
+                              <td>Chapters 3 and 4</td>
+                              <td>Jim Locke</td>
+                              <td>00:07:04</td>
+                           </tr>
+                           <tr>
+                              <td>03</td>
+                              <td>Chapters 5 and 6</td>
+                              <td>Jim Locke</td>
+                              <td>00:09:26</td>
+                           </tr>
+                       </tbody>
+                    </table>
             </div>
         </div>
-        <div class="clearfix"></div>
-         <div class="image-placeholder"></div>
     </div>
 </body>
 </html>
