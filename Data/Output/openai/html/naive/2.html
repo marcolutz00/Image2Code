@@ -1,502 +1,143 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Template : Incel Forums</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Times+New+Roman:wght@400;700&family=Arial:wght@400;700&display=swap');
-
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background: #f8f9fa;
-      font-family: Arial, sans-serif;
-      color: #202122;
-      margin: 0;
-    }
-    /* Top Bar (not visible but layout margin) */
-    /* Main container */
-    .container {
-      width: 1100px;
-      margin: 60px auto 0 auto;
-      background: #fff;
-      border: 1px solid #eaecf0;
-      box-sizing: border-box;
-      min-height: 680px;
-      position: relative;
-      box-shadow: none;
-      display: flex;
-      flex-direction: row;
-    }
-    /* Sidebar */
-    .sidebar {
-      width: 205px;
-      background: #f8f9fa;
-      border-right: 1px solid #eaecf0;
-      box-sizing: border-box;
-      padding: 18px 0 0 0;
-      min-height: 568px;
-      position: relative;
-      z-index: 1;
-    }
-    .chat-discord-btn {
-      width: 176px;
-      background: #8ea3cf;
-      color: #fff;
-      font-size: 16px;
-      padding: 7px 0 7px 0;
-      margin: 0 0 16px 16px;
-      border-radius: 6px;
-      text-align: center;
-      font-weight: 700;
-      font-family: Arial, sans-serif;
-      box-sizing: border-box;
-      letter-spacing: 0.03em;
-    }
-    .chat-discord-btn span {
-      font-weight: 400;
-      color: #ffffffcc;
-      margin-left: 4px;
-    }
-    .sidebar-section {
-      margin: 0 0 20px 16px;
-    }
-    .sidebar-section .section-header {
-      font-size: 15px;
-      margin-bottom: 2px;
-      font-weight: 700;
-      color: #444;
-      font-family: Arial, sans-serif;
-      margin-top: 13px;
-    }
-    .sidebar-section ul {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .sidebar-section ul li {
-      margin: 0 0 0 0;
-      padding: 0 0 3px 0;
-      font-size: 15px;
-    }
-    .sidebar-section ul li a {
-      color: #1355b5;
-      text-decoration: underline;
-      font-size: 15px;
-      font-family: Arial, sans-serif;
-    }
-    .sidebar-section ul li a:visited {
-      color: #274080;
-    }
-    /* Main content area */
-    .main-content {
-      flex-grow: 1;
-      padding: 32px 44px 0 30px;
-      box-sizing: border-box;
-      position: relative;
-      z-index: 2;
-    }
-    .namespace-bar {
-      font-size: 15px;
-      margin-bottom: 14px;
-      display: flex;
-      align-items: center;
-      color: #3366bb;
-    }
-    .namespace-bar .selected {
-      color: #202122;
-      font-weight: 400;
-      margin-right: 8px;
-      text-decoration: underline;
-    }
-    .namespace-bar a {
-      color: #3366bb;
-      margin-left: 14px;
-      text-decoration: none;
-      font-size: 15px;
-    }
-    .edit-bar {
-      position: absolute;
-      top: 0;
-      right: 47px;
-      display: flex;
-      align-items: center;
-      font-size: 14.5px;
-      z-index: 3;
-    }
-    .edit-bar a {
-      color: #3366bb;
-      margin-left: 20px;
-      text-decoration: underline;
-    }
-    .login-bar {
-      position: absolute;
-      top: 0;
-      right: 239px;
-      display: flex;
-      align-items: center;
-      font-size: 14px;
-    }
-    .login-bar span {
-      color: #797979;
-      margin-right: 8px;
-    }
-    .login-bar a {
-      color: #3366bb;
-      margin-left: 9px;
-      text-decoration: underline;
-    }
-    .search-bar {
-      position: absolute;
-      top: 10px;
-      right: 0px;
-    }
-    .search-bar input {
-      font-size: 16px;
-      border: 1px solid #a2a9b1;
-      border-radius: 2px;
-      padding: 2px 5px 2px 8px;
-      width: 192px;
-      height: 28px;
-      box-sizing: border-box;
-      font-family: Arial, sans-serif;
-      color: #444;
-      outline: none;
-    }
-    .search-bar input::placeholder {
-      color: #777;
-    }
-    /* Title */
-    .main-title {
-      font-family: 'Times New Roman', serif;
-      font-size: 32px;
-      font-weight: 700;
-      margin-top: 0;
-      margin-bottom: 4px;
-      line-height: 36px;
-      border: none;
-    }
-    hr {
-      margin-top: 25px;
-      margin-bottom: 25px;
-      border: none;
-      border-bottom: 1px solid #a2a9b1;
-    }
-    .main-desc {
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-      color: #1a1a1a;
-      margin-bottom: 38px;
-      margin-top: 0;
-      font-weight: 400;
-      letter-spacing: 0.01em;
-    }
-    /* Green Table */
-    .navbox-table-outer {
-      margin: 0 auto 38px auto;
-      width: 740px;
-      background: #298800;
-      border-radius: 12px;
-      box-shadow: 0 2px 7px rgba(20,20,20,0.12);
-      border: 1.5px solid #258000;
-      padding: 8px 0 16px 0;
-      position: relative;
-    }
-    .navbox-table-title {
-      font-family: Arial, sans-serif;
-      color: #fff;
-      font-size: 36px;
-      font-weight: bold;
-      text-align: center;
-      letter-spacing: 0.01em;
-      margin-top: 7px;
-      margin-bottom: 14px;
-      text-shadow:
-        0 1px 3px #185500,
-        0 2px 9px #0e4010;
-      line-height: 41px;
-    }
-    .navbox-table-inner {
-      width: 95%;
-      margin: 0 auto;
-      background: #fff;
-      border-radius: 6px;
-      box-sizing: border-box;
-      border-collapse: collapse;
-      box-shadow: 0 0 3px 0 rgba(80,80,80,0.045);
-      border: none;
-      padding: 0;
-      font-size: 16px;
-      overflow: hidden;
-      table-layout: fixed;
-    }
-    .navbox-table-inner tr {
-      border-bottom: 3px solid #258000;
-      vertical-align: top;
-    }
-    .navbox-table-inner tr:last-child {
-      border-bottom: none;
-    }
-    .navbox-table-inner td {
-      vertical-align: top;
-    }
-    .navbox-table-inner .td-forum {
-      width: 181px;
-      font-weight: bold;
-      color: #1b4da2;
-      background: #fafdff;
-      text-align: center;
-      font-size: 22px;
-      font-family: Arial, sans-serif;
-      padding: 16px 6px;
-      border-right: 2.5px solid #258000;
-      border-bottom: none;
-      line-height: 25px;
-      letter-spacing: 0.01em;
-    }
-    .navbox-table-inner .td-forum.forum2 {
-      color: #1369c3;
-      font-size: 21px;
-    }
-    .navbox-table-inner .td-forum.forum3 {
-      color: #086dd2;
-      font-size: 20px;
-    }
-    .navbox-table-inner .td-content {
-      font-family: Arial, sans-serif;
-      font-size: 15.3px;
-      padding: 15px 13px 12px 13px;
-      color: #1d1d1d;
-      word-break: break-word;
-      background: #fff;
-      text-align: left;
-      line-height: 1.6;
-      border-bottom: none;
-    }
-    /* Links and markup */
-    .navbox-table-inner .td-content a {
-      color: #1b4da2;
-      text-decoration: underline;
-      font-weight: 400;
-    }
-    .navbox-table-inner .td-content a:visited {
-      color: #4c3d7a;
-    }
-    .navbox-table-inner .td-content .red {
-      color: #d62218;
-      font-weight: 400;
-    }
-    .navbox-table-inner .td-content .subtle {
-      color: #1d1d1dc9;
-      font-weight: 400;
-    }
-    /* Category box */
-    .catbox {
-      border: 1px solid #a2a9b1;
-      background: #f8f9fa;
-      margin: 28px 0 16px 0;
-      padding: 8px 10px 9px 15px;
-      font-size: 16px;
-      display: inline-block;
-      border-radius: 2px;
-      color: #202122;
-      font-family: Arial, sans-serif;
-      width: fit-content;
-    }
-    .catbox a {
-      color: #1355b5;
-      font-family: Arial, sans-serif;
-      text-decoration: underline;
-    }
-    /* Footer section */
-    .footer {
-      width: 1100px;
-      margin: 0 auto;
-      font-size: 14px;
-      color: #353535;
-      font-family: Arial, sans-serif;
-    }
-    .footer-meta {
-      padding-left: 236px;
-      margin-top: 16px;
-      margin-bottom: 0;
-      line-height: 21px;
-    }
-    .footer-links {
-      display: flex;
-      gap: 22px;
-      margin-top: 8px;
-      margin-bottom: 0;
-      padding-left: 236px;
-      font-size: 13.8px;
-      color: #244677;
-    }
-    .footer-links a {
-      color: #244677;
-      text-decoration: underline;
-      font-size: 14px;
-      font-family: Arial, sans-serif;
-    }
-    /* Blue placeholder image for demonstration */
-    .demo-img-placeholder {
-      position: fixed;
-      right: 56px;
-      bottom: 68px;
-      background: #1010ee;
-      width: 68px;
-      height: 68px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      z-index: 200;
-    }
-    /* Hide placeholder in case you don't want to render img. */
-    /* img[alt=""]:not([src]) {
-      display: none;
-    } */
-    @media screen and (max-width: 1150px) {
-      .container, .footer {
-        width: 99vw;
-        min-width: 378px;
-      }
-      .main-content {
-        padding-right: 4px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template: Incel Forums</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f8f8f8;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: white;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+        }
+        header h1 {
+            font-size: 1.5rem;
+            margin: 0;
+        }
+        nav {
+            background-color: white;
+            border-right: 1px solid #ccc;
+            padding: 10px;
+            width: 200px;
+            float: left;
+            height: 100vh;
+        }
+        nav a {
+            text-decoration: none;
+            color: #0645ad;
+            display: block;
+            margin-bottom: 10px;
+            font-size: 0.9rem;
+        }
+        main {
+            margin-left: 220px;
+            padding: 20px;
+        }
+        .alert {
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+        .navbox {
+            background-color: green;
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .navbox h2 {
+            margin: 0;
+            font-size: 1.2rem;
+        }
+        .navbox-table {
+            width: 100%;
+            background-color: white;
+            color: black;
+            border-spacing: 0;
+        }
+        .navbox-table th, .navbox-table td {
+            border: 2px solid #ccc;
+            padding: 8px;
+            text-align: left;
+        }
+        .navbox-table th {
+            background-color: #f2f2f2;
+        }
+        .category {
+            margin-top: 20px;
+            font-size: 0.9rem;
+        }
+        .footer {
+            font-size: 0.8rem;
+            color: #777;
+            text-align: center;
+            margin-top: 40px;
+        }
+        .footer a {
+            color: #0645ad;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <div class="sidebar">
-      <div class="chat-discord-btn">Chat on <span style="font-weight:bold; color:#fff">Discord</span></div>
-      <div class="sidebar-section">
-        <div class="section-header">Incel FAQ &amp; History</div>
-        <ul>
-          <li><a href="#">Inceldom FAQ</a></li>
-          <li><a href="#">Incelosphere Timeline</a></li>
-          <li><a href="#">Incel Glossary</a></li>
-          <li><a href="#">Demographics Of Inceldom</a></li>
-        </ul>
-      </div>
-      <div class="sidebar-section">
-        <div class="section-header">Important Pages</div>
-        <ul>
-          <li><a href="#">Scientific Blackpill</a></li>
-          <li><a href="#">Blackpill</a></li>
-          <li><a href="#">PSL</a></li>
-        </ul>
-      </div>
-      <div class="sidebar-section">
-        <div class="section-header">Rules &amp; Disclaimer</div>
-        <ul>
-          <li><a href="#">Editing Rules</a></li>
-          <li><a href="#">General Disclaimer</a></li>
-        </ul>
-      </div>
-      <div class="sidebar-section">
-        <div class="section-header">Other</div>
-        <ul>
-          <li><a href="#">Random Page</a></li>
-          <li><a href="#">Recent Changes</a></li>
-          <li><a href="#">Special Pages</a></li>
-        </ul>
-      </div>
-      <div class="sidebar-section">
-        <div class="section-header">Tools</div>
-        <ul>
-          <li><a href="#">What links here</a></li>
-        </ul>
-      </div>
-    </div>
-    <div class="main-content">
-      <div class="namespace-bar">
-        <span class="selected">Template</span>
-        <a href="#">Discussion</a>
-      </div>
-      <div class="edit-bar">
-        <a href="#">Edit source</a>
-        <a href="#">View history</a>
-      </div>
-      <div class="login-bar">
-        <span>Not logged in</span>
-        <a href="#">Talk</a>
-        <a href="#">Contributions</a>
-        <a href="#">Log in</a>
-      </div>
-      <div class="search-bar">
-        <input type="text" placeholder="Search Incel Wiki">
-      </div>
-      <h1 class="main-title">Template : Incel Forums</h1>
-      <hr>
-      <p class="main-desc">ONLY USE THIS FOR NOTABLE PEOPLE, DO NOT ADD FORUM MEMBERS WHO HAVE NO PUBLIC PRESENCE OUTSIDE THEIR RESPECTIVE FORUM OR ANY POSITION OF AUTHORITY. If you have made a Forum-Admin-related page please add it to this list under the appropriate section.</p>
-      <div class="navbox-table-outer">
-        <div class="navbox-table-title">Incel Forum Navbox</div>
-        <table class="navbox-table-inner">
-          <tr>
-            <td class="td-forum">Incels.is</td>
-            <td class="td-content">
-              <a href="#">SergeantIncel</a> (former admin) &bull; 
-              <a href="#">Master</a> (former admin) &bull; 
-              <span class="red">Fat Link</span> (mod) &bull;
-              <a href="#">AmIjustDreaming</a> (mod) &bull; 
-              <a href="#">Knajjd</a> (mod) &bull; 
-              <a href="#">Blickpall</a> (ex-mod) &bull; 
-              <a href="#">Mahlo</a> (user) &bull; 
-              <span class="red">Jack Peterson</span> (user/banned) &bull; 
-              <a href="#">Grotesque Subhuman</a> (user/banned) &bull; 
-              <a href="#">itsOVER</a> (user/banned) &bull; 
-              <a href="#">NKL</a> (user) &bull; 
-              <a href="#">NEETAndTidy</a> (user/banned) &bull; 
-              <a href="#">Jett112</a> (user) &bull; 
-              <a href="#">Limerencel</a> (user) &bull; 
-              <a href="#">BrendioEEE</a> (user/banned) &bull; 
-              <a href="#">BummerDrummer</a> (user) &bull; 
-              <a href="#">mylifetrash</a> (user/banned) &bull; 
-              <a href="#">fukurou</a> (user/banned) &bull;
-              <a href="#">RegisterUserName</a> (user/banned) &bull; 
-              <a href="#">I Ban appeal</a>
-            </td>
-          </tr>
-          <tr>
-            <td class="td-forum forum2">Love-shy.net</td>
-            <td class="td-content">
-              <span class="red">ieatboogers</span> (creator/admin/historian)
-            </td>
-          </tr>
-          <tr>
-            <td class="td-forum forum3">Social Anxiety Support</td>
-            <td class="td-content">
-              <span class="red">ChrisA</span> (founder) &bull; 
-              Andrew "Drew" Mohebbi (third admin/dead) &bull; 
-              <span class="red">wmu'14</span> (member) &bull;
-              <a href="#">ravens</a> (member) &bull; 
-              DesiseAfterAll (banned)
-            </td>
-          </tr>
-        </table>
-      </div>
-      <div class="catbox">
-        Category : <a href="#">Nav box template</a>
-      </div>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="footer-meta">
-      This page was last edited on 17 June 2022, at 14:36.<br>
-      This page has been accessed 5,005 times.
-    </div>
-    <div class="footer-links">
-      <a href="#">Privacy policy</a>
-      <a href="#">About Incel Wiki</a>
-      <a href="#">Disclaimers</a>
-      <a href="#">Mobile view</a>
-    </div>
-  </div>
-  <div class="demo-img-placeholder">
-    <img src="src/placeholder.jpg" width="68" height="68" alt="">
-  </div>
+    <header>
+        <h1>Template : Incel Forums</h1>
+    </header>
+    <nav>
+        <a href="#">Chat on Discord</a>
+        <strong>Incel FAQ & History</strong>
+        <a href="#">Inceldom FAQ</a>
+        <a href="#">Incelosphere Timeline</a>
+        <a href="#">Incel Glossary</a>
+        <a href="#">Demographics Of Inceldom</a>
+        <strong>Important Pages</strong>
+        <a href="#">Scientific Blackpill</a>
+        <a href="#">Blackpill</a>
+        <a href="#">PSL</a>
+        <strong>Rules & Disclaimer</strong>
+        <a href="#">Editing Rules</a>
+        <a href="#">General Disclaimer</a>
+        <strong>Other</strong>
+        <a href="#">Random Page</a>
+        <a href="#">Recent Changes</a>
+        <a href="#">Special Pages</a>
+    </nav>
+    <main>
+        <div class="alert">
+            <p>ONLY USE THIS FOR NOTABLE PEOPLE, DO NOT ADD FORUM MEMBERS WHO HAVE NO PUBLIC PRESENCE OUTSIDE THEIR RESPECTIVE FORUM OR ANY POSITION OF AUTHORITY. If you have made a Forum-Admin-related page please add it to this list under the appropriate section.</p>
+        </div>
+        <div class="navbox">
+            <h2>Incel Forum Navbox</h2>
+            <table class="navbox-table">
+                <tr>
+                    <th>Incels.is</th>
+                    <td>SergeantIncel (former admin) • Master (former admin) • Fat Link (mod) • AmIjustDreaming (mod) • Knajjd (mod) • Blickpall (ex-mod) • Mahlo (user) • Jack Peterson (user/banned) • Grotesque Subhuman (user/banned) • itsOVER (user/banned) • NKL (user) • NEETandTidy (user/banned) • Jett112 (user) • Limerencel (user) • BrendioEEE (user/banned) • BummerDrummer (user) • mylifeistrash (user/banned) • fukurou (user/banned) • RegisterUserName (user/banned) | Ban appeal</td>
+                </tr>
+                <tr>
+                    <th>Love-shy.net</th>
+                    <td>ieatboogers (creator/admin/historian)</td>
+                </tr>
+                <tr>
+                    <th>Social Anxiety Support</th>
+                    <td>ChrisA (founder) • Andrew "Drew" Mohebbi (third admin/dead) • wmu'14 (member) • ravens (member) • DesiseAfterAll (banned)</td>
+                </tr>
+            </table>
+        </div>
+        <div class="category">
+            <strong>Category:</strong> Nav box template
+        </div>
+        <div class="footer">
+            <p>This page was last edited on 17 June 2022, at 14:36.</p>
+            <p>This page has been accessed 5,005 times.</p>
+            <a href="#">Privacy policy</a> • <a href="#">About Incel Wiki</a> • <a href="#">Disclaimers</a> • <a href="#">Mobile view</a>
+        </div>
+    </main>
 </body>
 </html>

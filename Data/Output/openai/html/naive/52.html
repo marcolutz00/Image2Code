@@ -1,317 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>123. A Thief on the Sidewalk</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      background: #ccc;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 16px;
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-    }
-    .container {
-      width: 900px;
-      margin: 0 auto;
-      position: relative;
-      min-height: 100vh;
-    }
-    .login-box {
-      position: absolute;
-      left: 30px;
-      top: 20px;
-      width: 300px;
-      background: none;
-    }
-    .login-close {
-      position: absolute;
-      left: 0;
-      top: 0;
-      width: 26px;
-      height: 26px;
-      background: #e6e6e6;
-      border: 1px solid #888;
-      border-radius: 2px;
-      color: #222;
-      text-align: center;
-      font-size: 18px;
-      line-height: 26px;
-      cursor: pointer;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    .login-title {
-      position: absolute;
-      left: 0;
-      top: 35px;
-      font-size: 22px;
-      font-weight: normal;
-    }
-    .login-fields {
-      margin-top: 60px;
-    }
-    .login-fields input[type="text"],
-    .login-fields input[type="password"] {
-      display: block;
-      width: 98%;
-      margin-bottom: 6px;
-      padding: 4px;
-      border: 1px solid #888;
-      border-radius: 3px;
-      font-size: 15px;
-      background: #fff;
-      box-sizing: border-box;
-      height: 26px;
-    }
-    .login-links {
-      margin: 1px 0 11px 0;
-      font-size: 14px;
-      color: #222;
-    }
-    .login-links a {
-      color: #336ab2;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-    .login-links .register {
-      margin-left: 5px;
-    }
-    .login-forgot-label {
-      margin: 18px 0 4px 0;
-      font-size: 14px;
-      color: #222;
-      display: block;
-    }
-    .login-fields input[type="email"] {
-      width: 98%;
-      margin-bottom: 10px;
-      padding: 4px;
-      border: 1px solid #888;
-      border-radius: 3px;
-      font-size: 15px;
-      background: #fff;
-      box-sizing: border-box;
-      height: 26px;
-    }
-    .login-fields input[type="submit"] {
-      width: 80px;
-      height: 28px;
-      background: #fff;
-      border: 1px solid #333;
-      border-radius: 3px;
-      font-size: 15px;
-      cursor: pointer;
-      margin-top: 7px;
-    }
-    .main-content {
-      padding-top: 65px;
-      width: 820px;
-      margin: 0 auto;
-      text-align: center;
-    }
-    .title {
-      font-size: 20px;
-      font-weight: normal;
-      margin: 35px 0 12px 0;
-      text-align: center;
-    }
-    .story-box {
-      width: 820px;
-      margin: 10px auto 0 auto;
-      background: #fff;
-      border: 1px solid #222;
-      box-sizing: border-box;
-      text-align: left;
-      padding: 24px 10px 34px 12px;
-      font-size: 15px;
-      position: relative;
-    }
-    .story-box hr {
-      margin: 0 0 14px 0;
-      border-top: 1px solid #444;
-      border-bottom: none;
-      border-left: none;
-      border-right: none;
-    }
-    .story-sentence {
-      line-height: 1.7;
-    }
-    .blank {
-      display: inline-block;
-      vertical-align: middle;
-      border: 1px solid #222;
-      background: #b5d1ee;
-      margin: 0 2px;
-      box-sizing: border-box;
-      position: relative;
-      top: 2px;
-    }
-    /* Set specific widths and heights for each blank to match the UI */
-    .b1  { width: 130px; height: 24px;}
-    .b2  { width: 106px; height: 24px;}
-    .b3  { width: 82px; height: 24px;}
-    .b4  { width: 140px; height: 24px;}
-    .b5  { width: 126px; height: 24px;}
-    .b6  { width: 60px; height: 24px;}
-    .b7  { width: 124px; height: 24px;}
-    .b8  { width: 90px; height: 24px;}
-    .b9  { width: 120px; height: 24px;}
-    .b10 { width: 97px; height: 24px;}
-    .b11 { width: 132px; height: 24px;}
-    .b12 { width: 120px; height: 24px;}
-    .b13 { width: 42px; height: 20px;}
-    .b14 { width: 97px; height: 24px;}
-    .b15 { width: 98px; height: 24px;}
-    .b16 { width: 138px; height: 24px;}
-    .b17 { width: 84px; height: 24px;}
-    .b18 { width: 102px; height: 24px;}
-    .b19 { width: 144px; height: 24px;}
-    .b20 { width: 63px; height: 24px;}
-    .b21 { width: 135px; height: 24px;}
-    .b22 { width: 35px; height: 22px;}
-    .b23 { width: 135px; height: 24px;}
-    .b24 { width: 72px; height: 24px;}
-    .b25 { width: 150px; height: 24px;}
-    .b26 { width: 85px; height: 24px;}
-    .story-actions {
-      margin-top: 22px;
-      text-align: center;
-      font-size: 17px;
-      color: #111;
-    }
-    .story-actions button {
-      font-size: 15px;
-      padding: 2px 24px;
-      margin: 0 34px 0 0;
-      background: #fff;
-      border: 1px solid #333;
-      border-radius: 3px;
-      cursor: pointer;
-      height: 29px;
-      outline: none;
-    }
-    .story-actions button:last-child {
-      margin: 0;
-    }
-    .close-link {
-      display: inline-block;
-      font-size: 16px;
-      color: #336ab2;
-      text-align: center;
-      margin: 16px 0 0 0;
-      text-decoration: underline;
-      cursor: pointer;
-      width: 81px;
-    }
-    @media (max-width: 900px) {
-      .container {
-        width: 100%;
-      }
-      .main-content,
-      .story-box {
-        width: 100vw !important;
-        min-width: 0;
-        box-sizing: border-box;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Mockup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #cfcfcf;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            position: relative;
+            width: 100%;
+        }
+        .close-btn {
+            position: absolute;
+            right: 0;
+            top: 0;
+            background-color: #ccc;
+            border: none;
+            padding: 5px;
+            cursor: pointer;
+        }
+        .login-form {
+            margin: 20px 0;
+        }
+        .login-form input[type="text"],
+        .login-form input[type="password"],
+        .login-form input[type="submit"] {
+            width: 100%;
+            padding: 8px;
+            margin: 5px 0;
+            box-sizing: border-box;
+        }
+        a {
+            color: blue;
+            text-decoration: none;
+        }
+        .forgot-password {
+            margin-top: 10px;
+        }
+        .forgot-password a {
+            margin-right: 10px;
+        }
+        .story-title {
+            margin: 20px 0;
+            text-align: center;
+            font-weight: bold;
+        }
+        .story {
+            border: 2px solid black;
+            padding: 10px;
+        }
+        .story img {
+            vertical-align: middle;
+        }
+        .story-actions {
+            margin-top: 10px;
+            text-align: center;
+        }
+        .story-actions input {
+            margin-right: 20px;
+        }
+        .close-link {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .close-link a {
+            text-transform: uppercase;
+        }
+    </style>
 </head>
 <body>
-<div class="container">
-  <div class="login-box">
-    <div class="login-close">x</div>
-    <div class="login-title">Login</div>
-    <form class="login-fields" autocomplete="off">
-      <input type="text" autocomplete="off">
-      <input type="password" autocomplete="off">
-      <input type="text" autocomplete="off">
-      <div class="login-links">
-        <a href="#">Forgot password?</a><br>
-        Don't have an Account? <a href="#" class="register">Register Now!</a>
-      </div>
-      <label class="login-forgot-label">Forgot Password</label>
-      <input type="email">
-      <input type="submit" value="Submit">
-    </form>
-  </div>
-  <div class="main-content">
-    <div class="title">123. A Thief on the Sidewalk</div>
-    <div class="story-box">
-      <hr>
-      <div class="story-sentence">
-        She looked at the man walking along the
-        <span class="blank b1"><img src="src/placeholder.jpg" width="130" height="24" alt=""></span>
-        next to the nice houses. He didn’t live
-        <span class="blank b2"><img src="src/placeholder.jpg" width="106" height="24" alt=""></span>
-        any of those houses. She had seen this
-        <span class="blank b3"><img src="src/placeholder.jpg" width="82" height="24" alt=""></span>
-        several times before. He looked like a criminal.
-        <span class="blank b4"><img src="src/placeholder.jpg" width="140" height="24" alt=""></span>
-        knew not to judge a book by its
-        <span class="blank b5"><img src="src/placeholder.jpg" width="126" height="24" alt=""></span>
-        , but this man was no good. She drove
-        <span class="blank b6"><img src="src/placeholder.jpg" width="60" height="24" alt=""></span>
-        him. He looked at her car as she
-        <span class="blank b7"><img src="src/placeholder.jpg" width="124" height="24" alt=""></span>
-        by. She continued driving. She watched him in
-        <span class="blank b8"><img src="src/placeholder.jpg" width="90" height="24" alt=""></span>
-        rear view mirror. She got to the corner
-        <span class="blank b9"><img src="src/placeholder.jpg" width="120" height="24" alt=""></span>
-        stopped. She continued to watch him walking in
-        <span class="blank b10"><img src="src/placeholder.jpg" width="97" height="24" alt=""></span>
-        direction. Suddenly, he turned left up a driveway.
-        <span class="blank b11"><img src="src/placeholder.jpg" width="132" height="24" alt=""></span>
-        red SUV was parked in the driveway right
-        <span class="blank b12"><img src="src/placeholder.jpg" width="120" height="24" alt=""></span>
-        to the sidewalk. She saw him walk up
-        <span class="blank b13"><img src="src/placeholder.jpg" width="42" height="20" alt=""></span>
-        the driver’s door and put his hand on
-        <span class="blank b14"><img src="src/placeholder.jpg" width="97" height="24" alt=""></span>
-        handle. He returned to the sidewalk and continued
-        <span class="blank b15"><img src="src/placeholder.jpg" width="98" height="24" alt=""></span>
-        in her direction. What was that all about,
-        <span class="blank b16"><img src="src/placeholder.jpg" width="138" height="24" alt=""></span>
-        wondered. Then she realized that he had tested
-        <span class="blank b17"><img src="src/placeholder.jpg" width="84" height="24" alt=""></span>
-        door to see if it was locked. He
-        <span class="blank b18"><img src="src/placeholder.jpg" width="102" height="24" alt=""></span>
-        a criminal, she thought. That's what he does.
-        <span class="blank b19"><img src="src/placeholder.jpg" width="144" height="24" alt=""></span>
-        just walks through our neighborhoods looking for cars
-        <span class="blank b20"><img src="src/placeholder.jpg" width="63" height="24" alt=""></span>
-        break into. She called the police. She described
-        <span class="blank b21"><img src="src/placeholder.jpg" width="135" height="24" alt=""></span>
-        . The officer said he knew who the man
-        <span class="blank b22"><img src="src/placeholder.jpg" width="35" height="22" alt=""></span>
-        . Residents called two or three times a week
-        <span class="blank b23"><img src="src/placeholder.jpg" width="135" height="24" alt=""></span>
-        report him walking by. But the police couldn’t
-        <span class="blank b24"><img src="src/placeholder.jpg" width="72" height="24" alt=""></span>
-        him for walking around. They had to catch
-        <span class="blank b25"><img src="src/placeholder.jpg" width="150" height="24" alt=""></span>
-        with stolen goods. "But he was testing that
-        <span class="blank b26"><img src="src/placeholder.jpg" width="85" height="24" alt=""></span>
-        door to see if it was unlocked," she
-        <span class="blank b22"><img src="src/placeholder.jpg" width="35" height="22" alt=""></span>
-        . "I'm sorry," said the officer. "That's not against
-        <span class="blank b22"><img src="src/placeholder.jpg" width="35" height="22" alt=""></span>
-        law. If you see him actually steal something,
-        <span class="blank b22"><img src="src/placeholder.jpg" width="35" height="22" alt=""></span>
-        us a call."
-      </div>
-      <div class="story-actions">
-        <button type="button">Check</button>
-        <button type="button">Hint</button>
-      </div>
+    <div class="container">
+        <div class="header">
+            <button class="close-btn">x</button>
+            <div class="login-form">
+                <input type="text" placeholder=" " aria-label="username">
+                <input type="password" placeholder=" " aria-label="password">
+                <input type="password" placeholder=" " aria-label="repeat password">
+                <div class="forgot-password">
+                    <a href="#">Forgot password?</a>
+                    <a href="#">Don't have an Account? Register Now!</a>
+                </div>
+                <div>Forgot Password</div>
+                <input type="text" placeholder=" " aria-label="email">
+                <input type="submit" value="Submit">
+            </div>
+        </div>
+        <div class="story-title">123. A Thief on the Sidewalk</div>
+        <div class="story">
+            <p>
+                She looked at the man walking along the <img src="src/placeholder.jpg" alt="placeholder" width="70" height="20"> next to the nice houses. He didn't live
+                <img src="src/placeholder.jpg" alt="placeholder" width="50" height="20"> any of those houses. She had seen this <img src="src/placeholder.jpg" alt="placeholder" width="90" height="20"> several times before. He
+                looked like a criminal. <img src="src/placeholder.jpg" alt="placeholder" width="50" height="20"> knew not to judge a book by its <img src="src/placeholder.jpg" alt="placeholder" width="100" height="20">, but this man
+                was no good. She drove <img src="src/placeholder.jpg" alt="placeholder" width="60" height="20"> him. He looked at her car as she <img src="src/placeholder.jpg" alt="placeholder" width="30" height="20"> by. She
+                continued driving. She watched him in <img src="src/placeholder.jpg" alt="placeholder" width="100" height="20"> rear view mirror. She got to the corner
+                <img src="src/placeholder.jpg" alt="placeholder" width="50" height="20"> stopped. She continued to watch him walking in <img src="src/placeholder.jpg" alt="placeholder" width="80" height="20"> direction. Suddenly,
+                he turned left up a driveway. <img src="src/placeholder.jpg" alt="placeholder" width="50" height="20"> red SUV was parked in the driveway right
+                <img src="src/placeholder.jpg" alt="placeholder" width="50" height="20"> to the sidewalk. She saw him walk up <img src="src/placeholder.jpg" alt="placeholder" width="100" height="20"> the driver's door and put his
+                hand on <img src="src/placeholder.jpg" alt="placeholder" width="50" height="20"> handle. He returned to the sidewalk and continued <img src="src/placeholder.jpg" alt="placeholder" width="80" height="20"> in her
+                direction. What was that all about, <img src="src/placeholder.jpg" alt="placeholder" width="100" height="20"> wondered. Then she realized that he had tested
+                <img src="src/placeholder.jpg" alt="placeholder" width="80" height="20"> door to see if it was locked. He <img src="src/placeholder.jpg" alt="placeholder" width="50" height="20"> a criminal, she thought. That's what
+                he does. <img src="src/placeholder.jpg" alt="placeholder" width="70" height="20"> just walks through our neighborhoods looking for cars <img src="src/placeholder.jpg" alt="placeholder" width="60" height="20"> break
+                into. She called the police. She described <img src="src/placeholder.jpg" alt="placeholder" width="130" height="20">. The officer said he knew who the man
+                <img src="src/placeholder.jpg" alt="placeholder" width="60" height="20">. Residents called two or three times a week <img src="src/placeholder.jpg" alt="placeholder" width="90" height="20"> report him walking by. But
+                the police couldn’t <img src="src/placeholder.jpg" alt="placeholder" width="50" height="20"> him for walking around. They had to catch <img src="src/placeholder.jpg" alt="placeholder" width="50" height="20"> with
+                stolen goods. "But he was testing that <img src="src/placeholder.jpg" alt="placeholder" width="60" height="20"> door to see if it was unlocked," she
+                <img src="src/placeholder.jpg" alt="placeholder" width="80" height="20">. "I'm sorry," said the officer. "That's not against <img src="src/placeholder.jpg" alt="placeholder" width="70" height="20"> law. If you see him
+                actually steal something, <img src="src/placeholder.jpg" alt="placeholder" width="50" height="20"> us a call."
+            </p>
+        </div>
+        <div class="story-actions">
+            <input type="button" value="Check">
+            <input type="button" value="Hint">
+        </div>
+        <div class="close-link">
+            <a href="#">CLOSE</a>
+        </div>
     </div>
-    <div class="close-link">CLOSE</div>
-  </div>
-</div>
 </body>
 </html>

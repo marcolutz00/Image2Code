@@ -1,511 +1,242 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Recent Temperature Trends in Ottawa, Ontario</title>
-<style>
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background: #fff;
-}
-body {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #333;
-  margin: 0;
-  padding: 0;
-}
-.wrapper {
-  width: 1100px;
-  margin: 30px auto 0 auto;
-  display: flex;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: flex-start;
-}
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature Trends</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #000;
+        }
 
-/* Header */
-.header-title {
-  width: 100%;
-  margin-top: 0;
-}
-h1 {
-  font-size: 26px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  color: #333;
-  margin: 30px 0 0 54px;
-  letter-spacing: 0;
-}
-.header-rule {
-  margin-left: 53px;
-  margin-right: 0;
-  width: 1100px;
-  border: none;
-  border-top: 3px dotted #b8b2aa;
-  height: 3px;
-  margin-top: 10px;
-  margin-bottom: 0;
-}
+        #container {
+            width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
 
-.sidebar {
-  width: 340px;
-  min-width: 320px;
-  /*height: 830px;*/
-  margin-right: 6px;
-  padding-top: 8px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-end;
-}
+        h1 {
+            font-size: 20px;
+            font-weight: bold;
+            color: #666;
+            margin-bottom: 20px;
+        }
 
-/* EmInf Logo */
-.logo {
-  margin: 26px 0 22px 0;
-  text-align: left;
-  width: 252px;
-  margin-left: 40px;
-}
-.logo-main {
-  font-family: Georgia, serif;
-  font-size: 38px;
-  color: #cda32d;
-  font-weight: bold;
-  letter-spacing: 1px;
-  /*line-height: 42px;*/
-}
-.logo-sub {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
-  color: #cda32d;
-  font-weight: 500;
-  letter-spacing: 5.8px;
-  margin-top: -4px;
-  display: block;
-  margin-left: 7px;
-  line-height: 20px;
-}
+        #sidebar {
+            float: left;
+            width: 200px;
+        }
 
-/* Navigation and Menu in Sidebar */
-.sidebar-menu {
-  font-size: 16px;
-  width: 252px;
-  margin-left: 40px;
-  margin-top: 4px;
-  display: flex;
-  flex-direction: column;
-}
-.menu-section {
-  margin-bottom: 12px;
-}
-.menu-main {
-  color: #333;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 1.3px;
-  margin-bottom: 7px;
-  margin-top: 0;
-}
-.menu-main .main-x {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 10px;
-  font-weight: bold;
-  color: #232323;
-}
-.menu-main .main-title {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  color: #232323;
-  letter-spacing: 1.3px;
-  padding-left: 1px;
-}
-.menu-links {
-  margin-left: 24px;
-  margin-top: 2px;
-  margin-bottom: 3px;
-  padding: 0;
-  font-size: 13px;
-  font-weight: normal;
-}
-.menu-links > div {
-  margin-bottom: 3px;
-  color: #333;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
-}
-.menu-separator {
-  border: none;
-  border-top: 2px dotted #b8b2aa;
-  margin: 14px 0 16px 0;
-  width: 252px;
-}
-.sidebar-links {
-  color: #444;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 15px;
-  font-weight: bold;
-  margin-top: 0;
-  line-height: 1.6;
-  margin-bottom: 25px;
-}
-.sidebar-links span {
-  display: block;
-  padding-left:0px;
-  padding-bottom: 2px;
-}
+        #sidebar img {
+            display: block;
+            margin: 0 auto 20px;
+        }
 
-.sidebar-footer {
-  width: 252px;
-  margin-left: 40px;
-  margin-top: 62px;
-  font-family: Georgia, serif;
-  color: #cda32d;
-  font-size: 13px;
-  letter-spacing: 1.8px;
-  text-align: left;
-}
-.sidebar-footer span {
-  font-variant: small-caps;
-  font-size: 13px;
-}
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
 
-/* Main Content Area */
-.main {
-  flex: 1;
-  margin-top: 20px;
-}
-.topnav {
-  font-size: 16px;
-  color: #ca9d32;
-  margin-top: 18px;
-  margin-bottom: 30px;
-  word-spacing: 12px;
-  letter-spacing: 0px;
-}
-.topnav a {
-  color: #ca9d32;
-  text-decoration: underline;
-  font-size: 16px;
-  font-family: Arial, Helvetica, sans-serif;
-  margin-right: 12px;
-  transition: color 0.1s;
-}
-.topnav a:last-child {
-  margin-right: 0;
-}
-.main-title {
-  font-family: Arial, Helvetica, sans-serif;
-  color: #ac8812;
-  font-size: 16px;
-  font-weight: bold;
-  letter-spacing: 0.4px;
-  margin: 17px 0 15px 0;
-}
-.main-text {
-  color: #242424;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 16px;
-  line-height: 1.6;
-  margin-bottom: 7px;
-}
-.main-text a {
-  color: #888;
-  text-decoration: underline;
-  font-size: 15px;
-}
-.main-text a:visited {
-  color: #888;
-}
+        #sidebar li {
+            font-size: 12px;
+            color: #666;
+            border-bottom: 1px dotted #ddd;
+            margin: 10px 0;
+            position: relative;
+            padding-left: 20px;
+        }
 
-/* Table Box */
-.temp-table-outer {
-  width: 690px;
-  margin-top: 28px;
-  border: 1px dotted #cda32d;
-  background: #fffbe7;
-  /*box-shadow: 0 0 2px #eda;*/
-  padding: 0;
-  font-size: 15px;
-  position: relative;
-}
-.temp-table-header {
-  width: 650px;
-  margin: 12px auto 18px auto;
-  text-align: center;
-  color: #444;
-  font-size: 15px;
-  font-family: Arial, Helvetica, sans-serif;
-  letter-spacing: 0.4px;
-}
+        #sidebar li::before {
+            content: "\00BB";
+            position: absolute;
+            left: 0;
+        }
 
-.table-key {
-  margin-top: 5px;
-  margin-bottom: 3px;
-  font-size: 13px;
-  text-align: center;
-  width: 100%;
-}
-.table-key span {
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 13px;
-  font-weight: bold;
-  background: #f7e2b5;
-  padding: 0 3px 0 3px;
-  border-radius: 1px;
-  margin: 0 0 0 6px;
-  display: inline-block;
-  border: 1px solid transparent;
-}
-.table-key .lk-l {
-  color: #1583ba;
-  border-color: #1583ba;
-  background: transparent;
-}
-.table-key .lk-m {
-  color: #232323;
-  background: transparent;
-  border: 1px solid transparent;
-}
-.table-key .lk-u {
-  color: #c24c28;
-  border-color: #c24c28;
-  background: transparent;
-}
+        #sidebar li.active {
+            font-weight: bold;
+        }
 
-/* Data Table */
-.temp-table-box {
-  border-spacing: 0;
-  border-collapse: separate;
-  margin: 0 auto 12px auto;
-  width: 92%;
-  left: 0;
-  right: 0;
-  box-sizing: border-box;
-  font-family: Arial, Helvetica, sans-serif;
-}
-.temp-table-box td {
-  min-width: 41px;
-  padding: 0 7px;
-  text-align: center;
-  font-size: 15px;
-  background: #fff;
-  border: 1px solid #c9c5be;
-  border-top: none;
-  border-bottom: none;
-  line-height: 1.9;
-  font-family: Arial, Helvetica, sans-serif;
-}
-.temp-table-box th {
-  background: #ead0ad;
-  color: #232323;
-  font-size: 15px;
-  font-family: Arial, Helvetica, sans-serif;
-  font-weight: bold;
-  text-align: center;
-  border: 1px solid #c9c5be;
-  border-top: none;
-  border-bottom: none;
-  padding: 0 7px;
-  height: 27px;
-}
+        #content {
+            float: right;
+            width: 780px;
+        }
 
-/* Table Row index column */
-.temp-table-box .row-index {
-  background: #f7e2b5;
-  color: #cda32d;
-  font-family: Arial, Helvetica, sans-serif;
-  font-size: 14px;
-  font-weight: bold;
-  text-align: right;
-  border: none;
-  padding: 0 7px 0 0;
-}
+        #content nav {
+            margin-bottom: 20px;
+        }
 
-.temp-table-box .temp-l {
-  color: #1583ba;
-  font-weight: bold;
-}
-.temp-table-box .temp-u {
-  color: #c24c28;
-  font-weight: bold;
-}
-.temp-table-box .temp-m {
-  color: #232323;
-  font-weight: bold;
-}
+        #content nav a {
+            font-size: 12px;
+            color: #c7973f;
+            text-decoration: none;
+            margin-right: 20px;
+        }
 
-.temp-table-box tr {
-  height: 32px;
-}
+        #content nav a:hover {
+            text-decoration: underline;
+        }
 
-/* Footer */
-.footer {
-  clear: both;
-  width: 100vw;
-  min-width: 900px;
-  text-align: center;
-  margin-top: 46px;
-  margin-bottom: 22px;
-  font-family: Georgia, serif;
-  font-size: 13px;
-  color: #cda32d;
-  letter-spacing: 2.5px;
-  /* small-caps */
-  font-variant: small-caps;
-  background: #fff;
-}
-.footer span {
-  letter-spacing: 2px;
-}
-@media (max-width: 1200px) {
-  .wrapper {width: 1000px;}
-  .temp-table-outer {width: 620px;}
-}
-@media (max-width: 1050px) {
-  .wrapper {width: 900px;}
-  .sidebar {min-width: 220px;}
-  .temp-table-outer {width: 560px;}
-}
-</style>
+        #content .title {
+            font-weight: bold;
+            color: #c7973f;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        #content .description {
+            font-size: 12px;
+            color: #666;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        #content .description a {
+            color: #c7973f;
+            text-decoration: none;
+        }
+
+        #content .description a:hover {
+            text-decoration: underline;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table th, table td {
+            border: 1px dotted #c0b283;
+            padding: 8px;
+            text-align: center;
+        }
+
+        table th {
+            background-color: #f4f1d2;
+            font-size: 12px;
+            font-weight: bold;
+            color: #000;
+        }
+
+        table td {
+            font-size: 12px;
+            color: #000;
+        }
+
+        .footer {
+            clear: both;
+            text-align: center;
+            font-size: 10px;
+            color: #c0b283;
+            margin-top: 50px;
+        }
+    </style>
 </head>
 <body>
-<div class="header-title">
-  <h1>Recent Temperature Trends in Ottawa, Ontario</h1>
-  <hr class="header-rule">
-</div>
-<div class="wrapper">
-  <div class="sidebar">
-    <div class="logo">
-      <div class="logo-main">EmInf</div>
-      <span class="logo-sub">
-        E m p i r i c a l&nbsp;&nbsp; a n d&nbsp;&nbsp; I n f e r e n t i a l<br>
-        I n t e r p r e t a t i o n s
-      </span>
-    </div>
-    <div class="sidebar-menu">
-      <div class="menu-section">
-        <div class="menu-main">
-          <span class="main-x">x</span>
-          <span class="main-title">Temperature Trends</span>
+    <div id="container">
+        <h1>Recent Temperature Trends in Ottawa, Ontario</h1>
+        <div id="sidebar">
+            <img src="src/placeholder.jpg" alt="Logo" width="120" height="80">
+            <ul>
+                <li class="active">Temperature Trends</li>
+                <li>Recent Data</li>
+                <li>Historical Data for USA</li>
+                <li>           </li>
+                <li>Sitemap</li>
+                <li>HTML in a Nutshell</li>
+                <li>CSS Overview</li>
+                <li>JavaScript Examples</li>
+                <li>Environmental Data Notes</li>
+                <li>Statistics Notes</li>
+                <li>Trips from Waterloo</li>
+                <li>The Mennonite Country</li>
+                <li>Archive</li>
+            </ul>
         </div>
-        <div class="menu-links">
-          <div>Recent Data</div>
-          <div>Historical Data for USA</div>
+        <div id="content">
+            <nav>
+                <a href="#">Extrema</a>
+                <a href="#">Summary</a>
+                <a href="#">Monthly Summary</a>
+                <a href="#">Warming Trends</a>
+                <a href="#">Day Counts</a>
+                <a href="#">To Fahrenheit</a>
+            </nav>
+            <div class="title">Temperature Trends in Ottawa, Ontario</div>
+            <div class="description">
+                Average daily temperatures in Ottawa, Ontario, including the lower and upper bounds of the 95% confidence interval. Due to the possibility of missing data, the actual <a href="#">day counts</a> used in the average and confidence interval calculations are provided. The table is also offered in degrees of <a href="#">Fahrenheit</a>.
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>January</th>
+                        <th>February</th>
+                        <th>March</th>
+                        <th>April</th>
+                        <th>May</th>
+                        <th>June</th>
+                        <th>July</th>
+                        <th>August</th>
+                        <th>September</th>
+                        <th>October</th>
+                        <th>November</th>
+                        <th>December</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>-12 -8 4</td>
+                        <td>-11 -8 7</td>
+                        <td>-7 -5 2</td>
+                        <td>2 4 6</td>
+                        <td>10 12 15</td>
+                        <td>15 17 19</td>
+                        <td>19 20 22</td>
+                        <td>21 22 24</td>
+                        <td>18 19 21</td>
+                        <td>10 12 14</td>
+                        <td>4 6 8</td>
+                        <td>-4 -1 2</td>
+                    </tr>
+                    <tr>
+                        <td>-12 -9 6</td>
+                        <td>-9 -7 5</td>
+                        <td>-6 -4 2</td>
+                        <td>2 4 6</td>
+                        <td>9 12 14</td>
+                        <td>15 17 19</td>
+                        <td>19 20 22</td>
+                        <td>21 22 24</td>
+                        <td>17 18 20</td>
+                        <td>9 12 14</td>
+                        <td>3 5 7</td>
+                        <td>-5 -2 1</td>
+                    </tr>
+                    <tr>
+                        <td>-11 -8 5</td>
+                        <td>-11 -8 5</td>
+                        <td>-9 -6 3</td>
+                        <td>2 4 6</td>
+                        <td>9 12 14</td>
+                        <td>14 16 17</td>
+                        <td>19 21 22</td>
+                        <td>21 22 23</td>
+                        <td>17 19 21</td>
+                        <td>9 11 13</td>
+                        <td>2 4 6</td>
+                        <td>-6 -3 0</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-        <hr class="menu-separator">
-      </div>
-      <div class="sidebar-links">
-        <span>Sitemap</span>
-        <span>HTML in a Nutshell</span>
-        <span>CSS Overview</span>
-        <span>JavaScript Examples</span>
-        <span>Environmental Data Notes</span>
-        <span>Statistics Notes</span>
-        <span>Trips from Waterloo</span>
-        <span>The Mennonite Country</span>
-        <span>Archive</span>
-      </div>
-    </div>
-    <div class="sidebar-footer">
-      <span>Dana & Jaroslav Mohapl</span>
-    </div>
-  </div>
-  <div class="main">
-    <div class="topnav">
-      <a href="#">Extrema</a>
-      <a href="#">Summary</a>
-      <a href="#">Monthly Summary</a>
-      <a href="#">Warming Trends</a>
-      <a href="#">Day Counts</a>
-      <a href="#">To Fahrenheit</a>
-    </div>
-    <div class="main-title">Temperature Trends in Ottawa, Ontario</div>
-    <div class="main-text">
-      Average daily temperatures in Ottawa, Ontario, including the lower and upper bounds of the 95% confidence interval.<br>
-      Due to the possibility of missing data, the actual
-      <a href="#">day counts</a> used in the average and confidence interval calculations are provided. The table is also offered in degrees of
-      <a href="#">Fahrenheit</a>.
-    </div>
-
-    <div class="temp-table-outer">
-      <div class="temp-table-header">
-        Average daily temperatures (C) for Ottawa, Ontario<br>
-        <div class="table-key">
-          <span class="lk-l">Lower Bound</span>
-          <span class="lk-m">Average Temperature</span>
-          <span class="lk-u">Upper Bound</span>
+        <div class="footer">
+            <p>DANA & JAROSLAV MOHAPL © 2004 - 2023 BY EMINF. ALL RIGHTS RESERVED.</p>
         </div>
-      </div>
-      <table class="temp-table-box">
-        <tr>
-          <th></th>
-          <th>January</th>
-          <th>February</th>
-          <th>March</th>
-          <th>April</th>
-          <th>May</th>
-          <th>June</th>
-          <th>July</th>
-          <th>August</th>
-          <th>September</th>
-          <th>October</th>
-          <th>November</th>
-          <th>December</th>
-        </tr>
-        <tr>
-          <td class="row-index">1</td>
-          <td><span class="temp-l">-12</span> <span class="temp-m">-8</span> <span class="temp-u">-4</span></td>
-          <td><span class="temp-l">-11</span> <span class="temp-m">-8</span> <span class="temp-u">-5</span></td>
-          <td><span class="temp-l">-7</span> <span class="temp-m">-5</span> <span class="temp-u">-2</span></td>
-          <td><span class="temp-l">2</span> <span class="temp-m">4</span> <span class="temp-u">6</span></td>
-          <td><span class="temp-l">10</span> <span class="temp-m">12</span> <span class="temp-u">15</span></td>
-          <td><span class="temp-l">15</span> <span class="temp-m">17</span> <span class="temp-u">19</span></td>
-          <td><span class="temp-l">19</span> <span class="temp-m">20</span> <span class="temp-u">22</span></td>
-          <td><span class="temp-l">21</span> <span class="temp-m">22</span> <span class="temp-u">24</span></td>
-          <td><span class="temp-l">18</span> <span class="temp-m">19</span> <span class="temp-u">21</span></td>
-          <td><span class="temp-l">10</span> <span class="temp-m">12</span> <span class="temp-u">14</span></td>
-          <td><span class="temp-l">4</span> <span class="temp-m">6</span> <span class="temp-u">8</span></td>
-          <td><span class="temp-l">-4</span> <span class="temp-m">-1</span> <span class="temp-u">2</span></td>
-        </tr>
-        <tr>
-          <td class="row-index">2</td>
-          <td><span class="temp-l">-12</span> <span class="temp-m">-9</span> <span class="temp-u">-6</span></td>
-          <td><span class="temp-l">-9</span> <span class="temp-m">-7</span> <span class="temp-u">-5</span></td>
-          <td><span class="temp-l">-6</span> <span class="temp-m">-4</span> <span class="temp-u">-2</span></td>
-          <td><span class="temp-l">2</span> <span class="temp-m">4</span> <span class="temp-u">6</span></td>
-          <td><span class="temp-l">9</span> <span class="temp-m">12</span> <span class="temp-u">14</span></td>
-          <td><span class="temp-l">15</span> <span class="temp-m">17</span> <span class="temp-u">19</span></td>
-          <td><span class="temp-l">19</span> <span class="temp-m">20</span> <span class="temp-u">22</span></td>
-          <td><span class="temp-l">21</span> <span class="temp-m">22</span> <span class="temp-u">24</span></td>
-          <td><span class="temp-l">17</span> <span class="temp-m">18</span> <span class="temp-u">20</span></td>
-          <td><span class="temp-l">9</span> <span class="temp-m">12</span> <span class="temp-u">14</span></td>
-          <td><span class="temp-l">3</span> <span class="temp-m">5</span> <span class="temp-u">7</span></td>
-          <td><span class="temp-l">-5</span> <span class="temp-m">-2</span> <span class="temp-u">1</span></td>
-        </tr>
-        <tr>
-          <td class="row-index">3</td>
-          <td><span class="temp-l">-11</span> <span class="temp-m">-8</span> <span class="temp-u">-5</span></td>
-          <td><span class="temp-l">-11</span> <span class="temp-m">-8</span> <span class="temp-u">-5</span></td>
-          <td><span class="temp-l">-9</span> <span class="temp-m">-6</span> <span class="temp-u">-3</span></td>
-          <td><span class="temp-l">2</span> <span class="temp-m">4</span> <span class="temp-u">6</span></td>
-          <td><span class="temp-l">9</span> <span class="temp-m">12</span> <span class="temp-u">14</span></td>
-          <td><span class="temp-l">14</span> <span class="temp-m">16</span> <span class="temp-u">17</span></td>
-          <td><span class="temp-l">19</span> <span class="temp-m">21</span> <span class="temp-u">22</span></td>
-          <td><span class="temp-l">21</span> <span class="temp-m">22</span> <span class="temp-u">23</span></td>
-          <td><span class="temp-l">17</span> <span class="temp-m">19</span> <span class="temp-u">21</span></td>
-          <td><span class="temp-l">9</span> <span class="temp-m">11</span> <span class="temp-u">13</span></td>
-          <td><span class="temp-l">2</span> <span class="temp-m">4</span> <span class="temp-u">6</span></td>
-          <td><span class="temp-l">-6</span> <span class="temp-m">-3</span> <span class="temp-u">0</span></td>
-        </tr>
-      </table>
     </div>
-  </div>
-</div>
-<div class="footer">
-  <span>Copyright &copy; 2004 - 2023 by EmInf. All rights reserved.</span>
-</div>
 </body>
 </html>

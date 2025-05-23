@@ -97,7 +97,13 @@ def clean_html_result(result):
     '''
     pattern = re.compile(r"<!DOCTYPE html.*?(?:</html>|$)",  # schnappt bis </html> ODER bis String-Ende
                          re.DOTALL | re.IGNORECASE)
-    clean_result = pattern.search(result).group(0)
+    try:
+        clean_result = pattern.search(result).group(0)
+    except Exception as e:
+        print(f"Try again with this image. Error: {e}")
+        # If no match is found, return the original result
+        clean_result = None
+
     return clean_result
 
 

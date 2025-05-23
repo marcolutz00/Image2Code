@@ -1,583 +1,178 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Your Shopping Cart</title>
-  <meta name="viewport" content="width=1024">
-  <style>
-    :root {
-      --dark-bg: #3c3c3c;
-      --header-text: #fff;
-      --subheader-text: #eaeaea;
-      --cyan: #4ec3dd;
-      --focus-outline: #005a87;
-      --border-light: #e6e6e6;
-      --link: #4ec3dd;
-      --mid-gray: #8c8c8c;
-      --button-font: 'Arial', Helvetica, sans-serif;
-    }
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100vw;
-      min-height: 100vh;
-      font-family: 'Arial', Helvetica, sans-serif;
-      background: #f9f9f9;
-      color: #222;
-    }
-    body {
-      min-width: 1024px;
-      background: #f9f9f9;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
 
-    /* HEADER */
-    .header-main {
-      background: var(--dark-bg);
-      color: var(--header-text);
-      width: 100%;
-      min-width: 1024px;
-      position: relative;
-    }
-    .header-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      font-size: 13px;
-      padding-top: 10px;
-      font-family: 'Arial', Helvetica, sans-serif;
-      letter-spacing: .01em;
-    }
-    .header-left, .header-right {
-      display: flex;
-      align-items: center;
-      flex-wrap: wrap;
-    }
-    .header-left {
-      padding-left: 30px;
-      gap: 5px;
-      color: #eaeaea;
-    }
-    .header-left a,
-    .header-right a {
-      color: #eaeaea;
-      text-decoration: none;
-      outline: none;
-    }
-    .header-left a:focus,
-    .header-right a:focus {
-      outline: 2px solid var(--focus-outline);
-      outline-offset: 2px;
-    }
-    .header-left .sep {
-      margin: 0 6px;
-      color: #eaeaea;
-      font-weight: normal;
-    }
-    .header-right {
-      padding-right: 30px;
-      color: #eaeaea;
-    }
-    .header-right .sep {
-      margin: 0 6px;
-      color: #eaeaea;
-      font-weight: normal;
-    }
-    .header-search-form {
-      display: inline-flex;
-      align-items: center;
-    }
-    .header-search-input {
-      border: none;
-      border-bottom: 1px solid #eaeaea;
-      background: transparent;
-      color: #eaeaea;
-      padding: 2px 4px 2px 6px;
-      width: 90px;
-      font-size: 13px;
-      font-family: inherit;
-      outline: none;
-      transition: border-color 0.2s;
-    }
-    .header-search-input:focus {
-      border-color: var(--focus-outline);
-      background: #3c3c3c;
-      color: #fff;
-    }
-    .header-search-btn {
-      background: transparent;
-      border: none;
-      cursor: pointer;
-      color: #eaeaea;
-      margin-left: 4px;
-      font-size: 18px;
-      padding: 0 4px;
-      outline: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .header-search-btn:focus {
-      outline: 2px solid var(--focus-outline);
-      outline-offset: 1px;
-    }
-    /* LOGO / HERO AREA */
-    .hero-area {
-      width: 100%;
-      background: var(--dark-bg);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 32px 0 36px 0;
-      min-width: 1024px;
-      margin-bottom: 0;
-    }
+        .header {
+            background-color: #444;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
 
-    .hero-content {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      width: 430px;
-      justify-content: center;
-      position: relative;
-      margin-bottom: 30px;
-    }
-    .hero-img-box {
-      width: 200px;
-      height: 200px;
-      background: #2633fa;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-right: 24px;
-      flex-shrink: 0;
-      border-radius: 2px;
-      box-sizing: border-box;
-    }
-    .hero-img-box img {
-      width: 200px;
-      height: 200px;
-      object-fit: cover;
-      display: block;
-      border-radius: 2px;
-      background: #2633fa;
-    }
-    .hero-text {
-      color: #fff;
-      font-size: 18px;
-      font-weight: bold;
-      align-self: center;
-      margin-top: 63px;
-      line-height: 1.25;
-      font-family: 'Arial', Helvetica, sans-serif;
-      text-align: left;
-      word-break: break-word;
-    }
+        .header a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
 
-    /* Hamburger icon */
-    .hero-menu {
-      margin-top: 5px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      height: 32px;
-      width: 100%;
-    }
-    .hero-menu-icon {
-      width: 40px;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hero-menu-icon-inner {
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      justify-content: center;
-      width: 40px;
-      height: 40px;
-      gap: 6px;
-    }
-    .hero-menu-icon-bar {
-      width: 22px;
-      height: 5px;
-      background: #fff;
-      border-radius: 2px;
-      margin-bottom: 0px;
-      margin-top: 0px;
-      outline: 1px solid transparent;
-    }
-    /* MAIN CART SECTION */
-    .main-content {
-      width: 100vw;
-      min-width: 1024px;
-      background: #fff;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding-bottom: 55px;
-      padding-top: 32px;
-    }
-    .cart-title {
-      font-size: 17px;
-      font-weight: bold;
-      text-align: center;
-      margin-bottom: 34px;
-      color: #222;
-      font-family: 'Arial', Helvetica, sans-serif;
-      width: 100%;
-      letter-spacing: 0;
-    }
-    .cart-actions-row {
-      display: flex;
-      width: 100%;
-      max-width: 464px;
-      flex-direction: row;
-      align-items: center;
-      margin-bottom: 20px;
-    }
-    .cart-actions-row button,
-    .cart-actions-row .cart-action-btn {
-      font-family: var(--button-font);
-      font-size: 17px;
-      padding: 0;
-      width: 254px;
-      height: 38px;
-      background: var(--cyan);
-      color: #fff;
-      font-weight: 500;
-      border: none;
-      border-radius: 2px;
-      text-align: center;
-      cursor: pointer;
-      transition: outline 0.2s;
-      outline: none;
-      margin-right: 0;
-      letter-spacing: 0;
-      box-shadow: none;
-      line-height: 38px;
-      user-select: none;
-    }
-    .cart-actions-row button:focus,
-    .cart-actions-row .cart-action-btn:focus {
-      outline: 2px solid var(--focus-outline);
-      outline-offset: 2px;
-    }
-    .cart-actions-row .cart-action-btn {
-      display: inline-block;
-      line-height: 38px;
-      text-align: center;
-    }
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            text-align: center;
+        }
 
-    /* Cart Table */
-    .cart-table-container {
-      width: 100%;
-      max-width: 963px;
-      margin: 0 auto 16px auto;
-    }
-    .cart-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 0;
-    }
-    .cart-table th,
-    .cart-table td {
-      font-family: 'Arial', Helvetica, sans-serif;
-      font-size: 16px;
-      color: #444;
-      padding: 12px;
-    }
-    .cart-table th {
-      background: #fafafa;
-      border: 1px solid var(--border-light);
-      font-weight: normal;
-      text-align: left;
-      font-size: 15px;
-      color: #222;
-      padding-top: 9px;
-      padding-bottom: 9px;
-    }
-    .cart-table td {
-      background: #fff;
-      border: 1px solid var(--border-light);
-      border-top: none;
-      border-left: 1px solid var(--border-light);
-      border-right: 1px solid var(--border-light);
-      border-bottom: 1px solid var(--border-light);
-      font-size: 16px;
-      color: #444;
-      padding: 36px 18px 36px 18px;
-      text-align: center;
-      vertical-align: middle;
-      letter-spacing: 0.01em;
-    }
-    .cart-table-empty {
-      text-align: center;
-      color: #8c8c8c;
-      font-weight: bold;
-      font-size: 16px;
-      padding: 36px 0 36px 0;
-      background: #fff;
-      border: none;
-      font-family: 'Arial', Helvetica, sans-serif;
-    }
-    /* Cart Summary Row */
-    .cart-summary-row {
-      width: 963px;
-      margin: 24px auto 0 auto;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      gap: 0;
-      font-family: 'Arial', Helvetica, sans-serif;
-    }
-    .cart-summary-label {
-      font-size: 17px;
-      font-weight: bold;
-      color: #222;
-      margin-right: 46px;
-      letter-spacing: 0.01em;
-    }
-    .cart-summary-total {
-      font-size: 20px;
-      color: #222;
-      font-weight: bold;
-      margin-right: 21px;
-      letter-spacing: 0.02em;
-    }
+        .promo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #444;
+            padding: 30px 0;
+        }
 
-    /* Checkout */
-    .checkout-row {
-      display: flex;
-      justify-content: flex-end;
-      width: 963px;
-      margin: 25px auto 0 auto;
-      align-items: center;
-    }
-    .checkout-btn {
-      width: 254px;
-      height: 38px;
-      background: var(--cyan);
-      color: #fff;
-      font-family: var(--button-font);
-      font-size: 17px;
-      font-weight: 500;
-      border: none;
-      border-radius: 2px;
-      cursor: pointer;
-      text-align: center;
-      box-shadow: none;
-      transition: outline 0.2s;
-      outline: none;
-      margin-right: 0;
-      line-height: 38px;
-      user-select: none;
-    }
-    .checkout-btn:focus {
-      outline: 2px solid var(--focus-outline);
-      outline-offset: 2px;
-    }
+        .promo img {
+            width: 150px;
+            height: 150px;
+            background: blue;
+        }
 
-    /* Cart Tools Row */
-    .cart-tools-row {
-      width: 963px;
-      margin: 22px auto 0 auto;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 18px;
-    }
-    .recalc-btn {
-      width: 117px;
-      height: 33px;
-      background: #eee;
-      color: #444;
-      border: none;
-      border-radius: 2px;
-      box-shadow: none;
-      font-size: 15px;
-      cursor: pointer;
-      font-family: var(--button-font);
-      font-weight: normal;
-      letter-spacing: 0.02em;
-      outline: none;
-      transition: outline 0.2s;
-      padding-left: 0;
-    }
-    .recalc-btn:focus {
-      outline: 2px solid var(--focus-outline);
-      outline-offset: 2px;
-    }
+        .promo div {
+            color: #fff;
+            margin-left: 20px;
+            text-align: left;
+        }
 
-    .empty-cart-link {
-      color: var(--link);
-      font-size: 15px;
-      padding-left: 16px;
-      background: none;
-      border: none;
-      text-decoration: none;
-      cursor: pointer;
-      font-family: var(--button-font);
-      outline: none;
-      transition: outline 0.2s;
-      position: relative;
-      top: 0;
-    }
-    .empty-cart-link:focus {
-      outline: 2px solid var(--focus-outline);
-      outline-offset: 2px;
-    }
+        .shopping-cart {
+            border-top: 3px solid #eee;
+            padding-top: 20px;
+        }
 
-    /* Cart option row */
-    .cart-option-row {
-      width: 963px;
-      margin: 0 auto 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 10px;
-      padding-top: 0;
-      font-size: 15px;
-      color: #444;
-      font-family: 'Arial', Helvetica, sans-serif;
-      min-height: 18px;
-      margin-top: 10px;
-    }
-    .cart-option-checkbox {
-      margin-left: 0;
-      margin-right: 2px;
-      width: 16px;
-      height: 16px;
-      accent-color: #245be5;
-    }
-    .cart-option-label {
-      padding-left: 2px;
-      font-size: 15px;
-      color: #222;
-      user-select: none;
-    }
+        .shopping-cart h2 {
+            color: #333;
+        }
 
-    /* Legal row */
-    .cart-legal-row {
-      width: 963px;
-      margin: 18px auto 0 auto;
-      font-size: 13px;
-      color: #444;
-      font-family: 'Arial', Helvetica, sans-serif;
-      text-align: left;
-      line-height: 1.36;
-      letter-spacing: .01em;
-      padding-bottom: 36px;
-    }
-    .cart-legal-row a {
-      color: var(--link);
-      text-decoration: underline;
-      outline: none;
-    }
-    .cart-legal-row a:focus {
-      outline: 2px solid var(--focus-outline);
-      outline-offset: 1px;
-    }
-    /* Responsive (minimal, since min-width:1024px required) */
-    @media (max-width: 1023px) {
-      html, body { min-width: 0; width: 100vw; }
-      .main-content, .hero-area, .header-main { min-width: 0; }
-      .cart-table-container, .cart-summary-row, .checkout-row, .cart-tools-row, .cart-option-row, .cart-legal-row { width: 96vw !important; min-width: 0; }
-    }
-  </style>
+        .button {
+            background-color: #00bcd4;
+            color: #fff;
+            padding: 15px 30px;
+            border: none;
+            cursor: pointer;
+            text-transform: uppercase;
+            margin: 10px;
+        }
+
+        .cart-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+
+        .cart-table th,
+        .cart-table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+
+        .cart-empty {
+            padding: 20px;
+            color: #999;
+        }
+
+        .total-row {
+            text-align: right;
+            padding```html
+            : 10px;
+            font-weight: bold;
+            border: none;
+        }
+
+        .footer {
+            background-color: #eee;
+            padding: 10px;
+            font-size: 12px;
+            text-align: left;
+        }
+
+        .footer input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #00bcd4;
+            margin: 0 5px;
+        }
+    </style>
 </head>
+
 <body>
-  <header class="header-main" role="banner">
-    <div class="header-bar" aria-label="Top navigation">
-      <div class="header-left">
-        <a href="#" tabindex="0">CLICK HERE TO SIGN IN</a>
-        <span class="sep" aria-hidden="true">OR</span>
-        <a href="#" tabindex="0">CLICK HERE TO REGISTER</a>
-      </div>
-      <div class="header-right">
-        <a href="#" tabindex="0">VIEW CART</a>
-        <span class="sep" aria-hidden="true"></span>
-        <form class="header-search-form" role="search" aria-label="Site search">
-          <label for="header-search" class="visually-hidden">Search</label>
-          <input type="search" id="header-search" class="header-search-input" placeholder="SEARCH" aria-label="Search">
-          <button type="submit" class="header-search-btn" aria-label="Submit search">
-            <svg width="16" height="16" viewBox="0 0 20 20" aria-hidden="true" focusable="false" style="vertical-align:middle;"><circle cx="8.5" cy="8.5" r="6" stroke="currentColor" stroke-width="2" fill="none"/><line x1="15" y1="15" x2="11.8" y2="11.8" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
-          </button>
-        </form>
-      </div>
-    </div>
-    <div class="hero-area">
-      <div class="hero-content">
-        <div class="hero-img-box">
-          <img src="src/placeholder.jpg" width="200" height="200" alt="Contact representative">
+
+    <div class="header">
+        <div>
+            <a href="#">Click here to sign in</a>
+            <span>or</span>
+            <a href="#">Click here to register</a>
         </div>
-        <div class="hero-text" aria-label="Contact representative">
-          Talk to a real person!<br>
-          [PHONE REDACTED]
+        <div>
+            <a href="#">View cart</a>
+            <input type="text" placeholder="Search" aria-label="Search">
         </div>
-      </div>
-      <nav class="hero-menu" aria-label="Main menu">
-        <div class="hero-menu-icon" tabindex="0" role="button" aria-label="Open navigation menu">
-          <div class="hero-menu-icon-inner" aria-hidden="true">
-            <div class="hero-menu-icon-bar"></div>
-            <div class="hero-menu-icon-bar"></div>
-            <div class="hero-menu-icon-bar"></div>
-          </div>
+    </div>
+
+    <div class="promo">
+        <img src="src/placeholder.jpg" alt="Promotional Image">
+        <div>
+            <p>Talk to a real person!</p>
+            <p>[PHONE REDACTED]</p>
         </div>
-      </nav>
     </div>
-  </header>
-  <main class="main-content" id="main-content" tabindex="-1">
-    <h1 class="cart-title">Your Shopping Cart</h1>
-    <div class="cart-actions-row">
-      <button class="cart-action-btn" type="button" aria-label="Continue shopping">CONTINUE SHOPPING</button>
+
+    <div class="container">
+        <div class="shopping-cart">
+            <h2>Your Shopping Cart</h2>
+            <button class="button">Continue Shopping</button>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>Your Shopping Cart</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="cart-empty">Your shopping cart is empty.</td>
+                    </tr>
+                </tbody>
+                <tfoot>
+                    <tr>
+                        <td class="total-row">Total $0.00</td>
+                    </tr>
+                </tfoot>
+            </table>
+            <button class="button">Checkout</button>
+        </div>
     </div>
-    <div class="cart-table-container" role="region" aria-labelledby="cart-table-header">
-      <table class="cart-table" aria-describedby="cart-table-caption">
-        <caption id="cart-table-caption" class="visually-hidden">Items in your shopping cart</caption>
-        <thead>
-          <tr>
-            <th id="cart-table-header" scope="col">Your Shopping Cart</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="cart-table-empty" aria-live="polite">YOUR SHOPPING CART IS EMPTY.</td>
-          </tr>
-        </tbody>
-      </table>
+
+    <div class="footer">
+        <label>
+            <input type="checkbox">
+            Show me my shopping cart every time I order something.</label>
+        <a href="#">Empty Cart</a>
+        <p>This site does not do live transactions. If you provide a credit card number it will not be billed
+            immediately...</p>
     </div>
-    <div class="cart-summary-row" aria-label="Cart total">
-      <span class="cart-summary-label">TOTAL</span>
-      <span class="cart-summary-total" aria-live="polite">$0.00</span>
-    </div>
-    <div class="checkout-row">
-      <button class="checkout-btn" type="button" aria-label="Checkout">CHECKOUT</button>
-    </div>
-    <div class="cart-tools-row" aria-label="Cart options">
-      <button type="button" class="recalc-btn" aria-label="Recalculate totals">RECALCULATE</button>
-      <a href="#" class="empty-cart-link" tabindex="0" aria-label="Empty cart">Empty Cart</a>
-    </div>
-    <div class="cart-option-row" aria-label="Cart preferences">
-      <input type="checkbox" id="show-every-time" class="cart-option-checkbox" checked>
-      <label for="show-every-time" class="cart-option-label">Show me my shopping cart every time I order something.</label>
-    </div>
-    <section class="cart-legal-row" aria-label="Order terms">
-      This site does not do live transactions. If you provide a credit card number it will not be billed immediately. Due to the custom nature of these products, you will be contacted by a sales person at Century 2001 to coordinate getting any custom artwork or other special handling instructions you require. There is a note area when you check out to provide any special instructions you may have regarding your order. Once the sales person has all the information they need and have verified the charges on this order, you will have the order acknowledgement mailed, emailed or faxed to your attention. If at that time you are satisfied with the order it will then be processed using the payment of your choice. If you would like to use your own custom logo for imprinting on any of our products contact us for instructions on the best way of getting your logo to us. For information on acceptable digital artwork, see our <a href="#">artwork information page</a>. *** Tax will only be applicable on goods delivered to Florida.
-    </section>
-  </main>
-  <style>
-    /* Visually hidden for accessibility */
-    .visually-hidden {
-      position: absolute !important;
-      height: 1px; width: 1px; overflow: hidden;
-      clip: rect(1px, 1px, 1px, 1px);
-      white-space: nowrap !important;
-      border: 0; padding: 0; margin: -1px;
-    }
-  </style>
+
 </body>
+
 </html>

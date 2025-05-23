@@ -1,314 +1,174 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>UI Mockup</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      font-family: Arial, sans-serif;
-      background: #e6e6e6;
-      min-height: 100%;
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    .top-bar {
-      height: 56px;
-      background: #fff;
-      border-bottom: 2px solid #ccc;
-      box-sizing: border-box;
-      display: flex;
-      align-items: center;
-      position: relative;
-      z-index: 2;
-    }
-    .logo-box {
-      width: 48px;
-      height: 48px;
-      margin-left: 16px;
-      background: #0000ff;
-      display: inline-block;
-    }
-    .search-area {
-      margin-left: 16px;
-      flex: 1;
-      display: flex;
-      align-items: center;
-      height: 40px;
-    }
-    .search-input {
-      width: 560px;
-      height: 33px;
-      border: 2px solid #333;
-      box-sizing: border-box;
-      font-size: 18px;
-      padding: 3px 8px;
-      background: #fff;
-      outline: none;
-      font-family: Arial, sans-serif;
-    }
-    .main-container {
-      margin: 0 auto;
-      margin-top: 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      width: 820px;
-      min-height: 400px;
-    }
-    .profile-card {
-      background: #fff;
-      box-shadow: 0 2px 4px rgba(0,0,0,0.06);
-      border: 1px solid #eee;
-      display: flex;
-      padding: 0;
-      width: 100%;
-      margin-bottom: 24px;
-      box-sizing: border-box;
-    }
-    .profile-img {
-      margin: 32px 32px 32px 32px;
-      min-width: 168px;
-      min-height: 168px;
-      max-width: 168px;
-      max-height: 168px;
-      background: #0000ff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .profile-text-section {
-      flex: 1;
-      padding-top: 32px;
-      padding-bottom: 32px;
-      padding-right: 32px;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-    .profile-title {
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 3px;
-      margin-top: 0;
-      font-family: Arial, sans-serif;
-    }
-    .profile-dept {
-      font-size: 18px;
-      font-family: Arial, sans-serif;
-      margin-bottom: 24px;
-      font-weight: normal;
-      margin-top: 0;
-    }
-    .profile-contact-box {
-      border: 1px solid #ccc;
-      background: #f4f4f4;
-      padding: 15px 20px 12px 17px;
-      margin-top: 10px;
-      font-size: 15px;
-      max-width: 410px;
-      box-sizing: border-box;
-    }
-    .profile-contact-box .email-link {
-      display: block;
-      color: #2988e6;
-      font-size: 16px;
-      margin-bottom: 7px;
-      font-family: Arial, sans-serif;
-      text-decoration: underline;
-      word-break: break-all;
-    }
-    .profile-contact-box span {
-      display: block;
-    }
-    .profile-contact-box .label {
-      font-weight: bold;
-    }
-    .card-row {
-      width: 100%;
-      display: flex;
-      gap: 36px;
-      margin-top: 24px;
-    }
-    .info-card {
-      background: #fff;
-      border-radius: 2px;
-      overflow: hidden;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.07);
-      border: 1px solid #d6d6d6;
-      width: 295px;
-      min-height: 175px;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      flex-direction: column;
-    }
-    .info-card .card-header {
-      background: #2387e0;
-      color: #fff;
-      font-size: 22px;
-      padding: 12px 16px 12px 16px;
-      font-family: Arial, sans-serif;
-      font-weight: normal;
-      border-bottom: 1px solid #2081d3;
-      letter-spacing: 0.1px;
-    }
-    .info-card .card-list {
-      padding: 17px 0 0 16px;
-      margin: 0;
-      list-style: none;
-      font-size: 18px;
-      font-family: Arial, sans-serif;
-    }
-    .info-card .card-list a {
-      text-decoration: none;
-      color: #1976e8;
-      font-size: 18px;
-      line-height: 1.7;
-      word-break: break-word;
-      display: inline-block;
-      padding-bottom: 2px;
-    }
-    .footer {
-      width: 100vw;
-      position: fixed;
-      left: 0; right: 0; bottom: 0;
-      background: #fff;
-      min-height: 56px;
-      border-top: 1px solid #ccc;
-      font-size: 16px;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      z-index: 3;
-    }
-    .footer-content {
-      padding: 15px 0 15px 20px;
-      font-family: Arial, sans-serif;
-      color: #222;
-    }
-    .footer-content a {
-      color: #160de3;
-      text-decoration: underline;
-      margin-left: 1px;
-      font-size: 16px;
-      font-family: Arial, sans-serif;
-    }
-    .footer-powered {
-      padding-right: 33px;
-      padding-bottom: 8px;
-      display: flex;
-      flex-direction: row;
-      align-items: end;
-      gap: 9px;
-      font-size: 16px;
-    }
-    .footer-powered-label {
-      font-family: Arial, sans-serif;
-      color: #222;
-      margin-bottom: 2px;
-    }
-    .footer-powered-box {
-      width: 38px;
-      height: 38px;
-      background: #0000ff;
-      display: inline-block;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Mock-up</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0e0e0;
+            margin: 0;
+            padding: 0;
+        }
 
-    @media (max-width: 950px) {
-      .main-container {
-        width: 99vw;
-      }
-      .card-row {
-        flex-direction: column;
-        gap: 18px;
-        align-items:flex-start;
-      }
-    }
-    @media (max-width: 850px) {
-      .profile-card {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-      .profile-img {
-        margin-bottom: 14px;
-      }
-    }
-    @media (max-width: 600px) {
-      .main-container {
-        width: 100vw;
-        padding: 0 8px;
-      }
-      .profile-card, .info-card { width: 99vw; min-width: unset;}
-      .info-card .card-header, .info-card .card-list { font-size: 16px; }
-    }
-  </style>
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            box-shadow: 0 0 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .search-bar img {
+            background-color: blue;
+            width: 50px;
+            height: 50px;
+        }
+
+        .search-bar input {
+            flex-grow: 1;
+            margin-left: 10px;
+            padding: 8px;
+            font-size: 16px;
+        }
+
+        .profile {
+            display: flex;
+            padding: 10px;
+        }
+
+        .profile img {
+            background-color: blue;
+            width: 100px;
+            height: 100px;
+        }
+
+        .profile-info {
+            margin-left: 20px;
+        }
+
+        .profile-info h2 {
+            margin: 0;
+            font-size: 18px;
+        }
+
+        .profile-info p {
+            margin: 5px 0;
+        }
+
+        .contact {
+            background-color: #eee;
+            padding: 10px;
+            margin-top: 10px;
+        }
+
+        .columns {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+        }
+
+        .column {
+            width: 45%;
+            box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .column h3 {
+            background-color: #2393fa;
+            color: white;
+            margin: 0;
+            padding: 10px;
+            font-size: 16px;
+        }
+
+        .column a {
+            display: block;
+            padding: 10px;
+            font-size: 14px;
+            text-decoration: none;
+            color: #2393fa;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .column a:last-child {
+            border-bottom: none;
+        }
+
+        .footer {
+            padding: 10px;
+            font-size: 12px;
+            text-align: center;
+            color: #555;
+            border-top: 1px solid #ccc;
+        }
+
+        .footer a {
+            text-decoration: none;
+            color: #2393fa;
+            margin: 0 5px;
+        }
+
+        .powered-by {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .powered-by img {
+            width: 20px;
+            height: 20px;
+            background-color: blue;
+        }
+    </style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="logo-box"></div>
-    <div class="search-area">
-      <input class="search-input" type="text">
-    </div>
-  </div>
-  <div class="main-container">
-    <div class="profile-card">
-      <div class="profile-img">
-        <img src="src/placeholder.jpg" width="168" height="168" alt="">
-      </div>
-      <div class="profile-text-section">
-        <div class="profile-title">Associate Professor</div>
-        <div class="profile-dept">Department of Physics</div>
-        <div class="profile-contact-box">
-          <span>Edmonton, Alberta</span>
-          <a href="mailto:carsten.krauss@ualberta.ca" class="email-link">carsten.krauss@ualberta.ca</a>
-          <span class="label">Office:</span>
-          <span>(780) 492-7610</span>
+    <div class="container">
+        <div class="search-bar">
+            <img src="src/placeholder.jpg" alt="Logo">
+            <input type="text" placeholder="Search...">
         </div>
-      </div>
+        <div class="profile">
+            <img src="src/placeholder.jpg" alt="Profile Picture">
+            <div class="profile-info">
+                <h2>Associate Professor</h2>
+                <h2>Department of Physics</h2>
+                <div class="contact">
+                    <p>Edmonton, Alberta</p>
+                    <p><a href="mailto:carsten.krauss@ualberta.ca">carsten.krauss@ualberta.ca</a></p>
+                    <p>Office:<br>(780) 492-7610</p>
+                </div>
+            </div>
+        </div>
+        <div class="columns">
+            <div class="column">
+                <h3>Expert In</h3>
+                <a href="#">Astrophysics</a>
+                <a href="#">Dark matter detection</a>
+                <a href="#">High energy physics</a>
+                <a href="#">Neutrino physics</a>
+                <a href="#">Particle physics</a>
+                <a href="#">Radioactivity</a>
+            </div>
+            <div class="column">
+                <h3>Links</h3>
+                <a href="#">LinkedIn</a>
+                <a href="#">Faculty Page</a>
+                <a href="#">Faculty Page</a>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="powered-by">
+                <span>© | Expertise Finder | Toronto (Canada) | 1-888-978-5418 | <a href="mailto:info@expertisefinder.com">info@expertisefinder.com</a> | <a href="#">Home</a> | <a href="#">Privacy</a> | <a href="#">User Agreement</a></span>
+                <img src="src/placeholder.jpg" alt="Powered by">
+            </div>
+        </div>
     </div>
-    <div class="card-row">
-      <div class="info-card">
-        <div class="card-header">Expert In</div>
-        <ul class="card-list">
-          <li><a href="#">Astrophysics</a></li>
-          <li><a href="#">Dark matter detection</a></li>
-          <li><a href="#">High energy physics</a></li>
-          <li><a href="#">Neutrino physics</a></li>
-          <li><a href="#">Particle physics</a></li>
-          <li><a href="#">Radioactivity</a></li>
-        </ul>
-      </div>
-      <div class="info-card">
-        <div class="card-header">Links</div>
-        <ul class="card-list">
-          <li><a href="#">LinkedIn</a></li>
-          <li><a href="#">Faculty Page</a></li>
-          <li><a href="#">Faculty Page</a></li>
-        </ul>
-      </div>
-    </div>
-  </div>
-  <div class="footer">
-    <div class="footer-content">
-      © | Expertise Finder | Toronto (Canada) | 1-888-978-5418 | 
-      <a href="mailto:info@expertisefinder.com">info@expertisefinder.com</a> |
-      <a href="#">Home</a> |
-      <a href="#">Privacy</a> |
-      <a href="#">User Agreement</a>
-    </div>
-    <div class="footer-powered">
-      <span class="footer-powered-label">Powered by</span>
-      <span class="footer-powered-box"></span>
-    </div>
-  </div>
 </body>
 </html>

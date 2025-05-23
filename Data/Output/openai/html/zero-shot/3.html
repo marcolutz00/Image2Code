@@ -1,388 +1,208 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Producer Application</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <style>
-    html {
-      box-sizing: border-box;
-    }
-    *, *:before, *:after {
-      box-sizing: inherit;
-    }
-
-    body {
-      font-family: Arial, Helvetica, Verdana, sans-serif;
-      font-size: 14px;
-      color: #222;
-      margin: 0;
-      background: #fff;
-      min-width: 360px;
-    }
-    .container {
-      max-width: 700px;
-      margin: 0 auto;
-      background: #fff;
-      border: 1px solid #eaeaea;
-      margin-top: 8px;
-      margin-bottom: 8px;
-      box-shadow: 0 0 0 1px #eaeaea;
-    }
-    .header-img {
-      width: 200px;
-      height: 200px;
-      background: #120cff;
-      display: block;
-      margin: 32px auto 0 auto;
-      border-radius: 2px;
-      object-fit: cover;
-    }
-    .title-bar {
-      width: 100%;
-      background: #e6207a;
-      padding: 18px 0 14px 0;
-      margin-top: 32px;
-      margin-bottom: 24px;
-      text-align: center;
-    }
-    .title-bar h1 {
-      color: #fff;
-      font-family: 'Courier New', Courier, monospace;
-      font-size: 24px;
-      margin: 0;
-      font-weight: bold;
-      letter-spacing: 1px;
-    }
-    .form-wrapper {
-      padding: 0 38px 0 38px;
-    }
-    .intro {
-      color: #333;
-      margin-bottom: 16px;
-      margin-top: 0;
-      font-size: 14px;
-      line-height: 1.45;
-    }
-    .intro a {
-      color: #214ee6;
-      text-decoration: underline;
-    }
-    form label {
-      font-weight: 500;
-      display: block;
-      margin-bottom: 5px;
-      margin-top: 16px;
-      color: #222;
-      letter-spacing: 0.02em;
-      font-size: 14px;
-    }
-    .required {
-      color: #e6207a;
-      padding-left: 2px;
-      font-weight: bold;
-      font-size: 15px;
-    }
-    .form-row {
-      display: flex;
-      gap: 24px;
-      margin-bottom: 0;
-    }
-    .form-col {
-      flex: 1;
-      min-width: 0;
-    }
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"],
-    select,
-    textarea {
-      width: 100%;
-      padding: 7px 10px;
-      border: 1px solid #c7c7c7;
-      border-radius: 2px;
-      box-sizing: border-box;
-      margin-top: 2px;
-      margin-bottom: 0;
-      font-size: 14px;
-      font-family: Arial, Helvetica, Verdana, sans-serif;
-      background: #fff;
-      color: #222;
-      transition: border 0.2s;
-    }
-    input[type="text"]:focus,
-    input[type="email"]:focus,
-    input[type="tel"]:focus,
-    select:focus,
-    textarea:focus {
-      border-color: #e6207a;
-      outline: none;
-    }
-    textarea {
-      resize: vertical;
-      min-height: 72px;
-      max-height: 320px;
-      line-height: 1.45;
-      margin-bottom: 0;
-    }
-    select {
-      min-height: 34px;
-    }
-    .checkbox-row,
-    .radio-row {
-      margin-top: 8px;
-      margin-bottom: 7px;
-      display: flex;
-      align-items: center;
-      min-height: 34px;
-      gap: 10px;
-      font-size: 14px;
-    }
-    .checkbox-row label,
-    .radio-row label {
-      font-weight: 400;
-      margin: 0 8px 0 1px;
-      display: inline;
-      color: #222;
-    }
-    input[type="checkbox"],
-    input[type="radio"] {
-      accent-color: #e6207a;
-      width: 20px;
-      height: 20px;
-      margin: 0 7px 0 0;
-      display: inline-block;
-      vertical-align: middle;
-    }
-    .faq-link {
-      color: #214ee6;
-      text-decoration: underline;
-    }
-    .terms-block {
-      margin: 18px 0 0 0;
-      display: flex;
-      align-items: center;
-      font-size: 14px;
-    }
-    .terms-block input[type=checkbox] {
-      margin-right: 8px;
-      margin-left: 0;
-    }
-    .terms-link {
-      color: #214ee6;
-      text-decoration: underline;
-      display: inline-block;
-      margin-top: 6px;
-    }
-    .report-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-end;
-      margin-top: 35px;
-      margin-bottom: 32px;
-      font-size: 13px;
-      color: #555;
-      min-height: 24px;
-    }
-    .report-row a {
-      color: #214ee6;
-      text-decoration: underline;
-      font-size: 13px;
-    }
-    .footer-powered {
-      display: flex;
-      align-items: center;
-      gap: 3px;
-      color: #555;
-      font-size: 13px;
-    }
-    .footer-img {
-      width: 14px;
-      height: 14px;
-      background: #120cff;
-      border-radius: 2px;
-      display: inline-block;
-      vertical-align: baseline;
-      margin-left: 3px;
-    }
-    .btn-submit {
-      width: 160px;
-      background: #e6207a;
-      color: #fff;
-      font-family: 'Arial', Helvetica, sans-serif;
-      font-weight: bold;
-      font-size: 16px;
-      border-radius: 3px;
-      border: none;
-      padding: 13px 0 13px 0;
-      letter-spacing: 1px;
-      margin: 0 auto 32px auto;
-      display: block;
-      transition: background 0.2s;
-      box-shadow: 0 1px 3px 0 rgba(190,30,130,0.09);
-      cursor: pointer;
-    }
-    .btn-submit:focus,
-    .btn-submit:hover {
-      background: #c81d6d;
-      outline: 2px solid #120cff;
-      outline-offset: 0;
-    }
-
-    @media (max-width: 670px) {
-      .container {
-        max-width: 98vw;
-      }
-      .form-wrapper {
-        padding: 0 3vw;
-      }
-      .form-row {
-        flex-direction: column;
-        gap: 0;
-      }
-      .header-img {
-        width: 150px;
-        height: 150px;
-      }
-    }
-    @media (max-width: 430px) {
-      .footer-powered {
-        flex-direction: column;
-        gap: 1px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+        }
+        
+        .container {
+            width: 500px;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px 40px;
+        }
+        
+        .header {
+            background-color: #cd0074;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: blue;
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        input[type="text"], input[type="email"], select, textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        
+        textarea {
+            height: 100px;
+            resize: vertical;
+        }
+        
+        .checkbox-group, .radio-group {
+            margin-bottom: 20px;
+        }
+        
+        input[type="checkbox"], input[type="radio"] {
+            margin-right: 10px;
+        }
+        
+        .footer {
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+            font-size: 12px;
+            color: #777;
+        }
+        
+        .submit-button {
+            background-color: #cd0074;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            text-align: center;
+            display: block;
+            width: 100%;
+            border-radius: 4px;
+        }
+        
+        .submit-button:focus, .submit-button:hover {
+            background-color: #da2074;
+        }
+    </style>
 </head>
 <body>
-  <main>
-    <div class="container" role="form" aria-labelledby="formTitle">
-      <img src="src/placeholder.jpg" width="200" height="200" class="header-img" alt="Producer Application Banner Image" />
-      <div class="title-bar">
-        <h1 id="formTitle">Producer Application</h1>
-      </div>
-      <div class="form-wrapper">
-        <form autocomplete="off" aria-describedby="formDesc">
-          <p id="formDesc" class="intro">
-            Tell us a little about you and your experience.
-            <a class="faq-link" href="#" tabindex="0">FAQ</a> for more information.
-          </p>
 
-          <div class="form-row">
-            <div class="form-col">
-              <label for="firstName">First Name <span class="required">*</span></label>
-              <input id="firstName" name="firstName" type="text" autocomplete="given-name" required aria-required="true" />
-            </div>
-            <div class="form-col">
-              <label for="lastName">Last Name <span class="required">*</span></label>
-              <input id="lastName" name="lastName" type="text" autocomplete="family-name" required aria-required="true" />
-            </div>
-          </div>
-
-          <label for="email">Email Address <span class="required">*</span></label>
-          <input id="email" name="email" type="email" autocomplete="email" required aria-required="true" />
-
-          <label for="phone">Phone Number</label>
-          <input id="phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" />
-
-          <label for="location">Where Do You Live? <span class="required">*</span></label>
-          <input id="location" name="location" type="text" autocomplete="address-level1" required aria-required="true" />
-
-          <label id="label-age" for="age18">I am at Least 18 Years of Age <span class="required">*</span></label>
-          <div class="checkbox-row">
-            <input type="checkbox" id="age18" name="age18" required aria-required="true" />
-            <label for="age18">Yes</label>
-          </div>
-
-          <label id="label-prodco">Do You Have a Production Company? <span class="required">*</span></label>
-          <div class="radio-row" role="radiogroup" aria-labelledby="label-prodco">
-            <input type="radio" id="prodcoYes" name="prodco" value="Yes" required aria-required="true" />
-            <label for="prodcoYes">Yes</label>
-            <input type="radio" id="prodcoNo" name="prodco" value="No" required aria-required="true" style="margin-left:16px;" />
-            <label for="prodcoNo">No</label>
-          </div>
-
-          <label for="aboutYou">Tell Us More About You. <span class="required">*</span></label>
-          <textarea id="aboutYou" name="aboutYou" maxlength="2000" required aria-required="true"></textarea>
-
-          <label for="genre">Preferred Genre <span class="required">*</span></label>
-          <select id="genre" name="genre" required aria-required="true">
-            <option value="">Select</option>
-            <option>Comedy</option>
-            <option>Drama</option>
-            <option>Documentary</option>
-            <option>Action</option>
-            <option>Other</option>
-          </select>
-
-          <label id="label-confidence">
-            Are You Confident You Can Create Full-Length Episodes (12-25 minutes) on a Low-Budget and Continue to Create Episodes if they are Renewed by Candivan Subscribers?
-            <span class="required">*</span>
-          </label>
-          <div class="radio-row" role="radiogroup" aria-labelledby="label-confidence">
-            <input type="radio" id="confYes" name="confidence" value="Yes" required aria-required="true" />
-            <label for="confYes">Yes</label>
-            <input type="radio" id="confNo" name="confidence" value="No" required aria-required="true" style="margin-left:16px;" />
-            <label for="confNo">No</label>
-          </div>
-
-          <label id="label-prodwin">
-            If Selected as a Winner, Would You be Able to Start Production by this May or June (2019)? <span class="required">*</span>
-          </label>
-          <div class="radio-row" role="radiogroup" aria-labelledby="label-prodwin">
-            <input type="radio" id="prodwinYes" name="prodwin" value="Yes" required aria-required="true" />
-            <label for="prodwinYes">Yes</label>
-            <input type="radio" id="prodwinNo" name="prodwin" value="No" required aria-required="true" style="margin-left:16px;" />
-            <label for="prodwinNo">No</label>
-          </div>
-
-          <label for="collabNames">
-            Names of Others Plan to Collaborate with (If Applicable)
-          </label>
-          <textarea id="collabNames" name="collabNames" maxlength="800"></textarea>
-
-          <label id="label-pga">
-            Are you a member of the PGA? <span class="required">*</span>
-          </label>
-          <div class="radio-row" role="radiogroup" aria-labelledby="label-pga">
-            <input type="radio" id="pgaYes" name="pga" value="Yes" required aria-required="true" />
-            <label for="pgaYes">Yes</label>
-            <input type="radio" id="pgaNo" name="pga" value="No" required aria-required="true" style="margin-left:16px;" />
-            <label for="pgaNo">No</label>
-          </div>
-
-          <label for="socialOptional">
-            OPTIONAL: Those with large social networks are preferable. Feel free to list any large networks you are part of or your Twitter.
-          </label>
-          <textarea id="socialOptional" name="socialOptional" maxlength="800" aria-describedby="charLimit"></textarea>
-          <div id="charLimit" style="font-size:12px; color:#999; margin-top:2px; margin-bottom:-4px;">0/800 characters</div>
-
-          <label for="howdidyou">
-            How did you find out about us?
-          </label>
-          <select id="howdidyou" name="howdidyou">
-            <option value="">Select</option>
-            <option>Social Media</option>
-            <option>Friend / Colleague</option>
-            <option>Event</option>
-            <option>Other</option>
-          </select>
-          
-          <div class="terms-block">
-            <input type="checkbox" id="terms" name="terms" required aria-required="true" />
-            <label for="terms"><span class="required">*</span> I Have Read and I Accept the Terms and Conditions Below</label>
-          </div>
-          <a href="#" class="terms-link">Terms and Conditions</a>
-          <div class="report-row">
-            <a href="#" aria-label="Report abuse">Report abuse</a>
-            <div class="footer-powered">
-              Powered by
-              <span class="footer-img" aria-hidden="true"></span>
-            </div>
-          </div>
-          <button type="submit" class="btn-submit">Submit</button>
-        </form>
-      </div>
+<div class="container">
+    <div class="image-placeholder">
+        <img src="src/placeholder.jpg" alt="Image placeholder" style="width: 100%; height: 100%;">
     </div>
-  </main>
+    
+    <div class="header">
+        Producer Application
+    </div>
+
+    <p>Tell us a little about you and your experience. <a href="#" style="color: #cd0074;">FAQ</a> for more information.</p>
+    
+    <form>
+        <div>
+            <label for="first-name">First Name *</label>
+            <input type="text" id="first-name" required>
+        </div>
+
+        <div>
+            <label for="last-name">Last Name *</label>
+            <input type="text" id="last-name" required>
+        </div>
+
+        <div>
+            <label for="email">Email Address *</label>
+            <input type="email" id="email" required>
+        </div>
+
+        <div>
+            <label for="phone">Phone Number *</label>
+            <input type="text" id="phone" required>
+        </div>
+
+        <div>
+            <label for="location">Where Do You Live? *</label>
+            <input type="text" id="location" required>
+        </div>
+
+        <div class="checkbox-group">
+            <label>I am at Least 18 Years of Age *</label>
+            <input type="checkbox" id="age-confirmation" required>Yes
+        </div>
+
+        <div class="radio-group">
+            <label>Do You Have a Production Company? *</label>
+            <input type="radio" name="production-company" required>Yes
+            <input type="radio" name="production-company" required>No
+        </div>
+
+        <div>
+            <label for="about">Tell Us More About You. *</label>
+            <textarea id="about" required></textarea>
+        </div>
+
+        <div>
+            <label for="genre">Preferred Genre *</label>
+            <select id="genre" required>
+                <option value="" selected disabled>Choose a genre</option>
+                <!-- Options here -->
+            </select>
+        </div>
+
+        <div class="radio-group">
+            <label>Are You Confident You Can Create Full-Length Episodes (12-25 minutes) on a Low-Budget and Continue to Create Episodes if they are Renewed by Candivan Subscribers? *</label>
+            <input type="radio" name="confidence-level" required>Yes
+            <input type="radio" name="confidence-level" required>No
+        </div>
+
+        <div class="radio-group">
+            <label>If Selected as a Winner, Would You be Able to Start Production by this May or June (2019)? *</label>
+            <input type="radio" name="production-timing" required>Yes
+            <input type="radio" name="production-timing" required>No
+        </div>
+
+        <div>
+            <label for="collaborate">Names of Others Plan to Collaborate with (If Applicable)</label>
+            <textarea id="collaborate"></textarea>
+        </div>
+
+        <div class="radio-group">
+            <label>Are you a member of the PGA? *</label>
+            <input type="radio" name="pga-membership" required>Yes
+            <input type="radio" name="pga-membership" required>No
+        </div>
+
+        <div>
+            <label for="social-networks">OPTIONAL: Those with large social networks are preferable. Feel free to list any large networks you are part of or your Twitter.</label>
+            <textarea id="social-networks" placeholder="0/800 characters"></textarea>
+        </div>
+
+        <div>
+            <label for="find-out">How did you find out about us?</label>
+            <select id="find-out">
+                <option value="" selected disabled>Select an option</option>
+                <!-- Options here -->
+            </select>
+        </div>
+
+        <div class="checkbox-group">
+            <input type="checkbox" id="terms" required>I Have Read and I Accept the Terms and Conditions Below
+        </div>
+
+        <p><a href="#" style="color: #cd0074;">Terms and Conditions</a></p>
+
+        <div class="footer">
+            <a href="#" style="color: #777;">Report abuse</a>
+            <span style="float: right;">Powered by <img src="src/placeholder.jpg" alt="Logo" style="width: 20px; height: 20px; vertical-align: middle;"></span>
+        </div>
+
+        <button type="submit" class="submit-button">Submit</button>
+    </form>
+</div>
+
 </body>
 </html>

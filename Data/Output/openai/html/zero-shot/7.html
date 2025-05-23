@@ -1,341 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Dr Emma Ostrovskaya BSc, DCouns</title>
-  <meta name="viewport" content="width=1024">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Georgia:ital,wght@0,400;0,700;1,400;1,700&family=Times+New+Roman:ital,wght@0,400;0,700;1,400;1,700&display=swap" rel="stylesheet">
-  <style>
-    :root {
-      --main-red: #991933;
-      --body-bg: #ededed;
-      --header-bg: #fff;
-      --section-bg: #fff;
-      --menu-bg: #991933;
-      --menu-link: #fff;
-      --menu-link-hover: #e4bcce;
-      --menu-link-active: #fff;
-      --menu-link-active-border: #fff;
-      --accent: #991933;
-      --body-font: 'Times New Roman', Times, serif;
-      --heading-font: 'Georgia', serif;
-      --main-width: 900px;
-      --border-thick: 6px;
-      --header-padding: 26px 40px 18px 40px;
-      --menu-height: 44px;
-      --section-padding: 39px 52px 36px 52px;
-      --section-spacing: 36px;
-      --divider-height: 6px;
-      --mobile-width: 98vw;
-    }
-
-    html {
-      box-sizing: border-box;
-      font-size: 18px;
-    }
-    *, *::before, *::after {
-      box-sizing: inherit;
-    }
-    body {
-      background: var(--body-bg);
-      font-family: var(--body-font);
-      margin: 0;
-      padding: 0;
-      min-width: 1024px;
-    }
-
-    .container {
-      margin: 0 auto;
-      width: var(--main-width);
-      background: var(--header-bg);
-      box-shadow: 0 0 10px rgba(0,0,0,0.03);
-      min-height: 100vh;
-    }
-
-    header {
-      background: var(--header-bg);
-      border-bottom: var(--border-thick) solid var(--main-red);
-      padding: var(--header-padding);
-      padding-top: 32px;
-      padding-bottom: 17px;
-    }
-    .site-title {
-      font-family: var(--heading-font);
-      font-size: 1.45rem;
-      font-style: italic;
-      font-weight: bold;
-      color: var(--main-red);
-      margin: 0;
-      letter-spacing: 0.01rem;
-      line-height: 1.11;
-      display: flex;
-      align-items: flex-end;
-      justify-content: flex-start;
-      gap: 12px;
-    }
-    .site-title-underline {
-      height: 1px;
-      background: var(--main-red);
-      border: none;
-      flex: 1 1 auto;
-      margin: 0 0 0 22px;
-      margin-bottom: 5px;
-    }
-    .site-subtitle {
-      font-family: var(--heading-font);
-      font-size: 1.01rem;
-      color: #191919;
-      letter-spacing: 0.01rem;
-      margin-top: 15px;
-      margin-bottom: 0.1em;
-      font-style: italic;
-      font-weight: 400;
-      line-height: 1.32;
-    }
-    .site-desc {
-      font-family: var(--heading-font);
-      font-size: 1rem;
-      color: #191919;
-      letter-spacing: 0.02rem;
-      margin-top: 0.35em;
-      font-style: italic;
-      font-weight: 500;
-      line-height: 1.07;
-    }
-
-    nav {
-      background: var(--menu-bg);
-      width: 100%;
-      height: var(--menu-height);
-      display: flex;
-      align-items: center;
-      padding-left: 2px;
-    }
-    .nav-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: flex;
-      gap: 2px;
-      width: 100%;
-      justify-content: flex-start;
-    }
-    .nav-list li {
-      margin: 0 0 0 0;
-      display: flex;
-    }
-    .nav-list a {
-      display: block;
-      color: var(--menu-link);
-      background: none;
-      font-family: var(--heading-font);
-      font-size: 1.1rem;
-      text-decoration: none;
-      padding: 0 32px;
-      height: var(--menu-height);
-      line-height: var(--menu-height);
-      transition: background 0.2s, color 0.2s;
-      border-bottom: none;
-      font-weight: 400;
-      outline: none;
-      min-width: 100px;
-      text-align: center;
-    }
-    .nav-list a:focus,
-    .nav-list a:hover {
-      background: #c44664;
-      color: var(--menu-link-hover);
-      text-decoration: underline;
-      text-underline-position: under;
-    }
-    .nav-list a.active, .nav-list li[aria-current="page"] a {
-      text-decoration: underline;
-      color: var(--menu-link-active);
-      background: var(--main-red);
-      font-family: var(--heading-font);
-      font-weight: 400;
-      outline: 2px solid transparent;
-      outline-offset: 2px;
-      text-underline-position: under;
-    }
-
-    main {
-      min-height: 400px;
-      background: var(--section-bg);
-      padding: 0;
-      border-bottom: var(--border-thick) solid var(--main-red);
-    }
-
-    .section-content {
-      background: var(--section-bg);
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      padding: var(--section-padding);
-      padding-bottom: 19px;
-      margin-top: var(--section-spacing);
-      gap: 36px;
-      min-height: 230px;
-    }
-
-    .section-left {
-      max-width: 61%;
-      flex-basis: 60%;
-    }
-    .section-right {
-      max-width: 30%;
-      flex-basis: 30%;
-    }
-    .section-left h2, .section-right h2 {
-      font-family: var(--heading-font);
-      color: var(--accent);
-      font-weight: bold;
-      font-size: 1.38rem;
-      margin-top: 0;
-      margin-bottom: 0.9em;
-      letter-spacing: 0.01rem;
-      line-height: 1.19;
-      font-style: normal;
-    }
-    .section-right h2 {
-      text-align: right;
-      margin-bottom: 0.58em;
-    }
-    .section-left p, .section-right p, .section-left ul {
-      font-family: var(--body-font);
-      font-size: 1rem;
-      color: #242424;
-      margin-top: 0;
-      margin-bottom: 1.13em;
-      line-height: 1.20;
-      font-weight: 400;
-    }
-    .section-left ul {
-      padding-left: 22px;
-      margin-top: 0.15em;
-      margin-bottom: 1.0em;
-    }
-    .section-left ul li {
-      color: var(--accent);
-      font-size: 1em;
-      font-family: var(--body-font);
-      margin-bottom: 2px;
-      list-style-type: disc;
-      list-style-position: outside;
-    }
-    .section-left ul li span {
-      color: #242424;
-      font-family: var(--body-font);
-    }
-    .section-right p {
-      margin-bottom: 0.57em;
-      color: #242424;
-    }
-
-    .section-right .contact-info {
-      font-family: var(--body-font);
-      color: #242424;
-      font-size: 1rem;
-      margin: 0;
-      line-height: 1.24;
-      word-break: break-all;
-      text-align: left;
-    }
-    .section-right .contact-info strong {
-      font-weight: normal;
-    }
-
-    @media (max-width: 1024px) {
-      body {
-        min-width: var(--mobile-width);
-      }
-      .container {
-        width: 98vw;
-      }
-      .section-content {
-        flex-direction: column;
-        padding: 30px 10vw;
-        gap: 22px;
-      }
-      .section-left, .section-right {
-        max-width: 100%;
-        flex-basis: 100%;
-      }
-    }
-    /* Ensure focus indicators */
-    a:focus {
-      outline: 2px solid #333;
-      outline-offset: 2px;
-    }
-
-    /* WCAG color contrast: make sure issues/links/etc have sufficient contrast */
-
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dr Emma Ostrovskaya</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f5f5f5;
+        }
+        .container {
+            width: 90%;
+            max-width: 1000px;
+            margin: 0 auto;
+            background-color: #fff;
+            border-top: 8px solid #7e002f;
+        }
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        header h1 {
+            font-size: 1.8em;
+            color: #7e002f;
+            margin: 0;
+            font-style: italic;
+        }
+        header p {
+            margin: 10px 0 0;
+            font-size: 0.9em;
+        }
+        .navbar {
+            display: flex;
+            justify-content: center;
+            background-color: #7e002f;
+        }
+        .navbar a {
+            color: white;
+            padding: 15px 20px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .content {
+            min-height: 400px;
+            padding: 20px;
+        }
+        .footer {
+            background-color: #7e002f;
+            color: white;
+            padding: 5px;
+        }
+        .info-section {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+        }
+        .info-section div {
+            width: 45%;
+        }
+        .info-section h2 {
+            color: #7e002f;
+            font-weight: bold;
+        }
+        .info-section ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        .info-section ul li::before {
+            content: "•";
+            color: #7e002f;
+            margin-right: 5px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="site-title" aria-label="Practitioner Name">
-        <span>Dr Emma Ostrovskaya BSc, DCouns</span>
-        <hr class="site-title-underline" aria-hidden="true">
-      </div>
-      <div class="site-subtitle">
-        Counselling Psychology &amp; <span style="font-style: italic;">Existential Therapy</span>
-      </div>
-      <div class="site-desc">
-        <span style="font-style: italic;">
-        Adults, Couples &amp; Children
-        </span>
-      </div>
-    </header>
-    <nav aria-label="Primary site navigation">
-      <ul class="nav-list">
-        <li><a href="#" tabindex="0">Welcome</a></li>
-        <li><a href="#" tabindex="0">Therapy</a></li>
-        <li><a href="#" tabindex="0">About Emma</a></li>
-        <li aria-current="page"><a href="#" tabindex="0" class="active">Issues</a></li>
-        <li><a href="#" tabindex="0">Fees</a></li>
-        <li><a href="#" tabindex="0">Contact</a></li>
-      </ul>
-    </nav>
-    <main>
-      <!-- Empty white section for body main content as per image, with bottom border, left blank -->
-      <div style="height: 300px;"></div>
-    </main>
-    <section aria-labelledby="issues-heading" style="background: #fff;">
-      <div class="section-content">
-        <div class="section-left">
-          <h2 id="issues-heading">Issues</h2>
-          <p>
-            I work with the variety of conditions long-standing and recently onset.<br>
-            Areas of counselling I work with:
-          </p>
-          <ul>
-            <li><span>Abuse</span></li>
-            <li><span>Addiction</span></li>
-            <li><span>Anger Management</span></li>
-            <li><span>Anxiety</span></li>
-          </ul>
-          <p>
-            Often several issues will be present at the same time. At the initial consultation<br>
-            we will explore the current issues and your personal background, and will establish the focus of the therapy.
-          </p>
+    <div class="container">
+        <header>
+            <h1>Dr Emma Ostrovskaya BSc, DCouns</h1>
+            <p>Counselling Psychology & Existential Therapy</p>
+            <p>Adults, Couples & Children</p>
+        </header>
+        <nav class="navbar">
+            <a href="#">Welcome</a>
+            <a href="#">Therapy</a>
+            <a href="#">About Emma</a>
+            <a href="#">Issues</a>
+            <a href="#">Fees</a>
+            <a href="#">Contact</a>
+        </nav>
+        <div class="content"></div>
+        <div style="border-top: 2px solid #7e002f;"></div>
+        <div class="info-section">
+            <div>
+                <h2>Issues</h2>
+                <p>I work with the variety of conditions long-standing and recently onset. Areas of counselling I work with:</p>
+                <ul>
+                    <li>Abuse</li>
+                    <li>Addiction</li>
+                    <li>Anger Management</li>
+                    <li>Anxiety</li>
+                </ul>
+                <p>Often several issues will be present at the same time. At the initial consultation we will explore the current issues and your personal background, and will establish the focus of the therapy.</p>
+            </div>
+            <div>
+                <h2>Contact</h2>
+                <p>Tel: [PHONE REDACTED]</p>
+                <p>Email: [EMAIL REDACTED]@gmail.com</p>
+            </div>
         </div>
-        <div class="section-right">
-          <h2>Contact</h2>
-          <p class="contact-info">
-            Tel:<br>
-            [PHONE REDACTED]<br><br>
-            Email:<br>
-            [EMAIL REDACTED]<br>
-            @gmail.com
-          </p>
-        </div>
-      </div>
-    </section>
-    <footer style="height: var(--divider-height); width: 100%; background: var(--main-red);"></footer>
-  </div>
+    </div>
 </body>
 </html>

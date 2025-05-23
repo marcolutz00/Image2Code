@@ -1,460 +1,226 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>The Indian Oil Corporation Question Mockup</title>
-  <link href="https://fonts.googleapis.com/css?family=Georgia:400,700|Open+Sans:400,700" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: #f7f5ef;
-      font-family: 'Open Sans', Arial, sans-serif;
-      font-size: 16px;
-      color: #222;
-    }
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
-    .top-bar {
-      width: 100%;
-      background: #f7f5ef;
-      padding: 17px 0 0 0;
-      text-align: center;
-    }
-    .top-bar-menu {
-      letter-spacing: 1.4px;
-      font-size: 12px;
-      margin-bottom: 15px;
-      padding-right: 5px;
-    }
-    .top-bar-menu a {
-      color: #ea4343;
-      text-decoration: none;
-      margin-right: 21px;
-      font-family: 'Georgia', serif;
-      font-weight: 400;
-      text-transform: uppercase;
-    }
-    .top-bar-menu a:last-child {
-      margin-right: 0;
-    }
-    .header-img {
-      margin: 0 auto 42px auto;
-      text-align: center;
-    }
-    .header-img img {
-      background: #0000ff;
-      width: 350px;
-      height: 210px;
-      display: block;
-      margin: 0 auto;
-    }
-    .nav {
-      width: 100%;
-      background: #fff;
-      display: flex;
-      justify-content: center;
-      border-top: 1px solid #ebe6da;
-      border-bottom: 1px solid #ebe6da;
-      padding: 0;
-      margin-bottom: 35px;
-      font-family: 'Georgia', serif;
-      font-size: 15px;
-    }
-    .nav a {
-      display: block;
-      padding: 22px 26px 18px 26px;
-      color: #222;
-      text-decoration: none;
-      font-weight: 400;
-      letter-spacing: 0.2px;
-      transition: background 0.2s;
-    }
-    .nav a:hover {
-      background: #f7f5ef;
-    }
-    .main-container {
-      width: 1170px;
-      margin: 0 auto 0 auto;
-      display: flex;
-    }
-    .content-area {
-      flex: 1 1 0%;
-      margin-right: 35px;
-    }
-    .breadcrumbs {
-      background: #fff;
-      padding: 9px 18px;
-      font-size: 12px;
-      margin-bottom: 18px;
-      color: #929292;
-      border-radius: 2px;
-      border: 1px solid #f5f2e9;
-      font-family: 'Open Sans', Arial, sans-serif;
-    }
-    .post-content-box {
-      background: #fff;
-      padding: 28px 34px 22px 34px;
-      min-height: 365px;
-      margin-bottom: 18px;
-      border-radius: 2px;
-      border: 1px solid #f5f2e9;
-    }
-    .post-labels {
-      margin-bottom: 9px;
-    }
-    .post-labels span {
-      background: #ffc627;
-      color: #fff;
-      font-size: 13px;
-      line-height: 2.2;
-      display: inline-block;
-      margin-right: 4px;
-      font-family: 'Open Sans', Arial, sans-serif;
-      font-weight: bold;
-      padding: 0 10px;
-      border-radius: 2px;
-    }
-    .post-title {
-      font-family: 'Georgia', serif;
-      font-size: 20px;
-      font-weight: bold;
-      margin-bottom: 17px;
-      margin-top: 0;
-      letter-spacing: 0px;
-    }
-    .answers {
-      margin-bottom: 23px;
-    }
-    .answers p {
-      margin: 4px 0;
-      font-size: 16px;
-    }
-    .answers p span {
-      color: #ea4343;
-    }
-    .post-answer {
-      font-family: 'Georgia', serif;
-      font-weight: bold;
-      font-size: 20px;
-      margin-bottom: 3px;
-      margin-top: 12px;
-    }
-    .post-explanation {
-      font-family: 'Georgia', serif;
-      font-weight: bold;
-      font-size: 19px;
-      margin-bottom: 12px;
-      margin-top: 0;
-    }
-    .post-body {
-      font-size: 15px;
-      color: #222;
-      line-height: 1.5;
-      margin-bottom: 22px;
-      font-family: 'Open Sans', Arial, sans-serif;
-      font-weight: 400;
-    }
-    .show-answer-btn {
-      padding: 4px 12px;
-      background: #fff;
-      border: 1px solid #aaa;
-      font-size: 15px;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-bottom: 18px;
-      transition: background 0.2s;
-    }
-    .show-answer-btn:hover {
-      background: #f0f0f0;
-    }
-    .share-row {
-      display: flex;
-      flex-direction: row;
-      margin-top: 20px;
-      margin-bottom: 15px;
-    }
-    .share-btn {
-      padding: 10px 30px;
-      font-family: 'Open Sans', Arial, sans-serif;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 600;
-      border: none;
-      margin-right: 12px;
-      border-radius: 3px;
-      cursor: pointer;
-      display: inline-block;
-      transition: background 0.2s;
-    }
-    .share-btn.tw { background: #55acee;}
-    .share-btn.fb { background: #3b5998;}
-    .share-btn.vk { background: #ea5543;}
-    .share-btn.li { background: #429bd4;}
-    .share-btn.wh { background: #e53935; margin-right: 0;}
-    .related-posts,
-    .comments-section {
-      background: #fff;
-      border-radius: 2px;
-      border: 1px solid #f5f2e9;
-      margin-bottom: 18px;
-      padding: 13px 18px 18px 18px;
-      font-family: 'Open Sans', Arial, sans-serif;
-    }
-    .related-posts {
-      font-size: 15px;
-      font-weight: 600;
-      letter-spacing: 1.5px;
-      color: #928866;
-      margin-bottom: 18px;
-      padding: 13px 0 13px 18px;
-    }
-    .comments-section {
-      padding-top: 11px;
-      padding-bottom: 130px;
-      font-size: 15px;
-    }
-    .comments-section span {
-      font-weight: 600;
-    }
-    .sidebar {
-      width: 340px;
-      flex-shrink: 0;
-    }
-    .sidebar-box {
-      background: #fff;
-      border-radius: 2px;
-      border: 1px solid #f5f2e9;
-      padding: 0 0 22px 0;
-      margin-bottom: 23px;
-      min-height: 115px;
-      margin-top: 0;
-    }
-    .sidebar-ad {
-      background: none;
-      padding: 17px 23px 17px 23px;
-      text-align: center;
-      border-bottom: none;
-    }
-    .sidebar-ad-box {
-      background: #ffe77c;
-      border-radius: 2px;
-      height: 44px;
-      margin: 0 20px 0 20px;
-      display: flex;
-      align-items: center;
-      justify-content: left;
-      padding: 2px 0 2px 7px;
-    }
-    .sidebar-ad-box-inner {
-      width: 95px;
-      height: 24px;
-      background: #fff;
-      border: 4px solid #ffc627;
-      border-radius: 2px;
-    }
-    .sidebar-label {
-      font-size: 15px;
-      font-weight: 600;
-      color: #928866;
-      letter-spacing: 1.5px;
-      padding: 0 25px;
-      margin-top: 9px;
-      margin-bottom: 13px;
-    }
-    .latest-questions {
-      background: #fff;
-      border-radius: 2px;
-      border: 1px solid #f5f2e9;
-      padding: 4px 30px 10px 30px;
-      margin-bottom: 22px;
-    }
-    .latest-questions-header {
-      font-family: 'Georgia', serif;
-      font-size: 15px;
-      letter-spacing: 1.5px;
-      color: #928866;
-      font-weight: bold;
-      margin-bottom: 24px;
-      margin-top: 18px;
-      text-align: left;
-    }
-    .latest-questions-list {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      font-size: 16px;
-    }
-    .latest-questions-list li {
-      margin-bottom: 15px;
-    }
-    .latest-questions-list li a {
-      color: #ea4343;
-      text-decoration: none;
-      font-family: 'Open Sans', Arial, sans-serif;
-      transition: text-decoration 0.2s;
-      font-size: 15.5px;
-    }
-    .latest-questions-list li a:hover {
-      text-decoration: underline;
-    }
-    .footer {
-      width: 100%;
-      background: #303236;
-      text-align: center;
-      padding: 26px 0 16px 0;
-      color: #fff;
-      font-family: 'Georgia', serif;
-      font-size: 14px;
-      margin-top: 40px;
-      flex-shrink: 0;
-    }
-    @media (max-width: 1200px) {
-      .main-container {
-        width: 97vw;
-        min-width: 0;
-      }
-      .sidebar {
-        width: 330px;
-      }
-    }
-    @media (max-width: 1000px) {
-      .main-container {
-        flex-direction: column;
-        width: 98vw;
-      }
-      .sidebar, .content-area {
-        width: auto;
-        margin-right: 0;
-      }
-      .sidebar {
-        margin-top: 30px;
-      }
-    }
-    @media (max-width: 800px) {
-      .main-container {
-        flex-direction: column;
-        width: 99vw;
-        min-width: 0;
-      }
-      .sidebar, .content-area {
-        width: 100%;
-        margin-right: 0;
-      }
-      .header-img img {
-        width: 95vw;
-        min-width: 0;
-        max-width: 98vw;
-      }
-    }
-    @media (max-width: 600px) {
-      .main-container,
-      .header-img img {
-        width: 100vw;
-      }
-      .nav a {
-        padding: 16px 8px 13px 8px;
-        font-size: 14px;
-      }
-      .post-content-box {
-        padding: 17px 10px 14px 10px;
-      }
-      .sidebar {
-        width: 100%;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Mockup</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            margin: 0;
+            background-color: #f7f4ee;
+        }
+        .header {
+            background-color: #f9f5ed;
+            padding: 20px;
+            text-align: center;
+        }
+        .nav {
+            color: #e34234;
+            margin-top: 10px;
+            font-size: 13px;
+        }
+        .nav a {
+            text-decoration: none;
+            margin: 0 15px;
+            color: #e34234;
+        }
+        .blue-box {
+            background-color: blue;
+            width: 100%;
+            max-width: 1020px;
+            height: 350px;
+            margin: 20px auto;
+        }
+        .main-nav {
+            background-color: white;
+            padding: 10px 20px;
+            text-align: center;
+        }
+        .main-nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 20px;
+            font-size: 14px;
+        }
+        .content {
+            display: flex;
+            justify-content: center;
+            margin: 20px;
+        }
+        .main-content {
+            background-color: white;
+            width: 700px;
+            padding: 20px;
+            margin-right: 20px;
+        }
+        .sidebar {
+            background-color: #f9f5ed;
+            width: 300px;
+            padding: 20px;
+        }
+        .breadcrumbs, .tags {
+            margin-bottom: 10px;
+        }
+        .tags span {
+            background-color: #f7cc4d;
+            padding: 5px 10px;
+            margin-right: 5px;
+        }
+        .question {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .answers {
+            list-style: none;
+            padding: 0;
+            font-size: 16px;
+            margin-top: 10px;
+        }
+        .answers li {
+            margin: 5px 0;
+            color: #e34234;
+        }
+        .answer-section {
+            margin-top: 30px;
+        }
+        .answer-section h2 {
+            font-size: 20px;
+        }
+        .explanation {
+            font-size: 16px;
+            margin-top: 15px;
+            color: #333;
+        }
+        .social-share {
+            margin-top: 20px;
+        }
+        .social-buttons {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+        }
+        .social-buttons button {
+            padding: 10px 20px;
+            border: none;
+            color: white;
+            font-size: 14px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+        .social-buttons button:nth-child(1) { background-color: #3b5998; }
+        .social-buttons button:nth-child(2) { background-color: #5bc0de; }
+        .social-buttons button:nth-child(3) { background-color: #d9534f; }
+        .social-buttons button:nth-child(4) { background-color: #0275d8; }
+        .social-buttons button:nth-child(5) { background-color: #d9534f; }
+
+        .related-posts {
+            background-color: #f9f5ed;
+            padding: 10px;
+            margin-top: 20px;
+        }
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+        .latest-questions {
+            color: #e34234;
+            font-size: 16px;
+        }
+        .latest-questions p {
+            margin-bottom: 10px;
+        }
+    </style>
 </head>
 <body>
-  <div class="top-bar">
-    <div class="top-bar-menu">
-      <a href="#">About</a>
-      <a href="#">Disclaimer</a>
-      <a href="#">Sitemap</a>
-      <a href="#">Contact</a>
-      <a href="#">Privacy Policy</a>
-      <a href="#">Visit Kerala PSC</a>
+
+    <header class="header">
+        <div class="nav">
+            <a href="#">ABOUT</a>
+            <a href="#">DISCLAIMER</a>
+            <a href="#">SITEMAP</a>
+            <a href="#">CONTACT</a>
+            <a href="#">PRIVACY POLICY</a>
+            <a href="#">VISIT KERALA PSC</a>
+        </div>
+    </header>
+
+    <div class="blue-box"></div>
+
+    <nav class="main-nav">
+        <a href="#">Home</a>
+        <a href="#">Notifications</a>
+        <a href="#">Mock Exams</a>
+        <a href="#">Previous Questions</a>
+        <a href="#">Syllabus</a>
+        <a href="#">Answer Key</a>
+        <a href="#">Study Materials</a>
+        <a href="#">Youtube</a>
+    </nav>
+
+    <div class="content">
+        <div class="main-content">
+            <div class="breadcrumbs">Home &gt; Facts on India &gt; General Knowledge &gt; Years</div>
+            <div class="tags">
+                <span>Facts on India</span>
+                <span>General Knowledge</span>
+                <span>Years</span>
+            </div>
+            <div class="question">
+                <strong>The Indian Oil Corporation was set up in which year?</strong>
+            </div>
+            <ul class="answers">
+                <li>A - 1964</li>
+                <li>B - 1965</li>
+                <li>C - 1966</li>
+                <li>D - 1970</li>
+            </ul>
+            <div class="answer-section">
+                <h2>Answer : A</h2>
+                <h2>Explanation</h2>
+                <p class="explanation">
+                    Indian Oil Corporation is an Indian state owned oil and gas company primarily headquartered in New Delhi. It is the largest commercial oil company in the country.
+                </p>
+            </div>
+            <button>Show Answer</button>
+            <div class="social-share">
+                <div class="social-buttons">
+                    <button>Tweet</button>
+                    <button>Share</button>
+                    <button>Share</button>
+                    <button>Share</button>
+                    <button>Share</button>
+                </div>
+            </div>
+            <div class="related-posts">
+                RELATED POSTS
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <h2>LATEST QUESTIONS</h2>
+            <div class="latest-questions">
+                <p>Let us go for a walk, Question tag?</p>
+                <p>Who conducted Panthi Bhojanam first time in India ?</p>
+                <p>She sang well, _______ ? (Question Tag)</p>
+                <p>I congratulate you _______ your success.</p>
+                <p>The founder of 'Samathwa Samajam'</p>
+                <p>There is an exception ______ every rule.</p>
+                <p>He died _____ a severe head injury.</p>
+                <p>Who conducted "Panthi Bhojanam" for the first time in India?</p>
+                <p>Who founded the Vidya Poshini Sabha?</p>
+                <p>Who, among the following, has the final right to sanction the expenditure of public money in India ?</p>
+            </div>
+        </div>
     </div>
-    <div class="header-img">
-      <img src="src/placeholder.jpg" width="350" height="210" alt="">
-    </div>
-  </div>
-  <nav class="nav">
-    <a href="#">Home</a>
-    <a href="#">Notifications</a>
-    <a href="#">Mock Exams</a>
-    <a href="#">Previous Questions</a>
-    <a href="#">Syllabus</a>
-    <a href="#">Answer Key</a>
-    <a href="#">Study Materials</a>
-    <a href="#">Youtube</a>
-  </nav>
-  <div class="main-container">
-    <main class="content-area">
-      <div class="breadcrumbs">
-        Home > Facts on India &nbsp; General Knowledge &nbsp; Years
-      </div>
-      <div class="post-content-box">
-        <div class="post-labels">
-          <span>Facts on India</span>
-          <span>General Knowledge</span>
-          <span>Years</span>
-        </div>
-        <h1 class="post-title">The Indian Oil Corporation was set up in which year?</h1>
-        <div class="answers">
-          <p>A - <span>1964</span></p>
-          <p>B - <span>1965</span></p>
-          <p>C - <span>1966</span></p>
-          <p>D - <span>1970</span></p>
-        </div>
-        <div class="post-answer">
-          Answer : A<br>
-          <span class="post-explanation">Explanation</span>
-        </div>
-        <div class="post-body">
-          Indian Oil Corporation is an Indian state owned oil and gas company primarily headquartered in New Delhi. It is the largest commercial oil company in the country.
-        </div>
-        <button class="show-answer-btn">Show Answer</button>
-        <div class="share-row">
-          <button class="share-btn tw">Tweet</button>
-          <button class="share-btn fb">Share</button>
-          <button class="share-btn vk">Share</button>
-          <button class="share-btn li">Share</button>
-          <button class="share-btn wh">Share</button>
-        </div>
-      </div>
-      <div class="related-posts">RELATED POSTS</div>
-      <div class="comments-section"><span>0 COMMENTS:</span></div>
-    </main>
-    <aside class="sidebar">
-      <div class="sidebar-ad sidebar-box">
-        <div class="sidebar-ad-box">
-          <div class="sidebar-ad-box-inner"></div>
-        </div>
-      </div>
-      <div class="latest-questions">
-        <div class="latest-questions-header">LATEST QUESTIONS</div>
-        <ul class="latest-questions-list">
-          <li><a href="#">Let us go for a walk, Question tag?</a></li>
-          <li><a href="#">Who conducted Panthi Bhojanam first time in India ?</a></li>
-          <li><a href="#">She sang well, ______? (Question Tag)</a></li>
-          <li><a href="#">I congratulate you ______ your success.</a></li>
-          <li><a href="#">The founder of 'Samathwa Samajam'</a></li>
-          <li><a href="#">There is an exception ______ every rule.</a></li>
-          <li><a href="#">He died _____ a severe head injury.</a></li>
-          <li><a href="#">Who conducted "Panthi Bhojanam" for the first time in India?</a></li>
-          <li><a href="#">Who founded the Vidya Poshini Sabha?</a></li>
-          <li><a href="#">Who, among the following, has the final right to sanction the expenditure of public money in India ?</a></li>
-        </ul>
-      </div>
-    </aside>
-  </div>
-  <footer class="footer">
-    Created with by YesLearners.com - YesLearners
-  </footer>
+
+    <footer class="footer">
+        Created with by YeeLearners.com - YeeLearners
+    </footer>
+
 </body>
 </html>

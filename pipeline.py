@@ -100,8 +100,9 @@ def _overwrite_insights(accessibility_dir, insight_dir):
 
 
 async def main():
-    model = "openai" # option openai, gemini, qwen
-    prompt_strategy = "zero-shot" # option naive, zero-shot
+    model = "qwen_hf" # option openai, gemini, qwen_local, qwen_hf, llama_local, llama_hf, hf-finetuned
+    model_dir = model.split("_")[0]
+    prompt_strategy = "naive" # option naive, zero-shot
 
     # 1. Load API-Key and define model strategy
     strategy = utils_general.get_model_strategy(model)
@@ -120,8 +121,8 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            # if int(image.split(".")[0]) < 11:
-            #     continue
+            if int(image.split(".")[0]) < 3:
+                continue
 
             image_information = {
                 "name": os.path.splitext(image)[0],
@@ -129,10 +130,10 @@ async def main():
             }
             
             # 4. Start the API Call and store information locally
-            result = await _process_image(client, image_information, prompt, model, prompt_strategy)
+            result = await _process_image(client, image_information, prompt, model_dir, prompt_strategy)
 
             # 5. Analyze outputs for Input & Output
-            await _analyze_outputs(image, model, prompt_strategy)
+            # await _analyze_outputs(image, model_dir, prompt_strategy)
 
 
             print("----------- Done -----------\n")
@@ -143,8 +144,8 @@ async def main():
     #     os.path.join(INPUT_PATH, 'insights')
     # )
     _overwrite_insights(
-        os.path.join(OUTPUT_PATH, model, 'accessibility', prompt_strategy),
-        os.path.join(OUTPUT_PATH, model, 'insights', prompt_strategy)
+        os.path.join(OUTPUT_PATH, model_dir, 'accessibility', prompt_strategy),
+        os.path.join(OUTPUT_PATH, model_dir, 'insights', prompt_strategy)
     )
 
 

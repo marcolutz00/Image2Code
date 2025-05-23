@@ -1,349 +1,140 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Cycle Fun Montreal</title>
-  <link href="https://fonts.googleapis.com/css?family=Arial:400,700" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cycle Fun Montreal</title>
+<style>
     body {
-      background: #232933;
-      margin: 0;
-      color: #d0dad3;
-      font-family: Arial, sans-serif;
-      font-size: 16px;
-      min-height: 100vh;
-      min-width: 100vw;
+        background-color: #2C3A47;
+        color: #BCC0CF;
+        font-family: "Arial", sans-serif;
+        font-size: 14px;
+        margin: 0;
+        padding: 0;
+        text-align: center;
     }
-    a {
-      color: #7bc5ff;
-      text-decoration: underline;
-    }
-    a:hover {
-      color: #b8e5ff;
-    }
-
-    /* Header */
     .container {
-      width: 90vw;
-      max-width: 1040px;
-      margin: 0 auto;
-      margin-top: 16px;
+        max-width: 800px;
+        margin: 0 auto;
     }
-
+    .header {
+        padding: 20px 0;
+    }
     .title {
-      text-align: center;
-      margin-top: 8px;
-      margin-bottom: 6px;
-      font-size: 2rem;
-      font-weight: bold;
-      color: #fff;
-      letter-spacing: 0.5px;
+        font-size: 32px;
+        font-weight: bold;
     }
     .subtitle {
-      text-align: center;
-      font-size: 1rem;
-      margin-bottom: 19px;
-      color: #d0dad3;
-      margin-top: 0;
+        font-size: 16px;
+        margin-top: 5px;
     }
-    .date-bar {
-      background: #424748;
-      color: #abb28f;
-      font-weight: 500;
-      font-size: 13px;
-      letter-spacing: 1px;
-      text-align: center;
-      padding: 6px 0 6px 0;
-      margin-bottom: 6px;
-      text-transform: uppercase;
-    }
-    .horizontal {
-      border: 1px solid #666;
-      margin-top: 0;
-      margin-bottom: 12px;
-    }
-
-    /* Blog post */
-    .post-content-wrapper {
-      border: 1px solid #324045;
-      padding: 0;
-      margin-bottom: 0;
-      background: #242b33;
-      margin-bottom: 16px;
+    .date {
+        font-size: 12px;
+        color: #8C919D;
+        margin-top: 10px;
+        margin-bottom: 20px;
     }
     .post-title {
-      color: #beb44d;
-      background: transparent;
-      font-weight: 500;
-      font-size: 17px;
-      margin: 0;
-      padding: 12px 8px 0 8px;
-      text-align: center;
-      font-family: Arial,sans-serif;
-      letter-spacing: 0;
-      line-height: 1.2;
+        background-color: #394B58;
+        color: #A6AEBA;
+        padding: 10px;
+        font-size: 18px;
+        margin-top: 30px;
     }
-    .post-body {
-      color: #d0dad3;
-      font-size: 17px;
-      line-height: 1.2;
-      padding: 16px 16px 8px 16px;
-      background: transparent;
-      text-align: center;
+    .content {
+        background-color: #34404E;
+        color: #9CA7B2;
+        padding: 20px;
+        text-align: left;
+        line-height: 1.6;
     }
-    .post-body a {
-      color: #97cffe;
-      text-decoration: underline;
-      font-size: 16px;
+    a, a:visited {
+        color: #4B8FCA;
+        text-decoration: none;
     }
-    .post-footer {
-      background: #1b2026;
-      border-top: 1px solid #bababa;
-      color: #d0dad3;
-      font-size: 15px;
-      text-align: left;
-      padding: 8px 8px 8px 15px;
-      position: relative;
-      height: 36px;
+    .footer {
+        background-color: #2C3A47;
+        color: #8C919D;
+        padding: 10px 0;
     }
-    .post-footer a {
-      color: #79bffa;
-      font-size: 15px;
-      text-decoration: underline;
+    .profile, .posts {
+        display: inline-block;
+        vertical-align: top;
+        width: 48%;
+        background-color: #2C3A47;
+        padding: 10px;
+        margin-top: 20px;
+        text-align: left;
     }
-    .post-icons {
-      position: absolute;
-      top: 8px;
-      right: 10px;
-      display: flex;
-      gap: 5px;
+    .profile img {
+        width: 80px;
+        height: 80px;
+        background-color: #537589;
+        margin-right: 10px;
+        vertical-align: middle;
     }
-    .post-icon {
-      display: inline-block;
-      border: 2px solid #fff;
-      width: 18px;
-      height: 18px;
-      margin-left: 0;
-      box-sizing: border-box;
-      background: #3232fd;
+    .img-placeholder {
+        display: inline-block;
+        width: 16px;
+        height: 16px;
+        background-color: #4B8FCA;
+        margin: 5px;
     }
-    .post-icon:last-child {
-      background: #fff;
-      border: 2px solid #fff;
-      position: relative;
-    }
-    .post-icon:last-child:after {
-      content: '';
-      display: block;
-      position: absolute;
-      left: 3px; top: 3px;
-      width: 10px; height: 10px;
-      background: #3232fd;
-      border-radius: 0;
-    }
-    .post-icons-link {
-      display: inline-block;
-      vertical-align: top;
-      font-size: 15px;
-      margin-right: 18px;
-      margin-top: 1px;
-      color: #7bc5ff;
-    }
-
-    /* Comments section */
-    .comments-section {
-      border: 1px solid #324045;
-      border-top: none;
-      padding: 0 0 0 0;
-      min-height: 80px;
-      margin-bottom: 25px;
-      width: 100%;
-      background: transparent;
-    }
-    .comment-count {
-      color: #969e9f;
-      font-size: 16px;
-      margin: 16px 0 6px 24px;
-      font-family: Arial, sans-serif;
-    }
-    .post-comment-link, .back-link {
-      color: #579cff;
-      margin-left: 24px;
-      font-size: 15px;
-      text-decoration: underline;
-      display: block;
-      margin-bottom: 8px;
-    }
-    .back-link {
-      margin-top: 3px;
-      margin-bottom: 24px;
-    }
-
-    /* Sidebar */
-    .sidebar-wrapper {
-      display: flex;
-      flex-direction: row;
-      margin-top: 30px;
-      margin-bottom: 12px;
-      align-items: flex-start;
-    }
-    .sidebar-pic {
-      margin-left: 55px;
-      margin-right: 12px;
-      margin-top: 2px;
-    }
-    .sidebar-pic img {
-      width: 66px;
-      height: 66px;
-      background: #3232fd;
-      display: inline-block;
-      border: 2px solid #dedede;
-    }
-    .sidebar-details {
-      margin-top: 0;
-      color: #d0dad3;
-      font-size: 16px;
-      font-family: Arial,sans-serif;
-      line-height: 1.3;
-    }
-    .sidebar-title {
-      text-align: center;
-      color: #fff;
-      font-size: 18px;
-      letter-spacing: 0.5px;
-      margin-bottom: 9px;
-      margin-top: 0px;
-      font-family: Arial,sans-serif;
-      font-weight: bold;
-      width: 100%;
-    }
-    .sidebar-details label {
-      font-size: 15px;
-      color: #beb44d;
-      font-weight: 700;
-    }
-    .sidebar-details .profile-name {
-      font-weight: 700;
-      color: #fff;
-      margin-top: 8px;
-      font-size: 16px;
-      text-decoration: underline;
-    }
-    .sidebar-details .view-profile {
-      margin-top: 10px;
-      margin-bottom: 17px;
-      font-size: 16px;
-      color: #fff;
-      font-weight: 700;
-      text-decoration: underline;
-      display: block;
-    }
-    .sidebar-details .previous-posts-title {
-      margin-top: 5px;
-      margin-bottom: 3px;
-      color: #beb44d;
-      font-weight: 500;
-      font-size: 15px;
-    }
-    .sidebar-details .previous-posts {
-      font-size: 14px;
-      color: #7bc5ff;
-      text-decoration: underline;
-      padding-left: 0;
-      margin-top: 1px;
-    }
-    .sidebar-details .previous-posts li {
-      margin-bottom: 2px;
-      list-style: none;
-      padding-left: 0;
-    }
-
-    /* Footer link */
-    .footer-link-bar {
-      text-align: center;
-      margin-top: 25px;
-      margin-bottom: 18px;
-    }
-    .footer-link-bar a {
-      color: #61a6fb;
-      font-size: 15px;
-      text-decoration: underline;
-    }
-
-  </style>
+</style>
 </head>
 <body>
-  <div class="container">
-    <div class="title">Cycle Fun Montreal</div>
-    <div class="subtitle">Cycling inside and outside Montreal.</div>
-    <div class="date-bar">THURSDAY, AUGUST 09, 2012</div>
-    <hr class="horizontal">
-
-    <div class="post-content-wrapper">
-      <div class="post-title">
+<div class="container">
+    <div class="header">
+        <div class="title">Cycle Fun Montreal</div>
+        <div class="subtitle">Cycling inside and outside Montreal.</div>
+        <div class="date">THURSDAY, AUGUST 09, 2012</div>
+    </div>
+    <div class="post-title">
         Mountain bike trail development organization ADSVMQ officially transfers mtn bike trail development activities to Vélo Québec
-      </div>
-      <div class="post-body">
-        The news is that the Québec mountain bike trail development organization ADSVMQ today officially transfers their mountain bike trail development responsibility to Vélo Québec.<br><br>
-        Québec is a goldmine of mountain bike tourism waiting for the trails to be built. The recent work of the ADSVMQ moved mountains and brought Québec trails into the 21st century. The hope and expectation is that Vélo Québec will leverage the mountain bike tourism lever and get more regions to each develop their mountain bike trail network. With Québec’s vast size there are many regions that possess excellent mountain bike trail development potential.<br><br>
-        Québec has the potential for lots more destinations for mountain biking. We have heard that the national parks (provincial and federal) are beginning to think about contemplating the idea that the mountain bike rider is a valid user of our parks. Please national parks: build some real mountain bike trails.<br><br>
-        Don’t get the impression that Québec has no trails.
-        <a href="#">Click here</a> to go to the québec mtn bike trail directory at Allezy.<br><br>
-        You can read ADSVMQ president David Lauzon’s statement 
-        <a href="#">here</a>.<br>
-        <br>
-        You can sign up to Vélo Québec’s new mountain bike infolettre <a href="#">here</a>. You can also join Vélo Québec because the more members they have, the greater is their ability to push for bike development on and off the roads of Quebec.
-      </div>
-      <div class="post-footer">
-        posted by Cycle Fun Montreal @ 
-        <a href="#">6:31 PM</a>
-        <span class="post-icons">
-          <a class="post-icons-link" href="#">0 comments</a>
-          <span class="post-icon"></span>
-          <span class="post-icon"></span>
-        </span>
-      </div>
     </div>
-
-    <div class="comments-section">
-      <div class="comment-count">0 Comments:</div>
-      <a class="post-comment-link" href="#">Post a Comment</a>
-      <a class="back-link" href="#">&lt;&lt; Home</a>
+    <div class="content">
+        <p>The news is that the Québec mountain bike trail development organization ADSVMQ today officially transfers their mountain bike trail development responsibility to Vélo Québec.</p>
+        <p>Québec is a goldmine of mountain bike tourism waiting for the trails to be built. The recent work of the ADSVMQ moved mountains and brought Québec trails into the 21st century. The hope and expectation is that Vélo Québec will leverage the mountain bike tourism lever and get more regions to each develop their mountain bike trail network. With Québec's vast size there are many regions that possess excellent mountain bike trail development potential.</p>
+        <p>Québec has the potential for lots more destinations for mountain biking. We have heard that the national parks (provincial and federal) are beginning to think about contemplating the idea that the mountain bike rider is a valid user of our parks. Please national parks: build some real mountain bike trails.</p>
+        <p>Don't get the impression that Québec has no trails. <a href="#">Click here</a> to go to the quebec mtn bike trail directory at Allezy.</p>
+        <p>You can read ADSVMQ president David Lauzon's statement <a href="#">here</a>.</p>
+        <p>You can sign up to Vélo Québec's new mountain bike infoletter <a href="#">here</a>. You can also join Vélo Québec because the more members they have, the greater is their ability to push for bike development on and off the roads of Quebec.</p>
     </div>
-
-    <div class="sidebar-title">About Me</div>
-    <div class="sidebar-wrapper">
-      <div class="sidebar-pic">
-        <img src="src/placeholder.jpg" alt="" width="66" height="66">
-      </div>
-      <div class="sidebar-details">
-        <div><label>Name:</label></div>
-        <div class="profile-name">Cycle Fun Montreal</div>
-        <a class="view-profile" href="#">View my complete profile</a>
-        <div class="previous-posts-title">Previous Posts</div>
-        <ul class="previous-posts">
-          <li><a href="#">More qseap vacation pics</a></li>
-          <li><a href="#">Far from home, in the Gaspé</a></li>
-          <li><a href="#">Summer time so leave Montreal Island and Ride the . . .</a></li>
-          <li><a href="#">Unveiling scenic Rivière Rouge ride</a></li>
-          <li><a href="#">Killer #1 Cyclist never changed, never ever like...</a></li>
-          <li><a href="#">The island cyclist is the best cyclist Syndrome</a></li>
-          <li><a href="#">Sunny ride becomes stormy ride!</a></li>
-          <li><a href="#">Ritually scenic Rivière Rouge cool ride</a></li>
-          <li><a href="#">Repaving applied to the bike thing</a></li>
-          <li><a href="#">Bird Attack!</a></li>
-        </ul>
-      </div>
+    <div class="footer">
+        posted by Cycle Fun Montreal @ <a href="#">6:31 PM</a> <span class="img-placeholder"></span><span class="img-placeholder"></span>
     </div>
-
-    <div class="footer-link-bar">
-      <a href="#">Mountain bike trail development organization ADSVMQ officially transfers mtn bike trail development activities to Vélo Québec</a>
+    <div class="footer">
+        <span>0 comments</span>
+        <div><a href="#">0 Comments</a></div>
     </div>
-  </div>
+    <div class="footer">
+        <a href="#">Post a Comment</a> <span>|</span> <a href="#"><< Home</a>
+    </div>
+    
+    <div class="profile">
+        <img src="src/placeholder.jpg" alt="Profile Picture">
+        <div>
+            <p>Name:<br><span class="title">Cycle Fun Montreal</span></p>
+            <a href="#">View my complete profile</a>
+        </div>
+    </div>
+    <div class="posts">
+        <strong>Previous Posts</strong>
+        <p><a href="#">More good vacation rides</a></p>
+        <p><a href="#">Far from home, in The Gaspé</a></p>
+        <p><a href="#">Summer time is here: Montreal Island and B ...</a></p>
+        <p><a href="#">Lanaudiere scenic Randonnee Melk ride</a></p>
+        <p><a href="#">Killer d'Lachute never changed, never confo ...</a></p>
+        <p><a href="#">The Island Cyclist is the best cyclist Randomne</a></p>
+        <p><a href="#">Sunny side becomes stormy side</a></p>
+        <p><a href="#">Blainville's scenic Linear Park and Inlen</a></p>
+        <p><a href="#">Bixi reps going to the bike thing</a></p>
+        <p><a href="#">Bird Attack!</a></p>
+    </div>
+    <div class="footer">
+        <a href="#">Mountain bike trail development organization ADSVMQ officially transfers mtn bike trail development activities to Vélo Québec</a>
+    </div>
+</div>
 </body>
 </html>

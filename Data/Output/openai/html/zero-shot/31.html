@@ -1,852 +1,244 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Transportation Q&amp;A - Guangzhou</title>
-  <meta name="viewport" content="width=1024">
-  <style>
-    html {
-      min-height: 100%;
-      background: #fff;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, Helvetica, "Segoe UI", Verdana, sans-serif;
-      background: #fff;
-      color: #222;
-      min-width: 1024px;
-      font-size: 15px;
-      line-height: 1.4;
-    }
-
-    a {
-      color: #3a61ad;
-      text-decoration: underline;
-    }
-
-    a:focus,
-    a:hover {
-      text-decoration: underline;
-      outline: 2px solid #005bea;
-      outline-offset: 2px;
-    }
-
-    /* HEADER */
-    .top-bar {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      height: 28px;
-      background: #fff;
-      padding: 0 35px 0 0;
-      font-size: 13px;
-      border-bottom: 1px solid #e5e5e5;
-    }
-
-    .top-bar a {
-      color: #d77e05;
-      text-decoration: none;
-      margin-left: 18px;
-      margin-right: 5px;
-      font-weight: bold;
-    }
-
-    .top-bar .app-btn {
-      margin-left: 0;
-      margin-right: 0;
-      text-decoration: none;
-    }
-
-    .top-bar .app-btn img {
-      vertical-align: middle;
-      border: 0;
-      margin-bottom: 2px;
-    }
-
-
-    /* HEADER BAR */
-    .main-header {
-      background: #fff;
-      height: 44px;
-      border-bottom: 1px solid #ccc;
-      display: flex;
-      align-items: center;
-      padding: 0 35px;
-      position: relative;
-    }
-
-    .main-header .logo-box {
-      width: 420px;
-      height: 27px;
-      background: #fff;
-      margin-right: auto;
-      margin-left: 0;
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-    }
-
-    .main-header .logo-box img {
-      width: 420px;
-      height: 27px;
-      background: #0070f2;
-      border-radius: 2px;
-      vertical-align: middle;
-    }
-
-    /* BREADCRUMB */
-    .breadcrumb {
-      font-size: 13px;
-      padding: 18px 0 12px 245px;
-      color: #777;
-    }
-    .breadcrumb a {
-      color: #2f68be;
-      text-decoration: underline;
-    }
-
-    .container {
-      display: flex;
-      max-width: 1060px;
-      margin: 0 auto 0 auto;
-      min-height: 680px;
-      align-items: flex-start;
-    }
-
-    /* SIDEBAR */
-    .sidebar {
-      flex: none;
-      width: 220px;
-      min-width: 220px;
-      margin-top: 0px;
-      margin-right: 26px;
-      padding-top: 0;
-    }
-
-    .sidebar .cat-box {
-      background: #f4a415;
-      padding: 0;
-      border-radius: 2px;
-    }
-
-    .sidebar .cat-title {
-      color: #fff;
-      font-weight: bold;
-      font-size: 19px;
-      line-height: 1.2;
-      padding: 12px 0 14px 20px;
-      border-bottom: 1px solid #e59e17;
-      letter-spacing: 0.7px;
-    }
-
-    .sidebar ul {
-      list-style: none;
-      padding: 0 0 0 0;
-      margin: 0;
-      background: #fff;
-      border-radius: 0 0 2px 2px;
-    }
-    .sidebar ul li {
-      color: #555;
-      font-size: 15px;
-      padding: 11px 0 11px 28px;
-      border-bottom: 1px solid #e9e9e9;
-      background: #fff;
-    }
-    .sidebar ul li:last-child {
-      border-bottom: 0;
-    }
-    .sidebar ul li:focus-within,
-    .sidebar ul li:hover {
-      background: #f7e3b1;
-    }
-
-    /* Main content layout */
-    .main-content {
-      flex: 1 1 auto;
-      margin-top: 0;
-      min-width: 640px;
-      max-width: 780px;
-      padding-bottom: 24px;
-    }
-
-    /* POST box */
-    .qabox {
-      background: #f7f7f7;
-      border: 1px solid #e5e5e5;
-      border-radius: 2px;
-      margin-bottom: 8px;
-      padding: 15px 16px 10px 16px;
-      position: relative;
-      min-height: 80px;
-      display: flex;
-      align-items: flex-start;
-    }
-
-    .qabox .image-placeholder {
-      flex: none;
-      width: 26px;
-      height: 26px;
-      background: #1a46c2;
-      margin-top: 3px;
-      margin-left: 0;
-      margin-right: 13px;
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-      outline: none;
-    }
-    .qabox .image-placeholder img {
-      width: 26px;
-      height: 26px;
-      object-fit: contain;
-      border-radius: 2px;
-      display: block;
-      background: #1a46c2;
-    }
-    .qabox .qa-content {
-      flex: 1 1 auto;
-    }
-    .qabox .asked {
-      color: #333;
-      font-weight: bold;
-      font-size: 15px;
-      margin-bottom: 2px;
-      letter-spacing: 0.06em;
-    }
-    .qabox .meta {
-      color: #444;
-      font-size: 13px;
-      font-weight: normal;
-    }
-    .qabox .question {
-      font-size: 15px;
-      color: #252525;
-      padding: 7px 0 0 0;
-      line-height: 1.6;
-      min-height: 47px;
-      white-space: pre-line;
-    }
-
-    /* ANSWER box */
-    .answerbox {
-      background: #fcfcfc;
-      border: 1px solid #e5e5e5;
-      border-radius: 2px;
-      margin-bottom: 10px;
-      padding: 13px 16px 13px 16px;
-      display: flex;
-      align-items: flex-start;
-      min-height: 78px;
-      position: relative;
-    }
-    .answerbox .image-placeholder {
-      flex: none;
-      width: 22px;
-      height: 22px;
-      background: #1a46c2;
-      margin-top: 2px;
-      margin-right: 12px;
-      border-radius: 2px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      overflow: hidden;
-    }
-    .answerbox .image-placeholder img {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
-      border-radius: 2px;
-      display: block;
-      background: #1a46c2;
-    }
-    .answerbox .qa-content {
-      flex: 1 1 auto;
-    }
-    .answerbox .answered {
-      color: #333;
-      font-weight: bold;
-      font-size: 15px;
-      margin-bottom: 2px;
-      letter-spacing: 0.06em;
-      display: inline;
-    }
-    .answerbox .meta {
-      color: #444;
-      font-size: 13px;
-      font-weight: normal;
-    }
-
-    .answerbox .answer {
-      font-size: 15px;
-      color: #252525;
-      padding: 7px 0 0 0;
-      line-height: 1.6;
-      min-height: 36px;
-      white-space: pre-line;
-    }
-
-    /* Answer toolbar */
-    .answerbox .toolbar {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      margin-left: 10px;
-      margin-top: 4px;
-      gap: 0;
-      height: 22px;
-    }
-    .answerbox .toolbar .vote-box {
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-      gap: 2px;
-    }
-    .answerbox .toolbar .vote-block {
-      width: 34px;
-      height: 22px;
-      background: #1a46c2;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: #fff;
-      font-size: 15px;
-      font-weight: bold;
-      border-radius: 2px;
-      margin-right: 2px;
-      position: relative;
-      margin-left: 0;
-    }
-    .answerbox .toolbar .vote-block:last-child {
-      margin-right: 6px;
-    }
-    .answerbox .toolbar .vote-block img {
-      display: inline;
-      vertical-align: middle;
-    }
-
-    .answerbox .toolbar .reply-link {
-      color: #3586f4;
-      background: none;
-      border: none;
-      font-size: 15px;
-      font-weight: bold;
-      padding: 0 4px;
-      text-decoration: underline;
-      cursor: pointer;
-      margin-left: 0;
-      margin-top: 0;
-    }
-
-    .answerbox .toolbar .reply-link:focus,
-    .answerbox .toolbar .reply-link:hover {
-      text-decoration: underline;
-      outline: 2px solid #005bea;
-      outline-offset: 2px;
-    }
-
-    /* Related questions */
-    .related-section {
-      margin-top: 18px;
-      margin-bottom: 4px;
-      padding-bottom: 13px;
-      border-bottom: 1px solid #ececec;
-    }
-    .related-title {
-      font-size: 16px;
-      color: #333;
-      font-weight: bold;
-      margin-bottom: 8px;
-    }
-    .related-list {
-      width: 100%;
-      background: #fafafa;
-    }
-    .related-item {
-      border-bottom: 1px solid #e9e9e9;
-      display: flex;
-      align-items: flex-start;
-      font-size: 15px;
-      background: #fff;
-      padding: 0;
-      min-height: 38px;
-    }
-    .related-item:last-child {
-      border-bottom: none;
-    }
-    .related-link {
-      font-size: 15px;
-      color: #3273ce;
-      text-decoration: underline;
-      display: inline-block;
-      padding: 10px 0 0 0;
-      margin-bottom: 1px;
-      max-width: 480px;
-      word-break: break-word;
-      outline: none;
-    }
-    .related-meta {
-      display: block;
-      color: #666;
-      font-size: 13px;
-      margin: 1px 0 9px 0;
-    }
-    .related-count {
-      flex: none;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-end;
-      min-width: 52px;
-      padding: 7px 8px 0 0;
-      font-size: 15px;
-      color: #777;
-      font-weight: normal;
-      text-align: right;
-    }
-    .related-count .num {
-      font-size: 18px;
-      font-weight: bold;
-      color: #1a46c2;
-    }
-
-    @media (max-width: 1000px) {
-      .container {
-        flex-direction: column;
-        padding: 0;
-      }
-      .sidebar {
-        width: auto;
-        min-width: 0;
-        margin: 0 0 10px 0;
-      }
-    }
-
-    /* ASK A QUESTION form */
-    .ask-section {
-      margin-top: 30px;
-      margin-bottom: 65px;
-      background: #fff;
-      border-radius: 2px;
-      border: none;
-      box-shadow: none;
-      width: 98%;
-      max-width: 740px;
-      min-width: 400px;
-      padding: 0;
-    }
-    .ask-section .ask-header {
-      background: #f4a415;
-      color: #fff;
-      font-size: 18px;
-      font-weight: bold;
-      padding: 12px 0 13px 18px;
-      border-radius: 2px 2px 0 0;
-      border-bottom: 1px solid #e59e17;
-      letter-spacing: 0.7px;
-    }
-    .ask-form {
-      background: #fff;
-      padding: 23px 25px 30px 25px;
-      border: 1px solid #e7e7e7;
-      border-top: none;
-      border-radius: 0 0 2px 2px;
-      font-size: 15px;
-    }
-    .ask-form label {
-      display: block;
-      font-weight: bold;
-      font-size: 15px;
-      margin: 7px 0 6px 1px;
-      color: #3a3c3d;
-      letter-spacing: 0.01em;
-    }
-    .ask-form input[type="text"],
-    .ask-form select {
-      width: 342px;
-      max-width: 100%;
-      font-size: 15px;
-      padding: 3px 5px;
-      margin-bottom: 8px;
-      border: 1px solid #cecece;
-      border-radius: 2px;
-    }
-    .ask-form select {
-      margin-right: 13px;
-      margin-left: 0;
-    }
-    .ask-form textarea {
-      width: 97%;
-      max-width: 99%;
-      min-width: 300px;
-      min-height: 86px;
-      font-size: 15px;
-      padding: 5px 8px;
-      margin-top: 5px;
-      margin-bottom: 13px;
-      border: 1px solid #cecece;
-      border-radius: 2px;
-      resize: vertical;
-      font-family: Arial, Helvetica, "Segoe UI", Verdana, sans-serif;
-    }
-    .ask-form .summary-label {
-      font-weight: normal;
-      margin-top: 4px;
-      margin-right: 6px;
-      font-size: 15px;
-      color: #444;
-      display: inline-block;
-    }
-    .ask-form .input-row {
-      margin-bottom: 10px;
-    }
-    .ask-form .categories-label {
-      margin-right: 8px;
-      display: inline-block;
-      font-size: 15px;
-      font-weight: bold;
-      color: #333;
-    }
-    .ask-form .details-label {
-      font-size: 15px;
-      font-weight: normal;
-      color: #555;
-      margin-bottom: 3px;
-    }
-    .ask-form input[type="submit"],
-    .ask-form button,
-    .ask-form .submit-btn {
-      margin-top: 7px;
-      width: 148px;
-      background: #f4a415;
-      border: 1px solid #f7b640;
-      font-size: 16px;
-      font-weight: bold;
-      color: #fff;
-      border-radius: 2px;
-      padding: 7px 0 7px 0;
-      cursor: pointer;
-    }
-    .ask-form input[type="submit"]:hover,
-    .ask-form button:hover,
-    .ask-form .submit-btn:hover {
-      background: #e99c07;
-      outline: 2px solid #005bea;
-      outline-offset: 2px;
-    }
-
-    .ask-form .fake-btn {
-      display: block;
-      width: 206px;
-      height: 28px;
-      background: #fafafa;
-      border: 1px solid #e5e5e5;
-      border-radius: 2px;
-      margin-top: 16px;
-      margin-bottom: 2px;
-      cursor: pointer;
-      font-weight: bold;
-      color: #888;
-      font-size: 15px;
-    }
-
-    /* FOOTER */
-    .page-footer {
-      background: #f4a415;
-      color: #fff;
-      font-size: 15px;
-      font-weight: normal;
-      width: 100%;
-      min-width: 1060px;
-      display: block;
-      text-align: center;
-      position: fixed;
-      left: 0;
-      bottom: 32px;
-      padding: 0 0;
-      border: none;
-      z-index:100;
-      height: 33px;
-      line-height: 33px;
-      box-sizing: border-box;
-    }
-    .page-footer a {
-      color: #fff;
-      text-decoration: underline;
-      font-weight: bold;
-      outline: 2px solid transparent;
-      outline-offset: 2px;
-    }
-    .page-footer a:focus,
-    .page-footer a:hover {
-      color: #fff;
-      outline: 2px solid #005bea;
-      outline-offset: 2px;
-      background: #f39f18;
-    }
-    .copyright-bar {
-      background: #e99c07;
-      color: #fff;
-      font-size: 13px;
-      font-weight: normal;
-      width: 100%;
-      min-width: 1060px;
-      display: block;
-      text-align: center;
-      position: fixed;
-      left: 0;
-      bottom: 0;
-      padding: 0 0;
-      border: none;
-      height: 29px;
-      line-height: 29px;
-      box-sizing: border-box;
-    }
-
-    /* Utility */
-    .visually-hidden {
-      position: absolute;
-      overflow: hidden;
-      clip: rect(1px, 1px, 1px, 1px);
-      height: 1px;
-      width: 1px;
-      padding: 0;
-      border: 0;
-    }
-
-    @media (max-width: 1200px) {
-      .main-header,
-      .container,
-      .breadcrumb,
-      .page-footer,
-      .copyright-bar {
-        min-width: 745px;
-        width: auto;
-      }
-    }
-    @media (max-width: 700px) {
-      .main-header,
-      .container,
-      .breadcrumb,
-      .sidebar,
-      .main-content {
-        padding: 0 2vw;
-        width: 98vw;
-        min-width: 0;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Mockup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #dcdcdc;
+            padding: 10px 20px;
+        }
+        header .nav-right {
+            float: right;
+        }
+        header a {
+            text-decoration: none;
+            color: #ff6600;
+            margin-left: 10px;
+        }
+        .breadcrumb {
+            font-size: 14px;
+            margin: 20px;
+        }
+        .breadcrumb a {
+            color: #0033cc;
+            text-decoration: none;
+        }
+        .sidebar {
+            width: 250px;
+            float: left;
+            background-color: #ffcc00;
+            padding: 10px;
+        }
+        .sidebar h3 {
+            font-size: 18px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .content {
+            padding: 20px;
+            margin-left: 250px;
+        }
+        .post, .answer {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #dcdcdc;
+        }
+        .post-header, .answer-header {
+            border-bottom: 1px solid #dcdcdc;
+            margin-bottom: 15px;
+        }
+        .user-image {
+            float: left;
+            width: 20px;
+            height: 20px;
+            background-color: #0000ff;
+            margin-right: 10px;
+        }
+        .post-meta, .answer-meta {
+            font-size: 14px;
+            color: #666;
+        }
+        .text {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .answer {
+            margin-left: 30px;
+        }
+        .related-questions {
+            font-size: 18px;
+            margin-top: 20px;
+        }
+        .question-list {
+            list-style: none;
+            padding: 0;
+        }
+        .question-list li {
+            margin: 10px 0;
+        }
+        .question-list .question-meta, .question-list .answer-count {
+            font-size: 14px;
+            color: #666;
+        }
+        .question-list .question-meta {
+            margin-top: 5px;
+        }
+        .ask-question {
+            margin-top: 20px;
+            background-color: #ffcc00;
+            padding: 20px;
+        }
+        .ask-question h3 {
+            font-size: 20px;
+        }
+        .ask-question form {
+            margin-top: 10px;
+        }
+        .ask-question input[type="text"], 
+        .ask-question textarea,
+        .ask-question select {
+            width: 100%;
+            margin-bottom: 10px;
+            padding: 8px;
+            font-size: 16px;
+            border: 1px solid #dcdcdc;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-  <nav class="top-bar" aria-label="Site tools">
-    <span style="flex:1"></span>
-    <a href="#" tabindex="0">Community</a>
-    <a href="#" tabindex="0">Answers</a>
-    <a class="app-btn" href="#" tabindex="0">
-      <img src="src/placeholder.jpg" width="46" height="17" alt="App">
-    </a>
-  </nav>
-
-  <header class="main-header" role="banner">
-    <div class="logo-box" aria-hidden="true">
-      <img src="src/placeholder.jpg" width="420" height="27" alt="">
+    <header>
+        <div class="nav-left">
+            <img src="src/placeholder.jpg" alt="Logo" style="width: 100px; height: 30px;">
+        </div>
+        <div class="nav-right">
+            <a href="#">Community</a>
+            <a href="#">Answers</a>
+            <a href="#">App</a>
+        </div>
+    </header>
+    <div class="breadcrumb">
+        <a href="#">Home</a> / <a href="#">Answers</a> / <a href="#">Destinations</a> / <a href="#">Guangzhou</a> / <a href="#">Transportation</a> /
     </div>
-  </header>
-
-  <div class="breadcrumb" aria-label="Breadcrumb">
-    <a href="#">Home</a> / 
-    <a href="#">Answers</a> / 
-    <a href="#">Destinations</a> / 
-    <a href="#">Guangzhou</a> / 
-    <a href="#">Transportation</a>
-  </div>
-
-  <main class="container" role="main">
-    <!-- Sidebar -->
-    <aside class="sidebar" aria-label="Q &amp; A Categories">
-      <nav class="cat-box">
-        <div class="cat-title">Q &amp; A Categories</div>
+    <div class="sidebar">
+        <h3>Q & A Categories</h3>
         <ul>
-          <li>Destinations</li>
-          <li>Visa &amp; Embassy</li>
-          <li>Tours</li>
-          <li>Flights</li>
-          <li>Trains</li>
-          <li>Weather</li>
-          <li>Great Wall</li>
-          <li>Culture</li>
+            <li>Destinations</li>
+            <li>Visa & Embassy</li>
+            <li>Tours</li>
+            <li>Flights</li>
+            <li>Trains</li>
+            <li>Weather</li>
+            <li>Great Wall</li>
+            <li>Culture</li>
         </ul>
-      </nav>
-    </aside>
-
-    <!-- Main content -->
-    <section class="main-content">
-      <!-- Question -->
-      <section class="qabox" aria-label="Question">
-        <figure class="image-placeholder">
-          <img src="src/placeholder.jpg" width="26" height="26" alt="">
-        </figure>
-        <div class="qa-content">
-          <div class="asked" id="q1">
-            Asked by Mr.eric from israel
-            <span class="meta">| Jun. 02, 2009 04:24</span>
-          </div>
-          <div class="meta" aria-label="Question title"><strong>About:</strong> How do you get from Guangzhou airport to the city?</div>
-          <div class="question" aria-label="Question details">
-Hi,
-1. I'll arrive at GZ airport at 23:00 and need to go to the 'riverside international youth hostel'. I'm planning on takeing line 1 into town. from there - can I take the metro???? is it working all night????
-2. I'll not have Chinese money on me and I read that the bank at the airport closes at 21:00. are there ATMs at the airport???? if not - what to do????
-thanks
-eric
-          </div>
-        </div>
-      </section>
-
-      <!-- Answer -->
-      <section class="answerbox" aria-label="Answer">
-        <figure class="image-placeholder">
-          <img src="src/placeholder.jpg" width="22" height="22" alt="">
-        </figure>
-        <div class="qa-content">
-          <span class="answered" id="a1">
-            Answered by Mr.Qi from China
-            <span class="meta">| Jun. 03, 2009 22:11</span>
-          </span>
-          <div class="answer" aria-label="Answer details">
-Hello!
-1. Suggest you take a taxi to the hotel aftering arriving in the town. Subway Line 1 passes Fangcun Station which is the neart metro station to the hotel, but subway are not working after 23:30. I think you gona miss it.
-2. Yes, there are ATMs at the terminal, they are of bank like, Bank of China and several others.
-Good luck~
-          </div>
-        </div>
-        <div class="toolbar" aria-label="Answer actions">
-          <div class="vote-box">
-            <div class="vote-block" aria-label="Upvotes" tabindex="0">0</div>
-            <div class="vote-block" aria-label="Downvotes" tabindex="0">0</div>
-          </div>
-          <button class="reply-link" aria-label="Reply" tabindex="0">Reply</button>
-        </div>
-      </section>
-
-      <!-- Related Questions -->
-      <section class="related-section" aria-labelledby="related-questions-title">
-        <div class="related-title" id="related-questions-title">Related Questions:</div>
-        <div class="related-list" role="list">
-          <!-- Related item 1 -->
-          <div class="related-item" role="listitem">
-            <div style="flex:1 1 auto;">
-              <a class="related-link" href="#">Is Guangzhou Baiyun Airport far away from my hotel in Liwan District?</a>
-              <span class="related-meta">Asked by jac from singapore | Nov. 04, 2012 20:45</span>
-            </div>
-            <div class="related-count">
-              1<br>
-              answer
-            </div>
-          </div>
-          <!-- Related item 2 -->
-          <div class="related-item" role="listitem">
-            <div style="flex:1 1 auto;">
-              <a class="related-link" href="#">
-                how to go to changsha shuyuan international youth hostel from airport?anyon...
-              </a>
-              <span class="related-meta">Asked by firdaus from Malaysia | Sep. 21, 2017 01:29</span>
-            </div>
-            <div class="related-count">
-              1<br>
-              answer
-            </div>
-          </div>
-          <!-- Related item 3 -->
-          <div class="related-item" role="listitem">
-            <div style="flex:1 1 auto;">
-              <a class="related-link" href="#">
-                Hi I will arrive in Pudong Airport at 10.15 p.m. We will stay at MINGTOWN ...
-              </a>
-              <span class="related-meta">Asked by Mr.Andrea from italy | Feb. 21, 2011 02:17</span>
-            </div>
-            <div class="related-count">
-              1<br>
-              answer
-            </div>
-          </div>
-          <!-- Related item 4 -->
-          <div class="related-item" role="listitem">
-            <div style="flex:1 1 auto;">
-              <a class="related-link" href="#">
-                hi two of us will arrive Pudong International Airport on 27/10/10 and w...
-              </a>
-              <span class="related-meta">Asked by Mrs.lisa chan from australia | Sep. 28, 2010 22:44</span>
-            </div>
-            <div class="related-count">
-              1<br>
-              answer
-            </div>
-          </div>
-          <!-- Related item 5 -->
-          <div class="related-item" role="listitem">
-            <div style="flex:1 1 auto;">
-              <a class="related-link" href="#">
-                The best transportation from Tianjin Airport to Peking Uni International Yo...
-              </a>
-              <span class="related-meta">Asked by Azila from Malaysia | Nov. 20, 2011 00:09</span>
-            </div>
-            <div class="related-count">
-              1<br>
-              answer
-            </div>
-          </div>
-          <!-- Related item 6 -->
-          <div class="related-item" role="listitem">
-            <div style="flex:1 1 auto;">
-              <a class="related-link" href="#">
-                How to go to Guilin airport from Ming Palace International Youth Hostel?
-              </a>
-              <span class="related-meta">Asked by chloe from Malaysia | Dec. 24, 2017 18:38</span>
-            </div>
-            <div class="related-count">
-              1<br>
-              answer
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Ask a Question Section -->
-      <section class="ask-section" aria-labelledby="ask-question-title">
-        <div class="ask-header" id="ask-question-title">Ask a Question</div>
-        <form class="ask-form" autocomplete="off" role="form" aria-label="Ask a Question">
-          <div class="input-row">
-            <label class="summary-label" for="ask-summary" id="ask-summary-label"> </label>
-            <input type="text" id="ask-summary" name="question-summary" maxlength="100" aria-labelledby="ask-summary-label" aria-required="false" tabindex="0" autocomplete="off">
-          </div>
-          <div class="input-row">
-            <label class="categories-label" for="category" id="category-label">Categories:</label>
-            <select id="category" name="category" aria-labelledby="category-label" tabindex="0">
-              <option value="guangzhou" selected>Guangzhou</option>
-            </select>
-          </div>
-          <div class="input-row">
-            <label class="details-label" for="details" id="details-label">Details (optional) (2,000 characters)</label>
-            <textarea id="details" name="details" maxlength="2000" aria-labelledby="details-label" tabindex="0"></textarea>
-          </div>
-          <div class="input-row">
-            <button type="submit" class="fake-btn" tabindex="0"> </button>
-          </div>
-        </form>
-      </section>
-    </section>
-  </main>
-
-  <footer>
-    <div class="page-footer" role="contentinfo">
-      <a href="#">About Us &amp; Contact Us</a>
     </div>
-    <div class="copyright-bar">
-      Copyright &copy; 1998-2023 All rights reserved.
+    <div class="content">
+        <div class="post">
+            <div class="post-header">
+                <div class="user-image"></div>
+                <div class="post-meta">
+                    Asked by Mr.eric from israel | Jun. 02, 2009 04:24
+                </div>
+            </div>
+            <div class="text">
+                About: How do you get from Guangzhou airport to the city?<br><br>
+                Hi,<br>
+                1. I'll arrive at GZ airport at 23:00 and need to go to the "riverside international youth hostel". I'm planning on takeing line 1 into town. from there - can I take the metro???? is it working all night????<br>
+                2. I'll not have Chinese money on me and I read that the bank at the airport closes at 21:00. are there ATMs at the airport???? if not - what to do????<br>
+                thanks<br>
+                eric
+            </div>
+        </div>
+        <div class="answer">
+            <div class="answer-header">
+                <div class="user-image"></div>
+                <div class="answer-meta">
+                    Answered by Mr.Qi from China | Jun. 03, 2009 22:11
+                </div>
+                <a href="#" style="float: right;">Reply</a>
+            </div>
+            <div class="text">
+                Hello!<br>
+                1. Suggest you take a taxi to the hotel aftering arriving in the town. Subway Line 1 passes Fangcun Station which is the neat metro station to the hotel, but subway are not working after 23:30. I think you gonna miss it.<br>
+                2. Yes, there are ATMs at the terminal, they are of bank like, Bank of China and several others. Good luck~
+            </div>
+        </div>
+        <div class="related-questions">
+            Related Questions:
+        </div>
+        <ul class="question-list">
+            <li>
+                <a href="#">Is Guangzhou Baiyun Airport far away from my hotel in Liwan District?</a>
+                <div class="question-meta">Asked by jac from singapore | Nov. 04, 2012 20:45</div>
+                <div class="answer-count">1 answer</div>
+            </li>
+            <li>
+                <a href="#">how to go to changsha shuyuan international youth hostel from airport?anyon...</a>
+                <div class="question-meta">Asked by firdaus from Malaysia | Sep. 21, 2017 01:29</div>
+                <div class="answer-count">1 answer</div>
+            </li>
+            <li>
+                <a href="#">Hi I will arrive in Pudong Airport at 10.15 p.m. We will stay at MINGTOWN ...</a>
+                <div class="question-meta">Asked by Mr.Andrea from italy | Feb. 21, 2011 02:17</div>
+                <div class="answer-count">1 answer</div>
+            </li>
+            <li>
+                <a href="#">hi two of us will arrive Pudong International Airport on 27/10/10 and w...</a>
+                <div class="question-meta">Asked by Mrs.lisa chan from australia | Sep. 28, 2010 22:44</div>
+                <div class="answer-count">1 answer</div>
+            </li>
+            <li>
+                <a href="#">The best transportation from Tianjin Airport to Peking Uni International Yo...</a>
+                <div class="question-meta">Asked by Azila from Malaysia | Nov. 20, 2011 00:09</div>
+                <div class="answer-count">1 answer</div>
+            </li>
+            <li>
+                <a href="#">How to go to Guilin airport from Ming Palace International Youth Hostel?</a>
+                <div class="question-meta">Asked by chloe from Malaysia | Dec. 24, 2017 18:38</div>
+                <div class="answer-count">1 answer</div>
+            </li>
+        </ul>
+        <div class="ask-question">
+            <h3>Ask a Question</h3>
+            <form>
+                <input type="text" placeholder="Question Title">
+                <label for="category">Categories: </label>
+                <select id="category">
+                    <option value="guangzhou">Guangzhou</option>
+                </select>
+                <input type="text" placeholder="Question Summary (100 characters)">
+                <textarea rows="4" placeholder="Details (optional) (2,000 characters)"></textarea>
+                <input type="text" placeholder="Email (required)">
+                <input type="submit" value="Submit">
+            </form>
+        </div>
     </div>
-  </footer>
+    <footer>
+        About Us & Contact Us <br>
+        Copyright © 1998-2023 All rights reserved.
+    </footer>
 </body>
 </html>

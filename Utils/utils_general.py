@@ -8,10 +8,12 @@ import sys
 import shutil
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from LLMs.Strategies.openaiStrategy import OpenAIStrategy
-from LLMs.Strategies.geminiStrategy import GeminiStrategy
-from LLMs.Strategies.llamaStrategy import LlamaStrategy
-from LLMs.Strategies.qwenStrategy import QwenStrategy
+from LLMs.Strategies.openaiApiStrategy import OpenAIStrategy
+from LLMs.Strategies.geminiApiStrategy import GeminiStrategy
+from LLMs.Strategies.llamaLocalStrategy import LlamaStrategy
+from LLMs.Strategies.qwenLocalStrategy import QwenStrategy
+from LLMs.Strategies.hfFinetunedStrategy import HfFinetunedStrategy
+from LLMs.Strategies.hfEndpointStrategy import HfEndpointStrategy
 
 
 def util_load_keys(source):
@@ -108,11 +110,22 @@ def get_model_strategy(name):
         case "gemini":
             strategy = GeminiStrategy(api_key=util_load_keys("gemini"))
             return strategy
-        case "llama":
+        case "llama_local":
             strategy = LlamaStrategy()
             return strategy
-        case "qwen":
+        case "llama_hf":
+            endpoint_llama = None
+            strategy = HfEndpointStrategy(endpoint_llama)
+            return strategy
+        case "qwen_local":
             strategy = QwenStrategy()
+            return strategy
+        case "qwen_hf":
+            endpoint_qwen = "https://e4gs6l3vjhgvwg2f.us-east-1.aws.endpoints.huggingface.cloud/v1/"
+            strategy = HfEndpointStrategy(endpoint_qwen)
+            return strategy
+        case "finetuned_hf":
+            strategy = HfFinetunedStrategy()
             return strategy
         case _:
             raise ValueError(f"Model {name} not supported.")

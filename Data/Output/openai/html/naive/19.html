@@ -1,379 +1,127 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FETCH 5.8 - File Name Characters</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css?family=Georgia:400,700|Inter:400,700" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: #fff;
-    }
-    body {
-      font-family: 'Inter', Arial, sans-serif;
-      color: #3b3b3b;
-      margin: 0;
-      min-width: 800px;
-    }
-    .top-bar {
-      width: 100%;
-      height: 8px;
-      background: #19344e;
-      margin: 0 0 0 0;
-      position: relative;
-      z-index: 10;
-    }
-    .top-bar-secondary {
-      width: 100%;
-      height: 4px;
-      background: #e5e5e5;
-      margin: 0 0 0 0;
-      position: relative;
-      z-index: 9;
-    }
-    .main-wrapper {
-      width: 734px;
-      margin: 36px auto 0 auto;
-    }
-    .header-box {
-      background: #19344e;
-      border-radius: 0 0 3px 3px;
-      padding: 0;
-      width: 100%;
-      min-height: 197px;
-      position: relative;
-      margin-bottom: 32px;
-    }
-    .header-content {
-      color: white;
-      padding: 36px 42px 24px 34px;
-      font-family: 'Georgia', serif;
-      position: relative;
-    }
-    .header-appname {
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      font-size: 19px;
-      font-family: 'Inter', Arial, sans-serif;
-      font-weight: normal;
-      display: inline-block;
-      margin-bottom: 6px;
-      letter-spacing: 2px;
-    }
-    .header-appname-ver {
-      color: #9ed0e3;
-      font-size: 17px;
-      font-style: normal;
-      display: inline-block;
-      margin-left: 6px;
-      vertical-align: middle;
-      font-family: 'Inter', Arial, sans-serif;
-      letter-spacing: 0;
-    }
-    .header-title {
-      display: block;
-      font-size: 33px;
-      font-weight: normal;
-      line-height: 1.17;
-      letter-spacing: -0.9px;
-      margin-top: 6px;
-      margin-bottom: 14px;
-    }
-    .header-support {
-      margin-top: 16px;
-      font-size: 15px;
-      font-family: 'Inter', Arial, sans-serif;
-      letter-spacing: 0.03em;
-    }
-    .header-support a {
-      color: #9ed0e3;
-      text-transform: uppercase;
-      text-decoration: none;
-      font-weight: 500;
-      position: relative;
-      padding-bottom: 3px;
-      border-bottom: 2px solid #3b5773;
-      transition: border 0.2s;
-    }
-    .header-support a:hover {
-      border-bottom: 2px solid #48b0da;
-    }
-    .main-content {
-      width: 100%;
-      margin-top: 32px;
-    }
-    .thread-title {
-      font-family: 'Inter', Arial, sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      color: #872b00;
-      letter-spacing: 0.05em;
-      margin-bottom: 7px;
-      margin-top: 0;
-      text-transform: uppercase;
-      display: block;
-    }
-    .thread-title small {
-      font-size: 13px;
-      font-weight: 400;
-      color: #999;
-      text-transform: none;
-      margin-left: 3px;
-    }
-    .alert-box {
-      background: #e6635a;
-      color: #2a1d1a;
-      border-radius: 2px;
-      font-family: 'Inter', Arial, sans-serif;
-      font-size: 13.3px;
-      padding: 9px 16px;
-      margin-bottom: 16px;
-      margin-top: 6px;
-      border: 1px solid #db6057;
-      box-sizing: border-box;
-      width: 100%;
-    }
-    .thread-meta {
-      font-size: 14px;
-      margin-bottom: 9px;
-      margin-top: 22px;
-      color: #2e2e2e;
-      list-style: disc;
-      padding-left: 24px;
-    }
-    .thread-meta li {
-      line-height: 1.7;
-    }
-    .thread-meta strong {
-      font-weight: 700;
-    }
-    .posts-section {
-      border: 0;
-      margin-top: 7px;
-    }
-    .post {
-      border-bottom: 1px solid #e8e8e8;
-      padding: 21px 0 14px 0;
-    }
-    .post:last-child {
-      border-bottom: none;
-      padding-bottom: 0;
-    }
-    .author-block {
-      font-family: 'Inter', Arial, sans-serif;
-      font-size: 15px;
-      font-weight: 700;
-      color: #202d38;
-      margin-bottom: 3px;
-      letter-spacing: 0;
-    }
-    .author-role {
-      display: inline-block;
-      font-size: 12px;
-      font-weight: 400;
-      color: #999;
-      margin-left: 5px;
-      position: relative;
-      top: -1px;
-      letter-spacing: 0.04em;
-    }
-    .post-content {
-      font-family: 'Inter', Arial, sans-serif;
-      font-size: 15px;
-      color: #2e2e2e;
-      line-height: 1.65;
-      margin-bottom: 15px;
-      margin-top: 4px;
-      letter-spacing: 0;
-      word-break: break-word;
-    }
-    .post-meta {
-      color: #999;
-      font-family: 'Inter', Arial, sans-serif;
-      font-size: 12.3px;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-top: 0;
-    }
-    .post-meta .meta-hash {
-      color: #9ed0e3;
-      font-size: 13px;
-      margin-left: 9px;
-      text-decoration: none;
-      vertical-align: middle;
-    }
-    .post-meta .meta-hash:hover {
-      text-decoration: underline;
-    }
-    .reply-signoff {
-      margin-top: 13px;
-      margin-bottom: 0;
-    }
-    .reply-signoff strong {
-      display: inline-block;
-      margin-bottom: 2px;
-      font-family: 'Inter', Arial, sans-serif;
-      letter-spacing: 0.03em;
-    }
-    .bottom-link-row {
-      border-top: 1px solid #e8e8e8;
-      padding-top: 18px;
-      margin-top: 33px;
-      margin-bottom: 31px;
-      text-align: right;
-    }
-    .bottom-link-row a {
-      font-family: 'Inter', Arial, sans-serif;
-      font-size: 15px;
-      color: #19344e;
-      text-decoration: underline;
-      font-weight: 500;
-      letter-spacing: 0.03em;
-      transition: color 0.2s;
-    }
-    .bottom-link-row a:hover {
-      color: #3483b3;
-    }
-    .topic-closed-title {
-      font-size: 18px;
-      color: #19344e;
-      font-family: 'Inter', Arial, sans-serif;
-      font-weight: 500;
-      margin-bottom: 6px;
-      margin-top: 0;
-      letter-spacing: 0;
-    }
-    .topic-closed-desc {
-      font-size: 15px;
-      color: #474747;
-      font-family: 'Inter', Arial, sans-serif;
-      font-weight: 400;
-      margin-bottom: 0;
-      margin-top: 0;
-      letter-spacing: 0;
-    }
-    .footer {
-      width: 100%;
-      text-align: center;
-      margin: 40px auto 14px auto;
-      font-family: 'Inter', Arial, sans-serif;
-      font-size: 12px;
-      color: #bbb;
-      letter-spacing: 0.05em;
-      font-weight: 400;
-      text-transform: uppercase;
-    }
-    .main-wrapper hr {
-      border: none;
-      border-top: 1px solid #f2f2f2;
-      margin: 43px 0 28px 0;
-    }
-    /* Responsive bounding box for exact width */
-    @media screen and (max-width: 780px) {
-      .main-wrapper {
-        width: 99vw;
-        min-width: 0;
-      }
-      .header-box {
-        min-width: 0;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+        .header {
+            background-color: #1e3a68;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .header span {
+            font-size: 14px;
+            vertical-align: top;
+        }
+        .header a {
+            color: #a9c7e8;
+            text-decoration: none;
+            font-size: 12px;
+            display: block;
+            margin-top: 20px;
+        }
+        .nav {
+            background-color: #1e3a68;
+            height: 4px;
+        }
+        .content {
+            padding: 20px;
+            max-width: 800px;
+            margin: auto;
+            font-size: 14px;
+        }
+        .highlight {
+            background-color: #f5f7fa;
+            border-left: 4px solid #1e3a68;
+            margin: 10px 0;
+            padding: 10px;
+        }
+        .alert {
+            background-color: #e85959;
+            color: white;
+            padding: 10px;
+            margin: 10px 0;
+        }
+        .post {
+            padding: 10px 0;
+        }
+        .post-author {
+            font-weight: bold;
+        }
+        .post-roles {
+            color: #777;
+            font-size: 12px;
+        }
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #777;
+            border-top: 1px solid #ccc;
+        }
+        .footer a {
+            color: #1e3a68;
+            text-decoration: none;
+        }
+    </style>
 </head>
 <body>
-  <div class="top-bar"></div>
-  <div class="top-bar-secondary"></div>
-  <div class="main-wrapper">
-
-    <div class="header-box">
-      <div class="header-content">
-        <div>
-          <span class="header-appname">FETCH</span>
-          <span class="header-appname-ver">5.8</span>
-        </div>
-        <span class="header-title">
-          Your best friend for<br>
-          file transfer.
-        </span>
-        <div class="header-support">
-          <a href="#">Support</a>
-        </div>
-      </div>
+    <div class="header">
+        <h1>FETCH <span>5.8</span></h1>
+        <h2>Your best friend for<br>file transfer.</h2>
+        <a href="#">SUPPORT</a>
     </div>
-    <div class="main-content">
-
-      <span class="thread-title">
-        FILE NAME CHARACTERS
-        <small>(2 posts)</small>
-      </span>
-      <div class="alert-box">
-        This is an archived topic. The information in it is likely to be out-of-date and no longer applicable to current versions of Fetch.
-      </div>
-      <ul class="thread-meta">
-        <li>Started 21 years ago by <span>gorenstein</span></li>
-        <li><strong>Latest reply</strong> 21 years ago from Jim Matthews</li>
-      </ul>
-
-      <div class="posts-section">
-        <div class="post">
-          <div class="author-block">
-            gorenstein
-            <span class="author-role">Member</span>
-          </div>
-          <div class="post-content">
-            In uploading files from a Mac to a Windows system, certain characters that are not valid in Windows file names are "escaped". For example a forward slash (/) is converted to "%2F".
-
-            <br><br>
-            Other such characters go unescaped and cause transfers to fail. Examples are asterisks (*) and double quotes (").
-            <br><br>
-            Since Fetch is capable of escaping some illegal characters, is there any way to get it to do the others?
-            <br><br>
-            Also, is there some way to provide a more desirable substitution. For example, I would prefer to have the forward slashes wind up as dashes.
-          </div>
-          <div class="post-meta">
-            POSTED 21 YEARS AGO
-            <a href="#" class="meta-hash">#</a>
-          </div>
+    <div class="nav"></div>
+    <div class="content">
+        <h2>FILE NAME CHARACTERS (2 posts)</h2>
+        <div class="alert">
+            This is an archived topic. The information in it is likely to be out-of-date and no longer applicable to current versions of Fetch.
+        </div>
+        <div class="highlight">
+            <ul>
+                <li>Started 21 years ago by gorenstein</li>
+                <li>Latest reply 21 years ago from Jim Matthews</li>
+            </ul>
         </div>
         <div class="post">
-          <div class="author-block">
-            Jim Matthews
-            <span class="author-role">Administrator</span>
-          </div>
-          <div class="post-content">
-            There isn't currently a way to do this, but it's a great suggestion.
-
-            <div class="reply-signoff">
-              Thanks,<br>
-              <strong>Jim Matthews</strong><br>
-              Fetch Softworks
-            </div>
-          </div>
-          <div class="post-meta">
-            POSTED 21 YEARS AGO
-            <a href="#" class="meta-hash">#</a>
-          </div>
+            <p class="post-author">gorenstein <span class="post-roles">Member</span></p>
+            <p>In uploading files from a Mac to a Windows system, certain characters that are not valid in Windows file names are “escaped”. For example a forward slash (/) is converted to “%2F”.</p>
+            <p>Other such characters go unescaped and cause transfers to fail. Examples are asterisks (*) and double quotes (“).</p>
+            <p>Since Fetch is capable of escaping some illegal characters, is there any way to get it to do the others?</p>
+            <p>Also, is there some way to provide a more desireable substitution. For example, I would prefer to have the forward slashes wind up as dashes.</p>
+            <p class="post-roles">POSTED 21 YEARS AGO <a href="#">#</a></p>
         </div>
-      </div>
-
-      <div class="bottom-link-row">
-        <a href="#">Return to Message Board</a>
-      </div>
-
-      <hr>
-
-      <div class="topic-closed-title">Topic closed</div>
-      <div class="topic-closed-desc">This topic has been closed.</div>
-
-      <div class="footer">
-        &copy; COPYRIGHT 2000 &mdash; 2023 FROM YOUR FRIENDS AT FETCH SOFTWORKS
-      </div>
+        <hr>
+        <div class="post">
+            <p class="post-author">Jim Matthews <span class="post-roles">Administrator</span></p>
+            <p>There isn’t currently a way to do this, but it’s a great suggestion.</p>
+            <p>Thanks,</p>
+            <p>Jim Matthews<br>Fetch Softworks</p>
+            <p class="post-roles">POSTED 21 YEARS AGO <a href="#">#</a></p>
+        </div>
+        <div class="highlight">
+            <a href="#">Return to Message Board</a>
+        </div>
+        <hr>
+        <div class="highlight">
+            <h3>Topic closed</h3>
+            <p>This topic has been closed.</p>
+        </div>
     </div>
-
-  </div>
+    <div class="footer">
+        © COPYRIGHT 2000 — 2023 FROM YOUR FRIENDS AT FETCH SOFTWORKS
+    </div>
 </body>
 </html>

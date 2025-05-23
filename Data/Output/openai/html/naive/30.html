@@ -1,376 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>FREE MP4 MOVIE</title>
-  <link rel="preconnect" href="https://fonts.gstatic.com">
-  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Roboto', Arial, sans-serif;
-      background: #fff;
-      color: #222;
-      margin: 0;
-      min-width: 1000px;
-    }
-    .header {
-      background: #111;
-      width: 100%;
-      padding-top: 28px;
-      padding-bottom: 20px;
-      padding-left: 55px;
-      box-sizing: border-box;
-      letter-spacing: -2px;
-    }
-    .header-title {
-      color: #fff;
-      font-size: 55px;
-      font-weight: 400;
-      margin-bottom: 9px;
-      margin-top: 0;
-      line-height: 1.07;
-      letter-spacing: -2px;
-    }
-    .header-subtitle {
-      font-size: 14px;
-      color: #bcbcbc;
-      margin-top: 0;
-      margin-bottom: 0;
-      letter-spacing: 0;
-      font-weight: 400;
-    }
-    .content-container {
-      width: 100%;
-      margin: 0 auto;
-      background: #fff;
-      position: relative;
-      min-width: 1000px;
-      min-height: 700px;
-      padding: 0;
-    }
-    .main-inner {
-      max-width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-      align-items: flex-start;
-      padding-top: 47px;
-      padding-left: 74px;
-      padding-right: 0;
-      padding-bottom: 0;
-    }
-    .main-content {
-      width: 680px;
-      min-height: 800px;
-      margin-right: 40px;
-    }
-    /* Breadcrumb (hidden part at top) is visually concealed */
-    .post-box {
-      border: 2px solid #ececec;
-      background: #fafafa;
-      box-sizing: border-box;
-      padding: 18px 20px 18px 18px;
-      font-size: 22px;
-      font-weight: 700;
-      letter-spacing: 0.8px;
-      margin-bottom: 27px;
-      width: fit-content;
-      display: block;
-      line-height: 1.18;
-      color: #222;
-    }
-    .post-title {
-      font-size: 40px;
-      font-weight: 700;
-      margin: 0;
-      margin-bottom: 7px;
-      letter-spacing: -1px;
-      color: #222;
-      line-height: 1.08;
-    }
-    .post-meta {
-      font-size: 16px;
-      color: #888;
-      margin-bottom: 28px;
-      margin-top: 0;
-      font-weight: 400;
-    }
-    .post-body {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-    }
-    .post-image {
-      width: 180px;
-      height: 220px;
-      background: #1100ff;
-      margin-right: 28px;
-      flex-shrink: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .post-image img {
-      display: block;
-      width: 180px;
-      height: 220px;
-      background: #1100ff;
-    }
-    .post-desc {
-      font-size: 16px;
-      color: #222;
-      font-weight: 400;
-      margin-top: 0;
-      line-height: 1.45;
-      margin-bottom: 0;
-      max-width: 400px;
-      letter-spacing: 0;
-    }
-    .continue-reading {
-      color: #f44336;
-      font-size: 16px;
-      margin-left: 2px;
-      font-weight: 400;
-      transition: text-decoration 0.2s;
-      text-decoration: none;
-      display: inline-block;
-      margin-top: 21px;
-      margin-bottom: 5px;
-      cursor: pointer;
-    }
-    .continue-reading:hover {
-      text-decoration: underline;
-    }
-    .bottom-image-block {
-      margin: 0 auto;
-      margin-top: 24px;
-      margin-bottom: 24px;
-      width: 260px;
-      height: 170px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .bottom-image-block img {
-      width: 260px;
-      height: 170px;
-      background: #1100ff;
-      display: block;
-    }
-    .post-tags {
-      margin-top: 14px;
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 30px;
-      line-height: 1.8;
-      display: flex;
-      flex-wrap: wrap;
-      gap: 25px;
-    }
-    .post-tags > div {
-      flex: 1 1 0;
-    }
-    .footer {
-      margin-top: 45px;
-      font-size: 13px;
-      color: #888;
-      margin-bottom: 44px;
-      padding-left: 2px;
-    }
-    .sidebar {
-      width: 318px;
-      background: transparent;
-      padding: 0;
-      margin-top: 0;
-      font-size: 16px;
-    }
-    .sidebar-section-title {
-      font-size: 16px;
-      font-weight: 400;
-      color: #f44336;
-      margin-bottom: 12px;
-      margin-top: 0;
-      padding-top: 6px;
-      font-family: 'Roboto', Arial, sans-serif;
-      letter-spacing: 0.02em;
-    }
-    .sidebar-follow {
-      margin-bottom: 12px;
-    }
-    .sidebar-follow-label {
-      color: #f44336;
-      font-size: 15px;
-      font-weight: 400;
-      margin-bottom: 9px;
-      font-family: 'Roboto', Arial, sans-serif;
-      letter-spacing: 0;
-    }
-    .sidebar-search-box {
-      width: 212px;
-      height: 37px;
-      margin-bottom: 11px;
-      box-sizing: border-box;
-      border: 2px solid #dedede;
-      background: #fcfcfc;
-      display: block;
-      font-size: 17px;
-      outline: none;
-      padding-left: 7px;
-      margin-top: 0;
-    }
-    .sidebar-search-box:last-child {
-      margin-bottom: 17px;
-    }
-    .sidebar-categories {
-      font-size: 20px;
-      color: #111;
-      font-weight: 700;
-      letter-spacing: .01em;
-      margin-top: 41px;
-      margin-bottom: 13px;
-      border-bottom: 3px solid #f44336;
-      width: 172px;
-      padding-bottom: 5px;
-      font-family: 'Roboto', Arial, sans-serif;
-      display: block;
-    }
-    .sidebar-category-list {
-      list-style: none;
-      padding-left: 0;
-      margin-top: 0;
-      margin-bottom: 0;
-      font-size: 16px;
-      color: #666;
-      font-weight: 400;
-    }
-    .sidebar-category-list li {
-      padding: 3px 0 3px 0;
-      margin: 0;
-      margin-bottom: 0;
-      border-bottom: 1px solid #ececec;
-      width: 232px;
-      background: none;
-      box-sizing: border-box;
-    }
-    .sidebar-category-list li:last-child {
-      border-bottom: none;
-    }
-    .sidebar-category-list .cat-powered {
-      border: none;
-      font-size: 11px;
-      color: #aaa;
-      font-weight: 400;
-      font-family: 'Roboto', Arial, sans-serif;
-      text-align: right;
-      margin-top: 8px;
-      margin-bottom: 8px;
-      padding: 0;
-      width: 232px;
-    }
-    .sidebar-category-list li strong {
-      color: #222;
-      font-weight: 700;
-      font-family: 'Roboto', Arial, sans-serif;
-    }
-    @media (max-width: 1200px) {
-      .main-inner {
-        flex-direction: column;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-      .main-content, .sidebar {
-        width: 100%;
-        margin-right: 0;
-      }
-      .sidebar {
-        margin-top: 50px;
-        margin-bottom: 50px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Free MP4 Movie</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .header {
+            background-color: #111;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 36px;
+        }
+
+        .header p {
+            margin: 0;
+            font-size: 14px;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .main-content {
+            flex: 3;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .main-content h2 {
+            font-size: 24px;
+            margin-top: 0;
+        }
+
+        .main-content p {
+            font-size: 14px;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .sidebar {
+            flex: 1;
+            background-color: #f5f5f5;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .sidebar h3 {
+            font-size: 18px;
+            margin-top: 0;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .category-list li {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .category-list a {
+            text-decoration: none;
+            color: #111;
+        }
+
+        .highlight {
+            color: red;
+        }
+
+        .placeholder {
+            width: 100%;
+            height: 150px;
+            background-color: blue;
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            color: #666;
+            padding: 20px 0;
+            background-color: #f5f5f5;
+        }
+
+        .post-title {
+            background-color: #eee;
+            padding: 15px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .btn-read-more {
+            color: red;
+            font-weight: bold;
+        }
+
+        .img-placeholders {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .img-placeholder {
+            width: 48%;
+            height: 150px;
+            background-color: blue;
+        }
+    </style>
 </head>
 <body>
-  <header class="header">
-    <h1 class="header-title">FREE MP4 MOVIE</h1>
-    <div class="header-subtitle">DOWNLOAD FREE MP4 MOVIES</div>
-  </header>
-  <div class="content-container">
-    <div class="main-inner">
-      <main class="main-content">
-        <div class="post-box">
-          DOWNLOAD CAPTAIN MARVEL 2019 HD MOVIE POINT
-        </div>
-        <h2 class="post-title">Captain Marvel (2019)</h2>
-        <div class="post-meta">Posted on May 28, 2019 by Jessica Smith</div>
-        <div class="post-body">
-          <div class="post-image">
-            <img src="src/placeholder.jpg" width="180" height="220" alt="">
-          </div>
-          <div class="post-desc">
-            The story follows Carol Danvers as she becomes one of the most powerful heroes in the universe when Earth is trapped in the middle of a galactic war between two alien races. Set in the 90s, Captain Marvel is a…<br>
-            <a class="continue-reading">Continue Reading &rarr;</a>
-          </div>
-        </div>
-        <div class="bottom-image-block">
-          <img src="src/placeholder.jpg" width="260" height="170" alt="">
-        </div>
-        <div class="post-tags">
-          <div>
-            2019 Movies, Action Movies, Adventure Movies, Sci-Fi Movies
-          </div>
-          <div>
-            Download Ben Mendelsohn Movies, Download Captain Marvel 2019 hd movie point, Download Captain Marvel 2019 movies, Download Captain Marvel 2019 openload Movie, Download Captain Marvel 2019 sd movie point, Download Samuel L. Jackson Movies
-          </div>
-        </div>
-        <div class="footer">
-          &copy; 2023 free mp4 movie. All rights reserved.
-        </div>
-      </main>
-      <aside class="sidebar">
-        <div class="sidebar-follow">
-          <div class="sidebar-follow-label">Follow @freemp4movies</div>
-          <input class="sidebar-search-box" type="text">
-          <input class="sidebar-search-box" type="text">
-        </div>
-        <div class="sidebar-categories">CATEGORIES</div>
-        <ul class="sidebar-category-list">
-          <li><strong>2016 Movies</strong></li>
-          <li>2017 Movies</li>
-          <li>2018 movies</li>
-          <li><strong>2019 Movies</strong></li>
-          <li>2020 Movies</li>
-          <li>Action Movies</li>
-          <li>Adventure Movies</li>
-          <li>Animation Movies</li>
-          <li>Biography Movies</li>
-          <li>Comedy Movies</li>
-          <li>Crime Movies</li>
-          <li>Documentary</li>
-          <li>Drama Movies</li>
-          <li>Family Movies</li>
-          <li>Fantasy Movies</li>
-          <li>History Movies</li>
-          <li>Horror Movies</li>
-          <li>Music Movies</li>
-          <li>Mystery Movies</li>
-          <li class="cat-powered">by aThemes</li>
-          <li>Romance</li>
-          <li>Romantic Movies</li>
-          <li>Sci-Fi Movies</li>
-          <li>Sports Movies</li>
-          <li>Thriller Movies</li>
-          <li>Uncategorized</li>
-          <li>War Movies</li>
-          <li>Will Smith Movie</li>
-        </ul>
-      </aside>
+    <div class="header">
+        <h1>FREE MP4 MOVIE</h1>
+        <p>DOWNLOAD FREE MP4 MOVIES</p>
     </div>
-  </div>
+    <div class="container">
+        <div class="main-content">
+            <div class="post-title">
+                DOWNLOAD CAPTAIN MARVEL 2019 HD MOVIE POINT
+            </div>
+            <h2>Captain Marvel (2019)</h2>
+            <p>Posted on May 28, 2019 by Jessica Smith</p>
+            <div class="img-placeholders">
+                <div class="img-placeholder">
+                    <img src="src/placeholder.jpg" alt="Image placeholder">
+                </div>
+                <p>The story follows Carol Danvers as she becomes one of the most powerful heroes in the universe when Earth is trapped in the middle of a galactic war between two alien races. Set in the 90s, Captain Marvel is a...
+                    <span class="btn-read-more">Continue Reading →</span>
+                </p>
+            </div>
+            <div class="img-placeholder">
+                <img src="src/placeholder.jpg" alt="Image placeholder">
+            </div>
+        </div>
+        <div class="sidebar">
+            <h3>Follow @freemp4movies</h3>
+            <input type="text" placeholder="Search...">
+            <h3>CATEGORIES</h3>
+            <ul class="category-list">
+                <li><a href="#" class="highlight">2016 Movies</a></li>
+                <li><a href="#">2017 Movies</a></li>
+                <li><a href="#">2018 movies</a></li>
+                <li><a href="#"><span class="highlight">2019 Movies</span></a></li>
+                <li><a href="#">2020 Movies</a></li>
+                <li><a href="#">Action Movies</a></li>
+                <li><a href="#">Adventure Movies</a></li>
+                <li><a href="#">Animation Movies</a></li>
+                <li><a href="#">Biography Movies</a></li>
+                <li><a href="#">Comedy Movies</a></li>
+                <li><a href="#">Crime Movies</a></li>
+                <li><a href="#">Documentary</a></li>
+                <li><a href="#">Drama Movies</a></li>
+                <li><a href="#">Family Movies</a></li>
+                <li><a href="#">Fantasy Movies</a></li>
+                <li><a href="#">History Movies</a></li>
+                <li><a href="#">Horror Movies</a></li>
+                <li><a href="#">Music Movies</a></li>
+                <li><a href="#">Mystery Movies</a></li>
+                <li><a href="#">Romance</a></li>
+                <li><a href="#">Romantic Movies</a></li>
+                <li><a href="#">Sci-Fi Movies</a></li>
+                <li><a href="#">Sports Movies</a></li>
+                <li><a href="#">Thriller Movies</a></li>
+                <li><a href="#">Uncategorized</a></li>
+                <li><a href="#">War Movies</a></li>
+                <li><a href="#">Will Smith Movie</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="footer">
+        © 2023 free mp4 movie. All rights reserved.
+    </div>
 </body>
 </html>

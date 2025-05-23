@@ -1,309 +1,150 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>The Rosado Wrap Bracelet</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      background: #fff;
-      color: #38e3ee;
-      font-family: 'Montserrat', Arial, sans-serif;
-      min-width: 1200px;
-      box-sizing: border-box;
-    }
-    body {
-      display: flex;
-      flex-direction: column;
-      min-height: 100vh;
-      margin: 0;
-      padding: 0;
-      border-top: 0;
-    }
-
-    a {
-      color: #38e3ee;
-      text-decoration: none;
-    }
-
-    .header {
-      width: 100%;
-      border-bottom: 1px solid #b1f7fb;
-      display: flex;
-      align-items: center;
-      padding: 0 0 0 54px;
-      box-sizing: border-box;
-      height: 75px;
-      min-width: 1200px;
-      position: relative;
-    }
-    .header-logo {
-      width: 56px;
-      height: 56px;
-      background: #151cff;
-      margin-right: 126px;
-      margin-top: 10px;
-      margin-bottom: 5px;
-      flex-shrink: 0;
-    }
-    .header-nav {
-      display: flex;
-      gap: 50px;
-      flex-grow: 1;
-      justify-content: flex-start;
-    }
-    .header-nav a {
-      font-size: 15px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 400;
-      letter-spacing: 0.08em;
-      color: #38e3ee;
-      text-decoration: none;
-      transition: color 0.2s;
-      padding: 10px 0;
-    }
-    .header-spacer {
-      flex-grow: 1;
-    }
-    .header-cart {
-      font-size: 15px;
-      color: #38e3ee;
-      margin-right: 41px;
-      letter-spacing: 0.04em;
-      font-family: 'Montserrat', Arial, sans-serif;
-    }
-
-    .main-title {
-      text-align: center;
-      margin-top: 72px;
-      letter-spacing: 0.34em;
-      font-size: 28px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 400;
-    }
-    .main-price {
-      text-align: center;
-      margin-top: 10px;
-      letter-spacing: 0.34em;
-      font-size: 16px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 400;
-    }
-    .main-content {
-      display: flex;
-      flex-direction: row;
-      margin-top: 67px;
-      width: 100%;
-      justify-content: center;
-      align-items: flex-start;
-      min-width: 1200px;
-    }
-    .main-images-left {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      flex-shrink: 0;
-    }
-    .main-image-primary {
-      width: 550px;
-      height: 435px;
-      background: #151cff;
-      margin-bottom: 33px;
-      box-sizing: border-box;
-      object-fit: cover;
-      display: block;
-    }
-    .main-image-row {
-      display: flex;
-      flex-direction: row;
-      width: 264px;
-      justify-content: space-between;
-    }
-    .main-image-thumb {
-      width: 115px;
-      height: 115px;
-      background: #151cff;
-      display: block;
-      object-fit: cover;
-    }
-
-    .main-details-right {
-      margin-left: 52px;
-      max-width: 397px;
-      flex-basis: 397px;
-      color: #38e3ee;
-      font-family: 'Montserrat', Arial, sans-serif;
-    }
-    .main-details-desc {
-      color: #38e3ee;
-      font-size: 13px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 400;
-      margin-bottom: 25px;
-      margin-top: 0;
-      line-height: 1.65;
-    }
-    .main-form {
-      display: flex;
-      flex-direction: column;
-      gap: 18px;
-    }
-    .select-size {
-      border: 1px solid #38e3ee;
-      background: #fff;
-      color: #38e3ee;
-      padding: 11px 11px 11px 12px;
-      font-size: 13px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 400;
-      letter-spacing: 0.03em;
-      height: 37px;
-      margin-bottom: 0;
-      box-sizing: border-box;
-      outline: none;
-      width: 100%;
-    }
-    .add-to-cart-btn {
-      border: 1px solid #38e3ee;
-      background-color: #fff;
-      color: #38e3ee;
-      font-size: 15px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      letter-spacing: 0.1em;
-      height: 43px;
-      cursor: pointer;
-      transition: background 0.2s, color 0.2s;
-      margin-bottom: 2px;
-      width: 100%;
-    }
-    .main-share-divider {
-      margin: 49px 0 18px 0;
-      width: 100%;
-      border-top: 1px solid #b1f7fb;
-    }
-    .main-share-label {
-      text-align: center;
-      letter-spacing: 0.45em;
-      font-size: 15px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-weight: 400;
-      margin: 16px 0 18px 0;
-      color: #38e3ee;
-    }
-    .main-share-row {
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
-      gap: 16px;
-    }
-    .main-share-icon {
-      border: 1px solid #38e3ee;
-      width: 45px;
-      height: 45px;
-      display: inline-block;
-      background: #fff;
-      margin-right: 0;
-    }
-
-    .footer {
-      border-top: 1px solid #b1f7fb;
-      width: 100%;
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      background: #fff;
-      height: 48px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 0 48px 0 13px;
-      box-sizing: border-box;
-      min-width: 1200px;
-    }
-    .footer-cartel {
-      background: #d9d9d9;
-      border-radius: 4px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      font-size: 12px;
-      color: #999;
-      padding: 4px 13px 3px 11px;
-      letter-spacing: 0.01em;
-    }
-    .footer-links {
-      display: flex;
-      gap: 37px;
-      align-items: center;
-      font-size: 13px;
-      letter-spacing: 0.09em;
-      color: #38e3ee;
-      font-family: 'Montserrat', Arial, sans-serif;
-    }
-    .footer-links a {
-      color: #38e3ee;
-      text-decoration: none;
-      margin-left: 0;
-      margin-right: 0;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Rosado Wrap Bracelet</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            color: #00ccff;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+            border-bottom: 1px solid #00ccff;
+        }
+        header img {
+            width: 50px;
+            height: 50px;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+        nav a {
+            text-decoration: none;
+            color: #00ccff;
+            font-size: 14px;
+        }
+        .cart {
+            font-size: 14px;
+        }
+        main {
+            padding: 50px;
+        }
+        .title {
+            font-size: 24px;
+            letter-spacing: 2px;
+            margin-bottom: 10px;
+        }
+        .price {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .main-image {
+            width: 500px;
+            height: 400px;
+            background-color: blue;
+            margin: 0 auto 20px;
+        }
+        .description {
+            max-width: 300px;
+            margin: 0 auto;
+            text-align: left;
+        }
+        .size-select {
+            margin: 20px 0;
+            border: 1px solid #00ccff;
+            padding: 10px;
+        }
+        .add-to-cart {
+            margin: 20px 0;
+            padding: 10px 0;
+            width: 100%;
+            border: 1px solid #00ccff;
+        }
+        .share {
+            margin: 20px 0;
+        }
+        .share-title {
+            margin: 20px 0;
+        }
+        footer {
+            border-top: 1px solid #00ccff;
+            padding: 20px 0;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 50px;
+        }
+        .footer-links {
+            display: flex;
+            gap: 20px;
+        }
+        .footer-links a {
+            text-decoration: none;
+            color: #00ccff;
+            font-size: 14px;
+        }
+        .placeholder {
+            display: inline-block;
+            width: 70px;
+            height: 70px;
+            border: 1px solid #00ccff;
+            background-color: white;
+        }
+    </style>
 </head>
 <body>
-  <div class="header">
-    <div class="header-logo">
-      <img src="src/placeholder.jpg" width="56" height="56" alt="" style="display:block;width:56px;height:56px;">
-    </div>
-    <nav class="header-nav">
-      <a href="#">Products</a>
-      <a href="#">Who We Are</a>
-      <a href="#">Size Chart</a>
-      <a href="#">Policies</a>
-    </nav>
-    <div class="header-spacer"></div>
-    <div class="header-cart">0 / $0.00</div>
-  </div>
-
-  <div class="main-title">THE ROSADO WRAP BRACELET</div>
-  <div class="main-price">$ 20.00</div>
-
-  <div class="main-content">
-    <div class="main-images-left">
-      <img src="src/placeholder.jpg" width="550" height="435" alt="" class="main-image-primary">
-      <div class="main-image-row">
-        <img src="src/placeholder.jpg" width="115" height="115" alt="" class="main-image-thumb">
-        <img src="src/placeholder.jpg" width="115" height="115" alt="" class="main-image-thumb">
-      </div>
-    </div>
-    <div class="main-details-right">
-      <p class="main-details-desc">
-        Dyed pink wooden tube beads. 4mm turquoise beads. 6 gold pewter spacers strung on elastic cord to create a quadruple wrap!<br><br>
-        This listing is for one wrap bracelet. Each wrap bracelet is sold individually at $20.00 each.<br><br>
-        **For sizing measurements, please refer to the Size Chart Page.**<br>
-        **This bracelet can be customized with silver spacers.**
-      </p>
-      <form class="main-form">
-        <select class="select-size">
-          <option>Small (S)</option>
-        </select>
-        <button type="button" class="add-to-cart-btn">Add to Cart</button>
-      </form>
-      <div class="main-share-divider"></div>
-      <div class="main-share-label">SHARE</div>
-      <div class="main-share-row">
-        <div class="main-share-icon"></div>
-        <div class="main-share-icon"></div>
-        <div class="main-share-icon"></div>
-      </div>
-    </div>
-  </div>
-
-  <div class="footer">
-    <div class="footer-cartel">bigcartel</div>
-    <div class="footer-links">
-      <a href="#">Home</a>
-      <a href="#">Contact</a>
-    </div>
-  </div>
+    <header>
+        <img src="src/placeholder.jpg" alt="logo">
+        <nav>
+            <a href="#">Products</a>
+            <a href="#">Who We Are</a>
+            <a href="#">Size Chart</a>
+            <a href="#">Policies</a>
+        </nav>
+        <div class="cart">0 / $0.00</div>
+    </header>
+    <main>
+        <div class="title">THE ROSADO WRAP BRACELET</div>
+        <div class="price">$ 20.00</div>
+        <div class="main-image">
+            <img src="src/placeholder.jpg" alt="main image" style="width: 100%; height: 100%;">
+        </div>
+        <div class="description">
+            <p>Dyed pink wooden tube beads, 4mm turquoise beads, & gold pewter spacers strung on elastic cord to create a quadruple wrap!</p>
+            <p>This listing is for one wrap bracelet. Each wrap bracelet is sold individually at $20.00 each.</p>
+            <p>**For sizing measurements, please refer to the Size Chart Page.** <br> **This bracelet can be customized with silver spacers.**</p>
+        </div>
+        <div class="size-select">Small (S)</div>
+        <button class="add-to-cart">Add to Cart</button>
+        <hr>
+        <div class="share">
+            <div class="share-title">SHARE</div>
+            <span class="placeholder"></span>
+            <span class="placeholder"></span>
+            <span class="placeholder"></span>
+        </div>
+        <div>
+            <img src="src/placeholder.jpg" alt="small image 1" style="width: 100px; height: 100px;">
+            <img src="src/placeholder.jpg" alt="small image 2" style="width: 100px; height: 100px;">
+        </div>
+    </main>
+    <footer>
+        <div>bigcartel</div>
+        <div class="footer-links">
+            <a href="#">Home</a>
+            <a href="#">Contact</a>
+        </div>
+    </footer>
 </body>
 </html>

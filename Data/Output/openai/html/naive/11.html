@@ -1,540 +1,211 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>aws_autoscaling_lifecycle_hook - Stack Documentation</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600&display=swap" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-    body {
-      font-family: 'Open Sans', Arial, sans-serif;
-      font-size: 16px;
-      background: #f7fafc;
-      color: #222;
-      min-height: 100vh;
-    }
-    a {
-      color: #4098d7;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
-
-    /* Header */
-    .header {
-      background: #fff;
-      border-bottom: 1px solid #edf0f2;
-      height: 60px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      position: relative;
-      z-index: 10;
-      font-size: 15px;
-    }
-    .header-inner {
-      width: 1200px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      height: 60px;
-      margin: 0 32px;
-    }
-    .header-menu {
-      display: flex;
-      gap: 32px;
-      margin-left: 8px;
-    }
-    .header-menu a {
-      color: #6b7680;
-      font-weight: 600;
-      letter-spacing: 0.5px;
-      font-size: 13px;
-      transition: color 0.1s;
-    }
-    .header-menu a:hover {
-      color: #4098d7;
-    }
-    .header-actions {
-      display: flex;
-      gap: 28px;
-      align-items: center;
-      margin-right: 4px;
-    }
-    .header-actions a {
-      font-size: 13px;
-      font-weight: 600;
-      color: #7b93aa;
-      letter-spacing: 0.7px;
-      border-radius: 2px;
-      padding: 0 6px;
-      transition: color 0.1s;
-    }
-    .header-actions a:last-child {
-      color: #4098d7;
-      border: 1px solid #4098d7;
-      background: #fff;
-      padding: 4px 18px;
-      font-weight: 600;
-      margin-left: 5px;
-      margin-right: 2px;
-      font-size: 13px;
-      text-transform: uppercase;
-      letter-spacing: 0.7px;
-      box-sizing: border-box;
-      line-height: 22px;
-    }
-    .header-actions a:first-child:hover,
-    .header-actions a:last-child:hover {
-      color: #23527c;
-      border-color: #23527c;
-    }
-
-    /* Main Layout */
-    .main-container {
-      display: flex;
-      width: 1200px;
-      margin: 0 auto;
-      margin-top: 32px;
-      margin-bottom: 64px;
-      min-height: 750px;
-    }
-    .sidebar {
-      width: 230px;
-      flex: 0 0 230px;
-      padding-right: 32px;
-      font-size: 15px;
-      color: #4b5c6b;
-      line-height: 1.7;
-      margin-top: -5px;
-    }
-    .sidebar ul, .sidebar li {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-    }
-    .sidebar-section {
-      color: #4b5c6b;
-      font-size: 13px;
-      margin-top: 32px;
-      margin-bottom: 8px;
-      font-weight: 600;
-      letter-spacing: 0.7px;
-    }
-    .sidebar .sidebar-header {
-      margin-top: 6px;
-      margin-bottom: 18px;
-      font-size: 15px;
-      font-weight: 400;
-      letter-spacing: 0;
-      color: #3677bb;
-    }
-    .sidebar .sidebar-link {
-      display: block;
-      font-size: 15px;
-      color: #4b5c6b;
-      padding-left: 0;
-      padding-top: 2px;
-      padding-bottom: 2px;
-      text-decoration: none;
-      transition: color 0.1s;
-      line-height: 1.75;
-      font-weight: 400;
-    }
-    .sidebar .sidebar-link.active, .sidebar .sidebar-link:hover {
-      color: #236db7;
-      font-weight: 600;
-    }
-    .sidebar .sidebar-subheader {
-      margin: 12px 0 5px 0;
-      font-size: 13px;
-      color: #9babba;
-      font-weight: 600;
-      letter-spacing: 0.7px;
-    }
-    .sidebar .sidebar-resource {
-      color: #7b93aa;
-      padding-left: 13px;
-      font-size: 15px;
-      display: block;
-    }
-    .sidebar .sidebar-resource.active {
-      color: #236db7;
-      font-weight: 600;
-    }
-
-    /* Content */
-    .content {
-      flex: 1 1 auto;
-      background: transparent;
-      padding-bottom: 80px;
-      color: #222a32;
-    }
-
-    .content h1 {
-      font-size: 28px;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-      margin: 0 0 13px 0;
-      color: #263238;
-      line-height: 1.2;
-    }
-    .content p {
-      font-size: 16px;
-      color: #566b7a;
-      margin: 0 0 32px 0;
-      line-height: 1.55;
-    }
-    .content h2 {
-      font-size: 20px;
-      font-weight: 600;
-      margin: 36px 0 18px 0;
-      color: #21364b;
-      letter-spacing: 0.01em;
-      line-height: 1.35;
-    }
-    .content .block-section {
-      margin-bottom: 26px;
-    }
-
-    /* Example usage box */
-    .code-section-outer {
-      background: #f8f8fa;
-      border: 1px solid #ececec;
-      border-radius: 4px;
-      padding: 0;
-      margin-top: 8px;
-      margin-bottom: 32px;
-      box-shadow: 0 1px 3px 0 rgba(36,53,67,0.03);
-      position: relative;
-      font-size: 16px;
-    }
-    .code-section-header {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      padding: 0 14px;
-      background: transparent;
-      border-bottom: 1px solid #ececec;
-      height: 34px;
-      font-size: 13px;
-    }
-    .code-section-header a {
-      text-transform: lowercase;
-      color: #6a7daf;
-      font-weight: 600;
-      margin-left: 17px;
-      margin-right: 0;
-      letter-spacing: 0.1em;
-      text-decoration: none;
-      padding: 0 1px;
-      transition: color 0.1s;
-    }
-    .code-section-header a.active, .code-section-header a:hover {
-      color: #4098d7;
-    }
-    .code-section-content {
-      padding: 20px 18px 20px 18px;
-      font-size: 15px;
-      line-height: 1.57;
-      background: none;
-      overflow-x: auto;
-    }
-    pre, code {
-      font-family: "Source Code Pro", "Menlo", "Monaco", "Consolas", "Liberation Mono", "Courier New", monospace;
-      font-size: 15px;
-      color: #504f60;
-      background: transparent;
-      border: none;
-      margin: 0;
-      padding: 0;
-      line-height: 1.65;
-    }
-    .hl-key {
-      color: #a71d5d;
-    }
-    .hl-string {
-      color: #df5000;
-    }
-    .hl-number {
-      color: #0086b3;
-    }
-    .hl-comment {
-      color: #969896;
-    }
-    .hl-attr {
-      color: #008080;
-    }
-    .hl-bool {
-      color: #795da3;
-    }
-    .hl-var {
-      color: #795da3;
-    }
-    .hl-func {
-      color: #795da3;
-    }
-    .hl-plain {
-      color: #504f60;
-    }
-
-    /* Bullet list for arguments */
-    .content ul {
-      margin: 13px 0 21px 0px;
-      padding: 0 0 0 24px;
-      color: #2e3c4b;
-    }
-    .content ul li {
-      margin-bottom: 7px;
-      font-size: 16px;
-      line-height: 1.66;
-      padding-left: 0;
-    }
-    .content ul li:last-child {
-      margin-bottom: 0;
-    }
-    .content ul li code {
-      background: #f8fafc;
-      color: #a48a5c;
-      border-radius: 3px;
-      padding: 0 4px;
-      font-size: 15px;
-      font-family: "Source Code Pro", monospace;
-      display: inline;
-    }
-
-    /* code style */
-    .content code {
-      background: #f4f6f8;
-      border-radius: 2px;
-      font-size: 15px;
-      padding: 2px 6px;
-      color: #a48a5c;
-      font-family: "Source Code Pro", monospace;
-    }
-
-    .content .see-tf {
-      color: #9babba;
-      font-size: 15px;
-      margin-top: 35px;
-      margin-bottom: 18px;
-      letter-spacing: 0.07em;
-    }
-    .content .see-tf a {
-      color: #4098d7;
-      text-decoration: none;
-      font-weight: 600;
-    }
-    .content .see-tf a:hover {
-      text-decoration: underline;
-    }
-
-    /* Footer */
-    .footer {
-      width: 100vw;
-      background: #232e39;
-      padding-top: 35px;
-      padding-bottom: 24px;
-      color: #fff;
-      font-size: 15px;
-      font-family: 'Open Sans', Arial, sans-serif;
-      margin-top: 64px;
-    }
-    .footer-inner {
-      width: 1200px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: space-between;
-    }
-    .footer-logo {
-      width: 190px;
-      margin-right: 44px;
-      flex: 0 0 190px;
-      margin-top: 22px;
-    }
-    .footer-logo img {
-      width: 109px;
-      height: 21px;
-      display: block;
-    }
-    .footer-list {
-      flex: 1 1 0;
-      display: flex;
-      flex-direction: row;
-      justify-content: space-between;
-    }
-    .footer-column {
-      min-width: 142px;
-      margin-right: 17px;
-    }
-    .footer-column-title {
-      text-transform: none;
-      font-size: 15px;
-      font-weight: 600;
-      margin-bottom: 12px;
-      color: #fff;
-      letter-spacing: 0.04em;
-    }
-    .footer-links {
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      color: #fff;
-    }
-    .footer-links li {
-      margin-bottom: 8px;
-    }
-    .footer-links li:last-child {
-      margin-bottom: 0;
-    }
-    .footer-links a {
-      color: #c6d2e0;
-      font-size: 15px;
-      font-weight: 400;
-      letter-spacing: 0.005em;
-      transition: color 0.2s;
-      text-decoration: none;
-    }
-    .footer-links a:hover {
-      color: #4098d7;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aws_autoscaling_lifecycle_hook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #3C3C3C;
+        }
+        header {
+            background-color: #F6F8FA;
+            padding: 10px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header a {
+            margin-right: 20px;
+            color: #006DFD;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .main-content {
+            padding: 40px;
+        }
+        h1 {
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+        p {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+        .example-usage {
+            background-color: #FAF3DC;
+            border: 1px solid #E3E3E3;
+            padding: 20px;
+            margin-bottom: 40px;
+        }
+        .code-section {
+            font-family: 'Courier New', monospace;
+            white-space: pre-wrap;
+            color: #333;
+            margin-top: 10px;
+        }
+        .argument-reference {
+            margin: 40px 0;
+        }
+        footer {
+            background-color: #3C3C3C;
+            color: #FFFFFF;
+            padding: 40px;
+            display: flex;
+            justify-content: space-between;
+        }
+        footer div {
+            max-width: 200px;
+        }
+        footer a {
+            color: #FFFFFF;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        footer h4 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .side-menu {
+            width: 200px;
+            padding: 20px;
+            background-color: #F6F8FA;
+            float: left;
+            height: 100%;
+        }
+        .side-menu h3 {
+            font-size: 18px;
+            margin-bottom: 20px;
+        }
+        .side-menu ul, .side-menu li {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+        .side-menu a {
+            color: #006DFD;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .highlight {
+            color: #D0362D;
+        }
+    </style>
 </head>
 <body>
-  <div class="header">
-    <div class="header-inner">
-      <div class="header-menu">
-        <a href="#">FEATURES</a>
-        <a href="#">OPEN SOURCE</a>
-        <a href="#">ABOUT</a>
-        <a href="#">DOCS</a>
-      </div>
-      <div class="header-actions">
-        <a href="#">LOGIN</a>
-        <a href="#">REGISTER</a>
-      </div>
+    <header>
+        <div>
+            <a href="#">FEATURES</a>
+            <a href="#">OPEN SOURCE</a>
+            <a href="#">ABOUT</a>
+            <a href="#">DOCS</a>
+        </div>
+        <div>
+            <a href="#">LOGIN</a>
+            <a href="#">REGISTER</a>
+        </div>
+    </header>
+
+    <div class="side-menu">
+        <h3>Stack Documentation</h3>
+        <ul>
+            <li><a href="#">Configuration</a></li>
+            <li><a href="#">Providers</a></li>
+            <li><a href="#">Atlas</a></li>
+            <li><a href="#">AWS</a></li>
+        </ul>
+        <ul>
+            <li><a href="#">Data Sources</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#" class="highlight">aws_alb</a></li>
+            <li><a href="#">aws_alb_listener</a></li>
+            <li><a href="#">aws_alb_listener_rule</a></li>
+            <li><a href="#">aws_alb_target_group</a></li>
+        </ul>
+        <ul>
+            <li><a href="#">Azure</a></li>
+            <li><a href="#">Service Management</a></li>
+            <li><a href="#">Provisioners</a></li>
+        </ul>
     </div>
-  </div>
-  <div class="main-container">
-    <nav class="sidebar" aria-label="Sidebar">
-      <div class="sidebar-header" style="margin-bottom:18px;">Videos</div>
-      <a href="#" class="sidebar-link">Getting started</a>
-      <a href="#" class="sidebar-link">Getting more from Koding</a>
-      <div class="sidebar-section" style="margin-top:36px;margin-bottom:7px;">Stack Documentation</div>
 
-      <div class="sidebar-subheader">Configuration</div>
-      <a href="#" class="sidebar-link">Providers</a>
-      <div class="sidebar-resource sidebar-subheader" style="padding:0;margin-top:13px;">Archive</div>
-      <div class="sidebar-resource">Atlas</div>
-      <div class="sidebar-resource">AWS</div>
+    <div class="main-content">
+        <h1>aws_autoscaling_lifecycle_hook</h1>
+        <p>Provides an AutoScaling Lifecycle Hook resource.</p>
 
-      <div class="sidebar-subheader" style="margin-top:17px;">Data Sources</div>
-      <div class="sidebar-link" style="margin-bottom:1px; color:#9babba; font-size:13px; font-weight:600;">Resources</div>
-      <a href="#" class="sidebar-resource">aws_alb</a>
-      <a href="#" class="sidebar-resource">aws_alb_listener</a>
-      <a href="#" class="sidebar-resource">aws_alb_listener_rule</a>
-      <a href="#" class="sidebar-resource active">aws_alb_target_group</a>
-      <div class="sidebar-link" style="margin-bottom:2px;color:#9babba;font-size:13px;font-weight:600;margin-top:17px;">Azure Service Management</div>
-      <div class="sidebar-link" style="color:#9babba;font-size:13px;font-weight:600">Provisioners</div>
-    </nav>
-    <main class="content">
-      <h1 style="margin-top:2px;">aws_autoscaling_lifecycle_hook</h1>
-      <p style="margin-bottom:33px;">
-        Provides an AutoScaling Lifecycle Hook resource.
-      </p>
-      <h2 style="margin-top:1px;margin-bottom:5px;">Example Usage</h2>
-      <div class="code-section-outer">
-        <div class="code-section-header">
-          <a href="#" class="active">yaml</a>
-          <a href="#">hcl</a>
+        <div class="example-usage">
+            <h2>Example Usage</h2>
+            <div class="code-section">
+                <pre>
+resource:
+  aws_autoscaling_group:
+    foobar:
+      availability_zones:
+        - us-west-2a
+      name: terraform-test-foobar5
+      health_check_type: EC2
+      termination_policies:
+        - OldestInstance
+      tag:
+        key: Foo
+        value: foo-bar
+        propagate_at_launch: true
+  aws_autoscaling_lifecycle_hook:
+    foobar:
+      name: foobar
+      autoscaling_group_name: '${aws_autoscaling_group.foobar.name}'
+      default_result: CONTINUE
+      heartbeat_timeout: 2000
+      lifecycle_transition: 'autoscaling:EC2_INSTANCE_LAUNCHING'
+      notification_metadata: '{\n "foo": "bar"\n}'
+      notification_target_arn: 'arn:aws:sns:us-east-1:444455556666:queue1'
+      role_arn: 'arn:aws:iam::123456789012:role/S3Access'
+                </pre>
+            </div>
         </div>
-        <div class="code-section-content">
-<pre><span class="hl-key">resource</span> <span class="hl-plain">"aws_autoscaling_group" "foobar" {"</span>
-  <span class="hl-key">availability_zones</span><span class="hl-plain"> = [ </span><span class="hl-string">"us-west-2a"</span><span class="hl-plain"> ]</span>
-  <span class="hl-key">name</span><span class="hl-plain"> = </span><span class="hl-string">"terraform-test-foobar5"</span>
-  <span class="hl-key">health_check_type</span><span class="hl-plain"> = </span><span class="hl-string">"EC2"</span>
-  <span class="hl-key">termination_policies</span><span class="hl-plain"> = [</span><span class="hl-string">"OldestInstance"</span><span class="hl-plain">]</span>
-  <span class="hl-key">tag</span> <span class="hl-plain">= [</span>
-    <span class="hl-plain">{</span>
-      <span class="hl-key">key</span><span class="hl-plain">                 = </span><span class="hl-string">"Foo"</span>
-      <span class="hl-key">value</span><span class="hl-plain">               = </span><span class="hl-string">"foo-bar"</span>
-      <span class="hl-key">propagate_at_launch</span><span class="hl-plain">  = </span><span class="hl-bool">true</span>
-    <span class="hl-plain">}</span>
-  <span class="hl-plain">]</span>
-<span class="hl-plain">}</span>
 
-<span class="hl-key">resource</span> <span class="hl-plain">"aws_autoscaling_lifecycle_hook" "foobar" {"</span>
-  <span class="hl-key">name</span><span class="hl-plain">                   = </span><span class="hl-string">"foobar"</span>
-  <span class="hl-key">autoscaling_group_name</span><span class="hl-plain">    = </span><span class="hl-string">'${aws_autoscaling_group.foobar.name}'</span>
-  <span class="hl-key">default_result</span><span class="hl-plain">          = </span><span class="hl-string">"CONTINUE"</span>
-  <span class="hl-key">heartbeat_timeout</span><span class="hl-plain">       = </span><span class="hl-number">2000</span>
-  <span class="hl-key">lifecycle_transition</span><span class="hl-plain">    = </span><span class="hl-string">"autoscaling:EC2_INSTANCE_LAUNCHING"</span>
-  <span class="hl-key">notification_metadata</span><span class="hl-plain">   = </span><span class="hl-string">"{\n  \"foo\": \"bar\"\n}"</span>
-  <span class="hl-key">notification_target_arn</span><span class="hl-plain"> = </span><span class="hl-string">"arn:aws:sns:us-east-1:444455556666:queue"</span>
-  <span class="hl-key">role_arn</span><span class="hl-plain">                = </span><span class="hl-string">"arn:aws:iam::123456789012:role/S3Access"</span>
-<span class="hl-plain">}</span></pre>
+        <div class="argument-reference">
+            <h2>Argument Reference</h2>
+            <p>The following arguments are supported:</p>
+            <ul>
+                <li><b>name</b> - (Required) The name of the lifecycle hook.</li>
+                <li><b>autoscaling_group_name</b> - (Required) The name of the Auto Scaling group to which you want to assign the lifecycle hook</li>
+                <li><b>default_result</b> - (Optional) Defines the action the Auto Scaling group should take when the lifecycle hook timeout elapses or if an unexpected failure occurs.</li>
+                <li><b>heartbeat_timeout</b> - (Optional) Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult parameter</li>
+            </ul>
         </div>
-      </div>
-      <h2 style="margin-bottom:17px;">Argument Reference</h2>
-      <p style="margin-bottom:18px;margin-top:2px;">
-        The following arguments are supported:
-      </p>
-      <ul>
-        <li><code>name</code> – <span class="hl-plain">(Required) The name of the lifecycle hook.</span></li>
-        <li><code>autoscaling_group_name</code> – <span class="hl-plain">(Required) The name of the Auto Scaling group to which you want to assign the lifecycle hook</span></li>
-        <li><code>default_result</code> – <span class="hl-plain">(Optional) Defines the action the Auto Scaling group should take when the lifecycle hook timeout elapses or if an unexpected failure occurs.</span></li>
-        <li><code>heartbeat_timeout</code> – <span class="hl-plain">(Optional) Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult parameter</span></li>
-      </ul>
-      <div class="see-tf">
-        See the source of this document at <a href="#">Terraform.io</a>
-      </div>
-    </main>
-  </div>
-  <footer class="footer">
-    <div class="footer-inner">
-      <div class="footer-logo">
-        <img src="src/placeholder.jpg" alt="" width="109" height="21">
-      </div>
-      <div class="footer-list">
-        <div class="footer-column">
-          <div class="footer-column-title">For Teams</div>
-          <ul class="footer-links">
-            <li><a href="#">Platform for Training</a></li>
-            <li><a href="#">Pre-Sales Automation</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <div class="footer-column-title">Resources</div>
-          <ul class="footer-links">
-            <li><a href="#">Documentation</a></li>
-            <li><a href="#">Blog</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <div class="footer-column-title">About</div>
-          <ul class="footer-links">
-            <li><a href="#">About Us</a></li>
-            <li><a href="#">Open Source</a></li>
-          </ul>
-        </div>
-        <div class="footer-column">
-          <div class="footer-column-title">Contact</div>
-          <ul class="footer-links">
-            <li><a href="#">Facebook</a></li>
-            <li><a href="#">Twitter</a></li>
-            <li><a href="#">LinkedIn</a></li>
-            <li><a href="#">Email Us</a></li>
-          </ul>
-        </div>
-      </div>
+
+        <p>See the source of this document at <a href="#" style="color: #3399FF;">Terraform.io</a></p>
     </div>
-  </footer>
+
+    <footer>
+        <div>
+            <h4>For Teams</h4>
+            <a href="#">Platform for Training</a>
+            <a href="#">Pre-Sales Automation</a>
+        </div>
+        <div>
+            <h4>Resources</h4>
+            <a href="#">Documentation</a>
+            <a href="#">Blog</a>
+        </div>
+        <div>
+            <h4>About</h4>
+            <a href="#">About Us</a>
+            <a href="#">Open Source</a>
+        </div>
+        <div>
+            <h4>Contact</h4>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">LinkedIn</a>
+        </div>
+    </footer>
 </body>
 </html>

@@ -5,8 +5,8 @@ SEVERITY = {"minor": 1, "moderate": 3, "serious": 6, "critical": 10}
 THRESHOLD_HIGH_IR = 0.25
 THRESHOLD_LOW_IR = 0.1
 # 0.3 corresponds to only moderate or minor issues
-THRESHOLD_HIGH_IWIR = 0.3
-THRESHOLD_LOW_IWIR = 0.6
+THRESHOLD_HIGH_IWIR = 0.6
+THRESHOLD_LOW_IWIR = 0.3
 
 class AccessibilityBenchmarks:
 

@@ -229,5 +229,5 @@ def analyze_benchmark_files(directory):
 
 # analyze_overview_files(r"..\Input\insights")
 if __name__ == "__main__":
-    analyze_overview_files(INPUT_INSIGHTS_DIR)
-    # analyze_benchmark_files(INPUT_INSIGHTS_DIR)
+    # analyze_overview_files(INPUT_INSIGHTS_DIR)
+    analyze_benchmark_files(INPUT_INSIGHTS_DIR)

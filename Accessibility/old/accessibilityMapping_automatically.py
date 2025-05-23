@@ -6,7 +6,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from LLMs.LLMClient import LLMClient
 from Utils import utils_dataset
-from LLMs.Strategies.geminiStrategy import GeminiStrategy
+from LLMs.Strategies.geminiApiStrategy import GeminiStrategy
 from Accessibility import accessibilityIssues
 
 

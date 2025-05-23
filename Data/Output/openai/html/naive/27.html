@@ -1,444 +1,142 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Your Shopping Cart</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,700&display=swap" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      min-height: 100vh;
-      background: #444;
-      font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-      color: #222;
-      font-size: 15px;
-      letter-spacing: 0;
-      box-sizing: border-box;
-      line-height: 1.4;
-      position: relative;
-    }
-    /* Header Area */
-    .topbar {
-      background: #393939;
-      height: 235px;
-      width: 100%;
-      position: relative;
-      box-sizing: border-box;
-    }
-    .topbar-content {
-      position: absolute;
-      left: 0; right: 0; top: 0;
-      width: 100%;
-      margin: 0 auto;
-      max-width: 1200px;
-      height: 100%;
-    }
-    .topbar-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      width: 100%;
-      padding: 10px 0 0 0;
-      font-size: 13px;
-      color: #fff;
-      letter-spacing: 0.02em;
-    }
-    .sign-links {
-      margin-left: 43px;
-    }
-    .sign-links span {
-      margin-right: 5px;
-      vertical-align: middle;
-    }
-    .sign-links .divider {
-      margin: 0 10px;
-      color: #dadada;
-    }
-    .cart-search {
-      display: flex;
-      align-items: center;
-      margin-right: 45px;
-    }
-    .cart-search .cart-link {
-      margin-right: 20px;
-    }
-    .cart-search label,
-    .cart-search input {
-      font-size: 13px;
-      color: #fff;
-      font-family: inherit;
-    }
-    .cart-search .search-field {
-      background: transparent;
-      border: none;
-      border-bottom: 1px solid #aaa;
-      color: #fff;
-      outline: none;
-      width: 75px;
-      margin-left: 5px;
-      font-size: 13px;
-      padding: 2px 2px;
-    }
-    .cart-search .search-icon {
-      margin-left: 2px;
-      width: 16px;
-      height: 16px;
-      display: inline-block;
-      position: relative;
-      top: 2px;
-    }
-    /* Main logo/content block */
-    .main-block {
-      position: relative;
-      width: 100%;
-      margin: 0 auto;
-      max-width: 1200px;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: flex-start;
-    }
-    .main-block-inner {
-      display: flex;
-      align-items: flex-start;
-      margin-top: 26px;
-      min-width: 380px;
-    }
-    .main-img {
-      margin-left: 0;
-      margin-right: 25px;
-      background: #002dfa;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-    .main-phone {
-      color: #fff;
-      font-size: 18px;
-      font-weight: 400;
-      margin-top: 63px;
-      min-width: 210px;
-      text-align: left;
-    }
-    .main-phone b {
-      font-weight: 700;
-      display: block;
-    }
-    /* Hamburger */
-    .hamburger {
-      margin-top: 35px;
-      margin-bottom: 0;
-      width: 44px;
-      height: 42px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .hamburger-icon {
-      width: 30px;
-      height: 22px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .hamburger-bar {
-      height: 6px;
-      background: #fff;
-      border-radius: 2px;
-      width: 100%;
-      display: block;
-    }
-
-    /* White main content area below header */
-    .content {
-      background: #fff;
-      width: 100%;
-      min-height: 910px;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      position: relative;
-    }
-    .cart-heading {
-      text-align: center;
-      margin: 40px 0 10px 0;
-      font-size: 18px;
-      font-family: 'Open Sans', Arial, Helvetica, sans-serif;
-      font-weight: 600;
-    }
-
-    .cart-actions-container {
-      display: flex;
-      justify-content: flex-start;
-      margin-left: 203px;
-      margin-bottom: 20px;
-      margin-top: 0;
-    }
-    .cart-actions .btn {
-      background: #52c1d9;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 400;
-      border: none;
-      border-radius: 0px;
-      padding: 7px 47px;
-      cursor: pointer;
-      min-width: 210px;
-      display: inline-block;
-      text-align: center;
-      font-family: inherit;
-      letter-spacing: 0.1em;
-    }
-    .cart-table-container {
-      width: 84%;
-      margin: 0 auto;
-      margin-bottom: 30px;
-    }
-    .cart-table {
-      border: 1px solid #ddd;
-      border-collapse: collapse;
-      width: 100%;
-    }
-    .cart-table thead th {
-      text-align: left;
-      font-size: 15px;
-      font-weight: 400;
-      padding: 10px 5px;
-      background: #f6f6f6;
-      border-bottom: 1px solid #ddd;
-      font-family: inherit;
-    }
-    .cart-table tbody td {
-      font-size: 15px;
-      color: #444;
-      padding: 33px 0 33px 0;
-      text-align: center;
-      border-left: none;
-      border-right: none;
-      border-bottom: none;
-      font-family: inherit;
-      vertical-align: middle;
-      font-weight: 600;
-      letter-spacing: 0.01em;
-    }
-    .cart-table tbody td.empty {
-      text-transform: uppercase;
-      letter-spacing: 0.04em;
-    }
-    /* Cart total */
-    .cart-total-row {
-      width: 84%;
-      margin: 0 auto;
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-      margin-top: 16px;
-      font-size: 18px;
-      color: #222;
-      font-family: inherit;
-    }
-    .cart-total-row .total-label {
-      font-weight: 600;
-      margin-right: 28px;
-      letter-spacing: 0.01em;
-    }
-    .cart-total-row .total-amount {
-      font-weight: 700;
-      font-size: 20px;
-      margin-left: 38px;
-    }
-    /* Checkout actions */
-    .checkout-actions-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      width: 84%;
-      margin: 35px auto 0 auto;
-    }
-    .cart-buttons-side {
-      display: flex;
-      align-items: center;
-    }
-    .recalculate-btn {
-      background: #e1e5e6;
-      border: none;
-      color: #222;
-      padding: 7px 19px;
-      font-size: 14px;
-      font-weight: 400;
-      border-radius: 0px;
-      cursor: pointer;
-      font-family: inherit;
-      letter-spacing: 0.02em;
-      margin-right: 16px;
-    }
-    .empty-cart-link {
-      font-size: 15px;
-      color: #52c1d9;
-      text-decoration: none;
-      font-weight: 400;
-      margin-right: 0;
-      margin-top: 0;
-      padding-top: 0;
-    }
-    .checkout-btn {
-      background: #52c1d9;
-      color: #fff;
-      font-size: 16px;
-      font-weight: 400;
-      border: none;
-      border-radius: 0px;
-      padding: 10px 77px;
-      cursor: pointer;
-      font-family: inherit;
-      letter-spacing: 0.02em;
-    }
-
-    /* Bottom info, checkbox & small text */
-    .cart-footer-area {
-      width: 100%;
-      margin: 62px auto 0 auto;
-      text-align: center;
-      color: #444;
-      font-size: 12px;
-      font-family: inherit;
-      padding-bottom: 22px;
-    }
-    .cart-checkbox-row {
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      gap: 6px;
-      margin-left: 37%;
-      margin-bottom: 8px;
-      font-family: inherit;
-    }
-    .cart-checkbox-row input[type="checkbox"] {
-      margin-right: 5px;
-      accent-color: #377ff8;
-      width: 13px;
-      height: 13px;
-      vertical-align: middle;
-    }
-    .cart-checkbox-row label {
-      font-size: 13px;
-      color: #222;
-      vertical-align: middle;
-      cursor: pointer;
-      margin-bottom: 0;
-    }
-    .cart-footer-area a {
-      color: #377ff8;
-      text-decoration: underline;
-    }
-    @media (max-width: 900px) {
-      .main-block-inner,
-      .cart-table-container,
-      .cart-total-row,
-      .checkout-actions-container {
-        width: 96%;
-        min-width: unset;
-        margin-left: 10px;
-        margin-right: 10px;
-      }
-      .cart-actions-container {
-        margin-left: 0;
-      }
-      .cart-checkbox-row {
-        margin-left: 2%;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+        .header {
+            background-color: #4E4E4E;
+            color: white;
+            padding: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header div {
+            display: flex;
+            align-items: center;
+        }
+        .header div img {
+            margin-right: 20px;
+        }
+        .blue-box {
+            background-color: blue;
+            width: 150px;
+            height: 150px;
+            margin-right: 20px;
+        }
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .header input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-radius: 3px;
+            margin-left: 10px;
+        }
+        .content {
+            background-color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        .button {
+            background-color: #31C2DD;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            margin: 20px 0;
+            text-transform: uppercase;
+            display: inline-block;
+        }
+        .table-container {
+            width: 80%;
+            margin: 0 auto;
+            border: 1px solid #ccc;
+        }
+        .table-container thead th {
+            background-color: #f9f9f9;
+            padding: 10px;
+            text-align: left;
+            font-weight: bold;
+        }
+        .table-container tbody td {
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+        .footer {
+            background-color: #F2F2F2;
+            padding: 20px;
+            font-size: 14px;
+            line-height: 1.5;
+            margin-top: 30px;
+        }
+    </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="topbar-content">
-      <div class="topbar-row">
-        <div class="sign-links">
-          <span>CLICK HERE TO SIGN IN</span>
-          <span class="divider">OR</span>
-          <span>CLICK HERE TO REGISTER</span>
+    <div class="header">
+        <div>
+            <a href="#">CLICK HERE TO SIGN IN</a>
+            <span>OR</span>
+            <a href="#">CLICK HERE TO REGISTER</a>
         </div>
-        <div class="cart-search">
-          <span class="cart-link">VIEW CART</span>
-          <form style="display:inline-block; position: relative; vertical-align: middle;">
-            <input class="search-field" type="text" placeholder="">
-            <span class="search-icon">
-              <svg width="16" height="16"><circle cx="7" cy="7" r="6" stroke="#fff" stroke-width="2" fill="none"/><line x1="12.5" y1="12.5" x2="15" y2="15" stroke="#fff" stroke-width="2" /></svg>
-            </span>
-          </form>
+        <div>
+            <div class="blue-box"></div>
+            <div>
+                <p>Talk to a real person!<br>[PHONE REDACTED]</p>
+            </div>
         </div>
-      </div>
-      <div class="main-block">
-        <div class="main-block-inner">
-          <div class="main-img">
-            <img src="src/placeholder.jpg" alt="" width="200" height="200" style="width:200px; height:200px; display:block; background:#002dfa;">
-          </div>
-          <div class="main-phone" style="margin-left: 32px;">
-            Talk to a real person!<br>
-            <b>[PHONE REDACTED]</b>
-          </div>
+        <div>
+            <a href="#">VIEW CART</a>
+            <input type="text" placeholder="SEARCH">
         </div>
-        <div class="hamburger">
-          <div class="hamburger-icon">
-            <span class="hamburger-bar"></span>
-            <span class="hamburger-bar"></span>
-            <span class="hamburger-bar"></span>
-          </div>
+    </div>
+    <div class="content">
+        <h1>Your Shopping Cart</h1>
+        <button class="button">Continue Shopping</button>
+        <div class="table-container">
+            <table width="100%">
+                <thead>
+                    <tr>
+                        <th>Your Shopping Cart</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>YOUR SHOPPING CART IS EMPTY.</td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
-      </div>
+        <div class="table-container" style="margin-top: 20px;">
+            <table width="100%">
+                <tbody>
+                    <tr>
+                        <td>Total</td>
+                        <td style="text-align: right;">$0.00</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <button class="button">Checkout</button>
     </div>
-  </div>
-  <div class="content">
-    <div class="cart-heading">
-      Your Shopping Cart
+    <div class="footer">
+        <button class="button">Recalculate</button>
+        <a href="#" style="color: #31C2DD; margin-left: 10px;">Empty Cart</a>
+        <br><br>
+        <input type="checkbox" id="show-cart" name="show-cart" checked>
+        <label for="show-cart">Show me my shopping cart every time I order something.</label>
+        <br>
+        This site does not do live transactions. If you provide a credit card number it will not be billed immediately. Due to the custom nature of these products, you will be contacted by a sales person at Century 2001 to coordinate getting any custom artwork or other special handling instructions you require. There is a note area when you check out to provide any special instructions you may have regarding your order. Once the sales person has all the information they need and have verified the charges on this order, you will have the order acknowledgement mailed, emailed or faxed to your attention. If at that the time you are satisfied with the order it will then be processed using the payment of your choice. If you would like to use your own custom logo for imprinting on any of our products contact us for instructions on the best way of getting your logo to us. For information on acceptable digital artwork, see our artwork information page. ** Tax will only be applicable on goods delivered to Florida.
     </div>
-    <div class="cart-actions-container">
-      <div class="cart-actions">
-        <button class="btn">CONTINUE SHOPPING</button>
-      </div>
-    </div>
-    <div class="cart-table-container">
-      <table class="cart-table">
-        <thead>
-          <tr>
-            <th style="text-align:left; padding:10px 15px;">Your Shopping Cart</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td class="empty" style="text-align:center; font-weight:600; color:#444; padding:33px 0;">YOUR SHOPPING CART IS EMPTY.</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <div class="cart-total-row">
-      <span class="total-label">TOTAL</span>
-      <span class="total-amount">$0.00</span>
-    </div>
-    <div class="checkout-actions-container">
-      <div class="cart-buttons-side">
-        <button class="recalculate-btn">RECALCULATE</button>
-        <a href="#" class="empty-cart-link">Empty Cart</a>
-      </div>
-      <button class="checkout-btn">CHECKOUT</button>
-    </div>
-    <div class="cart-footer-area">
-      <div class="cart-checkbox-row">
-        <input type="checkbox" checked id="show-every-time">
-        <label for="show-every-time">Show me my shopping cart every time I order something.</label>
-      </div>
-      <div style="width:74%; margin: 0 auto; text-align:left; color:#444;">
-        This site does not do live transactions. If you provide a credit card number it will not be billed immediately. Due to the custom nature of these products, you will be contacted by a sales person at Century 2001 to coordinate getting any custom artwork or other special handling instructions you require. There is a note area when you check out to provide any special instructions you may have regarding your order. Once the sales person has all the information they need and have verified the charges on this order, you will have the order acknowledgement mailed, emailed or faxed to your attention. If at that time you are satisfied with the order it will then be processed using the payment of your choice. If you would like to use your own custom logo for imprinting on any of our products contact us for instructions on the best way of getting your logo to us. For information on acceptable digital artwork, see our <a href="#">artwork information page</a>. *** Tax will only be applicable on goods delivered to Florida.
-      </div>
-    </div>
-  </div>
 </body>
 </html>

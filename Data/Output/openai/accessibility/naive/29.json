@@ -13,127 +13,67 @@
   "automatic": [
     {
       "wcag_id": [
-        "Principle4.Guideline4_1.4_1_2.H91.InputButton.Name",
-        "Principle4.Guideline4_1.4_1_2.H91.Button.Name"
+        "Principle1.Guideline1_3.1_3_1.H42.2",
+        "Principle1.Guideline1_3.1_3_1.G141"
       ],
       "url": [
-        "https://dequeuniversity.com/rules/axe/4.10/input-button-name",
-        "https://dequeuniversity.com/rules/axe/4.10/button-name"
+        "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
+        "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+        "https://dequeuniversity.com/rules/axe/4.10/empty-heading"
       ],
-      "impact": "critical",
-      "name": "Label; Button; Missing Label",
+      "impact": "moderate",
+      "name": "Headings; Wrong Order, Empty & Missing Headings;",
       "amount_nodes_failed": 1,
       "issues": [
         {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/button-name",
+          "id": "https://dequeuniversity.com/rules/axe/4.10/heading-order",
           "source": "axe-core",
-          "title": "Buttons must have discernible text",
-          "description": "Ensure buttons have discernible text",
-          "impact": "critical",
+          "title": "Heading levels should only increase by one",
+          "description": "Ensure the order of headings is semantically correct",
+          "impact": "moderate",
           "nodes": {
             "any": [
               {
-                "id": "button-has-visible-text",
+                "id": "heading-order",
                 "data": null,
                 "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element does not have inner text that is visible to screen readers"
-              },
-              {
-                "id": "aria-label",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "aria-label attribute does not exist or is empty"
-              },
-              {
-                "id": "aria-labelledby",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
-              },
-              {
-                "id": "non-empty-title",
-                "data": {
-                  "messageKey": "noAttr"
-                },
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element has no title attribute"
-              },
-              {
-                "id": "implicit-label",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element does not have an implicit (wrapped) <label>"
-              },
-              {
-                "id": "explicit-label",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element does not have an explicit <label>"
-              },
-              {
-                "id": "presentational-role",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+                "impact": "moderate",
+                "message": "Heading order invalid"
               }
             ],
             "all": [],
             "none": [],
-            "impact": "critical",
-            "html": "<button class=\"searchbar-button\"></button>",
+            "impact": "moderate",
+            "html": "<h3>Recent Posts</h3>",
             "target": [
-              "button"
+              ".widget:nth-child(2) > h3"
             ],
-            "failureSummary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            "failureSummary": "Fix any of the following:\n  Heading order invalid"
           }
         },
         {
-          "id": "Principle4.Guideline4_1.4_1_2.H91.Button.Name",
-          "source": "pa11y",
-          "title": "This button element does not have a name available to an accessibility API. Valid names are: title undefined, element content, aria-label undefined, aria-labelledby undefined.",
-          "description": "<button class=\"searchbar-button\"></button>",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Button.Name",
-            "type": "error",
-            "typeCode": 1,
-            "message": "This button element does not have a name available to an accessibility API. Valid names are: title undefined, element content, aria-label undefined, aria-labelledby undefined.",
-            "context": "<button class=\"searchbar-button\"></button>",
-            "selector": "html > body > div:nth-child(2) > div:nth-child(4) > button",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/button-name",
+          "id": "https://dequeuniversity.com/rules/axe/4.10/heading-order",
           "source": "lighthouse",
-          "title": "Buttons do not have an accessible name",
-          "description": "When a button doesn't have an accessible name, screen readers announce it as \"button\", making it unusable for users who rely on screen readers. [Learn how to make buttons more accessible](https://dequeuniversity.com/rules/axe/4.10/button-name).",
+          "title": "Heading elements are not in a sequentially-descending order",
+          "description": "Properly ordered headings that do not skip levels convey the semantic structure of the page, making it easier to navigate and understand when using assistive technologies. [Learn more about heading order](https://dequeuniversity.com/rules/axe/4.10/heading-order).",
           "score": 0,
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-0-BUTTON",
-              "path": "1,HTML,1,BODY,1,DIV,3,DIV,1,BUTTON",
-              "selector": "body > div.main-content > div.searchbar-container > button.searchbar-button",
+              "lhId": "1-0-H3",
+              "path": "1,HTML,1,BODY,2,FOOTER,1,DIV,0,H3",
+              "selector": "body > footer > div.widget > h3",
               "boundingRect": {
-                "top": 1027,
-                "bottom": 1059,
-                "left": 843,
-                "right": 909,
-                "width": 66,
-                "height": 32
+                "top": 1009,
+                "bottom": 1030,
+                "left": 20,
+                "right": 392,
+                "width": 372,
+                "height": 22
               },
-              "snippet": "<button class=\"searchbar-button\">",
-              "nodeLabel": "body > div.main-content > div.searchbar-container > button.searchbar-button",
-              "explanation": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              "snippet": "<h3>",
+              "nodeLabel": "Recent Posts",
+              "explanation": "Fix any of the following:\n  Heading order invalid"
             }
           }
         }
@@ -205,11 +145,11 @@
               {
                 "id": "non-empty-placeholder",
                 "data": {
-                  "messageKey": "noAttr"
+                  "messageKey": "emptyAttr"
                 },
                 "relatedNodes": [],
                 "impact": "critical",
-                "message": "Element has no placeholder attribute"
+                "message": "Element has an empty placeholder attribute"
               },
               {
                 "id": "presentational-role",
@@ -222,26 +162,26 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<input class=\"searchbar-input\" type=\"text\">",
+            "html": "<input class=\"search\" type=\"text\" placeholder=\"\">",
             "target": [
               "input"
             ],
-            "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has an empty placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
           }
         },
         {
           "id": "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
           "source": "pa11y",
           "title": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<input class=\"searchbar-input\" type=\"text\">",
+          "description": "<input class=\"search\" type=\"text\" placeholder=\"\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
             "type": "error",
             "typeCode": 1,
             "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<input class=\"searchbar-input\" type=\"text\">",
-            "selector": "html > body > div:nth-child(2) > div:nth-child(4) > input",
+            "context": "<input class=\"search\" type=\"text\" placeholder=\"\">",
+            "selector": "html > body > footer > input",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -250,15 +190,15 @@
           "id": "Principle1.Guideline1_3.1_3_1.F68",
           "source": "pa11y",
           "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-          "description": "<input class=\"searchbar-input\" type=\"text\">",
+          "description": "<input class=\"search\" type=\"text\" placeholder=\"\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
             "type": "error",
             "typeCode": 1,
             "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-            "context": "<input class=\"searchbar-input\" type=\"text\">",
-            "selector": "html > body > div:nth-child(2) > div:nth-child(4) > input",
+            "context": "<input class=\"search\" type=\"text\" placeholder=\"\">",
+            "selector": "html > body > footer > input",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -273,19 +213,19 @@
             "node": {
               "type": "node",
               "lhId": "1-1-INPUT",
-              "path": "1,HTML,1,BODY,1,DIV,3,DIV,0,INPUT",
-              "selector": "body > div.main-content > div.searchbar-container > input.searchbar-input",
+              "path": "1,HTML,1,BODY,2,FOOTER,0,INPUT",
+              "selector": "body > footer > input.search",
               "boundingRect": {
-                "top": 1028,
-                "bottom": 1058,
-                "left": 71,
-                "right": 843,
-                "width": 772,
-                "height": 30
+                "top": 933,
+                "bottom": 970,
+                "left": 20,
+                "right": 392,
+                "width": 372,
+                "height": 38
               },
-              "snippet": "<input class=\"searchbar-input\" type=\"text\">",
-              "nodeLabel": "body > div.main-content > div.searchbar-container > input.searchbar-input",
-              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              "snippet": "<input class=\"search\" type=\"text\" placeholder=\"\">",
+              "nodeLabel": "body > footer > input.search",
+              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has an empty placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
             }
           }
         }
@@ -308,7 +248,7 @@
       ],
       "impact": "moderate",
       "name": "Landmark & Region; Missing & Unique Landmarks;",
-      "amount_nodes_failed": 6,
+      "amount_nodes_failed": 2,
       "issues": [
         {
           "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
@@ -357,165 +297,11 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<div class=\"header-container\">",
+            "html": "<div class=\"content\">\n        <h1>swimming-pool-5</h1>\n        <div class=\"image-main\">\n            <img src=\"src/placeholder.jpg\" alt=\"Placeholder Image\">\n        </div>\n    </div>",
             "target": [
-              ".header-container"
+              ".content"
             ],
             "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
-          "source": "axe-core",
-          "title": "All page content should be contained by landmarks",
-          "description": "Ensure all page content is contained by landmarks",
-          "impact": "moderate",
-          "nodes": {
-            "any": [
-              {
-                "id": "region",
-                "data": {
-                  "isIframe": false
-                },
-                "relatedNodes": [],
-                "impact": "moderate",
-                "message": "Some page content is not contained by landmarks"
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "moderate",
-            "html": "<div class=\"title\">swimming-pool-5</div>",
-            "target": [
-              ".title"
-            ],
-            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
-          "source": "axe-core",
-          "title": "All page content should be contained by landmarks",
-          "description": "Ensure all page content is contained by landmarks",
-          "impact": "moderate",
-          "nodes": {
-            "any": [
-              {
-                "id": "region",
-                "data": {
-                  "isIframe": false
-                },
-                "relatedNodes": [],
-                "impact": "moderate",
-                "message": "Some page content is not contained by landmarks"
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "moderate",
-            "html": "<input class=\"searchbar-input\" type=\"text\">",
-            "target": [
-              "input"
-            ],
-            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
-          "source": "axe-core",
-          "title": "All page content should be contained by landmarks",
-          "description": "Ensure all page content is contained by landmarks",
-          "impact": "moderate",
-          "nodes": {
-            "any": [
-              {
-                "id": "region",
-                "data": {
-                  "isIframe": false
-                },
-                "relatedNodes": [],
-                "impact": "moderate",
-                "message": "Some page content is not contained by landmarks"
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "moderate",
-            "html": "<div class=\"sidebar\">",
-            "target": [
-              ".sidebar"
-            ],
-            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
-          "source": "axe-core",
-          "title": "All page content should be contained by landmarks",
-          "description": "Ensure all page content is contained by landmarks",
-          "impact": "moderate",
-          "nodes": {
-            "any": [
-              {
-                "id": "region",
-                "data": {
-                  "isIframe": false
-                },
-                "relatedNodes": [],
-                "impact": "moderate",
-                "message": "Some page content is not contained by landmarks"
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "moderate",
-            "html": "<div class=\"footer\">\n    &gt;\n  </div>",
-            "target": [
-              ".footer"
-            ],
-            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
-          }
-        }
-      ]
-    },
-    {
-      "wcag_id": [
-        "Principle1.Guideline1_3.1_3_1.H42.2",
-        "Principle1.Guideline1_3.1_3_1.G141"
-      ],
-      "url": [
-        "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
-        "https://dequeuniversity.com/rules/axe/4.10/heading-order",
-        "https://dequeuniversity.com/rules/axe/4.10/empty-heading"
-      ],
-      "impact": "moderate",
-      "name": "Headings; Wrong Order, Empty & Missing Headings;",
-      "amount_nodes_failed": 1,
-      "issues": [
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
-          "source": "axe-core",
-          "title": "Page should contain a level-one heading",
-          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
-          "impact": "moderate",
-          "nodes": {
-            "any": [],
-            "all": [
-              {
-                "id": "page-has-heading-one",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "moderate",
-                "message": "Page must have a level-one heading"
-              }
-            ],
-            "none": [],
-            "impact": "moderate",
-            "html": "<html lang=\"en\">",
-            "target": [
-              "html"
-            ],
-            "failureSummary": "Fix all of the following:\n  Page must have a level-one heading"
           }
         }
       ]

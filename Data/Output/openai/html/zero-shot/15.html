@@ -1,660 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Capacity Jokes - JokeBuddha.com</title>
-  <meta name="viewport" content="width=950">
-  <style>
-    html {
-      box-sizing: border-box;
-      font-size: 15px;
-    }
-    *, *:before, *:after {
-      box-sizing: inherit;
-    }
-    body {
-      margin: 0;
-      padding: 0;
-      background: #fff;
-      color: #444;
-      font-family: 'Verdana', Verdana, Arial, Helvetica, sans-serif;
-      font-size: 13px;
-      min-width: 950px;
-      line-height: 1.4;
-    }
-    a {
-      color: #125fa2;
-      text-decoration: underline;
-    }
-    a:focus, input:focus, select:focus, textarea:focus, button:focus {
-      outline: 2px solid #fc3;
-      outline-offset: 2px;
-    }
-    /* Top Navigation */
-    .top-nav {
-      width: 950px;
-      margin: 0 auto;
-      background: #fff;
-    }
-    .top-nav-bar {
-      background: #ffef85;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-      height: 27px;
-      border-bottom: 1px solid #dfd372;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 16px;
-      letter-spacing: 0.03em;
-    }
-    .top-nav-links {
-      display: flex;
-      gap: 18px;
-      margin-left: 8px;
-    }
-    .top-nav-link {
-      color: #444;
-      text-decoration: none;
-      padding: 0 2px;
-      font-weight: normal;
-      line-height: 27px;
-    }
-    .top-nav-search {
-      margin-left: auto;
-      margin-right: 10px;
-      display: flex;
-      align-items: center;
-    }
-    .top-nav-search label {
-      font-size: 12px;
-      color: #222;
-      margin-right: 2px;
-    }
-    .top-nav-search input[type="search"] {
-      padding: 1px 3px;
-      font-size: 13px;
-      width: 110px;
-      border: 1px solid #bfbfbf;
-      border-radius: 1px;
-      background: #fffbe0;
-      color: #444;
-    }
-    /* Secondary Navigation */
-    .sub-nav-bar {
-      background: #ffd400;
-      display: flex;
-      align-items: center;
-      height: 25px;
-      border-bottom: 1px solid #ffce57;
-      font-size: 16px;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    .sub-nav-links {
-      display: flex;
-      gap: 12px;
-      margin-left: 10px;
-    }
-    .sub-nav-link {
-      color: #884400;
-      text-decoration: none;
-      padding: 0 2px;
-      cursor: pointer;
-      font-weight: normal;
-      line-height: 25px;
-      border-bottom: none;
-    }
-    /* Layout */
-    .main-container {
-      width: 950px;
-      margin: 0 auto;
-      display: flex;
-      margin-top: 9px;
-      gap: 25px;
-    }
-    .main-left {
-      width: 635px;
-    }
-    .main-right {
-      width: 260px;
-      font-size: 13px;
-      color: #222;
-    }
-    /* Headings */
-    .main-section {
-      background: #f9f9f9;
-      border: 1px solid #dadada;
-      border-radius: 2px 2px 0 0;
-      margin-bottom: 18px;
-      box-shadow: none;
-      width: 100%;
-    }
-    .main-section-header {
-      padding: 6px 10px 5px 10px;
-      background: #eaeaea;
-      border-bottom: 1px solid #dadada;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 18px;
-      color: #222;
-      font-weight: normal;
-      border-radius: 2px 2px 0 0;
-    }
-    /* Jokes List */
-    .jokes-list {
-      padding: 12px 14px 18px 14px;
-      background: #fff;
-      border-radius: 0 0 2px 2px;
-    }
-    .joke-block {
-      margin-bottom: 22px;
-    }
-    .joke-block:last-child {
-      margin-bottom: 0;
-    }
-    .joke-title {
-      font-size: 15px;
-      color: #2c2c2c;
-      font-weight: bold;
-      font-family: Arial, Helvetica, sans-serif;
-      margin-bottom: 2px;
-      margin-top: 8px;
-      line-height: 1.2;
-    }
-    .joke-text {
-      color: #444;
-      font-size: 13px;
-      font-family: Verdana,Arial,Helvetica,sans-serif;
-      font-weight: normal;
-      margin-bottom: 3px;
-      padding-right: 10px;
-    }
-    .joke-actions {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      margin-bottom: 2px;
-      color: #be9100;
-    }
-    .joke-actions .icon {
-      display: inline-block;
-      vertical-align: middle;
-      width: 16px;
-      height: 16px;
-      margin-right: 2px;
-    }
-    .joke-actions .icon-upvote {
-      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><text y="14" font-size="16" font-family="Arial" fill="%23be9100">&#128077;</text></svg>') no-repeat center/contain;
-      margin-left: 1px;
-    }
-    .joke-actions .icon-downvote {
-      background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 16 16" width="16" height="16" xmlns="http://www.w3.org/2000/svg"><text y="14" font-size="16" font-family="Arial" fill="%23be9100">&#128078;</text></svg>') no-repeat center/contain;
-      margin-left: 1px;
-    }
-    .joke-actions .votes-count {
-      font-size: 13px;
-      color: #be9100;
-      margin-right: 2px;
-    }
-    .joke-actions .comments {
-      font-size: 12px;
-      color: #bdbdbd;
-      margin-left: 5px;
-      background: transparent;
-      vertical-align: middle;
-      cursor: pointer;
-    }
-    .joke-actions .comments:focus {
-      outline: 1px solid #ffc900;
-    }
-    .joke-more {
-      font-size: 13px;
-      color: #125fa2;
-      margin-left: 0;
-      font-family: 'Verdana', Verdana, Arial, Helvetica, sans-serif;
-      text-decoration: underline;
-      cursor: pointer;
-    }
-    .jokes-more-link {
-      margin-top: 12px;
-      font-size: 14px;
-      color: #125fa2;
-      font-family: 'Verdana', Verdana, Arial, Helvetica, sans-serif;
-      text-decoration: underline;
-      cursor: pointer;
-      display: block;
-      font-weight: bold;
-    }
-    /* Links Block */
-    .links-section, .activity-section {
-      width: 100%;
-      border: 1px solid #ccc;
-      background: #f9f9f9;
-      font-size: 13px;
-    }
-    .links-section {
-      border-radius: 2px 2px 0 0;
-    }
-    .links-section-header, .activity-section-header {
-      padding: 5px 10px 5px 8px;
-      background: #eee;
-      color: #444;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 15px;
-      border-bottom: 1px solid #ccc;
-      border-radius: 2px 2px 0 0;
-      font-weight: normal;
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-    }
-    .links-section-header a {
-      font-size: 13px;
-      color: #124e92;
-    }
-    .links-section-list {
-      padding: 7px 15px 10px 15px;
-    }
-    .links-section-list a {
-      color: #18479a;
-    }
-    /* Activity */
-    .activity-section {
-      margin-top: 12px;
-      border-radius: 2px 2px 0 0;
-      margin-bottom: 16px;
-    }
-    .activity-section-header {
-      background: #ededed;
-    }
-    .activity-list {
-      padding: 9px 13px 12px 13px;
-    }
-    .activity-list-item {
-      margin-bottom: 2px;
-      margin-top: 2px;
-      color: #222;
-      font-size: 13px;
-      white-space: pre-line;
-    }
-    .activity-list-item a {
-      color: #18479a;
-      text-decoration: underline;
-    }
-    /* Right Sidebar */
-    .sidebar-section-title {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 14px;
-      color: #222;
-      font-weight: bold;
-      margin-top: 0;
-      margin-bottom: 8px;
-      margin-left: 2px;
-    }
-    .sidebar-section {
-      margin-bottom: 19px;
-    }
-    .sidebar-input {
-      display: block;
-      width: 99%;
-      max-width: 220px;
-      padding: 4px 6px;
-      font-size: 13px;
-      border: 1px solid #bdbdbd;
-      border-radius: 2px;
-      color: #444;
-      background: #fafafa;
-      margin-bottom: 8px;
-      margin-top: 3px;
-    }
-    /* Related Topics */
-    .topics-cloud {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 6px 7px;
-      padding-top: 2px;
-      margin-bottom: 17px;
-      margin-left: 0px;
-      font-size: 13px;
-    }
-    .topics-cloud .topic {
-      color: #5b5b5b;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 13px;
-    }
-    .sidebar-meta {
-      font-size: 13px;
-      color: #aa7700;
-      margin-left: 1px;
-      margin-top: 4px;
-      margin-bottom: 16px;
-    }
-    .sidebar-meta .icon {
-      vertical-align: middle;
-      margin-right: 2px;
-      width: 14px;
-      height: 14px;
-    }
-    .sidebar-meta .author {
-      color: #b4840f;
-      font-weight: bold;
-      font-size: 13px;
-      margin-left: 3px;
-    }
-    .sidebar-section.subtle {
-      color: #555;
-      font-size: 12.9px;
-    }
-    .sidebar-section.subtle strong {
-      color: #222;
-      font-weight: 600;
-    }
-    .sidebar-section .input-button {
-      margin-left: 0;
-      margin-top: 0;
-      background: #ffd21c;
-      color: #774d00;
-      border: 1px solid #e0ba00;
-      border-radius: 2px;
-      padding: 2px 7px;
-      font-size: 13px;
-      font-family: Arial, Helvetica, sans-serif;
-      cursor: pointer;
-    }
-    .tell-a-joke-link {
-      color: #18479a;
-      text-decoration: underline;
-      font-size: 14px;
-      cursor: pointer;
-      padding-left: 1px;
-      padding-top: 0;
-      padding-bottom: 0;
-      font-family: Verdana,Arial,Helvetica,sans-serif;
-      font-weight: normal;
-    }
-    /* Footer */
-    .footer {
-      width: 950px;
-      margin: 38px auto 0 auto;
-      text-align: center;
-      color: #888;
-      font-size: 12px;
-      padding-bottom: 10px;
-    }
-    .footer a {
-      color: #18479a;
-      font-size: 12px;
-      text-decoration: underline;
-    }
-    .footer-note {
-      font-size: 11px;
-      color: #555;
-      margin-top: 7px;
-    }
-    /* Colors */
-    .yellow-bg {
-      background: #fff6a9;
-    }
-    .gray-bg {
-      background: #f9f9f9;
-    }
-    .orange-text {
-      color: #be9100;
-    }
-    .joke-upvote {
-      color: #be9100;
-      font-size: 16px;
-      vertical-align: middle;
-    }
-    .joke-downvote {
-      color: #be9100;
-      font-size: 16px;
-      vertical-align: middle;
-    }
-    .comment-link {
-      color: #bdbdbd;
-      font-size: 12px;
-      text-decoration: underline;
-      margin-left: 3px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      padding: 0;
-      font-family: inherit;
-      vertical-align: middle;
-    }
-    .comment-link:focus {
-      outline: 1px solid #ffc900;
-    }
-    /* Responsive Horizontal Rule */
-    hr {
-      border: none;
-      border-top: 1px solid #cdcdcd;
-      margin: 24px 0 15px 0;
-    }
-    @media (max-width: 990px) {
-      body, .top-nav, .main-container, .footer {
-        min-width: 0 !important;
-        width: 100% !important;
-      }
-      .main-container {
-        flex-direction: column;
-        gap: 0;
-      }
-      .main-left, .main-right {
-        width: 100%!important;
-        min-width: 0;
-      }
-      .footer {
-        width: 100%!important;
-        min-width: 0;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacity Jokes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #FFFFFF;
+            color: #333;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #EEE;
+            padding: 10px 20px;
+        }
+
+        .header div {
+            display: flex;
+        }
+
+        .header div a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #000;
+            font-size: 14px;
+        }
+
+        .content {
+            display: flex;
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .main {
+            flex: 3;
+            margin-right: 20px;
+        }
+
+        .sidebar {
+            flex: 1;
+            padding-left: 20px;
+            border-left: 1px solid #DDD;
+        }
+
+        h2, h3 {
+            margin-top: 0;
+        }
+
+        .joke {
+            margin-bottom: 20px;
+        }
+
+        .joke .title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .joke .text {
+            margin-bottom: 5px;
+        }
+
+        .joke .interactions {
+            font-size: 12px;
+            color: #999;
+        }
+
+        .interactions img {
+            vertical-align: middle;
+        }
+
+        .sidebar-section {
+            margin-bottom: 20px;
+        }
+
+        .sidebar-section h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .placeholder {
+            display: block;
+            margin-bottom: 10px;
+            background-color: #ADD8E6;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            color: #666;
+            border-top: 1px solid #DDD;
+        }
+    </style>
 </head>
 <body>
-  <nav class="top-nav" aria-label="main navigation">
-    <div class="top-nav-bar">
-      <div class="top-nav-links">
-        <a class="top-nav-link" href="#" tabindex="1">Funny Jokes</a>
-        <a class="top-nav-link" href="#" tabindex="2">Top Rated</a>
-        <a class="top-nav-link" href="#" tabindex="3">Most Discussed</a>
-        <a class="top-nav-link" href="#" tabindex="4">Recent</a>
-      </div>
-      <form class="top-nav-search" role="search" aria-label="Search jokes">
-        <label for="search-jokes" class="visually-hidden">Search jokes</label>
-        <input type="search" id="search-jokes" name="q" placeholder="Search jokes" aria-label="Search jokes">
-      </form>
-    </div>
-    <div class="sub-nav-bar">
-      <div class="sub-nav-links">
-        <a class="sub-nav-link" href="#" tabindex="5">One-liners</a>
-        <a class="sub-nav-link" href="#" tabindex="6">Blonde</a>
-        <a class="sub-nav-link" href="#" tabindex="7">Hairline</a>
-        <a class="sub-nav-link" href="#" tabindex="8">Chuck Norris</a>
-      </div>
-    </div>
-  </nav>
-  <main class="main-container">
-    <section class="main-left" aria-labelledby="main-jokes-heading">
-      <section class="main-section" aria-label="Funny Jokes">
-        <h1 id="main-jokes-heading" class="main-section-header" tabindex="0">Capacity Jokes</h1>
-        <div class="jokes-list">
-          <section class="joke-block" aria-labelledby="joke-1-title">
-            <h2 id="joke-1-title" class="joke-title">Picard "Mr</h2>
-            <p class="joke-text">Picard "Mr. LaForge, have you had any success with your attempts at finding a weakness in the Borg? <span class="joke-more"><a href="#">more...</a></span></p>
-            <div class="joke-actions">
-              <span class="icon icon-upvote" aria-hidden="true"></span>
-              <span class="votes-count">1</span>
-              <span class="icon icon-downvote" aria-hidden="true"></span>
-              <span class="votes-count">0</span>
-              <button class="comment-link" aria-label="View comments for Picard 'Mr'">(comments 0)</button>
-            </div>
-          </section>
-          <section class="joke-block" aria-labelledby="joke-2-title">
-            <h2 id="joke-2-title" class="joke-title">Bell Labs Proves Existence of Dark Suckers</h2>
-            <p class="joke-text">Bell Labs Proves Existence of Dark Suckers For years it has been believed that electric bulbs emitted light. <span class="joke-more"><a href="#">more...</a></span></p>
-            <div class="joke-actions">
-              <span class="icon icon-upvote" aria-hidden="true"></span>
-              <span class="votes-count">1</span>
-              <span class="icon icon-downvote" aria-hidden="true"></span>
-              <span class="votes-count">0</span>
-              <button class="comment-link" aria-label="View comments for Bell Labs Dark Suckers">(comments 0)</button>
-            </div>
-          </section>
-          <section class="joke-block" aria-labelledby="joke-3-title">
-            <h2 id="joke-3-title" class="joke-title">Windows and The Borg</h2>
-            <div class="joke-text">
-              Picard: "Mr. LaForge, have you had any success with your<br>
-              attempts at finding a weakness in the Borg? And Mr. Data, have you been<br>
-              able to access their command pathways?"<br>
-              Geordi: "Yes, Captain. In fact, we found the answer by<br>
-              searching through our archives on late Twentieth–century computing<br>
-              technology."<br>
-              Geordi presses a key, and a logo appears on the computer screen.<br>
-              Riker looks puzzled. "What the hell is 'Microsoft'?"<br>
-              Data turns to answer.<br>
-              this program, for some reason called 'Windows', through the Borg command<br>
-              pathways. Once inside their root command unit, it will begin consuming<br>
-              system resources at an unstoppable rate."<br>
-              Picard: "But the Borg have the ability to adapt. Won't<br>
-              they alter their processing systems to increase their storage capacity?"<br>
-              Data: "Yes, Captain. But when 'Windows' detects this, it<br>
-              creates a new version of itself <span class="joke-more"><a href="#">more...</a></span>"
-            </div>
-            <div class="joke-actions">
-              <span class="icon icon-upvote" aria-hidden="true"></span>
-              <span class="votes-count">0</span>
-              <span class="icon icon-downvote" aria-hidden="true"></span>
-              <span class="votes-count">0</span>
-              <button class="comment-link" aria-label="View comments for Windows and The Borg">(comments 0)</button>
-            </div>
-          </section>
-          <section class="joke-block" aria-labelledby="joke-4-title">
-            <h2 id="joke-4-title" class="joke-title">Bell Labs Proves Existence of Dark Suckers</h2>
-            <p class="joke-text">Bell Labs Proves Existence of Dark Suckers For years it has been believed that electric bulbs emitted light.However, recent information from Bell Labs has proven otherwise. <span class="joke-more"><a href="#">more...</a></span></p>
-            <div class="joke-actions">
-              <span class="icon icon-upvote" aria-hidden="true"></span>
-              <span class="votes-count">0</span>
-              <span class="icon icon-downvote" aria-hidden="true"></span>
-              <span class="votes-count">0</span>
-              <button class="comment-link" aria-label="View comments for Bell Labs Proves Existence of Dark Suckers">(comments 0)</button>
-            </div>
-          </section>
-          <section class="joke-block" aria-labelledby="joke-5-title">
-            <h2 id="joke-5-title" class="joke-title">What's the fluid capacity of Monica Lewinsky's mouth?</h2>
-            <div class="joke-text">What's the fluid capacity of Monica Lewinsky's mouth? 1 U. S. leader</div>
-            <div class="joke-actions">
-              <span class="icon icon-upvote" aria-hidden="true"></span>
-              <span class="votes-count">0</span>
-              <span class="icon icon-downvote" aria-hidden="true"></span>
-              <span class="votes-count">0</span>
-              <button class="comment-link" aria-label="View comments for Monica Lewinsky Joke">(comments 0)</button>
-            </div>
-          </section>
-          <a href="#" class="jokes-more-link">More Jokes</a>
-        </div>
-      </section>
-      <section class="links-section" aria-labelledby="external-links-heading">
-        <div class="links-section-header">
-          <span id="external-links-heading">External Links</span>
-          <a href="#">Add a Useful Link</a>
-        </div>
-        <div class="links-section-list" aria-live="polite"></div>
-      </section>
-      <section class="activity-section" aria-labelledby="recent-activity-heading">
-        <div class="activity-section-header" id="recent-activity-heading">Recent Activity</div>
-        <div class="activity-list">
-          <div class="activity-list-item">Picard "Mr</div>
-          <div class="activity-list-item">Senator questions judge's role in lesbian wedding by Anonym</div>
-          <div class="activity-list-item"><a href="#">You have the capacity to learn from</a> by Anonym</div>
-          <div class="activity-list-item"><a href="#">Dark Suckers</a> by Anonym</div>
-          <div class="activity-list-item">Senator questions judge's role in lesbian wedding</div>
-          <div class="activity-list-item"><a href="#">Bell Labs Proves Existence of Dark Suckers</a></div>
-          <div class="activity-list-item">Senator questions judge's role in lesbian wedding</div>
-        </div>
-      </section>
-    </section>
-    <aside class="main-right" aria-label="sidebar">
-      <section class="sidebar-section" aria-labelledby="follow-joke-buddha-label">
-        <p class="sidebar-section-title" id="follow-joke-buddha-label">Follow Joke Buddha</p>
-        <label for="subscribe-email" class="visually-hidden">Your email for Joke of the Day</label>
-        <input type="email" class="sidebar-input" id="subscribe-email" placeholder="Get a Joke of the Day to your email" aria-label="Get a Joke of the Day to your email">
-      </section>
-      <section class="sidebar-section" aria-labelledby="related-topics-label">
-        <p class="sidebar-section-title" id="related-topics-label">Related Topics</p>
-        <div class="topics-cloud" role="list">
-          <span class="topic" role="listitem">Ability</span>
-          <span class="topic" role="listitem">Adapt</span>
-          <span class="topic" role="listitem">Answer</span>
-          <span class="topic" role="listitem">Apparently</span>
-          <span class="topic" role="listitem">Begin</span>
-          <span class="topic" role="listitem">Believe</span>
-          <span class="topic" role="listitem">Borg</span>
-          <span class="topic" role="listitem">Capacity</span>
-          <span class="topic" role="listitem">Captain</span>
-          <span class="topic" role="listitem">Command</span>
-          <span class="topic" role="listitem">Compensate</span>
-          <span class="topic" role="listitem">Data</span>
-          <span class="topic" role="listitem">Deep</span>
-          <span class="topic" role="listitem">Found</span>
-          <span class="topic" role="listitem">Geordi</span>
-          <span class="topic" role="listitem">Hours</span>
-          <span class="topic" role="listitem">Increase</span>
-          <span class="topic" role="listitem">Logo</span>
-          <span class="topic" role="listitem">Microsoft</span>
-          <span class="topic" role="listitem">Pathways</span>
-          <span class="topic" role="listitem">Picard</span>
-          <span class="topic" role="listitem">Processing</span>
-          <span class="topic" role="listitem">Reason</span>
-          <span class="topic" role="listitem">Resources</span>
-          <span class="topic" role="listitem">Riker</span>
-          <span class="topic" role="listitem">Scanners</span>
-          <span class="topic" role="listitem">Something</span>
-          <span class="topic" role="listitem">Space</span>
-          <span class="topic" role="listitem">Storage</span>
-          <span class="topic" role="listitem" style="font-size: 17px; font-weight: bold; color: #222;">Unit</span>
-        </div>
-      </section>
-      <section class="sidebar-section" aria-labelledby="top-authors-label">
-        <p class="sidebar-section-title" id="top-authors-label">Top Authors</p>
-        <div class="sidebar-meta"><span class="icon icon-upvote" aria-hidden="true"></span>1 <span class="icon icon-downvote" aria-hidden="true"></span>0 <span class="author">SWEETLY BEAT</span></div>
-        <div class="sidebar-meta" style="color:#be9100"><span style="color:#222;font-weight:bold;">week</span> <span style="color:#c22222;">month</span> overall</div>
-        <div class="sidebar-meta" style="color:#888; font-size:12.5px;">1 joke</div>
-      </section>
-      <section class="sidebar-section" aria-labelledby="recent-comments-label">
-        <p class="sidebar-section-title" id="recent-comments-label">Recent Comments</p>
-        <div class="sidebar-section subtle">
-          Alex: Good one!<br>
-          Jack: I think the joke should be worded differently.<br>
-          Douglas: Funniest thing ever<br>
-          tdajer*lt: In the much shorter version of this joke the song used was 'My country 'tiz' of thee'.<br>
-          Jerome Byanski: Works for me
-        </div>
-      </section>
-      <section class="sidebar-section" aria-labelledby="know-a-funny-joke-label">
-        <p class="sidebar-section-title" id="know-a-funny-joke-label">Know a Funny Joke?</p>
+    <div class="header">
         <div>
-          <a href="#" class="tell-a-joke-link">Tell a Joke</a>
+            <a href="#">Funny Jokes</a>
+            <a href="#">Top Rated</a>
+            <a href="#">Most Discussed</a>
+            <input type="text" aria-label="Search jokes">
         </div>
-      </section>
-    </aside>
-  </main>
-  <footer class="footer" aria-label="Site footer">
-    <div>JokeBuddha.com &#169; 2010–2023 &nbsp; <a href="#">Terms &amp; Privacy</a></div>
-    <div class="footer-note">
-      We love good humor and obviously hilarious jokes followed by a healthy laughter!
+        <div>
+            <a href="#">One-liners</a>
+            <a href="#">Blonde</a>
+            <a href="#">Hairline</a>
+            <a href="#">Chuck Norris</a>
+        </div>
     </div>
-  </footer>
-  <style>
-    .visually-hidden {
-      position: absolute !important;
-      height: 1px; width: 1px;
-      overflow: hidden;
-      clip: rect(1px, 1px, 1px, 1px);
-      white-space: nowrap;
-      border: 0;
-      padding: 0;
-      margin: -1px;
-    }
-  </style>
+    <div class="content">
+        <div class="main">
+            <h2>Capacity Jokes</h2>
+            <h3>Funny Jokes</h3>
+            <div class="joke">
+                <div class="title">Picard "Mr</div>
+                <div class="text">Picard "Mr. LaForge, have you had any success with your attempts at finding a weakness in the Borg? more...</div>
+                <div class="interactions">
+                    <img src="src/placeholder.jpg" alt="upvote" width="15" height="15"> 1
+                    <img src="src/placeholder.jpg" alt="downvote" width="15" height="15"> 0
+                    comments (0)
+                </div>
+            </div>
+            <!-- Additional jokes structured similarly -->
+            <div class="joke">
+                <div class="title">Bell Labs Proves Existence of Dark Suckers</div>
+                <div class="text">Bell Labs Proves Existence of Dark Suckers For years it has been believed that electric bulbs emitted light. more...</div>
+                <div class="interactions">
+                    <img src="src/placeholder.jpg" alt="upvote" width="15" height="15"> 1
+                    <img src="src/placeholder.jpg" alt="downvote" width="15" height="15"> 0
+                    comments (0)
+                </div>
+            </div>
+            <div class="joke">
+                <div class="title">Windows and The Borg</div>
+                <div class="text">
+                    Picard: "Mr. LaForge, have you had any success with your attempts at finding a weakness in the Borg? And Mr. Data,... more...</div>
+                <div class="interactions">
+                    <img src="src/placeholder.jpg" alt="upvote" width="15" height="15"> 0
+                    <img src="src/placeholder.jpg" alt="downvote" width="15" height="15"> 0
+                    comments (0)
+                </div>
+            </div>
+            <div class="joke">
+                <div class="title">What's the fluid capacity of Monica Lewinsky's mouth?</div>
+                <div class="text">What's the fluid capacity of Monica Lewinsky's mouth? 1 U. S. leader</div>
+                <div class="interactions">
+                    <img src="src/placeholder.jpg" alt="upvote" width="15" height="15"> 0
+                    <img src="src/placeholder.jpg" alt="downvote" width="15" height="15"> 0
+                    comments (0)
+                </div>
+            </div>
+        </div>
+        <div class="sidebar">
+            <div class="sidebar-section">
+                <form>
+                    <label for="email">Get a Joke of the Day to your email</label>
+                    <input type="email" id="email" required>
+                </form>
+            </div>
+            <div class="sidebar-section">
+                <h3>Related Topics</h3>
+                <p>Ability Adapt Answer Apparently ...</p>
+            </div>
+            <div class="sidebar-section">
+                <h3>Top Authors</h3>
+                <p>week month overall</p>
+                <img src="src/placeholder.jpg" alt="upvote" width="15" height="15"> 1
+                <img src="src/placeholder.jpg" alt="downvote" width="15" height="15"> 0 SWEETLY BEAT 1 joke
+            </div>
+            <div class="sidebar-section">
+                <h3>Recent Comments</h3>
+                <p>Alex: Good one!</p>
+                <p>Jack: I think the joke should be worded differently.</p>
+            </div>
+            <div class="sidebar-section">
+                <p>Know a Funny Joke?</p>
+                <form>
+                    <textarea aria-label="Tell a Joke"></textarea>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <p>JokeBuddha.com © 2010-2023 Terms & Privacy</p>
+        <p>We love good humor and obviously hilarious jokes followed by a healthy laughter!</p>
+    </div>
 </body>
 </html>

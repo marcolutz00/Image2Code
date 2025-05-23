@@ -1,365 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>What is a node in blockchain</title>
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-      font-family: Arial, Helvetica, sans-serif;
-      background: #fff;
-      color: #222;
-      font-size: 16px;
-      width: 100%;
-      overflow-x: hidden;
-    }
-
-    body {
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-    }
-
-    /* Top Navigation */
-    .topnav {
-      width: 100%;
-      background: #fff;
-      border-bottom: 1px solid #f0f0f0;
-      margin: 0;
-      padding: 0;
-      height: 49px;
-    }
-    .topnav-inner {
-      max-width: 1170px;
-      margin: 0 auto;
-      height: 49px;
-      display: flex;
-      align-items: center;
-    }
-    .topnav-menu {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      display: flex;
-      width: 100%;
-      justify-content: center;
-    }
-    .topnav-menu li {
-      margin: 0 18px 0 0;
-      display: inline-block;
-      font-size: 15px;
-      font-family: Arial, Helvetica, sans-serif;
-      color: #555;
-      line-height: 49px;
-      text-transform: none;
-      letter-spacing: .02em;
-    }
-    .topnav-menu li:last-child {
-      margin-right: 0;
-    }
-
-    .content-wrapper {
-      max-width: 1170px;
-      margin: 0 auto;
-      padding: 0 0 60px 0;
-      min-height: 500px;
-      flex: 1 0 auto;
-    }
-
-    .page-title {
-      font-size: 28px;
-      font-family: Arial, Helvetica, sans-serif;
-      margin-top: 32px;
-      margin-bottom: 5px;
-      font-weight: normal;
-    }
-
-    .meta-author {
-      font-size: 15px;
-      color: #444;
-      margin-bottom: 33px;
-      margin-top: 0;
-    }
-
-    /* Blue image box */
-    .main-image {
-      width: 900px;
-      height: 450px;
-      display: block;
-      margin-bottom: 32px;
-      background: #00f;
-    }
-
-    /* For center aligning main image */
-    @media (min-width: 1180px) {
-      .main-image {
-        margin-left: 0;
-      }
-    }
-
-    @media (max-width: 900px) {
-      .main-image {
-        width: 100vw !important;
-        max-width: 100%;
-        height: auto !important;
-      }
-    }
-
-    ul.bullet-list {
-      padding-left: 38px;
-      margin-top: 0;
-      margin-bottom: 34px;
-      color: #222;
-    }
-    ul.bullet-list li {
-      margin-bottom: 8px;
-      font-size: 15px;
-      line-height: 1.5;
-    }
-
-    h2.section-header {
-      font-size: 23px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: normal;
-      margin-top: 15px;
-      margin-bottom: 13px;
-      color: #222;
-    }
-
-    p {
-      font-size: 15px;
-      color: #222;
-      line-height: 1.5;
-      margin: 0 0 15px 0;
-    }
-
-    a {
-      color: #367bb7;
-      text-decoration: underline;
-    }
-    a:visited {
-      color: #367bb7;
-    }
-
-    /* Footer Section */
-    .footer {
-      background: #212121;
-      width: 100%;
-      margin-top: 60px;
-      color: #fff;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 15px;
-      padding: 0;
-      min-height: 254px;
-      position: relative;
-      flex-shrink: 0;
-    }
-    .footer-top {
-      max-width: 1170px;
-      margin: 0 auto;
-      padding-top: 44px;
-      padding-bottom: 48px;
-      min-height: 220px;
-      position: relative;
-      z-index: 2;
-    }
-    .footer-img {
-      width: 600px;
-      height: 200px;
-      display: block;
-      background: #00f;
-      margin: 0 auto 27px auto;
-    }
-
-    .footer-desc {
-      color: #fff;
-      font-size: 15px;
-      margin: 0 0 20px 0;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    .footer-row {
-      width: 100%;
-      margin-top: 30px;
-      display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      flex-wrap: wrap;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    .footer-links-group {
-      margin-right: 33px;
-    }
-    .footer-link-title {
-      color: #33baff;
-      font-size: 15px;
-      font-weight: bold;
-      margin-right: 20px;
-    }
-    .footer-links {
-      color: #fff;
-      font-size: 15px;
-    }
-    .footer-links a {
-      color: #fff;
-      text-decoration: underline;
-      margin-right: 15px;
-      font-size: 15px;
-    }
-    .footer-links a.footer-highlight {
-      color: #33baff;
-      text-decoration: underline;
-    }
-    .footer-bottom-nav {
-      background: #181818;
-      color: #fff;
-      font-size: 14px;
-      padding: 7px 0 6px 0;
-      text-align: left;
-    }
-    .footer-bottom-nav-inner {
-      max-width: 1170px;
-      margin: 0 auto;
-      display: flex;
-      flex-direction: row;
-      align-items: center;
-    }
-    .footer-bottom-nav a {
-      color: #fff;
-      margin-right: 22px;
-      font-size: 14px;
-      text-decoration: none;
-      font-family: Arial, Helvetica, sans-serif;
-    }
-    .footer-bottom-nav a:last-child {
-      margin-right: 0;
-    }
-    .footer-copyright {
-      color: #ccc;
-      font-size: 12px;
-      text-align: center;
-      background: #181818;
-      font-family: Arial, Helvetica, sans-serif;
-      margin-top: 0;
-      padding-bottom: 18px;
-      padding-top: 0;
-    }
-
-    @media (max-width: 1060px) {
-      .content-wrapper,
-      .footer-top,
-      .footer-bottom-nav-inner {
-        max-width: 98vw;
-        padding-left: 10px;
-        padding-right: 10px;
-      }
-      .main-image, .footer-img {
-        max-width: 98vw;
-        height: auto;
-      }
-    }
-    @media (max-width: 800px) {
-      .footer-img {
-        width: 98vw;
-        max-width: 98vw;
-        height: 90vw;
-        max-height: 200px;
-      }
-      .main-image {
-        width: 98vw;
-        height: auto;
-      }
-    }
-    @media (max-width: 600px) {
-      .topnav-inner, .footer-top, .footer-bottom-nav-inner {
-        max-width: 100vw;
-        padding-left: 3vw;
-        padding-right: 3vw;
-      }
-      .main-image, .footer-img {
-        width: 96vw !important;
-        min-width: 0;
-        max-width: 96vw;
-        height: auto !important;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>What is a node in blockchain</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: white;
+            height: 60px;
+            border-bottom: 1px solid #eee;
+        }
+        .header nav {
+            display: flex;
+            gap: 20px;
+        }
+        .header a {
+            text-decoration: none;
+            color: black;
+            font-size: 14px;
+            text-transform: uppercase;
+        }
+        .container {
+            max-width: 780px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+        h1 {
+            font-size: 34px;
+            margin-bottom: 10px;
+        }
+        .author {
+            font-size: 14px;
+            color: #999;
+            margin-bottom: 20px;
+        }
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background-color: blue;
+            margin-bottom: 25px;
+        }
+        ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-top: 0;
+            margin-bottom: 25px;
+        }
+        h2 {
+            font-size: 24px;
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 20px 0;
+            font-size: 12px;
+            text-align: center;
+        }
+        footer a {
+            color: lightblue;
+            text-decoration: none;
+            margin-right: 15px;
+        }
+    </style>
 </head>
 <body>
-  <nav class="topnav">
-    <div class="topnav-inner">
-      <ul class="topnav-menu">
-        <li>home</li>
-        <li>Banking</li>
-        <li>Blockchain</li>
-        <li>Cryptocurrencies</li>
-        <li>Finance</li>
-        <li>Markets</li>
-        <li>Podcast</li>
-        <li>Events</li>
-        <li>Learn</li>
-        <li>Regulation</li>
-        <li>Technology</li>
-      </ul>
+    <header class="header">
+        <nav>
+            <a href="#">home</a>
+            <a href="#">Banking</a>
+            <a href="#">Blockchain</a>
+            <a href="#">Cryptocurrencies</a>
+            <a href="#">Finance</a>
+            <a href="#">Markets</a>
+            <a href="#">Podcast</a>
+            <a href="#">Events</a>
+            <a href="#">Learn</a>
+            <a href="#">Regulation</a>
+            <a href="#">Technology</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1>What is a node in blockchain</h1>
+        <div class="author">by Samuel Mbaki | Jun 5, 2023 | Learn, Blockchain</div>
+        <div class="image-placeholder"><img src="src/placeholder.jpg" alt="Image Placeholder" style="display:none;"></div>
+        <ul>
+            <li>A blockchain node is a device that participates in a blockchain network by running the network's software which helps it to validate transactions.</li>
+            <li>Blockchain nodes usually communicate with each other to verify transactions.</li>
+            <li>The more nodes a network has, the more it is decentralized.</li>
+        </ul>
+        <h2>What are blockchain nodes?</h2>
+        <p>The question of what is a node in blockchain is best answered by visualizing a blockchain network. To be a network, it needs several intercommunicating computers/devices that can write, upload and verify data that goes to the software behind the network. For instance, if you want to run a node for Bitcoin <a href="#">(CRYPTO: BTC)</a>, you can download the Bitcoin Core software on a computer and run it without discrimination.</p>
+        <p>As such, a blockchain node refers to a device or computer running a blockchain network software and communicating with others to verify data uploaded in the blockchain. Running a blockchain network's software on different computers increases its security and enhances its decentralization.</p>
+        <p>For most <a href="#">blockchain networks</a>, anyone can run a node; however, some networks are choosy and only allows select nodes to run their software and participate.</p>
+        <h2>How does a blockchain node work?</h2>
+        <p>The main roles of a blockchain node are broadcasting and validating transactions. Once a user submits a transaction, it’s received by a node that then broadcasts it to all other network nodes.</p>
+        <p>Once the transaction is read by all nodes and verified that the user has enough funds to satisfy it, they authorize the user to complete the transaction. Since all nodes verify a transaction in a blockchain, a transaction can only be cancelled or rejected if 51% of the available nodes confirm it to be wrong.</p>
+        <p>As such, the 51% attack can be made, but it’s not easy in a decentralized network. A decentralized network is one where different nodes are available and are not led by a single user or a block of users that can concur to 5enscor select transactions. That means the higher the number of nodes, the higher the security of a blockchain against the 51% attack.</p>
+        <p>Once a node validates new transactions, it is grouped into blocks that are then added to the blockchain following the set rules of the network. After that, no node in the network is allowed to change the contents of any block, making the data recorded in the network immutable.</p>
     </div>
-  </nav>
-  <div class="content-wrapper">
-    <div class="page-title">What is a node in blockchain</div>
-    <div class="meta-author">
-      by Samuel Mbaki | Jun 5, 2023 | Learn, Blockchain
-    </div>
-    <img src="src/placeholder.jpg" class="main-image" width="900" height="450" alt="">
-    <ul class="bullet-list">
-      <li>A blockchain node is a device that participates in a blockchain network by running the network’s software which helps it to validate transactions.</li>
-      <li>Blockchain nodes usually communicate with each other to verify transactions.</li>
-      <li>The more nodes a network has, the more it is decentralized.</li>
-    </ul>
-    <h2 class="section-header">What are blockchain nodes?</h2>
-    <p>The question of what is a node in blockchain is best answered by visualizing a blockchain network. To be a network, it needs several intercommunicating computers/ devices that can write, upload and verify data that goes to the software behind the network. For instance, if you want to run a node for <a href="#">Bitcoin (CRYPTO:BTC)</a>, you can download the Bitcoin Core software on a computer and run it without discrimination.</p>
-    <p>As such, a blockchain node refers to a device or computer running a blockchain network software and communicating with others to verify data uploaded in the blockchain. Running a blockchain network's software on different computers increases its security and enhances its decentralization.</p>
-    <p>For most <a href="#">blockchain networks</a>, anyone can run a node; however, some networks are choosy and only allows select nodes to run their software and participate.</p>
-    <h2 class="section-header">How does a blockchain node work?</h2>
-    <p>The main roles of a blockchain node are broadcasting and validating transactions. Once a user submits a transaction, it's received by a node that then broadcasts it to all other network nodes.</p>
-    <p>Once the transaction is read by all nodes and verified that the user has enough funds to satisfy it, they authorize the user to complete the transaction. Since all nodes verify a transaction in a blockchain, a transaction can only be cancelled or rejected if 51% of the available nodes confirm it to be wrong.</p>
-    <p>As such, the 51% attack can be made, but it's not easy in a decentralized network. A decentralized network is one where different nodes are available and are not led by a single user or a block of users that can concur to 51%or select transactions. That means the higher the number of nodes, the higher the security of a blockchain against the 51% attack.</p>
-    <p>Once a node validates new transactions, it is grouped into blocks that are then added to the blockchain following the set rules of the network. After that, no node in the network is allowed to change the contents of any block, making the data recorded in the network immutable.</p>
-  </div>
-
-  <footer class="footer">
-    <div class="footer-top">
-      <img src="src/placeholder.jpg" class="footer-img" width="600" height="200" alt="">
-      <div class="footer-desc">Fintech Express is a dedicated media platform that brings you educative posts and news about the financial landscape as soon as they happen.</div>
-      <div class="footer-row">
-        <div class="footer-links-group">
-          <span class="footer-link-title">Quick Links</span>
-          <span class="footer-links">
-            <a href="#" class="footer-highlight">Home</a>
-            contact us
-          </span>
+    <footer>
+        <div>Fintech Express is a dedicated media platform that brings you educative posts and news about the financial landscape as soon as they happen.</div>
+        <div class="links">
+            <div>
+                <a href="#">Quick Links</a>
+                <a href="#">Top Categories</a>
+                <a href="#">Home</a>
+                <a href="#">contact us</a>
+                <a href="#">About Fintech Express</a>
+                <a href="#">terms and conditions</a>
+                <a href="#">Glossary</a>
+            </div>
+            <div style="margin-top:20px;">
+                <a href="#">home</a>
+                <a href="#">Banking</a>
+            </div>
         </div>
-        <div class="footer-links-group">
-          <span class="footer-link-title">Top Categories</span>
-          <span class="footer-links">Banking</span>
-        </div>
-        <div class="footer-links-group">
-          <a href="#" class="footer-links">About Fintech Express</a>
-          <a href="#" class="footer-links">terms and conditions</a>
-          <a href="#" class="footer-links">Glossary</a>
-        </div>
-      </div>
-    </div>
-    <div class="footer-bottom-nav">
-      <div class="footer-bottom-nav-inner">
-        <a href="#">home</a>
-        <a href="#">Banking</a>
-      </div>
-    </div>
-    <div class="footer-copyright">
-      © 2023 Fintech Express. All Rights Reserved
-    </div>
-  </footer>
+        <div style="margin-top: 20px;">© 2023 Fintech Express. All Rights Reserved</div>
+    </footer>
 </body>
 </html>

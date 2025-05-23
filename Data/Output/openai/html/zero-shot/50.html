@@ -1,432 +1,135 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Stardust Vase-Sm Blue Product Page</title>
-  <meta name="viewport" content="width=1024">
-  <style>
-    html, body {
-      height: 100%;
-    }
-    body {
-      min-width: 1024px;
-      margin: 0;
-      background: #fff;
-      font-family: 'Georgia', Arial, sans-serif;
-      color: #222;
-      font-size: 15px;
-      line-height: 1.4;
-      letter-spacing: 0.01em;
-    }
-
-    /* Header */
-    .header-bar {
-      width: 100vw;
-      min-width: 1024px;
-      border-bottom: 1px solid #efefef;
-      background: #fff;
-      height: 46px;
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: 1000;
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      max-width: 1400px;
-      margin: 0 auto;
-      height: 46px;
-      padding: 0 24px;
-      justify-content: space-between;
-    }
-    .header-logo-space {
-      width: 40px;
-      flex-shrink: 0;
-    }
-    .header-nav {
-      flex: 1 1 0;
-      display: flex;
-      align-items: center;
-      justify-content: flex-start;
-    }
-    .header-divider {
-      width: 1px;
-      height: 28px;
-      background: #f3f3f3;
-      margin-right: 24px;
-      margin-left: 0;
-    }
-    .header-title {
-      font-family: 'Georgia', serif;
-      font-weight: 500;
-      font-size: 15px;
-      color: #222;
-      margin-right: 32px;
-    }
-    .header-login {
-      font-size: 13px;
-      font-family: Arial, sans-serif;
-      color: #222;
-      text-decoration: none;
-      outline: none;
-      padding: 0 2px;
-      position: relative;
-    }
-    .header-login:focus {
-      outline: 2px solid #333;
-      outline-offset: 2px;
-    }
-    .header-cart {
-      width: 28px;
-      height: 28px;
-      margin-left: 24px;
-      margin-right: 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-    .header-cart-icon {
-      width: 18px;
-      height: 2px;
-      background: #111;
-      margin-top: 14px;
-      margin-left: 3px;
-      border-radius: 1px;
-    }
-
-    /* Main Layout */
-    .main-content {
-      display: flex;
-      flex-direction: row;
-      max-width: 1100px;
-      padding-top: 72px;
-      margin: 0 auto;
-      min-height: 680px;
-      justify-content: flex-start;
-    }
-    .main-left {
-      flex: 1 1 0;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      min-width: 624px;
-      /* Make room for gutter on the right */
-    }
-    .main-right {
-      width: 343px;
-      min-width: 343px;
-      margin-left: 32px;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    /* Product Image Large */
-    .img-main {
-      background: #0000ff;
-      display: block;
-      margin-bottom: 0;
-    }
-    .img-small {
-      background: #0000ff;
-      display: block;
-      margin-top: 24px;
-      margin-left: 16px;
-    }
-    .img-secondary {
-      background: #0000ff;
-      display: block;
-      margin: 0 0 0 24px;
-    }
-
-    /* Images pixel size from screenshot proportions */
-    .img-main {
-      width: 616px;
-      height: 453px;
-      margin: 24px 0 0 24px;
-      border-radius: 0;
-      object-fit: cover;
-    }
-    .img-secondary {
-      width: 198px;
-      height: 171px;
-      margin-top: 0;
-      margin-left: 0;
-      margin-bottom: 0;
-    }
-    .img-small {
-      width: 120px;
-      height: 108px;
-      margin-left: 24px;
-      margin-top: 28px;
-      margin-bottom: 0;
-    }
-
-    /* Product Info */
-    .prod-meta {
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 14px;
-      color: #888;
-      margin-top: 24px;
-      margin-bottom: 0;
-    }
-    .prod-title {
-      font-size: 23px;
-      font-family: 'Georgia', serif;
-      font-weight: bold;
-      color: #222;
-      margin-bottom: 18px;
-      margin-top: 0;
-    }
-    .prod-btn {
-      display: inline-block;
-      width: 100%;
-      background: #8d5151;
-      border: none;
-      color: #fff;
-      font-size: 16px;
-      font-family: 'Arial Black',Arial,sans-serif;
-      font-weight: 700;
-      border-radius: 6px;
-      padding: 12px 0;
-      cursor: pointer;
-      margin-bottom: 12px;
-      margin-top: 0;
-      transition: background 0.2s;
-      text-align: center;
-      line-height: 1.1;
-    }
-    .prod-btn:focus {
-      outline: 2px solid #262626;
-      outline-offset: 2px;
-    }
-
-    .prod-message {
-      color: #555;
-      font-size: 13px;
-      margin-top: 0;
-      margin-bottom: 16px;
-      font-family: Arial, sans-serif;
-    }
-
-    /* Details */
-    .prod-section {
-      margin-bottom: 20px;
-    }
-    .prod-section-title {
-      font-family: 'Georgia', serif;
-      font-size: 17px;
-      font-weight: bold;
-      color: #222;
-      margin: 24px 0 6px 0;
-      letter-spacing: 0.03em;
-    }
-    .prod-section-sub {
-      font-family: 'Georgia', serif;
-      font-size: 16px;
-      color: #222;
-      font-weight: bold;
-      margin: 20px 0 6px 0;
-    }
-    .prod-description,
-    .prod-dimensions {
-      margin: 0 0 12px 0;
-      font-family: Arial, sans-serif;
-      color: #222;
-      font-size: 15px;
-    }
-    .prod-desc-flex {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      margin-top: 0;
-      margin-bottom: 12px;
-      font-size: 15px;
-      color: #444;
-      font-family: Arial, sans-serif;
-      max-width: 99%;
-    }
-    .prod-desc-flex-text {
-      width: 90%;
-      overflow-wrap: break-word;
-    }
-    /* Divider */
-    .prod-divider {
-      width: 100%;
-      height: 6px;
-      border: none;
-      border-top: 2px solid #f5f5f5;
-      margin: 32px 0 0 0;
-    }
-
-    /* Footer */
-    .footer {
-      display: flex;
-      flex-direction: row;
-      align-items: flex-start;
-      justify-content: flex-start;
-      width: 100%;
-      max-width: 1388px;
-      margin: 54px auto 0 auto;
-      padding: 0 24px 54px 24px;
-      font-size: 16px;
-      background: transparent;
-      color: #222;
-    }
-    .footer-col {
-      margin-right: 98px;
-      min-width: 170px;
-    }
-    .footer-col:last-child {
-      margin-right: 0;
-    }
-    .footer-title {
-      font-family: 'Georgia', serif;
-      font-weight: bold;
-      font-size: 17px;
-      color: #222;
-      margin-bottom: 0;
-      letter-spacing: 0.01em;
-    }
-    .footer-links {
-      list-style: none;
-      padding-left: 0;
-      margin: 9px 0 0 0;
-    }
-    .footer-links li {
-      margin-bottom: 7px;
-      color: #222;
-      font-family: Arial, Helvetica, sans-serif;
-      font-size: 15px;
-    }
-
-    /* Accessibility: focus style for all actionable items */
-    a:focus, button:focus {
-      outline: 2px solid #333;
-      outline-offset: 2px;
-    }
-
-    @media (max-width: 1050px) {
-      .main-content {
-        flex-direction: column;
-        padding-top: 74px;
-        padding-left: 0;
-        padding-right: 0;
-      }
-      .main-right {
-        width: 100%;
-        min-width: 0;
-        margin-left: 0;
-        margin-top: 24px;
-      }
-      .main-left {
-        width: 100%;
-        min-width: 0;
-      }
-      .img-main {
-        width: 94vw;
-        max-width: 620px;
-      }
-      .img-secondary {
-        width: 41vw;
-        max-width: 198px;
-      }
-      .img-small {
-        width: 120px;
-      }
-    }
-    @media (max-width: 750px) {
-      .main-content, .footer {
-        flex-direction: column;
-        align-items: flex-start;
-        padding-left: 3vw;
-        padding-right: 3vw;
-      }
-      .main-right, .main-left {
-        width: 100%;
-      }
-      .img-main, .img-secondary, .img-small {
-        width: 100%;
-        max-width: none;
-      }
-      .img-small {
-        margin-left: 0;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Design Idea</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 20px;
+            background-color: #fff;
+            border-bottom: 1px solid #ddd;
+        }
+        header a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+        main {
+            display: flex;
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+        .image-section {
+            flex-basis: 60%;
+            text-align: center;
+        }
+        .image-section img {
+            max-width: 100%;
+            height: auto;
+        }
+        .info-section {
+            flex-basis: 40%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .info-section h1 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .info-section h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #925d5d;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+            text-align: center;
+            width: 100%;
+        }
+        footer {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px;
+            background-color: #fff;
+            border-top: 1px solid #ddd;
+        }
+        footer div {
+            text-align: left;
+        }
+        footer h3 {
+            font-size: 16px;
+        }
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        footer ul li {
+            margin: 5px 0;
+        }
+    </style>
 </head>
 <body>
-  <nav class="header-bar" aria-label="Primary Header Navigation">
-    <div class="header-inner">
-      <div class="header-logo-space" aria-hidden="true"></div>
-      <div class="header-nav">
-        <div class="header-divider" aria-hidden="true"></div>
-        <span class="header-title" aria-current="page">Design Ideas</span>
-      </div>
-      <a href="#" class="header-login">Login</a>
-      <div class="header-cart" aria-hidden="true">
-        <div class="header-cart-icon"></div>
-      </div>
-    </div>
-  </nav>
-
-  <main class="main-content" tabindex="-1">
-    <section class="main-left">
-      <img src="src/placeholder.jpg" width="616" height="453" alt="" class="img-main" role="presentation">
-      <img src="src/placeholder.jpg" width="120" height="108" alt="" class="img-small" role="presentation" style="margin-top:28px; margin-left:24px;">
-    </section>
-    <aside class="main-right" aria-label="Product details for Stardust Vase-Sm Blue">
-      <img src="src/placeholder.jpg" width="198" height="171" alt="" class="img-secondary" role="presentation" style="margin-bottom:28px;">
-      <div class="prod-meta" aria-label="Brand">Global Views</div>
-      <h1 class="prod-title">Stardust Vase-Sm Blue</h1>
-      <button class="prod-btn" type="button">Sign up to continue</button>
-      <p class="prod-message">Sorry, we're currently out of this item. Check out the alternative products below for comparable items.</p>
-      <button class="prod-btn" type="button">Sign up to continue</button>
-
-      <div class="prod-section" style="margin-top:24px;">
-        <div class="prod-section-title">Dimensions</div>
-        <div class="prod-dimensions" style="font-size:15px;">8.25"H x 3"W x 3"L</div>
-      </div>
-      <div class="prod-section">
-        <div class="prod-section-sub">Product details</div>
-        <div class="prod-description">
-          Color: Clear<br>
-          Material: Glass<br>
-          Care Instructions: Hand wash<br>
-          Country of Origin: China
+    <header>
+        <a href="#">Design Ideas</a>
+        <a href="#">Login</a>
+    </header>
+    <main>
+        <div class="image-section">
+            <img src="src/placeholder.jpg" alt="Main Image" style="width: 100%; height: 500px; background-color: blue;">
         </div>
-      </div>
-      <div class="prod-section">
-        <div class="prod-section-sub">Overview</div>
-        <div class="prod-desc-flex">
-          <div class="prod-desc-flex-text">
-            Hand blown glass - metallic flecks known as granilla are embedded within the glass. This is a delicate process with beautiful shimmering results.
-          </div>
+        <div class="info-section">
+            <img src="src/placeholder.jpg" alt="Product Thumbnail" style="width: 100%; height: 200px; background-color: blue;">
+            <p>Global Views</p>
+            <h1>Stardust Vase-Sm Blue</h1>
+            <button class="button">Sign up to continue</button>
+            <p>Sorry, we're currently out of this item. Check out the alternative products below for comparable items.</p>
+            <button class="button">Sign up to continue</button>
+            <h2>Dimensions</h2>
+            <p>8.25"H x 3"W x 3"L</p>
+            <h2>Product details</h2>
+            <p>Color: Clear<br>
+            Material: Glass<br>
+            Care Instructions: Hand wash<br>
+            Country of Origin: China</p>
+            <h2>Overview</h2>
+            <p>Hand blown glass - metallic flecks known as granilla are embedded within the glass. This is a delicate process with beautiful shimmering results.</p>
         </div>
-      </div>
-      <hr class="prod-divider" aria-hidden="true">
-    </aside>
-  </main>
-
-  <footer class="footer" role="contentinfo" aria-label="Footer">
-    <div class="footer-col">
-      <div class="footer-title">Modsy</div>
-      <ul class="footer-links">
-        <li><a href="#" style="color: inherit; text-decoration: none;">Design Ideas</a></li>
-        <li><a href="#" style="color: inherit; text-decoration: none;">Careers</a></li>
-      </ul>
-    </div>
-    <div class="footer-col">
-      <div class="footer-title">Support</div>
-      <ul class="footer-links">
-        <li><a href="#" style="color: inherit; text-decoration: none;">FAQs</a></li>
-        <li><a href="#" style="color: inherit; text-decoration: none;">Terms of Service</a></li>
-        <li><a href="#" style="color: inherit; text-decoration: none;">Privacy</a></li>
-        <li><a href="#" style="color: inherit; text-decoration: none;">Contact Us</a></li>
-      </ul>
-    </div>
-  </footer>
+    </main>
+    <footer>
+        <div>
+            <h3>Modsy</h3>
+            <ul>
+                <li>Design Ideas</li>
+                <li>Careers</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Support</h3>
+            <ul>
+                <li>FAQs</li>
+                <li>Terms of Service</li>
+                <li>Privacy</li>
+                <li>Contact Us</li>
+            </ul>
+        </div>
+    </footer>
 </body>
 </html>

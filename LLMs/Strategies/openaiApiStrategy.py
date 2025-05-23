@@ -28,7 +28,8 @@ class OpenAIStrategy(LLMStrategy):
                         { "type": "input_text", "text": prompt },
                         {
                             "type": "input_image",
-                            "image_url": f"data:image/jpeg;base64,{image_data}",
+                            "image_url": f"data:image/png;base64,{image_data}",
+                            # "image_url": f"data:image/jpeg;base64,{image_data}",
                         },
                     ],
                 }

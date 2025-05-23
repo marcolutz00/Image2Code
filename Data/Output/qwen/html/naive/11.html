@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aws_autoscaling_lifecycle_hook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 1rem 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #f9f9f9;
+            padding: 0.5rem 0;
+            text-align: center;
+        }
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+        nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            padding: 2rem;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        .content {
+            background-color: #fff;
+            padding: 1rem;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .content h1 {
+            margin: 0 0 1rem;
+            text-align: center;
+        }
+        .content h2 {
+            margin: 1rem 0;
+        }
+        .content ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content ul li {
+            margin: 0.5rem 0;
+        }
+        .content ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content ul li a:hover {
+            text-decoration: underline;
+        }
+        .content .arguments {
+            margin: 2rem 0;
+        }
+        .content .arguments h2 {
+            margin: 0 0 1rem;
+        }
+        .content .arguments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content .arguments ul li {
+            margin: 0.5rem 0;
+        }
+        .content .arguments ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content .arguments ul li a:hover {
+            text-decoration: underline;
+        }
+        .content .arguments .arguments {
+            margin: 2rem 0;
+        }
+        .content .arguments .arguments h2 {
+            margin: 0 0 1rem;
+        }
+        .content .arguments .arguments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content .arguments .arguments ul li {
+            margin: 0.5rem 0;
+        }
+        .content .arguments .arguments ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content .arguments .arguments ul li a:hover {
+            text-decoration: underline;
+        }
+        .content .arguments .arguments .arguments {
+            margin: 2rem 0;
+        }
+        .content .arguments .arguments .arguments h2 {
+            margin: 0 0 1rem;
+        }
+        .content .arguments .arguments .arguments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content .arguments .arguments .arguments ul li {
+            margin: 0.5rem 0;
+        }
+        .content .arguments .arguments .arguments ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content .arguments .arguments .arguments ul li a:hover {
+            text-decoration: underline;
+        }
+        .content .arguments .arguments .arguments .arguments {
+            margin: 2rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments h2 {
+            margin: 0 0 1rem;
+        }
+        .content .arguments .arguments .arguments .arguments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content .arguments .arguments .arguments .arguments ul li {
+            margin: 0.5rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content .arguments .arguments .arguments .arguments ul li a:hover {
+            text-decoration: underline;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments {
+            margin: 2rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments h2 {
+            margin: 0 0 1rem;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments ul li {
+            margin: 0.5rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments ul li a:hover {
+            text-decoration: underline;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments {
+            margin: 2rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments h2 {
+            margin: 0 0 1rem;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments ul li {
+            margin: 0.5rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover {
+            text-decoration: underline;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments {
+            margin: 2rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments h2 {
+            margin: 0 0 1rem;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li {
+            margin: 0.5rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover {
+            text-decoration: underline;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments {
+            margin: 2rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments h2 {
+            margin: 0 0 1rem;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li {
+            margin: 0.5rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover {
+            text-decoration: underline;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments {
+            margin: 2rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments h2 {
+            margin: 0 0 1rem;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li {
+            margin: 0.5rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover {
+            text-decoration: underline;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments {
+            margin: 2rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments h2 {
+            margin: 0 0 1rem;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li {
+            margin: 0.5rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover {
+            text-decoration: underline;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments {
+            margin: 2rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments h2 {
+            margin: 0 0 1rem;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li {
+            margin: 0.5rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover {
+            text-decoration: underline;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments {
+            margin: 2rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments h2 {
+            margin: 0 0 1rem;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li {
+            margin: 0.5rem 0;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
+            color: #333;
+            text-decoration: none;
+        }
+        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover

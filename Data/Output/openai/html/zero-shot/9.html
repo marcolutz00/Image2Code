@@ -1,497 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>[Solved] - Cannot Upload =(</title>
-  <meta name="viewport" content="width=1024">
-  <link rel="stylesheet" href="">
-  <style>
-    :root {
-      --nav-bg: #f8f8f8;
-      --nav-height: 38px;
-      --highlight-bg: #fae4b8;
-      --highlight-text: #3588a7;
-      --header-text: #28639f;
-      --solved-text: #388c71;
-      --main-text: #222;
-      --subtle-text: #888;
-      --timestamp: #888;
-      --comment-bg: #fcfcfc;
-      --avatar-size: 38px;
-      --avatar-radius: 2px;
-      --border-color: #e5e5e5;
-      --box-shadow: 0 1px 2px rgba(0,0,0,0.05);
-      --link: #28639f;
-      --link-hover: #1255a3;
-      --solved-shadow: 0px 4px 8px -6px #28639f40;
-    }
-    html {
-      font-size: 16px;
-    }
-    body {
-      background: #fffefc;
-      color: var(--main-text);
-      font-family: Arial, Helvetica, sans-serif;
-      margin: 0;
-      min-width: 960px;
-    }
-    /* Top navigation */
-    .navbar {
-      background: var(--nav-bg);
-      height: var(--nav-height);
-      width: 100%;
-      display: flex;
-      align-items: center;
-      padding: 0;
-      border-bottom: 1px solid #eee;
-      font-size: 15px;
-    }
-    .navbar-inner {
-      width: 100%;
-      max-width: 1100px;
-      margin: 0 auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 100%;
-    }
-    .navbar-left {
-      display: flex;
-      align-items: center;
-      height: 100%;
-    }
-    .navbar-logo {
-      display: flex;
-      align-items: center;
-      height: 100%;
-      margin-right: 13px;
-    }
-    .navbar-logo img {
-      width: 32px;
-      height: 32px;
-      border-radius: 3px;
-      margin: 0 12px;
-      background: #1765bd;
-      display: block;
-    }
-    .navbar-links {
-      display: flex;
-      height: 100%;
-    }
-    .navbar-link {
-      color: #444;
-      text-decoration: none;
-      padding: 0 10px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      transition: background 0.15s;
-      border-radius: 2px 2px 0 0;
-    }
-    .navbar-link:focus, .navbar-link:hover {
-      background: #ececec;
-      outline: 2px solid #3366cc;
-      color: #1255a3;
-    }
-    .navbar-right {
-      display: flex;
-      align-items: center;
-    }
-    .navbar-right a,
-    .navbar-right span {
-      color: #777;
-      text-decoration: none;
-      font-size: 15px;
-      margin-left: 25px;
-      cursor: pointer;
-    }
-    .navbar-right a:focus,
-    .navbar-right a:hover {
-      color: #1255a3;
-      text-decoration: underline;
-      outline: 2px solid #3366cc;
-    }
-
-    /* Highlight bar */
-    .highlight-bar {
-      width: 100%;
-      background: var(--highlight-bg);
-      color: var(--highlight-text);
-      font-size: 15px;
-      padding: 7px 0 7px 0;
-      border-bottom: 1px solid #eedcaa;
-      text-align: center;
-      letter-spacing: 0.1px;
-    }
-    .highlight-bar a {
-      color: var(--highlight-text);
-      text-decoration: underline;
-    }
-    .highlight-bar a:focus,
-    .highlight-bar a:hover {
-      color: #0b4d5f;
-      outline: 2px solid #3588a7;
-    }
-
-    /* Main content */
-    .container {
-      max-width: 890px;
-      margin: 32px auto 0 auto;
-      padding: 0 16px 24px 16px;
-    }
-    /* Title and status */
-    .status-solved {
-      display: inline-block;
-      color: var(--solved-text);
-      font-weight: bold;
-      font-size: 18px;
-      margin-bottom: 0;
-      font-family: Arial, Helvetica, sans-serif;
-      box-shadow: var(--solved-shadow);
-      background: transparent;
-      margin-right: 8px;
-    }
-    .post-title {
-      color: var(--header-text);
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: bold;
-      font-size: 26px;
-      display: inline;
-      letter-spacing: -0.02em;
-      margin-bottom: 0;
-    }
-    .main-divider {
-      border: none;
-      border-top: 1px solid #e7e7e7;
-      margin: 18px 0 18px 0;
-    }
-    /* Post meta (author and date) */
-    .post-meta {
-      display: flex;
-      align-items: flex-start;
-      font-size: 15px;
-      margin-bottom: 11px;
-      color: var(--main-text);
-    }
-    .post-meta .avatar {
-      margin-right: 14px;
-    }
-    .avatar img {
-      width: var(--avatar-size);
-      height: var(--avatar-size);
-      border-radius: var(--avatar-radius);
-      background: #1765bd;
-      border: none;
-      display: block;
-    }
-    .post-meta-info {
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      margin-top: 2px;
-    }
-    .post-author {
-      font-weight: bold;
-      color: var(--link);
-      font-size: 16px;
-      margin-bottom: 1px;
-      text-decoration: underline;
-      text-underline-offset: 1.5px;
-    }
-    .post-author:focus,
-    .post-author:hover {
-      color: var(--link-hover);
-      outline: 2px solid #3366cc;
-    }
-    .post-date {
-      font-size: 15px;
-      color: var(--timestamp);
-      margin-bottom: 2px;
-    }
-    .post-edited {
-      display: block;
-      font-size: 14px;
-      color: var(--timestamp);
-    }
-    /* Post body */
-    .post-body {
-      font-size: 16px;
-      line-height: 1.49;
-      color: var(--main-text);
-      margin: 9px 0 0 0;
-      max-width: 740px;
-      white-space: pre-line;
-    }
-    .post-body p,
-    .post-body {
-      margin-block: 0 0.8em;
-    }
-
-    /* Comments Section */
-    .comments-title {
-      margin: 30px 0 14px 1px;
-      font-size: 17px;
-      font-weight: bold;
-      color: #656565;
-      letter-spacing: 0;
-    }
-    .comments-login {
-      color: #888888;
-      font-size: 15px;
-      margin-left: 6px;
-      font-weight: normal;
-    }
-    .comments-list {
-      display: flex;
-      flex-direction: column;
-      gap: 15px;
-      margin-top: 10px;
-    }
-    .comment {
-      display: flex;
-      align-items: flex-start;
-      background: var(--comment-bg);
-      border: 1px solid var(--border-color);
-      border-radius: 4px;
-      box-shadow: none;
-      padding: 15px 19px 17px 15px;
-      margin-bottom: 0;
-      width: 99%;
-      max-width: 860px;
-      min-height: 20px;
-      position: relative;
-    }
-    .comment + .comment {
-      margin-top: 13px;
-    }
-    .comment .avatar {
-      margin-right: 15px;
-      margin-top: 1px;
-      flex-shrink: 0;
-    }
-    .comment-content {
-      width: 100%;
-      min-width: 0;
-    }
-    .comment-header {
-      font-size: 15px;
-      color: var(--main-text);
-      margin-bottom: 2px;
-      font-family: Arial, Helvetica, sans-serif;
-      font-weight: bold;
-    }
-    .comment-header .comment-author {
-      color: var(--link);
-      font-weight: bold;
-      text-decoration: underline;
-      text-underline-offset: 1.5px;
-      outline: none;
-    }
-    .comment-header .comment-author:focus,
-    .comment-header .comment-author:hover {
-      color: var(--link-hover);
-      outline: 2px solid #3366cc;
-    }
-    .comment-header .comment-date {
-      color: var(--timestamp);
-      font-weight: normal;
-      font-size: 15px;
-      margin-left: 2px;
-    }
-    .comment-body {
-      font-size: 16px;
-      line-height: 1.43;
-      color: var(--main-text);
-      margin-top: 2px;
-      word-break: break-word;
-      white-space: pre-line;
-    }
-    /* Accessibility: use focus-visible for all links for keyboard only navigation */
-    a:focus:not(:focus-visible) { outline: none }
-    /* --- Scrollbars for overflow (for accessibility) --- */
-    html { overflow-y: scroll; }
-
-    @media (max-width: 1080px) {
-      .container { max-width: 99vw; }
-    }
-    @media (max-width: 800px) {
-      .container { max-width: 98vw; }
-      .comment { padding: 10px; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mockup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            display: flex;
+            align-items: center;
+            background-color: #eee;
+            padding: 10px;
+        }
+        nav {
+            flex-grow: 1;
+        }
+        nav a {
+            margin-right: 15px;
+            color: black;
+            text-decoration: none;
+        }
+        .login {
+            margin-left: 15px;
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .status-bar {
+            background-color: #f8df84;
+            padding: 10px;
+            margin-bottom: 15px;
+            text-align: center;
+            font-size: 14px;
+            color: #666;
+        }
+        .post-header {
+            font-size: 20px;
+            color: #3e537a;
+        }
+        .post-title {
+            color: #3366cc;
+            font-weight: bold;
+        }
+        .post-content {
+            margin-top: 10px;
+            line-height: 1.5;
+        }
+        .comments {
+            margin-top: 30px;
+            font-size: 16px;
+            color: #3e3e3e;
+        }
+        .comment-section {
+            margin-top: 20px;
+        }
+        .comment {
+            display: flex;
+            align-items: flex-start;
+            padding: 10px;
+            border-top: 1px solid #ddd;
+        }
+        .comment img {
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        .comment-content {
+            font-size: 14px;
+            color: #444;
+        }
+        .comment-meta {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 5px;
+        }
+    </style>
 </head>
 <body>
-  <nav class="navbar" role="navigation" aria-label="Main menu">
-    <div class="navbar-inner">
-      <div class="navbar-left">
-        <a class="navbar-logo" href="#" aria-label="Homepage">
-          <img src="src/placeholder.jpg" width="32" height="32" alt="">
-        </a>
-        <div class="navbar-links" role="menubar">
-          <a href="#" class="navbar-link" role="menuitem" tabindex="0">Latest Activity</a>
-          <a href="#" class="navbar-link" role="menuitem" tabindex="0">Last Challenge</a>
-          <a href="#" class="navbar-link" role="menuitem" tabindex="0">Previous Challenges</a>
-          <a href="#" class="navbar-link" role="menuitem" tabindex="0">Games</a>
+    <header>
+        <nav>
+            <a href="#">Latest Activity</a>
+            <a href="#">Last Challenge</a>
+            <a href="#">Previous Challenges</a>
+            <a href="#">Games</a>
+        </nav>
+        <div>
+            <a href="#" class="login">Log in</a>
+            <a href="#">Help</a>
         </div>
-      </div>
-      <div class="navbar-right">
-        <a href="#" tabindex="0">Log in</a>
-        <a href="#" tabindex="0">Help</a>
-      </div>
+    </header>
+    <div class="content">
+        <div class="status-bar">
+            September 2023 : "Dark matter" challenge is finished
+        </div>
+        <div class="post-header">
+            <span class="post-title">[Solved] - Cannot Upload =(</span>
+        </div>
+        <div class="post-content">
+            <div class="comment">
+                <img src="src/placeholder.jpg" alt="User Image" width="50" height="50">
+                <div>
+                    <div class="comment-meta">
+                        Shyzuna on 2018/10/27 23:53<br>
+                        -- edited on 2018/10/28 11:00
+                    </div>
+                    Hey guys!<br>
+                    Pretty urgent, but I have been trying to upload for now half of an hour and after several minutes I got a bad gateway?<br>
+                    Any solutions?<br>
+                    Thanks.
+                </div>
+            </div>
+        </div>
+        <div class="comments">
+            Comments<br>
+            <span style="font-size: 12px; color: #666">(log in to comment)</span>
+            <div class="comment-section">
+                <div class="comment">
+                    <img src="src/placeholder.jpg" alt="User Image" width="50" height="50">
+                    <div>
+                        <div class="comment-meta">
+                            yarollg on 2018/10/27 23:58:
+                        </div>
+                        Do git push!<br>
+                        Rules says that you have 1 extra day for uploading your entry.
+                    </div>
+                </div>
+                <div class="comment">
+                    <img src="src/placeholder.jpg" alt="User Image" width="50" height="50">
+                    <div>
+                        <div class="comment-meta">
+                            Shyzuna on 2018/10/28 00:00:
+                        </div>
+                        Oh well my repo is up to date!<br>
+                        Yeah I just saw that while reading the rules.<br>
+                        Will try again later I guess ^^<br>
+                        Thanks for your answer dude ;)
+                    </div>
+                </div>
+                <div class="comment">
+                    <img src="src/placeholder.jpg" alt="User Image" width="50" height="50">
+                    <div>
+                        <div class="comment-meta">
+                            mauve on 2018/10/28 00:20:
+                        </div>
+                        How big is your file? There have been problems with very large uploads...
+                    </div>
+                </div>
+                <div class="comment">
+                    <img src="src/placeholder.jpg" alt="User Image" width="50" height="50">
+                    <div>
+                        <div class="comment-meta">
+                            Shyzuna on 2018/10/28 00:41:
+                        </div>
+                        My file is about 45mo !<br>
+                        I think it is already a good size but do you consider it to be a very large upload ? =O
+                    </div>
+                </div>
+                <div class="comment">
+                    <img src="src/placeholder.jpg" alt="User Image" width="50" height="50">
+                    <div>
+                        <div class="comment-meta">
+                            mauve on 2018/10/28 00:46:
+                        </div>
+                        How long is it taking to upload, though? Timeout is set to 300 seconds; some people were tripping this last time...
+                    </div>
+                </div>
+                <div class="comment">
+                    <img src="src/placeholder.jpg" alt="User Image" width="50" height="50">
+                    <div>
+                        <div class="comment-meta">
+                            mauve on 2018/10/28 00:48:
+                        </div>
+                        If the worst comes to the worst, upload it to your GitHub releases page and I'll get it uploaded.
+                    </div>
+                </div>
+                <div class="comment">
+                    <img src="src/placeholder.jpg" alt="User Image" width="50" height="50">
+                    <div>
+                        <div class="comment-meta">
+                            Shyzuna on 2018/10/28 11:00:
+                        </div>
+                        We manage to find a solution.<br>
+                        Thanks for your proposition !
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-  </nav>
-  <div class="highlight-bar" aria-live="polite">
-    <span>
-      <span style="color:#368db2;">September 2023</span>
-      :
-      <span style="color:#222">"Dark matter"</span>
-      challenge is finished
-    </span>
-  </div>
-  <main class="container" aria-label="Forum post">
-    <div>
-      <span class="status-solved" aria-label="Solved">[Solved]</span>
-      <span class="post-title">- Cannot Upload =(</span>
-    </div>
-    <hr class="main-divider" aria-hidden="true">
-
-    <section class="post" style="margin-bottom:0;">
-      <div class="post-meta" style="margin-bottom:17px;">
-        <span class="avatar">
-          <img src="src/placeholder.jpg" width="38" height="38" alt="" aria-hidden="true">
-        </span>
-        <div class="post-meta-info">
-          <a href="#" class="post-author" tabindex="0">Shyzuna</a>
-          <span class="post-date">on 2018/10/27 23:53</span>
-          <span class="post-edited" aria-label="edited">— edited on 2018/10/28 11:00</span>
-        </div>
-      </div>
-      <div class="post-body">
-        Hey guys !<br>
-        Pretty urgent, but I have been trying to upload for now half of an hour and after several minutes I got a bad gateway ?<br>
-        Any solutions ?<br>
-        <br>
-        Thanks.
-      </div>
-    </section>
-
-    <h2 class="comments-title" id="comments">Comments
-      <span class="comments-login" aria-label="Log in to comment">(log in to comment)</span>
-    </h2>
-    <div class="comments-list" aria-label="Comments thread">
-      <!-- 1st Comment -->
-      <section class="comment" tabindex="0" aria-label="Comment by yarollg">
-        <span class="avatar">
-          <img src="src/placeholder.jpg" width="38" height="38" alt="" aria-hidden="true">
-        </span>
-        <div class="comment-content">
-          <div class="comment-header">
-            <a href="#" class="comment-author" tabindex="0">yarollg</a>
-            <span class="comment-date">on 2018/10/27 23:58</span>:
-          </div>
-          <div class="comment-body">
-            Do git push!<br>
-            Rules says that you have 1 extra day for uploading your entry.
-          </div>
-        </div>
-      </section>
-      <!-- 2nd Comment -->
-      <section class="comment" tabindex="0" aria-label="Comment by Shyzuna">
-        <span class="avatar">
-          <img src="src/placeholder.jpg" width="38" height="38" alt="" aria-hidden="true">
-        </span>
-        <div class="comment-content">
-          <div class="comment-header">
-            <a href="#" class="comment-author" tabindex="0">Shyzuna</a>
-            <span class="comment-date">on 2018/10/28 00:00</span>:
-          </div>
-          <div class="comment-body">
-            Oh well my repo is up to date !<br>
-            Yeah I just saw that while reading the rules.<br>
-            Will try again later I guess ^^<br>
-            <br>
-            Thanks for your answer dude ;)
-          </div>
-        </div>
-      </section>
-      <!-- 3rd Comment -->
-      <section class="comment" tabindex="0" aria-label="Comment by mauve">
-        <span class="avatar">
-          <img src="src/placeholder.jpg" width="38" height="38" alt="" aria-hidden="true">
-        </span>
-        <div class="comment-content">
-          <div class="comment-header">
-            <a href="#" class="comment-author" tabindex="0">mauve</a>
-            <span class="comment-date">on 2018/10/28 00:20</span>:
-          </div>
-          <div class="comment-body">
-            How big is your file? There have been problems with very large uploads...
-          </div>
-        </div>
-      </section>
-      <!-- 4th Comment -->
-      <section class="comment" tabindex="0" aria-label="Comment by Shyzuna">
-        <span class="avatar">
-          <img src="src/placeholder.jpg" width="38" height="38" alt="" aria-hidden="true">
-        </span>
-        <div class="comment-content">
-          <div class="comment-header">
-            <a href="#" class="comment-author" tabindex="0">Shyzuna</a>
-            <span class="comment-date">on 2018/10/28 00:41</span>:
-          </div>
-          <div class="comment-body">
-            My file is about 45mo !<br>
-            I think it is already a good size but do you consider it to be a very large upload ? =O
-          </div>
-        </div>
-      </section>
-      <!-- 5th Comment -->
-      <section class="comment" tabindex="0" aria-label="Comment by mauve">
-        <span class="avatar">
-          <img src="src/placeholder.jpg" width="38" height="38" alt="" aria-hidden="true">
-        </span>
-        <div class="comment-content">
-          <div class="comment-header">
-            <a href="#" class="comment-author" tabindex="0">mauve</a>
-            <span class="comment-date">on 2018/10/28 00:46</span>:
-          </div>
-          <div class="comment-body">
-            How long is it taking to upload, though? Timeout is set to 300 seconds; some people were tripping this last time...
-          </div>
-        </div>
-      </section>
-      <!-- 6th Comment -->
-      <section class="comment" tabindex="0" aria-label="Comment by mauve">
-        <span class="avatar">
-          <img src="src/placeholder.jpg" width="38" height="38" alt="" aria-hidden="true">
-        </span>
-        <div class="comment-content">
-          <div class="comment-header">
-            <a href="#" class="comment-author" tabindex="0">mauve</a>
-            <span class="comment-date">on 2018/10/28 00:48</span>:
-          </div>
-          <div class="comment-body">
-            If the worst comes to the worst, upload it to your GitHub releases page and I'll get it uploaded.
-          </div>
-        </div>
-      </section>
-      <!-- 7th Comment -->
-      <section class="comment" tabindex="0" aria-label="Comment by Shyzuna">
-        <span class="avatar">
-          <img src="src/placeholder.jpg" width="38" height="38" alt="" aria-hidden="true">
-        </span>
-        <div class="comment-content">
-          <div class="comment-header">
-            <a href="#" class="comment-author" tabindex="0">Shyzuna</a>
-            <span class="comment-date">on 2018/10/28 11:00</span>:
-          </div>
-          <div class="comment-body">
-            We manage to find a solution.<br>
-            Thanks for your proposition !
-          </div>
-        </div>
-      </section>
-    </div>
-  </main>
 </body>
 </html>

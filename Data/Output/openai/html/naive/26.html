@@ -1,283 +1,161 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>Hargreaves Home Sales Team Careers</title>
-  <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700&display=swap" rel="stylesheet">
-  <style>
-    html, body {
-      height: 100%;
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    body {
-      font-family: 'Montserrat', Arial, sans-serif;
-      background: #fff;
-      margin: 0;
-      min-height: 100vh;
-      color: #222;
-      font-size: 16px;
-      letter-spacing: 0;
-      line-height: 1.4;
-      display: flex;
-      flex-direction: column;
-    }
-    .topbar {
-      width: 100%;
-      background: #fff;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 80px;
-      position: relative;
-      z-index: 2;
-    }
-    .topbar .logo {
-      margin-left: 48px;
-      margin-top: 16px;
-      margin-bottom: 16px;
-    }
-    .topbar nav {
-      margin-right: 64px;
-      display: flex;
-      align-items: center;
-      gap: 32px;
-    }
-    .topbar nav a {
-      color: #232323;
-      font-size: 16px;
-      text-decoration: none;
-      font-weight: 400;
-      transition: color 0.2s;
-      font-family: 'Montserrat', Arial, sans-serif;
-    }
-    .section-gray {
-      background: #f5f5f5;
-      width: 100%;
-      padding: 68px 0 60px 0;
-      text-align: center;
-    }
-    .section-gray h1 {
-      font-size: 32px;
-      font-weight: 700;
-      margin: 0 0 32px 0;
-      color: #222;
-      font-family: 'Montserrat', Arial, sans-serif;
-      letter-spacing: 0.02em;
-    }
-    .section-gray .desc {
-      color: #565656;
-      max-width: 850px;
-      margin: 0 auto;
-      font-size: 17px;
-      font-weight: 400;
-      line-height: 1.7;
-      letter-spacing: 0;
-    }
-    .section-white {
-      background: #fff;
-      width: 100%;
-      padding: 84px 0 0 0;
-      text-align: center;
-      position: relative;
-    }
-    .section-white h2 {
-      font-size: 36px;
-      font-weight: 700;
-      margin: 0 0 18px 0;
-      color: #222;
-      font-family: 'Montserrat', Arial, sans-serif;
-      letter-spacing: 0.01em;
-    }
-    .section-white .desc {
-      color: #565656;
-      font-size: 18px;
-      font-weight: 400;
-      margin-bottom: 42px;
-      line-height: 1.5;
-      letter-spacing: 0;
-    }
-    .filters {
-      margin: 0 0 36px 0;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-    }
-    .filter-btn {
-      font-family: 'Montserrat', Arial, sans-serif;
-      padding: 6px 18px;
-      border-radius: 6px;
-      font-size: 15px;
-      border: none;
-      font-weight: 400;
-      cursor: pointer;
-      transition: background 0.2s;
-    }
-    .filter-btn.selected {
-      background: #39938b;
-      color: #fff;
-    }
-    .filter-btn:not(.selected) {
-      background: #ececec;
-      color: #838383;
-    }
-    .job-listing {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      margin: 0 auto 0 auto;
-      width: 530px;
-      max-width: 90vw;
-    }
-    .job-card {
-      background: #fff;
-      border: 1px solid #d5d5d5;
-      border-radius: 8px;
-      box-shadow: none;
-      padding: 22px 20px 20px 20px;
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      align-items: flex-start;
-      margin-top: 0;
-      margin-bottom: 0;
-    }
-    .job-card .job-info {
-      text-align: left;
-      max-width: 370px;
-    }
-    .job-title {
-      font-size: 17px;
-      font-weight: 700;
-      color: #232323;
-      margin-bottom: 3px;
-      font-family: 'Montserrat', Arial, sans-serif;
-      line-height: 1.4;
-    }
-    .job-meta {
-      color: #757575;
-      font-size: 14px;
-      margin-bottom: 7px;
-      margin-top: 0;
-    }
-    .job-desc {
-      font-size: 14px;
-      color: #535353;
-      line-height: 1.45;
-      margin: 0;
-    }
-    .job-card .job-action {
-      display: flex;
-      align-items: flex-start;
-      margin-top: 4px;
-      margin-left: 24px;
-    }
-    .view-job-btn {
-      background: #39938b;
-      color: #fff;
-      border-radius: 25px;
-      border: none;
-      padding: 8px 26px;
-      font-size: 16px;
-      font-weight: 500;
-      cursor: pointer;
-      font-family: 'Montserrat', Arial, sans-serif;
-      box-shadow: none;
-      transition: background 0.15s;
-      display: inline-block;
-      line-height: 1;
-      white-space: nowrap;
-    }
-    .section-footer {
-      background: #fcfaf7;
-      width: 100%;
-      min-height: 145px;
-      padding-top: 30px;
-      text-align: center;
-      margin-top: auto;
-    }
-    .section-footer .footer-text {
-      color: #595959;
-      font-size: 16px;
-      margin-bottom: 14px;
-    }
-    .section-footer .logos-row {
-      display: flex;
-      gap: 12px;
-      justify-content: center;
-      align-items: center;
-      margin-top: 2px;
-    }
-    .section-footer .logo-square {
-      background: #140aff;
-      width: 28px;
-      height: 28px;
-      display: inline-block;
-      border-radius: 3px;
-    }
-    @media (max-width: 800px) {
-      .job-listing {
-        width: 95vw;
-      }
-      .topbar .logo {
-        margin-left: 16px;
-      }
-      .topbar nav {
-        margin-right: 18px;
-      }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Mockup</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            color: #333;
+            background-color: #FAF7F2;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            background-color: white;
+        }
+        .header img {
+            width: 50px;
+            height: 50px;
+            background-color: #2333F8;
+        }
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #555;
+        }
+        .section-gray {
+            background-color: #F2F2F2;
+            padding: 60px 50px;
+            text-align: center;
+        }
+        .section-gray h1 {
+            margin: 0;
+            font-size: 1.8em;
+            color: #333;
+        }
+        .section-gray p {
+            margin: 20px 0 0;
+            font-size: 1em;
+            color: #666;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.5;
+        }
+        .section-white {
+            text-align: center;
+            padding: 60px 50px;
+        }
+        .section-white h2 {
+            margin: 0;
+            font-size: 2em;
+        }
+        .section-white p {
+            margin: 20px 0;
+            color: #666;
+            font-size: 1em;
+        }
+        .job-tags {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .job-tags div {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-radius: 20px;
+            font-size: 0.9em;
+        }
+        .job-tags .all-locations {
+            border-color: #3FB6A8;
+            background-color: #3FB6A8;
+            color: white;
+        }
+        .job-card {
+            width: 600px;
+            margin: 20px auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 10px;
+            text-align: left;
+            background-color: white;
+        }
+        .job-card h3 {
+            margin: 0;
+            font-size: 1.2em;
+        }
+        .job-card p {
+            margin: 10px 0 0;
+            font-size: 0.9em;
+            color: #666;
+            line-height: 1.4;
+        }
+        .view-job {
+            display: inline-block;
+            float: right;
+            padding: 10px 20px;
+            background-color: #3FB6A8;
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9em;
+            text-decoration: none;
+        }
+        .footer {
+            background-color: #FAF7F2;
+            text-align: center;
+            padding: 40px;
+        }
+        .footer p {
+            margin: 0 0 20px;
+            color: #333;
+        }
+        .footer img {
+            width: 30px;
+            height: 30px;
+            background-color: #2333F8;
+            margin: 0 5px;
+        }
+    </style>
 </head>
 <body>
-  <div class="topbar">
-    <div class="logo">
-      <img src="src/placeholder.jpg" alt="" width="56" height="56" style="display:block;background:#140aff;width:56px;height:56px;border-radius:2px;">
-    </div>
-    <nav>
-      <a href="#">About</a>
-      <a href="#">Jobs</a>
-      <a href="#">Company Site</a>
-    </nav>
-  </div>
-  <div class="section-gray">
-    <h1>Be part of our story</h1>
-    <div class="desc">
-      The mission of the Hargreaves Home Sales Team is to provide the premier customer service experience for each home seller and home buyer we work with. Knowledge we've gained through years of working in the local market empowers us to provide our home buyers and sellers with the advice they need to make informed decisions.
-    </div>
-  </div>
-  <div class="section-white">
-    <h2>We're hiring!</h2>
-    <div class="desc">
-      We're always looking for great talent. Check out our open jobs below.
-    </div>
-    <div class="filters">
-      <button class="filter-btn selected">All Locations</button>
-      <button class="filter-btn">Ellicott City, MD</button>
-    </div>
-    <div class="job-listing">
-      <div class="job-card">
-        <div class="job-info">
-          <div class="job-title">Real Estate Sales Buyer's Agent</div>
-          <div class="job-meta">Ellicott City, MD, US</div>
-          <div class="job-desc">
-            The Buyer Agent is an individual who is highly sociable, draws energy from working with people, and is optimistic and outgoing. They have a strong sense of urgency, but not at the expense of quality.
-          </div>
+    <header class="header">
+        <img src="src/placeholder.jpg" alt="Logo">
+        <nav class="nav">
+            <a href="#">About</a>
+            <a href="#">Jobs</a>
+            <a href="#">Company Site</a>
+        </nav>
+    </header>
+    <section class="section-gray">
+        <h1>Be part of our story</h1>
+        <p>The mission of the Hargreaves Home Sales Team is to provide the premier customer service experience for each home seller and home buyer we work with. Knowledge we've gained through years of working in the local market empowers us to provide our home buyers and sellers with the advice they need to make informed decisions.</p>
+    </section>
+    <section class="section-white">
+        <h2>We're hiring!</h2>
+        <p>We're always looking for great talent. Check out our open jobs below.</p>
+        <div class="job-tags">
+            <div class="all-locations">All Locations</div>
+            <div>Ellicott City, MD</div>
         </div>
-        <div class="job-action">
-          <button class="view-job-btn">View Job</button>
+        <div class="job-card">
+            <h3>Real Estate Sales Buyer's Agent</h3>
+            <p>Ellicott City, MD, US</p>
+            <p>The Buyer Agent is an individual who is highly sociable, draws energy from working with people, and is optimistic and outgoing. They have a strong sense of urgency, but not at the expense of quality.</p>
+            <a href="#" class="view-job">View Job</a>
         </div>
-      </div>
-    </div>
-  </div>
-  <div class="section-footer">
-    <div class="footer-text">Hiring with</div>
-    <div class="logos-row">
-      <span class="logo-square"><img src="src/placeholder.jpg" alt="" width="28" height="28" style="display:block;width:28px;height:28px;background:#140aff;border-radius:3px;"></span>
-      <span class="logo-square"><img src="src/placeholder.jpg" alt="" width="28" height="28" style="display:block;width:28px;height:28px;background:#140aff;border-radius:3px;"></span>
-      <span class="logo-square"><img src="src/placeholder.jpg" alt="" width="28" height="28" style="display:block;width:28px;height:28px;background:#140aff;border-radius:3px;"></span>
-    </div>
-  </div>
+    </section>
+    <footer class="footer">
+        <p>Hiring with</p>
+        <img src="src/placeholder.jpg" alt="Partner Logo"><img src="src/placeholder.jpg" alt="Partner Logo"><img src="src/placeholder.jpg" alt="Partner Logo">
+    </footer>
 </body>
 </html>

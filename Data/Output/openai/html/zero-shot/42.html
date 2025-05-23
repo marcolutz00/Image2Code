@@ -1,332 +1,200 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8">
-<title>Pixel Perfect UI Mockup</title>
-<meta name="viewport" content="width=1024">
-<style>
-html, body {
-    height: 100%;
-    margin: 0;
-    padding: 0;
-}
-body {
-    font-family: Arial, Helvetica, sans-serif;
-    font-size: 18px;
-    background: #e6e6e6;
-    margin: 0;
-    min-width: 1024px;
-    min-height: 768px;
-    color: #000;
-}
-a {
-    color: #1673e7;
-    text-decoration: none;
-}
-a:focus, a:hover {
-    text-decoration: underline;
-}
-.header-bar {
-    background: #fff;
-    width: 100%;
-    height: 66px;
-    box-sizing: border-box;
-    position: relative;
-    border-bottom: 1px solid #dadada;
-    display: flex;
-    align-items: center;
-}
-.header-logo {
-    margin-left: 16px;
-    margin-right: 16px;
-}
-.header-logo img {
-    width: 40px;
-    height: 40px;
-    background: #0000ff;
-    display: block;
-}
-.header-search-box {
-    flex: 0 0 auto;
-    width: 450px;
-    height: 30px;
-    background: #fff;
-    border: 2px solid #555;
-    box-sizing: border-box;
-    position: relative;
-}
-.header-search-box input[type="text"] {
-    width: 100%;
-    height: 100%;
-    border: none;
-    outline: 0;
-    font-size: 18px;
-    background: transparent;
-    color: #000;
-    padding: 2px 4px;
-}
-.main-content {
-    margin: 0 auto;
-    width: 900px;
-    margin-top: 32px;
-}
-.profile-card {
-    background: #fff;
-    box-shadow: 0 2px 5px 0 rgba(60,60,60,.12);
-    border-radius: 0;
-    padding: 0;
-    width: 900px;
-    display: flex;
-    flex-direction: row;
-    border: 1px solid #e5e5e5;
-    box-sizing: border-box;
-}
-.profile-img-container {
-    flex: 0 0 180px;
-    padding: 32px 0 32px 32px;
-    box-sizing: border-box;
-}
-.profile-img-container img {
-    width: 140px;
-    height: 140px;
-    background: #0000ff;
-    display: block;
-}
-.profile-info {
-    flex: 1;
-    padding: 32px 24px 32px 24px;
-    box-sizing: border-box;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-}
-.profile-title {
-    font-weight: bold;
-    font-size: 20px;
-    margin-bottom: 3px;
-}
-.profile-dept {
-    font-size: 18px;
-    margin-bottom: 18px;
-}
-.profile-details-box {
-    background: #f3f3f3;
-    border: 1px solid #cbcbcb;
-    border-radius: 0;
-    margin-top: 6px;
-    padding: 11px 16px 11px 16px;
-    color: #000;
-    font-size: 17px;
-    width: 388px;
-    box-sizing: border-box;
-}
-.profile-details-box a {
-    color: #1673e7;
-}
-.profile-details-box strong {
-    font-weight: bold;
-}
-.experts-links-wrapper {
-    margin-top: 30px;
-    display: flex;
-    gap: 32px;
-}
-.experts-list, .links-list {
-    background: #fff;
-    box-shadow: 0 2px 5px 0 rgba(60,60,60,.12);
-    border-radius: 0;
-    width: 270px;
-    min-height: 241px;
-    box-sizing: border-box;
-    border: none;
-    margin: 0;
-    padding: 0 0 16px 0;
-}
-.experts-list {
-    margin-left: 0;
-}
-.panel-header {
-    background: #1a86e7;
-    color: #fff;
-    font-weight: bold;
-    padding: 12px 0 12px 18px;
-    font-size: 21px;
-    border-radius: 0 0 0 0;
-    margin-bottom: 0;
-}
-.panel-list {
-    list-style: none;
-    padding: 0 0 0 18px;
-    margin: 0;
-}
-.panel-list li {
-    margin: 15px 0 0 0;
-    font-size: 18px;
-}
-.footer {
-    width: 100%;
-    background: #fff;
-    border-top: 1px solid #dadada;
-    position: fixed;
-    left: 0;
-    bottom: 0;
-    height: 62px;
-    font-size: 16px;
-    color: #000;
-    box-sizing: border-box;
-    z-index: 10;
-}
-.footer-content {
-    max-width: 98%;
-    margin: 0 auto;
-    display: flex;
-    height: 100%;
-    align-items: center;
-    justify-content: space-between;
-}
-.footer-left {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-.footer-left a {
-    margin: 0 2px 0 2px;
-    color: #1a15ea;
-    font-size: 16px;
-}
-.footer-right {
-    display: flex;
-    align-items: center;
-    height: 100%;
-}
-.footer-right-text {
-    margin-right: 10px;
-    font-size: 16px;
-}
-.footer-logo {
-    width: 36px;
-    height: 36px;
-    background: #0000ff;
-    display: inline-block;
-}
-@media (max-width: 1080px) {
-    .main-content {
-        width: 99vw;
-        min-width: 0;
-    }
-    .profile-card {
-        width: 100%;
-        min-width: 0;
-    }
-}
-@media (max-width: 900px) {
-    .experts-links-wrapper {
-        flex-direction: column;
-        gap: 15px;
-    }
-}
-@media (max-width: 600px) {
-    .profile-card {
-        flex-direction: column;
-    }
-    .profile-img-container {
-        padding-left: 0;
-        align-items: center;
-        display: flex;
-        justify-content: center;
-    }
-    .profile-details-box {
-        width: auto;
-        min-width: 180px;
-    }
-    .experts-list, .links-list {
-        width: 99vw;
-        min-width: 0;
-    }
-    .main-content {
-        width: 99vw;
-        min-width: 0;
-    }
-}
-</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Mockup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #e0e0e0;
+        }
+
+        .container {
+            width: 70%;
+            margin: auto;
+            padding: 20px 0;
+        }
+
+        .header {
+            display: flex;
+            align-items: center;
+            padding-bottom: 20px;
+        }
+
+        .header img {
+            width: 50px;
+            height: 50px;
+        }
+
+        .search {
+            flex: 1;
+            padding-left: 20px;
+        }
+
+        .search input {
+            width: 100%;
+            padding: 10px;
+            font-size: 16px;
+            box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .profile {
+            display: flex;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-bottom: 20px;
+        }
+
+        .profile img {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin-right: 20px;
+        }
+
+        .info {
+            flex: 1;
+        }
+
+        .info h2 {
+            margin: 0 0 10px 0;
+            font-size: 18px;
+        }
+
+        .info small {
+            color: gray;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .contact {
+            background-color: #f2f2f2;
+            padding: 15px;
+            margin-top: 10px;
+        }
+
+        .contact a {
+            color: #0066cc;
+            text-decoration: none;
+        }
+
+        .expertise,
+        .links {
+            display: flex;
+        }
+
+        .card {
+            flex: 1;
+            background-color: #fff;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+            margin-right: 10px;
+        }
+
+        .card:last-child {
+            margin-right: 0;
+        }
+
+        .card-header {
+            background-color: #0073e6;
+            color: #fff;
+            padding: 10px;
+            font-weight: bold;
+        }
+
+        .card-content {
+            padding: 10px;
+            line-height: 1.6;
+        }
+
+        .card-content a {
+            color: #0066cc;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px 0;
+            background-color: #fff;
+            box-shadow: 0 -1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        .footer a {
+            color: #0066cc;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .powered-by {
+            float: right;
+            margin-right: 20px;
+        }
+
+        .powered-by img {
+            width: 20px;
+            height: 20px;
+        }
+    </style>
 </head>
+
 <body>
-<div class="header-bar" role="banner">
-    <div class="header-logo">
-        <img src="src/placeholder.jpg" width="40" height="40" alt="Logo" aria-hidden="true">
-    </div>
-    <form class="header-search-box" role="search" aria-label="Site search">
-        <label for="search-input" class="visually-hidden">Search</label>
-        <input id="search-input" type="text" aria-label="Search input">
-    </form>
-</div>
-<main class="main-content" role="main">
-    <section class="profile-card">
-        <div class="profile-img-container">
-            <img src="src/placeholder.jpg" width="140" height="140" alt="" aria-hidden="true">
-        </div>
-        <div class="profile-info">
-            <div class="profile-title" id="profile-title">Associate Professor</div>
-            <div class="profile-dept" id="profile-dept">Department of Physics</div>
-            <div class="profile-details-box" aria-labelledby="profile-title profile-dept">
-                Edmonton, Alberta<br>
-                <a href="mailto:carsten.krauss@ualberta.ca">carsten.krauss@ualberta.ca</a><br>
-                <strong>Office:</strong><br>
-                (780) 492-7610
+    <div class="container">
+        <div class="header">
+            <img src="src/placeholder.jpg" alt="Logo">
+            <div class="search">
+                <input type="text" aria-label="Search" placeholder="Search">
             </div>
         </div>
-    </section>
-    <section class="experts-links-wrapper" aria-label="Expertise and Links">
-        <nav class="experts-list" aria-label="Expert In">
-            <div class="panel-header">Expert In</div>
-            <ul class="panel-list">
-                <li><a href="#">Astrophysics</a></li>
-                <li><a href="#">Dark matter detection</a></li>
-                <li><a href="#">High energy physics</a></li>
-                <li><a href="#">Neutrino physics</a></li>
-                <li><a href="#">Particle physics</a></li>
-                <li><a href="#">Radioactivity</a></li>
-            </ul>
-        </nav>
-        <nav class="links-list" aria-label="Links">
-            <div class="panel-header">Links</div>
-            <ul class="panel-list">
-                <li><a href="#">LinkedIn</a></li>
-                <li><a href="#">Faculty Page</a></li>
-                <li><a href="#">Faculty Page</a></li>
-            </ul>
-        </nav>
-    </section>
-</main>
-<footer class="footer" role="contentinfo">
-    <div class="footer-content">
-        <div class="footer-left">
-            <span>
-                © | Expertise Finder | Toronto (Canada) | 1-888-978-5418 | 
-                <a href="mailto:info@expertisefinder.com">info@expertisefinder.com</a> | 
-                <a href="#">Home</a> | 
-                <a href="#">Privacy</a> | 
-                <a href="#">User Agreement</a>
-            </span>
+
+        <div class="profile">
+            <img src="src/placeholder.jpg" alt="Profile Photo">
+            <div class="info">
+                <h2>Associate Professor</h2>
+                <small>Department of Physics</small>
+                <div class="contact">
+                    Edmonton, Alberta<br>
+                    <a href="mailto:carsten.krauss@ualberta.ca">carsten.krauss@ualberta.ca</a><br>
+                    Office: (780) 492-7610
+                </div>
+            </div>
         </div>
-        <div class="footer-right">
-            <span class="footer-right-text">Powered by</span>
-            <div class="footer-logo" aria-hidden="true">
-                <img src="src/placeholder.jpg" alt="" width="36" height="36" style="width:36px;height:36px;display:block;background:#0000ff;">
+
+        <div class="expertise">
+            <div class="card">
+                <div class="card-header">Expert In</div>
+                <div class="card-content">
+                    <a href="#">Astrophysics</a>
+                    <a href="#">Dark matter detection</a>
+                    <a href="#">High energy physics</a>
+                    <a href="#">Neutrino physics</a>
+                    <a href="#">Particle physics</a>
+                    <a href="#">Radioactivity</a>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-header">Links</div>
+                <div class="card-content">
+                    <a href="#">LinkedIn</a>
+                    <a href="#">Faculty Page</a>
+                    <a href="#">Faculty Page</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            © | Expertise Finder | Toronto (Canada) | 1-888-978-5418 | <a href="mailto:info@expertisefinder.com">info@expertisefinder.com</a> | <a href="#">Home</a> | <a href="#">Privacy</a> | <a href="#">User Agreement</a>
+            <div class="powered-by">
+                Powered by <img src="src/placeholder.jpg" alt="Logo">
             </div>
         </div>
     </div>
-</footer>
-<style>
-/* Visually hidden text for accessibility */
-.visually-hidden { 
-    position: absolute; 
-    height: 1px; 
-    width: 1px; 
-    overflow: hidden; 
-    clip: rect(1px, 1px, 1px, 1px); 
-    white-space: nowrap; 
-}
-</style>
 </body>
+
 </html>
