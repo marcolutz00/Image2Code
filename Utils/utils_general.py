@@ -121,7 +121,8 @@ def get_model_strategy(name):
             strategy = QwenStrategy()
             return strategy
         case "qwen_hf":
-            endpoint_qwen = "https://e4gs6l3vjhgvwg2f.us-east-1.aws.endpoints.huggingface.cloud/v1/"
+            with open(Path(__file__).resolve().parent.parent / "keys.json", "r", encoding="utf-8") as f:
+                endpoint_qwen = json.load(f)["huggingface"]["endpoint_qwen"]
             strategy = HfEndpointStrategy(endpoint_qwen)
             return strategy
         case "finetuned_hf":

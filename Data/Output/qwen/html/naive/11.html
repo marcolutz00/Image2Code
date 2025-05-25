@@ -1,10 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>aws_autoscaling_lifecycle_hook</title>
+    <title>Koding - aws_autoscaling_lifecycle_hook</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -13,306 +12,187 @@
             background-color: #f4f4f4;
         }
         header {
-            background-color: #333;
-            color: #fff;
-            padding: 1rem 0;
-            text-align: center;
+            background: #fff;
+            box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+            padding: 10px;
         }
-        nav {
-            background-color: #f9f9f9;
-            padding: 0.5rem 0;
-            text-align: center;
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+            margin-bottom: 50px;
         }
         nav a {
-            color: #333;
+            color: #1e90ff;
             text-decoration: none;
-            margin: 0 1rem;
-        }
-        nav a:hover {
-            text-decoration: underline;
-        }
-        main {
-            padding: 2rem;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
+            margin: 0 20px;
         }
         .content {
-            background-color: #fff;
-            padding: 1rem;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
         }
-        .content h1 {
-            margin: 0 0 1rem;
+        .sidebar {
+            float: left;
+            width: 300px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li a {
+            display: block;
+            padding: 5px 10px;
+            color: #333;
+            text-decoration: none;
+        }
+        .sidebar ul li a.active {
+            background-color: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            text-decoration: none;
+        }
+        .main-content {
+            margin-left: 320px;
+        }
+        .main-content h1 {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ddd;
+        }
+        .main-content ul {
+            list-style: disc;
+            padding-left: 20px;
+        }
+        .main-content pre {
+            background-color: #e0e0e0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+        .social {
+            margin-top: 30px;
             text-align: center;
         }
-        .content h2 {
-            margin: 1rem 0;
-        }
-        .content ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content ul li {
-            margin: 0.5rem 0;
-        }
-        .content ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content ul li a:hover {
-            text-decoration: underline;
-        }
-        .content .arguments {
-            margin: 2rem 0;
-        }
-        .content .arguments h2 {
-            margin: 0 0 1rem;
-        }
-        .content .arguments ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content .arguments ul li {
-            margin: 0.5rem 0;
-        }
-        .content .arguments ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content .arguments ul li a:hover {
-            text-decoration: underline;
-        }
-        .content .arguments .arguments {
-            margin: 2rem 0;
-        }
-        .content .arguments .arguments h2 {
-            margin: 0 0 1rem;
-        }
-        .content .arguments .arguments ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content .arguments .arguments ul li {
-            margin: 0.5rem 0;
-        }
-        .content .arguments .arguments ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content .arguments .arguments ul li a:hover {
-            text-decoration: underline;
-        }
-        .content .arguments .arguments .arguments {
-            margin: 2rem 0;
-        }
-        .content .arguments .arguments .arguments h2 {
-            margin: 0 0 1rem;
-        }
-        .content .arguments .arguments .arguments ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content .arguments .arguments .arguments ul li {
-            margin: 0.5rem 0;
-        }
-        .content .arguments .arguments .arguments ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content .arguments .arguments .arguments ul li a:hover {
-            text-decoration: underline;
-        }
-        .content .arguments .arguments .arguments .arguments {
-            margin: 2rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments h2 {
-            margin: 0 0 1rem;
-        }
-        .content .arguments .arguments .arguments .arguments ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content .arguments .arguments .arguments .arguments ul li {
-            margin: 0.5rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content .arguments .arguments .arguments .arguments ul li a:hover {
-            text-decoration: underline;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments {
-            margin: 2rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments h2 {
-            margin: 0 0 1rem;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments ul li {
-            margin: 0.5rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments ul li a:hover {
-            text-decoration: underline;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments {
-            margin: 2rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments h2 {
-            margin: 0 0 1rem;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments ul li {
-            margin: 0.5rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover {
-            text-decoration: underline;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments {
-            margin: 2rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments h2 {
-            margin: 0 0 1rem;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li {
-            margin: 0.5rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover {
-            text-decoration: underline;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments {
-            margin: 2rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments h2 {
-            margin: 0 0 1rem;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li {
-            margin: 0.5rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover {
-            text-decoration: underline;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments {
-            margin: 2rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments h2 {
-            margin: 0 0 1rem;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li {
-            margin: 0.5rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover {
-            text-decoration: underline;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments {
-            margin: 2rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments h2 {
-            margin: 0 0 1rem;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li {
-            margin: 0.5rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover {
-            text-decoration: underline;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments {
-            margin: 2rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments h2 {
-            margin: 0 0 1rem;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li {
-            margin: 0.5rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover {
-            text-decoration: underline;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments {
-            margin: 2rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments h2 {
-            margin: 0 0 1rem;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li {
-            margin: 0.5rem 0;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a {
-            color: #333;
-            text-decoration: none;
-        }
-        .content .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments .arguments ul li a:hover
+        .footer {
+            background-color: #333;
+            color: #fff;
+            padding: 30px 0;
+            text-align: center;
+            font-size: 14px;
+        }
+        .footer a {
+            color: #fff;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#">FEATURES</a>
+            <a href="#">OPEN SOURCE</a>
+            <a href="#">ABOUT</a>
+            <a href="#">DOCS</a>
+        </nav>
+        <div class="nav-container">
+            <a href="#" class="logo" style="font-size: 18px; font-weight: bold;">Koding</a>
+            <a href="#" style="font-size: 12px;">LOGIN</a>
+            <a href="#" style="font-size: 12px;">REGISTER</a>
+        </div>
+    </header>
+    <div class="content">
+        <div class="sidebar">
+            <ul>
+                <li><a href="#">Videos</a></li>
+                <li><a href="#">Getting started</a></li>
+                <li><a href="#">Getting more from Koding</a></li>
+                <li><a href="#">Stack Documentation</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">AWS</a></li>
+                <li><a href="#">Data Sources</a></li>
+                <li><a href="#">Resources</a></li>
+                <li><a href="#">aws_alb</a></li>
+                <li><a href="#">aws_alb_listener</a></li>
+                <li><a href="#">aws_alb_listener_rule</a></li>
+                <li><a href="#">aws_alb_target_group</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">Azure Service Management</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">Provisioners</a></li>
+            </ul>
+        </div>
+        <div class="main-content">
+            <h1>aws_autoscaling_lifecycle_hook</h1>
+            <p>Provides an AutoScaling Lifecycle Hook resource.</p>
+            <h2>Example Usage</h2>
+            <pre>
+resource: 
+  aws_autoscaling_group:
+    foobar:
+      availability_zones:
+      - us-west-2a
+      name: terraform-test-foobar5
+      health_check_type: EC2
+      termination_policies:
+      - OldestInstance
+      tag:
+        key: Foo
+        value: foo-bar
+        propagate_at_launch: true
+  aws_autoscaling_lifecycle_hook:
+    foobar:
+      name: foobar
+      autoscaling_group_name: &apos;${aws_autoscaling_group.foobar.name}'
+      default_result: CONTINUE
+      heartbeat_timeout: 2000
+      lifecycle_transition: &apos;autoscaling:EC2_INSTANCE_LAUNCHING&apos;
+      notification_metadata: &apos;\n  foo\: &quot;bar&quot;\n&apos;
+      notification_target_arn: &apos;arn:aws:sqs:us-east-1:44455556666:queue1*&apos;
+      role_arn: &apos;arn:aws:iam::123456789012:role/S3Access&apos;
+</pre>
+            <h2>Argument Reference</h2>
+            <p>The following arguments are supported:</p>
+            <ul>
+                <li><code>name</code> - (Required) The name of the lifecycle hook.</li>
+                <li><code>autoscaling_group_name</code> - (Required) The name of the Auto Scaling group to which you want to assign the lifecycle hook</li>
+                <li><code>default_result</code> - (Optional) Defines the action the Auto Scaling group should take when the lifecycle hook timeout elapses or if an unexpected failure occurs.</li>
+                <li><code>heartbeat_timeout</code> - (Optional) Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult parameter</li>
+            </ul>
+            <p>See the source of this document at <a href="Terraform.io">Terraform.io</a></p>
+        </div>
+    </div>
+    <div class="social">
+        <a href="#"><i class="fab fa-facebook-f"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+    </div>
+    <footer class="footer">
+        <div class="footer-left">
+            <div>For Teams</div>
+            <a href="#">Platform for Training</a>
+            <a href="#">Pre-Sales Automation</a>
+        </div>
+        <div class="footer-center">
+            <div>Resources</div>
+            <a href="#">Documentation</a>
+            <a href="#">Blog</a>
+            <a href="#">Get Started</a>
+        </div>
+        <div class="footer-right">
+            <div>About</div>
+            <a href="#">About Us</a>
+            <a href="#">Open Source</a>
+        </div>
+        <div class="footer-right">
+            <div>Contact</div>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Email Us</a>
+        </div>
+    </footer>
+</body>
+</html>

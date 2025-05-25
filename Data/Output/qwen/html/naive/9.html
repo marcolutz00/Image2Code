@@ -1,440 +1,192 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Challenge Discussion</title>
+    <title>Forum Post</title>
     <style>
-        body {
-            font-family: Arial, sans-serif;
+        * {
             margin: 0;
             padding: 0;
-            background-color: #f4f4f4;
+            box-sizing: border-box;
         }
-        header {
-            background-color: #f8f8f8;
-            padding: 10px 20px;
-            border-bottom: 1px solid #ddd;
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
         }
-        nav {
-            background-color: #333;
-            padding: 10px 20px;
+
+        #header {
+            background-color: #f3f3f3;
+            padding: 10px 0;
+        }
+
+        #header ul {
             display: flex;
             justify-content: space-between;
-            align-items: center;
         }
-        nav a {
-            color: #fff;
-            text-decoration: none;
-            margin-right: 10px;
+
+        #header ul li {
+            margin: 0 20px;
         }
-        nav a:hover {
-            text-decoration: underline;
+
+        #post-container {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
-        main {
-            padding: 20px 20px;
+
+        #post-container .post-header {
+            display: flex;
+            justify-content: space-between;
         }
-        h1 {
-            font-size: 24px;
-            color: #333;
+
+        #post-container .post-header .post-date {
+            font-size: 14px;
+            color: #999;
+        }
+
+        #post-container .post-header .comments {
+            font-size: 14px;
+            color: #999;
+        }
+
+        #post-container .post-body {
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        #post-container .comments-section {
+            margin-top: 40px;
+        }
+
+        #post-container .comments-section .comment {
+            background-color: white;
             margin-bottom: 20px;
-        }
-        h2 {
-            font-size: 18px;
-            color: #666;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 10px;
             margin-bottom: 10px;
         }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        ul li {
-            margin-bottom: 10px;
-        }
-        ul li img {
-            width: 20px;
-            height: 20px;
-            border-radius: 50%;
-            margin-right: 10px;
-        }
-        ul li span {
-            color: #666;
-        }
-        ul li span a {
-            color: #333;
-            text-decoration: none;
-        }
-        ul li span a:hover {
-            text-decoration: underline;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited {
-            color: #666;
-        }
-        ul li span a:active {
-            color: #333;
-        }
-        ul li span a:link {
-            color: #333;
-        }
-        ul li span a:visited
+
+        #post-container .comments-section .comment .comment-date {
+            font-size: 14px;
+            color: #999;
+        }
+
+        #post-container .comments-section .comment .comment-body {
+            margin-top: 10px;
+        }
+
+        #post-container .comments-section .comment .reply-container {
+            margin-top: 10px;
+        }
+
+        #post-container .comments-section .comment .reply-container button {
+            padding: 10px 20px;
+            background-color: #337ab7;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #post-container .comments-section .comment .reply-container button:hover {
+            background-color: #4689f7;
+        }
+    </style>
+</head>
+<body>
+    <div id="header">
+        <nav>
+            <ul>
+                <li><a href="#"><img src="src/placeholder.jpg" alt="User Icons" width="40" height="40"></a></li>
+                <li>Latest Activity</li>
+                <li>Last Challenge</li>
+                <li>Previous Challenges</li>
+                <li>Games</li>
+                <li><a href="#">Log in</a></li>
+                <li><a href="#">Help</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <div id="post-container">
+        <div class="post-header">
+            <div>September 2023 : "Dark matter" challenge is finished</div>
+            <div class="post-date">October 28, 2023 11:00</div>
+        </div>
+
+        <div class="post-body">
+            <h2>[Solved] - Cannot Upload =(</h2>
+            <p><img src="src/placeholder.jpg" alt="User Icons" width="40" height="40"> Shyzuna on 2018/10/27 23:53</p>
+            <p><em>— edited on 2018/10/28 11:00</em></p>
+            <p>Hey guys!</p>
+            <p>Pretty urgent, but I have been trying to upload for now half of an hour and after several minutes I got a bad gateway? Any solutions?</p>
+            <p>Thanks.</p>
+        </div>
+
+        <div class="comments-section">
+            <h3>Comments <span>(log in to comment)</span></h3>
+            <div class="comment">
+                <p><img src="src/placeholder.jpg" alt="User Icons" width="40" height="40"> yarolig on 2018/10/27 23:58:</p>
+                <div class="comment-body">
+                    Do git push!
+                    <p>Rules says that you have 1 extra day for uploading your entry.</p>
+                </div>
+            </div>
+
+            <div class="comment comment-reply-container">
+                <p><img src="src/placeholder.jpg" alt="User Icons" width="40" height="40"> Shyzuna on 2018/10/28 00:00:</p>
+                <div class="comment-body">
+                    Oh well my repo is up to date!
+                    <p>Yeah I just saw that while reading the rules.</p>
+                    <p>Will try again later I guess ^^^</p>
+                    <p>Thanks for your answer dude ;)</p>
+                </div>
+            </div>
+
+            <div class="comment comment-reply-container">
+                <p><img src="src/placeholder.jpg" alt="User Icons" width="40" height="40"> mauve on 2018/10/28 00:20:</p>
+                <div class="comment-body">
+                    How big is your file? There have been problems with very large uploads...
+                </div>
+            </div>
+
+            <div class="comment comment-reply-container">
+                <p><img src="src/placeholder.jpg" alt="User Icons" width="40" height="40"> Shyzuna on 2018/10/28 00:41:</p>
+                <div class="comment-body">
+                    My file is about 45mo!
+                    <p>I think it is already a good size but do you condiser it to be a very large upload ? =O</p>
+                </div>
+            </div>
+
+            <div class="comment comment-reply-container">
+                <p><img src="src/placeholder.jpg" alt="User Icons" width="40" height="40"> mauve on 2018/10/28 00:46:</p>
+                <div class="comment-body">
+                    How long is it taking to upload, though? Timeout is set to 300 seconds; some people were tripping this last time...
+                </div>
+            </div>
+
+            <div class="comment comment-reply-container">
+                <p><img src="src/placeholder.jpg" alt="User Icons" width="40" height="40"> mauve on 2018/10/28 00:48:</p>
+                <div class="comment-body">
+                    If the worst comes to the worst, upload it to your GitHub releases page and I'll get it uploaded.
+                </div>
+            </div>
+
+            <div class="comment comment-reply-container">
+                <p><img src="src/placeholder.jpg" alt="User Icons" width="40" height="40"> Shyzuna on 2018/10/28 11:00:</p>
+                <div class="comment-body">
+                    We manage to find a solution.
+                    <p>Thanks for your proposition!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

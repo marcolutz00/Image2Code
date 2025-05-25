@@ -121,7 +121,10 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            if int(image.split(".")[0]) < 3:
+            # Es fehlen 5
+            missing = [5, 8, 25]
+
+            if int(image.split(".")[0]) not in missing:
                 continue
 
             image_information = {
