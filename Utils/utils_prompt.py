@@ -49,7 +49,6 @@ def _get_zero_shot_prompt():
         Accessibility-first Reminder
         --------------------
         It is *EXTREMELY* important that your HTML/CSS **complies with WCAG 2.1**.   
-        If pixel accuracy ever clashes with accessibility, **accessibility takes priority**
 
         Remember the four WCAG Principles:
         * **Perceivable**  – Information must be detectable by every user.  
@@ -101,3 +100,11 @@ def get_system_instructions():
         Use semantic elements when obvious, keep the CSS concise and well-structured, 
         and never embed images as base64 unless explicitly instructed.
     ''')
+
+def get_rewrite_text_prompt():
+    return """
+        Rewrite every visible text in the HTML below.
+        • Keep meaning and approximate length (±20 %).
+        • Do NOT add/remove elements or attributes.
+        Return only HTML, no explanations.
+    """

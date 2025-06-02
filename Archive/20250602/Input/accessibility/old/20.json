@@ -1,0 +1,82 @@
+{
+    "manual": {
+      "checks": {
+        "1.4.4": "pass",
+        "1.4.10": "fail",
+        "1.4.12": "pass",
+        "2.1.1+2.1.2": "pass",
+        "2.4.3": "pass",
+        "2.4.6": "pass",
+        "2.4.7": "pass"
+      }
+    },
+    "automatic": [
+      {
+        "wcag_id": [
+          "Principle1.Guideline1_4.1_4_3.G18",
+          "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "Principle1.Guideline1_4.1_4_3.G145",
+          "Principle1.Guideline1_4.1_4_3.G145.Fail",
+          "Principle1.Guideline1_4.1_4_6.G17",
+          "Principle1.Guideline1_4.1_4_6.G18"
+        ],
+        "url": [
+          "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+        ],
+        "impact": "serious",
+        "amount_nodes_failed": 5,
+        "name": "Color Contrast; Text;",
+        "issues": [
+          {
+            "source": "Manual-Inspection",
+            "description": "Low contrast for text"
+          }
+        ]
+      },
+      {
+        "wcag_id": [null],
+        "url": [
+          "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+          "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+          "https://dequeuniversity.com/rules/axe/4.10/region"
+        ],
+        "impact": "moderate",
+        "name": "Landmark & Region; Missing & Unique Landmarks;",
+        "amount_nodes_failed": 1,
+        "issues": [
+          {
+            "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+            "source": "axe-core",
+            "title": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+            "description": "Ensure landmarks are unique",
+            "impact": "moderate",
+            "nodes": {
+              "any": [
+                {
+                  "id": "landmark-is-unique",
+                  "data": { "role": "navigation", "accessibleText": null },
+                  "relatedNodes": [
+                    {
+                      "html": "<nav class=\"buttons container\">\n   <a href=\"#\" class=\"skew\">\n    <span class=\"content\">\n     Contact Us\n    </span>\n   </a>\n   <a href=\"#\" class=\"skew\">\n    <span class=\"content\">\n     Members\n    </span>\n   </a>\n  </nav>",
+                      "target": [".buttons"]
+                    },
+                    { "html": "<nav>", "target": [".eight > nav"] }
+                  ],
+                  "impact": "moderate",
+                  "message": "The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+                }
+              ],
+              "all": [],
+              "none": [],
+              "impact": "moderate",
+              "html": "<nav>",
+              "target": ["header > nav"],
+              "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  

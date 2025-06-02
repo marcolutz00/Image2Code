@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexito's World</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #333;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 1.5em;
+            margin: 0;
+        }
+
+        nav {
+            padding: 10px 0 0;
+            text-align: center;
+        }
+
+        nav a {
+            font-size: 1em;
+            color: #ff6b00;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        article {
+            margin-bottom: 20px;
+        }
+
+        article::after {
+            content: attr(data-time) '  |  ' attr(data-time-approx) attr(data-time-unit);
+            position: absolute;
+            z-index: -1;
+            bottom: 0;
+            left: 0;
+            color: #ff6b00;
+            display: block;
+            background-color: #333;
+            padding: 10px;
+            white-space: nowrap;
+        }
+
+        article img {
+            width: 100%;
+        }
+
+        article h1, article h2 {
+            text-align: left;
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            padding-top: 20px;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #ff6b00;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        #coffee {
+            display: block;
+            margin: 20px auto 0;
+            width: 150px;
+            padding: 10px;
+            background-color: #ff6b00;
+            color: #fff;
+            border-radius: 5px;
+        }
+
+        .related-articles {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+        .related-articles div {
+            background-color: #444;
+            padding: 20px;
+            border-radius: 10px;
+            width: 48%;
+            margin: 0 2%;
+        }
+
+        .related-articles div:empty {
+            width: 100%;
+            margin-left: 0;
+        }
+
+        @media (max-width: 600px) {
+            main {
+                padding: 10px;
+            }
+
+            nav, .related-articles {
+                flex-direction: column;
+            }
+
+            .related-articles div {
+                margin: 10px 0;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Alexito's World</h1>
+        <h2>A world of coding 🎛️, by Alejandro Martinez</h2>
+    </header>
+    <nav>
+        <a href="#">Swift</a>
+        <a href="#">Development</a>
+    </nav>
+    <main>
+        <article data-time="June 5, 2016" data-time-approx="1" data-time-unit="min read">
+            <div>
+                <header>
+                    <h3>1 min read</h3>
+                    <h2>Poor man's hot reloading for Swift scripts</h2>
+                </header>
+                <p>
+                    The other day, while I was writing a <a href="#">Swift script</a>, I added an option to make it run continuously so it could be on a server doing its job without stopping. for eva.
+                </p>
+                <p>
+                    To implement that I just used a <code>repeat</code> loop creating <a href="#">NSTask</a> s that called the same script. Scripts recursion.
+                </p>
+                <p>
+                    The funny part is that with this simple thing I found a quick way to writing the script, almost as a hot reloading tool.
+                </p>
+                <pre>
+<code>
+let reload = "reload" if Process.arguments.contains(reload) {
+repeat {
+    let task = NSTask()
+    task.launchPath = Process.arguments.first!
+    task.arguments = Array(Process.arguments.suffixFrom(1).filter({$0 != reload}))
+    task.launch()
+    task.waitUntilExit()
+} while true
+}
+                </code></pre>
+                <p>
+                    Just drop this snippet at the top of the script, and when you call it with the <code>reload</code> argument it will start looping indefinitely.
+                </p>
+                <p>
+                    Then you can just call it from the command line like:
+                </p>
+                <p>
+                    main.swift reload other params When that is done you can just modify the script and save the file, in the next execution your changes will be visible.
+                    If it fails to compile is not a big deal, the main script is still in memory without those changes so it will just loop and try to run it again.
+                </p>
+                <p>
+                    Obviously is not a big deal, is a bit annoying seeing all the console spammed, but I found it quite useful while I'm developing short scripts that I want to iterate on.
+                </p>
+                <p>
+                    Remember that you can use <a href="#">OS signals</a> to stop the task when the main script is killed.
+                </p>
+            </div>
+          <div>
+                <h3>Share this article on Twitter</h3>
+            </div>
+            <div>
+                <section aria-label="Sponsor me">
+                    <p>
+                        If you liked this article please consider supporting me
+                    </p>
+                    <a id="coffee">Buy me a coffee</a>
+                </section>
+            </div>
+            <section aria-label="Related Articles">
+                <div>
+                    <h3>Continue reading</h3>
+                    <div>
+                        <time>June 7, 2016</time>
+                        <header>
+                            Next article
+                            <h2><a href="#">Using closures to simplify</a></h2>
+                        </header>
+                    </div>
+                </div>
+                <div>
+                    <header>
+                        Previous article
+                        <h2><a href="#">It’s a trap! Catch OS signals in Swift.</a></h2>
+                        <time>May 29, 2016</time>
+                    </header>
+                </div>
+            </section>
+            <section aria-label="Similar Suggested Articles">
+                <div>
+                    <h4>Based on tag <a href="#">Swift</a></h4>
+                    <div>
+                        <header>
+                            <h2><a href="#">Backport SwiftUI modifiers</a></h2>
+                            <time>October 20, 2023</time>
+                        </header>
+                    </div>
+                </div>
+                <div>
+                    <h4>Based on tag <a href="#">Scripting</a></h4>
+                    <h2><a href="#">Swift script to export lists from Reminders.app</a></h2>
+                    <time>May 8, 2019</time>
+                </div>
+                <div>
+                    <h4>Based on tag <a href="#">Tips and Tricks</a></h4>
+                    <h2><a href="#">Swift Collection's prefix for quick tests</a></h2>
+                    <time>March 16, 2019</time>
+                </div>
+            </section>
+            <section aria-label="Article Tags">
+                <a href="#">Scripting</a>
+                <a href="#">Swift</a>
+                <a href="#">Tips and Tricks</a>
+            </section>
+        </article>
+    </main>
+    <footer>
+        <p><a href="#">RSS</a></p>
+        <p>alexito4 | alexito4 | alexito4</p>
+        <p>Generated using <a href="#">Publish</a></p>
+    </footer>
+</body>
+</html>
