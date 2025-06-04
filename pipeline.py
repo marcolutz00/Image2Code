@@ -1,7 +1,6 @@
 import sys
 import os
 import json
-import time
 import asyncio
 import datetime
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
@@ -23,7 +22,7 @@ OUTPUT_PATH = os.path.join(DATA_PATH, 'Output')
 
 DATE = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
 # Test
-# DATE = "2025-06-04-11-18"
+# DATE = "2025-06-04-14-20"
 
 
 async def _process_image(client, image_information, prompt, model, prompt_strategy):
@@ -50,31 +49,15 @@ async def _process_image(client, image_information, prompt, model, prompt_strate
     return result_clean
 
 
-def _write_benchmarks_to_file(benchmarks, file_path):
+def _process_image_iterative(client, model, html_generated, accessibility_data):
     '''
-        Write the benchmarks to a file
-    '''
-    with open(file_path, "w") as f:
-        json.dump(benchmarks, f, ensure_ascii=False, indent=2)
-
-
-def _create_directories(model, prompt_strategy):
-    '''
-        Create the necessary directories for the output
+        Gets generated HTML and Accessibility Data
+        Grabs the Code with Issues and sends it to LLM.
+        Afterwards, the LLM will return fixed code and it will be stored in file.
     '''
 
-    output_html_path = os.path.join(OUTPUT_PATH, model, 'html', prompt_strategy, DATE)
-    output_accessibility_path = os.path.join(OUTPUT_PATH, model, 'accessibility', prompt_strategy, DATE)
-    output_images_path = os.path.join(OUTPUT_PATH, model, 'images', prompt_strategy, DATE)
-    output_insights_path = os.path.join(OUTPUT_PATH, model, 'insights', prompt_strategy, DATE)
+    number_iterations = 5
 
-    # Create directories if they do not exist
-    os.makedirs(output_html_path, exist_ok=True)
-    os.makedirs(output_accessibility_path, exist_ok=True)
-    os.makedirs(output_images_path, exist_ok=True)
-    os.makedirs(output_insights_path, exist_ok=True)
-
-    return output_html_path, output_accessibility_path, output_images_path, output_insights_path
 
 
 async def _analyze_outputs(image, model, prompt_strategy):
@@ -105,7 +88,7 @@ async def _analyze_outputs(image, model, prompt_strategy):
 
 
     # # 2.2 Write Benchmarks to file
-    _write_benchmarks_to_file(benchmark_score, output_benchmark_path)
+    utils_general.util_save_json(benchmark_score, output_benchmark_path)
 
 
     # 3. Analyze Accessibility Issues
@@ -125,7 +108,7 @@ def _overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy, 
 async def main():
     model = "gemini" # option openai, gemini, qwen_local, qwen_hf, llama_local, llama_hf, hf-finetuned
     model_dir = model.split("_")[0]
-    prompt_strategy = "naive" # option naive, zero-shot
+    prompt_strategy = "zero-shot" # option naive, zero-shot
 
     # 1. Load API-Key and define model strategy
     strategy = utils_general.get_model_strategy(model)
@@ -139,7 +122,7 @@ async def main():
     image_dir = os.path.join(INPUT_PATH, 'images')
 
     # Create output directory if it does not exist
-    output_html_path, output_accessibility_path, output_images_path, output_insights_path = _create_directories(model, prompt_strategy)
+    output_html_path, output_accessibility_path, output_images_path, output_insights_path = utils_general.util_create_directories(OUTPUT_PATH, model, prompt_strategy, DATE)
 
     for image in utils_dataset.sorted_alphanumeric(os.listdir(image_dir)):
         image_path = os.path.join(image_dir, image)

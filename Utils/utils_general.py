@@ -40,6 +40,14 @@ def util_save_code(code, file_name="generated_code.html"):
     print(f"Code stored as {file_name}")
 
 
+def util_save_json(data_json, file_path):
+    '''
+        Store json in file path
+    '''
+    with open(file_path, "w") as f:
+        json.dump(data_json, f, ensure_ascii=False, indent=2)
+
+
 
 
 def util_validate_html(generatedHtml_path):
@@ -97,10 +105,6 @@ def get_model_strategy(name):
     '''
         Returns strategy of the model and right parameter which can be used later
         TODO Add other models
-
-        externally_hosted:
-        True: Image is externally hosted, e.g. https://de.imgbb.com or https://imgur.com -> Only link is given as input
-        False: Image is stored locally and b64 encoded. It is attached to this prompt.
     '''
     
     match name:
@@ -166,6 +170,24 @@ def util_create_dir_structure():
                     shutil.copy(placeholder_path, output_path / model / sub_folder / prompt_strategy / "src" / "placeholder.jpg")
 
     print("Directory structure created successfully!")
+
+def util_create_directories(output_path, model, prompt_strategy, date):
+    '''
+        Create the necessary directories for the output
+    '''
+
+    output_html_path = os.path.join(output_path, model, 'html', prompt_strategy, date)
+    output_accessibility_path = os.path.join(output_path, model, 'accessibility', prompt_strategy, date)
+    output_images_path = os.path.join(output_path, model, 'images', prompt_strategy, date)
+    output_insights_path = os.path.join(output_path, model, 'insights', prompt_strategy, date)
+
+    # Create directories if they do not exist
+    os.makedirs(output_html_path, exist_ok=True)
+    os.makedirs(output_accessibility_path, exist_ok=True)
+    os.makedirs(output_images_path, exist_ok=True)
+    os.makedirs(output_insights_path, exist_ok=True)
+
+    return output_html_path, output_accessibility_path, output_images_path, output_insights_path
 
 
 if __name__ == "__main__":

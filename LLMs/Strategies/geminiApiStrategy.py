@@ -29,7 +29,7 @@ class GeminiStrategy(LLMStrategy):
         with open(image_information["path"], "rb") as image_file:
             image_data = image_file.read()
 
-        response = self.client.models.generate_content(
+        response =self.client.models.generate_content(
             model=self.used_model,
             contents=[
             types.Part.from_bytes(

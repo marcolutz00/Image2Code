@@ -38,6 +38,8 @@ def _get_zero_shot_prompt():
         Zero-Shot:
         Naive Approach but with reference to comply with WCAG standards as a kind of reminder.
         Central Idea: Since modern LLMs are a huge data compresser, it might be enough to give citation to the WCAG-standards
+
+        Similar to Paper: Human or LLM? A Comparative Study on Accessible Code Generation Capability
     '''
     base = _get_base_prompt()
     
@@ -57,11 +59,13 @@ def _get_zero_shot_prompt():
         * **Robust**       – Code must be reliable across current and future technologies, including assistive tools.
 
         Refer to the full spec if in doubt: {url_wcag}
+
+        Avoid any violations.
     """
 
     return f"{base}\n\n{zero_shot_prompt}\n\nThe image is encoded and attached to this prompt."
 
-def _get_few_shot_prompt():
+def _get_iterative_prompt():
     pass
 
 def _get_reasoning_prompt():
@@ -69,10 +73,23 @@ def _get_reasoning_prompt():
         Reasoning Prompt:
         This prompt is used to let the LLM reason about the image and then generate the HTML/CSS.
         It should also take possible accessibility violations into account.
+        Use: https://arxiv.org/pdf/2404.02575
     '''
-    pass
 
-def _get_own_prompt():
+    chain_of_thought = """
+        Accessibility-first Reminder
+        --------------------
+        It is *EXTREMELY* important that your HTML/CSS **complies with WCAG 2.1**. 
+        Avoid any violations.
+
+        Let’s think step by step.    
+        
+        Do NOT output this reasoning, only use it internally.
+    """
+
+    return f"{_get_base_prompt()}\n\n{chain_of_thought}\n\nThe image is encoded and attached to this prompt."
+
+def _get_component_aware_prompt():
     pass
 
 
@@ -87,8 +104,8 @@ def get_prompt(prompt_strategy):
             return _get_naive_prompt()
         case "zero-shot":
             return _get_zero_shot_prompt()
-        case "few-shot":
-            return _get_few_shot_prompt()
+        case "iterative":
+            return _get_iterative_prompt()
         case "reason":
             return _get_reasoning_prompt()
         case _:

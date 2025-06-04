@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segway Outings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        header {
+            text-align: left;
+            padding: 20px 0;
+            color: #555;
+        }
+
+        nav {
+            text-align: right;
+            margin-top: -50px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #888;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+
+        .search-bar {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px 0;
+        }
+
+        .search-bar input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            padding: 10px 20px;
+            background-color: #2ca02c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumbs {
+            font-size: 14px;
+            color: #777;
+        }
+
+        .tour-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tour-item {
+            margin-bottom: 15px;
+        }
+
+        .tour-item a {
+            display: block;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .tour-item a:hover {
+            background-color: #eee;
+        }
+
+        .tour-description {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+
+        footer {
+            text-align: center;
+            padding: 30px 0;
+            background-color: #778899;
+            color: white;
+            font-size: 14px;
+        }
+
+        .data-section {
+            background-color: #778899;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+
+        .data-container {
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+
+        .data-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .data-item h2 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .data-item p {
+            font-size: 18px;
+        }
+        .blue-box {
+            width: 183px;
+            height: 265px;
+            background-color: blue;
+            margin-top: -265px;
+            float:right;
+        }
+
+        .button-container {
+            background-color: #2a7ead;
+            color: #fff;
+            padding: 40px 0;
+            text-align: center;
+        }
+        .directory-container {
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        .directory-item {
+            flex: 1;
+            text-align: center;
+        }
+        .directory-item h2 {
+            font-size: 36px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .directory-item p {
+            font-size: 18px;
+        }
+        .menu-directory{
+            width: 80%;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            text-align: left;
+        }
+        .menu-directory-item{
+            flex: 1;
+            text-align: left;
+        }
+        .menu-directory-item a {
+            color: #777;
+            margin: 0 10px;
+            font-size: 14px;
+            text-decoration: none;
+        }
+        a{
+            color: #000000;
+            text-decoration: none;
+        }
+        .south-carolina{
+            background-color: #2ca02c;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 11px;
+            padding-left: 8px;
+            padding-right: 8px;
+            padding-bottom: 4px;
+        }
+        #south-carolina {
+            text-decoration: none;
+        }
+        .south-carolina-div{
+             margin-top: -22px;
+            margin-left: -23px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPgAAAAmCAYAAAA+p733AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAOqADAAQAAAABAAAAIAAAAABsQ+5jAAAEdUlEQVR4Ae2aS2wcRRjHvx6/LqG3kC64jI5c9CBY18y6M006gS9m/gYmJicE1r1B1wQxX101JzGxxs3/G6tV9/52d3v91jY7K21b1+KkYqLz/9k7557829c1XlEAAAAA9L0Xk6FzE9QY4D63z5wzV/J3bYjF9M7V5H/8o+u1rW3wFwAAbwB/rD/M8570wX3188467O9QO927n0K7/3qgA1gAH0B/jL8M83rLwP07U7sY/x/j/Vp18B7AAG8AY6wA/rI/6Xb9M8v0L/c3k7yXwA7AAH4AB3AA50Q27wO2h73eG0oA/AI3wAH2Ab8L8V4t0rV6E+2p74f7h1sAfgAH4AB3wE+gL36xO7/Q8l8w30ADsAAdwAB/AG2wX0t9t/32zE/x/r3XAAHwADuAAfhD1b689Jz8/n5QY3v1b8AAdwAB+AAfwD/wS6O9g/3w1k/0Jp+AAdwAB+AAfwzL6C7T62kFf11i8AAdwAB+AAfwwt0R/8h2k6F9j928AAdwAB+AAfwwt0RzY0d/k4X+v/wAHcAAfgAH8M+g5s8r/744+k9nAAAAAAD34A7y46iP8+M0E1V5v0A2J+gKAAAdwP/Vz0q19B+jUj3c/sX/9+8AfgAH0A+9kP7Y2w37p5+tW8AAdwAB+APj5H5N9R2T2/sX0cAdwAB+AAHwAD2A/R7k7v9+N/2/L327gAH4AB3AAHwAD2wN7n9V+l+947079dAdwAB+AAHwAD2AJ9X/77036M0/h/2y5cAdwAB+AAHwAD2AJ93d39r2F9k/f/tgAH4AB3AAHwAD2AJ9t739Q233F/wMAAAD02n7/F00/7K9OAAA9APUo+kH0n8f98x4AAAAA/gD8/z/e6/Jt5wAAAABJRU5ErkJggg==" alt="Segway Scheduled Outings">
+        </div>
+        <nav>
+            <a href="#">Start</a>
+            <a href="#">Locate Segway Trips</a>
+            <a href="#">View All Trips</a>
+            <a href="#">For Trip Providers</a>
+        </nav>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" placeholder="Trip Location...">
+        <button>SEARCH</button>
+    </div>
+
+    <div class="container">
+        <section class="breadcrumbs">
+            <a href="#">USA</a> > <a href="#">SOUTH CAROLINA</a>
+        </section>
+
+        <section>
+            <h1>Showing 6 Segway Trips in South Carolina</h1>
+            <p>South Carolina List Posted: 11/3/23</p>
+        </section>
+        <div class="south-carolina-div">
+            <a href="#" id="south-carolina"><button class="south-carolina">South Carolina</button></a>
+        </div>
+        <section>
+            <div class="blue-box"></div>
+        </section>
+        <section>
+            <h2>SOUTH CAROLINA SEGWAY TRIPS</h2>
+            <p>Discover South Carolina on one of these six Segway outings. Take in the views and sounds of South Carolina's
+                cities and attractions with an exciting tour on the Segway® PT.</p>
+        </section>
+
+        <section class="tour-list">
+            <h3><a href="#">USA >></a></h3>
+            <h3><a href="#">SOUTH CAROLINA >></a></h3>
+            <h3><a href="#">CHARLESTON >></a></h3>
+            <p><a href="#">Segway of Charleston >></a></p>
+            <h3><a href="#">GREENVILLE >></a></h3>
+            <p><a href="#">Carolina Segway >></a></p>
+            <p><a href="#">Greenville Glides >></a></p>
+            <h3><a href="#">HILTON HEAD ISLAND >></a></h3>
+            <p><a href="#">Hilton Head Segway >></a></p>
+            <h3><a href="#">LITTLE RIVER >></a></h3>
+            <p><a href="#">Myrtle Beach Segway >></a></p>
+            <p><a href="#">Myrtle Beach Segway >></a></p>
+        </section>
+
+        <section>
+            <p style="text-align: right; font-size: 12px; color: #777;">Displaying 6 South Carolina trips of 636 trips Globally</p>
+        </section>
+
+        <section>
+            <h2>South Carolina Segway Trips</h2>
+            <p class="tour-description">If South Carolina is your home or your upcoming travel destination, a Segway trip can add an exciting touch to your
+                next business trip, getaway or weekend outing.</p>
+            <p class="tour-description">Searching for outdoor trips outside of South Carolina's six Segway offerings? Use our Directory to locate Segway
+                Trips across the United States and worldwide and learn more about touring on a Segway PT!</p>
+        </section>
+    </div>
+
+    <div class="data-section">
+        <div class="data-container">
+            <div class="data-item">
+                <h2>636</h2>
+                <p>AROUND THE GLOBE</p>
+            </div>
+            <div class="data-item">
+                <h2>56</h2>
+                <p>NATIONS</p>
+            </div>
+            <div class="data-item">
+                <h2>198</h2>
+                <p>AREAS</p>
+            </div>
+            <div class="data-item">
+                <h2>442</h2>
+                <p>TOWNS</p>
+            </div>
+        </div>
+    </div>
+    <div class="button-container">
+            <h1>Find a Fun Tour on a Segway® PT now!</h1>
+            <a href="#"><button>Look for a Tour Now</button></a>
+    </div>
+    <footer>
+        <div class="menu-directory">
+            <div class="menu-directory-item">
+                <a href="#">START</a>
+                <a href="#">LOCATE SEGWAY TRIPS</a>
+                <a href="#">VIEW ALL TRIPS</a>
+            </div>
+            <div class="menu-directory-item">
+                <a href="#">ABOUT SGT</a>
+                <a href="#">SEGWAY MINIPRO</a>
+                <a href="#">FOR TRIP PROVIDERS</a>
+            </div>
+            <div class="menu-directory-item">
+                <a href="#">LEGAL INFO</a>
+                <a href="#">SITE MAP</a>
+            </div>
+        </div>
+        <p>©2004-2023 SegwayGuidedTours.com</p>
+    </footer>
+
+</body>
+</html>

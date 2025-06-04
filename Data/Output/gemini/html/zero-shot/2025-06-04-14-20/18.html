@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confluence Update</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #d4edda;
+            color: #212529;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            line-height: 1.2;
+            margin-bottom: 0.5em;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 1em;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .header {
+            text-align: left;
+            padding: 20px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 1.8em;
+        }
+
+        .header p {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+
+        .entries {
+            display: flex;
+            justify-content: flex-end;
+            gap: 15px;
+        }
+
+        .entries a {
+            font-size: 0.9em;
+            color: #007bff;
+        }
+
+        .article {
+            margin-top: 2em;
+        }
+
+        .article p {
+            margin-bottom: 1.5em;
+        }
+
+        .article blockquote {
+            margin: 1em 0;
+            padding: 0.5em 2em;
+            border-left: 3px solid #dee2e6;
+            font-style: italic;
+        }
+        .article blockquote p{
+            margin: 0;
+        }
+
+        .article blockquote cite {
+            display: block;
+            margin-top: 0.5em;
+            font-size: 0.9em;
+            font-style: normal;
+            color: #6c757d;
+        }
+
+        .date {
+            color: #6c757d;
+            font-size: 0.9em;
+        }
+
+        .topics {
+            font-size: 0.9em;
+            color: #6c757d;
+        }
+        .footer{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+            padding: 20px;
+        }
+        .footer a{
+            font-size: 1.5em;
+            color: #70a1ff;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>David Simpson</h1>
+            <p>provide. evolve.</p>
+            <div class="entries">
+                <a href="#">Entries</a>
+                <a href="#">Profile</a>
+                <a href="#">Things</a>
+                <a href="#">Tools</a>
+            </div>
+        </div>
+
+        <div class="article">
+            <h1>Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</h1>
+            <p>Written by <a href="#">David Simpson</a> on <span class="date">May 22, 2014</span>. <a href="#">Back to the start</a> .</p>
+            <p class="topics">Topics:</p>
+            <p>Following yesterday's <a href="#">Atlassian security warning regarding Confluence</a> , it seems additional steps are necessary for users with user macros. Take care.</p>
+            <p><a href="#">@BergerofLondon</a> reported this initially:</p>
+
+            <blockquote>
+                <p>After upgrading to Confluence 5.5.1, parameter values in user macros are evaluated differently. Found this out the hard way</p>
+                <cite>— Berger (<a href="#">@BergerofLondon</a>) <span class="date">May 22, 2014</span></cite>
+            </blockquote>
+            <blockquote>
+                <p>Shorthand for standard variables won't work. <code>#if ($paramistrue)</code> will now always be interpreted as true.</p>
+                <cite>— Berger (<a href="#">@BergerofLondon</a>) <span class="date">May 22, 2014</span></cite>
+            </blockquote>
+             <blockquote>
+                <p>Instead, use patterns such as <code>#if ($paramistrue == true)</code> or <code>#if ($paramistrue == false)</code>.</p>
+                <cite>— Berger (<a href="#">@BergerofLondon</a>) <span class="date">May 22, 2014</span></cite>
+            </blockquote>
+            <blockquote>
+                <p><a href="#">@baitman</a> String testing requires <code>#if ($paramfoo).length() > 0</code> instead of <code>#if ($paramfoo)</code>. Absurd!</p>
+                <cite>— Berger (<a href="#">@BergerofLondon</a>) <span class="date">May 22, 2014</span></cite>
+            </blockquote>
+             <blockquote>
+                <p><a href="#">@baitman</a> When updating to 5.5.1 for security, confirm xwork is also upgraded to 1.17. It wasn't in our case.</p>
+                <cite>— Berger (<a href="#">@BergerofLondon</a>) <span class="date">May 22, 2014</span></cite>
+            </blockquote>
+
+            <p>The <code>atlassian-xwork-core-1.17.jar</code> upgrade mandates more explicit code. Many thanks to <a href="#">@BergerofLondon</a> for alerting us.</p>
+        </div>
+        <div class="footer">
+            <a href="#">🗩</a>
+            <a href="#">🗕</a>
+            <a href="#">🗗</a>
+            <a href="#">🗚</a>
+            <a href="#">🗙</a>
+        </div>
+    </div>
+</body>
+</html>

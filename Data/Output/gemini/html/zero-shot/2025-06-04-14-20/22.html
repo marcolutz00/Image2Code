@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spawn Plane Radius Question</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header a {
+            text-decoration: none;
+            color: #333;
+            font-size: 12px;
+        }
+
+        .header a:hover {
+            text-decoration: underline;
+        }
+
+        .question-title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .mission-creation {
+            background-color: #eee;
+            padding: 5px 10px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .ago {
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 15px;
+        }
+
+        .post {
+            margin-bottom: 15px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: blue;
+            margin-right: 10px;
+            float: left;
+        }
+
+        .author {
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .date {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .content {
+            margin-top: 5px;
+            font-size: 14px;
+            clear: left;
+        }
+        .content p {
+            margin: 0.5em 0;
+        }
+
+        .sidebar {
+            float: right;
+            width: 200px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            box-sizing: border-box;
+        }
+
+        .sidebar h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        .sidebar a {
+            display: block;
+            color: #007bff;
+            text-decoration: none;
+            margin-bottom: 5px;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+        .clearfix {
+            clear: both;
+        }
+        .sign-in {
+            background-color: #f9f9f9;
+            border: 1px solid #eee;
+            padding: 15px;
+        }
+        .sign-in a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .sign-in a:hover {
+            text-decoration: underline;
+        }
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+            text-align: center;
+        }
+        .post-container {
+            display: flex;
+            flex-direction: column;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <a href="#">Register</a>
+                <a href="#">Sign In</a>
+            </div>
+            <div>
+                <a href="#">Start Discussion</a>
+            </div>
+        </div>
+
+        <h1 class="question-title">Spawn Plane Radius Question <span class="mission-creation">Mission Creation</span></h1>
+        <p class="ago">5 YEARS AGO</p>
+
+        <div class="post-container">
+            <div class="post">
+                <div class="avatar"></div>
+                <span class="author">Fletcher</span> <span class="date">4 Sep 2018</span>
+                <div class="content">
+                    <p>Good day, all.</p>
+                    <p>In the Virtual AI System setup, specifically the range, does this need adjustment to see ground elements? During a high-
+                    altitude bombing run using camera lock, does the radius need to match the altitude?</p>
+                    <p>I'm curious because setting the plane radius to, say, 3000m while flying at mach 1 could cause frame rate drops due to my
+                    system loading many new objects at once.</p>
+                    <p>Thanks in advance!</p>
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="avatar"></div>
+                <span class="author">AngusDLX</span> <span class="date">4 Sep 2018</span>
+                <div class="content">
+                    <p>The camera's view isn't considered in the spawn range, the aircraft itself is.</p>
+                    <p>My ALIVE experiences with attack planes were problematic due to the spawn range. High settings caused frame rate drops
+                    due to objects constantly appearing/disappearing (especially near many foes).</p>
+                    <p>My workaround was a 200m spawn radius (to show bots at airports) and using a drone to trigger target spawns. However,
+                    AR-2 Darter drones sometimes malfunctioned or were destroyed before reaching the attack area.</p>
+                    <p>SpyderBlack suggested replacing the drone with an object calling ALiVE_spawnSources to generate spawns at a location,
+                    but I couldn't implement it.</p>
+                    <p>Another option: If ALiVE tasks involve air units, perhaps it could create an object using spawnSources, deleting it after
+                    destruction. I'm unsure if it's possible, but it's a thought for the developers.</p>
+                    <p>This way, plane users can attack from afar without performance hits. Multiple planes with high ranges can cause issues.</p>
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="avatar"></div>
+                <span class="author">Fletcher</span> <span class="date">4 Sep 2018</span>
+                <div class="content">
+                    <p>Got it, thanks!</p>
+                </div>
+            </div>
+
+            <div class="post">
+                <div class="avatar"></div>
+                <span class="author">Friznit</span> <span class="date">5 Sep 2018 Administrator</span>
+                <div class="content">
+                    <p>That's a viable concept. We could enable folks to add a "Target" over objectives, spawning an invisible object calling
+                    ALIVE_spawnSources.</p>
+                </div>
+            </div>
+        </div>
+        <div class="sign-in">
+            <p><a href="#">Sign In</a> or <a href="#">Register</a> to post!</p>
+        </div>
+
+        <div class="sidebar">
+            <input type="text" placeholder="Find">
+            <a href="#">Add a Response</a>
+            <h3>First Post</h3>
+            <a href="#">2018</a>
+            <a href="#">September</a>
+            <a href="#">Newest</a>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="footer">
+            <a href="#">Top of Page</a>
+            <p>Powered by esoTalk</p>
+        </div>
+    </div>
+</body>
+</html>

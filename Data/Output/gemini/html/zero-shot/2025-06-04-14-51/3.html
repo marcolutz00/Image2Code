@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background-color: #e94d77;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            height: 100px;
+        }
+        
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .submit-button {
+            background-color: #c44dcb;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        
+        .privacy {
+            text-align:left;
+        }
+        
+        .privacy a {
+            color:#c44dcb;
+        }
+        
+        .site-provider {
+            text-align:right;
+        }
+        
+        .site-provider img {
+            width:20px;
+            height:20px;
+            padding:0;
+        }
+
+        .image-placeholder {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="image-placeholder"></div>
+    <div class="header">
+        <h1>Artist Application</h1>
+    </div>
+    <p>Share your background with us and tell us more. <a href="#">Help</a> if you need more details.</p>
+    <form>
+        <div class="form-group">
+            <label for="givenName">Given Name *</label>
+            <input type="text" id="givenName" name="givenName" required>
+        </div>
+        <div class="form-group">
+            <label for="familyName">Family Name *</label>
+            <input type="text" id="familyName" name="familyName" required>
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail Address *</label>
+            <input type="email" id="email" name="email" required>
+        </div>
+        <div class="form-group">
+            <label for="contactNumber">Contact Number *</label>
+            <input type="number" id="contactNumber" name="contactNumber" required>
+        </div>
+        <div class="form-group">
+            <label for="location">Where Are You Located? *</label>
+            <input type="text" id="location" name="location" required>
+        </div>
+        <div class="form-group">
+            <label>I Confirm That I am Over 18 *</label>
+            <input type="radio" id="over18True" name="over18" value="true" required>
+            <label for="over18True">True</label>
+        </div>
+        <div class="form-group">
+            <label>Do You Run a Production Business? *</label>
+            <input type="radio" id="productionTrue" name="productionBusiness" value="true" required>
+            <label for="productionTrue">True</label>
+            <input type="radio" id="productionFalse" name="productionBusiness" value="false">
+            <label for="productionFalse">False</label>
+        </div>
+        <div class="form-group">
+            <label for="background">Explain Your Background More Fully. *</label>
+            <textarea id="background" name="background" required></textarea>
+        </div>
+        <div class="form-group">
+            <label for="workType">Your Favourite Type of Work *</label>
+            <select id="workType" name="workType" required>
+                <option value=""></option>
+                <option value="type1">Type 1</option>
+                <option value="type2">Type 2</option>
+            </select>
+        </div>
+        
+        <div class="form-group">
+            <label>Do You Have the Skills Required to Make Full Episodes (12-25 minutes) on a Small Budget and To
+Carry on Making Episodes if they get Commissioned by Our Users? *</label>
+            <input type="radio" id="skillsTrue" name="skills" value="true" required>
+            <label for="skillsTrue">True</label>
+            <input type="radio" id="skillsFalse" name="skills" value="false">
+            <label for="skillsFalse">False</label>
+        </div>
+        
+        <div class="form-group">
+            <label>If You are a Final Nominee, Can You Begin Development by May or June (2019)? *</label>
+            <input type="radio" id="nomineeTrue" name="nominee" value="true" required>
+            <label for="nomineeTrue">True</label>
+            <input type="radio" id="nomineeFalse" name="nominee" value="false">
+            <label for="nomineeFalse">False</label>
+        </div>
+        
+        <div class="form-group">
+            <label for="people">Names of People You Will Work With (if Applicable)</label>
+            <textarea id="people" name="people"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Are you a PGA Member?</label>
+            <input type="radio" id="pgaTrue" name="pga" value="true" required>
+            <label for="pgaTrue">True</label>
+            <input type="radio" id="pgaFalse" name="pga" value="false">
+            <label for="pgaFalse">False</label>
+        </div>
+
+        <div class="form-group">
+            <label for="social">OPTIONAL: Having Big Social Media Connections will help. Tell us of Social Media You Frequent.</label>
+            <textarea id="social" name="social"></textarea>
+            <p>0/800 characters</p>
+        </div>
+
+        <div class="form-group">
+            <label for="hearUs">How did you hear of us?</label>
+            <select id="hearUs" name="hearUs" required>
+                <option value=""></option>
+                <option value="socialMedia">Social Media</option>
+                <option value="friend">Friend</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <input type="checkbox" id="rules" name="rules" required>
+            <label for="rules">* I Have Read and I Accept the Rules Below</label>
+            <p><a href="#">Our Guidelines</a></p>
+        </div>
+        
+        <div style="display:flex; justify-content:space-between;">
+            <div class="privacy">
+                <a href="#">Abuse Notification</a>
+            </div>
+            <div class="site-provider">
+                Site Provided by <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAACxJREFUOBFjdNDSsJm5gYGBDgZWBjYGUgYWBlIGBgZSBBICkF+EAB2K5q8iB9qBAAAAAElFTkSuQmCC"/>
+            </div>
+        </div>
+        
+        <button type="submit" class="submit-button">Send</button>
+    </form>
+</div>
+</body>
+</html>
