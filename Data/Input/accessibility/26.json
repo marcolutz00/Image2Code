@@ -1,13 +1,13 @@
 {
   "manual": {
     "checks": {
-      "1.4.4": "pass",
-      "1.4.10": "fail",
-      "1.4.12": "pass",
-      "2.1.1+2.1.2": "pass",
-      "2.4.3": "pass",
-      "2.4.6": "pass",
-      "2.4.7": "pass"
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
     }
   },
   "automatic": [
@@ -26,7 +26,7 @@
       ],
       "impact": "serious",
       "name": "Color Contrast; Text;",
-      "amount_nodes_failed": 2,
+      "amount_nodes_failed": 3,
       "issues": [
         {
           "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
@@ -50,7 +50,7 @@
                 },
                 "relatedNodes": [
                   {
-                    "html": "<div class=\"jss129\" role=\"button\" style=\"background-color: rgb(61, 136, 136); color: rgb(255, 255, 255);\" tabindex=\"0\">\n          <div>\n           All Locations\n          </div>\n         </div>",
+                    "html": "<div class=\"jss129\" role=\"button\" style=\"background-color: rgb(61, 136, 136);\ncolor: rgb(255, 255, 255)\" tabindex=\"0\">\n<div>\n           All Locations\n          </div>\n</div>",
                     "target": [
                       ".jss124:nth-child(1) > .jss129[role=\"button\"]"
                     ]
@@ -81,9 +81,51 @@
               {
                 "id": "color-contrast",
                 "data": {
-                  "fgColor": "#ffffff",
+                  "fgColor": "#988f90",
+                  "bgColor": "#ffffff",
+                  "contrastRatio": 3.14,
+                  "fontSize": "9.8pt (13px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<section class=\"jss99\" style=\"background-color: rgb(255, 255, 255)\">",
+                    "target": [
+                      "div:nth-child(3) > section"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 3.14 (foreground color: #988f90, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"jss134\">\n            The ideal candidate is highly personable, gains energy interacting with clients, and is generally optimistic and friendly. This person has a real sense of urgency, balanced with attention to detail.\n           </div>",
+            "target": [
+              ".jss134"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.14 (foreground color: #988f90, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#e4e3e4",
                   "bgColor": "#3d8888",
-                  "contrastRatio": 4.13,
+                  "contrastRatio": 3.23,
                   "fontSize": "10.5pt (14px)",
                   "fontWeight": "bold",
                   "messageKey": null,
@@ -92,24 +134,24 @@
                 },
                 "relatedNodes": [
                   {
-                    "html": "<div class=\"jss133\" style=\"background-color: rgb(61, 136, 136);\">",
+                    "html": "<div class=\"jss133\" style=\"background-color: rgb(61, 136, 136)\">\n<a class=\"MuiTypography-root MuiLink-root MuiLink-underlineAlways jss88 jss94 jss135 MuiTypography-body1 MuiTypography-colorPrimary\" href=\"#\" rel=\"noopener noreferrer\" target=\"_blank\">\n            Apply Now\n           </a>\n</div>",
                     "target": [
                       ".jss133"
                     ]
                   }
                 ],
                 "impact": "serious",
-                "message": "Element has insufficient color contrast of 4.13 (foreground color: #ffffff, background color: #3d8888, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+                "message": "Element has insufficient color contrast of 3.23 (foreground color: #e4e3e4, background color: #3d8888, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
               }
             ],
             "all": [],
             "none": [],
             "impact": "serious",
-            "html": "<a href=\"#\" class=\"MuiTypography-root MuiLink-root MuiLink-underlineAlways jss88 jss94 jss135 MuiTypography-body1 MuiTypography-colorPrimary\" rel=\"noopener noreferrer\" target=\"_blank\">\n            View Job\n           </a>",
+            "html": "<a class=\"MuiTypography-root MuiLink-root MuiLink-underlineAlways jss88 jss94 jss135 MuiTypography-body1 MuiTypography-colorPrimary\" href=\"#\" rel=\"noopener noreferrer\" target=\"_blank\">\n            Apply Now\n           </a>",
             "target": [
               ".jss135"
             ],
-            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #ffffff, background color: #3d8888, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #e4e3e4, background color: #3d8888, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
           }
         },
         {
@@ -132,15 +174,32 @@
         {
           "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
           "source": "pa11y",
-          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 4.14:1. Recommendation:  change background to #368181.",
-          "description": "<a href=\"#\" class=\"MuiTypography-root MuiLink-root MuiLink-underlineAlways jss88 jss94 jss135 MuiTypography-body1 MuiTypography-colorPrimary\" rel=\"noopener noreferrer\" target=\"_blank\">\n            View Job\n         ...</a>",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 3.15:1. Recommendation:  change text colour to #767676.",
+          "description": "<div class=\"jss134\">\n            The ideal candidat...</div>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
             "type": "error",
             "typeCode": 1,
-            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 4.14:1. Recommendation:  change background to #368181.",
-            "context": "<a href=\"#\" class=\"MuiTypography-root MuiLink-root MuiLink-underlineAlways jss88 jss94 jss135 MuiTypography-body1 MuiTypography-colorPrimary\" rel=\"noopener noreferrer\" target=\"_blank\">\n            View Job\n         ...</a>",
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 3.15:1. Recommendation:  change text colour to #767676.",
+            "context": "<div class=\"jss134\">\n            The ideal candidat...</div>",
+            "selector": "#active-jobs > li > div > div:nth-child(1) > div:nth-child(3)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 3.23:1. Recommendation:  change background to #257070.",
+          "description": "<a class=\"MuiTypography-root MuiLink-root MuiLink-underlineAlways jss88 jss94 jss135 MuiTypography-body1 MuiTypography-colorPrimary\" href=\"#\" rel=\"noopener noreferrer\" target=\"_blank\">\n            Apply Now\n        ...</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 3.23:1. Recommendation:  change background to #257070.",
+            "context": "<a class=\"MuiTypography-root MuiLink-root MuiLink-underlineAlways jss88 jss94 jss135 MuiTypography-body1 MuiTypography-colorPrimary\" href=\"#\" rel=\"noopener noreferrer\" target=\"_blank\">\n            Apply Now\n        ...</a>",
             "selector": "#active-jobs > li > div > div:nth-child(2) > a",
             "runner": "htmlcs",
             "runnerExtras": {}
@@ -156,14 +215,14 @@
             "node": {
               "type": "node",
               "lhId": "1-0-DIV",
-              "path": "1,HTML,1,BODY,1,DIV,0,MAIN,2,DIV,0,SECTION,0,DIV,2,UL,0,LI,0,DIV,0,DIV",
+              "path": "1,HTML,1,BODY,0,DIV,0,MAIN,2,DIV,0,SECTION,0,DIV,2,UL,0,LI,0,DIV,0,DIV",
               "selector": "ul.MuiList-root > li.MuiListItem-root > div.jss129 > div",
               "boundingRect": {
-                "top": 799,
-                "bottom": 819,
-                "left": 96,
-                "right": 179,
-                "width": 83,
+                "top": 773,
+                "bottom": 793,
+                "left": 104,
+                "right": 183,
+                "width": 79,
                 "height": 20
               },
               "snippet": "<div>",
@@ -177,17 +236,17 @@
                   "relatedNode": {
                     "type": "node",
                     "lhId": "1-1-DIV",
-                    "path": "1,HTML,1,BODY,1,DIV,0,MAIN,2,DIV,0,SECTION,0,DIV,2,UL,0,LI,0,DIV",
+                    "path": "1,HTML,1,BODY,0,DIV,0,MAIN,2,DIV,0,SECTION,0,DIV,2,UL,0,LI,0,DIV",
                     "selector": "div.MuiContainer-root > ul.MuiList-root > li.MuiListItem-root > div.jss129",
                     "boundingRect": {
-                      "top": 794,
-                      "bottom": 824,
-                      "left": 86,
-                      "right": 189,
-                      "width": 103,
+                      "top": 768,
+                      "bottom": 798,
+                      "left": 94,
+                      "right": 193,
+                      "width": 99,
                       "height": 30
                     },
-                    "snippet": "<div class=\"jss129\" role=\"button\" style=\"background-color: rgb(61, 136, 136); color: rgb(255, 255, 255);\" tabindex=\"0\">",
+                    "snippet": "<div class=\"jss129\" role=\"button\" style=\"background-color: rgb(61, 136, 136);\ncolor: rgb(255, 255, 255)\" tabindex=\"0\">",
                     "nodeLabel": "All Locations"
                   }
                 }
@@ -204,20 +263,20 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-2-A",
-              "path": "1,HTML,1,BODY,1,DIV,0,MAIN,2,DIV,0,SECTION,0,DIV,3,UL,0,LI,0,DIV,1,DIV,0,A",
-              "selector": "li.MuiListItem-root > div.jss130 > div.jss133 > a.MuiTypography-root",
+              "lhId": "1-2-DIV",
+              "path": "1,HTML,1,BODY,0,DIV,0,MAIN,2,DIV,0,SECTION,0,DIV,3,UL,0,LI,0,DIV,0,DIV,2,DIV",
+              "selector": "li.MuiListItem-root > div.jss130 > div > div.jss134",
               "boundingRect": {
-                "top": 1060,
-                "bottom": 1081,
-                "left": 55,
-                "right": 116,
-                "width": 60,
-                "height": 21
+                "top": 958,
+                "bottom": 1032,
+                "left": 34,
+                "right": 378,
+                "width": 344,
+                "height": 74
               },
-              "snippet": "<a href=\"#\" class=\"MuiTypography-root MuiLink-root MuiLink-underlineAlways jss88 jss94 jss135…\" rel=\"noopener noreferrer\" target=\"_blank\">",
-              "nodeLabel": "View Job",
-              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 4.13 (foreground color: #ffffff, background color: #3d8888, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+              "snippet": "<div class=\"jss134\">",
+              "nodeLabel": "The ideal candidate is highly personable, gains energy interacting with clients…",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.14 (foreground color: #988f90, background color: #ffffff, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
             },
             "subItems": {
               "type": "subitems",
@@ -225,19 +284,68 @@
                 {
                   "relatedNode": {
                     "type": "node",
-                    "lhId": "1-3-DIV",
-                    "path": "1,HTML,1,BODY,1,DIV,0,MAIN,2,DIV,0,SECTION,0,DIV,3,UL,0,LI,0,DIV,1,DIV",
+                    "lhId": "1-3-SECTION",
+                    "path": "1,HTML,1,BODY,0,DIV,0,MAIN,2,DIV,0,SECTION",
+                    "selector": "div#root > main.jss1 > div > section.jss99",
+                    "boundingRect": {
+                      "top": 545,
+                      "bottom": 1180,
+                      "left": 0,
+                      "right": 412,
+                      "width": 412,
+                      "height": 636
+                    },
+                    "snippet": "<section class=\"jss99\" style=\"background-color: rgb(255, 255, 255)\">",
+                    "nodeLabel": "Now recruiting!\nWe are always seeking top candidates. View our job postings bel…"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,MAIN,2,DIV,0,SECTION,0,DIV,3,UL,0,LI,0,DIV,1,DIV,0,A",
+              "selector": "li.MuiListItem-root > div.jss130 > div.jss133 > a.MuiTypography-root",
+              "boundingRect": {
+                "top": 1060,
+                "bottom": 1081,
+                "left": 49,
+                "right": 122,
+                "width": 72,
+                "height": 21
+              },
+              "snippet": "<a class=\"MuiTypography-root MuiLink-root MuiLink-underlineAlways jss88 jss94 jss135…\" href=\"#\" rel=\"noopener noreferrer\" target=\"_blank\">",
+              "nodeLabel": "Apply Now",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.23 (foreground color: #e4e3e4, background color: #3d8888, font size: 10.5pt (14px), font weight: bold). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-5-DIV",
+                    "path": "1,HTML,1,BODY,0,DIV,0,MAIN,2,DIV,0,SECTION,0,DIV,3,UL,0,LI,0,DIV,1,DIV",
                     "selector": "ul#active-jobs > li.MuiListItem-root > div.jss130 > div.jss133",
                     "boundingRect": {
-                      "top": 1053,
-                      "bottom": 1089,
+                      "top": 1052,
+                      "bottom": 1088,
                       "left": 34,
                       "right": 137,
                       "width": 103,
                       "height": 36
                     },
-                    "snippet": "<div class=\"jss133\" style=\"background-color: rgb(61, 136, 136);\">",
-                    "nodeLabel": "View Job"
+                    "snippet": "<div class=\"jss133\" style=\"background-color: rgb(61, 136, 136)\">",
+                    "nodeLabel": "Apply Now"
                   }
                 }
               ]
@@ -296,14 +404,14 @@
           "id": "Principle3.Guideline3_1.3_1_1.H57.2",
           "source": "pa11y",
           "title": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-          "description": "<html><head>\n  <!-- Google tag (gtag....</html>",
+          "description": "<html><head>\n<!-- Google tag (gtag.js...</html>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
             "type": "error",
             "typeCode": 1,
             "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-            "context": "<html><head>\n  <!-- Google tag (gtag....</html>",
+            "context": "<html><head>\n<!-- Google tag (gtag.js...</html>",
             "selector": "html",
             "runner": "htmlcs",
             "runnerExtras": {}
@@ -318,7 +426,7 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-4-HTML",
+              "lhId": "1-6-HTML",
               "path": "1,HTML",
               "selector": "html",
               "boundingRect": {
@@ -383,7 +491,7 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-5-META",
+              "lhId": "1-7-META",
               "path": "1,HTML,0,HEAD,5,META",
               "selector": "head > meta",
               "boundingRect": {

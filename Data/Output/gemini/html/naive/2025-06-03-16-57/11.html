@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aws_autoscaling_lifecycle_hook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+            color: #333;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header a {
+            color: #777;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        /* Sidebar */
+        .sidebar {
+            width: 200px;
+            float: left;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar a {
+            color: #333;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+            font-size: 12px;
+        }
+
+        .sidebar a:hover {
+            color: #007bff;
+        }
+
+        /* Content */
+        .content {
+            margin-left: 220px;
+            padding: 20px;
+        }
+
+        .content h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .content p {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 15px;
+        }
+
+        .content h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .content pre {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-size: 12px;
+            line-height: 1.4;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #343a40;
+            color: #fff;
+            padding: 20px;
+            text-align: left;
+            clear: both;
+        }
+
+        .footer-container {
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .footer-column:last-child {
+            margin-right: 0;
+        }
+
+        .footer h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer li {
+            margin-bottom: 5px;
+        }
+
+        .footer a {
+            color: #ccc;
+            text-decoration: none;
+            font-size: 12px;
+            display: block;
+        }
+
+        .footer a:hover {
+            color: #fff;
+        }
+
+        .footer img {
+            height: 20px;
+            width: auto;
+        }
+
+        .content ul {
+            list-style: disc;
+            margin-left: 20px;
+            margin-bottom: 15px;
+        }
+
+        .content li {
+            font-size: 14px;
+            line-height: 1.6;
+            margin-bottom: 5px;
+        }
+
+        .resource-box {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            font-size: 12px;
+        }
+        
+        .resource-box div{
+            font-size: 12px;
+            line-height: 1.4;
+            margin-bottom: 1px;
+        }
+        
+        .tab-buttons {
+            margin-bottom: 10px;
+            text-align: right;
+        }
+
+        .tab-buttons a {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #ddd;
+            color: #333;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+
+        .tab-buttons a:hover {
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="header">
+            <div>
+                <a href="#">FEATURES</a>
+                <a href="#">OPEN SOURCE</a>
+                <a href="#">ABOUT US</a>
+                <a href="#">DOCS</a>
+            </div>
+            <div>
+                <a href="#">SIGN IN</a>
+                <a href="#">SIGN UP</a>
+            </div>
+        </div>
+
+        <div class="sidebar">
+            <ul>
+                <li><a href="#">Tutorials</a></li>
+                <li><a href="#">Getting started</a></li>
+                <li><a href="#">Explore Workspace</a></li>
+                <li><a href="#">Stack Documentation</a></li>
+                <li><a href="#">Configuration</a></li>
+                <li><a href="#">Providers</a>
+                    <ul>
+                        <li><a href="#">Archive</a></li>
+                        <li><a href="#">Atlas</a></li>
+                        <li><a href="#">AWS</a>
+                            <ul>
+                                <li><a href="#">Data Sources</a></li>
+                                <li><a href="#">Resources</a>
+                                    <ul>
+                                        <li><a href="#">aws_alb</a></li>
+                                        <li><a href="#">aws_alb_listener</a></li>
+                                        <li><a href="#">aws_alb_listener_rule</a></li>
+                                        <li><a href="#">aws_alb_target_group</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#">Azure Service Management</a></li>
+                <li><a href="#">Provisioners</a></li>
+            </ul>
+        </div>
+
+        <div class="content">
+            <h1>aws_autoscaling_lifecycle_hook</h1>
+            <p>Supplies an AutoScaling Lifecycle Hook element.</p>
+
+            <h2>Example Usage</h2>
+
+            <div class="tab-buttons">
+                <a href="#">yaml</a>
+                <a href="#">hcl</a>
+            </div>
+
+            <div class="resource-box">
+                <div>resource:</div>
+                <div>aws_autoscaling_group:</div>
+                <div>foobar:</div>
+                <div>availability_zones:</div>
+                <div>- us-west-2a</div>
+                <div>name: terraform-test-foobar5</div>
+                <div>health_check_type: EC2</div>
+                <div>termination_policies:</div>
+                <div>- OldestInstance</div>
+                <div>tag:</div>
+                <div>key: Foo</div>
+                <div>value: foo-bar</div>
+                <div>propagate_at_launch: true</div>
+                <div>aws_autoscaling_lifecycle_hook:</div>
+                <div>foobar:</div>
+                <div>name: foobar</div>
+                <div>autoscaling_group_name: '${aws_autoscaling_group.foobar.name}'</div>
+                <div>default_result: CONTINUE</div>
+                <div>heartbeat_timeout: 2000</div>
+                <div>lifecycle_transition: 'autoscaling:EC2_INSTANCE_LAUNCHING'</div>
+                <div>notification_metadata: "{\n \"foo\": \"bar\"\n}"</div>
+                <div>notification_target_arn: 'arn:aws:sqs:us-east-1:444455556666:queue1*"</div>
+                <div>role_arn: 'arn:aws:iam::123456789012:role/S3Access'</div>
+            </div>
+
+            <h2>Argument Specification</h2>
+
+            <p>The subsequent arguments are supported:</p>
+
+            <ul>
+                <li><code>name</code> - (Required) The lifecycle hook's name.</li>
+                <li><code>autoscaling_group_name</code> - (Required) Name of Auto Scaling group that you want to assign the lifecycle hook to.</li>
+                <li><code>default_result</code> - (Optional) Action Auto Scaling group should take when lifecycle hook timeout passes or if an unexpected failure arises.</li>
+                <li><code>heartbeat_timeout</code> - (Optional) Period of time, in seconds, before lifecycle hook times out. When the lifecycle hook times out, Auto
+                    Scaling performs the action defined in the DefaultResult setting</li>
+            </ul>
+
+            <p><em>See this document's origin at <a href="http://terraform.io">Terraform.io</a></em></p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-container">
+            <div class="footer-column">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACoAAAAqCAYAAAD2jVtfAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8YQUAAAAJcEhZcwAADsMAAA7DAcdvqGQAAAMlSURBVFhH7Zg/ThVRFMb/e+8gJp/X11YF2yv3jVp019/Q9qU0kYg/iE8iQzLBEGqgJv0/X4iIghS8Uggs+G9oD24fP7+869eYgXGz3c0JvP/a9v3nfP73nNf01gXGf7r5GkQd0H+Bv7H57m9+Kqf8J+lP2N58vXl9yHlR96zY96v/R5N1O/E76T/36946v3/Lz5f0z4rK//w5rN/T0O93m93G//zJbB8g7Xb76P91iV5zO9/99/8fFvE/1uJ/9/7wP/x+vP3aWbKjH2B9H+d5+p3vJ/35Ff18XoH/6P7m+eX77s18rK/79Hq32Jz4r9P6k39l3qW/h/v/fN//J9wD6v2W4g76M80P7974vH1/r+j1W79nJc0o+wPo/4X/2f4h/76r/0Wc6i/88eH/wvvE0wK5v3p6k860H43n5ne8m/U/z/g3/7d//D5gP003yW4A964H2u/d9f0u3H2c93C/0/cT/sf8H//d//D5gP04/2u3B98Y+32/s9l+6r4O03/4z+v+z3//33AfrH/sXnB9zP853s7fP75N8G29n8y7hW/39s//1d4H6w3xR5wXc7u/73V05/55e/iXg37y//j1l//2/g/9H/65e/L812/g3p6m0/q//X//740//89wP6j72uMB+2h79/z30H69Q+3N//P6//kDwL4v/5l7/w/4u/P7B/v/0+Y/+d9wL6j7y79l/6n8P/9y//w/o3v19gH/7i7/4H4T+5n/1j/31Yj/6/07+t/6J0B1Vf5j/U/7t/33qX/y+0D0I23X1z//76e/6Ym76+8e/k/0/4f99/4/4d+H3x7xM+I/379l1W8k90P1X/if9t+6p5J5wP483/629+b7r/3s92u7/P/7376P1343uM+84j+4/w39p90p9Q/Q7z4v1l0e5b7931P0I33R4D/92d+x1Wn57s/n3P99g/w/0R5l96J+v77g/2V+X3d2H9l79PzY/R9d6/Q/1Wc437gD4i/4B73+0+4O0R/k92P7P/G/6/432B/q1m0A+0/R9f/f3v0P0q/4X2H/8N/gHvT9tU/Gq0/6w4L45f4X9u+3z7z1P+z/9v/1/7z//t///4e/j60x2M+841+6n+l//7q//m/f//f//4a//3R//t//4j//8O/g6g9s0Vn2jV+19S/q/+X//5//z//7v//348//x3//l//4//+C/w7A9+u0sF7V/9V/83//T//9//v//4O//uF//l//x//4T/5LwH8S093w+5j9d8/i7+jP+P///4H//kI//+/4/f8S//l//5//1n0F+4iJ61yvY3v8Xf1z/9////P/9//6j//6H//x//5//+P76L0T1S0600b7N1/a//c//+/f/9//1H//63//x//7//4P52vM+3v46yOq376jP//v//z//5//0f//5P//v//4//+r4f7v7m9305z05f6W/gT//z//7//9//5T//5P//v//4//9L3B/W5m8h4F79e9j//9//7//9//5D//7X//v//4f//m375vJ360Q344474zQ4qj77X/7//7//v//4//9L3794P//v//4//+L19rF3U74097365w3u3r3//z//7//v//4//9L3794P//v//4//+L19uE8L0X+9Xj7/t1v07//z//7//v//4//9L3794P//v//4//+L19v02w3/4+t3v/5s5r3/3r//z//7//v//4//9L3794P//v//4//+L18n/7pS79oX777H3697//z//7//v//4//9L3794P//v//4//+L18nd87n4f/cQ76z0/4z//z//7//v//4//9L3794P//v//4//+L18nJ/m//oE+3vDq7/3f//z//7//v//4//9L3794P//v//4//+L18kJ6iN7i/69/2390/7//z//7//v//4//9L3794P//v//4//+L18kB/xV7Q/60n/98L//z//7//v//4//9L3794P//v//4//+L18kC+e37/e073t3p+/g//z//7//v//4//9L3794P//v//4//+L18kE/iW//vH63i978L//z//7//v//4//9L3794P//v//4//+L18kE/tW7879g7//t3f//z//7//v//4//9L3794P//v//4//+L18kF/6a9x9u7//97f//z//7//v//4//9L3794P//v//4//+L18kG+9b+x8m7/4+a3//z//7//v//4//9L3794P//v//4//+L18kH+5r397y/9/3b//z//7//v//4//9L3794P//v//4//+L18kH+4v0O97/74o3//z//7//v//4//9L3794P//v//4//+L18kH+1r/3/v/7jQ7//z//7//v//4//9L3794P//v//4//+L18kH+9v0O//t/8c7//z//7//v//4//9L3794P//v//4//+L18kH+9T//7874s3//z//7//v//4//9L3794P//v//4//+L18kI/057t//9/w//z//7//v//4//9L3794P//v//4//+L18kJ+xJ0f/u77P//z//7//v//4//9L3794P//v//4//+L18kJ6jTz37j743//z//7//v//4//9L3794P//v//4//+L18kJ6iV3/h++x//z//7//v//4//9L3794P//v//4//+L18kJ56U1g/7g/j//z//7//v//4//9L3794P//v//4//+L18kJ56Q/9h/7//3//z//7//v//4//9L3794P//v//4//+L18kJ55Q99/e//z//z//7//v//4//9L3794P//v//4//+L18kJ55R93//z//z//7//v//4//9L3794P//v//4//+L18kI/8T//3//z//z//7//v//4//9L3794P//v//4//+L18kJ7iH5n7///z//z//7//v//4//9L3794P//v//4//+L18kJ6hV+f7///z//z//7//v//4//9L3794P//v//4//+L18kJ6iT+3/z//z//z//7//v//4//9L3794P//v//4//+L18kJ6iT9/6z//z//z//7//v//4//9L3794P//v//4//+L18kJ56P+3//z//z//7//v//4//9L3794P//v//4//+L18kJ55T//z//z//z//7//v//4//9L3794P//v//4//+L18kJ55V9///z//z//z//7//v//4//9L3794P//v//4//+L18kJ55V///z//z//z//7//v//4//9L3794P//v//4//+L18kI///z//z//z//z//7//v//4//9L3794P//v//4//+L18kI//8///z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+L18kH///z//z//z//z//z//7//v//4//9L3794P//v//4//+

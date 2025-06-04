@@ -89,7 +89,7 @@ def _classify_accessibility_issues(checks_result, name):
         elif issue["impact"] == "minor":
             amount_nodes_minor += issue["amount_nodes_failed"]
         else:   
-            raise(f"Unknown impact: {issue['impact']} for issue: {issue['name']}")
+            print(f"Unknown impact: {issue['impact']} for issue: {issue}")
         
     return amount_nodes_critical, amount_nodes_serious, amount_nodes_moderate, amount_nodes_minor
 
@@ -342,8 +342,11 @@ def overwrite_insights(accessibility_dir, insights_dir, model, prompt_strategy):
         files_processed
     )
 
-
-    out_path = os.path.join(RESULT_DIR, f'{model}_{prompt_strategy}_analysis_accessibility_{DATE}.json')
+    if model and prompt_strategy:
+        out_path = os.path.join(RESULT_DIR, f'{model}_{prompt_strategy}_analysis_accessibility_{DATE}.json')
+    else:
+        out_path = os.path.join(RESULT_DIR, f'input_analysis_accessibility_{DATE}.json')
+    print(f"Writing insights to {out_path}")
     _write_json_result(json_output_final, out_path)
 
 

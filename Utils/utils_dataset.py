@@ -137,7 +137,7 @@ def sorted_alphanumeric(data):
         Citation: https://stackoverflow.com/questions/4813061/non-alphanumeric-list-order-from-os-listdir
     '''
     convert = lambda text: int(text) if text.isdigit() else text.lower()
-    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', key) ] 
+    alphanum_key = lambda key: [ convert(c) for c in re.split('([0-9]+)', str(key)) ] 
     return sorted(data, key=alphanum_key)
 
 

@@ -29,7 +29,7 @@ class GeminiStrategy(LLMStrategy):
         with open(image_information["path"], "rb") as image_file:
             image_data = image_file.read()
 
-        response =  self.client.models.generate_content(
+        response = self.client.models.generate_content(
             model=self.used_model,
             contents=[
             types.Part.from_bytes(
@@ -57,7 +57,7 @@ class GeminiStrategy(LLMStrategy):
     
     async def api_text_rewrite(self, prompt, html_code):
         message = f'Prompt: {prompt}, Current HTML: {html_code}'
-
+        
         response = self.client.models.generate_content(
             model=self.used_model,
             contents=[message]

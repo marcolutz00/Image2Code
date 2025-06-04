@@ -13,6 +13,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from LLMs.LLMClient import LLMClient
 import Utils.utils_prompt as utils_prompt
 import Utils.utils_general as utils_general
+import Utils.utils_dataset as utils_dataset
 import Utils.utils_html as utils_html
 
 CURR_DIR = pathlib.Path(__file__).parent
@@ -30,8 +31,6 @@ FONT_ALTERNATIVES    = [
 HUE_SHIFT = 20
 # 10 percent
 SAT_LUM_SHIFT = 0.1 
-# 15% of size
-SIZE_CHANGE = (0.85, 1.15)
 
 LENGTH_RE = re.compile(r"(-?\d*\.?\d+)(px|rem|em|%)")
 
@@ -92,29 +91,35 @@ def mutate_css(css_text):
     return sheet.cssText.decode()
 
 def strip_styles(soup: BeautifulSoup):
-    """entfernt <style> & style="", liefert (clean_soup, styles, inline_map)"""
-    # 1. <style>-Blöcke herausnehmen
+    """
+        deletes <style> & style=""
+        -> necessary in order to rewrite text
+    """
+    # get style blocks
     styles = [tag.extract() for tag in soup.find_all('style')]
 
-    # 2. Inline-Styles in Data-Attr zwischenparken
+    # store inline styles in mpa
     inline_map = {}
     for idx, tag in enumerate(soup.find_all(style=True)):
         key = f"data-style-{idx}"
         inline_map[key] = tag['style']
-        tag[key] = tag['style']              # Marker einfügen
+        tag[key] = tag['style']
         del tag['style']
 
     return soup, styles, inline_map
 
 def reattach_styles(rewritten_html: str, styles, inline_map):
+    """
+        Reattaches styles to the new HTML
+    """
     soup = BeautifulSoup(rewritten_html, "html.parser")
 
-    # 1. <style>-Blöcke wieder in <head> hängen
+    # add style blocks back to head
     head = soup.head or soup
     for s in styles:
         head.append(s)
 
-    # 2. Inline-Styles anhand Marker zurückkopieren
+    # add inline styles back to tags
     for tag in soup.find_all():
         for k in list(tag.attrs):
             if k.startswith("data-style-") and k in inline_map:
@@ -136,7 +141,7 @@ async def process_html(path: pathlib.Path, client, out_dir="out"):
     raw_html = await client.generate_text_rewrite(prompt, str(soup_no_style))
     clean_html = utils_html.clean_html_result(raw_html)
 
-    final_html = reattach_styles(final_html, styles, inline_map)
+    final_html = reattach_styles(clean_html, styles, inline_map)
 
 
     soup = BeautifulSoup(final_html, "html.parser")
@@ -166,9 +171,11 @@ async def process_html(path: pathlib.Path, client, out_dir="out"):
 async def main():
     strategy = utils_general.get_model_strategy("gemini")
     client = LLMClient(strategy)
+    
+    html_files = list(INPUT_HTML_DIR.glob("*.html"))
     tasks = [
         process_html(file, client)
-        for file in INPUT_HTML_DIR.glob("*.html")
+        for file in utils_dataset.sorted_alphanumeric(html_files)
     ]
     await asyncio.gather(*tasks)
 

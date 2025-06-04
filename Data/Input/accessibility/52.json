@@ -1,13 +1,13 @@
 {
   "manual": {
     "checks": {
-      "1.4.4": "pass",
-      "1.4.10": "pass",
-      "1.4.12": "pass",
-      "2.1.1+2.1.2": "pass",
-      "2.4.3": "pass",
-      "2.4.6": "pass",
-      "2.4.7": "pass"
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
     }
   },
   "automatic": [
@@ -124,8 +124,8 @@
               "path": "1,HTML,1,BODY,1,DIV,0,DIV,0,DIV,0,FORM,0,DIV,1,BUTTON",
               "selector": "div.modal-content > form#ajax_forgot_password > div.modal-header > button.close",
               "boundingRect": {
-                "top": 383,
-                "bottom": 389,
+                "top": 337,
+                "bottom": 343,
                 "left": 49,
                 "right": 65,
                 "width": 16,
@@ -134,6 +134,241 @@
               "snippet": "<button class=\"close\">",
               "nodeLabel": "div.modal-content > form#ajax_forgot_password > div.modal-header > button.close",
               "explanation": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_4.1_4_3.G18",
+        "Principle1.Guideline1_4.1_4_3.G18.Fail",
+        "Principle1.Guideline1_4.1_4_3.G145",
+        "Principle1.Guideline1_4.1_4_3.G145.Fail",
+        "Principle1.Guideline1_4.1_4_6.G17",
+        "Principle1.Guideline1_4.1_4_6.G18"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+      ],
+      "impact": "serious",
+      "name": "Color Contrast; Text;",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#06adff",
+                  "bgColor": "#b5b5b5",
+                  "contrastRatio": 1.21,
+                  "fontSize": "9.8pt (13px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<body id=\"TheBody\">",
+                    "target": [
+                      "#TheBody"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 1.21 (foreground color: #06adff, background color: #b5b5b5, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\"> Sign Up Now!</a>",
+            "target": [
+              "p > a"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.21 (foreground color: #06adff, background color: #b5b5b5, font size: 9.8pt (13px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#06adff",
+                  "bgColor": "#b5b5b5",
+                  "contrastRatio": 1.21,
+                  "fontSize": "9.8pt (13px)",
+                  "fontWeight": "bold",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<body id=\"TheBody\">",
+                    "target": [
+                      "#TheBody"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 1.21 (foreground color: #06adff, background color: #b5b5b5, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<b>End</b>",
+            "target": [
+              "b"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.21 (foreground color: #06adff, background color: #b5b5b5, font size: 9.8pt (13px), font weight: bold). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.22:1. Recommendation:  change text colour to #004c71.",
+          "description": "<a href=\"#\"> Sign Up Now!</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.22:1. Recommendation:  change text colour to #004c71.",
+            "context": "<a href=\"#\"> Sign Up Now!</a>",
+            "selector": "#login_frm > div:nth-child(5) > p > a",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.22:1. Recommendation:  change text colour to #004c71.",
+          "description": "<b>End</b>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.22:1. Recommendation:  change text colour to #004c71.",
+            "context": "<b>End</b>",
+            "selector": "#TheBody > div:nth-child(3) > font > center > a > b",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,DIV,0,DIV,1,DIV,0,DIV,1,DIV,1,DIV,0,FORM,4,DIV,2,P,1,A",
+              "selector": "form#login_frm > div.input-submit > p > a",
+              "boundingRect": {
+                "top": 218,
+                "bottom": 256,
+                "left": 296,
+                "right": 495,
+                "width": 198,
+                "height": 38
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Sign Up Now!",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 1.21 (foreground color: #06adff, background color: #b5b5b5, font size: 24.4pt (32.4684px), font weight: normal). Expected contrast ratio of 3:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-BODY",
+                    "path": "1,HTML,1,BODY",
+                    "selector": "body#TheBody",
+                    "boundingRect": {
+                      "top": 8,
+                      "bottom": 2596,
+                      "left": 49,
+                      "right": 931,
+                      "width": 882,
+                      "height": 2588
+                    },
+                    "snippet": "<body id=\"TheBody\">",
+                    "nodeLabel": "body#TheBody"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-3-B",
+              "path": "1,HTML,1,BODY,2,DIV,4,FONT,2,CENTER,2,A,0,B",
+              "selector": "font > center > a > b",
+              "boundingRect": {
+                "top": 2483,
+                "bottom": 2521,
+                "left": 459,
+                "right": 521,
+                "width": 61,
+                "height": 38
+              },
+              "snippet": "<b>",
+              "nodeLabel": "End",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 1.21 (foreground color: #06adff, background color: #b5b5b5, font size: 24.4pt (32.4684px), font weight: bold). Expected contrast ratio of 3:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-BODY",
+                    "path": "1,HTML,1,BODY",
+                    "selector": "body#TheBody",
+                    "boundingRect": {
+                      "top": 8,
+                      "bottom": 2596,
+                      "left": 49,
+                      "right": 931,
+                      "width": 882,
+                      "height": 2588
+                    },
+                    "snippet": "<body id=\"TheBody\">",
+                    "nodeLabel": "body#TheBody"
+                  }
+                }
+              ]
             }
           }
         }
@@ -172,7 +407,7 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<h4 class=\"modal-title\">Forgot Password</h4>",
+            "html": "<h4 class=\"modal-title\">Reset Password</h4>",
             "target": [
               "h4"
             ],
@@ -214,19 +449,19 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-1-H4",
+              "lhId": "1-4-H4",
               "path": "1,HTML,1,BODY,1,DIV,0,DIV,0,DIV,0,FORM,0,DIV,0,H4",
               "selector": "div.modal-content > form#ajax_forgot_password > div.modal-header > h4.modal-title",
               "boundingRect": {
-                "top": 311,
-                "bottom": 356,
+                "top": 273,
+                "bottom": 311,
                 "left": 49,
                 "right": 931,
                 "width": 882,
-                "height": 45
+                "height": 38
               },
               "snippet": "<h4 class=\"modal-title\">",
-              "nodeLabel": "Forgot Password",
+              "nodeLabel": "Reset Password",
               "explanation": "Fix any of the following:\n  Heading order invalid"
             }
           }
@@ -283,14 +518,14 @@
           "id": "Principle3.Guideline3_1.3_1_1.H57.2",
           "source": "pa11y",
           "title": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-          "description": "<html><head>\n    <meta charset=\"utf-8...</html>",
+          "description": "<html><head>\n<meta charset=\"utf-8\">\n<...</html>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
             "type": "error",
             "typeCode": 1,
             "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-            "context": "<html><head>\n    <meta charset=\"utf-8...</html>",
+            "context": "<html><head>\n<meta charset=\"utf-8\">\n<...</html>",
             "selector": "html",
             "runner": "htmlcs",
             "runnerExtras": {}
@@ -305,16 +540,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-2-HTML",
+              "lhId": "1-5-HTML",
               "path": "1,HTML",
               "selector": "html",
               "boundingRect": {
                 "top": 0,
-                "bottom": 3197,
+                "bottom": 2604,
                 "left": 0,
                 "right": 980,
                 "width": 980,
-                "height": 3197
+                "height": 2604
               },
               "snippet": "<html>",
               "nodeLabel": "html",
@@ -1415,9 +1650,9 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<input class=\"GapBox\" id=\"Gap10\">",
+            "html": "<input class=\"GapBox\" id=\"GapSpan10\">",
             "target": [
-              "#Gap10"
+              ".GapSpan:nth-child(11) > .GapBox"
             ],
             "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
           }
@@ -1487,9 +1722,9 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<input class=\"GapBox\" id=\"Gap11\">",
+            "html": "<input class=\"GapBox\" id=\"GapSpan11\">",
             "target": [
-              "#Gap11"
+              ".GapSpan:nth-child(12) > .GapBox"
             ],
             "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
           }
@@ -1559,9 +1794,9 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<input class=\"GapBox\" id=\"Gap12\">",
+            "html": "<input class=\"GapBox\" id=\"GapSpan12\">",
             "target": [
-              "#Gap12"
+              ".GapSpan:nth-child(13) > .GapBox"
             ],
             "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
           }
@@ -1847,9 +2082,9 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<input class=\"GapBox\" id=\"Gap16\">",
+            "html": "<input class=\"GapBox\" id=\"GapSpan16\">",
             "target": [
-              "#Gap16"
+              ".GapSpan:nth-child(17) > .GapBox"
             ],
             "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
           }
@@ -2135,9 +2370,9 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<input class=\"GapBox\" id=\"Gap20\">",
+            "html": "<input class=\"GapBox\" id=\"GapSpan20\">",
             "target": [
-              "#Gap20"
+              ".GapSpan:nth-child(21) > .GapBox"
             ],
             "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
           }
@@ -2351,9 +2586,9 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<input class=\"GapBox\" id=\"Gap23\">",
+            "html": "<input class=\"GapBox\" id=\"GapSpan23\">",
             "target": [
-              "#Gap23"
+              ".GapSpan:nth-child(24) > .GapBox"
             ],
             "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
           }
@@ -2423,9 +2658,9 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<input class=\"GapBox\" id=\"Gap24\">",
+            "html": "<input class=\"GapBox\" id=\"GapSpan24\">",
             "target": [
-              "#Gap24"
+              ".GapSpan:nth-child(25) > .GapBox"
             ],
             "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
           }
@@ -3198,15 +3433,15 @@
           "id": "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
           "source": "pa11y",
           "title": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<input class=\"GapBox\" id=\"Gap10\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan10\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
             "type": "error",
             "typeCode": 1,
             "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<input class=\"GapBox\" id=\"Gap10\">",
-            "selector": "#Gap10",
+            "context": "<input class=\"GapBox\" id=\"GapSpan10\">",
+            "selector": "#GapSpan10",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3215,15 +3450,15 @@
           "id": "Principle1.Guideline1_3.1_3_1.F68",
           "source": "pa11y",
           "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-          "description": "<input class=\"GapBox\" id=\"Gap10\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan10\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
             "type": "error",
             "typeCode": 1,
             "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-            "context": "<input class=\"GapBox\" id=\"Gap10\">",
-            "selector": "#Gap10",
+            "context": "<input class=\"GapBox\" id=\"GapSpan10\">",
+            "selector": "#GapSpan10",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3232,15 +3467,15 @@
           "id": "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
           "source": "pa11y",
           "title": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<input class=\"GapBox\" id=\"Gap11\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan11\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
             "type": "error",
             "typeCode": 1,
             "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<input class=\"GapBox\" id=\"Gap11\">",
-            "selector": "#Gap11",
+            "context": "<input class=\"GapBox\" id=\"GapSpan11\">",
+            "selector": "#GapSpan11",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3249,15 +3484,15 @@
           "id": "Principle1.Guideline1_3.1_3_1.F68",
           "source": "pa11y",
           "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-          "description": "<input class=\"GapBox\" id=\"Gap11\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan11\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
             "type": "error",
             "typeCode": 1,
             "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-            "context": "<input class=\"GapBox\" id=\"Gap11\">",
-            "selector": "#Gap11",
+            "context": "<input class=\"GapBox\" id=\"GapSpan11\">",
+            "selector": "#GapSpan11",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3266,15 +3501,15 @@
           "id": "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
           "source": "pa11y",
           "title": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<input class=\"GapBox\" id=\"Gap12\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan12\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
             "type": "error",
             "typeCode": 1,
             "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<input class=\"GapBox\" id=\"Gap12\">",
-            "selector": "#Gap12",
+            "context": "<input class=\"GapBox\" id=\"GapSpan12\">",
+            "selector": "#GapSpan12",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3283,15 +3518,15 @@
           "id": "Principle1.Guideline1_3.1_3_1.F68",
           "source": "pa11y",
           "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-          "description": "<input class=\"GapBox\" id=\"Gap12\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan12\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
             "type": "error",
             "typeCode": 1,
             "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-            "context": "<input class=\"GapBox\" id=\"Gap12\">",
-            "selector": "#Gap12",
+            "context": "<input class=\"GapBox\" id=\"GapSpan12\">",
+            "selector": "#GapSpan12",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3402,15 +3637,15 @@
           "id": "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
           "source": "pa11y",
           "title": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<input class=\"GapBox\" id=\"Gap16\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan16\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
             "type": "error",
             "typeCode": 1,
             "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<input class=\"GapBox\" id=\"Gap16\">",
-            "selector": "#Gap16",
+            "context": "<input class=\"GapBox\" id=\"GapSpan16\">",
+            "selector": "#GapSpan16",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3419,15 +3654,15 @@
           "id": "Principle1.Guideline1_3.1_3_1.F68",
           "source": "pa11y",
           "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-          "description": "<input class=\"GapBox\" id=\"Gap16\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan16\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
             "type": "error",
             "typeCode": 1,
             "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-            "context": "<input class=\"GapBox\" id=\"Gap16\">",
-            "selector": "#Gap16",
+            "context": "<input class=\"GapBox\" id=\"GapSpan16\">",
+            "selector": "#GapSpan16",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3538,15 +3773,15 @@
           "id": "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
           "source": "pa11y",
           "title": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<input class=\"GapBox\" id=\"Gap20\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan20\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
             "type": "error",
             "typeCode": 1,
             "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<input class=\"GapBox\" id=\"Gap20\">",
-            "selector": "#Gap20",
+            "context": "<input class=\"GapBox\" id=\"GapSpan20\">",
+            "selector": "#GapSpan20",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3555,15 +3790,15 @@
           "id": "Principle1.Guideline1_3.1_3_1.F68",
           "source": "pa11y",
           "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-          "description": "<input class=\"GapBox\" id=\"Gap20\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan20\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
             "type": "error",
             "typeCode": 1,
             "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-            "context": "<input class=\"GapBox\" id=\"Gap20\">",
-            "selector": "#Gap20",
+            "context": "<input class=\"GapBox\" id=\"GapSpan20\">",
+            "selector": "#GapSpan20",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3640,15 +3875,15 @@
           "id": "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
           "source": "pa11y",
           "title": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<input class=\"GapBox\" id=\"Gap23\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan23\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
             "type": "error",
             "typeCode": 1,
             "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<input class=\"GapBox\" id=\"Gap23\">",
-            "selector": "#Gap23",
+            "context": "<input class=\"GapBox\" id=\"GapSpan23\">",
+            "selector": "#GapSpan23",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3657,15 +3892,15 @@
           "id": "Principle1.Guideline1_3.1_3_1.F68",
           "source": "pa11y",
           "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-          "description": "<input class=\"GapBox\" id=\"Gap23\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan23\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
             "type": "error",
             "typeCode": 1,
             "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-            "context": "<input class=\"GapBox\" id=\"Gap23\">",
-            "selector": "#Gap23",
+            "context": "<input class=\"GapBox\" id=\"GapSpan23\">",
+            "selector": "#GapSpan23",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3674,15 +3909,15 @@
           "id": "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
           "source": "pa11y",
           "title": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<input class=\"GapBox\" id=\"Gap24\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan24\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
             "type": "error",
             "typeCode": 1,
             "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<input class=\"GapBox\" id=\"Gap24\">",
-            "selector": "#Gap24",
+            "context": "<input class=\"GapBox\" id=\"GapSpan24\">",
+            "selector": "#GapSpan24",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3691,15 +3926,15 @@
           "id": "Principle1.Guideline1_3.1_3_1.F68",
           "source": "pa11y",
           "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-          "description": "<input class=\"GapBox\" id=\"Gap24\">",
+          "description": "<input class=\"GapBox\" id=\"GapSpan24\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
             "type": "error",
             "typeCode": 1,
             "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-            "context": "<input class=\"GapBox\" id=\"Gap24\">",
-            "selector": "#Gap24",
+            "context": "<input class=\"GapBox\" id=\"GapSpan24\">",
+            "selector": "#GapSpan24",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -3849,16 +4084,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-3-INPUT",
+              "lhId": "1-6-INPUT",
               "path": "1,HTML,1,BODY,0,DIV,0,DIV,0,DIV,1,DIV,0,DIV,1,DIV,1,DIV,0,FORM,2,DIV,0,INPUT",
               "selector": "div.login-form-box > form#login_frm > div.input-field > input#login_email",
               "boundingRect": {
-                "top": 122,
-                "bottom": 149,
+                "top": 109,
+                "bottom": 133,
                 "left": 49,
-                "right": 265,
-                "width": 216,
-                "height": 27
+                "right": 224,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"phon-input\" id=\"login_email\">",
               "nodeLabel": "div.login-form-box > form#login_frm > div.input-field > input#login_email",
@@ -3875,16 +4110,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-4-INPUT",
+              "lhId": "1-7-INPUT",
               "path": "1,HTML,1,BODY,0,DIV,0,DIV,0,DIV,1,DIV,0,DIV,1,DIV,1,DIV,0,FORM,3,DIV,0,INPUT",
               "selector": "div.login-form-box > form#login_frm > div.input-field > input#password",
               "boundingRect": {
-                "top": 149,
-                "bottom": 176,
+                "top": 133,
+                "bottom": 157,
                 "left": 49,
-                "right": 265,
-                "width": 216,
-                "height": 27
+                "right": 224,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"pass-word\" id=\"password\">",
               "nodeLabel": "div.login-form-box > form#login_frm > div.input-field > input#password",
@@ -3901,16 +4136,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-5-INPUT",
+              "lhId": "1-8-INPUT",
               "path": "1,HTML,1,BODY,0,DIV,0,DIV,0,DIV,1,DIV,0,DIV,1,DIV,1,DIV,0,FORM,4,DIV,0,INPUT",
               "selector": "div.login-form-box > form#login_frm > div.input-submit > input.sub-bbt",
               "boundingRect": {
-                "top": 176,
-                "bottom": 203,
+                "top": 157,
+                "bottom": 181,
                 "left": 49,
-                "right": 265,
-                "width": 216,
-                "height": 27
+                "right": 224,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"sub-bbt\">",
               "nodeLabel": "div.login-form-box > form#login_frm > div.input-submit > input.sub-bbt",
@@ -3927,16 +4162,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-6-INPUT",
+              "lhId": "1-9-INPUT",
               "path": "1,HTML,1,BODY,1,DIV,0,DIV,0,DIV,0,FORM,1,DIV,0,DIV,0,DIV,1,INPUT",
               "selector": "div.modal-body > div.row > div.col-md-12 > input#forg_email",
               "boundingRect": {
-                "top": 390,
-                "bottom": 417,
+                "top": 343,
+                "bottom": 367,
                 "left": 49,
-                "right": 265,
-                "width": 216,
-                "height": 27
+                "right": 224,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"input form-control\" id=\"forg_email\">",
               "nodeLabel": "div.modal-body > div.row > div.col-md-12 > input#forg_email",
@@ -3953,16 +4188,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-7-INPUT",
+              "lhId": "1-10-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,1,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan0 > input#Gap0",
               "boundingRect": {
-                "top": 688,
-                "bottom": 715,
-                "left": 57,
-                "right": 273,
-                "width": 216,
-                "height": 27
+                "top": 556,
+                "bottom": 580,
+                "left": 656,
+                "right": 830,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap0\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan0 > input#Gap0",
@@ -3979,16 +4214,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-8-INPUT",
+              "lhId": "1-11-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,3,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan1 > input#Gap1",
               "boundingRect": {
-                "top": 755,
-                "bottom": 782,
-                "left": 57,
-                "right": 273,
-                "width": 216,
-                "height": 27
+                "top": 621,
+                "bottom": 645,
+                "left": 517,
+                "right": 692,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap1\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan1 > input#Gap1",
@@ -4005,16 +4240,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-9-INPUT",
+              "lhId": "1-12-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,5,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan2 > input#Gap2",
               "boundingRect": {
-                "top": 823,
-                "bottom": 850,
-                "left": 128,
-                "right": 344,
-                "width": 216,
-                "height": 27
+                "top": 686,
+                "bottom": 710,
+                "left": 475,
+                "right": 650,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap2\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan2 > input#Gap2",
@@ -4031,16 +4266,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-10-INPUT",
+              "lhId": "1-13-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,7,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan3 > input#Gap3",
               "boundingRect": {
-                "top": 891,
-                "bottom": 918,
-                "left": 298,
-                "right": 514,
-                "width": 216,
-                "height": 27
+                "top": 750,
+                "bottom": 774,
+                "left": 486,
+                "right": 661,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap3\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan3 > input#Gap3",
@@ -4057,16 +4292,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-11-INPUT",
+              "lhId": "1-14-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,9,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan4 > input#Gap4",
               "boundingRect": {
-                "top": 959,
-                "bottom": 986,
-                "left": 251,
-                "right": 467,
-                "width": 216,
-                "height": 27
+                "top": 815,
+                "bottom": 839,
+                "left": 336,
+                "right": 511,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap4\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan4 > input#Gap4",
@@ -4083,16 +4318,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-12-INPUT",
+              "lhId": "1-15-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,11,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan5 > input#Gap5",
               "boundingRect": {
-                "top": 1027,
-                "bottom": 1054,
-                "left": 336,
-                "right": 552,
-                "width": 216,
-                "height": 27
+                "top": 880,
+                "bottom": 904,
+                "left": 241,
+                "right": 415,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap5\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan5 > input#Gap5",
@@ -4109,16 +4344,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-13-INPUT",
+              "lhId": "1-16-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,13,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan6 > input#Gap6",
               "boundingRect": {
-                "top": 1095,
-                "bottom": 1122,
-                "left": 234,
-                "right": 450,
-                "width": 216,
-                "height": 27
+                "top": 945,
+                "bottom": 969,
+                "left": 57,
+                "right": 231,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap6\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan6 > input#Gap6",
@@ -4135,16 +4370,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-14-INPUT",
+              "lhId": "1-17-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,15,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan7 > input#Gap7",
               "boundingRect": {
-                "top": 1163,
-                "bottom": 1190,
-                "left": 386,
-                "right": 602,
-                "width": 216,
-                "height": 27
+                "top": 1010,
+                "bottom": 1034,
+                "left": 91,
+                "right": 265,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap7\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan7 > input#Gap7",
@@ -4161,16 +4396,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-15-INPUT",
+              "lhId": "1-18-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,17,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan8 > input#Gap8",
               "boundingRect": {
-                "top": 1231,
-                "bottom": 1258,
-                "left": 424,
-                "right": 640,
-                "width": 216,
-                "height": 27
+                "top": 1075,
+                "bottom": 1099,
+                "left": 57,
+                "right": 231,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap8\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan8 > input#Gap8",
@@ -4187,16 +4422,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-16-INPUT",
+              "lhId": "1-19-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,19,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan9 > input#Gap9",
               "boundingRect": {
-                "top": 1299,
-                "bottom": 1326,
-                "left": 626,
-                "right": 842,
-                "width": 216,
-                "height": 27
+                "top": 1140,
+                "bottom": 1164,
+                "left": 57,
+                "right": 231,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap9\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan9 > input#Gap9",
@@ -4213,94 +4448,94 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-17-INPUT",
-              "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,21,SPAN,0,INPUT",
-              "selector": "form#Cloze > div.ClozeBody > span#GapSpan10 > input#Gap10",
-              "boundingRect": {
-                "top": 1434,
-                "bottom": 1461,
-                "left": 57,
-                "right": 273,
-                "width": 216,
-                "height": 27
-              },
-              "snippet": "<input class=\"GapBox\" id=\"Gap10\">",
-              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan10 > input#Gap10",
-              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
-            }
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
-          "source": "lighthouse",
-          "title": "Form elements do not have associated labels",
-          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
-          "score": 0,
-          "details": {
-            "node": {
-              "type": "node",
-              "lhId": "1-18-INPUT",
-              "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,23,SPAN,0,INPUT",
-              "selector": "form#Cloze > div.ClozeBody > span#GapSpan11 > input#Gap11",
-              "boundingRect": {
-                "top": 1502,
-                "bottom": 1529,
-                "left": 144,
-                "right": 360,
-                "width": 216,
-                "height": 27
-              },
-              "snippet": "<input class=\"GapBox\" id=\"Gap11\">",
-              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan11 > input#Gap11",
-              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
-            }
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
-          "source": "lighthouse",
-          "title": "Form elements do not have associated labels",
-          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
-          "score": 0,
-          "details": {
-            "node": {
-              "type": "node",
-              "lhId": "1-19-INPUT",
-              "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,25,SPAN,0,INPUT",
-              "selector": "form#Cloze > div.ClozeBody > span#GapSpan12 > input#Gap12",
-              "boundingRect": {
-                "top": 1570,
-                "bottom": 1597,
-                "left": 191,
-                "right": 407,
-                "width": 216,
-                "height": 27
-              },
-              "snippet": "<input class=\"GapBox\" id=\"Gap12\">",
-              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan12 > input#Gap12",
-              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
-            }
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
-          "source": "lighthouse",
-          "title": "Form elements do not have associated labels",
-          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
-          "score": 0,
-          "details": {
-            "node": {
-              "type": "node",
               "lhId": "1-20-INPUT",
+              "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,21,SPAN,0,INPUT",
+              "selector": "form#Cloze > div.ClozeBody > span#GapSpan10 > input#GapSpan10",
+              "boundingRect": {
+                "top": 1205,
+                "bottom": 1229,
+                "left": 57,
+                "right": 231,
+                "width": 175,
+                "height": 24
+              },
+              "snippet": "<input class=\"GapBox\" id=\"GapSpan10\">",
+              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan10 > input#GapSpan10",
+              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "lighthouse",
+          "title": "Form elements do not have associated labels",
+          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-21-INPUT",
+              "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,23,SPAN,0,INPUT",
+              "selector": "form#Cloze > div.ClozeBody > span#GapSpan11 > input#GapSpan11",
+              "boundingRect": {
+                "top": 1270,
+                "bottom": 1294,
+                "left": 57,
+                "right": 231,
+                "width": 175,
+                "height": 24
+              },
+              "snippet": "<input class=\"GapBox\" id=\"GapSpan11\">",
+              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan11 > input#GapSpan11",
+              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "lighthouse",
+          "title": "Form elements do not have associated labels",
+          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-22-INPUT",
+              "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,25,SPAN,0,INPUT",
+              "selector": "form#Cloze > div.ClozeBody > span#GapSpan12 > input#GapSpan12",
+              "boundingRect": {
+                "top": 1335,
+                "bottom": 1359,
+                "left": 57,
+                "right": 231,
+                "width": 175,
+                "height": 24
+              },
+              "snippet": "<input class=\"GapBox\" id=\"GapSpan12\">",
+              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan12 > input#GapSpan12",
+              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "lighthouse",
+          "title": "Form elements do not have associated labels",
+          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-23-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,27,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan13 > input#Gap13",
               "boundingRect": {
-                "top": 1638,
-                "bottom": 1665,
-                "left": 198,
-                "right": 414,
-                "width": 216,
-                "height": 27
+                "top": 1335,
+                "bottom": 1359,
+                "left": 663,
+                "right": 838,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap13\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan13 > input#Gap13",
@@ -4317,16 +4552,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-21-INPUT",
+              "lhId": "1-24-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,29,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan14 > input#Gap14",
               "boundingRect": {
-                "top": 1706,
-                "bottom": 1733,
-                "left": 448,
-                "right": 664,
-                "width": 216,
-                "height": 27
+                "top": 1400,
+                "bottom": 1424,
+                "left": 695,
+                "right": 870,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap14\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan14 > input#Gap14",
@@ -4343,16 +4578,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-22-INPUT",
+              "lhId": "1-25-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,31,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan15 > input#Gap15",
               "boundingRect": {
-                "top": 1774,
-                "bottom": 1801,
-                "left": 635,
-                "right": 851,
-                "width": 216,
-                "height": 27
+                "top": 1465,
+                "bottom": 1489,
+                "left": 670,
+                "right": 845,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap15\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan15 > input#Gap15",
@@ -4369,19 +4604,19 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-23-INPUT",
+              "lhId": "1-26-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,33,SPAN,0,INPUT",
-              "selector": "form#Cloze > div.ClozeBody > span#GapSpan16 > input#Gap16",
+              "selector": "form#Cloze > div.ClozeBody > span#GapSpan16 > input#GapSpan16",
               "boundingRect": {
-                "top": 1910,
-                "bottom": 1937,
-                "left": 57,
-                "right": 273,
-                "width": 216,
-                "height": 27
+                "top": 1530,
+                "bottom": 1554,
+                "left": 684,
+                "right": 859,
+                "width": 175,
+                "height": 24
               },
-              "snippet": "<input class=\"GapBox\" id=\"Gap16\">",
-              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan16 > input#Gap16",
+              "snippet": "<input class=\"GapBox\" id=\"GapSpan16\">",
+              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan16 > input#GapSpan16",
               "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
             }
           }
@@ -4395,16 +4630,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-24-INPUT",
+              "lhId": "1-27-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,35,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan17 > input#Gap17",
               "boundingRect": {
-                "top": 1978,
-                "bottom": 2005,
-                "left": 57,
-                "right": 273,
-                "width": 216,
-                "height": 27
+                "top": 1595,
+                "bottom": 1619,
+                "left": 508,
+                "right": 683,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap17\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan17 > input#Gap17",
@@ -4421,16 +4656,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-25-INPUT",
+              "lhId": "1-28-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,37,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan18 > input#Gap18",
               "boundingRect": {
-                "top": 2046,
-                "bottom": 2073,
-                "left": 207,
-                "right": 423,
-                "width": 216,
-                "height": 27
+                "top": 1660,
+                "bottom": 1684,
+                "left": 416,
+                "right": 590,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap18\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan18 > input#Gap18",
@@ -4447,16 +4682,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-26-INPUT",
+              "lhId": "1-29-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,39,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan19 > input#Gap19",
               "boundingRect": {
-                "top": 2114,
-                "bottom": 2141,
-                "left": 573,
-                "right": 789,
-                "width": 216,
-                "height": 27
+                "top": 1725,
+                "bottom": 1749,
+                "left": 414,
+                "right": 588,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap19\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan19 > input#Gap19",
@@ -4473,19 +4708,19 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-27-INPUT",
+              "lhId": "1-30-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,41,SPAN,0,INPUT",
-              "selector": "form#Cloze > div.ClozeBody > span#GapSpan20 > input#Gap20",
+              "selector": "form#Cloze > div.ClozeBody > span#GapSpan20 > input#GapSpan20",
               "boundingRect": {
-                "top": 2249,
-                "bottom": 2276,
-                "left": 57,
-                "right": 273,
-                "width": 216,
-                "height": 27
+                "top": 1789,
+                "bottom": 1813,
+                "left": 600,
+                "right": 774,
+                "width": 175,
+                "height": 24
               },
-              "snippet": "<input class=\"GapBox\" id=\"Gap20\">",
-              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan20 > input#Gap20",
+              "snippet": "<input class=\"GapBox\" id=\"GapSpan20\">",
+              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan20 > input#GapSpan20",
               "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
             }
           }
@@ -4499,16 +4734,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-28-INPUT",
+              "lhId": "1-31-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,43,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan21 > input#Gap21",
               "boundingRect": {
-                "top": 2317,
-                "bottom": 2344,
-                "left": 57,
-                "right": 273,
-                "width": 216,
-                "height": 27
+                "top": 1854,
+                "bottom": 1878,
+                "left": 381,
+                "right": 556,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap21\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan21 > input#Gap21",
@@ -4525,16 +4760,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-29-INPUT",
+              "lhId": "1-32-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,45,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan22 > input#Gap22",
               "boundingRect": {
-                "top": 2385,
-                "bottom": 2412,
-                "left": 152,
-                "right": 368,
-                "width": 216,
-                "height": 27
+                "top": 1919,
+                "bottom": 1943,
+                "left": 291,
+                "right": 466,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap22\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan22 > input#Gap22",
@@ -4551,19 +4786,19 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-30-INPUT",
+              "lhId": "1-33-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,47,SPAN,0,INPUT",
-              "selector": "form#Cloze > div.ClozeBody > span#GapSpan23 > input#Gap23",
+              "selector": "form#Cloze > div.ClozeBody > span#GapSpan23 > input#GapSpan23",
               "boundingRect": {
-                "top": 2453,
-                "bottom": 2480,
-                "left": 307,
-                "right": 523,
-                "width": 216,
-                "height": 27
+                "top": 1984,
+                "bottom": 2008,
+                "left": 254,
+                "right": 429,
+                "width": 175,
+                "height": 24
               },
-              "snippet": "<input class=\"GapBox\" id=\"Gap23\">",
-              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan23 > input#Gap23",
+              "snippet": "<input class=\"GapBox\" id=\"GapSpan23\">",
+              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan23 > input#GapSpan23",
               "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
             }
           }
@@ -4577,19 +4812,19 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-31-INPUT",
+              "lhId": "1-34-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,49,SPAN,0,INPUT",
-              "selector": "form#Cloze > div.ClozeBody > span#GapSpan24 > input#Gap24",
+              "selector": "form#Cloze > div.ClozeBody > span#GapSpan24 > input#GapSpan24",
               "boundingRect": {
-                "top": 2521,
-                "bottom": 2548,
-                "left": 368,
-                "right": 584,
-                "width": 216,
-                "height": 27
+                "top": 2049,
+                "bottom": 2073,
+                "left": 156,
+                "right": 330,
+                "width": 175,
+                "height": 24
               },
-              "snippet": "<input class=\"GapBox\" id=\"Gap24\">",
-              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan24 > input#Gap24",
+              "snippet": "<input class=\"GapBox\" id=\"GapSpan24\">",
+              "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan24 > input#GapSpan24",
               "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
             }
           }
@@ -4603,16 +4838,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-32-INPUT",
+              "lhId": "1-35-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,51,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan25 > input#Gap25",
               "boundingRect": {
-                "top": 2589,
-                "bottom": 2616,
-                "left": 473,
-                "right": 689,
-                "width": 216,
-                "height": 27
+                "top": 2114,
+                "bottom": 2138,
+                "left": 57,
+                "right": 231,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap25\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan25 > input#Gap25",
@@ -4629,16 +4864,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-33-INPUT",
+              "lhId": "1-36-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,53,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan26 > input#Gap26",
               "boundingRect": {
-                "top": 2657,
-                "bottom": 2684,
-                "left": 416,
-                "right": 632,
-                "width": 216,
-                "height": 27
+                "top": 2179,
+                "bottom": 2203,
+                "left": 57,
+                "right": 231,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap26\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan26 > input#Gap26",
@@ -4655,16 +4890,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-34-INPUT",
+              "lhId": "1-37-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,55,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan27 > input#Gap27",
               "boundingRect": {
-                "top": 2725,
-                "bottom": 2752,
-                "left": 577,
-                "right": 793,
-                "width": 216,
-                "height": 27
+                "top": 2244,
+                "bottom": 2268,
+                "left": 57,
+                "right": 231,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap27\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan27 > input#Gap27",
@@ -4681,16 +4916,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-35-INPUT",
+              "lhId": "1-38-INPUT",
               "path": "1,HTML,1,BODY,2,DIV,4,FONT,0,DIV,0,DIV,0,FORM,0,DIV,57,SPAN,0,INPUT",
               "selector": "form#Cloze > div.ClozeBody > span#GapSpan28 > input#Gap28",
               "boundingRect": {
-                "top": 2793,
-                "bottom": 2820,
-                "left": 685,
-                "right": 901,
-                "width": 216,
-                "height": 27
+                "top": 2309,
+                "bottom": 2333,
+                "left": 57,
+                "right": 231,
+                "width": 175,
+                "height": 24
               },
               "snippet": "<input class=\"GapBox\" id=\"Gap28\">",
               "nodeLabel": "form#Cloze > div.ClozeBody > span#GapSpan28 > input#Gap28",
@@ -4708,7 +4943,12 @@
         "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
         "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
         "https://dequeuniversity.com/rules/axe/4.10/region",
-        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level"
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
       ],
       "impact": "moderate",
       "name": "Landmark & Region; Missing & Unique Landmarks;",
@@ -4789,7 +5029,7 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<h4 class=\"modal-title\">Forgot Password</h4>",
+            "html": "<h4 class=\"modal-title\">Reset Password</h4>",
             "target": [
               "h4"
             ],
@@ -4817,7 +5057,7 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<div class=\"modal-body\">\n              <div class=\"row\">\n                <div class=\"col-md-12\">\n                  <div id=\"sign-up-page1\"></div>\n                  <input class=\"input form-control\" id=\"forg_email\">\n                </div>\n              </div>\n            </div>",
+            "html": "<div class=\"modal-body\">\n<div class=\"row\">\n<div class=\"col-md-12\">\n<div id=\"sign-up-page1\"></div>\n<input class=\"input form-control\" id=\"forg_email\">\n</div>\n</div>\n</div>",
             "target": [
               "#ajax_forgot_password > .modal-body"
             ],
@@ -4845,7 +5085,7 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<div class=\"Titles\">\n        <h2 class=\"ExerciseTitle\">123. A Thief on the Sidewalk</h2>\n      </div>",
+            "html": "<div class=\"Titles\">\n<h2 class=\"ExerciseTitle\">123. A Crook on the Pavement</h2>\n</div>",
             "target": [
               ".Titles"
             ],
@@ -4901,7 +5141,7 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<center>\n          <br><br><a href=\"#\"><b>CLOSE</b></a>\n        </center>",
+            "html": "<center>\n<br><br><a href=\"#\"><b>End</b></a>\n</center>",
             "target": [
               "font > center"
             ],
@@ -4925,14 +5165,14 @@
           "id": "Principle3.Guideline3_2.3_2_2.H32.2",
           "source": "pa11y",
           "title": "This form does not contain a submit button, which creates issues for those who cannot submit the form using the keyboard. Submit buttons are INPUT elements with type attribute \"submit\" or \"image\", or BUTTON elements with type \"submit\" or omitted/invalid.",
-          "description": "<form id=\"login_frm\">\n                    <h2>Login<...</form>",
+          "description": "<form id=\"login_frm\">\n<h2>Sign In</h2>\n<span class=\"...</form>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle3.Guideline3_2.3_2_2.H32.2",
             "type": "error",
             "typeCode": 1,
             "message": "This form does not contain a submit button, which creates issues for those who cannot submit the form using the keyboard. Submit buttons are INPUT elements with type attribute \"submit\" or \"image\", or BUTTON elements with type \"submit\" or omitted/invalid.",
-            "context": "<form id=\"login_frm\">\n                    <h2>Login<...</form>",
+            "context": "<form id=\"login_frm\">\n<h2>Sign In</h2>\n<span class=\"...</form>",
             "selector": "#login_frm",
             "runner": "htmlcs",
             "runnerExtras": {}
@@ -4942,14 +5182,14 @@
           "id": "Principle3.Guideline3_2.3_2_2.H32.2",
           "source": "pa11y",
           "title": "This form does not contain a submit button, which creates issues for those who cannot submit the form using the keyboard. Submit buttons are INPUT elements with type attribute \"submit\" or \"image\", or BUTTON elements with type \"submit\" or omitted/invalid.",
-          "description": "<form id=\"Cloze\">\n              <div class=\"Cloz...</form>",
+          "description": "<form id=\"Cloze\">\n<div class=\"ClozeBody\">\n      ...</form>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle3.Guideline3_2.3_2_2.H32.2",
             "type": "error",
             "typeCode": 1,
             "message": "This form does not contain a submit button, which creates issues for those who cannot submit the form using the keyboard. Submit buttons are INPUT elements with type attribute \"submit\" or \"image\", or BUTTON elements with type \"submit\" or omitted/invalid.",
-            "context": "<form id=\"Cloze\">\n              <div class=\"Cloz...</form>",
+            "context": "<form id=\"Cloze\">\n<div class=\"ClozeBody\">\n      ...</form>",
             "selector": "#Cloze",
             "runner": "htmlcs",
             "runnerExtras": {}
@@ -4972,14 +5212,14 @@
           "id": "Principle1.Guideline1_3.1_3_1.H49.Center",
           "source": "pa11y",
           "title": "Presentational markup used that has become obsolete in HTML5.",
-          "description": "<center>\n        <div class=\"ads-top\">\n...</center>",
+          "description": "<center>\n<div class=\"ads-top\">\n<div cla...</center>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Center",
             "type": "error",
             "typeCode": 1,
             "message": "Presentational markup used that has become obsolete in HTML5.",
-            "context": "<center>\n        <div class=\"ads-top\">\n...</center>",
+            "context": "<center>\n<div class=\"ads-top\">\n<div cla...</center>",
             "selector": "#TheBody > div:nth-child(3) > center",
             "runner": "htmlcs",
             "runnerExtras": {}
@@ -4989,14 +5229,14 @@
           "id": "Principle1.Guideline1_3.1_3_1.H49.Center",
           "source": "pa11y",
           "title": "Presentational markup used that has become obsolete in HTML5.",
-          "description": "<center>\n          <br><br><a href=\"#\">...</center>",
+          "description": "<center>\n<br><br><a href=\"#\"><b>End</b>...</center>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Center",
             "type": "error",
             "typeCode": 1,
             "message": "Presentational markup used that has become obsolete in HTML5.",
-            "context": "<center>\n          <br><br><a href=\"#\">...</center>",
+            "context": "<center>\n<br><br><a href=\"#\"><b>End</b>...</center>",
             "selector": "#TheBody > div:nth-child(3) > font > center",
             "runner": "htmlcs",
             "runnerExtras": {}
@@ -5036,6 +5276,138 @@
     },
     {
       "wcag_id": [
+        "Principle4.Guideline4_1.4_1_1.F77"
+      ],
+      "url": [
+        null
+      ],
+      "impact": "minor",
+      "name": "ID; Duplicate IDs;",
+      "amount_nodes_failed": 7,
+      "issues": [
+        {
+          "id": "Principle4.Guideline4_1.4_1_1.F77",
+          "source": "pa11y",
+          "title": "Duplicate id attribute value \"GapSpan10\" found on the web page.",
+          "description": "<input class=\"GapBox\" id=\"GapSpan10\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Duplicate id attribute value \"GapSpan10\" found on the web page.",
+            "context": "<input class=\"GapBox\" id=\"GapSpan10\">",
+            "selector": "#GapSpan10",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_1.F77",
+          "source": "pa11y",
+          "title": "Duplicate id attribute value \"GapSpan11\" found on the web page.",
+          "description": "<input class=\"GapBox\" id=\"GapSpan11\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Duplicate id attribute value \"GapSpan11\" found on the web page.",
+            "context": "<input class=\"GapBox\" id=\"GapSpan11\">",
+            "selector": "#GapSpan11",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_1.F77",
+          "source": "pa11y",
+          "title": "Duplicate id attribute value \"GapSpan12\" found on the web page.",
+          "description": "<input class=\"GapBox\" id=\"GapSpan12\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Duplicate id attribute value \"GapSpan12\" found on the web page.",
+            "context": "<input class=\"GapBox\" id=\"GapSpan12\">",
+            "selector": "#GapSpan12",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_1.F77",
+          "source": "pa11y",
+          "title": "Duplicate id attribute value \"GapSpan16\" found on the web page.",
+          "description": "<input class=\"GapBox\" id=\"GapSpan16\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Duplicate id attribute value \"GapSpan16\" found on the web page.",
+            "context": "<input class=\"GapBox\" id=\"GapSpan16\">",
+            "selector": "#GapSpan16",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_1.F77",
+          "source": "pa11y",
+          "title": "Duplicate id attribute value \"GapSpan20\" found on the web page.",
+          "description": "<input class=\"GapBox\" id=\"GapSpan20\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Duplicate id attribute value \"GapSpan20\" found on the web page.",
+            "context": "<input class=\"GapBox\" id=\"GapSpan20\">",
+            "selector": "#GapSpan20",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_1.F77",
+          "source": "pa11y",
+          "title": "Duplicate id attribute value \"GapSpan23\" found on the web page.",
+          "description": "<input class=\"GapBox\" id=\"GapSpan23\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Duplicate id attribute value \"GapSpan23\" found on the web page.",
+            "context": "<input class=\"GapBox\" id=\"GapSpan23\">",
+            "selector": "#GapSpan23",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_1.F77",
+          "source": "pa11y",
+          "title": "Duplicate id attribute value \"GapSpan24\" found on the web page.",
+          "description": "<input class=\"GapBox\" id=\"GapSpan24\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Duplicate id attribute value \"GapSpan24\" found on the web page.",
+            "context": "<input class=\"GapBox\" id=\"GapSpan24\">",
+            "selector": "#GapSpan24",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
         null
       ],
       "url": [
@@ -5054,20 +5426,20 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-36-BUTTON",
+              "lhId": "1-39-BUTTON",
               "path": "1,HTML,1,BODY,1,DIV,0,DIV,0,DIV,0,FORM,2,DIV,0,BUTTON",
               "selector": "div.modal-content > form#ajax_forgot_password > div.modal-footer > button.seve-btn",
               "boundingRect": {
-                "top": 417,
-                "bottom": 440,
+                "top": 367,
+                "bottom": 388,
                 "left": 49,
-                "right": 109,
-                "width": 60,
-                "height": 23
+                "right": 95,
+                "width": 46,
+                "height": 21
               },
               "snippet": "<button class=\"seve-btn btn btn-success\">",
-              "nodeLabel": "Submit",
-              "explanation": "Fix any of the following:\n  Target has insufficient size (59.8px by 23px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 23px instead of at least 24px."
+              "nodeLabel": "Send",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (46.4px by 21px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 21px instead of at least 24px."
             },
             "subItems": {
               "type": "subitems",
@@ -5075,16 +5447,16 @@
                 {
                   "relatedNode": {
                     "type": "node",
-                    "lhId": "1-6-INPUT",
+                    "lhId": "1-9-INPUT",
                     "path": "1,HTML,1,BODY,1,DIV,0,DIV,0,DIV,0,FORM,1,DIV,0,DIV,0,DIV,1,INPUT",
                     "selector": "div.modal-body > div.row > div.col-md-12 > input#forg_email",
                     "boundingRect": {
-                      "top": 390,
-                      "bottom": 417,
+                      "top": 343,
+                      "bottom": 367,
                       "left": 49,
-                      "right": 265,
-                      "width": 216,
-                      "height": 27
+                      "right": 224,
+                      "width": 175,
+                      "height": 24
                     },
                     "snippet": "<input class=\"input form-control\" id=\"forg_email\">",
                     "nodeLabel": "div.modal-body > div.row > div.col-md-12 > input#forg_email"

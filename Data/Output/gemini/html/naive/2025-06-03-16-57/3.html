@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f5f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 600px;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        .header {
+            background-color: #e34f6f;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        button {
+            background-color: #e040fb;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+        }
+
+        .rules-link {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .site-provided {
+            text-align: right;
+            font-size: smaller;
+        }
+        .blue-box {
+            width: 178px;
+            height: 178px;
+            background-color: blue;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="blue-box"></div>
+    <div class="container">
+        <div class="header">
+            <h1>Artist Application</h1>
+        </div>
+        <p>Share your background with us and tell us more. <a href="#" style="color: #007bff; text-decoration: none;">Help</a> if you need more details.</p>
+
+        <form>
+            <div class="form-group">
+                <label for="givenName">Given Name *</label>
+                <input type="text" id="givenName" name="givenName" required>
+            </div>
+            <div class="form-group">
+                <label for="familyName">Family Name *</label>
+                <input type="text" id="familyName" name="familyName" required>
+            </div>
+            <div class="form-group">
+                <label for="email">E-mail Address *</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="contactNumber">Contact Number *</label>
+                <input type="number" id="contactNumber" name="contactNumber" required>
+            </div>
+            <div class="form-group">
+                <label for="location">Where Are You Located? *</label>
+                <input type="text" id="location" name="location" required>
+            </div>
+            <div class="form-group">
+                <label>I Confirm That I am Over 18 *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="over18" value="true"> True</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Do You Run a Production Business? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="productionBusiness" value="true"> True</label>
+                    <label><input type="radio" name="productionBusiness" value="false"> False</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="background">Explain Your Background More Fully. *</label>
+                <textarea id="background" name="background" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="workType">Your Favourite Type of Work *</label>
+                <select id="workType" name="workType">
+                    <option value="" disabled selected>Select...</option>
+                    <option value="video">Video Production</option>
+                    <option value="audio">Audio Production</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Do You Have the Skills Required to Make Full Episodes (12-25 minutes) on a Small Budget and To
+                    Carry on Making Episodes if they get Commissioned by Our Users? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="episodeSkills" value="true"> True</label>
+                    <label><input type="radio" name="episodeSkills" value="false"> False</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>If You are a Final Nominee, Can You Begin Development by May or June (2019)? *</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="developmentTime" value="true"> True</label>
+                    <label><input type="radio" name="developmentTime" value="false"> False</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="peopleNames">Names of People You Will Work With (if Applicable)</label>
+                <textarea id="peopleNames" name="peopleNames"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Are you a PGA Member?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="pgaMember" value="true"> True</label>
+                    <label><input type="radio" name="pgaMember" value="false"> False</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="socialMedia">OPTIONAL: Having Big Social Media Connections will help. Tell us of Social Media You Frequent.</label>
+                <textarea id="socialMedia" name="socialMedia"></textarea>
+                <p style="font-size: smaller; text-align: left; margin-top: 5px;">0/800 characters</p>
+            </div>
+            <div class="form-group">
+                <label for="howDidHear">How did you hear of us?</label>
+                <select id="howDidHear" name="howDidHear">
+                    <option value="" disabled selected>Select...</option>
+                    <option value="socialMedia">Social Media</option>
+                    <option value="friend">From a Friend</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>
+                    <input type="checkbox" name="rulesAccepted" required>
+                    I Have Read and I Accept the Rules Below
+                </label>
+            </div>
+            <div class="form-group">
+                <a href="#" class="rules-link">Our Guidelines</a>
+            </div>
+
+            <p><a href="#">Abuse Notification</a></p>
+            <button type="submit">Send</button>
+            <p class="site-provided">Site Provided by <span style="color: blue;">&#9632;</span></p>
+        </form>
+    </div>
+
+</body>
+
+</html>

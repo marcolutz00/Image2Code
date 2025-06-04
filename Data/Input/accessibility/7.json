@@ -1,13 +1,13 @@
 {
   "manual": {
     "checks": {
-      "1.4.4": "fail",
-      "1.4.10": "pass",
-      "1.4.12": "fail",
-      "2.1.1+2.1.2": "pass",
-      "2.4.3": "pass",
-      "2.4.6": "pass",
-      "2.4.7": "pass"
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
     }
   },
   "automatic": [
@@ -51,7 +51,9 @@
             "none": [],
             "impact": "serious",
             "html": "<html xmlns=\"\">",
-            "target": ["html"],
+            "target": [
+              "html"
+            ],
             "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute"
           }
         },
@@ -59,14 +61,14 @@
           "id": "Principle3.Guideline3_1.3_1_1.H57.2",
           "source": "pa11y",
           "title": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-          "description": "<html xmlns=\"\"><head>\n  <style>\n   @font-face ...</html>",
+          "description": "<html xmlns=\"\"><head>\n    <meta content=\"text/...</html>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
             "type": "error",
             "typeCode": 1,
             "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-            "context": "<html xmlns=\"\"><head>\n  <style>\n   @font-face ...</html>",
+            "context": "<html xmlns=\"\"><head>\n    <meta content=\"text/...</html>",
             "selector": "html",
             "runner": "htmlcs",
             "runnerExtras": {}
@@ -86,11 +88,11 @@
               "selector": "html",
               "boundingRect": {
                 "top": 0,
-                "bottom": 1115,
+                "bottom": 1088,
                 "left": 0,
                 "right": 980,
                 "width": 980,
-                "height": 1115
+                "height": 1088
               },
               "snippet": "<html xmlns=\"\">",
               "nodeLabel": "html",
@@ -101,12 +103,19 @@
       ]
     },
     {
-      "wcag_id": [null],
+      "wcag_id": [
+        null
+      ],
       "url": [
         "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
         "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
         "https://dequeuniversity.com/rules/axe/4.10/region",
-        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level"
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
       ],
       "impact": "moderate",
       "name": "Landmark & Region; Missing & Unique Landmarks;",
@@ -132,7 +141,9 @@
             "none": [],
             "impact": "moderate",
             "html": "<html xmlns=\"\">",
-            "target": ["html"],
+            "target": [
+              "html"
+            ],
             "failureSummary": "Fix all of the following:\n  Document does not have a main landmark"
           }
         },
@@ -158,15 +169,21 @@
             "none": [],
             "impact": "moderate",
             "html": "<div id=\"content\">",
-            "target": ["#content"],
+            "target": [
+              "#content"
+            ],
             "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
           }
         }
       ]
     },
     {
-      "wcag_id": ["Principle4.Guideline4_1.4_1_1.F77"],
-      "url": [null],
+      "wcag_id": [
+        "Principle4.Guideline4_1.4_1_1.F77"
+      ],
+      "url": [
+        null
+      ],
       "impact": "minor",
       "name": "ID; Duplicate IDs;",
       "amount_nodes_failed": 1,
@@ -175,14 +192,14 @@
           "id": "Principle4.Guideline4_1.4_1_1.F77",
           "source": "pa11y",
           "title": "Duplicate id attribute value \"line\" found on the web page.",
-          "description": "<div id=\"line\">\n   </div>",
+          "description": "<div id=\"line\"></div>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
             "type": "error",
             "typeCode": 1,
             "message": "Duplicate id attribute value \"line\" found on the web page.",
-            "context": "<div id=\"line\">\n   </div>",
+            "context": "<div id=\"line\"></div>",
             "selector": "#line",
             "runner": "htmlcs",
             "runnerExtras": {}

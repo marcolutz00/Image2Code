@@ -17,7 +17,7 @@ from Benchmarks import accessibilityBenchmarks
 
 CURR_DIR = os.path.dirname(os.path.realpath(__file__))
 INPUT_INSIGHTS_DIR = os.path.join(CURR_DIR, '..', 'Input', 'insights')
-INPUT_ACCESSIBILITY_DIR = os.path.join(CURR_DIR, '..', 'Input', 'accessibility', 'manual')
+INPUT_ACCESSIBILITY_DIR = os.path.join(CURR_DIR, '..', 'Input', 'accessibility')
 
 
 '''

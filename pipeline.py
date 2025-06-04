@@ -99,7 +99,7 @@ async def _analyze_outputs(image, model, prompt_strategy):
     benchmark_score = visual_score.visual_eval_v3_multi(input_list)
 
 
-    # 2.2 Write Benchmarks to file
+    # # 2.2 Write Benchmarks to file
     _write_benchmarks_to_file(benchmark_score, output_benchmark_path)
 
 
@@ -142,10 +142,8 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            # Es fehlen 5
-            # missing = [5, 8, 25]
-            # if int(image.split(".")[0]) not in missing:
-            #     continue
+            if int(image.split(".")[0]) < 15:
+                continue
 
             image_information = {
                 "name": os.path.splitext(image)[0],
@@ -162,16 +160,18 @@ async def main():
             print("----------- Done -----------\n")
 
     # 6. Overwrite insights
-    # _overwrite_insights(
-    #     os.path.join(INPUT_PATH, 'accessibility'),
-    #     os.path.join(INPUT_PATH, 'insights')
-    # )
     _overwrite_insights(
-        os.path.join(OUTPUT_PATH, model_dir, 'accessibility', prompt_strategy),
-        os.path.join(OUTPUT_PATH, model_dir, 'insights', prompt_strategy),
-        model,
-        prompt_strategy
+        os.path.join(INPUT_PATH, 'accessibility'),
+        os.path.join(INPUT_PATH, 'insights'),
+        None,
+        None
     )
+    # _overwrite_insights(
+    #     os.path.join(OUTPUT_PATH, model_dir, 'accessibility', prompt_strategy),
+    #     os.path.join(OUTPUT_PATH, model_dir, 'insights', prompt_strategy),
+    #     model,
+    #     prompt_strategy
+    # )
 
 
 

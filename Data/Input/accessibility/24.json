@@ -1,13 +1,13 @@
 {
   "manual": {
     "checks": {
-      "1.4.4": "pass",
-      "1.4.10": "pass",
-      "1.4.12": "pass",
-      "2.1.1+2.1.2": "pass",
-      "2.4.3": "pass",
-      "2.4.6": "pass",
-      "2.4.7": "pass"
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
     }
   },
   "automatic": [
@@ -61,14 +61,14 @@
           "id": "Principle3.Guideline3_1.3_1_1.H57.2",
           "source": "pa11y",
           "title": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-          "description": "<html class=\"uk-height-1-1\"><head>\n  <meta charset=\"utf-8\">...</html>",
+          "description": "<html class=\"uk-height-1-1\"><head>\n<meta charset=\"utf-8\">\n<...</html>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
             "type": "error",
             "typeCode": 1,
             "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
-            "context": "<html class=\"uk-height-1-1\"><head>\n  <meta charset=\"utf-8\">...</html>",
+            "context": "<html class=\"uk-height-1-1\"><head>\n<meta charset=\"utf-8\">\n<...</html>",
             "selector": "html",
             "runner": "htmlcs",
             "runnerExtras": {}
@@ -165,7 +165,7 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<img class=\"uk-margin-bottom\" id=\"logo\" src=\"rick.jpg\" width=\"100%\">",
+            "html": "<img class=\"uk-margin-bottom\" id=\"logo\" src=\"src/placeholder.jpg\" width=\"100%\">",
             "target": [
               "#logo"
             ],
@@ -176,14 +176,14 @@
           "id": "Principle1.Guideline1_1.1_1_1.H37",
           "source": "pa11y",
           "title": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
-          "description": "<img class=\"uk-margin-bottom\" id=\"logo\" src=\"rick.jpg\" width=\"100%\">",
+          "description": "<img class=\"uk-margin-bottom\" id=\"logo\" src=\"src/placeholder.jpg\" width=\"100%\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
             "type": "error",
             "typeCode": 1,
             "message": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
-            "context": "<img class=\"uk-margin-bottom\" id=\"logo\" src=\"rick.jpg\" width=\"100%\">",
+            "context": "<img class=\"uk-margin-bottom\" id=\"logo\" src=\"src/placeholder.jpg\" width=\"100%\">",
             "selector": "#logo",
             "runner": "htmlcs",
             "runnerExtras": {}
@@ -202,14 +202,14 @@
               "path": "1,HTML,1,BODY,0,DIV,0,DIV,0,DIV,0,IMG",
               "selector": "div.uk-vertical-align > div.uk-vertical-align-middle > div > img#logo",
               "boundingRect": {
-                "top": 158,
-                "bottom": 174,
-                "left": 198,
-                "right": 214,
-                "width": 16,
-                "height": 16
+                "top": 59,
+                "bottom": 312,
+                "left": 78,
+                "right": 334,
+                "width": 256,
+                "height": 253
               },
-              "snippet": "<img class=\"uk-margin-bottom\" id=\"logo\" src=\"rick.jpg\" width=\"100%\">",
+              "snippet": "<img class=\"uk-margin-bottom\" id=\"logo\" src=\"src/placeholder.jpg\" width=\"100%\">",
               "nodeLabel": "div.uk-vertical-align > div.uk-vertical-align-middle > div > img#logo",
               "explanation": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
             }
@@ -225,7 +225,12 @@
         "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
         "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
         "https://dequeuniversity.com/rules/axe/4.10/region",
-        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level"
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
       ],
       "impact": "moderate",
       "name": "Landmark & Region; Missing & Unique Landmarks;",
@@ -278,7 +283,7 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<div style=\"width: 300px; margin:30px auto 0 auto\">\n     <img class=\"uk-margin-bottom\" id=\"logo\" src=\"rick.jpg\" width=\"100%\">\n    </div>",
+            "html": "<div style=\"width: 300px;\nmargin: 30px auto 0 auto\">\n<img class=\"uk-margin-bottom\" id=\"logo\" src=\"src/placeholder.jpg\" width=\"100%\">\n</div>",
             "target": [
               ".uk-vertical-align-middle > div:nth-child(1)"
             ],
@@ -306,7 +311,7 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<div class=\"uk-form-row\" data-uk-tooltip=\"\" title=\"Email address\">\n      <input autofocus=\"true\" class=\"uk-width-1-1 uk-form-large\" id=\"username\" name=\"username\" placeholder=\"Email address\" required=\"\" type=\"email\" value=\"\">\n     </div>",
+            "html": "<div class=\"uk-form-row\" data-uk-tooltip=\"\" title=\"Email address\">\n<input autofocus=\"true\" class=\"uk-width-1-1 uk-form-large\" id=\"username\" name=\"username\" placeholder=\"Email address\" required=\"\" type=\"email\" value=\"\">\n</div>",
             "target": [
               "div[data-uk-tooltip=\"\"]"
             ],
@@ -334,7 +339,7 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<div class=\"uk-form-row uk-form-password\">\n      <input class=\"uk-width-1-1 uk-form-large\" id=\"password\" name=\"password\" placeholder=\"Password\" required=\"\" type=\"password\">\n     </div>",
+            "html": "<div class=\"uk-form-row uk-form-password\">\n<input class=\"uk-width-1-1 uk-form-large\" id=\"password\" name=\"password\" placeholder=\"Password\" required=\"\" type=\"password\">\n</div>",
             "target": [
               ".uk-form-password"
             ],
@@ -362,7 +367,7 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<div class=\"d-flex-center\" style=\"margin-top: 20px\">\n      <a href=\"#\">\n       Reset password\n      </a>\n     </div>",
+            "html": "<div class=\"d-flex-center\" style=\"margin-top: 20px\">\n<a href=\"#\">\n       Forgot password?\n      </a>\n</div>",
             "target": [
               ".d-flex-center:nth-child(4)"
             ],
@@ -390,7 +395,7 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<div style=\"margin-bottom:100px;margin-top:50px\">\n      <a href=\"#\">\n       About Medallia Journey Analytics\n      </a>\n     </div>",
+            "html": "<div style=\"margin-bottom: 100px;\nmargin-top: 50px\">\n<a href=\"#\">\n       Learn about Medallia Journey Analytics\n      </a>\n</div>",
             "target": [
               "div:nth-child(6)"
             ],
@@ -462,7 +467,7 @@
               }
             ],
             "impact": "serious",
-            "html": "<a href=\"#\" class=\"d-flex-center\" id=\"google-connect-link\" onclick=\"return trackSigninType(this,'google');\">\n       <i>\n       </i>\n      </a>",
+            "html": "<a class=\"d-flex-center\" href=\"#\" id=\"google-connect-link\" onclick=\"return trackSigninType(this,'google');\">\n<i>\n</i>\n</a>",
             "target": [
               "#google-connect-link"
             ],
@@ -473,14 +478,14 @@
           "id": "Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
           "source": "pa11y",
           "title": "Anchor element found with a valid href attribute, but no link content has been supplied.",
-          "description": "<a href=\"#\" class=\"d-flex-center\" id=\"google-connect-link\" onclick=\"return trackSigninType(this,'google');\">\n       <i>\n       </i>\n      </a>",
+          "description": "<a class=\"d-flex-center\" href=\"#\" id=\"google-connect-link\" onclick=\"return trackSigninType(this,'google');\">\n<i>\n</i>\n</a>",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
             "type": "error",
             "typeCode": 1,
             "message": "Anchor element found with a valid href attribute, but no link content has been supplied.",
-            "context": "<a href=\"#\" class=\"d-flex-center\" id=\"google-connect-link\" onclick=\"return trackSigninType(this,'google');\">\n       <i>\n       </i>\n      </a>",
+            "context": "<a class=\"d-flex-center\" href=\"#\" id=\"google-connect-link\" onclick=\"return trackSigninType(this,'google');\">\n<i>\n</i>\n</a>",
             "selector": "#google-connect-link",
             "runner": "htmlcs",
             "runnerExtras": {}
@@ -499,14 +504,14 @@
               "path": "1,HTML,1,BODY,0,DIV,0,DIV,2,FORM,4,DIV,0,A",
               "selector": "div.uk-vertical-align-middle > form#loginForm > div.d-flex-center > a#google-connect-link",
               "boundingRect": {
-                "top": 476,
-                "bottom": 522,
+                "top": 614,
+                "bottom": 660,
                 "left": 111,
                 "right": 302,
                 "width": 191,
                 "height": 46
               },
-              "snippet": "<a href=\"#\" class=\"d-flex-center\" id=\"google-connect-link\" onclick=\"return trackSigninType(this,'google');\">",
+              "snippet": "<a class=\"d-flex-center\" href=\"#\" id=\"google-connect-link\" onclick=\"return trackSigninType(this,'google');\">",
               "nodeLabel": "div.uk-vertical-align-middle > form#loginForm > div.d-flex-center > a#google-connect-link",
               "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
             }

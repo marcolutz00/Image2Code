@@ -4,11 +4,11 @@ import sys
 import json
 from PIL import Image
 
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from practical.Utils import utils_dataset
-from practical.Utils import utils_html
-from practical.Accessibility import accessibilityIssues
+from Utils import utils_dataset
+from Utils import utils_html
+from Accessibility import accessibilityIssues
 
 '''
 This file is used to prepare all necessary data for the pipeline.
