@@ -13,7 +13,6 @@ from Benchmarks import accessibilityBenchmarks
 CURR_DIR = os.path.dirname(os.path.realpath(__file__))
 RESULT_DIR = os.path.join(CURR_DIR, "..", "..", "Results")
 
-DATE = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
 
 
 '''
@@ -301,11 +300,11 @@ def _build_ranking(sorted_issues, issues_dict, automatic):
 
 
 # Create json output 
-def _build_json_output(sorted_issues_automatic, issues_dict_automatic, total_auto_nodes, files_processed):
+def _build_json_output(sorted_issues_automatic, issues_dict_automatic, total_auto_nodes, files_processed, date):
     issues_json_automatic, distribution_source_automatic = _build_ranking(sorted_issues_automatic, issues_dict_automatic, True)
 
     summary_json = {
-        "timestamp": DATE,
+        "timestamp": date,
         "files_processed": files_processed,
         "total_automatic_nodes_failed": total_auto_nodes,
         "average_automatic_nodes_failed_per_file": round(total_auto_nodes / files_processed, 2) if files_processed else 0,
@@ -323,7 +322,7 @@ def _write_json_result(content, out_path):
         json.dump(content, fh, ensure_ascii=False, indent=2)
 
 
-def overwrite_insights(accessibility_dir, insights_dir, model, prompt_strategy):
+def overwrite_insights(accessibility_dir, insights_dir, model, prompt_strategy, date):
     '''
         Overwrites the insights
     '''
@@ -339,13 +338,14 @@ def overwrite_insights(accessibility_dir, insights_dir, model, prompt_strategy):
         sorted_issues_automatic,
         issues_dict["automatic"],
         amount_automatic_nodes_failed_all_files,
-        files_processed
+        files_processed,
+        date
     )
 
     if model and prompt_strategy:
-        out_path = os.path.join(RESULT_DIR, f'{model}_{prompt_strategy}_analysis_accessibility_{DATE}.json')
+        out_path = os.path.join(RESULT_DIR, f'{model}_{prompt_strategy}_analysis_accessibility_{date}.json')
     else:
-        out_path = os.path.join(RESULT_DIR, f'input_analysis_accessibility_{DATE}.json')
+        out_path = os.path.join(RESULT_DIR, f'input_analysis_accessibility_{date}.json')
     print(f"Writing insights to {out_path}")
     _write_json_result(json_output_final, out_path)
 

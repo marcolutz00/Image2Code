@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segway Scheduled Outings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #fff;
+            padding: 20px 0;
+            text-align: left;
+        }
+
+        header h1 {
+            color: #000;
+            margin: 0;
+        }
+
+        nav {
+            float: right;
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #777;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: small;
+        }
+
+        section {
+            padding: 20px;
+            background: #fff;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .search-area {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .search-area input[type="text"] {
+            width: 50%;
+            padding: 10px;
+            margin-right: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .search-area button {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #main-content {
+            float: left;
+            width: 65%;
+            padding: 0 30px 0 0;
+        }
+
+        #sidebar {
+            float: right;
+            width: 30%;
+            background-color: blue;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            height: 400px;
+        }
+
+        footer {
+            background-color: #777;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .segway-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .segway-list li {
+            padding: 5px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .segway-list li:last-child {
+            border-bottom: none;
+        }
+
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            background-color: #ddd;
+            padding: 40px 0;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-item h2 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        .stat-item p {
+            font-size: 1.2em;
+            color: #555;
+        }
+
+        .footer-cta {
+            background-color: #296295;
+            color: white;
+            text-align: center;
+            padding: 50px 0;
+        }
+
+        .footer-cta h2 {
+            font-size: 2.5em;
+        }
+
+        .footer-cta a {
+            background-color: #000;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .footer-nav {
+            background-color: #fff;
+            padding: 20px;
+            text-align: left;
+            font-size: smaller;
+        }
+
+        .footer-nav ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-nav li {
+            display: inline;
+            margin-right: 20px;
+        }
+
+        .footer-nav a {
+            text-decoration: none;
+            color: #777;
+        }
+
+        .breadcrumbs {
+            background-color: #fff;
+            padding: 20px;
+            text-align: left;
+            font-size: smaller;
+        }
+
+        .breadcrumbs a {
+            text-decoration: none;
+            color: #777;
+        }
+
+        .breadcrumbs span {
+            color: #777;
+        }
+
+        .trip-details {
+            background-color: #fff;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .trip-details h2 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .trip-details p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        .city-list {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        .city-list li {
+            padding: 5px 0;
+        }
+
+        .city-list a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        .blue-highlight {
+            background-color: #007bff;
+            color: white;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .sub-link {
+            display: block;
+            margin-left: 20px;
+            color: #555;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <h1>SEGWAY Scheduled OUTINGS</h1>
+            <nav>
+                <a href="#">Start</a>
+                <a href="#">Locate Segway Trips</a>
+                <a href="#">View All Trips</a>
+                <a href="#">For Trip Providers</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="search-area">
+        <input type="text" placeholder="Trip Location...">
+        <button>SEARCH</button>
+    </section>
+
+    <section class="breadcrumbs">
+        <a href="#">USA</a> <span>SOUTH CAROLINA</span>
+    </section>
+
+    <section class="trip-details">
+        <h2>Showing 6 Segway Trips in South Carolina</h2>
+        <p>South Carolina List Posted: 11/3/23</p>
+    </section>
+
+    <div class="container">
+        <section id="main-content">
+            <div class="blue-highlight">
+                South Carolina
+            </div>
+            <section class="trip-details">
+                <h2>SOUTH CAROLINA SEGWAY TRIPS</h2>
+                <p>Discover South Carolina on one of these six Segway outings. Take in the views and sounds of South
+                    Carolina's
+                    cities and attractions with an exciting tour on the Segway® PT.</p>
+
+                <ul class="city-list">
+                    <li><a href="#">USA >></a></li>
+                    <li><a href="#">SOUTH CAROLINA >></a>
+                        <ul>
+                            <li><a href="#">CHARLESTON >></a>
+                                <a href="#" class="sub-link">Segway of Charleston >></a>
+                            </li>
+                            <li><a href="#">GREENVILLE >></a>
+                                <a href="#" class="sub-link">Carolina Segway >></a>
+                                <a href="#" class="sub-link">Greenville Glides >></a>
+                            </li>
+                            <li><a href="#">HILTON HEAD ISLAND >></a>
+                                <a href="#" class="sub-link">Hilton Head Segway >></a>
+                            </li>
+                            <li><a href="#">LITTLE RIVER >></a>
+                                <a href="#" class="sub-link">Myrtle Beach Segway >></a>
+                                <a href="#" class="sub-link">Myrtle Beach Segway >></a>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+                <p>Displaying 6 South Carolina trips of 636 trips Globally</p>
+            </section>
+
+            <section class="trip-details">
+                <h2>South Carolina Segway Trips</h2>
+                <p>If South Carolina is your home or your upcoming travel destination, a Segway trip can add an exciting
+                    touch to your
+                    next business trip, getaway or weekend outing.</p>
+                <p>Searching for outdoor trips outside of South Carolina's six Segway offerings? Use our Directory to
+                    locate Segway
+                    Trips across the United States and worldwide and learn more about touring on a Segway PT!</p>
+            </section>
+        </section>
+
+        <aside id="sidebar">
+            <img src="src/placeholder.jpg" alt="Placeholder" width="348" height="400">
+        </aside>
+    </div>
+
+    <section class="stats">
+        <div class="stat-item">
+            <h2>636</h2>
+            <p>AROUND THE GLOBE</p>
+        </div>
+        <div class="stat-item">
+            <h2>56</h2>
+            <p>NATIONS</p>
+        </div>
+        <div class="stat-item">
+            <h2>198</h2>
+            <p>AREAS</p>
+        </div>
+        <div class="stat-item">
+            <h2>442</h2>
+            <p>TOWNS</p>
+        </div>
+    </section>
+
+    <section class="footer-cta">
+        <h2>Find a Fun Tour on a Segway® PT now!</h2>
+        <a href="#">Look for a Tour Now</a>
+    </section>
+
+    <footer class="footer-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#">START</a></li>
+                <li><a href="#">LOCATE SEGWAY TRIPS</a></li>
+                <li><a href="#">VIEW ALL TRIPS</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">ABOUT SGT</a></li>
+                <li><a href="#">SEGWAY MINIPRO</a></li>
+                <li><a href="#">FOR TRIP PROVIDERS</a>
+            </ul>
+            <ul>
+                <li><a href="#">LEGAL INFO</a></li>
+                <li><a href="#">SITE MAP</a></li>
+            </ul>
+            <p style="float: right;">©2004-2023 SegwayGuidedTours.com</p>
+        </div>
+    </footer>
+</body>
+
+</html>

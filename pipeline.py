@@ -22,6 +22,8 @@ INPUT_PATH = os.path.join(DATA_PATH, 'Input')
 OUTPUT_PATH = os.path.join(DATA_PATH, 'Output')
 
 DATE = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
+# Test
+# DATE = "2025-06-04-11-18"
 
 
 async def _process_image(client, image_information, prompt, model, prompt_strategy):
@@ -60,6 +62,7 @@ def _create_directories(model, prompt_strategy):
     '''
         Create the necessary directories for the output
     '''
+
     output_html_path = os.path.join(OUTPUT_PATH, model, 'html', prompt_strategy, DATE)
     output_accessibility_path = os.path.join(OUTPUT_PATH, model, 'accessibility', prompt_strategy, DATE)
     output_images_path = os.path.join(OUTPUT_PATH, model, 'images', prompt_strategy, DATE)
@@ -70,6 +73,8 @@ def _create_directories(model, prompt_strategy):
     os.makedirs(output_accessibility_path, exist_ok=True)
     os.makedirs(output_images_path, exist_ok=True)
     os.makedirs(output_insights_path, exist_ok=True)
+
+    return output_html_path, output_accessibility_path, output_images_path, output_insights_path
 
 
 async def _analyze_outputs(image, model, prompt_strategy):
@@ -108,13 +113,13 @@ async def _analyze_outputs(image, model, prompt_strategy):
     await accessibilityIssues.enrich_with_accessibility_issues(image_name, output_html_path, output_accessibility_path, output_insight_path)
 
 
-def _overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy):
+def _overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy, date=DATE):
     '''
        Calculates Insights:
        Accessibility Violation Ranking and benchmarks are calculated
        Place for the final insight overview: [*dir_accessibility*]/analysisAccessibilityIssues.json
     '''
-    datasetAnalyze.overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy)
+    datasetAnalyze.overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy, date)
 
 
 async def main():
@@ -134,7 +139,7 @@ async def main():
     image_dir = os.path.join(INPUT_PATH, 'images')
 
     # Create output directory if it does not exist
-    _create_directories(model, prompt_strategy)
+    output_html_path, output_accessibility_path, output_images_path, output_insights_path = _create_directories(model, prompt_strategy)
 
     for image in utils_dataset.sorted_alphanumeric(os.listdir(image_dir)):
         image_path = os.path.join(image_dir, image)
@@ -142,8 +147,8 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            if int(image.split(".")[0]) < 15:
-                continue
+            # if int(image.split(".")[0]) < 54:
+            #     continue
 
             image_information = {
                 "name": os.path.splitext(image)[0],
@@ -160,18 +165,18 @@ async def main():
             print("----------- Done -----------\n")
 
     # 6. Overwrite insights
-    _overwrite_insights(
-        os.path.join(INPUT_PATH, 'accessibility'),
-        os.path.join(INPUT_PATH, 'insights'),
-        None,
-        None
-    )
     # _overwrite_insights(
-    #     os.path.join(OUTPUT_PATH, model_dir, 'accessibility', prompt_strategy),
-    #     os.path.join(OUTPUT_PATH, model_dir, 'insights', prompt_strategy),
-    #     model,
-    #     prompt_strategy
+    #     os.path.join(INPUT_PATH, 'accessibility'),
+    #     os.path.join(INPUT_PATH, 'insights'),
+    #     None,
+    #     None
     # )
+    _overwrite_insights(
+        output_accessibility_path,
+        output_insights_path,
+        model,
+        prompt_strategy
+    )
 
 
 

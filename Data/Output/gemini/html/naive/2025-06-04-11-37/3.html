@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background-color: #e91e63;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .form-group .radio-group label {
+            display: inline-block;
+            margin-right: 15px;
+            font-weight: normal;
+        }
+
+        .form-group.checkbox-group {
+            margin-top: 10px;
+        }
+
+        .form-group.checkbox-group label {
+            font-weight: normal;
+        }
+
+        .button {
+            background-color: #e91e63;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .asterisk {
+            color: red;
+        }
+
+        .site-provided {
+            font-size: 12px;
+            color: #777;
+            text-align: right;
+        }
+        .placeholder {
+            background-color: blue;
+            width: 150px;
+            height: 100px;
+            margin: 0 auto 20px;
+        }
+        .help-link {
+            color: blue;
+            text-decoration: underline;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="placeholder"></div>
+        <div class="header">
+            <h1>Artist Application</h1>
+        </div>
+        <p>Share your background with us and tell us more. <a href="#" class="help-link">Help</a> if you need more details.</p>
+
+        <form>
+            <div class="form-group">
+                <label for="given_name">Given Name <span class="asterisk">*</span></label>
+                <input type="text" id="given_name" name="given_name">
+            </div>
+
+            <div class="form-group">
+                <label for="family_name">Family Name <span class="asterisk">*</span></label>
+                <input type="text" id="family_name" name="family_name">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail Address <span class="asterisk">*</span></label>
+                <input type="email" id="email" name="email">
+            </div>
+
+            <div class="form-group">
+                <label for="contact_number">Contact Number <span class="asterisk">*</span></label>
+                <input type="text" id="contact_number" name="contact_number">
+            </div>
+
+            <div class="form-group">
+                <label for="location">Where Are You Located? <span class="asterisk">*</span></label>
+                <input type="text" id="location" name="location">
+            </div>
+        
+            <div class="form-group">
+                <label>I Confirm That I am Over 18 <span class="asterisk">*</span></label><br>
+                <input type="radio" id="over_18_true" name="over_18" value="true">
+                <label for="over_18_true">True</label>
+            </div>
+        
+            <div class="form-group">
+                <label>Do You Run a Production Business? <span class="asterisk">*</span></label><br>
+                <input type="radio" id="production_true" name="production" value="true">
+                <label for="production_true">True</label><br>
+                <input type="radio" id="production_false" name="production" value="false">
+                <label for="production_false">False</label>
+            </div>
+
+            <div class="form-group">
+                <label for="background">Explain Your Background More Fully. <span class="asterisk">*</span></label>
+                <textarea id="background" name="background"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="work_type">Your Favourite Type of Work <span class="asterisk">*</span></label>
+                <select id="work_type" name="work_type">
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Do You Have the Skills Required to Make Full Episodes (12-25 minutes) on a Small Budget and To Carry on Making Episodes if they get Commissioned by Our Users? <span class="asterisk">*</span></label><br>
+                <input type="radio" id="skills_true" name="skills" value="true">
+                <label for="skills_true">True</label>
+                <input type="radio" id="skills_false" name="skills" value="false">
+                <label for="skills_false">False</label>
+            </div>
+
+            <div class="form-group">
+                <label>If You are a Final Nominee, Can You Begin Development by May or June (2019)? <span class="asterisk">*</span></label><br>
+                <input type="radio" id="nominee_true" name="nominee" value="true">
+                <label for="nominee_true">True</label>
+                <input type="radio" id="nominee_false" name="nominee" value="false">
+                <label for="nominee_false">False</label>
+            </div>
+
+            <div class="form-group">
+                <label for="people">Names of People You Will Work With (if Applicable)</label>
+                <textarea id="people" name="people"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Are you a PGA Member? <span class="asterisk">*</span></label><br>
+                <input type="radio" id="pga_true" name="pga" value="true">
+                <label for="pga_true">True</label>
+                <input type="radio" id="pga_false" name="pga" value="false">
+                <label for="pga_false">False</label>
+            </div>
+
+            <div class="form-group">
+                <label for="social_media">OPTIONAL: Having Big Social Media Connections will help. Tell us of Social Media You Frequent.</label>
+                <textarea id="social_media" name="social_media"></textarea>
+                <p style="font-size: smaller; margin-top: 5px;">0/800 characters</p>
+            </div>
+
+            <div class="form-group">
+                <label for="how_hear">How did you hear of us?</label>
+                <select id="how_hear" name="how_hear">
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="rules" name="rules" value="agree">
+                <label for="rules"><span class="asterisk">*</span> I Have Read and I Accept the Rules Below</label>
+            </div>
+
+            <p><a href="#">Our Guidelines</a></p>
+            <a href="#">Abuse Notification</a>
+            <div class="site-provided" style="text-align: right;">
+                <a href="#">Site Provided by</a> <span style="color: blue;">&#9872;</span>
+            </div>
+            <button type="submit" class="button">Send</button>
+        </form>
+    </div>
+</body>
+</html>

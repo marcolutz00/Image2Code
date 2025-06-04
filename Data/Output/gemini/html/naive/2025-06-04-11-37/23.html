@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site by Alex</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .title {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        .subtitle {
+            font-size: 1.1em;
+        }
+
+        .date {
+            color: #999;
+            margin-bottom: 20px;
+            display: block;
+        }
+
+        .read-time {
+            color: #999;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+
+        .read-time::before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            background-color: #fff;
+            border-radius: 50%;
+            margin-right: 5px;
+        }
+
+        .tags {
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .share {
+            margin-top: 30px;
+        }
+
+        .related-posts {
+            margin-top: 50px;
+        }
+
+        .post-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+
+        .post-card {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .post-card h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .post-card p {
+            font-size: 0.9em;
+            color: #999;
+        }
+
+        .buy-coffee-button {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px 20px;
+            background-color: #dc3545;
+            color: #fff;
+            text-align: center;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+        hr {
+            border: 1px solid #333;
+            margin: 20px 0;
+        }
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.8em;
+            color: #999;
+        }
+        .tags-article {
+            margin-top: 50px;
+        }
+
+        .tags-article a {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border-radius: 5px;
+            font-size: 0.9em;
+        }
+        .post-small-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .post-small-card {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .post-small-card h3 {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+        .post-small-card p {
+            font-size: 0.8em;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1 class="title">Site by Alex</h1>
+            <p class="subtitle">A world of code <span style="font-size: 1.2em;"></span>, by Alejandro Martinez</p>
+            <p>| <a href="#">Swift</a> <a href="#">Dev</a></p>
+        </header>
+
+        <hr>
+
+        <span class="date">June 5, 2016</span>
+        <span class="read-time">1 min read</span>
+
+        <div class="tags">
+            <a href="#" class="tag">Scripting</a>
+            <a href="#" class="tag">Swift</a>
+            <a href="#" class="tag">Goodies</a>
+        </div>
+
+        <h1>Easy Swift script auto-reloading hack</h1>
+        <p>I was writing a Swift script the other day, and I wanted it to run forever as a server, so I added a continuous
+            running option. <i>Forever.</i></p>
+        <p>I just used a <a href="#">repeat</a> loop with <a href="#">NSTasks</a> that executed the script. <i>Recursion.</i></p>
+        <p>It turns out this is a neat hack for auto-reloading the script!</p>
+        <p>let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() task.launchPath =
+            Process.arguments.first! task.arguments = Array(Process.arguments.suffixFrom(1).filter({$0 != reload}))
+            task.launch() task.waitUntilExit() } while true } Add this snippet to the script, then call it with the <a href="#">reload</a>
+            arg to loop it forever.</p>
+        <p>To call it from the command line:</p>
+        <p>main.swift reload other params Now just modify and save the script. Next time around, the changes will be
+            there. If compilation fails, no problem! The old script will just retry.</p>
+        <p>It's not perfect. The console gets spammed, but it is great for rapid iteration.</p>
+        <p>Remember to use <a href="#">OS signals</a> to stop the looping task when the script is killed.</p>
+
+        <div class="share">
+            <a href="#">Share to Twitter</a>
+        </div>
+
+        <a href="#" class="buy-coffee-button">Buy me coffee</a>
+
+        <hr>
+
+        <div class="related-posts">
+            <h2>Keep Reading</h2>
+            <div class="post-grid">
+                <div class="post-card">
+                    <h2><a href="#">Simplify code with closures</a></h2>
+                    <p>June 7, 2016</p>
+                    <p style="text-align: left">Next post</p>
+                </div>
+                <div class="post-card">
+                    <h2><a href="#">Catch OS signals in Swift</a></h2>
+                    <p>May 29, 2016</p>
+                    <p style="text-align: left">Previous post</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tags-article">
+            <h2>You might like these posts</h2>
+            <div class="post-small-grid">
+                <div class="post-small-card">
+                    <h3><a href="#">Compat SwiftUI modifiers</a></h3>
+                    <p>October 20, 2023</p>
+                    <p>Based on tag Swift</p>
+                </div>
+                <div class="post-small-card">
+                    <h3><a href="#">Export Reminders lists using Swift</a></h3>
+                    <p>May 8, 2019</p>
+                    <p>Based on tag Scripting</p>
+                </div>
+                <div class="post-small-card">
+                    <h3><a href="#">Swift Collection prefix for tests</a></h3>
+                    <p>March 16, 2019</p>
+                    <p>Based on tag Goodies</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tags-article">
+            <h2>Tags of this article</h2>
+            <a href="#" class="tag">Scripting</a>
+            <a href="#" class="tag">Swift</a>
+            <a href="#" class="tag">Goodies</a>
+        </div>
+
+        <hr>
+
+        <footer>
+            <a href="#">RSS</a>
+            <p><a href="#">alexito4</a> | <a href="#">alexito4</a> | <a href="#">alexito4</a></p>
+            <p>Made with <a href="#">Publish</a></p>
+        </footer>
+    </div>
+</body>
+</html>

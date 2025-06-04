@@ -65,6 +65,11 @@ def _get_few_shot_prompt():
     pass
 
 def _get_reasoning_prompt():
+    '''
+        Reasoning Prompt:
+        This prompt is used to let the LLM reason about the image and then generate the HTML/CSS.
+        It should also take possible accessibility violations into account.
+    '''
     pass
 
 def _get_own_prompt():

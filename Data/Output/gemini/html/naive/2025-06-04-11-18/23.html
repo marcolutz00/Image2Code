@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Site by Alex</title>
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    line-height: 1.5;
+    color: #ddd;
+    background-color: #000;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #9ec4ff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+main {
+    max-width: 700px;
+    margin: 2em auto;
+    padding: 0 1em;
+}
+
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.1em;
+    font-weight: bold;
+}
+
+.site-description {
+    margin-top: 0.2em;
+    font-size: 1.1em;
+    color: #aaa;
+}
+
+.site-description a {
+    color: #aaa;
+}
+
+.site-description a:hover {
+    color: #fff;
+}
+
+.nav {
+    margin-top: 1em;
+    margin-bottom: 2em;
+}
+
+.nav a {
+    margin: 0 0.5em;
+    font-size: 0.9em;
+}
+
+.post-date {
+    color: #888;
+    margin-bottom: 0.5em;
+    display: block;
+    font-size: 0.9em;
+}
+
+.post-reading-time {
+    color: #888;
+    font-size: 0.9em;
+}
+
+h2 {
+    font-size: 1.8em;
+    margin-top: 1.5em;
+    margin-bottom: 0.5em;
+}
+
+h3 {
+    font-size: 1.3em;
+    margin-top: 1.2em;
+    margin-bottom: 0.5em;
+}
+
+p {
+    margin-bottom: 1em;
+    color: #ccc;
+}
+
+code {
+    background-color: #222;
+    color: #ddd;
+    padding: 0.2em 0.4em;
+    border-radius: 3px;
+}
+
+pre {
+    background-color: #222;
+    color: #ddd;
+    padding: 1em;
+    border-radius: 5px;
+    overflow-x: auto;
+}
+
+blockquote {
+    border-left: 3px solid #666;
+    padding-left: 1em;
+    margin-left: 0;
+    margin-right: 0;
+    font-style: italic;
+    color: #aaa;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 2em 0;
+}
+
+.tags {
+    margin-top: 2em;
+}
+
+.tags a {
+    background-color: #222;
+    color: #ddd;
+    padding: 0.3em 0.6em;
+    border-radius: 5px;
+    margin-right: 0.5em;
+    font-size: 0.9em;
+}
+
+.related-posts {
+    margin-top: 3em;
+}
+
+.related-posts h2 {
+    margin-bottom: 1em;
+}
+
+.related-post {
+    background-color: #111;
+    padding: 1em;
+    border-radius: 5px;
+    margin-bottom: 1em;
+}
+
+.related-post h3 {
+    margin-top: 0;
+    margin-bottom: 0.3em;
+}
+
+.related-post .post-date {
+    margin-bottom: 0;
+}
+
+.footer {
+    text-align: center;
+    margin-top: 4em;
+    padding: 2em 0;
+    border-top: 1px solid #333;
+    color: #888;
+}
+
+.footer a {
+    color: #888;
+}
+
+.footer a:hover {
+    color: #fff;
+}
+
+.button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 1rem;
+    border-radius: 0.3rem;
+    color: #fff;
+    background-color: #e83f6f;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.button:hover {
+    background-color: #c6325a;
+}
+
+.support {
+    text-align: center;
+    padding: 2em;
+    background-color: #111;
+    border-radius: 5px;
+    margin-bottom: 2em;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1em;
+}
+
+.related-grid-item {
+    background-color: #111;
+    padding: 1em;
+    border-radius: 5px;
+}
+
+.related-grid-item h4 {
+    margin-top: 0;
+    margin-bottom: 0.3em;
+    font-size: 1.1em;
+}
+
+.related-grid-item .post-date {
+    margin-bottom: 0;
+}
+
+.category-tag {
+    background-color: #222;
+    color: #ddd;
+    padding: 0.3em 0.6em;
+    border-radius: 5px;
+    font-size: 0.8em;
+    margin-bottom: 0.5em;
+    display: inline-block;
+}
+</style>
+</head>
+<body>
+
+<main>
+    <h1>Site by Alex</h1>
+    <div class="site-description">A world of code <img> by <a href="#">Alejandro Martinez</a></div>
+    <nav class="nav">
+        <a href="#">Swift</a>
+        <a href="#">Dev</a>
+    </nav>
+
+    <span class="post-date">June 5, 2016</span>
+    <span class="post-reading-time">
+        <img>
+        1 min read
+    </span>
+
+    <div class="tags">
+        <a href="#">Scripting</a>
+        <a href="#">Swift</a>
+        <a href="#">Goodies</a>
+    </div>
+
+    <h2>Easy Swift script auto-reloading hack</h2>
+
+    <p>I was writing a <code>Swift</code> script the other day, and I wanted it to run forever as a server, so I added a continuous
+    running option. <code>Forever</code>.</p>
+
+    <p>I just used a <code>repeat</code> loop with <code>NSTasks</code> that executed the script. <code>Recursion</code>.</p>
+
+    <p>It turns out this is a neat hack for auto-reloading the script!</p>
+
+    <p>let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() task.launchPath =
+    Process.arguments.first! task.arguments = Array(Process.arguments.suffixFrom(1).filter({$0 != reload}))
+    task.launch() task.waitUntilExit() } while true } Add this snippet to the script, then call it with the <code>reload</code>
+    arg to loop it forever.</p>
+
+    <p>To call it from the command line:</p>
+
+    <p>main.swift reload other params Now just modify and save the script. Next time around, the changes will be
+    there. If compilation fails, no problem! The old script will just retry.</p>
+
+    <p>It's not perfect. The console gets spammed, but it is great for rapid iteration.</p>
+
+    <p>Remember to use <code>OS signals</code> to stop the looping task when the script is killed.</p>
+
+    <a href="#">Share to Twitter</a>
+
+    <div class="support">
+        <p>If you enjoyed this post, please consider supporting me</p>
+        <a href="#" class="button">Buy me coffee</a>
+    </div>
+
+    <h2>Keep Reading</h2>
+
+    <div class="related-grid">
+        <div class="related-grid-item">
+            <p class="category-tag">Next post</p>
+            <h4><a href="#">Simplify code with closures</a></h4>
+            <span class="post-date">June 7, 2016</span>
+        </div>
+
+        <div class="related-grid-item">
+            <p class="category-tag">Previous post</p>
+            <h4><a href="#">Catch OS signals in Swift</a></h4>
+            <span class="post-date">May 29, 2016</span>
+        </div>
+    </div>
+
+    <h2>You might like these posts</h2>
+
+    <div class="related-grid">
+        <div class="related-grid-item">
+            <p class="category-tag">Based on tag Swift</p>
+            <h4><a href="#">Compat SwiftUI modifiers</a></h4>
+            <span class="post-date">October 20, 2023</span>
+        </div>
+
+        <div class="related-grid-item">
+            <p class="category-tag">Based on tag Scripting</p>
+            <h4><a href="#">Export Reminders lists using Swift</a></h4>
+            <span class="post-date">May 8, 2019</span>
+        </div>
+
+        <div class="related-grid-item">
+            <p class="category-tag">Based on tag Goodies</p>
+            <h4><a href="#">Swift Collection prefix for tests</a></h4>
+            <span class="post-date">March 16, 2019</span>
+        </div>
+    </div>
+
+    <h2>Tags of this article</h2>
+    <div class="tags">
+        <a href="#">Scripting</a>
+        <a href="#">Swift</a>
+        <a href="#">Goodies</a>
+    </div>
+</main>
+
+<footer class="footer">
+    <a href="#">RSS</a><br>
+    <a href="#">alexito4</a> | <a href="#">alexito4</a> | <a href="#">alexito4</a><br>
+    Made with <a href="#">Publish</a>
+</footer>
+
+</body>
+</html>

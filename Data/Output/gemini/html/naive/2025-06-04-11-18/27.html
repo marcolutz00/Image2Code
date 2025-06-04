@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Current Basket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333333;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        .top-links {
+            display: flex;
+            gap: 10px;
+            font-size: 12px;
+        }
+        .top-links a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+        .header-right a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .search-bar {
+            display: flex;
+        }
+        .search-bar input {
+            padding: 5px;
+            border: none;
+        }
+        .search-bar button {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .chat-placeholder {
+            position: absolute;
+            top: 3%;
+            right: 10%;
+            width: 150px;
+            height: 150px;
+            background-color: blue;
+        }
+        .chat-text {
+            position: absolute;
+            top: 4%;
+            right: 3%;
+        }
+        .menu-button {
+            text-align: left;
+        }
+        .menu-button img {
+            width: 30px;
+            height: 30px;
+        }
+        .basket-section {
+            margin-top: 10px;
+            text-align: center;
+        }
+
+        .keep-shopping-button {
+            background-color: #2cb3b8;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            width: 220px;
+        }
+        .your-basket-area {
+            margin-top: 10px;
+            width: 80%;
+            margin-left: 10%;
+            background-color: white;
+            color: black;
+        }
+        .your-basket-is-empty {
+            color: #666666;
+            padding: 10px;
+            text-align: center;
+            margin-top: 10px;
+        }
+        .sum-section {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        .purchase-button {
+            background-color: #2cb3b8;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100px;
+            margin-top: 10px;
+        }
+        .recalculate-button {
+            background-color: #cccccc;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100px;
+            margin-top: 10px;
+        }
+        .clear-basket-button {
+            background-color: white;
+            color: #666666;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            width: 100px;
+            margin-top: 10px;
+        }
+
+        footer {
+            background-color: #333333;
+            padding: 20px;
+            text-align: left;
+        }
+        .footer-text {
+            font-size: 12px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="top-links">
+                <a href="#">CLICK HERE TO LOG IN</a> OR <a href="#">CLICK HERE TO SIGN UP</a>
+            </div>
+            <div class="header-right">
+                <a href="#">CHECK OUT</a>
+                <a href="#">EXPLORE</a>
+                <div class="search-bar">
+                    <input type="text" placeholder="Search">
+                    <button>GO</button>
+                </div>
+            </div>
+        </header>
+        <main>
+            <div class="chat-placeholder"></div>
+            <div class="chat-text">
+                <p>Chat with a live person!</p>
+                <p>[PHONE REDACTED]</p>
+            </div>
+            <div class="menu-button">
+                <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAItJREFUSEvtlc0NgkAQhm9FcgJmAS5gEqYBJoEtYBKmAS5gkq4Wz22v7fB041u1S0v73376bJ75XkHnB4gEaJ0hGIZuDtgI1K4nUDW10hQ4764A6fEbgV47/YFzL22b0wH875b8Uf1lA8z8/49oW4sL560B+9+w+0gO1D2oN7C1X/0A/fV8s1T5wY+v0K7JtMh853/3K6pWcW3u0A1L0AAAAASUVORK5CYII=" alt="Menu">
+            </div>
+            <div class="basket-section">
+                <p>Your Current Basket</p>
+                <button class="keep-shopping-button">KEEP SHOPPING</button>
+                <div class="your-basket-area">
+                    <p class="your-basket-is-empty">YOUR SHOPPING BASKET IS EMPTY.</p>
+                    <div class="sum-section">
+                        <p>SUM</p>
+                        <p>$0.00</p>
+                    </div>
+                </div>
+                <button class="purchase-button">PURCHASE</button>
+                <div>
+                    <button class="recalculate-button">RECALCULATE</button>
+                    <button class="clear-basket-button">Clear Basket</button>
+                </div>
+            </div>
+        </main>
+        <footer>
+            <div class="footer-text">
+                <input type="checkbox" id="viewBasket"><label for="viewBasket">✔ View my current basket anytime I buy something.</label><br>
+                This website does not process live trades. If a credit card is put in, it will not have a sum charged right away. As a result of the special parts being sold, a sales contact<br>
+                from Century 2001 will call to organize getting any new work or other unique dealing instructions you want. There is a notes area during checkout to add any unique<br>
+                details regarding the request. As soon as the sales contact knows all they must and they have verified the costs on this request, a request answer will be sent by postal<br>
+                service, email or fax to you. If the request is good the order will be carried out through the payment picked. To use your own work to put on the goods <a href="#" style="color:#2cb3b8">contact us</a> for the<br>
+                right way to send the file. To learn about valid images, check out the <a href="#" style="color:#2cb3b8">image page</a>. *** Tax will be on stuff sent to Florida.
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
