@@ -12,6 +12,7 @@ import Utils.utils_html as utils_html
 import Utils.utils_dataset as utils_dataset
 import Utils.utils_general as utils_general
 import Utils.utils_prompt as utils_prompt
+import Utils.utils_iterative_prompt as utils_iterative_prompt
 import Data.Analysis.datasetAnalyze as datasetAnalyze
 import Accessibility.accessibilityIssues as accessibilityIssues
 
@@ -57,6 +58,9 @@ def _process_image_iterative(client, model, html_generated, accessibility_data):
     '''
 
     number_iterations = 5
+    for i in range(number_iterations):
+        # get code snippets with violations (important +-3 lines around the file)
+        html_snippets = utils_iterative_prompt.get_html_snippets(html_generated, accessibility_data)
 
 
 
@@ -130,8 +134,8 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            # if int(image.split(".")[0]) < 54:
-            #     continue
+            if int(image.split(".")[0]) < 22:
+                continue
 
             image_information = {
                 "name": os.path.splitext(image)[0],
