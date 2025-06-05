@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site by Alex</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: #aaa;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            color: #aaa;
+        }
+
+        .meta .date {
+            font-size: 0.9em;
+        }
+
+        .meta .read-time {
+            font-size: 0.9em;
+            display: flex;
+            align-items: center;
+        }
+
+        .meta .read-time img {
+            width: 16px;
+            margin-right: 5px;
+        }
+
+        .tags {
+            margin-bottom: 20px;
+        }
+
+        .tags a {
+            display: inline-block;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: #fff;
+        }
+
+        .content {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+        }
+
+        .share {
+            margin-bottom: 30px;
+        }
+
+        .share a {
+            font-size: 1.2em;
+            font-weight: bold;
+        }
+
+        .related {
+            margin-bottom: 30px;
+        }
+
+        .related h2 {
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .related-item {
+            background-color: #111;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .related-item h3 {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+        }
+
+        .related-item p {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        .related-grid-small {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .related-item-small {
+            background-color: #111;
+            padding: 15px;
+            border-radius: 5px;
+        }
+
+        .related-item-small h3 {
+            font-size: 1em;
+            margin-bottom: 5px;
+        }
+
+        .related-item-small p {
+            font-size: 0.8em;
+            color: #aaa;
+        }
+
+        footer {
+            text-align: center;
+            color: #aaa;
+            font-size: 0.8em;
+        }
+
+        .buy-coffee {
+            background-color: #dc3545;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        .tags-bottom {
+            margin-top: 30px;
+        }
+
+        .tags-bottom a {
+            display: inline-block;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border: 1px solid #444;
+            border-radius: 5px;
+            font-size: 0.9em;
+            color: #fff;
+        }
+        hr {
+            border: none;
+            border-top: 1px solid #333;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .related-grid {
+                grid-template-columns: 1fr;
+            }
+            .related-grid-small{
+                 grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Site by Alex</h1>
+            <p>A world of code <span role="img" aria-label="code">&#x1F4BB;</span> by Alejandro Martinez</p>
+            <p>| <a href="#">Swift</a> <a href="#">Dev</a></p>
+        </header>
+
+        <div class="meta">
+            <div class="date">June 5, 2016</div>
+            <div class="read-time">
+                <img src="src/placeholder.jpg" alt="clock icon" width="16" height="16"> 1 min read
+            </div>
+        </div>
+
+        <div class="tags">
+            <a href="#">Scripting</a>
+            <a href="#">Swift</a>
+            <a href="#">Goodies</a>
+        </div>
+
+        <div class="content">
+            <h2>Easy Swift script auto-reloading hack</h2>
+            <p>I was writing a <code>Swift</code> script the other day, and I wanted it to run forever as a server, so I added a continuous running option. <code>Forever</code>.</p>
+            <p>I just used a <code>repeat</code> loop with <code>NSTask</code>s that executed the script. <code>Recursion</code>.</p>
+            <p>It turns out this is a neat hack for auto-reloading the script!</p>
+            <p>let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() task.launchPath =
+                Process.arguments.first! task.arguments = Array(Process.arguments.suffixFrom(1).filter({$0 != reload}))
+                task.launch() task.waitUntilExit() } while true } Add this snippet to the script, then call it with the <code>reload</code>
+                arg to loop it forever.</p>
+            <p>To call it from the command line:</p>
+            <p>main.swift reload other params Now just modify and save the script. Next time around, the changes will be
+                there. If compilation fails, no problem! The old script will just retry.</p>
+            <p>It's not perfect. The console gets spammed, but it is great for rapid iteration.</p>
+            <p>Remember to use <code>OS signals</code> to stop the looping task when the script is killed.</p>
+        </div>
+
+        <div class="share">
+            <a href="#">Share to Twitter</a>
+        </div>
+        
+        <div style="text-align: center;">
+             <a href="#" class="buy-coffee">Buy me coffee</a>
+        </div>
+
+        <div class="related">
+            <h2>Keep Reading</h2>
+            <div class="related-grid">
+                <div class="related-item">
+                    <h3><a href="#">Simplify code with closures</a></h3>
+                    <p>June 7, 2016</p>
+                </div>
+                <div class="related-item">
+                    <h3><a href="#">Catch OS signals in Swift</a></h3>
+                    <p>May 29, 2016</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="related">
+            <h2>You might like these posts</h2>
+            <div class="related-grid-small">
+                <div class="related-item-small">
+                    <h3><a href="#">Compat SwiftUI modifiers</a></h3>
+                    <p>October 20, 2023</p>
+                </div>
+                <div class="related-item-small">
+                    <h3><a href="#">Export Reminders lists using Swift</a></h3>
+                    <p>May 8, 2019</p>
+                </div>
+                <div class="related-item-small">
+                    <h3><a href="#">Swift Collection prefix for tests</a></h3>
+                    <p>March 16, 2019</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="tags-bottom">
+            <h3>Tags of this article</h3>
+            <a href="#">Scripting</a>
+            <a href="#">Swift</a>
+            <a href="#">Goodies</a>
+        </div>
+    <hr>
+        <footer>
+            <p><a href="#">RSS</a></p>
+            <p><a href="#">alexito4</a> | <a href="#">alexito4</a> | <a href="#">alexito4</a></p>
+            <p>Made with <a href="#">Publish</a></p>
+        </footer>
+    </div>
+</body>
+</html>

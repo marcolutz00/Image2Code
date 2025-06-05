@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 700px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .header {
+            background-color: #e91e63;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="number"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 5px;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+        }
+
+        .submit-button {
+            background-color: #e91e63;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            margin-top: 20px;
+        }
+
+        .asterisk {
+            color: red;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            color: #777;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .image-placeholder {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin: 20px auto;
+        }
+
+        .rules-checkbox {
+            margin-top: 10px;
+        }
+
+        .rules-checkbox label {
+            font-weight: normal;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="image-placeholder"></div>
+    <div class="header">
+        <h1>Artist Application</h1>
+    </div>
+
+    <div class="container">
+        <p>Share your background with us and tell us more. <a href="#">Help</a> if you need more details.</p>
+
+        <form>
+            <div class="form-group">
+                <label for="givenName">Given Name <span class="asterisk">*</span></label>
+                <input type="text" id="givenName" name="givenName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="familyName">Family Name <span class="asterisk">*</span></label>
+                <input type="text" id="familyName" name="familyName" required>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail Address <span class="asterisk">*</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+
+            <div class="form-group">
+                <label for="contactNumber">Contact Number <span class="asterisk">*</span></label>
+                <input type="number" id="contactNumber" name="contactNumber" required>
+            </div>
+
+            <div class="form-group">
+                <label for="location">Where Are You Located? <span class="asterisk">*</span></label>
+                <input type="text" id="location" name="location" required>
+            </div>
+
+            <div class="form-group">
+                <label>I Confirm That I am Over 18 <span class="asterisk">*</span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="over18" value="true" required> True</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Do You Run a Production Business? <span class="asterisk">*</span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="productionBusiness" value="true"> True</label>
+                    <label><input type="radio" name="productionBusiness" value="false"> False</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="background">Explain Your Background More Fully. <span class="asterisk">*</span></label>
+                <textarea id="background" name="background" required></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="workType">Your Favourite Type of Work <span class="asterisk">*</span></label>
+                <select id="workType" name="workType" required>
+                    <option value="">Select</option>
+                </select>
+            </div>
+            
+           <div class="form-group">
+                <label>Do You Have the Skills Required to Make Full Episodes (12-25 minutes) on a Small Budget and To
+                    Carry on Making Episodes if they get Commissioned by Our Users? <span class="asterisk">*</span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="skillsRequired" value="true"> True</label>
+                    <label><input type="radio" name="skillsRequired" value="false"> False</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>If You are a Final Nominee, Can You Begin Development by May or June (2019)? <span
+                        class="asterisk">*</span></label>
+                <div class="radio-group">
+                    <label><input type="radio" name="nomineeDevelopment" value="true"> True</label>
+                    <label><input type="radio" name="nomineeDevelopment" value="false"> False</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="peopleYouWorkWith">Names of People You Will Work With (if Applicable)</label>
+                <textarea id="peopleYouWorkWith" name="peopleYouWorkWith"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Are you a PGA Member?</label>
+                <div class="radio-group">
+                    <label><input type="radio" name="pgaMember" value="true"> True</label>
+                    <label><input type="radio" name="pgaMember" value="false"> False</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>OPTIONAL: Having Big Social Media Connections will help. Tell us of Social Media You
+                    Frequent.</label>
+                <textarea id="socialMediaConnections" name="socialMediaConnections"></textarea>
+                <p>0/800 characters</p>
+            </div>
+
+            <div class="form-group">
+                <label for="howDidYouHear">How did you hear of us?</label>
+                <select id="howDidYouHear" name="howDidYouHear">
+                    <option value="">Select</option>
+                    <!-- Options here -->
+                </select>
+            </div>
+
+            <div class="form-group rules-checkbox">
+                <label>
+                    <input type="checkbox" name="acceptRules" required>
+                    I Have Read and I Accept the Rules Below
+                </label>
+            </div>
+            <a href="#">Our Guidelines</a>
+
+            <button type="submit" class="submit-button">Send</button>
+        </form>
+        <p><a href="#">Abuse Notification</a>
+            <span style="float: right;">Site Provided by
+        </p>
+    </div>
+</body>
+
+</html>

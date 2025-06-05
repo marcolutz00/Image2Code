@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aws_autoscaling_lifecycle_hook</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            color: #4a5568;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        header a {
+            color: #9aa5b1;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        header a:hover {
+            text-decoration: underline;
+        }
+
+        .main-content {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 200px;
+            padding-right: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar a {
+            color: #4a5568;
+            text-decoration: none;
+            display: block;
+            padding: 5px 0;
+        }
+
+        .sidebar a:hover {
+            text-decoration: underline;
+        }
+
+        .main {
+            flex: 1;
+        }
+
+        h1 {
+            font-size: 32px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        pre {
+            background-color: #f7f7f7;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+
+        .usage-tabs {
+            display: flex;
+            justify-content: flex-end;
+            margin-bottom: 10px;
+        }
+
+        .usage-tabs a {
+            display: block;
+            padding: 8px 15px;
+            text-decoration: none;
+            color: #4a5568;
+            border: 1px solid #e2e8f0;
+            border-radius: 5px 5px 0 0;
+            background-color: #f7f7f7;
+            margin-left: 5px;
+        }
+
+        .usage-tabs a.active {
+            background-color: #fff;
+            border-bottom: none;
+        }
+
+        h2 {
+            font-size: 24px;
+            font-weight: 500;
+            margin-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 18px;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            padding-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        li {
+            margin-bottom: 5px;
+            line-height: 1.4;
+        }
+
+        footer {
+            background-color: #4a5568;
+            color: #fff;
+            padding: 20px;
+            text-align: left;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-column {
+            width: 200px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div>
+                <a href="#">FEATURES</a>
+                <a href="#">OPEN SOURCE</a>
+                <a href="#">ABOUT US</a>
+                <a href="#">DOCS</a>
+            </div>
+            <div>
+                <a href="#">SIGN IN</a>
+                <a href="#">SIGN UP</a>
+            </div>
+        </header>
+        <div class="main-content">
+            <div class="sidebar">
+                <ul>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Getting started</a></li>
+                    <li><a href="#">Explore Workspace</a></li>
+                    <li><a href="#">Stack Documentation</a></li>
+                    <li><a href="#">Configuration</a></li>
+                    <li><a href="#">Providers</a></li>
+                    <li><a href="#">Archive</a></li>
+                    <li><a href="#">Atlas</a></li>
+                    <li><a href="#">AWS</a></li>                    
+                    <li><a href="#">Data Sources</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <ul>
+                        <li><a href="#">aws alb</a></li>
+                        <li><a href="#">aws_alb_listener</a></li>
+                        <li><a href="#">aws_alb_listener_rule</a></li>
+                        <li><a href="#">aws_alb_target_group</a></li>
+                    </ul>                                    
+                    <li><a href="#">Azure Service Management</a></li>
+                    <li><a href="#">Provisioners</a></li>
+                </ul>
+            </div>
+            <div class="main">
+                <h1>aws_autoscaling_lifecycle_hook</h1>
+                <p>Supplies an AutoScaling Lifecycle Hook element.</p>
+                <h2>Example Usage</h2>
+                <div class="usage-tabs">
+                    <a href="#" class="active">yaml</a>
+                    <a href="#">hcl</a>
+                </div>
+                <pre>
+resource:
+aws_autoscaling_group:
+foobar:
+availability_zones:
+- us-west-2a
+name: terraform-test-foobar5
+health_check_type: EC2
+termination_policies:
+- OldestInstance
+tag:
+key: Foo
+value: foo-bar
+propagate_at_launch: true
+aws_autoscaling_lifecycle_hook:
+foobar:
+name: foobar
+autoscaling_group_name: '${aws_autoscaling_group.foobar.name}'
+default_result: CONTINUE
+heartbeat_timeout: 2000
+lifecycle_transition: 'autoscaling:EC2_INSTANCE_LAUNCHING'
+notification_metadata: "{\n \"foo\": \"bar\"\n}"
+notification_target_arn: 'arn:aws:sqs:us-east-1:444455556666:queue1*"
+role_arn: 'arn:aws:iam::123456789012:role/S3Access'
+</pre>
+                <h2>Argument Specification</h2>
+                <p>The subsequent arguments are supported:</p>
+                <ul>
+                    <li><code>name</code> - (Required) The lifecycle hook's name.</li>
+                    <li><code>autoscaling_group_name</code> - (Required) Name of Auto Scaling group that you want to assign the lifecycle hook to.
+                    </li>
+                    <li><code>default_result</code> - (Optional) Action Auto Scaling group should take when lifecycle hook timeout passes or if an
+                        unexpected failure arises.</li>
+                    <li><code>heartbeat_timeout</code> - (Optional) Period of time, in seconds, before lifecycle hook times out. When the lifecycle
+                        hook times out, Auto Scaling performs the action defined in the DefaultResult setting</li>
+                </ul>
+                <p><em>See this document's origin at Terraform.io</em></p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <img src="src/placeholder.jpg" width="100" height="30" alt="Koding Logo">
+                    <p>For Teams</p>
+                    <a href="#">Platform for Training</a><br>
+                    <a href="#">Sales Automation</a>
+                </div>
+                <div class="footer-column">
+                    <p>Resources</p>
+                    <a href="#">Documentation</a><br>
+                    <a href="#">Blog</a><br>
+                    <a href="#">Start Here</a>
+                </div>
+                <div class="footer-column">
+                    <p>Company</p>
+                    <a href="#">About Us</a><br>
+                    <a href="#">Open Source</a>
+                </div>
+                <div class="footer-column">
+                    <p>Contact</p>
+                    <a href="#">Facebook</a><br>
+                    <a href="#">Twitter</a><br>
+                    <a href="#">LinkedIn</a><br>
+                    <a href="#">Email Us</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

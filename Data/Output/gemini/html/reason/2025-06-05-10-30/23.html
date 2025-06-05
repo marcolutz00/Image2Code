@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site by Alex</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            text-align: center;
+        }
+
+        nav a {
+            margin: 0 10px;
+        }
+
+        article {
+            margin-bottom: 40px;
+        }
+
+        .date {
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+        .read-time {
+            color: #999;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+            text-align: right;
+        }
+
+        .tags {
+            margin-bottom: 20px;
+        }
+
+        .tags a {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+            font-size: 0.85em;
+        }
+
+        .tags a:hover {
+            text-decoration: none;
+            background-color: #555;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+        .button {
+            background-color: #e74c3c;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 20px;
+        }
+        .button:hover {
+            text-decoration: none;
+            background-color: #c0392b;
+        }
+        .related-posts {
+            margin-top: 40px;
+        }
+
+        .related-posts h2 {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .related-post {
+            background-color: #111;
+            padding: 15px;
+            border-radius: 5px;
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 100px;
+        }
+
+        .related-post a {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .related-post .date {
+            margin-bottom: 0;
+        }
+        .related-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+        }
+        .related-double-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+            font-size: 0.9em;
+            color: #999;
+        }
+        .share-twitter {
+            margin-top: 20px;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Site by Alex</h1>
+            <p>A world of code <span aria-hidden="true"> </span> by Alejandro Martinez</p>
+            <nav>
+                <a href="#">Swift</a>
+                <a href="#">Dev</a>
+            </nav>
+        </header>
+
+        <article>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <p class="date">June 5, 2016</p>
+                <p class="read-time">1 min read</p>
+            </div>
+           
+            <div class="tags">
+                <a href="#">Scripting</a>
+                <a href="#">Swift</a>
+                <a href="#">Goodies</a>
+            </div>
+
+            <h1>Easy Swift script auto-reloading hack</h1>
+
+            <p>I was writing a Swift script the other day, and I wanted it to run forever as a server, so I added a continuous
+            running option. Forever.</p>
+
+            <p>I just used a repeat loop with NSTasks that executed the script. Recursion.</p>
+
+            <p>It turns out this is a neat hack for auto-reloading the script!</p>
+
+            <p>let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() task.launchPath =
+            Process.arguments.first! task.arguments = Array(Process.arguments.suffixFrom(1).filter({$0 != reload}))
+            task.launch() task.waitUntilExit() } while true } Add this snippet to the script, then call it with the reload
+            arg to loop it forever.</p>
+
+            <p>To call it from the command line:</p>
+
+            <p>main.swift reload other params Now just modify and save the script. Next time around, the changes will be
+            there. If compilation fails, no problem! The old script will just retry.</p>
+
+            <p>It's not perfect. The console gets spammed, but it is great for rapid iteration.</p>
+
+            <p>Remember to use OS signals to stop the looping task when the script is killed.</p>
+
+            <a href="#" class="share-twitter">Share to Twitter</a>
+        </article>
+        <div style="background-color: #111; padding: 20px; border-radius: 5px; margin-bottom: 15px; text-align: center;">
+        <p>If you enjoyed this post, please consider supporting me</p>
+            <a href="#" class="button">Buy me coffee</a>
+        </div>
+        <section class="related-posts">
+            <h2>Keep Reading</h2>
+            <div class="related-grid">
+                <div class="related-post">
+                    <div>
+                        <a href="#">Simplify code with closures</a>
+                        <p class="date">June 7, 2016</p>
+                    </div>
+                </div>
+                <div class="related-post">
+                     <div>
+                        <a href="#">Catch OS signals in Swift</a>
+                        <p class="date">May 29, 2016</p>
+                    </div>
+                </div>
+            </div>
+            <h2>You might like these posts</h2>
+            <div class="related-double-grid">
+                <div class="related-post">
+                     <div>
+                        <p class="date">Based on tag Swift</p>
+                        <a href="#">Compat SwiftUI modifiers</a>
+                        <p class="date">October 20, 2023</p>
+                    </div>
+                </div>
+                <div class="related-post">
+                   <div>
+                        <p class="date">Based on tag Scripting</p>
+                        <a href="#">Export Reminders lists using Swift</a>
+                        <p class="date">May 8, 2019</p>
+                    </div>
+                </div>
+                <div class="related-post">
+                   <div>
+                        <p class="date">Based on tag Goodies</p>
+                        <a href="#">Swift Collection prefix for tests</a>
+                        <p class="date">March 16, 2019</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <div class="tags">
+            <a href="#">Scripting</a>
+            <a href="#">Swift</a>
+            <a href="#">Goodies</a>
+        </div>
+
+        <footer>
+            <a href="#">RSS</a>
+            <p><a href="#">alexito4</a> | <a href="#">alexito4</a> | <a href="#">alexito4</a></p>
+            <p>Made with <a href="#">Publish</a></p>
+        </footer>
+    </div>
+</body>
+</html>

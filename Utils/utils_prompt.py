@@ -65,7 +65,30 @@ def _get_zero_shot_prompt():
 
     return f"{base}\n\n{zero_shot_prompt}\n\nThe image is encoded and attached to this prompt."
 
-def _get_iterative_prompt():
+def _get_iterative_start_prompt():
+    """
+        Self-and-Refine Approach
+        Check here: https://arxiv.org/pdf/2303.17651
+
+        3 Phases
+        Build: Use prompt to copy Image as above
+        Feedback: Use Accessibility Tools to find violations
+        Refine: Use generated Code and found violations to refine the existing lines of code.
+
+        Phase Build:
+        This starting prompt for the build phase uses the naive approach
+    """
+    return _get_naive_prompt
+
+def __get_iterative_refine_prompt():
+    """
+        Self-and-Refine Approach
+        Check here: https://arxiv.org/pdf/2303.17651
+
+        Phase Refine:
+        This prompt is used to refine the output -> solve accessibility violations.
+    """
+
     pass
 
 def _get_reasoning_prompt():
@@ -105,7 +128,9 @@ def get_prompt(prompt_strategy):
         case "zero-shot":
             return _get_zero_shot_prompt()
         case "iterative":
-            return _get_iterative_prompt()
+            return _get_iterative_start_prompt()
+        case "iterative_refine":
+            return _get_iterative_refine_prompt()
         case "reason":
             return _get_reasoning_prompt()
         case _:
