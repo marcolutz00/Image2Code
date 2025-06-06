@@ -75,8 +75,6 @@ async def process_refinement_llm(client, prompt):
 
     result_clean = utils_html.clean_html_result(result_raw)
 
-    soup = BeautifulSoup(result_clean, "html.parser")
-    
-    html_clean = soup.prettify()
+    html_clean = result_clean.replace("\\n", "")
 
     return html_clean
