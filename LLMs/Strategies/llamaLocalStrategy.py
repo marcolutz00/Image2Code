@@ -10,7 +10,7 @@ class LlamaStrategy(LLMStrategy):
         self.used_model = MODEL
 
 
-    async def api_frontend_generation(self, prompt, image_information):
+    async def llm_frontend_generation(self, prompt, image_information):
         with open(image_information["path"], "rb") as image_file:
             image_data = base64.b64encode(image_file.read()).decode("utf-8")
 
@@ -20,6 +20,17 @@ class LlamaStrategy(LLMStrategy):
                 'role': 'user',
                 'content': prompt,
                 'images': [image_data]
+            }]
+        )
+
+        return response["message"]["content"], None
+    
+    async def llm_frontend_refinement(self, prompt):
+        response = ollama.chat(
+            model=self.used_model,
+            messages=[{
+                'role': 'user',
+                'content': prompt
             }]
         )
 

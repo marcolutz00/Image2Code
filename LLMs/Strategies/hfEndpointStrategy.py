@@ -19,7 +19,7 @@ class HfEndpointStrategy(LLMStrategy):
 
 
 
-    async def api_frontend_generation(self, prompt, image_information):
+    async def llm_frontend_generation(self, prompt, image_information):
         with open(image_information["path"], "rb") as image_file:
             image_data = base64.b64encode(image_file.read()).decode("utf-8")
 
@@ -34,6 +34,23 @@ class HfEndpointStrategy(LLMStrategy):
                             "url": f"data:image/png;base64,{image_data}"
                         }
                     },
+                    {
+                        "type": "text",
+                        "text": prompt
+                    }
+                ]
+            }]
+        )
+
+        answer = response.choices[0].message.content
+        return answer, None
+    
+    async def llm_frontend_refinement(self, prompt):
+        response = self.client.chat.completions.create(
+            model="tgi",
+            messages=[{
+                "role": "user",
+                "content": [
                     {
                         "type": "text",
                         "text": prompt

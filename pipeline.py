@@ -21,6 +21,7 @@ DATA_PATH = os.path.join(os.path.dirname(__file__), 'Data')
 INPUT_PATH = os.path.join(DATA_PATH, 'Input')
 OUTPUT_PATH = os.path.join(DATA_PATH, 'Output')
 
+NUMBER_ITERATIONS = 3
 DATE = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
 # Test
 # DATE = "2025-06-05-10-30"
@@ -50,18 +51,36 @@ async def _process_image(client, image_information, prompt, model, prompt_strate
     return result_clean
 
 
-def _process_image_iterative(client, model, html_generated, accessibility_data):
+async def _process_image_iterative(client, model, html_generated, accessibility_data, image):
     '''
         Gets generated HTML and Accessibility Data
         Grabs the Code with Issues and sends it to LLM.
         Afterwards, the LLM will return fixed code and it will be stored in file.
     '''
 
-    number_iterations = 3
-    for i in range(number_iterations):
+    prompt_strategy = "iterative"
+
+    base_name = os.path.splitext(image)[0]
+
+    for i in range(1, NUMBER_ITERATIONS + 1):
+        output_html_path, output_accessibility_path, output_images_path, output_insights_path = utils_general.util_create_directories(OUTPUT_PATH, model, f"{prompt_strategy}_refine_{i}", DATE)
+
         html_snippets = utils_iterative_prompt.get_violation_snippets(html_generated, accessibility_data)
         refine_prompt = utils_prompt.get_prompt("iterative_refine")
         final_refine_prompt = f"{refine_prompt}\n\n{html_snippets}"
+
+        generated_html = await utils_iterative_prompt.process_refinement_llm(client, final_refine_prompt)
+
+        with open(os.path.join(output_html_path, f"{base_name}.html"), "w", encoding="utf-8") as f:
+            f.write(generated_html)
+            
+        _, accessibility_issues, accessibility_issues_overview = await _analyze_outputs(image, model, f"{prompt_strategy}_refine_{i}")
+
+        if accessibility_issues_overview["automatic_checks"].get("total_nodes_failed") == 0:
+            print(f"Iteration {i} finished. No more accessibility issues ...")
+            break
+
+        accessibility_data = accessibility_issues
 
 
 
@@ -79,6 +98,7 @@ async def _analyze_outputs(image, model, prompt_strategy):
     input_accessibility_path = os.path.join(INPUT_PATH, 'accessibility', f"{image_name}.json")
     input_images_path = os.path.join(INPUT_PATH, 'images', f"{image_name}.png")
     input_insight_path = os.path.join(INPUT_PATH, 'insights', f"overview_{image_name}.json")
+
     output_html_path = os.path.join(OUTPUT_PATH, model, 'html', prompt_strategy, DATE, f"{image_name}.html")
     output_accessibility_path = os.path.join(OUTPUT_PATH, model, 'accessibility', prompt_strategy, DATE, f"{image_name}.json")
     output_images_path = os.path.join(OUTPUT_PATH, model, 'images', prompt_strategy, DATE, f"{image_name}.png")
@@ -115,7 +135,7 @@ def _overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy, 
 async def main():
     model = "gemini" # option openai, gemini, qwen_local, qwen_hf, llama_local, llama_hf, hf-finetuned
     model_dir = model.split("_")[0]
-    prompt_strategy = "naive" # option naive, zero-shot, reason, iterative
+    prompt_strategy = "iterative" # option naive, zero-shot, reason, iterative
 
     # 1. Load API-Key and define model strategy
     strategy = utils_general.get_model_strategy(model)
@@ -151,6 +171,10 @@ async def main():
             # 5. Analyze outputs for Input & Output
             _, accessibility_issues, _ = await _analyze_outputs(image, model_dir, prompt_strategy)
 
+            if prompt_strategy == "iterative":
+                # 5.1 Process HTML iteratively
+                await _process_image_iterative(client, model_dir, generated_html, accessibility_issues, image)
+                
 
             print("----------- Done -----------\n")
 

@@ -78,7 +78,7 @@ def _get_iterative_start_prompt():
         Phase Build:
         This starting prompt for the build phase uses the naive approach
     """
-    return _get_naive_prompt
+    return _get_naive_prompt()
 
 def _get_iterative_refine_prompt():
     """

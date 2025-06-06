@@ -18,7 +18,7 @@ class GeminiStrategy(LLMStrategy):
         self.used_model = MODEL
         self.client = genai.Client(api_key=api_key)
 
-    async def api_frontend_generation(self, prompt, image_information):
+    async def llm_frontend_generation(self, prompt, image_information):
         '''
             Important! 
             1. image_data as bytes, like this:
@@ -44,8 +44,24 @@ class GeminiStrategy(LLMStrategy):
         tokens_used = response.usage_metadata
 
         return response.text, tokens_used
+    
 
-    async def api_accessibility_matching(self, prompt, current_map, accessibility_data):
+    async def llm_frontend_refinement(self, prompt):
+        '''
+            Refinement of the HTML code.
+            The prompt should contain the HTML code which should be refined.
+        '''
+        response = self.client.models.generate_content(
+            model=self.used_model,
+            contents=[prompt]
+        )
+
+        tokens_used = response.usage_metadata
+
+        return response.text, tokens_used
+
+
+    async def llm_accessibility_matching(self, prompt, current_map, accessibility_data):
         message = f'Prompt: {prompt}, Current Map: {current_map}, New Data: {accessibility_data}'
 
         response = self.client.models.generate_content(
@@ -55,7 +71,7 @@ class GeminiStrategy(LLMStrategy):
 
         return response.text
     
-    async def api_text_rewrite(self, prompt, html_code):
+    async def llm_text_rewrite(self, prompt, html_code):
         message = f'Prompt: {prompt}, Current HTML: {html_code}'
         
         response = self.client.models.generate_content(

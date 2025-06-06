@@ -1,3 +1,10 @@
+import os
+import sys
+from bs4 import BeautifulSoup
+
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+
+import Utils.utils_html as utils_html
 
 def _extract_issues_tools(accessibility_data) -> list:
     """
@@ -13,7 +20,7 @@ def _extract_issues_tools(accessibility_data) -> list:
 
     snippets = []
 
-    for issue_group in accessibility_data:
+    for issue_group in accessibility_data["automatic"]:
         for issue in issue_group["issues"]:
             # Only tool with max amount relevant
             if issue_group["impact"] == "tbd":
@@ -40,8 +47,6 @@ def _extract_issues_tools(accessibility_data) -> list:
 
     return snippets
 
-
-
 def get_violation_snippets(html_generated, accessibility_data) -> list:
     """ 
         Returns combination of whole generated HTML and the snippets of violations ordered as a json
@@ -50,8 +55,28 @@ def get_violation_snippets(html_generated, accessibility_data) -> list:
 
     result = {
         "html": html_generated,
-        "snippets": snippets_reported_tools
+        "accessibility_violations": snippets_reported_tools
     }
 
     return result
 
+
+async def process_refinement_llm(client, prompt):
+
+    """
+        Starts the inference with the LLM.
+        Returns the generated HTML with fixed issues.
+    """
+    result_raw, tokens_used = await client.refine_frontend_code(prompt)
+
+    # Print token information
+    if tokens_used != None:
+        print(tokens_used)
+
+    result_clean = utils_html.clean_html_result(result_raw)
+
+    soup = BeautifulSoup(result_clean, "html.parser")
+    
+    html_clean = soup.prettify()
+
+    return html_clean

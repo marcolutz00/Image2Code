@@ -40,7 +40,7 @@ class HfFinetunedStrategy(LLMStrategy):
 
 
 
-    async def api_frontend_generation(self, prompt, image_information):
+    async def llm_frontend_generation(self, prompt, image_information):
         pil_image = Image.open(image_information["path"])
 
         inputs = self.processor.tokenizer(
@@ -57,7 +57,23 @@ class HfFinetunedStrategy(LLMStrategy):
         return generated_text
 
 
+    async def llm_frontend_refinement(self, prompt):
+        """
+            Refinement of the HTML code.
+            The prompt should contain the HTML code which should be refined.
+        """
+        inputs = self.processor.tokenizer(
+            f"{self.bos_token}<fake_token_around_image>{'<image>' * self.image_seq_len}<fake_token_around_image>",
+            return_tensors="pt",
+            add_special_tokens=False,
+        )
 
+        inputs = self.create_input_with_prompt("", prompt, self.processor, self.device)
+        generated_ids = self.model.generate(**inputs, bad_words_ids=self.bad_words_ids, max_length=4096)
+        generated_text = self.processor.batch_decode(generated_ids, skip_special_tokens=True)[0]
+
+        return generated_text
+    
 
     # standard input is without prompt - with prompt helper
     def create_input_with_prompt(self, img, prompt, processor, device):
