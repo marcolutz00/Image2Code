@@ -80,7 +80,7 @@ def _get_iterative_start_prompt():
     """
     return _get_naive_prompt
 
-def __get_iterative_refine_prompt():
+def _get_iterative_refine_prompt():
     """
         Self-and-Refine Approach
         Check here: https://arxiv.org/pdf/2303.17651
@@ -89,7 +89,20 @@ def __get_iterative_refine_prompt():
         This prompt is used to refine the output -> solve accessibility violations.
     """
 
-    pass
+    refine_prompt = """It is *EXTREMELY* important that your HTML/CSS **complies with WCAG 2.1**. 
+    In this refinement step, you will:
+
+    1. Analyze the listed accessibility violations below.
+    2. Adjust the provided HTML code so that **all** violations are resolved.
+    3. Prioritize accessibility issues with the highest impact.
+    4. Preserve layout, structure (tags) and visible content exactly as they are, except for the specific fixes required.
+    5. Return **only** the corrected HTML—no additional explanations, no comments, no markdown fences.
+
+    Make sure to only change what is necessary to fix the violations.
+    The HTML/CSS is provided below, along with the accessibility issues that need to be addressed.
+    """
+
+    return refine_prompt
 
 def _get_reasoning_prompt():
     '''
@@ -137,16 +150,6 @@ def get_prompt(prompt_strategy):
             raise ValueError(f"Prompt Strategy {prompt_strategy} is not supported.")
 
 
-
-def get_system_instructions():
-    return ('''
-        You are a senior front-end engineer. 
-        When asked, you output a single self-contained HTML5 document 
-        with embedded CSS that reproduces the requested UI as faithfully as possible. 
-        Return only raw code (no Markdown fences, no explanations). 
-        Use semantic elements when obvious, keep the CSS concise and well-structured, 
-        and never embed images as base64 unless explicitly instructed.
-    ''')
 
 def get_rewrite_text_prompt():
     return """

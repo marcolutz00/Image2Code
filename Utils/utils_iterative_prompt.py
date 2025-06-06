@@ -1,5 +1,4 @@
 
-
 def _extract_issues_tools(accessibility_data) -> list:
     """
         Returns the html snippets which have been stored by the tools 
@@ -22,23 +21,37 @@ def _extract_issues_tools(accessibility_data) -> list:
 
             try:
                 source = issue.get("source")
-                snippet = field_for_tool[tool_max_count](issue).strip()
+                snippet = field_for_tool[source](issue).strip()
             except KeyError:
                 snippet = "null"
             
-            message = issue.get("title") or issue.get("failureSummary") or "n/a"
+            message = issue.get("title") or "n/a"
             id_violation = issue.get("id")
 
-            snippets.append({"snippet": snippet, "id": id_violation, "msg": message})
+            # check if snippet is empty
+            if not snippet or snippet == "null":
+                snippet = "No code snippet available for this issue."
+            
+            # check if snippet already exists
+            if any(s["snippet"] == snippet for s in snippets):
+                continue
+
+            snippets.append({"snippet": snippet, "id": id_violation, "message": message, "impact": issue_group["impact"]})
 
     return snippets
 
 
+
 def get_violation_snippets(html_generated, accessibility_data) -> list:
-    """
-        Extracts those html snippets from generated html that have accessibility violations.
-        returns list of 
+    """ 
+        Returns combination of whole generated HTML and the snippets of violations ordered as a json
     """
     snippets_reported_tools = _extract_issues_tools(accessibility_data)
-    
+
+    result = {
+        "html": html_generated,
+        "snippets": snippets_reported_tools
+    }
+
+    return result
 

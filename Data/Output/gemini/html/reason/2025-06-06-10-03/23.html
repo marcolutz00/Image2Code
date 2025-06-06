@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site by Alex</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #000;
+            color: #fff;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1rem;
+        }
+
+        .meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .meta-date {
+            color: #999;
+        }
+
+        .meta-readtime {
+            color: #999;
+        }
+
+        .tags {
+            margin-bottom: 20px;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+
+        .content {
+            margin-bottom: 40px;
+        }
+
+        .content p {
+            margin-bottom: 15px;
+        }
+
+        .content a {
+            color: #fff;
+            text-decoration: underline;
+        }
+
+        .share-twitter {
+            margin-bottom: 40px;
+        }
+
+        .buy-coffee {
+            background-color: #c62828;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+
+        .keep-reading {
+            margin-bottom: 40px;
+        }
+
+        .keep-reading h2 {
+            margin-bottom: 20px;
+        }
+
+        .post-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .post-item {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .post-item h3 {
+            margin-bottom: 10px;
+        }
+
+        .post-item p {
+            color: #999;
+        }
+
+        .related-posts {
+            margin-bottom: 40px;
+        }
+
+        .related-posts h2 {
+            margin-bottom: 20px;
+        }
+
+        .related-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .related-item {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .related-item h4 {
+            margin-bottom: 10px;
+        }
+
+        .related-item p {
+            color: #999;
+            font-size: 0.8rem;
+        }
+
+        .article-tags {
+            margin-bottom: 40px;
+        }
+
+        .article-tags h2 {
+            margin-bottom: 20px;
+        }
+
+        .article-tag {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border-radius: 5px;
+            font-size: 0.8rem;
+        }
+
+        footer {
+            text-align: center;
+            color: #999;
+            font-size: 0.8rem;
+            padding-top: 20px;
+            border-top: 1px solid #333;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Site by Alex</h1>
+            <p>A world of code <span><img src="src/placeholder.jpg" alt="code icon" width="16" height="16"></span> by Alejandro Martinez</p>
+            <p>| <a href="#">Swift</a> <a href="#">Dev</a></p>
+        </header>
+
+        <div class="meta">
+            <p class="meta-date">June 5, 2016</p>
+            <p class="meta-readtime"><span><img src="src/placeholder.jpg" alt="clock icon" width="16" height="16"></span> 1 min read</p>
+        </div>
+
+        <div class="tags">
+            <a href="#" class="tag">Scripting</a>
+            <a href="#" class="tag">Swift</a>
+            <a href="#" class="tag">Goodies</a>
+        </div>
+
+        <div class="content">
+            <h2>Easy Swift script auto-reloading hack</h2>
+            <p>I was writing a <span>Swift script</span> the other day, and I wanted it to run forever as a server, so I added a continuous
+                running option. <span>Forever.</span></p>
+
+            <p>I just used a <span>repeat</span> loop with <span>NSTask</span>s that executed the script. <span>Recursion.</span></p>
+
+            <p>It turns out this is a neat hack for auto-reloading the script!</p>
+
+            <p>let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() task.launchPath =
+                Process.arguments.first! task.arguments = Array(Process.arguments.suffixFrom(1).filter({$0 != reload}))
+                task.launch() task.waitUntilExit() } while true } Add this snippet to the script, then call it with the <span>reload</span>
+                arg to loop it forever.</p>
+
+            <p>To call it from the command line:</p>
+
+            <p>main.swift reload other params Now just modify and save the script. Next time around, the changes will be
+                there. If compilation fails, no problem! The old script will just retry.</p>
+
+            <p>It's not perfect. The console gets spammed, but it is great for rapid iteration.</p>
+
+            <p>Remember to use <span>OS signals</span> to stop the looping task when the script is killed.</p>
+        </div>
+
+        <div class="share-twitter">
+            <a href="#">Share to Twitter</a>
+        </div>
+
+        <div class="support">
+            <p>If you enjoyed this post, please consider supporting me</p>
+            <a href="#" class="buy-coffee">Buy me coffee</a>
+        </div>
+
+        <div class="keep-reading">
+            <h2>Keep Reading</h2>
+            <div class="post-grid">
+                <div class="post-item">
+                    <h3><a href="#">Simplify code with closures</a></h3>
+                    <p>June 7, 2016</p>
+                </div>
+                <div class="post-item">
+                    <h3><a href="#">Catch OS signals in Swift</a></h3>
+                    <p>May 29, 2016</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="related-posts">
+            <h2>You might like these posts</h2>
+            <div class="related-grid">
+                <div class="related-item">
+                    <h4><a href="#">Compat SwiftUI modifiers</a></h4>
+                    <p>October 20, 2023</p>
+                </div>
+                <div class="related-item">
+                    <h4><a href="#">Export Reminders lists using Swift</a></h4>
+                    <p>May 8, 2019</p>
+                </div>
+                <div class="related-item">
+                    <h4><a href="#">Swift Collection prefix for tests</a></h4>
+                    <p>March 16, 2019</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="article-tags">
+            <h2>Tags of this article</h2>
+            <a href="#" class="article-tag">Scripting</a>
+            <a href="#" class="article-tag">Swift</a>
+            <a href="#" class="article-tag">Goodies</a>
+        </div>
+
+        <footer>
+            <a href="#">RSS</a>
+            <p><a href="#">alexito4</a> | <a href="#">alexito4</a> | <a href="#">alexito4</a></p>
+            <p>Made with <a href="#">Publish</a></p>
+        </footer>
+    </div>
+</body>
+</html>

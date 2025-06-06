@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rose Garden Finds</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f8ff;
+            /* Light Blue Background */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        header {
+            text-align: left;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #337ab7;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin: 0 5px;
+        }
+
+        nav a:hover {
+            background-color: #d9edf7;
+        }
+
+        main {
+            display: flex;
+            width: 100%;
+        }
+
+        aside {
+            width: 25%;
+            padding: 10px;
+            margin-right: 20px;
+        }
+
+        .main-content {
+            width: 75%;
+            padding: 10px;
+        }
+
+        /* Placeholder Style */
+        .placeholder {
+            background-color: blue;
+            width: 100%;
+            height: 200px;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f5f5f5;
+        }
+
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            padding: 5px;
+            margin-bottom: 20px;
+        }
+
+        .top-bar a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #337ab7;
+        }
+
+        .top-bar select {
+            margin-left: 10px;
+        }
+
+        .top-bar span {
+            margin-left: 10px;
+        }
+
+        /* Sidebar Styles */
+        aside input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside li {
+            margin-bottom: 5px;
+            background-color: #f9f2d3;
+            padding: 8px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        aside li:hover {
+            background-color: #faebcc;
+        }
+
+        /* Main Content Styles */
+        .product-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            width: 200px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .product-info {
+            margin-top: 10px;
+        }
+
+        .section-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #333;
+            text-align: left;
+        }
+
+        .mailing-list {
+            margin-top: 20px;
+            background-color: #dff0d8;
+            padding: 10px;
+            border-radius: 4px;
+            text-align: left;
+        }
+
+        .mailing-list input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .mailing-list button {
+            background-color: #5cb85c;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .mailing-list button:hover {
+            background-color: #4cae4c;
+        }
+
+        .get-connected {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .social-icons {
+            display: flex;
+            margin-top: 10px;
+        }
+
+        .social-icons div {
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            border-radius: 50%;
+            cursor: pointer;
+        }
+
+        .social-icons div:hover {
+            opacity: 0.8;
+        }
+
+        .social-icons .facebook {
+            background-color: #3b5998;
+        }
+
+        .social-icons .pinterest {
+            background-color: #c61118;
+        }
+
+        .social-icons .instagram {
+            background-color: #e4405f;
+        }
+
+        /* Footer Styles */
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e7eef7;
+            border-top: 1px solid #ddd;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #337ab7;
+            margin: 0 5px;
+        }
+
+        /* Product Grid Styles */
+        .product-grid {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .product {
+            width: 200px;
+            margin-bottom: 20px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .product-info {
+            margin-top: 10px;
+        }
+
+        /* Footer Bar */
+        .footer-bar {
+            background-color: #337ab7;
+            /* Example background color */
+            color: white;
+            padding: 10px 0;
+            display: flex;
+            justify-content: center;
+            /* Center horizontally */
+            align-items: center;
+            /* Center vertically */
+        }
+
+        .footer-bar a {
+            display: inline-block;
+            width: 35px;
+            height: 35px;
+            margin: 0 5px;
+            background-color: #fff;
+            /* Example icon color */
+            border-radius: 5px;
+            text-decoration: none;
+            color: #337ab7;
+            font-size: 20px;
+            text-align: center;
+            line-height: 35px;
+            /* Center text vertically */
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>Rose Garden Finds</h1>
+        </header>
+
+        <div class="top-bar">
+            <a href="#">Sign In</a>
+            <a href="#">Register</a>
+            <span>Choose currency</span>
+            <select>
+                <option>USD</option>
+            </select>
+            <span>0 Items in basket</span>
+        </div>
+
+        <nav>
+            <a href="#">Front Page</a>
+            <a href="#">Get in touch</a>
+            <a href="#">Just Arrived</a>
+            <a href="#">Sale Items</a>
+        </nav>
+
+        <main>
+            <aside>
+                <input type="text" placeholder="Search...">
+                <ul>
+                    <li>Cottage Styled Home Accents</li>
+                    <li>Antique and Vintage Textiles</li>
+                    <li>Vintage Wedding & Bridal</li>
+                    <li>Serving Tea</li>
+                    <li>Vintage Hand Painted Ceramics</li>
+                    <li>Well Used Silver</li>
+                    <li>Vintage Style Kitchen</li>
+                    <li>Homer Laughlin Fiesta dinnerware</li>
+                    <li>Retro Cleaning Supplies</li>
+                    <li>Vintage Womens Accessories</li>
+                    <li>Adornments</li>
+                    <li>Garden Items</li>
+                    <li>Vintage Old Things</li>
+                    <li>Antique Travel Memorabilia</li>
+                    <li>Vintage Toys</li>
+                    <li>Vintage Sewing Supplies</li>
+                    <li>Vintage Celebrations</li>
+                    <li>Book Shelf</li>
+                </ul>
+
+                <div class="get-connected">
+                    Get Connected
+                    <div class="social-icons">
+                        <div class="facebook"></div>
+                        <div class="pinterest"></div>
+                        <div class="instagram"></div>
+                    </div>
+                </div>
+
+                <div class="mailing-list">
+                    Mailing List
+                    Sign up to our newsletter to get the latest updates and promos...
+                    <input type="email" placeholder="type your email...">
+                    <button>Join</button>
+                </div>
+            </aside>
+
+            <div class="main-content">
+                <div class="placeholder"></div>
+                <div>
+                    Welcome to the Rose Garden Finds Website!
+                    <br><br>
+                    Here you will discover things that add a touch of comfort to your dwelling.
+                    We stock elegant accessories for ladies, from superb make up kits, to fantastic vintage wallets, to
+                    shiny jeweled pieces.
+                    <br><br>
+                    Your one stop for cozy homeware, chic decor & keepsakes!
+                </div>
+                <h2 class="section-title">Top Selling Products</h2>
+                <div class="product-grid">
+                    <div class="product">
+                        <img src="src/placeholder.jpg" alt="Product 1">
+                        <div class="product-info">
+                            Heidi Daus Cornucopia
+                            Brooch Heidi's Harvest
+                            Pin
+                            $150.00
+                        </div>
+                    </div>
+                    <div class="product">
+                        <img src="src/placeholder.jpg" alt="Product 2">
+                        <div class="product-info">
+                            Heidi Daus Squirrel
+                            Sparkle Fall Rhinestone
+                            Pin
+                            $125.00
+                        </div>
+                    </div>
+                    <div class="product">
+                        <img src="src/placeholder.jpg" alt="Product 3">
+                        <div class="product-info">
+                            Heidi Daus Precious
+                            Pumpkin Pavé Fall
+                            Brooch Pin
+                            $150.00
+                        </div>
+                    </div>
+                    <div class="product">
+                        <img src="src/placeholder.jpg" alt="Product 4">
+                        <div class="product-info">
+                            Vintage McCoy Pottery
+                            Purple and White
+                            Chrysanthemum Vase
+                            $55.00
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <div class="footer-bar">
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+            <a></a>
+        </div>
+
+        <footer>
+            <a href="#">Site Search</a>
+            <a href="#">Get in touch</a>
+            <a href="#">About Company</a>
+            <a href="#">Caring For Silver</a>
+            <br>
+            Copyright © 2023 Rose Garden Finds. All Rights Reserved.
+        </footer>
+    </div>
+</body>
+
+</html>

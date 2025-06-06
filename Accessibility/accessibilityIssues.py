@@ -158,6 +158,8 @@ async def enrich_with_accessibility_issues(file, html_path, accessibility_path, 
         json.dump(issues_overview_json, f, ensure_ascii=False, indent=2)
 
     print(f"Accessibility issues for {base_name} stored in {accessibility_path} and {insights_path}")
+
+    return issues_automatic_json, issues_overview_json
     
     
 

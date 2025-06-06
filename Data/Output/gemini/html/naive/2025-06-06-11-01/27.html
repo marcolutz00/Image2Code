@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Basket</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #333333;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: flex-start;
+            min-height: 100vh;
+        }
+
+        .header {
+            background-color: #333333;
+            color: #ffffff;
+            padding: 10px 20px;
+            text-align: center;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 960px;
+            margin: 20px auto;
+            background-color: #333333;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .basket-container {
+            background-color: #ffffff;
+            color: #333333;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .button {
+            background-color: #00acc1;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #00838f;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.8em;
+            color: #ffffff;
+        }
+        .top-bar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+            box-sizing: border-box;
+        }
+
+        .top-bar-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .top-bar-links a {
+            color: #ffffff;
+            text-decoration: none;
+        }
+        .your-current-basket {
+            font-size: 16px;
+            color: #000;
+            margin-bottom: 20px;
+        }
+
+        .basket-content {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-bottom: 20px;
+        }
+
+        .basket-empty {
+            text-align: center;
+            font-style: italic;
+        }
+
+        .sum-section {
+            display: flex;
+            justify-content: flex-end;
+            margin-top: 20px;
+        }
+
+        .sum-label {
+            font-weight: bold;
+            margin-right: 10px;
+        }
+
+        .sum-value {
+            font-weight: bold;
+        }
+
+        .buttons-section {
+            display: flex;
+            gap: 10px;
+        }
+
+        .recalculate-button {
+            background-color: #aaaaaa;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            width: auto;
+        }
+
+        .clear-basket-button {
+            background-color: transparent;
+            border: none;
+            color: #333333;
+            cursor: pointer;
+        }
+
+        .purchase-button {
+            background-color: #00acc1;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        .footer-note {
+            font-size: 12px;
+            color: #333333;
+            text-align: left;
+            line-height: 1.4;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <div class="top-bar-links">
+            <a href="#">CLICK HERE TO LOG IN</a>
+            <span>OR</span>
+            <a href="#">CLICK HERE TO SIGN UP</a>
+        </div>
+        <div class="top-bar-links">
+            <a href="#">CHECK OUT</a>
+            <a href="#">EXPLORE</a>
+            <a href="#">
+            </a>
+        </div>
+    </div>
+
+    <div style="position: absolute; top: 20px; right: 20px; background-color: blue; width: 180px; height: 200px;"></div>
+    <div style="position: absolute; top: 110px; right: 210px; font-size: 16px; color: #ffffff; padding: 5px;font-weight: 100;">Chat with a live person! <br>[PHONE REDACTED]</div>
+   
+    <div style="width: 100%; background-color: #333333; padding: 20px; text-align: center;">
+        <a href="#" style="color: #ffffff; font-size: 24px; text-decoration: none;">☰</a>
+    </div>
+   
+    <div class="container">
+            <button class="button">KEEP SHOPPING</button>
+        
+        
+            <div class="your-current-basket">
+                Your Current Basket
+            </div>
+
+            <div class="basket-content">
+                <div class="basket-empty">
+                    YOUR SHOPPING BASKET IS EMPTY.
+                </div>
+            </div>
+            
+            <div class="sum-section">
+                <span class="sum-label">SUM</span>
+                <span class="sum-value">$0.00</span>
+            </div>
+
+            <button class="purchase-button">PURCHASE</button>
+
+            <div class="buttons-section">
+                <button class="recalculate-button">RECALCULATE</button>
+                <button class="clear-basket-button">Clear Basket</button>
+            </div>
+           
+        <div class="footer">
+            <input type="checkbox" id="viewBasket">
+            <label for="viewBasket" style="color: #333333;"> View my current basket anytime I buy something.</label>
+            <p class="footer-note">
+                This website does not process live trades. If a credit card is put in, it will not have a sum charged right away. As a result of the special parts being sold, a sales contact
+                from Century 2001 will call to organize getting any new work or other unique dealing instructions you want. There is a notes area during checkout to add any unique
+                details regarding the request. As soon as the sales contact knows all they must and they have verified the costs on this request, a request answer will be sent by postal
+                service, email or fax to you. If the request is good the order will be carried out through the payment picked. To use your own work to put on the goods
+                <a href="#" style="color: #00acc1;text-decoration: none;">contact us</a> for the
+                right way to send the file. To learn about valid images, check out the
+                <a href="#" style="color: #00acc1;text-decoration: none;">image page</a> . *** Tax will be on stuff sent to Florida.
+            </p>
+        </div>
+    </div>
+</body>
+</html>

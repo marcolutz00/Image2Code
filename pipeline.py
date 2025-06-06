@@ -57,10 +57,11 @@ def _process_image_iterative(client, model, html_generated, accessibility_data):
         Afterwards, the LLM will return fixed code and it will be stored in file.
     '''
 
-    number_iterations = 5
+    number_iterations = 3
     for i in range(number_iterations):
-        # get code snippets with violations (important +-3 lines around the file)
-        html_snippets = utils_iterative_prompt.get_html_snippets(html_generated, accessibility_data)
+        html_snippets = utils_iterative_prompt.get_violation_snippets(html_generated, accessibility_data)
+        refine_prompt = utils_prompt.get_prompt("iterative_refine")
+        final_refine_prompt = f"{refine_prompt}\n\n{html_snippets}"
 
 
 
@@ -97,7 +98,9 @@ async def _analyze_outputs(image, model, prompt_strategy):
 
     # 3. Analyze Accessibility Issues
     # await accessibilityIssues.enrich_with_accessibility_issues(image_name, input_html_path, input_accessibility_path, input_insight_path)
-    await accessibilityIssues.enrich_with_accessibility_issues(image_name, output_html_path, output_accessibility_path, output_insight_path)
+    accessibility_issues, accessibility_issues_overview = await accessibilityIssues.enrich_with_accessibility_issues(image_name, output_html_path, output_accessibility_path, output_insight_path)
+
+    return benchmark_score, accessibility_issues, accessibility_issues_overview
 
 
 def _overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy, date=DATE):
@@ -112,7 +115,7 @@ def _overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy, 
 async def main():
     model = "gemini" # option openai, gemini, qwen_local, qwen_hf, llama_local, llama_hf, hf-finetuned
     model_dir = model.split("_")[0]
-    prompt_strategy = "reason" # option naive, zero-shot, reason, iterative
+    prompt_strategy = "naive" # option naive, zero-shot, reason, iterative
 
     # 1. Load API-Key and define model strategy
     strategy = utils_general.get_model_strategy(model)
@@ -134,8 +137,8 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            if int(image.split(".")[0]) < 11:
-                continue
+            # if int(image.split(".")[0]) < 7:
+            #     continue
 
             image_information = {
                 "name": os.path.splitext(image)[0],
@@ -143,10 +146,10 @@ async def main():
             }
             
             # 4. Start the API Call and store information locally
-            result = await _process_image(client, image_information, prompt, model_dir, prompt_strategy)
+            generated_html = await _process_image(client, image_information, prompt, model_dir, prompt_strategy)
 
             # 5. Analyze outputs for Input & Output
-            await _analyze_outputs(image, model_dir, prompt_strategy)
+            _, accessibility_issues, _ = await _analyze_outputs(image, model_dir, prompt_strategy)
 
 
             print("----------- Done -----------\n")
