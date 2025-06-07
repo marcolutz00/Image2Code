@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Just Say G'day</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #0030ff;
+            color: white;
+            text-align: left;
+            padding: 50px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .hero .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .hero button {
+            background-color: #63f5ff;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .hero a {
+            color: #63f5ff;
+            text-decoration: none;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #f4f4f4;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Main Content */
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container h2 {
+            font-size: 2.5em;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            margin-bottom: 15px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Utilties */
+        .btn {
+            background-color: #333;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .btn-primary {
+            background-color: #007bff;
+        }
+
+        .placeholder {
+            background-color: rgba(0, 0, 255, 0.3);
+            /* Blue with 30% opacity */
+            border: 1px dashed blue;
+            /* Dashed blue border for better visibility */
+        }
+
+        /* New styles from the image */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            color: #333;
+        }
+
+        .hero {
+            background-color: #0030ff;
+            color: white;
+            padding: 50px;
+        }
+
+        .hero h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.1em;
+            margin-bottom: 30px;
+        }
+
+        .hero .buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .hero button {
+            background-color: #63f5ff;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .hero a {
+            color: #63f5ff;
+            text-decoration: none;
+        }
+
+        nav {
+            padding: 10px 0;
+            text-align: center;
+            font-size: 0.9em;
+            /* Reduced font size */
+            color: #333;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+            margin: 0 10px;
+            padding: 5px;
+        }
+
+        .container {
+            padding: 20px;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .container h2 {
+            font-size: 2em;
+            /* Reduced font size */
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container p {
+            margin-bottom: 15px;
+        }
+
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: left;
+            padding: 20px 0;
+        }
+
+        .footer-section {
+            display: inline-block;
+            /* Adjust as needed */
+            vertical-align: top;
+            /* Align to the top */
+            padding: 0 10px;
+            /* Add some padding on the sides */
+        }
+
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            display: block;
+            padding: 5px;
+        }
+
+        .footer h4 {
+            margin-bottom: 10px;
+        }
+
+        .footer p {
+            margin: 0;
+        }
+
+        .footer hr {
+            border-color: #666;
+            margin: 20px 0;
+        }
+
+        .footer small {
+            display: block;
+            text-align: center;
+        }
+
+        .footer-menu {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        /* Custom Button Styles */
+        .custom-button {
+            border: none;
+            padding: 12px 24px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;
+            transition: background-color 0.3s ease;
+            /* Smooth transition for hover effect */
+            font-weight: bold;
+        }
+
+        .custom-button.primary {
+            background-color: #63f5ff;
+            color: black;
+            /* Match your primary color */
+        }
+
+        .custom-button.secondary {
+            background-color: #63f5ff;
+            color: black;
+            /* Match your secondary color */
+        }
+
+        .custom-button:hover {
+            opacity: 0.8;
+            /* Slightly reduce opacity on hover */
+        }
+
+        .custom-link {
+            color: #63f5ff;
+            text-decoration: none;
+            font-size: 1.1em;
+            /* Increase font size for readability */
+            display: inline-block;
+            /* Helps with spacing and hover effects */
+            transition: color 0.3s ease;
+            /* Smooth transition for hover effect */
+            padding: 5px;
+        }
+
+        .custom-link:hover {
+            color: #63f5ff;
+            /* Slightly change color on hover */
+            text-decoration: underline;
+            /* Add underline on hover */
+        }
+
+        /* Singles in Section */
+        .singles-in {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .singles-in p {
+            font-size: 1.3em;
+            margin-bottom: 20px;
+        }
+
+        .singles-in a {
+            background-color: #04828f;
+            color: white;
+            padding: 12px 24px;
+            text-decoration: none;
+            border-radius: 5px;
+            display: inline-block;
+            margin: 5px;
+            transition: background-color 0.3s ease;
+        }
+
+        .singles-in a:hover {
+            background-color: #035a63;
+        }
+
+        .inline-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .inline-list li {
+            display: inline;
+            margin-right: 10px;
+        }
+
+        .footer {
+            background-color: #17344a;
+            color: white;
+            padding: 20px;
+            font-size: 0.8em;
+        }
+
+        .footer-section {
+            display: inline-block;
+            margin-right: 20px;
+            vertical-align: top;
+            width: 30%;
+        }
+
+        .footer-section:last-child {
+            margin-right: 0;
+        }
+
+        .footer a {
+            color: white;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer hr {
+            border-color: #444;
+            margin: 20px 0;
+        }
+
+        .footer small {
+            text-align: center;
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero">
+        <div class="placeholder" style="width: 100px; height: 100px; float: left; margin-right: 20px;"></div>
+        <!-- Placeholder image -->
+        <h1>Connect with incredible singles today.</h1>
+        <p>Say hello to local singles in your area who are ready for fun, excitement, and a bit of romance right now.</p>
+        <p>Build your free profile to check your matches</p>
+        <div class="buttons">
+            <button class="custom-button primary">Sign up for free now</button>
+            <button class="custom-button secondary">Log in</button>
+        </div>
+        <p><a href="#" class="custom-link">Older than 50? Try our mature dating site</a></p>
+        <div class="placeholder" style="width: 200px; height: 200px; float: right; margin-right: 20px;"></div>
+        <!-- Placeholder image -->
+
+        <button style="float: right;background-color: #63f5ff;
+            color: black;
+            border: none;
+            padding: 10px 20px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 5px;">Sign in</button>
+
+    </div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Singles</a>
+        <a href="#">Gold Coast</a>
+        <a href="#">Bonogin</a>
+    </nav>
+
+    <div class="container">
+        <h2>Singles Bonogin</h2>
+        <p>Meeting singles in Bonogin is simple and enjoyable with justsaygday.com. As one of Australia's top matchmaking sites,
+            it's a great place to find that special someone you've been looking for.</p>
+        <p>Life as a single guy or girl in Bonogin can be exciting, but many of us are searching for someone to share life's highs
+            and lows, enjoy new experiences, and snuggle up during chilly winter nights. With new members joining Australia's
+            hottest online dating site every month in search of friendship and romance, your ideal match could be just a few clicks
+            away.</p>
+        <p>Finding a date is simple and enjoyable with our desktop site and easy-to-use mobile platform. Our latest smartphone-
+            friendly version is our most advanced yet—and the best part is, there's nothing to download or install. Just sign up for
+            free and start browsing right away. <a href="#">justsaygday.com</a> From any mobile device, you can instantly access our mobile
+            platform. It offers all the popular features of the desktop site, plus exclusive mobile-enhanced tools such as:</p>
+        <p>Who's Near Me - Discover singles in your area using advanced geo-location technology that keeps your exact location
+            private.</p>
+        <p>Upload Photos and Videos - Instantly share moments by uploading pictures and videos directly from your phone's
+            camera.</p>
+        <p>Send 'Icebreakers' and 'Winks' - Easily start a conversation and show your interest with fun, flirty gestures.</p>
+        <p>Advanced Personality Matching and Suggestions - Get matched with compatible singles through smart personality
+            profiling and receive tailored recommendations automatically.</p>
+
+        <h2>Find the person who's right for you</h2>
+
+        <p>What's your ideal man like—outgoing, sensitive, adventurous, gentle, tall, muscular, or slim?</p>
+        <p>Find that special someone to share your journey with—the next person you say g'day to could be the one.</p>
+        <a href="#">Search single women in Bonogin</a> <a href="#">Search single men in Bonogin</a> <a href="#">Dating in
+            Bonogin</a>
+    </div>
+    <section class="singles-in">
+        <div class="buttons">
+            <a href="#">Advancetown</a>
+            <a href="#">Arundel</a>
+            <a href="#">Arundel Bc</a>
+        </div>
+        <div class="buttons">
+            <a href="#">Arundel Dc</a>
+        </div>
+    </section>
+    <footer class="footer">
+        <div class="footer-section">
+            <h3>Just Say G'day</h3>
+            <p>SSL secureScamalytics</p>
+        </div>
+        <div class="footer-section">
+            <h3>Pages</h3>
+            <a href="#">Local singles</a>
+            <a href="#">Mature dating</a>
+            <a href="#">Blog</a>
+            <a href="#">Completing your dating profile</a>
+        </div>
+        <div class="footer-section">
+            <h3>Company</h3>
+            <a href="#">Terms</a>
+            <a href="#">Privacy</a>
+            <a href="#">Cookies</a>
+            <a href="#">Facebook</a>
+        </div>
+        <hr>
+        <small>© Copyright notice - Site design and content copyright justsaygday.com
+            Individuals pictured are models and are used for illustrative purposes only.</small>
+    </footer>
+</body>
+
+</html>

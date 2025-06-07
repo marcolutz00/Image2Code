@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JokeBuddha</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.4;
+            font-size: 13px;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            width: 800px;
+            margin: 20px auto;
+        }
+
+        .header {
+            background-color: #f8f9fa;
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .header a {
+            margin-right: 10px;
+            color: #007bff; /* Ensure sufficient contrast */
+        }
+
+        .search-box {
+            margin-top: -5px;
+        }
+
+        .search-box input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .content {
+            display: flex;
+        }
+
+        .main-content {
+            width: 60%;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 40%;
+            padding: 20px;
+        }
+
+        .volume-quips, .useful-links, .recent-activity {
+            margin-bottom: 20px;
+        }
+
+        .volume-quips h2, .useful-links h2, .recent-activity h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .useful-links a, .recent-activity a {
+            display: block;
+            padding: 5px 0;
+            color: #007bff; /* Ensure sufficient contrast */
+        }
+
+        .similar-topics {
+            margin-bottom: 20px;
+        }
+
+        .similar-topics h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .similar-topics a {
+            margin-right: 5px;
+            display: inline-block;
+            color: #007bff; /* Ensure sufficient contrast */
+        }
+
+        .top-gag-writers {
+            margin-bottom: 20px;
+        }
+
+        .top-gag-writers h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .latest-comments {
+            margin-bottom: 20px;
+        }
+
+        .latest-comments h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+
+        .latest-comments p {
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            border-top: 1px solid #eee;
+        }
+
+        .joke-item {
+            margin-bottom: 20px;
+        }
+
+        .joke-item p {
+            margin-bottom: 5px;
+        }
+
+        .like-buttons {
+            margin-top: 5px;
+        }
+
+        .like-buttons a {
+            margin-right: 10px;
+        }
+
+        .rating {
+            display: inline-block;
+            margin-right: 10px;
+        }
+
+        .comments {
+            display: inline-block;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .comment-icon {
+            margin-right: 5px;
+        }
+
+        .comment-text {
+            font-size: 12px;
+            color: #777;
+        }
+        .category {
+            display: inline-block;
+            margin-right: 10px;
+            color: #007bff; /* Ensure sufficient contrast */
+        }
+        .sidebar div:not(.search-box) {
+            margin-bottom: 20px;
+        }
+
+        .sidebar h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .sidebar input[type="email"] {
+            width: 90%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .top-gag-writers div {
+            margin-bottom: 5px;
+        }
+
+        .top-gag-writers strong {
+            margin-right: 10px;
+        }
+        .top-gag-writers a {
+            text-decoration: none;
+            color: #007bff;
+        }
+        .top-gag-writers a:hover {
+            text-decoration: underline;
+        }
+        .main-content .joke-item .rating, .main-content .joke-item .comments {
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .main-content .joke-item .comments {
+            color: #777;
+            font-size: 12px;
+        }
+        .sidebar .similar-topics a {
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            color: #007bff;
+            text-decoration: none;
+        }
+        .sidebar .similar-topics a:hover {
+            text-decoration: underline;
+        }
+        .sidebar .top-gag-writers .top-gag-writers-list {
+            margin-top: 10px;
+        }
+        .sidebar .top-gag-writers .top-gag-writers-list > div {
+            margin-bottom: 5px;
+        }
+        .sidebar .top-gag-writers .top-gag-writers-list strong {
+            margin-right: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div>
+                <h1><a href="#">Hilarious Jokes</a></h1>
+                <a href="#">Most Popular</a>
+                <a href="#">Most Commented</a>
+                <a href="#">Newest</a>
+            </div>
+            <div>
+                <a class="category" href="#">Shorties</a>
+                <a class="category" href="#">Dumb</a>
+                <a class="category" href="#">Bald</a>
+                <a class="category" href="#">Mr T</a>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="Search gags">
+            </div>
+        </header>
+        <div class="content">
+            <main class="main-content">
+                <section class="volume-quips">
+                    <h2>Volume Quips</h2>
+                    <h3>Comical Jokes</h3>
+                    <div class="joke-item">
+                        <p>Picard "Mr</p>
+                        <p>Picard "Mr. LaForge, have you had any luck with your attempts to find a flaw in the Borg? more...</p>
+                        <div class="like-buttons">
+                            <a href="#"><img src="https://i.imgur.com/t7Bf9bB.png" alt="Like" width="15"> 1</a>
+                            <a href="#"><img src="https://i.imgur.com/u6n1R3L.png" alt="Dislike" width="15"> </a>
+                            <a class="comments" href="#"> comments ( 0 )</a>
+                        </div>
+                    </div>
+
+                    <div class="joke-item">
+                        <p>Bell Labs Proves Existence of Dark Suckers</p>
+                        <p>Bell Labs Proves Existence of Dark Suckers For years it was believed that electric bulbs emitted light. more...</p>
+                        <div class="like-buttons">
+                            <a href="#"><img src="https://i.imgur.com/t7Bf9bB.png" alt="Like" width="15"> 1</a>
+                            <a href="#"><img src="https://i.imgur.com/u6n1R3L.png" alt="Dislike" width="15"> 0</a>
+                             <a class="comments" href="#"> comments ( 0 )</a>
+                        </div>
+                    </div>
+
+                    <div class="joke-item">
+                        <p>Windows and The Borg</p>
+                        <p>Picard: "Mr. LaForge, have you had any success with your
+                            attempts at finding a weakness in the Borg? And Mr. Data, have you been
+                            able to access their command pathways?"
+                            Geordi: "Yes, Captain. In fact, we found the answer by
+                            searching through our archives on late Twentieth-century computing
+                            technology."
+                            Geordi presses a key, and a logo appears on the computer screen.
+                            Riker looks puzzled. "What the hell is \'Microsoft\'?"
+                            Data turns to answer.
+                            this program, for some reason called \'Windows\', through the Borg command
+                            pathways. Once inside their root command unit, it will begin consuming
+                            system resources at an unstoppable rate."
+                            Picard: "But the Borg have the ability to adapt. Won\'t
+                            they alter their processing systems to increase their storage capacity?"
+                            Data: "Yes, Captain. But when \'Windows\' detects this, it
+                            creates a new version of itself more... </p>
+                        <div class="like-buttons">
+                            <a href="#"><img src="https://i.imgur.com/t7Bf9bB.png" alt="Like" width="15"> 0</a>
+                            <a href="#"><img src="https://i.imgur.com/u6n1R3L.png" alt="Dislike" width="15"> 0</a>
+                             <a class="comments" href="#"> comments ( 0 )</a>
+                        </div>
+                    </div>
+
+                    <div class="joke-item">
+                        <p>Bell Labs Shows Dark Suckers Exist</p>
+                        <p>Bell Labs Proves Existence of Dark Suckers For years it has been believed that light bulbs
+                            gave light. However, recent data from Bell Labs has proven otherwise. more...</p>
+                        <div class="like-buttons">
+                            <a href="#"><img src="https://i.imgur.com/t7Bf9bB.png" alt="Like" width="15"> 0</a>
+                            <a href="#"><img src="https://i.imgur.com/u6n1R3L.png" alt="Dislike" width="15"> 0</a>
+                            <a class="comments" href="#"> comments ( 0 )</a>
+                        </div>
+                    </div>
+                    <div class="joke-item">
+                        <p>What\'s the fluid volume of Monica Lewinsky\'s
+                            mouth?</p>
+                        <p>What\'s the fluid capacity of Monica Lewinsky\'s mouth? 1 U. S. leader</p>
+                        <div class="like-buttons">
+                            <a href="#"><img src="https://i.imgur.com/t7Bf9bB.png" alt="Like" width="15"> 0</a>
+                            <a href="#"><img src="https://i.imgur.com/u6n1R3L.png" alt="Dislike" width="15"> 0</a>
+                             <a class="comments" href="#"> comments ( 0 )</a>
+                        </div>
+                    </div>
+
+                    <div class="more-jokes">
+                        <a href="#">More Jokes</a>
+                    </div>
+
+                    <section class="useful-links">
+                        <h2>Useful Links</h2>
+                        <a href="#">Add a Great Page</a>
+                    </section>
+
+                    <section class="recent-activity">
+                        <h2>Recent Activity</h2>
+                        <a href="#">Picard "Mr</a>
+                        <a href="#">Senator questions judge's role in lesbian wedding by Anonym</a>
+                        <a href="#">You have the capacity to learn from by Anonym</a>
+                        <a href="#">Dark Suckers by Anonym</a>
+                        <a href="#">Senator questions judge's role in lesbian wedding</a>
+                        <a href="#">Bell Labs Proves Existence of Dark Suckers</a>
+                        <a href="#">Senator questions judge's role in lesbian wedding</a>
+                    </section>
+                </section>
+            </main>
+            <aside class="sidebar">
+                <div>
+                    <h2>Follow Chuckles Hub</h2>
+                    <input type="email" placeholder="Get a Joke of the Day to your email">
+                </div>
+
+                <section class="similar-topics">
+                    <h2>Similar Topics</h2>
+                    <a href="#">Ability</a>
+                    <a href="#">Adapt</a>
+                    <a href="#">Answer</a>
+                    <a href="#">Apparently</a>
+                    <a href="#">Begin</a>
+                    <a href="#">Believe</a>
+                    <a href="#">Borg</a>
+                    <a href="#">Capacity</a>
+                    <a href="#">Captain</a>
+                    <a href="#">Command</a>
+                    <a href="#">Compensate</a>
+                    <a href="#">Data</a>
+                    <a href="#">Deep</a>
+                    <a href="#">Found</a>
+                    <a href="#">Geordi</a>
+                    <a href="#">Hours</a>
+                    <a href="#">Increase</a>
+                    <a href="#">Logo</a>
+                    <a href="#">Microsoft</a>
+                    <a href="#">Pathways</a>
+                    <a href="#">Picard</a>
+                    <a href="#">Processing</a>
+                    <a href="#">Reason</a>
+                    <a href="#">Resources</a>
+                    <a href="#">Riker</a>
+                    <a href="#">Scanners</a>
+                    <a href="#">Something</a>
+                    <a href="#">Space</a>
+                    <a href="#">Storage Unit</a>
+                </section>
+
+                <section class="top-gag-writers">
+                    <h2>Top Gag Writers</h2>
+                    <a href="#">week</a>
+                    <a href="#">month</a>
+                    <a href="#">overall</a>
+
+                    <div class="top-gag-writers-list">
+                        <div>
+                            <a href="#"><img src="https://i.imgur.com/t7Bf9bB.png" alt="Like" width="15"> 1</a>
+                            <a href="#"><img src="https://i.imgur.com/u6n1R3L.png" alt="Dislike" width="15"> 0</a>
+                            <a href="#">SWEETLY BEAT</a>
+                            <a href="#"> 1 joke</a>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="latest-comments">
+                    <h2>Latest Comments</h2>
+                    <p>Alex: Good one!</p>
+                    <p>Jack: I think the joke should be worded differently.</p>
+                    <p>Douglas: Funniest thing ever</p>
+                    <p>†dajer™: In the much shorter version of this joke the song used was "My country \'tiz\' of thee".</p>
+                    <p>Jerome Byanski: Works for me</p>
+                </section>
+
+                <div>
+                    <h2>Got a Funny Gag?</h2>
+                    <a href="#">Tell a Gag</a>
+                </div>
+            </aside>
+        </div>
+        <footer class="footer">
+            JokeBuddha.com © 2010-2023 <a href="#">Terms & Privacy</a><br>
+            We love good humor and obviously very funny jokes followed by a great laugh!
+        </footer>
+    </div>
+</body>
+</html>

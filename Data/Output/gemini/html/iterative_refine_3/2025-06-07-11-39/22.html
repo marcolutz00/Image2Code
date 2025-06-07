@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 800px;
+            background-color: #fff;
+            margin-top: 20px;
+            padding: 20px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 14px;
+        }
+
+        .post {
+            margin-bottom: 20px;
+            padding: 15px;            border-radius: 5px;
+        }
+
+        .post-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .post-header img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: blue;
+        }
+
+        .post-header .user-info {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .post-header .user-info span {
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .post-content {
+            font-size: 14px;
+            color: #343a40;
+            line-height: 1.6;
+        }
+
+        .sidebar {
+            width: 200px;
+            margin-left: 20px;
+            padding: 15px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        .sidebar h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+
+        .sidebar input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+        }
+
+        .sidebar a {
+            display: block;
+            margin-bottom: 8px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .main-content {            width: 600px;
+        }
+        .discussion-title {            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #343a40;
+        }
+        .mission-creation {            display: inline-block;
+            padding: 5px 10px;
+            background-color: #e9ecef;
+            border-radius: 3px;
+            font-size: 12px;
+            color: #495057;
+        }
+        .ago {            font-size: 12px;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+        .post:nth-child(odd) {            background-color: #f9f9f9;
+        }
+        .sign-in-up {            padding: 15px;
+            font-size: 14px;
+            color: #6c757d;
+        }
+
+        .sign-in-up a {            text-decoration: none;
+        }
+        .footer {            width: 800px;
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 12px;
+            color: #6c757d;
+            display: flex;
+            justify-content: space-between;
+        }
+        .sidebar-container {            width: 200px;
+        }
+        .add-response {            padding: 8px 12px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            background-color: white;
+            cursor: pointer;
+            font-size: 14px;
+            display: block;
+            text-decoration: none;
+            margin-top: 10px;
+        }
+        .sidebar-list {            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar-list li {            margin-bottom: 10px;
+            font-size: 14px;
+        }
+
+        /* Accessibility Fixes */
+        .header a,
+        .sign-in-up a,
+        .sidebar a,
+        .add-response,
+        strong,
+        .post-header .user-info span {
+            color: #007bff; /* Default link color */
+        }
+
+        .post-header .user-info span {
+            color: #777; /* Ensure sufficient contrast */
+        }
+
+        .add-response {
+            color: #007bff;
+        }
+        .add-response:hover {
+            background-color: #0056b3;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+
+<main class="container">
+    <header class="header">
+        <div>
+            <h1 class="discussion-title">Spawn Plane Radius Question <span class="mission-creation">Mission Creation</span></h1>
+        </div>
+    </header>
+    <p class="ago">5 YEARS AGO</p>
+
+    <article class="post">
+        <div class="post-header">
+            <img src="src/placeholder.jpg" alt="User Avatar">
+            <div class="user-info">
+                <span><strong>Fletcher</strong></span>
+                <span>4 Sep 2018</span>
+            </div>
+        </div>
+        <div class="post-content">
+            <p>Good day, all.</p>
+            <p>In the Virtual AI System setup, specifically the range, does this need adjustment to see ground elements? During a high-
+                altitude bombing run using camera lock, does the radius need to match the altitude?</p>
+            <p>I'm curious because setting the plane radius to, say, 3000m while flying at mach 1 could cause frame rate drops due to my
+                system loading many new objects at once.</p>
+            <p>Thanks in advance!</p>
+        </div>
+    </article>
+
+    <article class="post">
+        <div class="post-header">
+            <img src="src/placeholder.jpg" alt="User Avatar">
+            <div class="user-info">
+                <span><strong>AngusDLX</strong></span>
+                <span>4 Sep 2018</span>
+            </div>
+        </div>
+        <div class="post-content">
+            <p>The camera's view isn't considered in the spawn range, the aircraft itself is.</p>
+            <p>My ALIVE experiences with attack planes were problematic due to the spawn range. High settings caused frame rate drops
+                due to objects constantly appearing/disappearing (especially near many foes).</p>
+            <p>My workaround was a 200m spawn radius (to show bots at airports) and using a drone to trigger target spawns. However,
+                AR-2 Darter drones sometimes malfunctioned or were destroyed before reaching the attack area.</p>
+            <p>SpyderBlack suggested replacing the drone with an object calling ALiVE_spawnSources to generate spawns at a location,
+                but I couldn't implement it.</p>
+            <p>Another option: If ALiVE tasks involve air units, perhaps it could create an object using spawnSources, deleting it after
+                destruction. I'm unsure if it's possible, but it's a thought for the developers.</p>
+            <p>This way, plane users can attack from afar without performance hits. Multiple planes with high ranges can cause issues.</p>
+        </div>
+    </article>
+
+    <article class="post">
+        <div class="post-header">
+            <img src="src/placeholder.jpg" alt="User Avatar">
+            <div class="user-info">
+                <span><strong>Fletcher</strong></span>
+                <span>4 Sep 2018</span>
+            </div>
+        </div>
+        <div class="post-content">
+            <p>Got it, thanks!</p>
+        </div>
+    </article>
+
+    <article class="post">
+        <div class="post-header">
+            <img src="src/placeholder.jpg" alt="User Avatar">
+            <div class="user-info">
+                <span><strong>Friznit</strong></span>
+                <span>5 Sep 2018 Administrator</span>
+            </div>
+        </div>
+        <div class="post-content">
+            <p>That's a viable concept. We could enable folks to add a "Target" over objectives, spawning an invisible object calling
+                ALIVE_spawnSources.</p>
+        </div>
+    </article>
+
+    <div class="sign-in-up">
+        <p><strong><a href="#">Sign In</a></strong> or <strong><a href="#">Register</a></strong> to post!</p>
+    </div>
+</main>
+
+<aside class="sidebar-container">
+    <div class="sidebar">
+        <label for="find">Find:</label>
+        <input type="text" id="find" placeholder="Find">
+        <a href="#" class="add-response">Add a Response</a>
+
+        <h2>First Post</h2>
+        <ul class="sidebar-list">
+            <li><a href="#">2018</a></li>
+            <li><a href="#">September</a></li>
+        </ul>
+
+        <a href="#">Newest</a>
+    </div>
+</aside>
+<footer class="footer">
+    <div>Top of Page</div>
+    <div>Powered by esoTalk</div>
+</footer>
+
+</body>
+</html>

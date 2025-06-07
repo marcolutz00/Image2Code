@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Application Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            margin-top: 20px;
+        }
+
+        .header {
+            background-color: #e91e63;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .form-group .radio-group label {
+            display: inline-block;
+            margin-right: 15px;
+            font-weight: normal;
+        }
+
+        .form-group input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        button {
+            background-color: #e91e63;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .site-provided {
+            font-size: smaller;
+            color: #0000FF;
+        }
+
+        .rules {
+            color: #0000FF;
+        }
+
+        .blue-box {
+            width: 180px;
+            height: 115px;
+            background-color: blue;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="blue-box"></div>
+        <header class="header">
+            <h1>Artist Application</h1>
+        </header>
+        <main>
+            <p style="text-align:left;">Share your background with us and tell us more. <a href="#">Help</a> if you need more
+                details.</p>
+            <form>
+                <div class="form-group">
+                    <label for="given_name">Given Name *</label>
+                    <input type="text" id="given_name" name="given_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="family_name">Family Name *</label>
+                    <input type="text" id="family_name" name="family_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">E-mail Address *</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="contact_number">Contact Number *</label>
+                    <input type="text" id="contact_number" name="contact_number" required>
+                </div>
+                <div class="form-group">
+                    <label for="location">Where Are You Located? *</label>
+                    <input type="text" id="location" name="location" required>
+                </div>
+                <div class="form-group">
+                    <label>I Confirm That I am Over 18 *</label>
+                    <label><input type="radio" name="over_18" value="true" required>True</label>
+                </div>
+                <div class="form-group">
+                    <label>Do You Run a Production Business? *</label>
+                    <label><input type="radio" name="production_business" value="true" required>True</label>
+                    <label><input type="radio" name="production_business" value="false">False</label>
+                </div>
+                <div class="form-group">
+                    <label for="background">Explain Your Background More Fully. *</label>
+                    <textarea id="background" name="background" rows="4" required></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="work_type">Your Favourite Type of Work *</label>
+                    <select id="work_type" name="work_type" required>
+                        <option value="" disabled selected>Select</option>
+                        <!-- Add options dynamically if needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Do You Have the Skills Required to Make Full Episodes (12-25 minutes) on a Small Budget and
+                        To
+                        Carry on Making Episodes if they get Commissioned by Our Users? *</label>
+                    <label><input type="radio" name="skills" value="true" required>True</label>
+                    <label><input type="radio" name="skills" value="false">False</label>
+                </div>
+                <div class="form-group">
+                    <label>If You are a Final Nominee, Can You Begin Development by May or June (2019)? *</label>
+                    <label><input type="radio" name="nominee" value="true" required>True</label>
+                    <label><input type="radio" name="nominee" value="false">False</label>
+                </div>
+                <div class="form-group">
+                    <label for="people">Names of People You Will Work With (if Applicable)</label>
+                    <textarea id="people" name="people" rows="4"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Are you a PGA Member?</label>
+                    <label><input type="radio" name="pga" value="true">True</label>
+                    <label><input type="radio" name="pga" value="false">False</label>
+                </div>
+                <div class="form-group">
+                    <label for="social">OPTIONAL: Having Big Social Media Connections will help. Tell us of Social Media
+                        You
+                        Frequent.</label>
+                    <textarea id="social" name="social" rows="4"></textarea>
+                    <p style="font-size:smaller;">0/800 characters</p>
+                </div>
+                <div class="form-group">
+                    <label for="hear_us">How did you hear of us?</label>
+                    <select id="hear_us" name="hear_us">
+                        <option value="" disabled selected>Select</option>
+                        <!-- Add options dynamically if needed -->
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label><input type="checkbox" name="rules" required>* I Have Read and I Accept the Rules
+                        Below</label><br>
+                    <a class="rules" href="#">Our Guidelines</a>
+                </div>
+                <a href="#">Abuse Notification</a>
+                <button type="submit" style="background-color:#333; color:white;">Send</button>
+                <p class="site-provided">Site Provided by <span style="color:blue;">■</span></p>
+            </form>
+        </main>
+    </div>
+</body>
+
+</html>

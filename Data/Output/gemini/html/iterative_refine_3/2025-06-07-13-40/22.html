@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spawn Plane Radius Question</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .header {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .header a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            padding: 15px;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+        }
+
+        .question-title {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .mission-creation {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #e9ecef;
+            border-radius: 3px;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .post {
+            padding: 15px;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            display: flex;
+        }
+
+        .post-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: blue;
+            margin-right: 15px;
+        }
+
+        .post-content {
+            flex: 1;
+        }
+
+        .post-meta {
+            font-size: 0.8em;
+            color: #6c757d;
+            margin-bottom: 5px;
+        }
+
+        .sidebar {
+            width: 20%;
+            float: right;
+            padding: 20px;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+        }
+
+        .sidebar-title {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            margin-bottom: 15px;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px;            border: 1px solid #ced4da;            border-radius: 3px;
+        }
+
+        .add-response {            margin-bottom: 15px;            padding: 8px 12px;            background-color: #f0f0f0;            border: 1px solid #ced4da;            border-radius: 3px;            color: #007bff;            text-decoration: none;            display: block;
+        }
+
+        .first-post, .newest {
+            margin-bottom: 5px;
+        }
+
+        .sign-in-up {
+            padding: 15px;
+            background-color: #f7f7f7;
+            border-radius: 5px;
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .sign-in-up a {
+            color: #007bff;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 10px;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <a href="#" style="color:#007bff;">Register</a>
+            <a href="#" style="color:#007bff;">Sign In</a>
+            <a href="#" style="color:#007bff;">Start Discussion</a>
+        </header>
+
+        <main>
+            <div class="question">
+                <h1 class="question-title">Spawn Plane Radius Question <span class="mission-creation">Mission Creation</span></h1>
+                <p style="font-size: 0.8em; color: #777;">5 YEARS AGO</p>
+            </div>
+            
+            <div style="display: flex;">
+                <div style="width: 75%;">
+                    <div class="post">
+                        <div class="post-avatar"></div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <a href="#" style="color: #212529; text-decoration: none; font-weight: bold;">Fletcher</a> 4 Sep 2018
+                            </div>
+                            <p>Good day, all.</p>
+                            <p>In the Virtual AI System setup, specifically the range, does this need adjustment to see ground elements? During a high-
+                            altitude bombing run using camera lock, does the radius need to match the altitude?</p>
+                            <p>I'm curious because setting the plane radius to, say, 3000m while flying at mach 1 could cause frame rate drops due to my
+                            system loading many new objects at once.</p>
+                            <p>Thanks in advance!</p>
+                        </div>
+                    </div>
+
+                    <div class="post">
+                        <div class="post-avatar" style="background-color: #ddd;">A</div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <a href="#" style="color: #212529; text-decoration: none; font-weight: bold;">AngusDLX</a> 4 Sep 2018
+                            </div>
+                            <p>The camera's view isn't considered in the spawn range, the aircraft itself is.</p>
+                            <p>My ALIVE experiences with attack planes were problematic due to the spawn range. High settings caused frame rate drops
+                            due to objects constantly appearing/disappearing (especially near many foes).</p>
+                            <p>My workaround was a 200m spawn radius (to show bots at airports) and using a drone to trigger target spawns. However,
+                            AR-2 Darter drones sometimes malfunctioned or were destroyed before reaching the attack area.</p>
+                            <p>SpyderBlack suggested replacing the drone with an object calling ALiVE_spawnSources to generate spawns at a location,
+                            but I couldn't implement it.</p>
+                            <p>Another option: If ALiVE tasks involve air units, perhaps it could create an object using spawnSources, deleting it after
+                            destruction. I'm unsure if it's possible, but it's a thought for the developers.</p>
+                            <p>This way, plane users can attack from afar without performance hits. Multiple planes with high ranges can cause issues.</p>
+                        </div>
+                    </div>
+
+                    <div class="post">
+                        <div class="post-avatar"></div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <a href="#" style="color: #212529; text-decoration: none; font-weight: bold;">Fletcher</a> 4 Sep 2018
+                            </div>
+                            <p>Got it, thanks!</p>
+                        </div>
+                    </div>
+
+                    <div class="post">
+                        <div class="post-avatar"></div>
+                        <div class="post-content">
+                            <div class="post-meta">
+                                <a href="#" style="color: #212529; text-decoration: none; font-weight: bold;">Friznit</a> 5 Sep 2018 <span style="color: #777;">Administrator</span>
+                            </div>
+                            <p>That's a viable concept. We could enable folks to add a "Target" over objectives, spawning an invisible object calling
+                            ALIVE_spawnSources.</p>
+                        </div>
+                    </div>
+
+                    <div class="sign-in-up">
+                        <a href="#" style="color:#007bff;">Sign In</a> or <a href="#" style="color:#007bff;">Register</a> to post!
+                    </div>
+                </div>
+
+                <aside style="width: 25%; padding-left: 20px;">
+                    <div class="search-box">
+                        <input type="text" placeholder="Find" aria-label="Search">
+                    </div>
+                    <a class="add-response" href="#" style="color:#007bff;">Add a Response</a>
+                    <hr style="border-top: 1px solid #ccc;">
+                    <p class="sidebar-title">First Post</p>
+                    <p><a href="#" class="first-post">2018</a></p>
+                    <p><a href="#" class="newest">September</a></p>
+                    <p><a href="#" class="newest">Newest</a></p>
+                </aside>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <a href="#" style="color:#007bff;">Top of Page</a>
+            <p>Powered by esoTalk</p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spoken Book</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header styles */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-links {
+            font-size: 12px;
+        }
+
+        .header-links a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .search-bar {
+            margin-top: 10px;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+        }
+
+        .search-bar a {
+            display: block;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Catalog styles */
+        .catalog {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);            gap: 10px;
+        }
+
+        .catalog a {
+            text-decoration: none;
+            color: #007bff;
+            text-align: center;
+        }
+
+        /* Main content styles */
+        .main-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr 1fr;
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .sidebar {
+            padding: 10px;
+        }
+
+        .sidebar h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 5px;
+        }
+
+        .sidebar a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .book-details {
+            padding: 10px;
+        }
+
+        .book-details h2 {
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+
+        .book-details h3 {
+            font-size: 14px;
+            color: #6c757d;
+            margin-bottom: 10px;
+        }
+
+        .book-details p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+
+        .book-details strong {
+            font-weight: bold;
+        }
+
+        .book-cover {
+            text-align: center;
+        }
+
+        .book-cover img {
+            width: 150px;
+            height: 200px;
+            object-fit: cover;
+            border: 1px solid #ccc;
+        }
+
+        .reader-section {
+            margin-top: 20px;
+        }
+
+        .reader-table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .reader-table th, .reader-table td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .reader-table th {
+            font-weight: bold;
+            font-size: 12px;
+        }
+
+        .reader-table td {
+            font-size: 12px;
+        }
+
+        /* Footer styles */
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f8f9fa;
+            border-top: 1px solid #ddd;
+        }
+
+        .placeholder-image {
+            width: 150px;
+            height: 200px;
+            background-color: blue;
+            margin: 10px auto;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .button.itunes {
+            background-color: #007bff;
+        }
+
+        .button.rss {
+            background-color: #ff9800;
+        }
+
+        .button.torrent {
+            background-color: #9c27b0;
+        }
+
+        a:focus {
+            outline: 2px solid blue;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-links">
+                <a href="#" style="color: #007bff;">Info</a> | <a href="#" style="color: #007bff;">Feedback</a> | <a href="#" style="color: #007bff;">Groups</a> | <a href="#" style="color: #007bff;">Assistance</a>
+            </div>
+        </header>
+        <div class="search-bar">
+            <label for="search">Find by Writer, Work or Speaker</label>
+            <input type="text" id="search" name="search" placeholder="Find by Writer, Work or Speaker">
+            <a href="#" style="color: #007bff;">Refined Search</a>
+        </div>
+        <div class="placeholder-image"></div>
+        <p>Audio rendering of texts within the commons</p>
+        <nav>
+        <div class="catalog">
+            <a href="#" style="color: #007bff;">Writer</a>
+            <a href="#" style="color: #007bff;">Work</a>
+            <a href="#" style="color: #007bff;">Category/Subject</a>
+            <a href="#" style="color: #007bff;">Speaking in</a>
+        </div>
+        </nav>
+        <main class="main-content">
+            <aside class="sidebar">
+                <h3>Support Spoken Book</h3>
+                <ul>
+                    <li><a href="#" style="color: #007bff;">Praise the narrator</a></li>
+                    <li>Spoken Book texts are freely available within USA. Please ascertain local laws on use within your region prior to retrieving, as use laws differ worldwide.</li>
+                </ul>
+                <h3>Listen or grab file (help?)</h3>
+                <ul>
+                    <li><a href="#" class="button" style="color: white;">All works (zip) Get It</a></li>
+                    <li><a href="#" class="button itunes" style="color: white;">Get via iTunes iTunes</a></li>
+                    <li><a href="#" class="button rss" style="color: white;">RSS Channel RSS</a></li>                    
+                    <li><a href="#" class="button torrent" style="color: white;">Get via torrent Torrent</a></li>
+                </ul>
+                <h3>File Details</h3>
+                <ul>
+                    <li>Total Length: 02:32:05</li>
+                    <li>Zipped size: 71MB</li>
+                    <li>Catalog Date: 2018-09-12</li>
+                    <li>Narrated by: Jim Locke</li>
+                    <li>Book Wrangler: Jim Locke</li>
+                    <li>Meta Wrangler: DaveC</li>
+                    <li>Final Checker: DaveC</li>
+                </ul>
+                <h3>Links</h3>
+                <ul>
+                    <li><a href="#" style="color: #007bff;">Internet Archive</a></li>
+                    <li><a href="#" style="color: #007bff;">Source Text</a></li>
+                    <li><a href="#" style="color: #007bff;">Wikipedia - Josephine Brown</a></li>
+                    <li><a href="#" style="color: #007bff;">M4B Audiobook (70MB)</a></li>
+                </ul>
+            </aside>
+            <article class="book-details">
+                <h2>Story of a Slave, As Told By His Daughter</h2>
+                <h3>Josephine Brown <span>(1839 - 1874)</span></h3>
+                <p>Josephine Brown's Story of a Slave directly tells the story of her father's life as previously published in earlier texts. It highlights the critical moments in his background but brings in relevant new data and her opinions about his life.</p>
+                <p><strong>Category:</strong> Biography & Autobiography</p>
+                <p><strong>Language:</strong> English</p>
+                <section class="reader-section">
+                    <table class="reader-table">
+                        <thead>
+                            <tr>
+                                <th scope="col">SECTION</th>
+                                <th scope="col">CHAPTER</th>
+                                <th scope="col">READER</th>
+                                <th scope="col">TIME</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td> 01</td>
+                                <td>Chapters 1 and 2</td>
+                                <td>Jim Locke</td>
+                                <td>00:14:18</td>
+                            </tr>
+                            <tr>
+                                <td> 02</td>
+                                <td>Chapters 3 and 4</td>
+                                <td>Jim Locke</td>
+                                <td>00:07:04</td>
+                            </tr>
+                            <tr>
+                                <td> 03</td>
+                                <td>Chapters 5 and 6</td>
+                                <td>Jim Locke</td>
+                                <td>00:09:26</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </section>
+            </article>
+            <aside class="book-cover">
+                <div class="placeholder-image"></div>
+                <a href="#" style="color: #007bff;">Cover art grab</a>
+                <a href="#" style="color: #007bff;">CD inlay download</a>
+            </aside>
+        </main>
+    </div>
+    <div class="placeholder-image"></div>
+    <footer class="footer"></footer>
+</body>
+</html>

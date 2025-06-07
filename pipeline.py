@@ -157,8 +157,8 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            # if int(image.split(".")[0]) < 7:
-            #     continue
+            if int(image.split(".")[0]) < 17:
+                continue
 
             image_information = {
                 "name": os.path.splitext(image)[0],
