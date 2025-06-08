@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            background-color: #f5f5f5;
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .form-container {
+            background-color: white;
+            width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            box-sizing: border-box;
+        }
+        .header {
+            background-color: #e92f4b;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .form-control {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        label span {
+            color: #f00;
+        }
+        input[type="text"],
+        input[type="email"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        textarea {
+            height: 80px;
+        }
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .radio-group input,
+        .checkbox-group input {
+            margin: 0;
+        }
+        .image-placeholder {
+            width: 100%;
+            height: 200px;
+            background-color: blue;
+            display: block;
+            margin-bottom: 15px;
+        }
+        .submit-section {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+        .submit-btn {
+            background-color: #cc33ff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+        .links {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+        }
+        a {
+            color: #3333ff;
+            text-decoration: none;
+        }
+        a:hover {
+            text-decoration: underline;
+        }
+        .small-text {
+            font-size: 12px;
+            color: #777;
+        }
+    </style>
+    <title>Artist Application</title>
+</head>
+<body>
+    <div class="form-container">
+        <img src="src/placeholder.jpg" alt="Image Placeholder" class="image-placeholder">
+        <div class="header">Artist Application</div>
+        <p>Share your background with us and tell us more. <a href="#">Help</a> if you need more details.</p>
+        <div class="form-control">
+            <label for="givenName">Given Name <span>*</span></label>
+            <input type="text" id="givenName" name="givenName">
+        </div>
+        <div class="form-control">
+            <label for="familyName">Family Name <span>*</span></label>
+            <input type="text" id="familyName" name="familyName">
+        </div>
+        <div class="form-control">
+            <label for="email">E-mail Address <span>*</span></label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div class="form-control">
+            <label for="contactNumber">Contact Number <span>*</span></label>
+            <input type="text" id="contactNumber" name="contactNumber">
+        </div>
+        <div class="form-control">
+            <label for="location">Where Are You Located? <span>*</span></label>
+            <input type="text" id="location" name="location">
+        </div>
+        <div class="form-control checkbox-group">
+            <label>I Confirm That I am Over 18 <span>*</span></label>
+            <input type="checkbox" id="over18" name="over18">
+            <label for="over18" class="small-text">True</label>
+        </div>
+        <div class="form-control">
+            <label for="productionBusiness">Do You Run a Production Business? <span>*</span></label>
+            <div class="radio-group">
+                <input type="radio" id="productionYes" name="productionBusiness">
+                <label for="productionYes" class="small-text">True</label>
+                <input type="radio" id="productionNo" name="productionBusiness">
+                <label for="productionNo" class="small-text">False</label>
+            </div>
+        </div>
+        <div class="form-control">
+            <label for="background">Explain Your Background More Fully. <span>*</span></label>
+            <textarea id="background" name="background"></textarea>
+        </div>
+        <div class="form-control">
+            <label for="workType">Your Favourite Type of Work <span>*</span></label>
+            <select id="workType" name="workType">
+                <option value="">Select</option>
+            </select>
+        </div>
+        <div class="form-control">
+            <label for="skills">Do You Have the Skills Required to Make Full Episodes (12-25 minutes) on a Small Budget and To Carry on Making Episodes If they get Commissioned by Our Users? <span>*</span></label>
+            <div class="radio-group">
+                <input type="radio" id="skillsYes" name="skills">
+                <label for="skillsYes" class="small-text">True</label>
+                <input type="radio" id="skillsNo" name="skills">
+                <label for="skillsNo" class="small-text">False</label>
+            </div>
+        </div>
+        <div class="form-control">
+            <label for="finalNominee">If You are a Final Nominee, Can You Begin Development by May or June (2019)? <span>*</span></label>
+            <div class="radio-group">
+                <input type="radio" id="finalYes" name="finalNominee">
+                <label for="finalYes" class="small-text">True</label>
+                <input type="radio" id="finalNo" name="finalNominee">
+                <label for="finalNo" class="small-text">False</label>
+            </div>
+        </div>
+        <div class="form-control">
+            <label for="names">Names of People You Will Work With (If Applicable)</label>
+            <textarea id="names" name="names"></textarea>
+        </div>
+        <div class="form-control">
+            <label for="pga">Are you a PGA Member? <span>*</span></label>
+            <div class="radio-group">
+                <input type="radio" id="pgaYes" name="pga">
+                <label for="pgaYes" class="small-text">True</label>
+                <input type="radio" id="pgaNo" name="pga">
+                <label for="pgaNo" class="small-text">False</label>
+            </div>
+        </div>
+        <div class="form-control">
+            <label for="socialMedia">OPTIONAL: Having Big Social Media Connections will help. Tell us of Social Media You Frequent.</label>
+            <textarea id="socialMedia" name="socialMedia"></textarea>
+        </div>
+        <p class="small-text">0/800 characters</p>
+        <div class="form-control">
+            <label for="hearAboutUs">How did you hear of us?</label>
+            <select id="hearAboutUs" name="hearAboutUs">
+                <option value="">Select</option>
+            </select>
+        </div>
+        <div class="form-control checkbox-group">
+            <input type="checkbox" id="acceptRules" name="acceptRules">
+            <label for="acceptRules" class="small-text">I Have Read and I Accept the Rules Below <span>*</span></label>
+        </div>
+        <a href="#" class="small-text">Our Guidelines</a>
+        <div class="links">
+            <a href="#">Abuse Notification</a>
+            <a href="#">Site Provided by <span style="background-color: blue; display: inline-block; width: 10px; height: 10px; vertical-align: middle;"></span></a>
+        </div>
+        <div class="submit-section">
+            <button class="submit-btn">Send</button>
+        </div>
+    </div>
+</body>
+</html>

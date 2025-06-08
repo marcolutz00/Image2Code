@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spawn Plane Radius Question</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0 20px;
+            color: #333;
+        }
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 0;
+        }
+        header .logo {
+            display: inline-block;
+            width: 50px;
+            height: 8px;
+            background-color: blue;
+            margin-right: auto;
+        }
+        header nav a {
+            color: #0044cc;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        header button {
+            background-color: #0044cc;
+            color: white;
+            border: none;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+        }
+        .title {
+            font-size: 20px;
+            margin-bottom: 10px;
+        }
+        .badge {
+            display: inline-block;
+            background-color: #ccc;
+            color: black;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+        .date {
+            background-color: #ccc;
+            font-size: 10px;
+            padding: 3px 5px;
+            display: inline-block;
+            margin: 20px 0;
+        }
+        .post {
+            background-color: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+        .author {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .author img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .name {
+            font-weight: bold;
+        }
+        .date-posted {
+            font-size: 12px;
+            color: #777;
+        }
+        .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        aside {
+            float: right;
+            width: 180px;
+            margin-top: 20px;
+        }
+        aside input {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        aside .checkbox-group {
+            margin-bottom: 20px;
+        }
+        aside .checkbox-group input {
+            margin-right: 5px;
+        }
+        aside .metadata {
+            font-size: 12px;
+            line-height: 1.5;
+            border-top: 1px solid #ccc;
+            padding-top: 10px;
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 12px;
+            text-align: center;
+            color: #777;
+        }
+        footer a {
+            color: #0044cc;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo"></div>
+        <nav>
+            <a href="#">Register</a>
+            <a href="#">Sign In</a>
+            <button>Start Discussion</button>
+        </nav>
+    </header>
+    <main>
+        <div class="title">Spawn Plane Radius Question <span class="badge">Mission Creation</span></div>
+        <div class="date">5 YEARS AGO</div>
+        
+        <div class="post">
+            <div class="author">
+                <img src="src/placeholder.jpg" alt="avatar">
+                <div>
+                    <div class="name">Fletcher <span class="date-posted">4 Sep 2018</span></div>
+                </div>
+            </div>
+            <div class="content">
+                Good day, all. <br><br>
+                In the Virtual AI System setup, specifically the range, does this need adjustment to see ground elements? During a high-altitude bombing run using camera lock, does the radius need to match the altitude? <br><br>
+                I'm curious because setting the plane radius to, say, 3000m while flying at mach 1 could cause frame rate drops due to my system loading many new objects at once. <br><br>
+                Thanks in advance!
+            </div>
+        </div>
+
+        <div class="post">
+            <div class="author">
+                <img src="src/placeholder.jpg" alt="avatar">
+                <div>
+                    <div class="name">AngusDLX <span class="date-posted">4 Sep 2018</span></div>
+                </div>
+            </div>
+            <div class="content">
+                The camera's view isn't considered in the spawn range, the aircraft itself is. <br><br>
+                My ALiVE experiences with attack planes were problematic due to the spawn range. High settings caused frame rate drops due to objects constantly appearing/disappearing (especially near many foes). <br><br>
+                My workaround was a 200m spawn radius (to show bots at airports) and using a drone to trigger target spawns. However, AR-2 Darter drones sometimes malfunctioned or were destroyed before reaching the attack area. <br><br>
+                SpyderBlack suggested replacing the drone with an object calling ALiVE_spawnSources to generate spawns at a location, but I couldn't implement it. <br><br>
+                Another option: If ALiVE tasks involve air units, perhaps it could create an object using spawnSources, deleting it after destruction. I'm unsure if it's possible, but it's a thought for the developers. <br><br>
+                This way, plane users can attack from afar without performance hits. Multiple planes with high ranges can cause issues.
+            </div>
+        </div>
+
+        <div class="post">
+            <div class="author">
+                <img src="src/placeholder.jpg" alt="avatar">
+                <div>
+                    <div class="name">Fletcher <span class="date-posted">4 Sep 2018</span></div>
+                </div>
+            </div>
+            <div class="content">
+                Got it, thanks!
+            </div>
+        </div>
+
+        <div class="post">
+            <div class="author">
+                <img src="src/placeholder.jpg" alt="avatar">
+                <div>
+                    <div class="name">Friznit <span class="date-posted">5 Sep 2018 Administrator</span></div>
+                </div>
+            </div>
+            <div class="content">
+                That's a viable concept. We could enable folks to add a "Target" over objectives, spawning an invisible object calling ALiVE_spawnSources.
+            </div>
+        </div>
+
+        <div class="post">
+            <div class="content">
+                <a href="#">Sign In</a> or <a href="#">Register</a> to post!
+            </div>
+        </div>
+    </main>
+
+    <aside>
+        <input type="text" placeholder="Find">
+        <button>Add a Response</button>
+        <div class="checkbox-group">
+            <input type="checkbox" id="firstpost"><label for="firstpost">First Post</label><br>
+            <input type="checkbox" id="2018"><label for="2018">2018</label><br>
+            <input type="checkbox" id="september"><label for="september">September</label><br>
+            <input type="checkbox" id="newest"><label for="newest">Newest</label>
+        </div>
+        <div class="metadata">
+            Top of Page<br>
+            Powered by esoTalk
+        </div>
+    </aside>
+
+    <footer>
+        Top of Page | Powered by esoTalk
+    </footer>
+</body>
+</html>

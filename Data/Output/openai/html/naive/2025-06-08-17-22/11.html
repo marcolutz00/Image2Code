@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+        header {
+            background-color: #d6d2cd;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header a {
+            text-decoration: none;
+            color: #555;
+            margin-left: 15px;
+            font-size: 14px;
+        }
+        header a:last-child {
+            margin-left: auto;
+        }
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .sidebar {
+            float: left;
+            width: 180px;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+        .sidebar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .sidebar li {
+            margin: 10px 0;
+        }
+        .content {
+            float: left;
+            width: calc(100% - 220px);
+        }
+        .content h2 {
+            font-size: 24px;
+            margin: 20px 0;
+        }
+        .content h3 {
+            font-size: 18px;
+            margin: 15px 0;
+        }
+        .content p {
+            font-size: 14px;
+            line-height: 1.6;
+        }
+        .code-block {
+            background-color: #e0e1e5;
+            padding: 15px;
+            font-size: 12px;
+            line-height: 1.5;
+            margin-top: 20px;
+            overflow-x: auto;
+        }
+        .code-block pre {
+            margin: 0;
+        }
+        .footer {
+            clear: both;
+            background-color: #3a3a3a;
+            color: #fff;
+            padding: 20px;
+            font-size: 14px;
+        }
+        .footer .footer-section {
+            float: left;
+            width: 30%;
+        }
+        .footer .footer-section h4 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+        .footer .footer-section ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        .footer .footer-section li {
+            margin: 5px 0;
+        }
+        .footer .footer-section img {
+            width: 80%;
+            display: block;
+            margin-top: 20px;
+        }
+    </style>
+    <title>Document</title>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#">FEATURES</a>
+            <a href="#">OPEN SOURCE</a>
+            <a href="#">ABOUT US</a>
+            <a href="#">DOCS</a>
+        </nav>
+        <div>
+            <a href="#">SIGN IN</a>
+            <a href="#">SIGN UP</a>
+        </div>
+    </header>
+    <div class="container">
+        <div class="sidebar">
+            <ul>
+                <li>Tutorials</li>
+                <li>Getting started</li>
+                <li>Explore Workspace</li>
+                <li>Stack Documentation</li>
+                <li><strong>Configuration Providers</strong></li>
+                <li>Archive</li>
+                <li>Atlas</li>
+                <li>AWS</li>
+                <ul>
+                    <li>aws_alb</li>
+                    <li>aws_alb_listener</li>
+                    <li>aws_alb_listener_rule</li>
+                    <li>aws_alb_target_group</li>
+                </ul>
+                <li><strong>Azure Service Management</strong></li>
+                <li>Provisioners</li>
+            </ul>
+        </div>
+        <div class="content">
+            <h2>aws_autoscaling_lifecycle_hook</h2>
+            <p>Supplies an AutoScaling Lifecycle Hook element.</p>
+            <h3>Example Usage</h3>
+            <div class="code-block">
+                <pre>
+resource:
+    aws_autoscaling_group:
+        foobar:
+            availability_zones:
+                - us-west-2a
+            name: terraform-test-foobar5
+            health_check_type: EC2
+            termination_policies:
+                - OldestInstance
+    tag:
+        key: Foo
+        value: foo-bar
+        propagate_at_launch: true
+    aws_autoscaling_lifecycle_hook:
+        foobar:
+            name: foobar
+            autoscaling_group_name: "${aws_autoscaling_group.foobar.name}"
+            default_result: CONTINUE
+            heartbeat_timeout: 2000
+            lifecycle_transition: 'autoscaling:EC2_INSTANCE_LAUNCHING'
+            notification_metadata: '{"foo": "bar"}\n'
+            notification_target_arn: 'arn:aws:sqs:us-east-1:444455556666:queue1'
+            role_arn: 'arn:aws:iam::123456789012:role/S3Access'
+                </pre>
+            </div>
+            <h3>Argument Specification</h3>
+            <p>The subsequent arguments are supported:</p>
+            <ul>
+                <li><strong>name</strong> - (Required) The lifecycle hook's name.</li>
+                <li><strong>autoscaling_group_name</strong> - (Required) Name of Auto Scaling group that you want to assign the lifecycle hook to.</li>
+                <li><strong>default_result</strong> - (Optional) Action Auto Scaling group should take when lifecycle hook timeout passes or if an unexpected failure arises.</li>
+                <li><strong>heartbeat_timeout</strong> - (Optional) Period of time, in seconds, before lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult setting.</li>
+            </ul>
+            <p>See this document's origin at <a href="https://terraform.io" target="_blank">Terraform.io</a></p>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-section">
+            <h4>For Teams</h4>
+            <ul>
+                <li>Platform for Training</li>
+                <li>Sales Automation</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Resources</h4>
+            <ul>
+                <li>Documentation</li>
+                <li>Blog</li>
+                <li>Start Here</li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>Company</h4>
+            <ul>
+                <li>About Us</li>
+                <li>Open Source</li>
+            </ul>
+            <img src="src/placeholder.jpg" alt="Placeholder">
+        </div>
+    </div>
+</body>
+</html>
