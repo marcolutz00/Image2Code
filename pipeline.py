@@ -24,7 +24,7 @@ OUTPUT_PATH = os.path.join(DATA_PATH, 'Output')
 NUMBER_ITERATIONS = 3
 DATE = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
 # Test
-# DATE = "2025-06-05-10-30"
+# DATE = "2025-06-08-15-35"
 
 
 async def _process_image(client, image_information, prompt, model, prompt_strategy):
@@ -129,13 +129,26 @@ def _overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy, 
        Accessibility Violation Ranking and benchmarks are calculated
        Place for the final insight overview: Results/[model]_[prompt-technique]_analysisAccessibilityIssues.json
     '''
-    datasetAnalyze.overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy, date)
+    if prompt_strategy == "iterative":
+        # Find amount of dirs that start with iterative
+        insight_dirs_strats = [d for d in os.listdir(insight_dir) if d.startswith('iterative')]
+        if not insight_dirs_strats:
+            print("No iterative directories found.")
+        else:
+            for prompt_strat in insight_dirs_strats:
+                insight_dir_path = os.path.join(insight_dir, prompt_strat, DATE)
+                accessibility_dir_path = os.path.join(accessibility_dir, prompt_strat, DATE)
+                datasetAnalyze.overwrite_insights(accessibility_dir_path, insight_dir_path, model, prompt_strat, date)
+    else:
+        accessibility_prompt_dir = os.path.join(accessibility_dir, prompt_strategy, date)
+        insight_prompt_dir = os.path.join(insight_dir, prompt_strategy, date)
+        datasetAnalyze.overwrite_insights(accessibility_prompt_dir, insight_prompt_dir, model, prompt_strategy, date)
 
 
 async def main():
-    model = "gemini" # option openai, gemini, qwen_local, qwen_hf, llama_local, llama_hf, hf-finetuned
+    model = "openai" # option openai, gemini, qwen_local, qwen_hf, llama_local, llama_hf, hf-finetuned
     model_dir = model.split("_")[0]
-    prompt_strategy = "iterative" # option naive, zero-shot, reason, iterative
+    prompt_strategy = "naive" # option naive, zero-shot, reason, iterative
 
     # 1. Load API-Key and define model strategy
     strategy = utils_general.get_model_strategy(model)
@@ -149,7 +162,7 @@ async def main():
     image_dir = os.path.join(INPUT_PATH, 'images')
 
     # Create output directory if it does not exist
-    output_html_path, output_accessibility_path, output_images_path, output_insights_path = utils_general.util_create_directories(OUTPUT_PATH, model, prompt_strategy, DATE)
+    output_base_html_path, output_base_accessibility_path, output_base_images_path, output_base_insights_path = utils_general.util_create_directories(OUTPUT_PATH, model, prompt_strategy, DATE)
 
     for image in utils_dataset.sorted_alphanumeric(os.listdir(image_dir)):
         image_path = os.path.join(image_dir, image)
@@ -157,8 +170,8 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            if int(image.split(".")[0]) < 17:
-                continue
+            # if int(image.split(".")[0]) < 48:
+            #     continue
 
             image_information = {
                 "name": os.path.splitext(image)[0],
@@ -186,8 +199,8 @@ async def main():
     #     None
     # )
     _overwrite_insights(
-        output_accessibility_path,
-        output_insights_path,
+        output_base_accessibility_path,
+        output_base_insights_path,
         model,
         prompt_strategy
     )

@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 600px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);        }
+
+        .header {
+            background-color: #e91e63;
+            color: white;
+            text-align: center;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-bottom: 5px;
+        }
+
+        textarea {
+            height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            gap: 20px;
+        }
+
+        .radio-group label {
+            font-weight: normal;
+        }
+
+        button {
+            background-color: #e91e63;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            opacity: 0.8;
+        }
+
+        .rules {
+            margin-top: 10px;
+        }
+
+        a {
+            color: #007bff;
+        }
+		.placeholder-image {
+            width: 100%;
+            height: 150px;
+            background-color: blue;
+            margin-bottom: 20px;
+        }
+        .row {
+            display: flex;
+            gap: 20px;
+        }
+
+        .row .form-group {
+            width: 100%;
+        }
+        .site-provided {
+            font-size: smaller;
+            color: #777;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+		<div class="placeholder-image"></div>
+    <main>
+        <div class="header">
+            <h1>Artist Application</h1>
+        </div>
+        <p>Share your background with us and tell us more. <a href="#">Help</a> if you need more details.</p>
+
+        <form>
+           <div class="row">
+            <div class="form-group">
+                <label for="givenName">Given Name *</label>
+                <input type="text" id="givenName" name="givenName">
+            </div>
+
+            <div class="form-group">
+                <label for="familyName">Family Name *</label>
+                <input type="text" id="familyName" name="familyName">
+            </div>
+           </div>
+
+            <div class="form-group">
+                <label for="email">E-mail Address *</label>
+                <input type="email" id="email" name="email">
+            </div>
+
+            <div class="form-group">
+                <label for="contactNumber">Contact Number *</label>
+                <input type="text" id="contactNumber" name="contactNumber">
+            </div>
+
+            <div class="form-group">
+                <label for="location">Where Are You Located? *</label>
+                <input type="text" id="location" name="location">
+            </div>
+
+            <div class="form-group">
+                <label>I Confirm That I am Over 18 *</label>
+				<div>
+                <input type="radio" id="over18True" name="over18" value="true">
+                <label for="over18True">True</label>
+				</div>
+            </div>
+
+            <div class="form-group">
+                <label>Do You Run a Production Business? *</label>
+				<div>
+                <input type="radio" id="productionTrue" name="production" value="true">
+                <label for="productionTrue">True</label><br>
+                <input type="radio" id="productionFalse" name="production" value="false">
+                <label for="productionFalse">False</label>
+				</div>
+            </div>
+
+            <div class="form-group">
+                <label for="background">Explain Your Background More Fully. *</label>
+                <textarea id="background" name="background"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="favWork">Your Favourite Type of Work *</label>
+                <select id="favWork" name="favWork">
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Do You Have the Skills Required to Make Full Episodes (12-25 minutes) on a Small Budget and To Carry on Making Episodes if they get Commissioned by Our Users? *</label>
+				<div>
+                <input type="radio" id="skillsTrue" name="skills" value="true">
+                <label for="skillsTrue">True</label>
+                <input type="radio" id="skillsFalse" name="skills" value="false">
+                <label for="skillsFalse">False</label>
+				</div>
+            </div>
+
+            <div class="form-group">
+                <label>If You are a Final Nominee, Can You Begin Development by May or June (2019)? *</label>
+				<div>
+                <input type="radio" id="nomineeTrue" name="nominee" value="true">
+                <label for="nomineeTrue">True</label>
+                <input type="radio" id="nomineeFalse" name="nominee" value="false">
+                <label for="nomineeFalse">False</label>
+				</div>
+            </div>
+
+            <div class="form-group">
+                <label for="peopleWork">Names of People You Will Work With (if Applicable)</label>
+                <textarea id="peopleWork" name="peopleWork"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Are you a PGA Member?</label>
+				<div>
+                <input type="radio" id="pgaTrue" name="pga" value="true">
+                <label for="pgaTrue">True</label>
+                <input type="radio" id="pgaFalse" name="pga" value="false">
+                <label for="pgaFalse">False</label>
+				</div>
+            </div>
+
+            <div class="form-group">
+                <label for="socialMedia">OPTIONAL: Having Big Social Media Connections will help. Tell us of Social Media You Frequent.</label>
+                <textarea id="socialMedia" name="socialMedia"></textarea>
+                <small>0/800 characters</small>
+            </div>
+
+            <div class="form-group">
+                <label for="hearAboutUs">How did you hear of us?</label>
+                <select id="hearAboutUs" name="hearAboutUs">
+                    <option value=""></option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox" id="rules" name="rules">
+                <label for="rules">I Have Read and I Accept the Rules Below</label>
+                <div class="rules">
+                    <a href="#">Our Guidelines</a>
+                </div>
+            </div>
+
+            <a href="#">Abuse Notification</a>
+			<div style="float:right;">
+            <small class="site-provided">Site Provided by</small> <img src="src/placeholder.jpg" style="width: 20px; height: 20px; vertical-align: middle;" alt=""/>
+			</div>
+            <br>
+            <button type="submit" style="background-color: #512da8; color: white;">Send</button>
+        </form>
+    </main>
+    </div>
+</body>
+</html>

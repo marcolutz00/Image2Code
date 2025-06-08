@@ -176,10 +176,15 @@ def util_create_directories(output_path, model, prompt_strategy, date):
         Create the necessary directories for the output
     '''
 
-    output_html_path = os.path.join(output_path, model, 'html', prompt_strategy, date)
-    output_accessibility_path = os.path.join(output_path, model, 'accessibility', prompt_strategy, date)
-    output_images_path = os.path.join(output_path, model, 'images', prompt_strategy, date)
-    output_insights_path = os.path.join(output_path, model, 'insights', prompt_strategy, date)
+    output_base_html_path = os.path.join(output_path, model, 'html')
+    output_base_accessibility_path = os.path.join(output_path, model, 'accessibility')
+    output_base_images_path = os.path.join(output_path, model, 'images')
+    output_base_insights_path = os.path.join(output_path, model, 'insights')
+
+    output_html_path = os.path.join(output_base_html_path, prompt_strategy, date)
+    output_accessibility_path = os.path.join(output_base_accessibility_path, prompt_strategy, date)
+    output_images_path = os.path.join(output_base_images_path, prompt_strategy, date)
+    output_insights_path = os.path.join(output_base_insights_path, prompt_strategy, date)
 
     # Create directories if they do not exist
     os.makedirs(output_html_path, exist_ok=True)
@@ -187,7 +192,13 @@ def util_create_directories(output_path, model, prompt_strategy, date):
     os.makedirs(output_images_path, exist_ok=True)
     os.makedirs(output_insights_path, exist_ok=True)
 
-    return output_html_path, output_accessibility_path, output_images_path, output_insights_path
+    # move placeholder.jpt to html folder
+    placeholder_path = os.path.join(os.path.dirname(__file__), 'placeholder.jpg')
+    placeholder_src_path = os.path.join(output_html_path, 'src')
+    os.makedirs(placeholder_src_path, exist_ok=True)
+    shutil.copy(placeholder_path, placeholder_src_path)
+
+    return output_base_html_path, output_base_accessibility_path, output_base_images_path, output_base_insights_path
 
 
 if __name__ == "__main__":

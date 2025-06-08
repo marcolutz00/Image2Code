@@ -1,0 +1,215 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+        "https://dequeuniversity.com/rules/axe/4.10/region",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
+      ],
+      "impact": "moderate",
+      "name": "Landmark & Region; Missing & Unique Landmarks;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+          "source": "axe-core",
+          "title": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+          "description": "Ensure landmarks are unique",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "landmark-is-unique",
+                "data": {
+                  "role": "navigation",
+                  "accessibleText": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<nav>\n            <a href=\"#\">Home</a>\n            <a href=\"#\">Contact</a>\n        </nav>",
+                    "target": [
+                      "footer > nav"
+                    ]
+                  }
+                ],
+                "impact": "moderate",
+                "message": "The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<nav>\n            <a href=\"#\">Merchandise</a>\n            <a href=\"#\">About Us</a>\n            <a href=\"#\">Sizes</a>\n            <a href=\"#\">Info</a>\n        </nav>",
+            "target": [
+              "header > nav"
+            ],
+            "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle4.Guideline4_1.4_1_2.H91.Select.Name"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/select-name"
+      ],
+      "impact": "critical",
+      "name": "Label; Select; Missing Label",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/select-name",
+          "source": "axe-core",
+          "title": "Select element must have an accessible name",
+          "description": "Ensure select element has an accessible name",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "implicit-label",
+                "data": {
+                  "implicitLabel": ""
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<label for=\"size\">\n            <select id=\"size\" name=\"size\">\n                <option>Small (S)</option>\n            </select>\n            </label>",
+                    "target": [
+                      "label"
+                    ]
+                  }
+                ],
+                "impact": "critical",
+                "message": "Element does not have an implicit (wrapped) <label>"
+              },
+              {
+                "id": "explicit-label",
+                "data": {
+                  "explicitLabel": ""
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<label for=\"size\">\n            <select id=\"size\" name=\"size\">\n                <option>Small (S)</option>\n            </select>\n            </label>",
+                    "target": [
+                      "label"
+                    ]
+                  }
+                ],
+                "impact": "critical",
+                "message": "Element does not have an explicit <label>"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<select id=\"size\" name=\"size\">\n                <option>Small (S)</option>\n            </select>",
+            "target": [
+              "#size"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/select-name",
+          "source": "lighthouse",
+          "title": "Select elements do not have associated label elements.",
+          "description": "Form elements without effective labels can create frustrating experiences for screen reader users. [Learn more about the `select` element](https://dequeuniversity.com/rules/axe/4.10/select-name).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-SELECT",
+              "path": "1,HTML,1,BODY,1,MAIN,1,DIV,5,LABEL,0,SELECT",
+              "selector": "main > div.product-details > label > select#size",
+              "boundingRect": {
+                "top": 759,
+                "bottom": 798,
+                "left": 193,
+                "right": 371,
+                "width": 179,
+                "height": 39
+              },
+              "snippet": "<select id=\"size\" name=\"size\">",
+              "nodeLabel": "Small (S)",
+              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-1-LABEL",
+                    "path": "1,HTML,1,BODY,1,MAIN,1,DIV,5,LABEL",
+                    "selector": "body > main > div.product-details > label",
+                    "boundingRect": {
+                      "top": 769,
+                      "bottom": 787,
+                      "left": 193,
+                      "right": 371,
+                      "width": 179,
+                      "height": 18
+                    },
+                    "snippet": "<label for=\"size\">",
+                    "nodeLabel": "Small (S)\n "
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

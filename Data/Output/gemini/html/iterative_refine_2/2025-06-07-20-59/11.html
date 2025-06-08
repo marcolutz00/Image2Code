@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aws_autoscaling_lifecycle_hook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        header ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        header ul li {
+            margin-right: 20px;
+        }
+
+        header ul li:last-child {
+            margin-right: 0;
+        }
+
+        header a {
+            text-decoration: none;
+            color: #007bff;
+            font-size: 14px;
+        }
+
+        /* Main Content Styles */
+        main {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        aside {
+            width: 25%;
+            padding-right: 20px;
+        }
+
+        article {
+            width: 75%;
+        }
+
+        aside ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        aside li {
+            margin-bottom: 10px;
+        }
+
+        aside a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 1.8em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1em;
+            margin-bottom: 15px;
+        }
+
+        /* Code Example Styles */
+        .code-example {
+            background-color: #f9f9f9;
+            padding: 10px;
+            border: 1px solid #eee;
+            margin-bottom: 20px;
+            overflow-x: auto;
+        }
+
+        .code-example pre {
+            white-space: pre-wrap;
+            font-family: monospace, monospace;
+            font-size: 14px;
+        }
+
+        /* Tabs */
+        .tabs {
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px;
+        }
+
+        .tab-buttons {
+            display: flex;
+        }
+
+        .tab-buttons button {
+            background-color: transparent;
+            border: none;
+            padding: 10px 20px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            color: #777;
+        }
+
+        .tab-buttons button.active {
+            border-bottom: 2px solid #333;
+            color: #333;
+        }
+
+        /* Argument Specification */
+        .argument-specification ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .argument-specification li {
+            margin-bottom: 10px;
+        }
+
+        .argument-specification li::before {
+            content: "• ";
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #444;
+            color: #fff;
+            padding: 30px 0;
+            text-align: left;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 10px;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #eee;
+        }
+        
+        .footer-section {
+            width: 20%;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <nav>
+                <ul>
+                    <li><a href="#">FEATURES</a></li>
+                    <li><a href="#">OPEN SOURCE</a></li>
+                    <li><a href="#">ABOUT US</a></li>
+                    <li><a href="#">DOCS</a></li>
+                </ul>
+            </nav>
+            <nav>
+                <ul>
+                    <li><a href="#">SIGN IN</a></li>
+                    <li><a href="#">SIGN UP</a></li>
+                </ul>
+            </nav>
+        </header>
+        <main>
+            <aside>
+                <ul>
+                    <li><a href="#">Tutorials</a></li>
+                    <li><a href="#">Getting started</a></li>
+                    <li><a href="#">Explore Workspace</a></li>
+                    <li><a href="#">Stack Documentation</a></li>                    
+                    <li><a href="#">Configuration</a></li>
+                    <li><a href="#">Providers</a></li>
+                    <li><a href="#">Archive</a></li>
+                    <li><a href="#">Atlas</a></li>
+                    <li><a href="#">AWS</a></li>                                      
+                    <li><a href="#">Data Sources</a></li>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">aws alb</a></li>
+                    <li><a href="#">aws_alb_listener</a></li>
+                    <li><a href="#">aws_alb_listener_rule</a></li>
+                    <li><a href="#">aws_alb_target_group</a></li>
+                    <li><a href="#">Azure Service Management</a></li>
+                    <li><a href="#">Provisioners</a></li>
+                </ul>
+            </aside>
+            <article>
+                <h1>aws_autoscaling_lifecycle_hook</h1>
+                <p>Supplies an AutoScaling Lifecycle Hook element.</p>
+                <h2>Example Usage</h2>
+                <div class="tabs">
+                    <div class="tab-buttons">
+                        <button class="active">yaml</button>
+                        <button>hcl</button>
+                    </div>
+                </div>
+                <div class="code-example">
+                    <pre><code>resource:
+  aws_autoscaling_group:
+    foobar:
+      availability_zones:
+        - us-west-2a
+      name: terraform-test-foobar5
+      health_check_type: EC2
+      termination_policies:
+        - OldestInstance
+      tag:
+        key: Foo
+        value: foo-bar
+      propagate_at_launch: true
+  aws_autoscaling_lifecycle_hook:
+    foobar:
+      name: foobar
+      autoscaling_group_name: '${aws_autoscaling_group.foobar.name}'
+      default_result: CONTINUE
+      heartbeat_timeout: 2000
+      lifecycle_transition: 'autoscaling:EC2_INSTANCE_LAUNCHING'
+      notification_metadata: |
+        {
+         "foo": "bar"
+        }
+      notification_target_arn: 'arn:aws:sqs:us-east-1:444455556666:queue1*'
+      role arn: 'arn:aws:iam::123456789012:role/S3Access'
+                    </code></pre>
+                </div>
+                <h2>Argument Specification</h2>
+                <p>The subsequent arguments are supported:</p>
+                <div class="argument-specification">
+                    <ul>
+                        <li>name - (Required) The lifecycle hook's name.</li>
+                        <li>autoscaling_group_name - (Required) Name of Auto Scaling group that you want to assign the lifecycle hook to.</li>
+                        <li>default_result - (Optional) Action Auto Scaling group should take when lifecycle hook timeout passes or if an unexpected failure arises.</li>
+                        <li>heartbeat_timeout - (Optional) Period of time, in seconds, before lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult setting</li>
+                    </ul>
+                </div>
+                <p>See this document's origin at Terraform.io</p>
+            </article>
+        </main>
+    </div>
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <img src="https://koding.com/images/koding-logo-white.svg" width="100" height="30" alt="Koding Logo">
+                <ul>
+                    <li><a href="#">For Teams</a></li>
+                    <li><a href="#">Platform for Training</a></li>
+                    <li><a href="#">Sales Automation</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <ul>
+                    <li><a href="#">Resources</a></li>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Blog</a></li>                    
+                    <li><a href="#">Start Here</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <ul>
+                    <li><a href="#">Company</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Open Source</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <ul>
+                    <li><a href="#">Contact</a></li>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                    <li><a href="#">Email Us</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
