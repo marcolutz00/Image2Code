@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site by Alex</title>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,700|Source+Code+Pro:400" rel="stylesheet">
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: #191919;
+            color: #efefef;
+        }
+        .container {
+            width: 80%;
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+        .title {
+            text-align: center;
+            font-weight: 700;
+            font-size: 36px;
+            border-bottom: 2px solid #f90;
+            padding-bottom: 20px;
+        }
+        .subtitle {
+            text-align: center;
+            font-weight: 300;
+            margin: 10px 0;
+            font-size: 18px;
+        }
+        .nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+        .nav a {
+            text-decoration: none;
+            color: #efefef;
+            margin: 0 20px;
+            font-weight: 300;
+        }
+        .post-date {
+            text-align: left;
+            margin-top: 40px;
+            font-weight: 300;
+            color: #999;
+        }
+        .post-title {
+            font-size: 28px;
+            margin: 20px 0;
+            font-weight: 700;
+        }
+        .post-tags .tag {
+            display: inline-block;
+            background-color: #333;
+            color: #efefef;
+            padding: 5px 10px;
+            margin: 5px;
+            font-size: 12px;
+            font-weight: 500;
+        }
+        .post-content {
+            margin: 20px 0;
+            line-height: 1.6;
+        }
+        .post-content a {
+            color: #ffcc00;
+            text-decoration: none;
+        }
+        .post-content code {
+            font-family: 'Source Code Pro', monospace;
+            background-color: #333;
+            padding: 2px 5px;
+            border-radius: 4px;
+        }
+        .share-button, .coffee-button {
+            display: block;
+            width: 100%;
+            text-align: center;
+            text-decoration: none;
+            padding: 15px;
+            background-color: #494949;
+            color: #ffcc00;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+        .coffee-button {
+            background-color: #ff4e50;
+            color: #fff;
+            font-size: 18px;
+        }
+        .related-posts {
+            margin-top: 60px;
+        }
+        .related-posts h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .related-post {
+            display: inline-block;
+            width: 48%;
+            background-color: #333;
+            padding: 15px;
+            box-sizing: border-box;
+            margin: 0 1%;
+            margin-bottom: 20px;
+            vertical-align: top;
+            border-radius: 8px;
+        }
+        .related-post h3 {
+            font-size: 18px;
+            margin: 10px 0;
+            font-weight: 500;
+        }
+        .related-post-date {
+            color: #999;
+            font-weight: 300;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px 0;
+            font-weight: 300;
+            color: #666;
+        }
+        .footer a {
+            color: #f90;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="title">Site by Alex</div>
+        <div class="subtitle">A world of code 💻, by Alejandro Martinez</div>
+        <div class="nav">
+            <a href="#">|</a>
+            <a href="#">Swift</a>
+            <a href="#">Dev</a>
+        </div>
+        <div class="post-date">June 5, 2016</div>
+        <hr style="border: none; height: 2px; background-color: #f90; margin: 20px 0;">
+        <div class="post-tags">
+            <div class="tag">Scripting</div>
+            <div class="tag">Swift</div>
+            <div class="tag">Goodies</div>
+        </div>
+        <h1 class="post-title">Easy Swift script auto-reloading hack</h1>
+        <div class="post-content">
+            <p>I was writing a <a href="#">Swift script</a> the other day, and I wanted it to run forever as a server, so I added a continuous running option. <strong>Forever.</strong></p>
+            <p>I just used a <code>repeat</code> loop with <code>NSTask</code>s that executed the script. <strong>Recursion.</strong></p>
+            <p>It turns out this is a neat hack for auto-reloading the script!</p>
+            <pre><code>let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() task.launchPath = Process.arguments.first! task.arguments = Array(Process.arguments.suffixFrom(1).filter( { $0 != reload } )) task.launch() task.waitUntilExit() } while true }</code></pre>
+            <p>Add this snippet to the script, then call it with the <code>reload</code> arg to loop it forever.</p>
+            <p>To call it from the command line:</p>
+            <p>main.swift reload other params Now just modify and save the script. Next time around, the changes will be there. If compilation fails, no problem! The old script will just retry.</p>
+            <p>It's not perfect. The console gets spammed, but it is great for rapid iteration.</p>
+            <p>Remember to use <a href="#">OS signals</a> to stop the looping task when the script is killed.</p>
+        </div>
+        <a href="#" class="share-button">Share to Twitter</a>
+        <div class="coffee-container">
+            <a href="#" class="coffee-button">Buy me coffee</a>
+        </div>
+        <hr style="border: none; height: 2px; background-color: #f90; margin: 60px 0;">
+        <div class="related-posts">
+            <h2>Keep Reading</h2>
+            <div class="related-post">
+                <h3>Next post</h3>
+                <p><strong>Simplify code with closures</strong></p>
+                <div class="related-post-date">June 7, 2016</div>
+            </div>
+            <div class="related-post">
+                <h3>Previous post</h3>
+                <p><strong>Catch OS signals in Swift</strong></p>
+                <div class="related-post-date">May 29, 2016</div>
+            </div>
+        </div>
+        <div class="related-posts">
+            <h2>You might like these posts</h2>
+            <div class="related-post">
+                <h3>Based on tag Swift</h3>
+                <p><strong>Compat SwiftUI modifiers</strong></p>
+                <div class="related-post-date">October 20, 2023</div>
+            </div>
+            <div class="related-post">
+                <h3>Based on tag Scripting</h3>
+                <p><strong>Export Reminders lists using Swift</strong></p>
+                <div class="related-post-date">May 8, 2019</div>
+            </div>
+            <div class="related-post">
+                <h3>Based on tag Goodies</h3>
+                <p><strong>Swift Collection prefix for tests</strong></p>
+                <div class="related-post-date">March 16, 2019</div>
+            </div>
+        </div>
+        <div class="tags">
+            <h2>Tags of this article</h2>
+            <div class="post-tags">
+                <div class="tag">Scripting</div>
+                <div class="tag">Swift</div>
+                <div class="tag">Goodies</div>
+            </div>
+        </div>
+        <div class="footer">
+            <a href="#">RSS</a> |
+            <a href="#">alexito4</a> |
+            <a href="#">alexito4</a> |
+            <a href="#">alexito4</a>
+            <div>Made with Publish</div>
+            <div style="color: #333; margin-top: 5px;">Open Door</div>
+        </div>
+    </div>
+</body>
+</html>

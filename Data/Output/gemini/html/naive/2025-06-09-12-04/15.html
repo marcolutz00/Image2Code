@@ -1,0 +1,440 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>JokeBuddha</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 600px;
+            margin: 20px auto;
+        }
+
+        h1,
+        h2 {
+            color: #222;
+            margin-bottom: 10px;
+        }
+
+        h1 {
+            font-size: 2em;
+        }
+
+        h2 {
+            font-size: 1.5em;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+
+        .joke {
+            border-bottom: 1px solid #eee;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .joke:last-child {
+            border-bottom: none;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.8em;
+            color: #777;
+        }
+
+        /* Additional Styles */
+        .top-bar {
+            background-color: #fff59d;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .top-bar a {
+            margin-right: 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .volume-quips {
+            margin-top: 20px;
+        }
+
+        .comical-jokes {
+            margin-bottom: 20px;
+        }
+
+        .top-bar-links {
+            display: inline-block;
+        }
+
+        .search-bar {
+            display: inline-block;
+            float: right;
+        }
+
+        input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .useful-links,
+        .recent-activity {
+            margin-top: 20px;
+        }
+
+        .recent-activity a {
+            display: block;
+            color: #333;
+            text-decoration: none;
+            padding: 5px 0;
+        }
+
+        .similar-topics {
+            margin-top: 20px;
+        }
+
+        .similar-topics a {
+            margin-right: 5px;
+            color: #333;
+            text-decoration: none;
+        }
+
+        .follow-chuck-hub {
+            margin-top: 20px;
+        }
+
+        .follow-chuck-hub input[type="email"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .comments {
+            color: #777;
+            font-size: 0.8em;
+            margin-left: 10px;
+        }
+
+        .recent-activity {
+            width: 300px;
+        }
+
+        .recent-activity a {
+            color: #333;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .similar-topics a {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            display: inline-block;
+        }
+
+        .top-gag-writers {
+            margin-top: 20px;
+        }
+
+        .top-gag-writers table {
+            width: 100%;
+        }
+
+        .top-gag-writers th,
+        .top-gag-writers td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .latest-comments {
+            margin-top: 20px;
+        }
+
+        .latest-comments p {
+            margin-bottom: 5px;
+        }
+
+        .footer {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .footer a {
+            color: #777;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .thumbs {
+            cursor: pointer;
+            font-size: 1.2em;
+            margin-left: 5px;
+        }
+
+        .thumbs:hover {
+            opacity: 0.8;
+        }
+
+        .top-bar-links a {
+            color: #333;
+        }
+
+        .recent-activity a {
+            color: #333;
+        }
+
+        .similar-topics a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .similar-topics a:hover {
+            text-decoration: underline;
+        }
+
+        .top-gag-writers {
+            font-size: 0.9em;
+        }
+
+        .latest-comments {
+            font-size: 0.9em;
+        }
+
+        .footer {
+            font-size: 0.8em;
+        }
+
+        .thumb-up,
+        .thumb-down {
+            display: inline-block;
+            margin: 3px;
+            cursor: pointer;
+        }
+
+        .thumb-up {
+            color: green;
+        }
+
+        .thumb-down {
+            color: red;
+        }
+
+        .thumb-up:hover,
+        .thumb-down:hover {
+            opacity: 0.7;
+        }
+
+        .month {
+            background-color: #ffcc80;
+        }
+
+        .recent-activity a {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .float-right {
+            float: right;
+        }
+
+        .clear {
+            clear: both;
+        }
+
+        .similar-topics a {
+            margin: 3px;
+            display: inline-block;
+        }
+
+        .latest-comments p {
+            margin-bottom: 3px;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="top-bar">
+            <div class="top-bar-links">
+                <a href="#">Hilarious Jokes</a>
+                <a href="#">Most Popular</a>
+                <a href="#">Most Commented</a>
+                <a href="#">Newest</a>
+                <a href="#">Shorties</a>
+                <a href="#">Dumb</a>
+                <a href="#">Bald</a>
+                <a href="#">Mr T</a>
+            </div>
+            <div class="search-bar">
+                <input type="text" placeholder="Search gags">
+            </div>
+            <div class="clear"></div>
+        </div>
+        <div class="volume-quips">
+            <h2>Volume Quips</h2>
+            <h3>Comical Jokes</h3>
+            <div class="joke">
+                <h4>Picard "Mr</h4>
+                <p>Picard "Mr. LaForge, have you had any luck with your attempts to find a flaw in the Borg?
+                    more...</p>
+                <div class="thumb-up">1</div>
+                <div class="thumb-down">0</div>
+                <span class="comments">comments (0)</span>
+            </div>
+            <div class="joke">
+                <h4>Bell Labs Proves Existence of Dark Suckers</h4>
+                <p>Bell Labs Proves Existence of Dark Suckers For years it was believed that electric bulbs
+                    emitted light. more...</p>
+                <div class="thumb-up">1</div>
+                <div class="thumb-down">0</div>
+                <span class="comments">comments (0)</span>
+            </div>
+            <div class="joke">
+                <h4>Windows and The Borg</h4>
+                <p>Picard: "Mr. LaForge, have you had any success with your
+                    attempts at finding a weakness in the Borg? And Mr. Data, have you been
+                    able to access their command pathways?"
+                </p>
+                <p>Geordi: "Yes, Captain. In fact, we found the answer by
+                    searching through our archives on late Twentieth-century computing
+                    technology."</p>
+                <p>Geordi presses a key, and a logo appears on the computer screen.</p>
+                <p>Riker looks puzzled. "What the hell is 'Microsoft'?"</p>
+                <p>Data turns to answer.</p>
+                <p>this program, for some reason called 'Windows', through the Borg command
+                    pathways. Once inside their root command unit, it will begin consuming
+                    system resources at an unstoppable rate."</p>
+                <p>Picard: "But the Borg have the ability to adapt. Won't
+                    they alter their processing systems to increase their storage capacity?"</p>
+                <p>Data: "Yes, Captain. But when 'Windows' detects this, it
+                    creates a new version of itself more...</p>
+                <div class="thumb-up">0</div>
+                <div class="thumb-down">0</div>
+                <span class="comments">comments (0)</span>
+            </div>
+            <div class="joke">
+                <h4>Bell Labs Shows Dark Suckers Exist</h4>
+                <p>Bell Labs Proves Existence of Dark Suckers For years it has been believed that light bulbs
+                    gave light. However, recent data from Bell Labs has proven otherwise. more...</p>
+                <div class="thumb-up">0</div>
+                <div class="thumb-down">0</div>
+                <span class="comments">comments (0)</span>
+            </div>
+            <div class="joke">
+                <h4>What's the fluid volume of Monica Lewinsky's
+                    mouth?</h4>
+                <p>What's the fluid capacity of Monica Lewinsky's mouth? 1 U. S. leader</p>
+                <div class="thumb-up">0</div>
+                <div class="thumb-down">0</div>
+                <span class="comments">comments (0)</span>
+            </div>
+            <h4>More Jokes</h4>
+            <div class="useful-links">
+                <h3>Useful Links</h3>
+                <a href="#" class="float-right">Add a Great Page</a>
+                <div class="clear"></div>
+            </div>
+            <div class="recent-activity">
+                <h3>Recent Activity</h3>
+                <a href="#">Picard "Mr</a>
+                <a href="#">Senator questions judge's role in lesbian wedding by Anonym</a>
+                <a href="#">You have the capacity to learn from by Anonym</a>
+                <a href="#">Dark Suckers by Anonym</a>
+                <a href="#">Senator questions judge's role in lesbian wedding</a>
+                <a href="#">Bell Labs Proves Existence of Dark Suckers</a>
+                <a href="#">Senator questions judge's role in lesbian wedding</a>
+            </div>
+        </div>
+        <div class="follow-chuck-hub">
+            <h3>Follow Chuckles Hub</h3>
+            <input type="email" placeholder="Get a Joke of the Day to your email">
+        </div>
+        <div class="similar-topics">
+            <h3>Similar Topics</h3>
+            <a href="#">Ability</a>
+            <a href="#">Adapt</a>
+            <a href="#">Answer</a>
+            <a href="#">Apparently</a>
+            <a href="#">Begin</a>
+            <a href="#">Believe</a>
+            <a href="#">Borg</a>
+            <a href="#">Capacity</a>
+            <a href="#">Captain</a>
+            <a href="#">Command</a>
+            <a href="#">Compensate</a>
+            <a href="#">Data</a>
+            <a href="#">Deep</a>
+            <a href="#">Found</a>
+            <a href="#">Geordi</a>
+            <a href="#">Hours</a>
+            <a href="#">Increase</a>
+            <a href="#">Logo</a>
+            <a href="#">Microsoft</a>
+            <a href="#">Pathways</a>
+            <a href="#">Picard</a>
+            <a href="#">Processing</a>
+            <a href="#">Reason</a>
+            <a href="#">Resources</a>
+            <a href="#">Riker</a>
+            <a href="#">Scanners</a>
+            <a href="#">Something</a>
+            <a href="#">Space</a>
+            <a href="#">Storage Unit</a>
+        </div>
+        <div class="top-gag-writers">
+            <h3>Top Gag Writers</h3>
+            <span class="week">week</span> <span class="month">month</span> <span class="overall">overall</span>
+            <table>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>SWEETLY BEAT</td>
+                        <td>1 joke</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div class="latest-comments">
+            <h3>Latest Comments</h3>
+            <p class="comment"><span class="bold">Alex:</span> Good one!</p>
+            <p class="comment"><span class="bold">Jack:</span> I think the joke should be worded
+                differently.</p>
+            <p class="comment"><span class="bold">Douglas:</span> Funniest thing ever</p>
+            <p class="comment"><span class="bold">â dajerâ¢â :</span> In the much shorter version of
+                this joke the song used was "My country
+                'tiz' of thee".</p>
+            <p class="comment"><span class="bold">Jerome Byanski:</span> Works for me</p>
+        </div>
+        <div>
+            <h4>Got a Funny Gag?</h4>
+            <p>Tell a Gag</p>
+        </div>
+        <div class="footer">
+            <p>JokeBuddha.com Â© 2010-2023 <a href="#">Terms & Privacy</a></p>
+            <p>We love good humor and obviously very funny jokes followed by a great laugh!</p>
+        </div>
+    </div>
+</body>
+
+</html>

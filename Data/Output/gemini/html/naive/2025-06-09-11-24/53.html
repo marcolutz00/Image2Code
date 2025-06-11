@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5dc;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #f5f5dc;
+            color: #333;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: 1px solid #e0e0d1;
+        }
+
+        header a {
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        header ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        #showcase {
+            min-height: 400px;
+            text-align: center;
+            color: #fff;
+        }
+        #showcase h1{
+            font-size: 50px;
+            margin-bottom: 10px;
+        }
+        #showcase p{
+            font-size: 20px;
+        }
+
+        #boxes{
+            margin-top: 20px;
+        }
+
+        #boxes .box{
+            float: left;
+            width: 30%;
+            padding: 10px;
+            text-align: center;
+        }
+        #boxes .box img{
+            width: 90px;
+        }
+
+        footer{
+            padding: 20px;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #333;
+            text-align: center;
+        }
+        header .highlight, header .current a{
+            color: #e8491d;
+            font-weight: bold;
+        }
+        /* Utilities */
+        .button_1{
+            height: 38px;
+            background: #e8491d;
+            border: 0;
+            padding-left: 20px;
+            padding-right: 20px;
+            color: #fff;
+        }
+        /* Main Content Styling */
+        #main{
+            float: left;
+            width: 68%;
+            padding: 0 30px;
+        }
+        #sidebar{
+            float: right;
+            width: 30%;
+            margin-top: 10px;
+            padding: 10px;
+        }
+        #sidebar .widget{
+            padding: 15px;
+            border: 1px solid #ddd;
+        }
+        /* Main Content Styling */
+        article#main-col{
+            float: left;
+            width: 65%;
+        }
+        /* Services */
+        #main .service{
+            padding: 20px;
+            border: 1px solid #cccccc;
+            margin-bottom: 5px;
+            background: #e6e6e6;
+        }
+        /* form */
+        @media(max-width: 768px){
+            header #branding,
+            header nav,
+            header nav li,
+            #newsletter h1,
+            #newsletter form,
+            #boxes .box,
+            article#main-col,
+            aside#sidebar{
+                float: none;
+                text-align: center;
+                width: 100%;
+            }
+            header{
+                padding-bottom: 50px;
+            }
+            #showcase h1{
+                margin-top: 40px;
+            }
+            #newsletter .button_1{
+                display: block;
+                width: 100%;
+            }
+            #newsletter form input[type="email"]{
+                width: 100%;
+                margin: 4px;
+            }
+        }
+        .top-nav {
+            background-color: #f5f5dc;
+            padding: 10px;
+        }
+
+        .top-nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: center;
+        }
+
+        .top-nav li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        .top-nav a {
+            text-decoration: none;
+            color: #808080;
+            font-size: 10px;
+        }
+        .main-nav {
+            background-color: #e8e8e8;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .main-nav ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            text-align: left;
+        }
+
+        .main-nav li {
+            display: inline;
+            margin: 0 20px;
+        }
+
+        .main-nav a {
+            text-decoration: none;
+            color: #777;
+            font-size: 14px;
+        }
+        .content {
+            display: flex;
+        }
+        #main {
+            flex: 70%;
+            padding: 20px;
+        }
+
+        #sidebar {
+            flex: 30%;
+            padding: 20px;
+        }
+        .infobox {
+            background-color: #f9e6d2;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        .infobox h3 {
+            color: #8b4513;
+            margin-top: 0;
+        }
+        .latest-questions {
+        background-color: #f9f2ef;
+        padding: 10px;
+        margin-bottom: 20px;
+        }
+
+        .latest-questions h3 {
+        color: #8b4513;
+        margin-top: 0;
+        }
+
+        .latest-questions li {
+        margin-bottom: 5px;
+        }
+        .latest-questions a {
+        text-decoration: none;
+        color: #8b4513;
+        display: block; /* Make the entire list item clickable */
+        padding: 5px; /* Add some padding for better click area */
+        background-color: #f0f0f0; /* Add a background color for visual separation */
+        border-bottom: 1px solid #e0e0e0; /* Add a subtle border */
+        }
+        .tags {
+            background-color: #cd5c5c;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            margin-right: 5px;
+        }
+        .answer {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+        .explanation {
+            margin-top: 10px;
+        }
+        .related-posts {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f9f2ef;
+        }
+        .share-buttons {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .share-buttons a {
+            display: inline-block;
+            margin-right: 10px;
+            padding: 8px 12px;
+            border: none;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .share-buttons .tweet {
+            background-color: #55acee;
+        }
+
+        .share-buttons .share {
+            background-color: #3b5998;
+        }
+
+        .share-buttons .share2 {
+            background-color: #daa520;
+        }
+
+        .share-buttons .share3 {
+            background-color: #20c997;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-nav">
+        <ul>
+            <li><a href="#">ABOUT</a></li>
+            <li><a href="#">DISCLAIM</a></li>
+            <li><a href="#">SITEMAP</a></li>
+            <li><a href="#">CONTACT</a></li>
+            <li><a href="#">PRIVACY</a></li>
+            <li><a href="#">KERALA PSC</a></li>
+        </ul>
+    </div>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <img src="src/placeholder.jpg" alt="logo" style="width: 188px; height: 118px;">
+            </div>
+        </div>
+    </header>
+    <div class="main-nav">
+        <div class="container">
+            <ul>
+                <li><a href="#">Main</a></li>
+                <li><a href="#">Notifications</a></li>
+                <li><a href="#">Exams</a></li>
+                <li><a href="#">Old Questions</a></li>
+                <li><a href="#">Syllabus</a></li>
+                <li><a href="#">Answer Key</a></li>
+                <li><a href="#">Study Materials</a></li>
+                <li><a href="#">Youtube</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="content">
+        <div id="main">
+            <div class="infobox">
+                <span class="tags">Information on India</span>
+                <span class="tags">Knowledge</span>
+                <span class="tags">Years</span>
+                <h2>In which year was the Indian Oil Corporation established?</h2>
+                <p>A - 1964</p>
+                <p>B - 1965</p>
+                <p>C - 1966</p>
+                <p>D - 1970</p>
+                <div class="answer">Answer : A</div>
+                <div class="explanation">
+                    Indian Oil Corporation is a state-owned Indian oil and gas enterprise, with its primary headquarters located in New
+                    Delhi. It stands as the largest commercial oil company in the nation.
+                </div>
+                <button>Show Answer</button>
+                <div class="share-buttons">
+                    <a href="#" class="tweet">Tweet</a>
+                    <a href="#" class="share">Share</a>
+                    <a href="#" class="share2">Share</a>
+                    <a href="#" class="share3">Share</a>
+                    <a href="#" class="share2">Share</a>
+                </div>
+            </div>
+            <div class="related-posts">
+                <h2>Related Posts</h2>
+            </div>
+            <div class="comments">
+                <h2>0 Comments:</h2>
+            </div>
+        </div>
+        <div id="sidebar">
+            <img src="src/placeholder.jpg" alt="ad" style="width: 270px; height: 118px; margin-bottom: 20px;">
+            <div class="latest-questions">
+                <h2>Latest Questions</h2>
+                <ul>
+                    <li><a href="#">Let's go for a walk, shall we?</a></li>
+                    <li><a href="#">Who organized the first Panthi Bhojanam in India?</a></li>
+                    <li><a href="#">She sang well, ________? (Question Tag)</a></li>                    
+                    <li><a href="#">I congratulate you ________ your success.</a></li>
+                    <li><a href="#">The owner of 'Samathwa Samajam"</a></li>
+                    <li><a href="#">There is an exception ________ every rule.</a></li>
+                    <li><a href="#">He died ________ a severe head injury.</a></li>
+                    <li><a href="#">Who was the first to organize "Panthi Bhojanam" in India?</a></li>
+                    <li><a href="#">Who was the founder of the Vidya Poshini Sabha?</a></li>
+                    <li><a href="#">Who among the following holds the ultimate authority to approve the
+                        expenditure of public funds in India?</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <footer>
+        <p>Created with by YesLearners.com - YesLearners</p>
+    </footer>
+</body>
+</html>

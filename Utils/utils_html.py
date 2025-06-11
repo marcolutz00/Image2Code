@@ -95,16 +95,18 @@ def clean_html_result(result):
         Output of LLMs can contain other stuff. Everything is deleted except <html> and everything between...
         If no final </html> is found, than just tkae the string
     '''
-    pattern = re.compile(r"<!DOCTYPE html.*?(?:</html>|$)",  # schnappt bis </html> ODER bis String-Ende
-                         re.DOTALL | re.IGNORECASE)
+    pattern = re.compile(r"<!DOCTYPE html.*?(?:</html>|$)", re.DOTALL | re.IGNORECASE)
     try:
         clean_result = pattern.search(result).group(0)
+        unescaped_html = clean_result.encode('utf-8').decode('unicode_escape')
+
+        # Only remove backslashes before <, > and whitespaces
+        cleaned_html = re.sub(r'\\(?=[<>\s])', '', unescaped_html)
     except Exception as e:
         print(f"Try again with this image. Error: {e}")
-        # If no match is found, return the original result
-        clean_result = None
+        cleaned_html = None
 
-    return clean_result
+    return cleaned_html.strip()
 
 
 def _get_page_size(driver, width=1280, max_height=15_000):
@@ -250,12 +252,12 @@ if __name__ == "__main__":
     htmls_path = os.path.join(DIR_PATH, "..", "Data", "Input", "html")
     images_path = os.path.join(DIR_PATH, "..", "Data", "Input", "images")
 
-    for html_file in os.listdir(htmls_path):
-        if html_file.endswith(".html"):
-            html_path = os.path.join(htmls_path, html_file)
-            image_path = os.path.join(images_path, f"{os.path.splitext(html_file)[0]}.png")
-            save_screenshots(html_path, image_path)
-            print(f"Screenshot saved for {html_file} at {image_path}")
+    # for html_file in os.listdir(htmls_path):
+    #     if html_file.endswith(".html"):
+    #         html_path = os.path.join(htmls_path, html_file)
+    #         image_path = os.path.join(images_path, f"{os.path.splitext(html_file)[0]}.png")
+    #         save_screenshots(html_path, image_path)
+    #         print(f"Screenshot saved for {html_file} at {image_path}")
 
 
 

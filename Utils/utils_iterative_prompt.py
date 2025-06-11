@@ -75,6 +75,6 @@ async def process_refinement_llm(client, prompt):
 
     result_clean = utils_html.clean_html_result(result_raw)
 
-    html_clean = result_clean.replace("\\n", "")
+    # html_clean = result_clean.replace("\\n", "")
 
-    return html_clean
+    return result_clean

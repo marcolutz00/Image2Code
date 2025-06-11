@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Site by Alex</title>
+<style>
+body {
+    font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+    background-color: #000;
+    color: #fff;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #fff;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    text-align: center;
+    padding: 40px 0;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 1.1em;
+    margin-bottom: 20px;
+}
+
+.date {
+    color: #999;
+    font-size: 0.9em;
+}
+
+.post-content {
+    margin-top: 30px;
+}
+
+.tags {
+    margin-top: 20px;
+}
+
+.tags a {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 0.85em;
+}
+
+.related-posts {
+    margin-top: 50px;
+}
+
+.related-posts h2 {
+    font-size: 1.4em;
+    margin-bottom: 20px;
+}
+
+.related-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+}
+
+.related-post {
+    background-color: #111;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.related-post h3 {
+    font-size: 1.1em;
+    margin-bottom: 10px;
+}
+
+.related-post p {
+    color: #999;
+    font-size: 0.85em;
+}
+
+footer {
+    margin-top: 50px;
+    text-align: center;
+    color: #999;
+    font-size: 0.8em;
+    padding-bottom: 20px;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #333;
+    margin: 30px 0;
+}
+
+/* Specific Styles */
+h1 {
+    font-size: 2.5em;
+}
+
+h2 {
+    font-size: 1.8em;
+}
+
+code {
+    background-color: #222;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.time {
+    float: right;
+}
+.buy-me-coffee {
+    background-color: #CD5C5C;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 20px 0;
+    display: block;
+    width: fit-content;
+    margin-left: auto;
+    margin-right: auto;
+}
+.single-tag {
+    display: inline-block;
+    padding: 5px 10px;
+    border: 1px solid #666;
+    border-radius: 5px;
+    margin-right: 10px;
+    font-size: 0.85em;
+    margin-bottom: 10px;
+}
+.grey-box {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 5px;
+    margin-top: 20px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.small-text {
+    font-size: 0.8em;
+    color: #999;
+}
+.small-box {
+    background-color: #222;
+    padding: 20px;
+    border-radius: 5px;
+}
+</style>
+</head>
+<body>
+<div class="container">
+    <header>
+        <h1><a href="/">Site by Alex</a></h1>
+        <p>A world of code <span style="font-size: 1.2em;"></span>, by Alejandro Martinez</p>
+        <p>| <a href="/">Swift</a> <a href="/">Dev</a></p>
+    </header>
+    <hr>
+    <p class="date">June 5, 2016 <span class="time">1 min read</span></p>
+
+    <div class="tags">
+        <a href="/" class="single-tag">Scripting</a>
+        <a href="/" class="single-tag">Swift</a>
+        <a href="/" class="single-tag">Goodies</a>
+    </div>
+
+    <section class="post-content">
+        <h2>Easy Swift script auto-reloading hack</h2>
+        <p>I was writing a <code>Swift script</code> the other day, and I wanted it to run forever as a server, so I added a continuous
+running option. <i>Forever</i>.</p>
+        <p>I just used a <code>repeat</code> loop with <code>NSTasks</code> that executed the script. <i>Recursion</i>.</p>
+        <p>It turns out this is a neat hack for auto-reloading the script!</p>
+        <p>let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() task.launchPath =
+Process.arguments.first! task.arguments = Array(Process.arguments.suffixFrom(1).filter({$0 != reload}))
+task.launch() task.waitUntilExit() } while true } Add this snippet to the script, then call it with the <code>reload</code>
+arg to loop it forever.</p>
+        <p>To call it from the command line:</p>
+        <p>main.swift reload other params Now just modify and save the script. Next time around, the changes will be
+there. If compilation fails, no problem! The old script will just retry.</p>
+        <p>It's not perfect. The console gets spammed, but it is great for rapid iteration.</p>
+        <p>Remember to use <code>OS signals</code> to stop the looping task when the script is killed.</p>
+        <a href="/">Share to Twitter</a>
+    </section>
+
+    <section>
+        <div class="grey-box">
+            <p>If you enjoyed this post, please consider supporting me</p>
+            <button class="buy-me-coffee">Buy me coffee</button>
+        </div>
+    </section>
+
+    <section class="related-posts">
+        <h2>Keep Reading</h2>
+        <div class="grid">
+            <div class="small-box">
+                <h3><a href="/">Simplify code with closures</a></h3>
+                <p class="small-text">June 7, 2016</p>
+            </div>
+            <div class="small-box">
+                <h3><a href="/">Catch OS signals in Swift</a></h3>
+                <p class="small-text">May 29, 2016</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="related-posts">
+        <h2>You might like these posts</h2>
+        <div class="grid">
+            <div class="small-box">
+                <p class="small-text">Based on tag Swift</p>
+                <h3><a href="/">Compat SwiftUI modifiers</a></h3>
+                <p class="small-text">October 20, 2023</p>
+            </div>
+            <div class="small-box">
+                <p class="small-text">Based on tag Scripting</p>
+                <h3><a href="/">Export Reminders lists using Swift</a></h3>
+                <p class="small-text">May 8, 2019</p>
+            </div>
+            <div class="small-box">
+                <p class="small-text">Based on tag Goodies</p>
+                <h3><a href="/">Swift Collection prefix for tests</a></h3>
+                <p class="small-text">March 16, 2019</p>
+            </div>
+        </div>
+    </section>
+
+    <section class="tags">
+        <h2>Tags of this article</h2>
+        <a href="/" class="single-tag">Scripting</a>
+        <a href="/" class="single-tag">Swift</a>
+        <a href="/" class="single-tag">Goodies</a>
+    </section>
+
+    <hr>
+
+    <footer>
+        <a href="/">RSS</a><br>
+        <a href="/">alexito4</a> | <a href="/">alexito4</a> | <a href="/">alexito4</a><br>
+        Made with <a href="/">Publish</a>
+    </footer>
+</div>
+</body>
+</html>

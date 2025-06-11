@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site by Alex</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #ffffff;
+            font-family: 'Georgia', serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        .header {
+            text-align: center;
+            padding: 20px;
+        }
+        .header h1 {
+            margin: 0;
+        }
+        .sub-header {
+            font-size: 14px;
+            color: #cccccc;
+        }
+        .navbar {
+            text-align: center;
+            margin-top: 10px;
+        }
+        .navbar a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 14px;
+            border-bottom: 1px solid transparent;
+        }
+        .navbar a:hover {
+            border-color: #cccccc;
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #1e1e1e;
+        }
+        .content h2, .content h3 {
+            color: #ffcc00;
+        }
+        .content .date, .content .read-time {
+            display: inline-block;
+            font-size: 12px;
+            color: #cccccc;
+        }
+        .divider {
+            border: none;
+            border-top: 1px solid #ffcc00;
+            margin: 20px 0;
+        }
+        .tags {
+            display: inline-block;
+            background-color: #333;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border-radius: 4px;
+            font-size: 12px;
+        }
+        .content p, .content pre {
+            margin: 15px 0;
+            color: #dddddd;
+        }
+        .content pre {
+            background-color: #2e2e2e;
+            padding: 10px;
+            border-radius: 4px;
+            overflow-x: auto;
+            color: #ffcc00;
+        }
+        .share {
+            color: #ffcc00;
+            cursor: pointer;
+        }
+        .cta {
+            margin: 20px 0;
+            text-align: center;
+            background-color: #3e3e3e;
+            padding: 20px;
+            border-radius: 8px;
+        }
+        .cta button {
+            background-color: #ff0044;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .related {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+        .related .card {
+            background-color: #333;
+            width: 48%;
+            padding: 10px;
+            border-radius: 8px;
+        }
+        .footer {
+            text-align: center;
+            font-size: 12px;
+            margin-top: 40px;
+            color: #cccccc;
+        }
+        .footer a {
+            color: #cccccc;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        .footer a:hover {
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Site by Alex</h1>
+        <p class="sub-header">A world of code ð», by Alejandro Martinez</p>
+        <div class="navbar">
+            <a href="#">Swift</a>
+            <a href="#">Dev</a>
+        </div>
+    </div>
+    <div class="content">
+        <div>
+            <span class="date">June 5, 2016</span>
+            <span class="read-time"><img src="src/placeholder.jpg" alt="Clock Icon" style="width: 14px; height: 14px; vertical-align: middle; margin-bottom: 1px;"> 1 min read</span>
+        </div>
+        <hr class="divider">
+        <div class="tags">Scripting</div>
+        <div class="tags">Swift</div>
+        <div class="tags">Goodies</div>
+        <h2>Easy Swift script auto-reloading hack</h2>
+        <p>I was writing a <span style="color: #ffcc00;">Swift script</span> the other day, and I wanted it to run forever as a server, so I added a continuous running option. <strong>Forever.</strong></p>
+        <p>I just used a <code>repeat</code> loop with <code>NSTask</code> that executed the script. <strong>Recursion.</strong></p>
+        <p>It turns out this is a neat hack for auto-reloading the script!</p>
+        <pre>let reload = "reload"
+if Process.arguments.contains(reload) {
+    repeat {
+    let task = NSTask()
+    task.launchPath = Process.arguments.first!
+    task.arguments = Array(Process.arguments.suffixFrom(1).filter( {$0 != reload}))
+    task.launch()
+    task.waitUntilExit()
+    } while true
+} Add this snippet to the script, then call it with the <code>reload</code> arg to loop it forever.</pre>
+        <p>To call it from the command line:</p>
+        <p>main.swift reload other params Now just modify and save the script. Next time around, the changes will be there. If compilation fails, no problem! The old script will just retry.</p>
+        <p>It's not perfect. The console gets spammed, but it is great for rapid iteration.</p>
+        <p>Remember to use <span style="color: #ffcc00;">OS signals</span> to stop the looping task when the script is killed.</p>
+        <p class="share">Share to Twitter</p>
+        <div class="cta">
+            <p>If you enjoyed this post, please consider supporting me</p>
+            <button>Buy me coffee</button>
+        </div>
+        <hr class="divider">
+        <h3>Keep Reading</h3>
+        <div class="related">
+            <div class="card">
+                <span class="date">Next post</span>
+                <h3>Simplify code with closures</h3>
+                <p>June 7, 2016</p>
+            </div>
+            <div class="card">
+                <span class="date">Previous post</span>
+                <h3>Catch OS signals in Swift</h3>
+                <p>May 29, 2016</p>
+            </div>
+        </div>
+        <h3>You might like these posts</h3>
+        <div class="related">
+            <div class="card">
+                <p>Based on tag <span style="color: #ffcc00;">Swift</span></p>
+                <h3>Compat SwiftUI modifiers</h3>
+                <p>October 20, 2023</p>
+            </div>
+            <div class="card">
+                <p>Based on tag <span style="color: #ffcc00;">Scripting</span></p>
+                <h3>Export Reminders lists using Swift</h3>
+                <p>May 8, 2019</p>
+            </div>
+            <div class="card">
+                <p>Based on tag <span style="color: #ffcc00;">Goodies</span></p>
+                <h3>Swift Collection prefix for tests</h3>
+                <p>March 16, 2019</p>
+            </div>
+        </div>
+        <h3>Tags of this article</h3>
+        <div class="tags">Scripting</div>
+        <div class="tags">Swift</div>
+        <div class="tags">Goodies</div>
+        <div class="footer">
+            <p><a href="#">RSS</a> <a href="#">alexito4</a> | <a href="#">alexito4</a> | <a href="#">alexito4</a></p>
+            <p>Made with <a href="#">Publish</a></p>
+            <p>Open Door</p>
+        </div>
+    </div>
+</body>
+</html>

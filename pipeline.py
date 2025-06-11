@@ -13,7 +13,7 @@ import Utils.utils_dataset as utils_dataset
 import Utils.utils_general as utils_general
 import Utils.utils_prompt as utils_prompt
 import Utils.utils_iterative_prompt as utils_iterative_prompt
-import Data.Analysis.datasetAnalyze as datasetAnalyze
+import Data.Analysis.analyzeAccessibility as analyzeAccessibility
 import Accessibility.accessibilityIssues as accessibilityIssues
 
 KEYS_PATH = os.path.join(os.path.dirname(__file__), 'keys.json')
@@ -24,7 +24,7 @@ OUTPUT_PATH = os.path.join(DATA_PATH, 'Output')
 NUMBER_ITERATIONS = 3
 DATE = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
 # Test
-# DATE = "2025-06-08-15-35"
+# DATE = "2025-06-09-11-24"
 
 
 async def _process_image(client, image_information, prompt, model, prompt_strategy):
@@ -63,7 +63,7 @@ async def _process_image_iterative(client, model, html_generated, accessibility_
     base_name = os.path.splitext(image)[0]
 
     for i in range(1, NUMBER_ITERATIONS + 1):
-        output_html_path, output_accessibility_path, output_images_path, output_insights_path = utils_general.util_create_directories(OUTPUT_PATH, model, f"{prompt_strategy}_refine_{i}", DATE)
+        output_base_html_path, output_base_accessibility_path, output_base_images_path, output_base_insights_path = utils_general.util_create_directories(OUTPUT_PATH, model, f"{prompt_strategy}_refine_{i}", DATE)
 
         html_snippets = utils_iterative_prompt.get_violation_snippets(html_generated, accessibility_data)
         refine_prompt = utils_prompt.get_prompt("iterative_refine")
@@ -71,7 +71,7 @@ async def _process_image_iterative(client, model, html_generated, accessibility_
 
         generated_html = await utils_iterative_prompt.process_refinement_llm(client, final_refine_prompt)
 
-        with open(os.path.join(output_html_path, f"{base_name}.html"), "w", encoding="utf-8") as f:
+        with open(os.path.join(output_base_html_path, f"{prompt_strategy}_refine_{i}", DATE, f"{base_name}.html"), "w", encoding="utf-8") as f:
             f.write(generated_html)
             
         _, accessibility_issues, accessibility_issues_overview = await _analyze_outputs(image, model, f"{prompt_strategy}_refine_{i}")
@@ -138,17 +138,17 @@ def _overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy, 
             for prompt_strat in insight_dirs_strats:
                 insight_dir_path = os.path.join(insight_dir, prompt_strat, DATE)
                 accessibility_dir_path = os.path.join(accessibility_dir, prompt_strat, DATE)
-                datasetAnalyze.overwrite_insights(accessibility_dir_path, insight_dir_path, model, prompt_strat, date)
+                analyzeAccessibility.overwrite_insights(accessibility_dir_path, insight_dir_path, model, prompt_strat, date)
     else:
         accessibility_prompt_dir = os.path.join(accessibility_dir, prompt_strategy, date)
         insight_prompt_dir = os.path.join(insight_dir, prompt_strategy, date)
-        datasetAnalyze.overwrite_insights(accessibility_prompt_dir, insight_prompt_dir, model, prompt_strategy, date)
+        analyzeAccessibility.overwrite_insights(accessibility_prompt_dir, insight_prompt_dir, model, prompt_strategy, date)
 
 
 async def main():
     model = "openai" # option openai, gemini, qwen_local, qwen_hf, llama_local, llama_hf, hf-finetuned
     model_dir = model.split("_")[0]
-    prompt_strategy = "zero-shot" # option naive, zero-shot, reason, iterative
+    prompt_strategy = "iterative" # option naive, zero-shot, reason, iterative
 
     # 1. Load API-Key and define model strategy
     strategy = utils_general.get_model_strategy(model)
@@ -170,7 +170,7 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            if int(image.split(".")[0]) < 37:
+            if int(image.split(".")[0]) < 35:
                 continue
 
             image_information = {

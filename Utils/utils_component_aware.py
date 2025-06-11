@@ -3,7 +3,12 @@ import numpy as np
 from PIL import Image
 import clip
 from sam2.sam2_image_predictor import SAM2ImagePredictor
+from sam2.automatic_mask_generator import SAM2AutomaticMaskGenerator
 import matplotlib.pyplot as plt
+import os
+import sys
+
+OUTPUT_PATH = os.path.join(os.path.dirname(os.path.dirname(__file__)), "Data", "Output", "openai", "images", "naive", "2025-06-08-15-35")
 
 """
     Idea:
@@ -21,7 +26,7 @@ import matplotlib.pyplot as plt
 """
 
 class ComponentAwarePredictor:
-    def __init__(self, sam_model_path, clip_model_name="ViT-B/32"):
+    def __init__(self):
         # Set seed for reproduce.
         np.random.seed(3)
 
@@ -35,7 +40,10 @@ class ComponentAwarePredictor:
 
         self.dtype  = torch.bfloat16 if self.device=="cuda" else torch.float32
 
-        self.predictor = SAM2ImagePredictor.from_pretrained("facebook/sam2-hiera-tiny")
+        self.predictor = SAM2ImagePredictor.from_pretrained("facebook/sam2-hiera-tiny", device=self.device.type)
+
+        sam2_model = self.predictor.model
+        self.mask_generator = SAM2AutomaticMaskGenerator(sam2_model, device=self.device.type)
 
         self.clip_model, self.clip_preprocess = clip.load("ViT-B/32", device=self.device)
         self.clip_model.eval()
@@ -50,15 +58,16 @@ class ComponentAwarePredictor:
 
     def predict_component_names(self, image_path):
         # Start with SAM2 to get masks
-        image = Image.open(image_path).convert("RGB")
-        # self.predictor.set_image(torch.from_numpy(np.array(image)))
-        self.predictor.set_image(np.array(image))
+        image = Image.open(image_path)
+        image = np.array(image.convert("RGB"))  
 
+        # self.show_masks(image_path, None)
 
-        masks, _, _ = self.predictor.predict(multimask_output=True)
+        # Information here: https://github.com/facebookresearch/sam2/blob/main/notebooks/automatic_mask_generator_example.ipynb
+        masks = self.mask_generator.generate(image)
 
         # Test show masks
-        self.show_masks(image_path, masks)
+        self.show_masks(image, masks)
 
         # Predict names of components with CLIP
         # Tokenize classes
@@ -69,7 +78,8 @@ class ComponentAwarePredictor:
 
         results = []
         # Crop iamges accoridng to masks and predict with CLIP
-        for i, bbox in enumerate(bboxes):
+        for i, mask in enumerate(masks):
+            bbox = mask["bbox"]
             x1, y1, x2, y2 = bbox.astype(int)
 
             image_cropped = image.crop((x1, y1, x2, y2))
@@ -84,14 +94,47 @@ class ComponentAwarePredictor:
             predicted_class_index = similarity.argmax().item()
             predicted_class_name = self.component_classes[predicted_class_index]
 
+
+
+    def show_anns(self, anns, borders=True):
+        '''
+            from here: https://github.com/facebookresearch/sam2/blob/main/notebooks/automatic_mask_generator_example.ipynb
+        '''
+        if len(anns) == 0:
+            return
+        sorted_anns = sorted(anns, key=(lambda x: x['area']), reverse=True)
+        ax = plt.gca()
+        ax.set_autoscale_on(False)
+
+        img = np.ones((sorted_anns[0]['segmentation'].shape[0], sorted_anns[0]['segmentation'].shape[1], 4))
+        img[:, :, 3] = 0
+        for ann in sorted_anns:
+            m = ann['segmentation']
+            color_mask = np.concatenate([np.random.random(3), [0.5]])
+            img[m] = color_mask 
+            if borders:
+                import cv2
+                contours, _ = cv2.findContours(m.astype(np.uint8), cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_NONE) 
+                # Try to smooth contours
+                contours = [cv2.approxPolyDP(contour, epsilon=0.01, closed=True) for contour in contours]
+                cv2.drawContours(img, contours, -1, (0, 0, 1, 0.4), thickness=1) 
+
+        ax.imshow(img)
+
     
     def show_masks(self, image, masks):
         """
             Show masks on image.
         """
-        plt.figure(figsize=(10, 10))
+        plt.figure(figsize=(20, 20))
+        self.show_anns(masks)
         plt.imshow(image)
-        # show_points(plt.gca())
-        plt.axis('on')
-        plt.show()  
+        plt.axis('off')
+        plt.show() 
 
+
+
+if __name__ == "__main__":
+    predictor = ComponentAwarePredictor()
+    image_path = os.path.join(OUTPUT_PATH, "6.png")
+    predictor.predict_component_names(image_path)
