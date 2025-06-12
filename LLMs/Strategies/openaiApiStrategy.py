@@ -5,7 +5,7 @@ import os
 import base64
 
 # ToDo: Define Model
-MODEL = "gpt-4o"
+MODEL = "gpt-4o" # gpt-4o, gpt-4.1
 
 class OpenAIStrategy(LLMStrategy):
     def __init__(self, api_key):

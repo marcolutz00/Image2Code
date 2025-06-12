@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Artist Application</title>
+  <link href="https://fonts.googleapis.com/css?family=Arial:400,700&display=swap" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      background: #f7f5f5;
+      font-family: Arial, sans-serif;
+      color: #333;
+    }
+    .container {
+      width: 600px;
+      margin: 0 auto;
+      background: #fff;
+      border: 1px solid #e5e5e5;
+      box-sizing: border-box;
+      box-shadow: 0 1px 0 #eee;
+      margin-top: 8px;
+      margin-bottom: 8px;
+      padding-bottom: 0;
+      min-height: 100vh;
+    }
+    .top-img {
+      display: flex;
+      justify-content: center;
+      margin-top: 28px;
+      margin-bottom: 0;
+    }
+    .top-img img {
+      width: 180px;
+      height: 180px;
+      background: #0000ff;
+      object-fit: cover;
+      display: block;
+    }
+    .header {
+      background: #e94361;
+      color: #fff;
+      text-align: center;
+      font-weight: bold;
+      font-size: 2rem;
+      padding: 18px 0 16px 0;
+      letter-spacing: -1px;
+      margin-top: 28px;
+      margin-bottom: 0;
+      font-family: Arial, sans-serif;
+    }
+    .form-section {
+      padding: 0 36px 0 36px;
+    }
+    .note {
+      font-size: 16px;
+      margin-top: 22px;
+      margin-bottom: 28px;
+      color: #333;
+    }
+    .note a {
+      color: #527fc8;
+      text-decoration: underline;
+      font-size: 15px;
+    }
+    form {
+      margin: 0;
+      width: 100%;
+    }
+    .form-row {
+      display: flex;
+      gap: 22px;
+      margin-bottom: 20px;
+    }
+    .form-row-inline {
+      display: flex;
+      gap: 24px;
+      margin-bottom: 20px;
+    }
+    .form-label {
+      display: block;
+      font-size: 15px;
+      font-weight: bold;
+      margin-bottom: 5px;
+      color: #464545;
+      font-family: Arial, sans-serif;
+    }
+    .form-label .required {
+      color: #e94361;
+      font-size: 16px;
+      margin-left: 2px;
+      font-weight: bold;
+    }
+    .form-group, .form-group-inline {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 13px;
+    }
+    .form-group-inline-short {
+      width: 50%;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 13px;
+    }
+    input[type="text"],
+    input[type="email"] {
+      height: 30px;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      padding: 4px 8px;
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+      margin-bottom: 2px;
+      margin-top: 0px;
+    }
+    textarea {
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      padding: 6px 8px;
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+      resize: none;
+      min-height: 65px;
+      max-width: 100%;
+    }
+    select {
+      height: 33px;
+      border: 1px solid #ddd;
+      border-radius: 2px;
+      font-size: 15px;
+      font-family: Arial, sans-serif;
+      padding: 3px 8px;
+      background: #fff;
+      max-width: 100%;
+      margin-top: 0px;
+    }
+    .checkbox-row, .radio-row {
+      margin-bottom: 14px;
+      margin-left: 2px;
+      margin-top: 2px;
+      font-size: 15px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+    .checkbox-row label, .radio-row label {
+      font-weight: normal;
+      margin-right: 6px;
+      display: flex;
+      align-items: center;
+      font-size: 15px;
+      cursor: pointer;
+    }
+    .checkbox-row input, .radio-row input {
+      margin-right: 6px;
+      height: 12px;
+      width: 12px;
+      accent-color: #e94361;
+    }
+    .radio-row {
+      gap: 14px;
+    }
+    .long-textarea {
+      min-height: 70px;
+    }
+    .char-count {
+      font-size: 13px;
+      color: #aaa;
+      margin-top: 1px;
+      float: right;
+      padding-right: 2px;
+    }
+    .guidelines-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 15px;
+      font-weight: normal;
+      margin-top: 2px;
+      margin-bottom: 12px;
+    }
+    .guidelines-label input[type="checkbox"] {
+      margin-right: 10px;
+      accent-color: #e94361;
+      width: 13px;
+      height: 13px;
+    }
+    .guidelines-link {
+      font-size: 15px;
+      color: #527fc8;
+      text-decoration: underline;
+      margin-top: 3px;
+      margin-bottom: 15px;
+      display: inline-block;
+      font-weight: normal;
+    }
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0 20px;
+      background: #f7f7f7;
+      border-top: 1px solid #e5e5e5;
+      font-size: 14px;
+      height: 34px;
+      position: relative;
+      margin-top: 28px;
+    }
+    .footer-link {
+      color: #527fc8;
+      text-decoration: underline;
+      font-size: 13px;
+      margin-right: 7px;
+      font-weight: normal;
+      cursor: pointer;
+    }
+    .footer-btn-row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: none;
+      margin-top: 18px;
+      width: 100%;
+    }
+    .footer-btn {
+      background: #d96ef4;
+      color: #fff;
+      border: none;
+      border-radius: 3px;
+      font-size: 18px;
+      font-family: Arial, sans-serif;
+      padding: 6px 57px;
+      margin-bottom: 18px;
+      margin-top: 10px;
+      cursor: pointer;
+      box-shadow: 0 3px 4px rgba(196, 88, 255, 0.09);
+      transition: background 0.17s;
+    }
+    .footer-btn:hover {
+      background: #a34acf;
+    }
+    .site-provided {
+      color: #2e9dd7;
+      text-decoration: underline;
+      font-size: 13px;
+      margin-left: 14px;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .site-provided-img {
+      width: 12px;
+      height: 12px;
+      background: #0000ff;
+      display: inline-block;
+      border-radius: 1.5px;
+    }
+    @media (max-width: 650px) {
+      .container {
+        width: 100vw;
+        min-width: 0;
+        border: none;
+      }
+      .form-section {
+        padding: 0 5vw;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="top-img">
+      <img src="src/placeholder.jpg" alt="Profile Placeholder">
+    </div>
+    <div class="header">
+      Artist Application
+    </div>
+    <div class="form-section">
+      <div class="note">
+        Share your background with us and tell us more.
+        <span> <a href="#">Help</a></span> if you need more details.
+      </div>
+      <form>
+        <div class="form-row">
+          <div class="form-group-inline-short">
+            <label class="form-label">Given Name <span class="required">*</span></label>
+            <input type="text" required>
+          </div>
+          <div class="form-group-inline-short">
+            <label class="form-label">Family Name <span class="required">*</span></label>
+            <input type="text" required>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">E-mail Address <span class="required">*</span></label>
+          <input type="email" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Contact Number</label>
+          <input type="text">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Where Are You Located? <span class="required">*</span></label>
+          <input type="text" required>
+        </div>
+        <div class="form-group">
+          <label class="form-label">I Confirm That I am Over 18 <span class="required">*</span></label>
+          <div class="checkbox-row">
+            <label><input type="checkbox">True</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Do You Run a Production Business? <span class="required">*</span></label>
+          <div class="radio-row">
+            <label><input type="radio" name="prod-biz">True</label>
+            <label><input type="radio" name="prod-biz">False</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Explain Your Background More Fully. <span class="required">*</span></label>
+          <textarea class="long-textarea"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Your Favourite Type of Work <span class="required">*</span></label>
+          <select>
+            <option></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Do You Have the Skills Required to Make Full Episodes (12-25 minutes) on a Small Budget and To Carry on Making Episodes if they get Commissioned by Our Users? <span class="required">*</span></label>
+          <div class="radio-row">
+            <label><input type="radio" name="skills">True</label>
+            <label><input type="radio" name="skills">False</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">If You are a Final Nominee, Can You Begin Development by May or June (2019)? <span class="required">*</span></label>
+          <div class="radio-row">
+            <label><input type="radio" name="begin">True</label>
+            <label><input type="radio" name="begin">False</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Names of People You Will Work With (If Applicable)</label>
+          <textarea class="long-textarea"></textarea>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Are you a PGA Member? <span class="required">*</span></label>
+          <div class="radio-row">
+            <label><input type="radio" name="pga">True</label>
+            <label><input type="radio" name="pga">False</label>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">OPTIONAL: Having Big Social Media Connections will help. Tell us of Social Media You Frequent.</label>
+          <textarea class="long-textarea"></textarea>
+          <span class="char-count">0/800 characters</span>
+        </div>
+        <div class="form-group">
+          <label class="form-label">How did you hear of us?</label>
+          <select>
+            <option></option>
+          </select>
+        </div>
+        <div class="form-group">
+          <span class="required" style="display:inline-block; font-size:16px; vertical-align: middle;">*</span>
+          <label class="guidelines-label" style="display:inline; font-size:15px;">
+            <input type="checkbox">
+            I Have Read and I Accept the Rules Below
+          </label>
+        </div>
+        <a class="guidelines-link" href="#">Our Guidelines</a>
+      </form>
+    </div>
+    <div class="footer-row">
+      <span><a class="footer-link" href="#">Abuse Notification</a></span>
+      <span class="site-provided">Site Provided by 
+        <span class="site-provided-img"></span>
+      </span>
+    </div>
+    <div class="footer-btn-row">
+      <button class="footer-btn" type="submit">Send</button>
+    </div>
+  </div>
+</body>
+</html>

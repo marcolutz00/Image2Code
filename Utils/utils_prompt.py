@@ -1,10 +1,11 @@
 def _get_base_prompt():
     '''
-        returns prompt
+        base Image-to-Code prompt
     '''
 
     base = """
-    Your task is to replicate the provided UI mock-up pixel-perfectly using HTML and CSS.
+    You are an expert web developer who specializes in HTML and CSS.
+    Your task is to replicate the provided UI screenshot of a webpage pixel-perfectly using HTML and CSS.
     Pay close attention to every detail and follow these guidelines:  
     1. **Layout**  
     Structure the markup so the spatial arrangement of every element exactly matches the screenshot.
@@ -20,7 +21,7 @@ def _get_base_prompt():
     to reserve space. However, the appropriate height and width is very important.
 
     5. **Delivery format**  
-    Output **only** the complete HTML and CSS code in **one file**—no additional comments or explanations.
+    Output **only** the complete HTML and CSS code in **one file** — no additional comments or explanations.
 
 
     Now convert the following image into HTML/CSS according to these requirements."""
@@ -93,7 +94,7 @@ def _get_iterative_refine_prompt():
     In this refinement step, you will:
 
     1. Analyze the listed accessibility violations below.
-    2. Adjust the provided HTML code so that **all** violations are resolved.
+    2. Adjust the provided HTML/CSS code so that **all** violations are resolved.
     3. Prioritize accessibility issues with the highest impact.
     4. Preserve layout, structure (tags) and visible content exactly as they are, except for the specific fixes required.
     5. Return **only** the corrected HTML—no additional explanations, no comments, no markdown fences.
@@ -118,12 +119,20 @@ def _get_reasoning_prompt():
         It is *EXTREMELY* important that your HTML/CSS **complies with WCAG 2.1**. 
         Avoid any violations.
 
-        Let’s think step by step.    
-        
-        Do NOT output this reasoning, only use it internally.
+        Let’s think step by step.
     """
 
-    return f"{_get_base_prompt()}\n\n{chain_of_thought}\n\nThe image is encoded and attached to this prompt."
+    output_format = """
+        Output Format
+        --------------------
+        When you reply:
+        1. Return ONE valid JSON object **and nothing else**.
+        2. It MUST have exactly these keys:
+        • "thoughts" – your internal reasoning  
+        • "code"     – a complete HTML/CSS document as described above
+    """
+
+    return f"{_get_base_prompt()}\n\n{chain_of_thought}\n\n{output_format}\n\nThe image is encoded and attached to this prompt."
 
 def _get_component_aware_prompt():
     pass

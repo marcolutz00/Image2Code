@@ -89,8 +89,8 @@ def get_average_results():
     """
         Gets the result files from each round and calculates the average
     """
-    model = "gemini" # gemini, openai, llama, qwen
-    prompt_strategy = "iterative_refine_3" # naive, zero-shot, reason, iterative, iterative_refine_1, iterative_refine_2, iterative_refine_3
+    model = "openai" # gemini, openai, llama, qwen
+    prompt_strategy = "reason" # naive, zero-shot, reason, iterative, iterative_refine_1, iterative_refine_2, iterative_refine_3
 
     accessibility_files = [f for f in os.listdir(RESULTS_PATH) if f.startswith(f"{model}_{prompt_strategy}_analysis")]
     
