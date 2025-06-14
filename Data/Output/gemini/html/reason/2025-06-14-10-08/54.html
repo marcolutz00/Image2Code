@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Donation Page</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        .donation-section {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .donation-form, .donation-info {
+            width: 45%;
+            background-color: #fff;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .donation-form h2, .donation-info h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .donation-type {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .donation-type button {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+            cursor: pointer;
+        }
+
+        .donation-type button.active {
+            background-color: #e9e9e9;
+        }
+
+        .amount-options {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .amount-options button {
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #fff;
+            cursor: pointer;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .custom-amount {
+            margin-bottom: 15px;
+        }
+
+        .custom-amount input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            height: 100px;
+            resize: vertical;
+        }
+
+        .anonymous-donation {
+            margin-bottom: 15px;
+        }
+
+        .final-amount {
+            text-align: right;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .donate-button {
+            background-color: #2AB4AC;
+            color: #fff;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            font-size: 16px;
+        }
+
+        .donation-info ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .donation-info li {
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+        }
+
+        .donation-info li::before {
+            content: "\2713";
+            color: #2AB4AC;
+            margin-right: 8px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+            font-size: 12px;
+        }
+
+        /* Specific to the image */
+        .section-title {
+            text-align: center;
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .section-description {
+            text-align: center;
+            color: #555;
+            margin-bottom: 30px;
+        }
+
+        .one-time {
+            background-color: #f7f7f7;
+            color: #222;
+        }
+
+        .monthly {
+            color: #222;
+        }
+
+        .final-donation-amount {
+          color: #2AB4AC;
+          font-weight: bold;
+        }
+
+
+        .why-donate-monthly-info {
+          background-color: #f0fafa;
+          padding: 15px;
+          border-radius: 5px;
+
+        }
+
+
+        .why-donate-info {
+          background-color: #f0fafa;
+          padding: 15px;
+          border-radius: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="section-title">Support Our Mission</h1>
+        <p class="section-description">Your donation helps us provide quality education to more students around the world.</p>
+
+        <div class="donation-section">
+            <div class="donation-form">
+                <h2>Make a Donation</h2>
+                <div>Donation Type</div>
+                <div class="donation-type">
+                    <button class="one-time active">One-time</button>
+                    <button class="monthly">Monthly</button>
+                </div>
+                <div>Support our mission with a one-time donation</div>
+                <div>Select Amount</div>
+                <div class="amount-options">
+                    <button>$5</button>
+                    <button>$10</button>
+                    <button>$25</button>
+                    <button>$50</button>
+                    <button>$100</button>
+                </div>
+                <div class="custom-amount">
+                    $ <input type="text" placeholder="Or enter custom amount">
+                </div>
+                <div class="form-group">
+                    <label for="email">E-Mail</label>
+                    <input type="email" id="email">
+                </div>
+                <div class="form-group">
+                    <label for="message">Message (Optional)</label>
+                    <textarea id="message" placeholder="Share why you're donating..."></textarea>
+                </div>
+
+                <div class="anonymous-donation">
+                    <input type="checkbox" id="anonymous">
+                    <label for="anonymous">Make my donation anonymous</label>
+                </div>
+
+                <div class="final-amount">
+                    Final Donation Amount: <span class="final-donation-amount">$0.00</span>
+                </div>
+
+                <button class="donate-button">Donate Now</button>
+            </div>
+
+            <div class="donation-info">
+                <div class="why-donate-info">
+                    <h2>Why Donate?</h2>
+                    <p>Your donation helps us:</p>
+                    <ul>
+                        <li>Provide scholarships to students in need</li>
+                        <li>Develop new educational content and resources</li>
+                        <li>Improve our platform and technology</li>
+                        <li>Expand our reach to underserved communities</li>
+                    </ul>
+                    <p>We're committed to making quality education accessible to everyone, regardless of their financial situation.</p>
+                </div>
+
+                <div class="why-donate-monthly-info">
+                    <h2>Why Donate Monthly?</h2>
+                    <p>Monthly donations provide sustainable support that helps us:</p>
+                    <ul>
+                        <li>Plan long-term educational programs</li>
+                        <li>Maintain consistent support for students</li>
+                        <li>Develop new educational resources continuously</li>
+                        <li>Make long-term commitments to communities</li>
+                    </ul>
+                    <p>Your monthly support creates a foundation for sustainable education.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="footer">
+            <p>Â© 2025 Alpha One Labs. All rights reserved.</p>
+            <p>Last updated: 06/12/2025 12:23nachm.</p>
+        </div>
+    </div>
+</body>
+</html>

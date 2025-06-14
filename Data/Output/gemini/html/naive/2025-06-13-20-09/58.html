@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ShopVora</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #0a7ff2;
+            color: white;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: 3px solid #e8491d;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        header ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        header #branding {
+            float: left;
+        }
+
+        header #branding h1 {
+            margin: 0;
+        }
+
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+
+        header .highlight, header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+
+        header a:hover {
+            color: #ccc;
+            font-weight: bold;
+        }
+
+        #newsletter {
+            padding: 15px;
+            color: #fff;
+            background: #35424a;
+        }
+
+        #newsletter h1 {
+            float: left;
+        }
+
+        #newsletter form {
+            float: right;
+            margin-top: 15px;
+        }
+
+        #newsletter input[type="email"] {
+            padding: 4px;
+            height: 25px;
+            width: 250px;
+        }
+
+        .button_1 {
+            height: 38px;
+            background: #e8491d;
+            border: 0;
+            padding-left: 20px;
+            padding-right: 20px;
+            color: #fff;
+        }
+
+        #main {
+            overflow: hidden;
+            padding: 20px;
+        }
+
+        #sidebar {
+            float: left;
+            width: 20%;
+        }
+
+        #sidebar ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        #sidebar li {
+            list-style: none;
+            border-bottom: 1px solid #eee;
+            padding: 10px;
+        }
+
+        #sidebar li:last-child {
+            border-bottom: none;
+        }
+
+        #sidebar li a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+        }
+
+        #sidebar li a:hover {
+            background: #35424a;
+            color: #fff;
+            padding-left: 10px;
+        }
+
+        #content {
+            float: right;
+            width: 75%;
+        }
+
+        .box {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: #eee 1px solid;
+        }
+
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #303941;
+            text-align: center;
+        }
+
+        .main-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+        }
+
+        .mobile-card {
+            text-align: center;
+            padding: 10px;
+        }
+
+        .mobile-image {
+            width: 250px;
+            height: 200px;
+            background-color: blue;
+            margin-bottom: 10px;
+        }
+
+        .site-footer {
+            background-color: #2c303a;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        .site-footer::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            transform: translateX(50%);
+        }
+        .site-footer p {
+            margin: 0;
+        }
+
+        .search-container {
+            float: left;
+        }
+
+        .search-container input[type=text] {
+            padding: 6px;
+            margin-top: 8px;
+            font-size: 17px;
+            border: none;
+        }
+        .top-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .top-nav-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .top-nav-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .top-nav-left a,
+        .top-nav-right a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+
+        .top-nav-left a:first-child {
+            margin-left: 0;
+        }
+
+        .top-nav-left a:hover,
+        .top-nav-right a:hover {
+            text-decoration: underline;
+        }
+        @media(max-width: 768px) {
+            header #branding,
+            header nav,
+            header nav li,
+            #newsletter h1,
+            #newsletter form,
+            #newsletter button {
+                float: none;
+                text-align: center;
+                width: 100%;
+            }
+
+            header {
+                padding-bottom: 50px;
+            }
+
+            #newsletter button {
+                display: block;
+            }
+
+            #newsletter form input[type="email"] {
+                width: 100%;
+                margin-bottom: 5px;
+            }
+            
+            #main {
+                margin-top: 20px;
+            }
+
+            #sidebar {
+                float: none;
+                width: 100%;
+            }
+
+            #content {
+                float: none;
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <div class="top-nav">
+                <div class="top-nav-left">
+                    <a href="#">ShopVora</a>
+                    <a href="#">Home</a>
+                    <a href="#">Electronics</a>
+                    <a href="#">Fashion</a>
+                </div>
+                <div class="top-nav-right">
+                    <div class="search-container">
+                        <input type="text" placeholder="Search">
+                    </div>
+                    <a href="#">Login</a>
+                    <a href="#">Registration</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="container">
+        <section id="main">
+            <div id="sidebar">
+                <ul>
+                    <li><a href="#">All Mobile</a></li>
+                    <li><a href="#">Apple</a></li>
+                    <li><a href="#">Xiaomi</a></li>
+                    <li><a href="#">Samsung</a></li>
+                    <li><a href="#">Below 15000</a></li>
+                    <li><a href="#">Above 15000</a></li>
+                </ul>
+            </div>
+            <div id="content">
+                <div class="main-grid">
+                    <div class="mobile-card">
+                        <div class="mobile-image"></div>
+                        <h3>Mobile 1</h3>
+                        <p>66155.0 TL 68999.0</p>
+                    </div>
+                    <div class="mobile-card">
+                        <div class="mobile-image"></div>
+                        <h3>Mobile 2</h3>
+                        <p>33499.0 TL 34999.0</p>
+                    </div>
+                    <div class="mobile-card">
+                        <div class="mobile-image"></div>
+                        <h3>Mobile 3</h3>
+                        <p>8820.0 TL 9000.0</p>
+                    </div>
+                    <div class="mobile-card">
+                        <div class="mobile-image"></div>
+                        <h3>Mobile 4</h3>
+                        <p>33499.0 TL 35999.0</p>
+                    </div>
+                    <div class="mobile-card">
+                        <div class="mobile-image"></div>
+                        <h3>Mobile 5</h3>
+                        <p>6499.0 TL 6999.0</p>
+                    </div>
+                    <div class="mobile-card">
+                        <div class="mobile-image"></div>
+                        <h3>Mobile 6</h3>
+                        <p>18799.0 TL 19999.0</p>
+                    </div>
+                    <div class="mobile-card">
+                        <div class="mobile-image"></div>
+                        <h3>Mobile 7</h3>
+                        <p>8649.0 TL 8799.0</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="site-footer">
+        <p>Copyright Â© 2025 || Re-edited by NuranFerhan ||</p>
+    </footer>
+</body>
+</html>

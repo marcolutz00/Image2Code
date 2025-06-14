@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs Forum</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #212529;
+            background-color: #f8f9fa;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #00a3a4;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar {
+            margin-right: 20px;
+        }
+
+        .search-bar input {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .auth-buttons {
+            display: flex;
+        }
+
+        .auth-buttons a {
+            background-color: #ff7233;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin-left: 10px;
+        }
+
+        /* Main Content Styles */
+        .container {
+            display: flex;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 250px;
+            padding-right: 20px;
+        }
+
+        .forum-content {
+            flex: 1;
+        }
+
+        .categories {
+            margin-bottom: 20px;
+        }
+
+        .categories h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .categories ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .categories li {
+            padding: 8px 0;
+            cursor: pointer;
+        }
+
+        .categories li:hover {
+            background-color: #e9ecef;
+        }
+
+        .discussions h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .discussion-item {
+            border-bottom: 1px solid #dee2e6;
+            padding: 15px 0;
+        }
+
+        .discussion-item:last-child {
+            border-bottom: none;
+        }
+
+        .discussion-meta {
+            color: #6c757d;
+            font-size: 12px;
+        }
+
+        .discussion-title {
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        .discussion-content {
+            color: #495057;
+        }
+
+        .discussion-stats {
+            color: #6c757d;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: left;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-links h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            padding: 5px 0;
+        }
+
+        .footer-links a {
+            color: #495057;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: left;
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .footer-social {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-social a {
+            margin-left: 10px;
+            color: #007bff;
+        }
+
+        .footer-newsletter {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-newsletter input {
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+
+        .footer-newsletter button {
+            background-color: #00a3a4;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Additional Styling */
+        .all-categories {
+            font-weight: bold;
+        }
+
+        .category-item {
+            color: #495057;
+        }
+
+        .category-count {
+            color: #6c757d;
+        }
+
+        .recent-discussions {
+            margin-top: 20px;
+        }
+
+        .discussion-user {
+            font-weight: bold;
+            color: #00a3a4;
+            margin-right: 5px;
+        }
+
+        .discussion-date {
+            color: #6c757d;
+        }
+
+        .discussion-category {
+            color: #007bff;
+            margin-left: 5px;
+        }
+
+        .discussion-stats-item {
+            margin-right: 10px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <div class="logo">Alpha One Labs</div>
+        <div class="nav-links">
+            <a href="#">LEARN</a>
+            <a href="#">COMMUNITY</a>
+            <a href="#">RESOURCES</a>
+            <a href="#">ABOUT</a>
+            <div class="search-bar">
+                <input type="text" placeholder="What do you want to learn?">
+            </div>
+            <a href="#">Login</a>
+            <a href="#">Signup</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="sidebar">
+            <div class="forum">
+                <h2>Forum</h2>
+                <p>Join discussions, ask questions, and share knowledge</p>
+            </div>
+            <div class="categories">
+                <h2>CATEGORIES</h2>
+                <ul>
+                    <li class="all-categories">All Categories</li>
+                    <li class="category-item">Category 1<span class="category-count">3</span></li>
+                    <li class="category-item">Category 2<span class="category-count">3</span></li>                    
+                    <li class="category-item">Category 3<span class="category-count">3</span></li>                    
+                </ul>
+            </div>
+        </div>
+
+        <div class="forum-content">
+            <div class="forum-categories">
+                <h2>Forum Categories</h2>
+                <p>Browse all categories or select one to see its topics</p>
+            </div>
+            <div class="recent-discussions">
+                <h2>Recent Discussions</h2>
+                <div class="discussion-item">
+                  <div>
+                    <span class="discussion-user">S</span>
+                    <span class="discussion-meta">student5 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 1</a></span>
+                  </div>
+                  <div>
+                    <span class="discussion-title">Topic 3</span>
+                  </div>
+                  <div>
+                    <span class="discussion-content">Content for topic 3</span>
+                  </div>
+                  <div class="discussion-stats">
+                    <span class="discussion-stats-item">0 views</span>
+                    <span class="discussion-stats-item">5 replies</span>
+                    <span class="discussion-stats-item">0 upvotes</span>
+                    <span class="discussion-stats-item">0 downvotes</span>
+                    <span class="discussion-stats-item">Last reply 19 Stunden, 22 Minuten ago</span>
+                  </div>
+                </div>
+
+                <div class="discussion-item">
+                  <div>
+                    <span class="discussion-user">S</span>
+                    <span class="discussion-meta">student3 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 1</a></span>
+                  </div>
+                  <div>
+                    <span class="discussion-title">Topic 2</span>
+                  </div>
+                  <div>
+                    <span class="discussion-content">Content for topic 2</span>
+                  </div>
+                  <div class="discussion-stats">
+                    <span class="discussion-stats-item">0 views</span>
+                    <span class="discussion-stats-item">2 replies</span>
+                    <span class="discussion-stats-item">0 upvotes</span>
+                    <span class="discussion-stats-item">0 downvotes</span>
+                    <span class="discussion-stats-item">Last reply 19 Stunden, 22 Minuten ago</span>
+                  </div>
+                </div>
+
+                <div class="discussion-item">
+                  <div>
+                    <span class="discussion-user">T</span>
+                    <span class="discussion-meta">teacher2 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 1</a></span>
+                  </div>
+                  <div>
+                    <span class="discussion-title">Topic 1</span>
+                  </div>
+                  <div>
+                    <span class="discussion-content">Content for topic 1</span>
+                  </div>
+                  <div class="discussion-stats">
+                    <span class="discussion-stats-item">0 views</span>
+                    <span class="discussion-stats-item">4 replies</span>
+                    <span class="discussion-stats-item">0 upvotes</span>
+                    <span class="discussion-stats-item">0 downvotes</span>
+                    <span class="discussion-stats-item">Last reply 19 Stunden, 22 Minuten ago</span>
+                  </div>
+                </div>
+
+                <div class="discussion-item">
+                  <div>
+                    <span class="discussion-user">S</span>
+                    <span class="discussion-meta">student8 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 2</a></span>
+                  </div>
+                  <div>
+                    <span class="discussion-title">Topic 3</span>
+                  </div>
+                  <div>
+                    <span class="discussion-content">Content for topic 3</span>
+                  </div>
+                  <div class="discussion-stats">
+                    <span class="discussion-stats-item">0 views</span>
+                    <span class="discussion-stats-item">5 replies</span>
+                    <span class="discussion-stats-item">0 upvotes</span>
+                    <span class="discussion-stats-item">0 downvotes</span>
+                    <span class="discussion-stats-item">Last reply 19 Stunden, 22 Minuten ago</span>
+                  </div>
+                </div>
+
+                <div class="discussion-item">
+                  <div>
+                    <span class="discussion-user">S</span>
+                    <span class="discussion-meta">student7 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 2</a></span>
+                  </div>
+                  <div>
+                    <span class="discussion-title">Topic 2</span>
+                  </div>
+                  <div>
+                    <span class="discussion-content">Content for topic 2</span>
+                  </div>
+                  <div class="discussion-stats">
+                    <span class="discussion-stats-item">0 views</span>
+                    <span class="discussion-stats-item">5 replies</span>
+                    <span class="discussion-stats-item">0 upvotes</span>
+                    <span class="discussion-stats-item">0 downvotes</span>
+                    <span class="discussion-stats-item">Last reply 19 Stunden, 22 Minuten ago</span>
+                  </div>
+                </div>
+
+                <div class="discussion-item">
+                  <div>
+                    <span class="discussion-user">S</span>
+                    <span class="discussion-meta">student7 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 2</a></span>
+                  </div>
+                  <div>
+                    <span class="discussion-title">Topic 1</span>
+                  </div>
+                  <div>
+                    <span class="discussion-content">Content for topic 1</span>
+                  </div>
+                  <div class="discussion-stats">
+                    <span class="discussion-stats-item">0 views</span>
+                    <span class="discussion-stats-item">2 replies</span>
+                    <span class="discussion-stats-item">0 upvotes</span>
+                    <span class="discussion-stats-item">0 downvotes</span>
+                    <span class="discussion-stats-item">Last reply 19 Stunden, 22 Minuten ago</span>
+                  </div>
+                </div>
+
+                <div class="discussion-item">
+                  <div>
+                    <span class="discussion-user">T</span>
+                    <span class="discussion-meta">teacher1 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 3</a></span>
+                  </div>
+                  <div>
+                    <span class="discussion-title">Topic 3</span>
+                  </div>
+                  <div>
+                    <span class="discussion-content">Content for topic 3</span>
+                  </div>
+                  <div class="discussion-stats">
+                    <span class="discussion-stats-item">0 views</span>
+                    <span class="discussion-stats-item">4 replies</span>
+                    <span class="discussion-stats-item">0 upvotes</span>
+                    <span class="discussion-stats-item">0 downvotes</span>
+                    <span class="discussion-stats-item">Last reply 19 Stunden, 22 Minuten ago</span>
+                  </div>
+                </div>
+
+                <div class="discussion-item">
+                  <div>
+                    <span class="discussion-user">S</span>
+                    <span class="discussion-meta">student6 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 3</a></span>
+                  </div>
+                  <div>
+                    <span class="discussion-title">Topic 2</span>
+                  </div>
+                  <div>
+                    <span class="discussion-content">Content for topic 2</span>
+                  </div>
+                  <div class="discussion-stats">
+                    <span class="discussion-stats-item">0 views</span>
+                    <span class="discussion-stats-item">3 replies</span>
+                    <span class="discussion-stats-item">0 upvotes</span>
+                    <span class="discussion-stats-item">0 downvotes</span>
+                    <span class="discussion-stats-item">Last reply 19 Stunden, 22 Minuten ago</span>
+                  </div>
+                </div>
+
+                <div class="discussion-item">
+                  <div>
+                    <span class="discussion-user">S</span>
+                    <span class="discussion-meta">student3 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 3</a></span>
+                  </div>
+                  <div>
+                    <span class="discussion-title">Topic 1</span>
+                  </div>
+                  <div>
+                    <span class="discussion-content">Content for topic 1</span>
+                  </div>
+                  <div class="discussion-stats">
+                    <span class="discussion-stats-item">0 views</span>
+                    <span class="discussion-stats-item">4 replies</span>
+                    <span class="discussion-stats-item">0 upvotes</span>
+                    <span class="discussion-stats-item">0 downvotes</span>
+                    <span class="discussion-stats-item">Last reply 19 Stunden, 22 Minuten ago</span>
+                  </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-links">
+            <h3>LEARNING</h3>
+            <ul>
+                <li>Courses</li>
+                <li>Subjects</li>
+                <li>Quizzes</li>
+                <li>Videos</li>
+                <li>Challenges</li>
+                <li>Study Groups</li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h3>COMMUNITY</h3>
+            <ul>
+                <li>Forum</li>
+                <li>Blog</li>
+                <li>Features</li>
+                <li>Success Stories</li>
+            </ul>
+        </div>
+        <div class="footer-links">
+            <h3>RESOURCES & INFO</h3>
+            <ul>
+                <li>GSOC'25</li>
+                <li>Status</li>
+                <li>Feedback</li>
+                <li>Terms</li>
+            </ul>
+        </div>
+        <div class="footer-social">
+            <h3>CONNECT WITH US</h3>
+            <a href="#">Blue Icon</a>
+            <a href="#">Icon</a>
+            <a href="#">Icon</a>
+            <a href="#">Icon</a>
+            <a href="#">Icon</a>
+        </div>
+        <div class="footer-newsletter">
+            <h3>SUBSCRIBE TO NEWSLETTER</h3>
+            <input type="email" placeholder="Your email">
+            <button>Subscribe</button>
+        </div>
+    </div>
+    <div class="copyright">
+        <p>Â© 2025 Alpha One Labs. All rights reserved.</p>
+        <p>Last updated: 06/12/2025 12:14nachm.</p>
+    </div>
+</body>
+
+</html>

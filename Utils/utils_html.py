@@ -1,7 +1,6 @@
 import os
 import json
 from playwright.async_api import async_playwright
-import os 
 import datetime
 import sys
 import re
@@ -10,9 +9,12 @@ import pathlib
 import base64
 from PIL import Image
 from io import BytesIO
+import requests
+from bs4 import BeautifulSoup
 from selenium import webdriver 
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.chrome.options import Options
+from urllib.parse import urljoin
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from Utils.utils_general import util_render_and_screenshot
@@ -248,16 +250,88 @@ def save_screenshots(html_path, image_path, html2_path = None, image2_path = Non
         _take_screenshots(html_path, image_path, max_width, max_height)
 
 
+def _get_css(url: str, soup: BeautifulSoup):
+    """
+        Extracts CSS from the website and stores it in file
+        Combines all CSS
+    """
+    combined_css = []
+
+    for link in soup.find_all('link', rel='stylesheet'):
+        link_url = link.get('href')
+        if link_url:
+            # do some join: https://stackoverflow.com/questions/10893374/python-confusions-with-urljoin
+            css_url = urljoin(url, link_url)
+            print(css_url)
+            response_css = requests.get(css_url, timeout=10)
+            if response_css.status_code == 200:
+                combined_css.append(response_css.text)
+            else:
+                print(f"Error loading CSS from {css_url}")
+
+            # delete link 
+            link.decompose()
+    
+    # combined css into file
+    if combined_css:
+        style = soup.new_tag('style')
+        style.string = "\n".join(combined_css)
+        soup.head.insert(0, style)
+
+
+def extract_html_css_from_website(url: str, output_html_path: pathlib.Path, store_html: bool = True):
+    response = requests.get(url, timeout=10)
+
+    if response.status_code != 200:
+        print ("""\n !!! Error: Unable to fetch the website !!!\n""")
+    
+    html = response.text
+    soup = BeautifulSoup(html, 'html.parser')
+
+    _get_css(url, soup)
+
+    if store_html:
+        with open(output_html_path, 'w', encoding='utf-8') as f:
+            f.write(str(soup))
+
+    return str(soup)
+
+
+
+def change_links_and_img(html: str) -> str:
+    """
+        Changes all the existing Link amd image src to a default value
+        -> Links: href="#"
+        -> Image: src="/src/placeholder.jpg"
+    """
+    # Alternative values
+    image_src = "src/placeholder.jpg"
+    href_src = "#"
+
+    soup = BeautifulSoup(html, "html.parser")
+
+    # image
+    for image in soup.find_all("img", src=True):
+        image["src"] = image_src
+    
+    # Links
+    for link in soup.find_all("a", href=True):
+        link["href"] = href_src
+    
+    return str(soup)
+
+
+# Tests
 if __name__ == "__main__":
     htmls_path = os.path.join(DIR_PATH, "..", "Data", "Input", "html")
     images_path = os.path.join(DIR_PATH, "..", "Data", "Input", "images")
 
-    # for html_file in os.listdir(htmls_path):
-    #     if html_file.endswith(".html"):
-    #         html_path = os.path.join(htmls_path, html_file)
-    #         image_path = os.path.join(images_path, f"{os.path.splitext(html_file)[0]}.png")
-    #         save_screenshots(html_path, image_path)
-    #         print(f"Screenshot saved for {html_file} at {image_path}")
+    for html_file in os.listdir(htmls_path):
+        if html_file.endswith(".html"):
+            html_path = os.path.join(htmls_path, html_file)
+            image_path = os.path.join(images_path, f"{os.path.splitext(html_file)[0]}.png")
+            save_screenshots(html_path, image_path)
+            print(f"Screenshot saved for {html_file} at {image_path}")
 
 
 

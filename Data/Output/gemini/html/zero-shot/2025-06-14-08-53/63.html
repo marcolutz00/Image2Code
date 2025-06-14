@@ -1,0 +1,693 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting Rooms</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background-color: #fff;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        .nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav ul li {
+            margin-left: 20px;
+        }
+
+        .nav a {
+            text-decoration: none;
+            color: #555;
+            font-weight: 500;
+        }
+
+        .auth-buttons a {
+            padding: 10px 20px;
+            border-radius: 5px;
+            color: #fff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .login-button {
+            background-color: transparent;
+            border: none;
+            color: #007bff;
+        }
+
+        .signup-button {
+            background-color: #ff9100;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 30px 0;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .waiting-rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .waiting-room-card {
+            background-color: #fff;
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        }
+
+        .waiting-room-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .waiting-room-card p {
+            margin-bottom: 5px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #fff;
+            padding: 30px 0;
+            border-top: 1px solid #eee;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #777;
+        }
+
+        /* New Styles */
+        .alpha-one-labs {
+            color: #14a385;
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .menu a {
+            color: #737373;
+            margin-left: 15px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .rectangle {
+            width: 166px;
+            height: 36px;
+            border-radius: 4px;
+            border: 1px solid #c5c5c5;
+            margin-right: 14px;
+            margin-left: 205px;
+            display: flex;
+            align-items: center;
+            padding-left: 10px;
+        }
+
+        .rectangle input {
+            border: none;
+            outline: none;
+            margin-left: 8px;
+            width: 140px;
+        }
+
+        .icons {
+            display: flex;
+            align-items: center;
+        }
+
+        .icon {
+            width: 16px;
+            height: 16px;
+            background-color: #e0e0e0;
+            margin-left: 10px;
+            border-radius: 4px;
+        }
+
+        .button {
+            width: 88px;
+            height: 36px;
+            border-radius: 4px;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 10px 20px;
+        }
+
+        .login {
+            background-color: transparent;
+            color: #096dd9;
+            margin-right: 6px;
+            margin-left: 110px;
+        }
+
+        .signup {
+            background-color: #ff9100;
+        }
+
+        h1 {
+            font-size: 28px;
+            font-weight: bold;
+            color: #262626;
+        }
+
+        .create-button {
+            background-color: #14a385;
+            color: white;
+            border: none;
+            padding: 8px 18px;
+            border-radius: 4px;
+            font-size: 14px;
+            font-weight: 500;
+            cursor: pointer;
+            margin-left: 696px;
+        }
+
+        .paragraph {
+            font-size: 14px;
+            color: #434343;
+        }
+
+        .open-waiting-rooms {
+            font-size: 18px;
+            font-weight: bold;
+            color: #262626;
+        }
+
+        .waiting-rooms {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 23px;
+        }
+
+        .waiting-room-card {
+            width: 295px;
+            height: 185px;
+            border-radius: 4px;
+            border: 1px solid #dadada;
+            background: #fff;
+        }
+
+        .room-title {
+            color: #262626;
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.15px;
+            margin-top: 20px;
+            margin-left: 20px;
+        }
+
+        .room-description {
+            color: #434343;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.15px;
+            margin-top: 8px;
+            margin-left: 20px;
+        }
+
+        .tag-container {
+            display: flex;
+            margin-top: 11px;
+            margin-left: 20px;
+        }
+
+        .tag {
+            color: #434343;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.15px;
+            border-radius: 4px;
+            background: #f2f2f2;
+            padding: 5px 6px;
+            margin-right: 5px;
+            text-align: center;
+        }
+
+        .teacher {
+            color: #ad2158;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.15px;
+            margin-top: 11px;
+            margin-left: 20px;
+        }
+
+        .time {
+            color: #737373;
+            font-size: 10px;
+            font-weight: 400;
+            letter-spacing: 0.15px;
+            margin-top: 11px;
+            margin-left: 20px;
+        }
+
+        .dot {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #389e0d;
+            margin-top: 23px;
+            margin-right: 15px;
+        }
+
+        .open-container {
+            display: flex;
+            float: right;
+        }
+
+        .open-text {
+            color: #389e0d;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.15px;
+            margin-top: 16px;
+            margin-right: 20px;
+        }
+
+        .subject {
+            color: #737373;
+            font-size: 12px;
+            font-weight: 400;
+            letter-spacing: 0.15px;
+            margin-top: 8px;
+            margin-left: 20px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #fff;
+            padding: 20px 0;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-left {
+            font-size: 12px;
+            color: #737373;
+        }
+
+        .footer-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-links {
+            display: flex;
+            margin-left: 200px;
+        }
+
+        .footer-links a {
+            color: #737373;
+            font-size: 12px;
+            margin-left: 15px;
+            text-decoration: none;
+        }
+
+        .footer-icons {
+            display: flex;
+            margin-right: 20px;
+        }
+
+        .footer-icons a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #f0f0f0;
+            margin-left: 8px;
+            text-decoration: none;
+            color: #737373;
+        }
+
+        .footer-subscribe {
+            display: flex;
+            align-items: center;
+        }
+
+        .footer-subscribe input {
+            width: 200px;
+            height: 35px;
+            border: 1px solid #dadada;
+            border-radius: 4px;
+            padding: 0 10px;
+            margin-right: 8px;
+        }
+
+        .footer-subscribe button {
+            width: 35px;
+            height: 35px;
+            border: none;
+            border-radius: 4px;
+            background-color: #14a385;
+            color: white;
+            cursor: pointer;
+        }
+
+        /* Footer Lists */
+        .footer-lists {
+            display: flex;
+            margin-top: 35px;
+        }
+
+        .footer-list {
+            width: 160px;
+            padding: 0;
+            margin-left: 50px;
+        }
+
+        .footer-list h4 {
+            font-size: 14px;
+            color: #262626;
+            font-weight: 500;
+        }
+
+        .footer-list ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 2px;
+        }
+
+        .footer-list ul li {
+            margin-bottom: 7px;
+        }
+
+        .footer-list ul li a {
+            font-size: 13px;
+            color: #737373;
+            text-decoration: none;
+        }
+
+        .list-icon {
+            color: #14a385;
+            margin-right: 5px;
+        }
+
+        .open-rooms-container {
+            position: relative;
+            display: inline-block;
+        }
+
+        .number-badge {
+            position: absolute;
+            top: 0;
+            right: 0;
+            background-color: #b3f2db;
+            color: #14a385;
+            border-radius: 50%;
+            padding: 2px 5px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <div class="header-content">
+                <div style="display: flex; align-items: center;">
+                    <span class="alpha-one-labs">Alpha One Labs</span>
+
+                    <nav class="menu">
+                        <a href="#">LEARN</a>
+                        <a href="#">COMMUNITY</a>
+                        <a href="#">RESOURCES</a>
+                        <a href="#">ABOUT</a>
+                    </nav>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                    <div class="rectangle">
+                        <svg width="14" height="14" viewBox="0 0 14 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M9.18125 9.18125L13 13M11.6375 5.90625C11.6375 9.15625 9.025 11.7688 5.775 11.7688C2.525 11.7688 -0.0875 9.15625 -0.0875 5.90625C-0.0875 2.65625 2.525 0.04375 5.775 0.04375C9.025 0.04375 11.6375 2.65625 11.6375 5.90625Z" stroke="#C5C5C5" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+
+                        <input type="text" placeholder="What do you want to learn?">
+                    </div>
+
+                    <div class="icons">
+                        <div class="icon"></div>
+                        <div class="icon"></div>
+                        <div class="icon"></div>
+                        <div class="icon"></div>
+                        <div class="icon"></div>
+                    </div>
+
+                    <button class="button login">Login</button>
+                    <button class="button signup">Signup</button>
+                </div>
+            </div>
+        </header>
+
+        <section class="main-content">
+            <h1>Waiting Rooms</h1>
+            <button class="create-button">Create Learning Request</button>
+            <p class="paragraph">What are Waiting Rooms?</p>
+            <p class="paragraph">Waiting rooms allow you to express interest in subjects and topics you want to learn. Join existing waiting rooms or create your own to find others interested in the same
+                topics. Teachers can see these waiting rooms and create courses based on popular demand.</p>
+            
+            <div class="open-rooms-container">
+                <h2 class="open-waiting-rooms">Open Waiting Rooms
+                    <span class="number-badge">5</span>
+                </h2>
+            </div>
+            
+
+            <div class="waiting-rooms">
+                <div class="waiting-room-card">
+                    <div class="open-container">
+                        <div class="dot"></div>
+                        <span class="open-text">Open</span>
+                    </div>
+                    <h3 class="room-title">Waiting Room 5</h3>
+                    <p class="subject">Subject 5 â¢ 2 interested</p>
+                    <p class="room-description">Description for waiting room 5</p>
+                    <div class="tag-container">
+                        <span class="tag">Topic1</span>
+                        <span class="tag">Topic2</span>
+                        <span class="tag">Topic5</span>
+                    </div>
+                    <p class="teacher">teacher2</p>
+                    <span class="time">19 Stunden, 28 Minuten ago</span>
+                </div>
+
+                <div class="waiting-room-card">
+                    <div class="open-container">
+                        <div class="dot"></div>
+                        <span class="open-text">Open</span>
+                    </div>
+                    <h3 class="room-title">Waiting Room 4</h3>
+                    <p class="subject">Subject 4 â¢ 6 interested</p>
+                    <p class="room-description">Description for waiting room 4</p>
+                    <div class="tag-container">
+                        <span class="tag">Topic1</span>
+                        <span class="tag">Topic2</span>
+                        <span class="tag">Topic4</span>
+                    </div>
+                    <p class="teacher">teacher2</p>
+                    <span class="time">19 Stunden, 28 Minuten ago</span>
+                </div>
+
+                <div class="waiting-room-card">
+                    <div class="open-container">
+                        <div class="dot"></div>
+                        <span class="open-text">Open</span>
+                    </div>
+                    <h3 class="room-title">Waiting Room 3</h3>
+                    <p class="subject">Subject 3 â¢ 5 interested</p>
+                    <p class="room-description">Description for waiting room 3</p>
+                    <div class="tag-container">
+                        <span class="tag">Topic1</span>
+                        <span class="tag">Topic2</span>
+                        <span class="tag">Topic3</span>
+                    </div>
+                    <p class="teacher">teacher1</p>
+                    <span class="time">19 Stunden, 28 Minuten ago</span>
+                </div>
+            </div>
+
+            <div class="waiting-rooms" style="margin-top: 20px;">
+                <div class="waiting-room-card">
+                    <div class="open-container">
+                        <div class="dot"></div>
+                        <span class="open-text">Open</span>
+                    </div>
+                    <h3 class="room-title">Waiting Room 2</h3>
+                    <p class="subject">Subject 2 â¢ 9 interested</p>
+                    <p class="room-description">Description for waiting room 2</p>
+                    <div class="tag-container">
+                        <span class="tag">Topic1</span>
+                        <span class="tag">Topic2</span>
+                        <span class="tag">Topic2</span>
+                    </div>
+                    <p class="teacher">teacher2</p>
+                    <span class="time">19 Stunden, 28 Minuten ago</span>
+                </div>
+
+                <div class="waiting-room-card">
+                    <div class="open-container">
+                        <div class="dot"></div>
+                        <span class="open-text">Open</span>
+                    </div>
+                    <h3 class="room-title">Waiting Room 1</h3>
+                    <p class="subject">Subject 1 â¢ 3 interested</p>
+                    <p class="room-description">Description for waiting room 1</p>
+                    <div class="tag-container">
+                        <span class="tag">Topic1</span>
+                        <span class="tag">Topic2</span>
+                        <span class="tag">Topic1</span>
+                    </div>
+                    <p class="teacher">teacher2</p>
+                    <span class="time">19 Stunden, 28 Minuten ago</span>
+                </div>
+            </div>
+        </section>
+
+        <footer>
+            <div class="footer-lists">
+                <div class="footer-list">
+                    <h4>LEARNING</h4>
+                    <ul>
+                        <li><a href="#"><span class="list-icon">â </span> Courses</a></li>
+                        <li><a href="#"><span class="list-icon">â </span> Subjects</a></li>
+                        <li><a href="#"><span class="list-icon">â </span> Quizzes</a></li>                        
+                        <li><a href="#"><span class="list-icon">â </span> Videos</a></li>
+                        <li><a href="#"><span class="list-icon">â </span> Challenges</a></li>
+                        <li><a href="#"><span class="list-icon">â </span> Study Groups</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-list">
+                    <h4>COMMUNITY</h4>
+                    <ul>
+                        <li><a href="#"><span class="list-icon">â </span> Forum</a></li>
+                        <li><a href="#"><span class="list-icon">â </span> Blog</a></li>
+                        <li><a href="#"><span class="list-icon">â </span> Features</a></li>
+                        <li><a href="#"><span class="list-icon">â </span> Success Stories</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-list">
+                    <h4>RESOURCES & INFO</h4>
+                    <ul>
+                        <li><a href="#"><span class="list-icon">â </span> GSOC'25</a></li>
+                        <li><a href="#"><span class="list-icon">â </span> Status</a></li>
+                        <li><a href="#"><span class="list-icon">â </span> Feedback</a></li>
+                        <li><a href="#"><span class="list-icon">â </span> Terms</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-list">
+                    <h4>CONNECT WITH US</h4>
+                    <div class="footer-icons">
+                        <a href="#">â </a>
+                        <a href="#">â </a>
+                        <a href="#">â </a>
+                        <a href="#">â </a>
+                        <a href="#">â </a>
+                    </div>
+                    <div class="footer-subscribe">
+                        <input type="text" placeholder="Your email">
+                        <button>â </button>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="footer-container">
+                <div class="footer-left">
+                    Â© 2025 Alpha One Labs. All rights reserved.<br>
+                    Last updated: 06/12/2025 12:19nachm.
+                </div>
+        
+                <div class="footer-right">
+                    <div class="footer-links">
+                        <a href="#">About Us</a>
+                        <a href="#">Terms & Conditions</a>
+                        <a href="#">Privacy Policy</a>
+                        <a href="#">Cookie Policy</a>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+</body>
+
+</html>

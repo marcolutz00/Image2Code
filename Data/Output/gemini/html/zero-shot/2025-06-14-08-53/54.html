@@ -1,0 +1,1041 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs - Support Our Mission</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .container {
+            max-width: 960px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #007bff;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        main {
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 30px;
+        }
+
+        .donation-form {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .donation-form-card {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .grid-item {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+        }
+
+        footer {
+            background-color: #fff;
+            padding: 20px 0;
+            border-top: 1px solid #eee;
+            text-align: center;
+        }
+
+        .alpha-one-labs-logo {
+            height: 30px;
+            width: auto;
+        }
+
+        .navigation {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navigation-menu {
+            display: flex;
+            align-items: center;
+        }
+
+        .navigation-menu a {
+            color: #075359;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .navigation-menu a:hover {
+            background-color: #e9ecef;
+            border-radius: 4px;
+        }
+
+        .navigation-actions {
+            display: flex;
+            align-items: center;
+        }
+
+        .navigation-actions button {
+            padding: 8px 16px;
+            background-color: #17a2b8;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .navigation-actions button:hover {
+            background-color: #138496;
+        }
+
+        .container-style {
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 12px;
+            padding-right: 12px;
+            max-width: 1140px;
+        }
+
+        .support-mission {
+            margin-top: 80px;
+            margin-bottom: 64px;
+            text-align: center;
+        }
+
+        .support-mission h1 {
+            font-size: 36px;
+            line-height: 40px;
+            color: #212529;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+
+        .support-mission p {
+            color: #495057;
+            font-size: 16px;
+            line-height: 24px;
+        }
+
+        .make-donation-card {
+            padding: 32px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+        }
+
+        .donation-type-selection {
+            display: flex;
+            margin-bottom: 24px;
+            border-radius: 6px;
+            border: 1px solid #e9ecef;
+        }
+
+        .donation-type-selection button {
+            flex: 1;
+            background-color: #ffffff;
+            color: #495057;
+            font-size: 14px;
+            line-height: 20px;
+            padding: 16px;
+            border: none;
+            border-radius: 0;
+            outline: none;
+        }
+
+        .donation-type-selection button:first-child {
+            border-radius: 6px 0 0 6px;
+        }
+
+        .donation-type-selection button:last-child {
+            border-radius: 0 6px 6px 0;
+        }
+
+        .donation-type-selection button.active {
+            background-color: #e9ecef;
+            color: #212529;
+        }
+
+        .select-amount {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 12px;
+            margin-bottom: 24px;
+        }
+
+        .select-amount button {
+            padding: 12px;
+            background-color: #ffffff;
+            color: #495057;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .select-amount button:hover {
+            background-color: #e9ecef;
+        }
+
+        .select-amount button.active {
+            background-color: #e9ecef;
+        }
+
+        .custom-amount-input {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            margin-bottom: 24px;
+            padding: 8px 12px;
+        }
+
+        .custom-amount-input span {
+            margin-right: 8px;
+            color: #495057;
+        }
+
+        .custom-amount-input input {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 8px;
+            font-size: 16px;
+            color: #212529;
+        }
+
+        .donation-form-group {
+            margin-bottom: 24px;
+        }
+
+        .donation-form-group label {
+            display: block;
+            font-size: 14px;
+            line-height: 20px;
+            color: #495057;
+            margin-bottom: 8px;
+        }
+
+        .donation-form-group input,
+        .donation-form-group textarea {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .anonymous-donation {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .anonymous-donation input {
+            margin-right: 8px;
+        }
+
+        .anonymous-donation label {
+            font-size: 14px;
+            line-height: 20px;
+            color: #495057;
+        }
+
+        .final-donation-amount {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 24px;
+            font-size: 16px;
+            line-height: 24px;
+            color: #212529;
+        }
+
+        .final-donation-amount span:first-child {
+            color: #495057;
+        }
+
+        .donate-button {
+            background-color: #20c997;
+            color: #ffffff;
+            padding: 16px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            line-height: 24px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .donate-button:hover {
+            background-color: #1ba87e;
+        }
+
+        .why-donate-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 12px;
+        }
+
+        .why-donate-card {
+            padding: 24px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+        }
+
+        .why-donate-card h2 {
+            font-size: 20px;
+            line-height: 28px;
+            color: #212529;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .why-donate-card ul {
+            padding-left: 24px;
+            margin-bottom: 24px;
+        }
+
+        .why-donate-card li {
+            font-size: 14px;
+            line-height: 20px;
+            color: #495057;
+            margin-bottom: 8px;
+            list-style: none;
+            position: relative;
+        }
+
+        .why-donate-card li::before {
+            content: "â";
+            position: absolute;
+            left: -24px;
+            color: #20c997;
+        }
+
+        .why-donate-card p {
+            font-size: 14px;
+            line-height: 20px;
+            color: #495057;
+        }
+
+        .site-footer {
+            background-color: #ffffff;
+            padding: 64px 0;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .site-footer-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 32px;
+        }
+
+        .site-footer-column h2 {
+            font-size: 16px;
+            line-height: 24px;
+            color: #212529;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .site-footer-column ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        .site-footer-column li {
+            list-style: none;
+            margin-bottom: 8px;
+        }
+
+        .site-footer-column a {
+            color: #495057;
+        }
+
+        .site-footer-column a:hover {
+            color: #212529;
+        }
+
+        .site-footer-newsletter h2 {
+            font-size: 16px;
+            line-height: 24px;
+            color: #212529;
+            margin-bottom: 16px;
+            font-weight: 600;
+        }
+
+        .site-footer-newsletter form {
+            display: flex;
+        }
+
+        .site-footer-newsletter input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px 0 0 6px;
+            outline: none;
+            font-size: 14px;
+            line-height: 20px;
+            color: #495057;
+        }
+
+        .site-footer-newsletter button {
+            background-color: #20c997;
+            color: #ffffff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+            line-height: 20px;
+            cursor: pointer;
+        }
+
+        .site-footer-newsletter button:hover {
+            background-color: #1ba87e;
+        }
+
+        .site-footer-bottom {
+            text-align: center;
+            margin-top: 64px;
+            font-size: 12px;
+            line-height: 16px;
+            color: #495057;
+        }
+
+        .site-footer-bottom a {
+            color: #495057;
+        }
+
+        .site-footer-bottom a:hover {
+            color: #212529;
+        }
+
+        .grid-items {
+            background-color: #ecfdf5;
+            border: 1px solid #d1fae5;
+            border-radius: 6px;
+            padding: 24px;
+        }
+
+        .ul-element {
+            list-style-type: none;
+            padding: 0px;
+        }
+
+        .ul-element li {
+            margin-bottom: 8px;
+        }
+
+        .list-style::before {
+            content: "â";
+            margin-right: 12px;
+            color: #495057;
+        }
+
+        .text {
+            color: #495057;
+            font-size: 14px;
+        }
+
+        .icon {
+            background-color: #e9ecef;
+            border-radius: 50%;
+            height: 36px;
+            width: 36px;
+            border: 1px solid #e9ecef;
+            margin-right: 16px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .social-media {
+            display: flex;
+            margin-bottom: 40px;
+        }
+
+        .social-media .icon:hover {
+            background-color: #d6d8da;
+        }
+
+        .newsletter {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .footer-text {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 10px;
+        }
+
+        .copyright {
+            margin-bottom: 8px;
+        }
+
+        a.menu-footer {
+            text-decoration: none;
+            color: #495057;
+            font-size: 12px;
+        }
+
+        input[type="checkbox"] {
+            width: auto;
+            padding: 0;
+            border: none;
+            border-radius: 0;
+            box-sizing: content-box;
+        }
+
+        .logo-wrapper {
+            display: flex;
+            align-items: center;
+        }
+
+        .site-header {
+            padding: 20px 0;
+        }
+
+        .bg-color {
+            background-color: #069477;
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: #fff !important;
+        }
+
+        #custom-amount {
+            border: none;
+        }
+
+        .section-cards {
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 24px;
+            margin-bottom: 24px;
+        }
+
+        .menu {
+            margin-left: 20px;
+            color: #075359;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .site-header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .navigation-actions-menu {
+            display: flex;
+        }
+
+        .alpha-one {
+            display: inline-flex;
+        }
+
+        .alpha-one-labs-logo {
+            width: 40px;
+            height: 40px;
+            margin-right: 8px;
+        }
+
+        .header-text {
+            font-size: 20px;
+            font-weight: 700;
+            color: #075359;
+            line-height: 28px;
+        }
+
+        .login-button {
+            color: #069477;
+            padding: 8px 16px;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 700;
+            line-height: 20px;
+        }
+
+        .button-signup {
+            background-color: #f98226;
+            color: #fff;
+            padding: 8px 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 700;
+        }
+
+        .actions-button {
+            display: flex;
+        }
+
+        .rectangle-buttons {
+            background-color: #E9ECEF;
+            color: #495057;
+            padding: 12px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .rectangle-buttons:hover {
+            background-color: #e9ecef;
+        }
+
+        .rectangle-buttons.active {
+            background-color: #e9ecef;
+        }
+
+        .title {
+            color: #212529;
+            font-weight: 600;
+        }
+
+        .support-text {
+            color: #495057;
+            font-size: 14px;
+        }
+
+        .money-items {
+            padding: 12px;
+            background-color: #fff;
+            color: #495057;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            outline: none;
+        }
+
+        .money-items:hover {
+            background-color: #e9ecef;
+        }
+
+        .money-items.active {
+            background-color: #e9ecef;
+        }
+
+        .items-value {
+            display: flex;
+            align-items: center;
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            margin-bottom: 24px;
+            padding: 8px 12px;
+        }
+
+        #items-value {
+            flex: 1;
+            border: none;
+            outline: none;
+            padding: 8px;
+            font-size: 16px;
+            color: #212529;
+        }
+
+        .anonym-donat {
+            display: flex;
+            align-items: center;
+            margin-bottom: 24px;
+        }
+
+        .anonym-donat label {
+            font-size: 14px;
+            line-height: 20px;
+            color: #495057;
+        }
+
+        .all-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 12px;
+        }
+
+        .information-card {
+            border: 1px solid #e9ecef;
+            border-radius: 6px;
+            padding: 24px;
+            background-color: #ecfdf5;
+        }
+
+        .ul-card {
+            list-style-type: none;
+            padding: 0px;
+            margin-bottom: 24px;
+        }
+
+        .ul-card li {
+            margin-bottom: 8px;
+        }
+
+        .ul-card li::before {
+            content: "â";
+            position: absolute;
+            left: -24px;
+            color: #20c997;
+        }
+
+        .why-donate-card li {
+            font-size: 14px;
+            line-height: 20px;
+            color: #495057;
+            margin-bottom: 8px;
+            list-style: none;
+            position: relative;
+        }
+
+        .column {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 32px;
+        }
+
+        .subscribe input {
+            flex: 1;
+            padding: 12px;
+            border: 1px solid #e9ecef;
+            border-radius: 6px 0 0 6px;
+            outline: none;
+            font-size: 14px;
+            line-height: 20px;
+            color: #495057;
+        }
+        .container-bottom {
+            max-width: 1140px;
+            margin: 0 auto;
+            padding: 0 12px;
+        }
+
+        .container-menu {
+            text-align: center;
+            margin-top: 64px;
+            font-size: 12px;
+            line-height: 16px;
+            color: #495057;
+            display: flex;
+            justify-content: center;
+        }
+        .site-footer-newsletter button {
+            background-color: #20c997;
+            color: #ffffff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 0 6px 6px 0;
+            font-size: 14px;
+            line-height: 20px;
+            cursor: pointer;
+            margin-left: -5px;
+        }
+        .menu-style {
+            text-decoration: none;
+            color: #495057;
+            font-size: 12px;
+            margin-right: 12px;
+        }
+        .copy {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+        .date {
+            text-align: center;
+            margin-bottom: 8px;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header class="site-header">
+        <div class="container-style">
+            <div class="site-header-container">
+                <a href="/" class="logo-wrapper">
+                    <img class="alpha-one-labs-logo" src="src/placeholder.jpg"
+                        alt="Alpha One Labs Logo" width="40" height="40">
+                    <span class="header-text">Alpha One Labs</span>
+                </a>
+                <nav class="navigation">
+                    <div class="navigation-menu">
+                        <a class="menu" href="#">Learn</a>
+                        <a class="menu" href="#">Community</a>
+                        <a class="menu" href="#">Resources</a>
+                        <a class="menu" href="#">About</a>
+                        <input type="text" placeholder="What do you want to learn?" style="width: 200px;">
+                    </div>
+                    <div class="navigation-actions-menu">
+                        <a class="login-button" href="#">Login</a>
+                        <button class="button-signup">Signup</button>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="support-mission">
+            <h1>Support Our Mission</h1>
+            <p>Your donation helps us provide quality education to more students around the world.</p>
+        </section>
+
+        <section class="donation-area">
+            <div class="container-style">
+                <div class="all-cards">
+                    <div class="section-cards">
+                        <h2 class="title">Make a Donation</h2>
+                        <h3 class="support-text">Donation Type</h3>
+                        <div class="donation-type-selection">
+                            <button class="rectangle-buttons active">One-time</button>
+                            <button class="rectangle-buttons">Monthly</button>
+                        </div>
+                        <p class="support-text">Support our mission with a one-time donation</p>
+                        <h3 class="support-text">Select Amount</h3>
+                        <div class="select-amount">
+                            <button class="money-items">$5</button>
+                            <button class="money-items">$10</button>
+                            <button class="money-items">$25</button>
+                            <button class="money-items">$50</button>
+                            <button class="money-items">$100</button>
+                        </div>
+                        <div class="items-value">
+                            <span>$</span>
+                            <input type="text" id="items-value" placeholder="Or enter custom amount">
+                        </div>
+
+                        <div class="donation-form-group">
+                            <label for="email">E-Mail</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="donation-form-group">
+                            <label for="message">Message (Optional)</label>
+                            <textarea id="message" name="message" rows="4"
+                                placeholder="Share why you're donating..."></textarea>
+                        </div>
+
+                        <div class="anonym-donat">
+                            <input type="checkbox" id="anonymous" name="anonymous">
+                            <label for="anonymous">Make my donation anonymous</label>
+                        </div>
+
+                        <div class="final-donation-amount">
+                            <span>Final Donation Amount:</span>
+                            <span>$0.00</span>
+                        </div>
+
+                        <button class="donate-button">Donate Now</button>
+                    </div>
+
+                    <div class="information-card">
+                        <h2 class="title">Why Donate?</h2>
+                        <h3 class="support-text">Your donation helps us:</h3>
+                        <ul class="ul-card">
+                            <li>Provide scholarships to students in need</li>
+                            <li>Develop new educational content and resources</li>
+                            <li>Improve our platform and technology</li>
+                            <li>Expand our reach to underserved communities</li>
+                        </ul>
+                        <p class="support-text">We're committed to making quality education accessible to everyone,
+                            regardless of their financial situation.</p>
+                    </div>
+                </div>
+                <div class="grid-items">
+                    <h2 class="title">Why Donate Monthly?</h2>
+                    <h3 class="support-text">Monthly donations provide sustainable support that helps us:</h3>
+                    <ul class="ul-card">
+                        <li>Plan long-term educational programs</li>
+                        <li>Maintain consistent support for students</li>
+                        <li>Develop new educational resources continuously</li>
+                        <li>Make long-term commitments to communities</li>
+                    </ul>
+                    <p class="support-text">Your monthly support creates a foundation for sustainable education.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container-style">
+            <div class="column">
+                <div class="site-footer-column">
+                    <h2>Learning</h2>
+                    <ul>
+                        <li>
+                            <a class="list-style" href="#">Courses</a>
+                        </li>
+                        <li>
+                            <a class="list-style" href="#">Subjects</a>
+                        </li>
+                        <li>
+                            <a class="list-style" href="#">Quizzes</a>
+                        </li>
+                        <li>
+                            <a class="list-style" href="#">Videos</a>
+                        </li>
+                        <li>
+                            <a class="list-style" href="#">Challenges</a>
+                        </li>
+                        <li>
+                            <a class="list-style" href="#">Study Groups</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="site-footer-column">
+                    <h2>Community</h2>
+                    <ul>
+                        <li>
+                            <a class="list-style" href="#">Forum</a>
+                        </li>
+                        <li>
+                            <a class="list-style" href="#">Blog</a>
+                        </li>
+                        <li>
+                            <a class="list-style" href="#">Features</a>
+                        </li>
+                        <li>
+                            <a class="list-style" href="#">Success Stories</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="site-footer-column">
+                    <h2>Resources & Info</h2>
+                    <ul>
+                        <li>
+                            <a class="list-style" href="#">GSOC'25</a>
+                        </li>
+                        <li>
+                            <a class="list-style" href="#">Status</a>
+                        </li>
+                        <li>
+                            <a class="list-style" href="#">Feedback</a>
+                        </li>
+                        <li>
+                            <a class="list-style" href="#">Terms</a>
+                        </li>
+                    </ul>
+                </div>
+
+                <div class="site-footer-newsletter">
+                    <h2>Connect With Us</h2>
+                    <div class="social-media">
+                        <a href="#" class="icon">
+                            <img src="src/placeholder.jpg" style="width: 20px; height: 20px;" alt="Social Media Icon" />
+                        </a>
+                        <a href="#" class="icon">
+                            <img src="src/placeholder.jpg" style="width: 20px; height: 20px;" alt="Social Media Icon" />
+                        </a>
+                        <a href="#" class="icon">
+                            <img src="src/placeholder.jpg" style="width: 20px; height: 20px;" alt="Social Media Icon" />
+                        </a>
+                        <a href="#" class="icon">
+                            <img src="src/placeholder.jpg" style="width: 20px; height: 20px;" alt="Social Media Icon" />
+                        </a>
+                        <a href="#" class="icon">
+                            <img src="src/placeholder.jpg" style="width: 20px; height: 20px;" alt="Social Media Icon" />
+                        </a>
+                    </div>
+                    <h2>Subscribe to Newsletter</h2>
+                    <form class="subscribe">
+                        <input type="email" placeholder="Your email">
+                        <button>
+                            <img src="src/placeholder.jpg" style="width: 20px; height: 20px;" alt="Social Media Icon" />
+                        </button>
+                    </form>
+                </div>
+            </div>
+
+            <div class="container-bottom">
+                <div class="copy">Â© 2025 Alpha One Labs. All rights reserved.</div>
+                <div class="date">Last updated: 06/12/2025 12:23nachm.</div>
+                <div class="container-menu">
+                    <a href="#" class="menu-style">About Us</a>
+                    <a href="#" class="menu-style">Terms & Conditions</a>
+                    <a href="#" class="menu-style">Privacy Policy</a>
+                    <a href="#" class="menu-style">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

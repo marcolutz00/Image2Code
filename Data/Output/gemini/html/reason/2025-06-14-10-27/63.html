@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting Rooms</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            padding: 20px;
+        }
+
+        .waiting-rooms-title {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .waiting-rooms-description {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .open-waiting-rooms-title {
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .waiting-rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .waiting-room-card {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .waiting-room-card h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .waiting-room-card p {
+            font-size: 14px;
+            line-height: 1.4;
+            margin-bottom: 10px;
+        }
+
+        .waiting-room-card .topics {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .waiting-room-card .teacher {
+            font-size: 12px;
+            color: blue;
+            margin-bottom: 10px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #555;
+        }
+
+        /* Additional Styles */
+        .open-status {
+            color: green;
+            font-size: 12px;
+            margin-left: 5px;
+        }
+
+        .right-aligned {
+            text-align: right;
+        }
+
+        .footer-links {
+            margin-top: 10px;
+        }
+
+        .footer-links a {
+            margin: 0 10px;
+            color: #555;
+            text-decoration: none;
+        }
+
+        .site-footer {
+            background-color: #f2f2f2;
+            padding: 20px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        .site-footer .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+            color: #333;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 5px;
+        }
+
+        .footer-section a {
+            color: #888;
+            text-decoration: none;
+        }
+
+        .footer-bottom {
+            text-align: left;
+            font-size: 12px;
+            color: #888;
+        }
+
+
+
+        .button {
+        background-color: #00a896;
+        color: white;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+}
+
+        /* Specific Styles */
+        .open-waiting-rooms-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .open-waiting-rooms-title::after {
+            content: ' 5';
+            background-color: #90EE90; /* LightGreen */
+            padding: 3px 8px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            margin-left: 5px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="main-content">
+            <h1 class="waiting-rooms-title">Waiting Rooms</h1>
+            <p class="waiting-rooms-description">Waiting rooms allow you to express interest in subjects and topics you want to learn. Join existing waiting rooms or create your own to find others interested in the same
+                topics. Teachers can see these waiting rooms and create courses based on popular demand.</p>
+
+            <h2 class="open-waiting-rooms-title">Open Waiting Rooms</h2>
+
+            <div class="waiting-rooms-grid">
+                <div class="waiting-room-card">
+                    <h3>Waiting Room 5</h3>
+                    <p>Subject 5 â¢ 2 interested</p>
+                    <p>Description for waiting room 5</p>
+                    <p class="topics">Topic1 Topic2 Topic5</p>
+                    <p class="teacher">teacher2 <span class="open-status">â¢ Open</span></p>
+                    <p class="right-aligned">19 Stunden, 28 Minuten ago</p>
+                </div>
+
+                <div class="waiting-room-card">
+                    <h3>Waiting Room 4</h3>
+                    <p>Subject 4 â¢ 6 interested</p>
+                    <p>Description for waiting room 4</p>
+                    <p class="topics">Topic1 Topic2 Topic4</p>
+                    <p class="teacher">teacher2 <span class="open-status">â¢ Open</span></p>
+                    <p class="right-aligned">19 Stunden, 28 Minuten ago</p>
+                </div>
+
+                <div class="waiting-room-card">
+                    <h3>Waiting Room 3</h3>
+                    <p>Subject 3 â¢ 5 interested</p>
+                    <p>Description for waiting room 3</p>
+                    <p class="topics">Topic1 Topic2 Topic3</p>
+                    <p class="teacher">teacher1 <span class="open-status">â¢ Open</span></p>
+                    <p class="right-aligned">19 Stunden, 28 Minuten ago</p>
+                </div>
+
+                <div class="waiting-room-card">
+                    <h3>Waiting Room 2</h3>
+                    <p>Subject 2 â¢ 9 interested</p>
+                    <p>Description for waiting room 2</p>
+                    <p class="topics">Topic1 Topic2 Topic2</p>
+                    <p class="teacher">teacher2 <span class="open-status">â¢ Open</span></p>
+                    <p class="right-aligned">19 Stunden, 28 Minuten ago</p>
+                </div>
+
+                <div class="waiting-room-card">
+                    <h3>Waiting Room 1</h3>
+                    <p>Subject 1 â¢ 3 interested</p>
+                    <p>Description for waiting room 1</p>
+                    <p class="topics">Topic1 Topic2 Topic1</p>
+                    <p class="teacher">teacher2 <span class="open-status">â¢ Open</span></p>
+                    <p class="right-aligned">19 Stunden, 28 Minuten ago</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-section">
+                <h4>LEARNING</h4>
+                <ul>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="#">Quizzes</a></li>
+                    <li><a href="#">Videos</a></li>
+                    <li><a href="#">Challenges</a></li>
+                    <li><a href="#">Study Groups</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>COMMUNITY</h4>
+                <ul>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>RESOURCES &amp; INFO</h4>
+                <ul>
+                    <li><a href="#">GSOC'25</a></li>
+                    <li><a href="#">Status</a></li>
+                    <li><a href="#">Feedback</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h4>CONNECT WITH US</h4>
+                <ul>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                    <li><a href="#"></a></li>
+                </ul>
+
+                <form>
+                    <label for="newsletter">SUBSCRIBE TO NEWSLETTER</label>
+                    <input type="email" id="newsletter" placeholder="Your email">
+                    <button type="submit"> ></button>
+                </form>
+            </div>
+        </div>
+    </footer>
+
+    <div class="site-footer">
+        <div class="container">
+            <div class="footer-bottom">
+                Â© 2025 Alpha One Labs. All rights reserved.<br>
+                Last updated: 06/12/2025 12:19nachm.
+            </div>
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Terms &amp; Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

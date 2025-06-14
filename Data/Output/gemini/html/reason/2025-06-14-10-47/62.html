@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background-color: #00bfff;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left a{
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .header-right a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            border: 1px solid white;
+            padding: 8px 16px;
+            border-radius: 4px;
+        }
+
+        .signup-button {
+            background-color: #ffa500;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            color: white;
+            text-decoration: none;
+        }
+
+        /* Main Content */
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .subjects-section {
+            margin-bottom: 20px;
+        }
+
+        .subjects-section h2 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+
+        .subjects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .subject-card {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+        }
+
+        .subject-card h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .subject-card p {
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .subject-card .buttons {
+            margin-top: 10px;
+        }
+
+        .subject-card .buttons a {
+            display: inline-block;
+            padding: 8px 16px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        .subject-card .buttons .teach {
+            background-color: #6759ef;
+            color: white;
+        }
+
+        .subject-card .buttons .learn {
+            background-color: #ffa500;
+            color: white;
+        }
+
+        .interest-form {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+        }
+
+        .interest-form input[type="text"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            width: 50%;
+            margin-bottom: 10px;
+        }
+
+        .interest-form .buttons a {
+            display: inline-block;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 4px;
+            margin-left: 5px;
+            color: white;
+        }
+
+        .interest-form .buttons .teach {
+            background-color: #6759ef;
+        }
+
+        .interest-form .buttons .learn {
+            background-color: #ffa500;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 5px;
+            color: #777;
+        }
+        .footer-column ul li::before {
+            content: "\f096"; /* Unicode for a square bullet */
+            font-family: FontAwesome;
+            display: inline-block;
+            margin-right: 5px;
+            width: 1em;
+            margin-left: -1em;
+            color: #ccc;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            font-size: 12px;
+            color: #777;
+        }
+
+        /* Social Media */
+        .social-media {
+            display: flex;
+        }
+
+        .social-media a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #eee;
+            margin-right: 5px;
+            text-align: center;
+            line-height: 30px;
+            color: #777;
+            text-decoration: none;
+        }
+
+        /* Newsletter */
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-form input[type="email"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px 0 0 4px;
+            width: 200px;
+        }
+
+        .newsletter-form button {
+            background-color: #00bfff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 0 4px 4px 0;
+            cursor: pointer;
+        }
+
+        /* Font Awesome (For the bullet points) */
+        @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <div class="logo">Alpha One Labs</div>
+            <a href="#">LEARN</a>
+            <a href="#">COMMUNITY</a>
+            <a href="#">RESOURCES</a>
+            <a href="#">ABOUT</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="What do you want to learn?">
+        </div>
+        <div class="header-right">
+            <a href="#">Login</a>
+            <a href="#" class="signup-button">Signup</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <section class="subjects-section">
+            <h2 style="text-align: center;">Explore Subjects</h2>
+            <p style="text-align: center;">Browse exciting topics, see how many people are interested, and find out if there's already a teacher or not.</p>
+            <div class="subjects-grid">
+                <div class="subject-card">
+                    <h3>â  Chemistry</h3>
+                    <p>Interested: 57 learners</p>
+                    <p>Teacher Available: Yes</p>
+                    <p>Courses: 4</p>
+                    <div class="buttons">
+                        <a href="#" class="teach">Teach</a>
+                        <a href="#" class="learn">Learn</a>
+                    </div>
+                </div>
+                <div class="subject-card">
+                    <h3>â  Mathematics</h3>
+                    <p>Interested: 82 learners</p>
+                    <p>Teacher Available: Yes</p>
+                    <p>Courses: 7</p>
+                    <div class="buttons">
+                        <a href="#" class="teach">Teach</a>
+                        <a href="#" class="learn">Learn</a>
+                    </div>
+                </div>
+                <div class="subject-card">
+                    <h3>â  Programming</h3>
+                    <p>Interested: 134 learners</p>
+                    <p>Teacher Available: No</p>
+                    <p>Courses: 3</p>
+                    <div class="buttons">
+                        <a href="#" class="teach">Teach</a>
+                        <a href="#" class="learn">Learn</a>
+                    </div>
+                </div>
+                <div class="subject-card">
+                    <h3>â  Psychology</h3>
+                    <p>Interested: 29 learners</p>
+                    <p>Teacher Available: Yes</p>
+                    <p>Courses: 1</p>
+                    <div class="buttons">
+                        <a href="#" class="teach">Teach</a>
+                        <a href="#" class="learn">Learn</a>
+                    </div>
+                </div>
+                <div class="subject-card">
+                    <h3>â  Electronics</h3>
+                    <p>Interested: 16 learners</p>
+                    <p>Teacher Available: No</p>
+                    <p>Courses: 0</p>
+                    <div class="buttons">
+                        <a href="#" class="teach">Teach</a>
+                        <a href="#" class="learn">Learn</a>
+                    </div>
+                </div>
+                <div class="subject-card">
+                    <h3>â  Geography</h3>
+                    <p>Interested: 48 learners</p>
+                    <p>Teacher Available: Yes</p>
+                    <p>Courses: 2</p>
+                    <div class="buttons">
+                        <a href="#" class="teach">Teach</a>
+                        <a href="#" class="learn">Learn</a>
+                    </div>
+                </div>
+                <div class="subject-card">
+                    <h3>â  Literature</h3>
+                    <p>Interested: 65 learners</p>
+                    <p>Teacher Available: Yes</p>
+                    <p>Courses: 3</p>
+                    <div class="buttons">
+                        <a href="#" class="teach">Teach</a>
+                        <a href="#" class="learn">Learn</a>
+                    </div>
+                </div>
+                <div class="subject-card">
+                    <h3>â  Music Theory</h3>
+                    <p>Interested: 22 learners</p>
+                    <p>Teacher Available: Yes</p>
+                    <p>Courses: 2</p>
+                    <div class="buttons">
+                        <a href="#" class="teach">Teach</a>
+                        <a href="#" class="learn">Learn</a>
+                    </div>
+                </div>
+                <div class="subject-card">
+                    <h3>â  Robotics</h3>
+                    <p>Interested: 73 learners</p>
+                    <p>Teacher Available: No</p>
+                    <p>Courses: 5</p>
+                    <div class="buttons">
+                        <a href="#" class="teach">Teach</a>
+                        <a href="#" class="learn">Learn</a>
+                    </div>
+                </div>
+                <div class="subject-card">
+                    <h3>â  Health & Wellness</h3>
+                    <p>Interested: 41 learners</p>
+                    <p>Teacher Available: Yes</p>
+                    <p>Courses: 2</p>
+                    <div class="buttons">
+                        <a href="#" class="teach">Teach</a>
+                        <a href="#" class="learn">Learn</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="interest-form">
+            <h3>Express Your Interest</h3>
+            <input type="text" placeholder="Enter a subject...">
+            <div class="buttons">
+                <a href="#" class="teach">â  Teach</a>
+                <a href="#" class="learn">â  Learn</a>
+            </div>
+            <p>Share what you'd like to learn or teach, and we'll help make it happen!</p>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-columns">
+            <div class="footer-column">
+                <ul>
+                    <li>Courses</li>
+                    <li>Subjects</li>
+                    <li>Quizzes</li>
+                    <li>Videos</li>
+                    <li>Challenges</li>
+                    <li>Study Groups</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <ul>
+                    <li>Forum</li>
+                    <li>Blog</li>
+                    <li>Features</li>
+                    <li>Success Stories</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <ul>
+                    <li>GSOC'25</li>
+                    <li>Status</li>
+                    <li>Feedback</li>
+                    <li>Terms</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <div class="social-media">
+                    <a href="#" class="fa fa-facebook"></a>
+                    <a href="#" class="fa fa-twitter"></a>
+                    <a href="#" class="fa fa-linkedin"></a>
+                    <a href="#" class="fa fa-youtube"></a>
+                    <a href="#" class="fa fa-instagram"></a>
+                </div>
+                <p>SUBSCRIBE TO NEWSLETTER</p>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email">
+                    <button type="submit">â </button>
+                </form>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Â© 2025 Alpha One Labs. All rights reserved.<br>Last updated: 06/12/2025 12:12nachm.</p>
+            <div>
+                <a href="#" style="color: #777; text-decoration: none; margin-right: 10px;">About Us</a>
+                <a href="#" style="color: #777; text-decoration: none; margin-right: 10px;">Terms & Conditions</a>
+                <a href="#" style="color: #777; text-decoration: none; margin-right: 10px;">Privacy Policy</a>
+                <a href="#" style="color: #777; text-decoration: none;">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+
+</body>
+</html>

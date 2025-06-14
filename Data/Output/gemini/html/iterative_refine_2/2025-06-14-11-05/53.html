@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: serif;
+            margin: 0;
+            background-color: #f5f5dc;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #8B008B;
+            color: white;
+            text-align: left;
+            padding: 5px 0;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            padding-left: 20px;
+            font-size: 20px;
+        }
+
+        .header-right {
+            padding-right: 20px;
+            font-size: 14px;
+        }
+
+
+        /* Navigation Styles */
+        .navigation {
+            display: flex;
+            justify-content: space-around;
+            background-color: #f0f0f0;
+            width: 100%;
+            padding: 10px 0;
+            text-align: center;
+        }
+
+        .navigation a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        /* Main Content Styles */
+        .main-container {
+            display: flex;
+            width: 80%;
+            margin-top: 20px;
+        }
+
+        .left-column {
+            width: 65%;
+            padding: 20px;
+            background-color: white;
+        }
+
+        .right-column {
+            width: 35%;
+            padding: 20px;        }
+
+        /* Placeholder Image */
+        .placeholder-image {
+            width: 100px;
+            height: 100px;
+            background-color: blue;
+            margin-bottom: 20px;
+        }
+
+        /* Left Column Content */
+        .breadcrumbs {
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+
+        .breadcrumbs a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .post-title {
+            font-size: 20px;
+            margin-bottom: 15px;
+        }
+
+        .share-buttons {
+            display: flex;
+            margin-bottom: 20px;
+        }
+
+        .share-buttons a {
+            display: inline-block;
+            padding: 8px 12px;
+            margin-right: 5px;
+            color: white;
+            text-decoration: none;
+            border-radius: 3px;
+            font-size: 14px;
+        }
+
+        .share-buttons a.tweet {
+            background-color: #55acee;
+        }
+
+        .share-buttons a.share {
+            background-color: #3b5998;
+        }
+
+        .answer {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .explanation {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .options {
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .related-posts {
+            margin-top: 30px;
+        }
+
+        .related-posts h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .comments {
+            margin-top: 30px;
+        }
+
+        .comments h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        /* Right Column Styles */
+        .search-box {
+            background-color: #e6c449;
+            height: 50px;
+            margin-bottom: 20px;
+        }
+
+        .latest-questions {
+            background-color: #f9f9f9;
+            padding: 15px;
+        }
+
+        .latest-questions h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .latest-questions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .latest-questions li {
+            margin-bottom: 8px;
+        }
+
+        .latest-questions a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+
+        /* Specific Styles */
+        .latest-questions ul li:nth-child(1) {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .latest-questions ul li:nth-child(2) {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .latest-questions ul li:nth-child(3) {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .latest-questions ul li:nth-child(4) {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .latest-questions ul li:nth-child(5) {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .latest-questions ul li:nth-child(6) {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .latest-questions ul li:nth-child(7) {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .latest-questions ul li:nth-child(8) {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .latest-questions ul li:nth-child(9) {
+            background-color: #f0f0f0;
+            padding: 10px;
+        }
+
+        .post-title {
+            margin-top: 0px;
+        }
+
+        .options {
+            margin-bottom: 5px;
+        }
+
+        button {
+            background-color: white;
+            padding: 3px;
+            border: 1px solid black;
+        }
+
+        .share-buttons {
+            margin-top: 10px;
+        }
+
+        .share-buttons a {
+            padding: 5px;
+            font-size: 12px;
+        }
+
+        .breadcrumbs {
+            background-color: #e9967a;
+            padding: 5px;
+        }
+
+        .breadcrumbs a {
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-left">
+            <h1>Oranges costs increasing since 2022</h1>
+        </div>
+        <div class="header-right">USA CA GB AU EU More</div>
+    </header>
+    <div class="placeholder-image"></div>
+
+    <nav class="navigation" aria-label="Main Navigation">
+        <a href="#">Main</a>
+        <a href="#">Notifications</a>
+        <a href="#">Exams</a>
+        <a href="#">Old Questions</a>
+        <a href="#">Syllabus</a>
+        <a href="#">Answer Key</a>
+        <a href="#">Study Materials</a>
+        <a href="#">Youtube</a>
+    </nav>
+
+    <div class="main-container">
+        <div class="left-column">
+            <div class="breadcrumbs">
+                <a href="#">Main</a>
+                <a href="#">Information on India</a>
+                <a href="#">Knowledge</a>
+                <a href="#">Years</a>
+            </div>
+
+            <div class="breadcrumbs">
+                <a href="#">Information on India</a>
+                <a href="#">Knowledge</a>
+                <a href="#">Years</a>
+            </div>
+            <h2 class="post-title">In which year was the Indian Oil Corporation established?</h2>
+            <div class="share-buttons">
+                <a href="#" class="tweet">Tweet</a>
+                <a href="#" class="share">Share</a>
+                <a href="#" class="share">Share</a>
+                <a href="#" class="share">Share</a>
+                <a href="#" class="share">Share</a>
+            </div>
+
+            <div class="answer">Answer : A</div>
+            <div class="explanation">
+                Indian Oil Corporation is a state-owned Indian oil and gas enterprise, with its primary headquarters
+                located in New
+                Delhi. It stands as the largest commercial oil company in the nation.
+            </div>
+
+            <div class="options">A - 1964</div>
+            <div class="options">B - 1965</div>
+            <div class="options">C - 1966</div>
+            <div class="options">D - 1970</div>
+            <button>Show Answer</button>
+
+            <div class="related-posts">
+                <h3>RELATED POSTS</h3>
+            </div>
+
+            <div class="comments">
+                <h3>0 COMMENTS:</h3>
+            </div>
+        </div>
+
+        <div class="right-column">
+            <div class="search-box"></div>
+
+            <div class="latest-questions">
+                <h3>LATEST QUESTIONS</h3>
+                <ul>
+                    <li><a href="#">Let's go for a walk, shall we?</a></li>
+                    <li><a href="#">Who organized the first Panthi Bhojanam in India?</a></li>
+                    <li><a href="#">She sang well, ? (Question Tag)</a></li>
+                    <li><a href="#">I congratulate you your success.</a></li>
+                    <li><a href="#">The owner of 'Samathwa Samajam"</a></li>
+                    <li><a href="#">There is an exception every rule.</a></li>
+                    <li><a href="#">He died a severe head injury.</a></li>
+                    <li><a href="#">Who was the first to organize "Panthi Bhojanam" in India?</a></li>
+                    <li><a href="#">Who was the founder of the Vidya Poshini Sabha?</a></li>
+                    <li><a href="#">Who among the following holds the ultimate authority to approve the expenditure of public funds in India?</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

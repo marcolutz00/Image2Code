@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aws_autoscaling_lifecycle_hook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+        }
+
+        .header {
+            background-color: #eaeaea;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .header a {
+            margin: 0 20px;
+            text-decoration: none;
+            color: #5a5a5a;
+            font-size: 14px;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .content-section {
+            margin-bottom: 40px;
+        }
+
+        .example-usage pre {
+            background-color: #f8f8f8;
+            padding: 20px;
+            overflow-x: auto;
+            border: 1px solid #dcdcdc;
+            color: #333;
+        }
+
+        .example-usage pre .blue {
+            color: #0074d9;
+        }
+
+        .example-usage pre .red {
+            color: #ff4136;
+        }
+
+        h2 {
+            font-size: 20px;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+
+        .footer {
+            background-color: #333333;
+            color: white;
+            padding: 40px 20px;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-section {
+            width: 30%;
+        }
+
+        .footer-section h5 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .footer-section a {
+            color: #ffffff;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-text {
+            font-size: 12px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <a href="#">FEATURES</a>
+        <a href="#">OPEN SOURCE</a>
+        <a href="#">ABOUT US</a>
+        <a href="#">DOCS</a>
+        <a href="#" style="float: right;">SIGN IN</a>
+        <a href="#" style="float: right; margin-right: 10px;">SIGN UP</a>
+    </div>
+
+    <div class="container">
+
+        <div class="content-section">
+            <h1>aws_autoscaling_lifecycle_hook</h1>
+            <p>Supplies an AutoScaling Lifecycle Hook element.</p>
+
+            <h2>Example Usage</h2>
+            <div class="example-usage">
+                <pre>
+resource "aws_autoscaling_group" "foobar" {
+  available_zones        = ["us-west-2a"]
+  name                   = "terraform-test-foobar5"
+  health_check_type      = "EC2"
+  termination_policies   = ["OldestInstance"]
+  tag {
+    key                 = "Foo"
+    value               = "bar"
+    propagate_at_launch = true
+  }
+}
+
+resource "aws_autoscaling_lifecycle_hook" "foobar" {
+  name                    = "foobar"
+  autoscaling_group_name  = "${aws_autoscaling_group.foobar.name}"
+  default_result          = "CONTINUE"
+  heartbeat_timeout       = 2000
+  lifecycle_transition    = <span class="red">"autoscaling:EC2_INSTANCE_LAUNCHING"</span>
+  notification_metadata   = <span class="red">"{"foo": "bar"}"</span>
+  notification_target_arn = <span class="blue">"arn:aws:sqs:us-east-1:444455556666:queue1"</span>
+  role_arn                = <span class="blue">"arn:aws:iam::123456789012:role/S3Access"</span>
+}
+                </pre>
+            </div>
+        </div>
+
+        <div class="content-section">
+            <h2>Argument Specification</h2>
+            <p>The subsequent arguments are supported:</p>
+            <ul>
+                <li><b>name</b> - (Required) The lifecycle hook's name.</li>
+                <li><b>autoscaling_group_name</b> - (Required) Name of Auto Scaling group that you want to assign the lifecycle hook to.</li>
+                <li><b>default_result</b> - (Optional) Action Auto Scaling group should take when lifecycle hook timeout passes or if an unexpected failure arises.</li>
+                <li><b>heartbeat_timeout</b> - (Optional) Period of time, in seconds, before lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult setting.</li>
+            </ul>
+        </div>
+
+        <p style="font-size: 14px; color: #555555; margin-top: 40px;">See this document's origin at <a href="https://terraform.io" style="color: #0074d9;">Terraform.io</a></p>
+
+    </div>
+
+    <div class="footer">
+        <div class="footer-columns">
+            <div class="footer-section">
+                <h5>Koding</h5>
+                <a href="#">Platform for Training</a>
+                <a href="#">Sales Automation</a>
+            </div>
+
+            <div class="footer-section">
+                <h5>Resources</h5>
+                <a href="#">Documentation</a>
+                <a href="#">Blog</a>
+                <a href="#">Start Here</a>
+            </div>
+
+            <div class="footer-section">
+                <h5>Company</h5>
+                <a href="#">About Us</a>
+                <a href="#">Open Source</a>
+            </div>
+        </div>
+
+        <div class="footer-columns">
+            <div class="footer-section">
+                <h5>Contact</h5>
+                <a href="#">Facebook</a>
+                <a href="#">Twitter</a>
+                <a href="#">LinkedIn</a>
+                <a href="#">Email Us</a>
+            </div>
+        </div>
+
+        <div class="footer-text">
+            &copy; 2023 Koding. All rights reserved.
+        </div>
+    </div>
+
+</body>
+
+</html>

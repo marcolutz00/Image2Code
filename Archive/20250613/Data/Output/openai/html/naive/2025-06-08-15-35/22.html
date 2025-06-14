@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Spawn Plane Radius Question</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        .header {
+            background-color: #e0e0e0;
+            border-bottom: 1px solid #ccc;
+            padding: 10px;
+        }
+        .header .right {
+            float: right;
+        }
+        .header button {
+            background-color: #bec8d2;
+            border: none;
+            padding: 5px 10px;
+            cursor: pointer;
+        }
+        .content {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 5px rgba(0,0,0,0.1);
+        }
+        .title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .badge {
+            background-color: #ccc;
+            border-radius: 3px;
+            padding: 5px 10px;
+            font-size: 12px;
+        }
+        .post, .comment {
+            margin-bottom: 20px;
+        }
+        .post-header, .comment-header {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+        .post-header img, .comment-header img {
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        .comment-body {
+            padding: 10px;
+            background-color: #f2f2f2;
+            border-radius: 5px;
+        }
+        .aside {
+            margin-top: 30px;
+        }
+        .aside input[type="text"] {
+            width: calc(100% - 20px);
+            padding: 5px;
+        }
+        .aside .response {
+            position: relative;
+            padding-left: 20px;
+        }
+        .aside .checkbox {
+            position: absolute;
+            left: 0;
+            top: 3px;
+        }
+        footer {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 12px;
+            color: #888;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <span>Register | Sign In</span>
+        <span class="right"><button>Start Discussion</button></span>
+    </div>
+    <div class="content">
+        <div class="title">
+            <span>Spawn Plane Radius Question</span>
+            <span class="badge">Mission Creation</span>
+        </div>
+        <div class="post">
+            <div class="post-header">
+                <img src="src/placeholder.jpg" alt="User" width="50" height="50">
+                <strong>Fletcher</strong>&nbsp;<span>4 Sep 2018</span>
+            </div>
+            <div class="post-body">
+                <p>Good day, all.</p>
+                <p>In the Virtual AI System setup, specifically the range, does this need adjustment to see ground elements? During a high-altitude bombing run using camera lock, does the radius need to match the altitude?</p>
+                <p>I'm curious because setting the plane radius to, say, 3000m while flying at mach 1 could cause frame rate drops due to my system loading many new objects at once.</p>
+                <p>Thanks in advance!</p>
+            </div>
+        </div>
+        <div class="comment">
+            <div class="comment-header">
+                <img src="src/placeholder.jpg" alt="User" width="30" height="30">
+                <strong>AngusDLX</strong>&nbsp;<span>4 Sep 2018</span>
+            </div>
+            <div class="comment-body">
+                <p>The camera's view isn't considered in the spawn range, the aircraft itself is.</p>
+                <p>My ALiVE experiences with attack planes were problematic due to the spawn range. High settings caused frame rate drops due to objects constantly appearing/disappearing (especially near many foes).</p>
+                <p>My workaround was a 200m spawn radius (to show bots at airports) and using a drone to trigger target spawns. However, AR-2 Darter drones sometimes malfunctioned or were destroyed before reaching the attack area.</p>
+                <p>SpyderBlack suggested replacing the drone with an object calling ALiVE_spawnSources to generate spawns at a location, but I couldn't implement it.</p>
+                <p>Another option: If ALiVE tasks involve air units, perhaps it could create an object using spawnSources, deleting it after destruction. I'm unsure if it's possible, but it's a thought for the developers.</p>
+                <p>This way, plane users can attack from afar without performance hits. Multiple planes with high ranges can cause issues.</p>
+            </div>
+        </div>
+        <div class="comment">
+            <div class="comment-header">
+                <img src="src/placeholder.jpg" alt="User" width="30" height="30">
+                <strong>Fletcher</strong>&nbsp;<span>4 Sep 2018</span>
+            </div>
+            <div class="comment-body">Got it, thanks!</div>
+        </div>
+        <div class="comment">
+            <div class="comment-header">
+                <img src="src/placeholder.jpg" alt="User" width="30" height="30">
+                <strong>Friznit</strong>&nbsp;<span>5 Sep 2018</span>
+                <span style="font-size: 10px;">Administrator</span>
+            </div>
+            <div class="comment-body">
+                <p>That's a viable concept. We could enable folks to add a "Target" over objectives, spawning an invisible object calling ALiVE_spawnSources.</p>
+            </div>
+        </div>
+        <div class="aside">
+            <input type="text" placeholder="Sign In or Register to post!">
+            <div class="response">
+                <input type="checkbox" class="checkbox"> Add a Response
+            </div>
+            <div>
+                <p>First Post</p>
+                <p>2018</p>
+                <p>September</p>
+                <p>Newest</p>
+            </div>
+        </div>
+    </div>
+    <footer>
+        Top of Page | Powered by esoTalk
+    </footer>
+</body>
+</html>

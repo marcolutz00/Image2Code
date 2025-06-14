@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Export news from google sites</title>
+<style>
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+    color: #333;
+}
+
+.container {
+    width: 80%;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+header {
+    text-align: left;
+    margin-bottom: 30px;
+}
+
+header a {
+    text-decoration: none;
+    color: #333;
+    margin-right: 15px;
+    font-size: 14px;
+}
+
+header a:last-child {
+    margin-right: 0;
+}
+
+h1 {
+    font-size: 48px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    color: #444;
+}
+
+.date {
+    font-size: 14px;
+    color: #777;
+    margin-bottom: 5px;
+}
+
+.reading-time {
+    font-size: 12px;
+    color: #999;
+}
+
+.content {
+    margin-bottom: 30px;
+}
+
+.content p {
+    margin-bottom: 15px;
+}
+
+pre {
+    background-color: #f5f5f5;
+    padding: 10px;
+    border: 1px solid #ddd;
+    overflow-x: auto;
+    font-size: 14px;
+    line-height: 1.4;
+}
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 20px;
+    font-size: 14px;
+}
+footer a {
+    color: #fff;
+    text-decoration: underline;
+}
+.header-links{
+    display: flex;
+    gap: 10px;
+    justify-content: start;
+}
+</style>
+</head>
+<body>
+    <header>
+        <div class="container header-links">
+            <a href="#">Homepage</a>
+            <a href="#">Amenities</a>
+            <a href="#">Suite Layouts</a>
+             <img src="src/placeholder.jpg" width="25" height="25" style="margin-top:10px; margin-bottom:10px;">
+            <a href="#">Image Showcase</a>
+            <a href="#">Reach Out</a>
+            <a href="#">303.716.6000</a>
+            <a href="#">Send Email</a>
+        </div>
+    </header>
+
+    <div class="container">
+        <section class="main-content">
+            <h1>Export news from google
+                sites
+            </h1>
+            <p class="date">Apr 27, 2012</p>
+            <p class="reading-time">One min of reading</p>
+
+            <div class="content">
+                <h2>Genesis of This</h2>
+                <p>When Free It Athens migrated their site away from Google Sites over to Drupal, they went
+                    fresh, losing all the previous content. I just realized that news data on the old site was valuable
+                    historical content, and I hadn't saved it.</p>
+                <p>Initially, I gave recursive wget a whirl.</p>
+
+                <pre>wget -r --no-parent--no-clobber """</pre>
+
+                <p>I've put online a quick code snippet, <a>export_google_site_news</a>, to my main repository located
+                    on github.</p>
+                <p>To illustrate, for pulling the news posts from
+                    https://sites.google.com/a/medinacommunityband.org/www/announcements, you can call:</p>
+                <pre>export_google_site_news https://sites.google.com/a/medinacommunityband.org/wwwannouncements</pre>
+                <p>This just flat failed as Google made the mistake of using javascript rather than anchor tags to
+                    connect news pages.</p>
+                <p>I hunted down and tried Google's own google-sites-export from their Data Liberation Team, but
+                    could never authenticate correctly.</p>
+                <p>I then feared I'd need Selenium to trigger the javascript, but then realized that the news pages
+                    took a single parameter to determine which paginated results to display. Looping would get
+                    them all.</p>
+                <pre>for i in $(seq 0 10 120); do
+wget "" "-Onews.$i"
+done</pre>
+                <p>After getting the first one, I saw a pattern to match each news stories' relative paths. Then
+                    extracted out all those paths.</p>
+                <pre>grep -E -h -o '/a/freeitathens.org/foo/news/[a-z0-9-]+' news.* |
+sort -u > news_links</pre>
+                <p>Once I had all the paths, it was easy to get wget to fetch them all.</p>
+                <pre>wget -i news_links -B https://sites.google.com</pre>
+                <p>Since I found zero guides online, I tried writing up a simple script from the above, and am
+                    detailing it here.</p>
+            </div>
+        </section>
+    </div>
+    <footer>
+        <div class="container">
+            Created with by <a href="#">YesLearners.com-YesLearners</a>
+        </div>
+    </footer>
+</body>
+</html>

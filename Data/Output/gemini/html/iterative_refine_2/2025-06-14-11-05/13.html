@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Export news from google sites</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        nav li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #007bff; /* Changed color to ensure sufficient contrast */
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+
+        .date {
+            color: #777;
+            margin-bottom: 1em;
+            font-size: 0.9em;
+        }
+
+        .content {
+            margin-bottom: 2em;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            overflow: auto;
+            border-radius: 3px;
+            white-space: pre-wrap;
+        }
+
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 0.8em;
+        }
+
+        .image-placeholder {
+            width: 50px;
+            height: 50px;
+            background-color: blue;
+            margin: 10px auto;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">Homepage</a></li>
+                <li><a href="#">Amenities</a></li>
+                <li><a href="#">Suite_Layouts</a></li>
+                <li><a href="#">Image_Showcase</a></li>
+                <li><a href="#">Reach.Out</a></li>
+                <li><a href="#">303.716.6000</a></li>
+                <li><a href="#">Send.Email</a></li>
+            </ul>
+        </nav>
+        <div class="image-placeholder"></div>
+    </header>
+
+    <div class="container">
+        <h1>Export news from google
+            sites</h1>
+        <div class="date">
+            Apr 27, 2012
+            <br>
+            One min of reading
+        </div>
+
+        <div class="content">
+            <h2>Genesis of This</h2>
+            <p>When Free It Athens migrated their site away from Google Sites over to Drupal, they went
+                fresh, losing all the previous content. I just realized that news data on the old site was valuable
+                historical content, and I hadn't saved it.</p>
+
+            <p>Initially, I gave recursive wget a whirl.</p>
+
+            <pre><code>wget -r --no-parent--no-clobber ""</code></pre>
+
+            <p>I've put online a quick code snippet, <code>export_google_site_news</code>, to my main repository located
+                on github.</p>
+
+            <p>To illustrate, for pulling the news posts from
+                https://sites.google.com/a/medinacommunityband.org/www/announcements, you can call:</p>
+
+            <pre><code>export_google_site_news https://sites.google.com/a/medinacommunityband.org/wwwannouncements</code></pre>
+
+            <p>This just flat failed as Google made the mistake of using javascript rather than anchor tags to
+                connect news pages.</p>
+
+            <p>I hunted down and tried Google's own google-sites-export from their Data Liberation Team, but
+                could never authenticate correctly.</p>
+
+            <p>I then feared I'd need Selenium to trigger the javascript, but then realized that the news pages
+                took a single parameter to determine which paginated results to display. Looping would get
+                them all.</p>
+
+            <pre><code>for i in $(seq 0 10 120); do
+wget "" "-Onews.$i"
+done</code></pre>
+
+            <p>After getting the first one, I saw a pattern to match each news stories' relative paths. Then
+                extracted out all those paths.</p>
+
+            <pre><code>grep -E -h -o '/a/freeitathens.org/foo/news/[a-z0-9\-]+' news.* |
+sort -u > news_links</code></pre>
+
+            <p>Once I had all the paths, it was easy to get wget to fetch them all.</p>
+
+            <pre><code>wget -i news_links -B https://sites.google.com</code></pre>
+
+            <p>Since I found zero guides online, I tried writing up a simple script from the above, and am
+                detailing it here.</p>
+        </div>
+    </div>
+
+    <footer>
+        Created with by <a href="https://YesLearners.com" style="color:#fff">YesLearners.com</a> - <a
+            href="https://YesLearners.com" style="color:#fff">YesLearners</a>
+    </footer>
+</body>
+
+</html>

@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting Rooms</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav ul li {
+            margin-left: 20px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        main {
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .waiting-rooms-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .waiting-room-card {
+            border: 1px solid #eee;
+            padding: 20px;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .waiting-room-card h3 {
+            margin-top: 0;
+        }
+
+        .waiting-room-card p {
+            margin-bottom: 10px;
+        }
+        .footer {
+            background-color: #f9f9f9;
+            padding: 20px 0;
+            text-align: left;
+            font-size: 0.8em;
+            color: #777;
+            border-top: 1px solid #eee;
+        }
+
+        .footer a {
+            color: #777;
+            text-decoration: none;
+        }
+
+        .footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .footer-bottom p {
+            margin: 0;
+        }
+
+        /* Additional styles to match the image */
+        header {
+            padding: 10px 0;
+        }
+
+        main {
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: #242A38;
+        }
+
+        h2 {
+            font-size: 18px;
+            color: #242A38;
+        }
+
+        p {
+            font-size: 14px;
+            color: #667085;
+        }
+
+        .waiting-rooms-grid {
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        }
+
+        .waiting-room-card {
+            border: 1px solid #EAECF0;
+            background-color: #FFFFFF;
+        }
+
+        .waiting-room-card h3 {
+            font-size: 16px;
+            color: #242A38;
+        }
+
+        .waiting-room-card p {
+            font-size: 12px;
+        }
+
+        .open-status {
+          color: #05934B;
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+        }
+
+        .open-status::before {
+          content: '';
+          display: inline-block;
+          width: 8px;
+          height: 8px;
+          border-radius: 50%;
+          background-color: #05934B;
+          margin-right: 5px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+            margin-top: 10px;
+        }
+
+        .tag {
+            background-color: #F2F4F7;
+            color: #667085;
+            font-size: 12px;
+            padding: 3px 8px;
+            border-radius: 5px;
+        }
+
+        .teacher {
+            color: #7F56D9;
+            font-size: 12px;
+            margin-top: 10px;
+            display: block;
+        }
+
+        .waiting-room-header {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          margin-bottom: 10px;
+        }
+        
+        .main-header{
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .main-header button{
+          background-color: #04A9B7;
+          color: white;
+          border: none;
+          padding: 10px 20px;
+          border-radius: 5px;
+        }
+        /*footer starts here*/
+        footer {
+          background-color: #FFFFFF;
+          padding: 20px 0;
+          text-align: left;
+          font-size: 0.8em;
+          color: #777;
+          border-top: 1px solid #EAECF0;
+        }
+
+        footer .container {
+          display: flex;
+          justify-content: space-between;
+          align-items: flex-start;
+        }
+
+        .footer-links {
+          display: flex;
+          flex-direction: column;
+        }
+
+        .footer-links h4 {
+          margin-bottom: 10px;
+          color: #242A38;
+          font-size: 16px;
+        }
+
+        .footer-links ul {
+          list-style: none;
+          padding: 0;
+          margin: 0;
+        }
+
+        .footer-links ul li {
+          margin-bottom: 5px;
+        }
+
+        .footer-links ul li a {
+          color: #667085;
+          text-decoration: none;
+          font-size: 14px;
+        }
+        .footer-bottom {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .footer-bottom p {
+            margin: 0;
+        }
+
+        .footer-bottom {
+          margin-top: 50px;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+        }
+        .footer-bottom .copyright {
+          color: #667085;
+          font-size: 12px;
+        }
+        .footer-bottom .footer-terms {
+          display: flex;
+          gap: 20px;
+        }
+        .footer-bottom .footer-terms a {
+          color: #667085;
+          text-decoration: none;
+          font-size: 12px;
+        }
+        .footer-social {
+          display: flex;
+          gap: 10px;
+        }
+
+        .footer-social a {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          border: 1px solid #EAECF0;
+          color: #667085;
+          text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div>
+                <h1>Alpha One Labs</h1>
+            </div>
+            <div></div>
+        </div>
+    </header>
+    <main>
+        <div class="container">
+            <div class="main-header">
+                <h1>Waiting Rooms</h1>
+                <button>Create Learning Request</button>
+            </div>
+            <h2>What are Waiting Rooms?</h2>
+            <p>Waiting rooms allow you to express interest in subjects and topics you want to learn. Join existing waiting rooms or create your own to find others interested in the same
+                topics. Teachers can see these waiting rooms and create courses based on popular demand.</p>
+            <h2>Open Waiting Rooms 5</h2>
+            <div class="waiting-rooms-grid">
+                <div class="waiting-room-card">
+                    <div class="waiting-room-header">
+                        <h3>Waiting Room 5</h3>
+                        <span class="open-status">Open</span>
+                    </div>
+                    <p>Subject 5 â¢ 2 interested</p>
+                    <p>Description for waiting room 5</p>
+                    <div class="tags">
+                        <span class="tag">Topic1</span>
+                        <span class="tag">Topic2</span>
+                        <span class="tag">Topic5</span>
+                    </div>
+                    <a href="#" class="teacher">teacher2</a>
+                </div>
+                <div class="waiting-room-card">
+                    <div class="waiting-room-header">
+                        <h3>Waiting Room 4</h3>
+                        <span class="open-status">Open</span>
+                    </div>
+                    <p>Subject 4 â¢ 6 interested</p>
+                    <p>Description for waiting room 4</p>
+                    <div class="tags">
+                        <span class="tag">Topic1</span>
+                        <span class="tag">Topic2</span>
+                        <span class="tag">Topic4</span>
+                    </div>
+                    <a href="#" class="teacher">teacher2</a>
+                </div>
+                <div class="waiting-room-card">
+                    <div class="waiting-room-header">
+                        <h3>Waiting Room 3</h3>
+                        <span class="open-status">Open</span>
+                    </div>
+                    <p>Subject 3 â¢ 5 interested</p>
+                    <p>Description for waiting room 3</p>
+                    <div class="tags">
+                        <span class="tag">Topic1</span>
+                        <span class="tag">Topic2</span>
+                        <span class="tag">Topic3</span>
+                    </div>
+                    <a href="#" class="teacher">teacher1</a>
+                </div>
+                <div class="waiting-room-card">
+                    <div class="waiting-room-header">
+                        <h3>Waiting Room 2</h3>
+                        <span class="open-status">Open</span>
+                    </div>
+                    <p>Subject 2 â¢ 9 interested</p>
+                    <p>Description for waiting room 2</p>
+                    <div class="tags">
+                        <span class="tag">Topic1</span>
+                        <span class="tag">Topic2</span>
+                        <span class="tag">Topic2</span>
+                    </div>
+                    <a href="#" class="teacher">teacher2</a>
+                </div>
+                <div class="waiting-room-card">
+                    <div class="waiting-room-header">
+                        <h3>Waiting Room 1</h3>
+                        <span class="open-status">Open</span>
+                    </div>
+                    <p>Subject 1 â¢ 3 interested</p>
+                    <p>Description for waiting room 1</p>
+                    <div class="tags">
+                        <span class="tag">Topic1</span>
+                        <span class="tag">Topic2</span>
+                        <span class="tag">Topic1</span>
+                    </div>
+                    <a href="#" class="teacher">teacher2</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-links">
+                <h4>LEARNING</h4>
+                <ul>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="#">Quizzes</a></li>
+                    <li><a href="#">Videos</a></li>
+                    <li><a href="#">Challenges</a></li>
+                    <li><a href="#">Study Groups</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>COMMUNITY</h4>
+                <ul>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+                <h4>RESOURCES &amp; INFO</h4>
+                <ul>
+                    <li><a href="#">GSOC'25</a></li>
+                    <li><a href="#">Status</a></li>
+                    <li><a href="#">Feedback</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-links">
+              <h4>CONNECT WITH US</h4>
+              <div class="footer-social">
+                <a href="#"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w+j///9+zcEioA0YMwDoDygAAEaXFhUAAAAASUVORK5CYII=" alt="facebook"></a>
+                <a href="#"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w+j///9+zcEioA0YMwDoDygAAEaXFhUAAAAASUVORK5CYII=" alt="twitter"></a>
+                <a href="#"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w+j///9+zcEioA0YMwDoDygAAEaXFhUAAAAASUVORK5CYII=" alt="instagram"></a>
+                <a href="#"><img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHElEQVQI12P4//8/w+j///9+zcEioA0YMwDoDygAAEaXFhUAAAAASUVORK5CYII=" alt="youtube"></a>
+              </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright">Â© 2025 Alpha One Labs. All rights reserved.<br/>Last updated: 06/12/2025 12:19nachm.</p>
+            <div class="footer-terms">
+                <a href="#">About Us</a>
+                <a href="#">Terms &amp; Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+
+        </div>
+    </footer>
+</body>
+</html>

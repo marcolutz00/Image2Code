@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Waiting Rooms</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fbfb;
+            color: #344054;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        a {
+            text-decoration: none;
+            color: #138ef1;
+        }
+
+        /* Header */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 0;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #00a389;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            margin-left: 20px;
+        }
+
+        .nav-links input {
+            padding: 8px 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .login-signup {
+            display: flex;
+            align-items: center;
+        }
+
+        .login-signup a {
+            margin-left: 10px;
+            padding: 8px 15px;
+            border-radius: 5px;
+            background-color: #ffa155;
+            color: #fff;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px 0;
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .waiting-rooms-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .waiting-room-card {
+            width: calc(33.33% - 20px);
+            background-color: #fff;
+            border-radius: 10px;
+            padding: 20px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .waiting-room-card h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+        }
+
+        .waiting-room-card p {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+
+        .waiting-room-card .topics {
+            font-size: 12px;
+            color: #888;
+            background-color: #f2f2f2;
+            padding: 5px 8px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .waiting-room-card .teacher {
+            color: #935ddb;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #fff;
+            padding: 40px 0;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footer-column {
+            width: 20%;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 5px;
+        }
+
+        .footer-column a {
+            color: #777;
+        }
+
+        .bottom-footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        .bottom-footer a {
+            color: #777;
+            margin: 0 10px;
+        }
+
+        /* Additional Styles */
+        .create-button {
+            background-color: #138ef1;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .open-status {
+            color: #28a745;
+            font-size: 12px;
+        }
+
+        .number-bubble {
+            background-color: #e5f3ee;
+            color: #32936f;
+            border-radius: 50%;
+            padding: 3px 7px;
+            font-size: 12px;
+        }
+
+        .learning-checkboxes {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .learning-checkboxes li {
+            margin-bottom: 5px;
+        }
+
+        .learning-checkboxes li::before {
+            content: '0c8';
+            font-family: "Font Awesome 5 Free";
+            font-weight: 400;
+            margin-right: 5px;
+            color: #888;
+        }
+
+        /* Newsletter */
+        .newsletter-section {
+            margin-top: 20px;
+        }
+
+        .newsletter-section input[type="email"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            width: 200px;
+        }
+
+        .newsletter-section button {
+            background-color: #00a389;
+            color: #fff;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Social Icons */
+        .social-icons {
+            display: flex;
+        }
+
+        .social-icons a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            background-color: #e9f5f3;
+            color: #00a389;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+        }
+
+        /* Font Awesome */
+        @import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css');
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="logo">Alpha One Labs</div>
+            <div class="nav-links">
+                <a href="#">LEARN</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">RESOURCES</a>
+                <a href="#">ABOUT</a>
+                <input type="text" placeholder="What do you want to learn?">
+            </div>
+            <div class="login-signup">
+                <a href="#">Login</a>
+                <a href="#">Signup</a>
+            </div>
+        </header>
+
+        <section class="main-content">
+            <h1>Waiting Rooms</h1>
+            <h2>What are Waiting Rooms?</h2>
+            <p>Waiting rooms allow you to express interest in subjects and topics you want to learn. Join existing waiting rooms or create
+                your own to find others interested in the same topics. Teachers can see these waiting rooms and create courses based
+                on popular demand.</p>
+
+            <h2>Open Waiting Rooms <span class="number-bubble">5</span></h2>
+
+            <div class="waiting-rooms-container">
+                <div class="waiting-room-card">
+                    <h3>Waiting Room 5</h3>
+                    <p>Subject 5 â¢ 2 interested</p>
+                    <p>Description for waiting room 5</p>
+                    <p class="topics">Topic1 Topic2 Topic5</p>
+                    <p class="teacher">teacher2 <span style="float:right;">19 Stunden, 28 Minuten ago</span></p>
+                    <span style="float:right;color:#28a745;">â¢ Open</span>
+                </div>
+
+                <div class="waiting-room-card">
+                    <h3>Waiting Room 4</h3>
+                    <p>Subject 4 â¢ 6 interested</p>
+                    <p>Description for waiting room 4</p>
+                    <p class="topics">Topic1 Topic2 Topic4</p>
+                    <p class="teacher">teacher2 <span style="float:right;">19 Stunden, 28 Minuten ago</span></p>
+                    <span style="float:right;color:#28a745;">â¢ Open</span>
+                </div>
+
+                <div class="waiting-room-card">
+                    <h3>Waiting Room 3</h3>
+                    <p>Subject 3 â¢ 5 interested</p>
+                    <p>Description for waiting room 3</p>
+                    <p class="topics">Topic1 Topic2 Topic3</p>
+                    <p class="teacher">teacher1 <span style="float:right;">19 Stunden, 28 Minuten ago</span></p>
+                    <span style="float:right;color:#28a745;">â¢ Open</span>
+                </div>
+
+                <div class="waiting-room-card">
+                    <h3>Waiting Room 2</h3>
+                    <p>Subject 2 â¢ 9 interested</p>
+                    <p>Description for waiting room 2</p>
+                    <p class="topics">Topic1 Topic2 Topic2</p>
+                    <p class="teacher">teacher2 <span style="float:right;">19 Stunden, 28 Minuten ago</span></p>
+                    <span style="float:right;color:#28a745;">â¢ Open</span>
+                </div>
+
+                <div class="waiting-room-card">
+                    <h3>Waiting Room 1</h3>
+                    <p>Subject 1 â¢ 3 interested</p>
+                    <p>Description for waiting room 1</p>
+                    <p class="topics">Topic1 Topic2 Topic1</p>
+                    <p class="teacher">teacher2 <span style="float:right;">19 Stunden, 28 Minuten ago</span></p>
+                    <span style="float:right;color:#28a745;">â¢ Open</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-columns">
+                <div class="footer-column">
+                    <h4>LEARNING</h4>
+                    <ul class="learning-checkboxes">
+                        <li>Courses</li>
+                        <li>Subjects</li>
+                        <li>Quizzes</li>
+                        <li>Videos</li>
+                        <li>Challenges</li>
+                        <li>Study Groups</li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>COMMUNITY</h4>
+                    <ul class="learning-checkboxes">
+                        <li>Forum</li>
+                        <li>Blog</li>
+                        <li>Features</li>
+                        <li>Success Stories</li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>RESOURCES & INFO</h4>
+                    <ul class="learning-checkboxes">
+                        <li>GSOC'25</li>
+                        <li>Status</li>
+                        <li>Feedback</li>
+                        <li>Terms</li>
+                    </ul>
+                </div>
+
+                <div class="footer-column">
+                    <h4>CONNECT WITH US</h4>
+                    <div class="social-icons">
+                        <a href="#"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#"><i class="fab fa-twitter"></i></a>
+                        <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="#"><i class="fab fa-instagram"></i></a>
+                    </div>
+                    <div class="newsletter-section">
+                        <p>SUBSCRIBE TO NEWSLETTER</p>
+                        <input type="email" placeholder="Your email">
+                        <button>></button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="bottom-footer">
+                <p>Â© 2025 Alpha One Labs. All rights reserved. <br>Last updated: 06/12/2025 12:19nachm.</p>
+                <a href="#">About Us</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

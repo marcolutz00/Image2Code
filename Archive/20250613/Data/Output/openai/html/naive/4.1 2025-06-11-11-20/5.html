@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Tech Tips Hub - Bypassing Restrictions to Upload to YouTube</title>
+  <link href="https://fonts.googleapis.com/css?family=Roboto:400,700,400italic,700italic" rel="stylesheet">
+  <style>
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+    body {
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      background: #fff;
+      color: #222;
+      font-size: 16px;
+      margin: 0;
+      padding: 0;
+    }
+    /* Header */
+    .header {
+      width: 100%;
+      padding: 46px 0 0 0;
+      position: relative;
+      margin-bottom: 0;
+    }
+    .header-inner {
+      width: 750px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .site-title {
+      font-size: 22px;
+      font-weight: 700;
+      letter-spacing: 0.1px;
+      margin-bottom: 6px;
+      margin-top: 0;
+    }
+    .site-subtitle {
+      font-size: 13px;
+      font-style: italic;
+      color: #757575;
+      margin-bottom: 0;
+      margin-top: 0;
+    }
+    .nav-find {
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 1px;
+      color: #1ab29b;
+      margin-top: 3px;
+    }
+
+    /* Banner / Title */
+    .banner {
+      width: 100%;
+      background: #229d8b;
+      padding: 70px 0 64px 0;
+      margin-bottom: 64px;
+    }
+    .banner-inner {
+      width: 750px;
+      margin: 0 auto;
+    }
+    .banner-title {
+      font-size: 42px;
+      font-weight: 700;
+      color: #fff;
+      line-height: 1.12;
+      margin: 0;
+    }
+
+    .main-content {
+      width: 750px;
+      margin: 0 auto;
+      position: relative;
+      padding-bottom: 80px;
+    }
+    .post-date {
+      font-size: 14px;
+      color: #666;
+      margin-bottom: 38px;
+      display: block;
+      margin-top: 0;
+    }
+    .post-content {
+      font-size: 17px;
+      color: #222;
+      margin-bottom: 0;
+      margin-top: 6px;
+      line-height: 1.6;
+      letter-spacing: 0;
+    }
+    /* Stylized Drop Cap */
+    .dropcap {
+      float: left;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 38px;
+      color: #229d8b;
+      font-family: 'Roboto', Arial, Helvetica, sans-serif;
+      margin-right: 10px;
+      margin-top: 2px;
+    }
+    .main-content a {
+      color: #229d8b;
+      text-decoration: underline;
+      cursor: pointer;
+    }
+    .share-btn {
+      margin-top: 46px;
+      margin-bottom: 0;
+    }
+    .share-link {
+      font-weight: 700;
+      font-size: 14px;
+      color: #229d8b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      float: right;
+      margin-top: 0;
+    }
+
+    /* Most popular posts heading */
+    .popular-heading {
+      margin-top: 75px;
+      font-size: 15px;
+      color: #666;
+      font-weight: 700;
+      margin-bottom: 18px;
+      letter-spacing: 0.02em;
+    }
+
+    /* Post teasers */
+    .post-preview {
+      margin-top: 0;
+      margin-bottom: 54px;
+      display: flex;
+      flex-direction: row;
+      align-items: flex-start;
+      min-height: 1px;
+    }
+    .post-preview:last-child {
+      margin-bottom: 0;
+    }
+    .preview-content {
+      flex: 1;
+      min-width: 0;
+      margin-right: 30px;
+    }
+    .post-preview-title {
+      font-size: 27px;
+      font-weight: 700;
+      color: #229d8b;
+      margin: 0 0 7px 0;
+      line-height: 1.13;
+    }
+    .post-preview-date {
+      font-size: 15px;
+      font-weight: 700;
+      color: #232323;
+      margin-bottom: 8px;
+      margin-top: 0;
+      letter-spacing: 0;
+    }
+    .post-preview-desc {
+      color: #252525;
+      font-size: 16px;
+      margin: 0 0 12px 0;
+      line-height: 1.45;
+      min-height: 22px;
+      max-width: 99%;
+      word-break: break-word;
+      position: relative;
+    }
+    .ellipsis {
+      float: right;
+      margin-left: 2px;
+      font-size: 22px;
+      color: #888;
+      line-height: 0;
+      position: relative;
+      top: 6px;
+    }
+    .preview-footer {
+      width: 100%;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+      margin-top: 0;
+    }
+    .preview-share-link {
+      font-size: 14px;
+      font-weight: 700;
+      color: #229d8b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      margin-right: 38px;
+    }
+    .preview-readmore-link {
+      font-size: 14px;
+      font-weight: 700;
+      color: #229d8b;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      text-decoration: none;
+      margin-left: auto;
+    }
+
+    /* Right image thumbnail in 2nd post */
+    .preview-thumb {
+      width: 200px;
+      height: 200px;
+      display: block;
+      margin-top: 7px;
+    }
+    .preview-thumb img {
+      width: 200px;
+      height: 200px;
+      display: block;
+      background: #229d8b;
+      object-fit: cover;
+    }
+
+    /* Footer */
+    .footer {
+      width: 750px;
+      margin: 0 auto;
+      padding-top: 24px;
+      padding-bottom: 36px;
+      text-align: left;
+      font-size: 14px;
+      color: #ababab;
+    }
+    .footer-links {
+      font-size: 14px;
+      color: #229d8b;
+      font-weight: 700;
+      margin-bottom: 4px;
+      text-align: right;
+    }
+    .footer-copyright {
+      font-size: 11px;
+      color: #393939;
+      text-align: left;
+      margin-top: 6px;
+      letter-spacing: 0;
+    }
+    .footer .footer-links a {
+      color: #229d8b;
+      text-decoration: underline;
+    }
+
+    @media (max-width: 850px) {
+      .header-inner, .banner-inner, .main-content, .footer {
+        width: 98vw;
+        min-width: 320px;
+        max-width: 98vw;
+        padding: 0 10px;
+      }
+    }
+    @media (max-width: 520px) {
+      .header, .footer, .main-content, .banner, .banner-inner {
+        min-width: 0;
+        padding-left: 0 !important;
+        padding-right: 0 !important;
+      }
+      .banner-title {
+        font-size: 25px;
+      }
+      .post-preview-title {
+        font-size: 19px;
+      }
+      .preview-thumb, .preview-thumb img {
+        width: 110px;
+        height: 110px;
+      }
+      .header-inner, .banner-inner, .main-content, .footer {
+        width: 100vw;
+        min-width: 0;
+        max-width: 100vw;
+        padding: 0 4px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-inner">
+      <div>
+        <div class="site-title">TECH TIPS HUB</div>
+        <div class="site-subtitle">Useful advice for Google Apps and other software</div>
+      </div>
+      <div class="nav-find">
+        FIND
+      </div>
+    </div>
+  </div>
+  <div class="banner">
+    <div class="banner-inner">
+      <h1 class="banner-title">
+        Bypassing Restrictions to Upload to<br>YouTube
+      </h1>
+    </div>
+  </div>
+  <div class="main-content">
+    <span class="post-date">July 25, 2007</span>
+    <div class="post-content" style="margin-bottom:36px;">
+      <span class="dropcap">D</span>ave, employed at a prominent company, recently shared via a social network that <span style="color:#229d8b;text-decoration:underline;">he couldn't share video recordings to YouTube</span> as his employer blocks access to YouTube and similar video hosting sites through the corporate firewall.<br><br>
+
+      One way to solve this is to use your <a href="#">mobile device</a> to put content on YouTube - set up a mobile account on YouTube from a computer outside the firewall and then send videos to YouTube through MMS.<br><br>
+
+      See Also: <a href="#">How to Unblock Restricted Sites</a><br><br>
+
+      Another method is using a <a href="#">multi-platform uploader</a> - use a service to upload your video to numerous websites at once.<br><br>
+
+      You would upload your video to this other service, and they would then upload it to many sites such as YouTube, MySpace, PhotoBucket, MetaCafe, Google, Yahoo! video, DailyMotion, etc.<br><br>
+
+      It's likely the other video hosting service is available - they will notify you by email when your upload completes.
+    </div>
+    <div class="share-btn">
+      <a class="share-link" href="#">SHARE</a>
+      <div style="clear: both;"></div>
+    </div>
+
+    <div class="popular-heading">Most popular posts</div>
+
+    <div class="post-preview">
+      <div class="preview-content">
+        <div class="post-preview-title">How to Export Your Facebook Friends to Your Email Contacts</div>
+        <div class="post-preview-date">October 15, 2007</div>
+        <div class="post-preview-desc">
+          Facebook has been criticized due to their "walled garden" approach. While you can easily add your email contacts into Facebook, you cannot easily export your Facebook friends.
+          <span class="ellipsis">â¦</span>
+        </div>
+        <div class="preview-footer">
+          <a href="#" class="preview-share-link">SHARE</a>
+          <a href="#" class="preview-readmore-link">READ MORE</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="post-preview">
+      <div class="preview-content">
+        <div class="post-preview-title">Guide to Creating a Custom Search Plugin For Firefox</div>
+        <div class="post-preview-date">September 23, 2006</div>
+        <div class="post-preview-desc">
+          Most sites have a search box that you use to enter what you're looking for on the website . The only problem is that you must first go to the website to use the search form.
+          <span class="ellipsis">â¦</span>
+        </div>
+        <div class="preview-footer">
+          <a href="#" class="preview-share-link">SHARE</a>
+          <a href="#" class="preview-readmore-link">READ MORE</a>
+        </div>
+      </div>
+      <div class="preview-thumb">
+        <img src="src/placeholder.jpg" alt="Image placeholder">
+      </div>
+    </div>
+
+    <div class="post-preview">
+      <div class="preview-content">
+        <div class="post-preview-title">Useful Tech Tips</div>
+        <div class="post-preview-date">October 25, 2007</div>
+        <div class="post-preview-desc">
+          Tech Tips Hub is a technology blog by a tech enthusiast. Popular scripts include a Gmail Tool (send personalized emails ),&nbsp; a Document Creator Tool (generate PDFs ), and a File Upload Tool ( get files&nbsp; in Google Drive).
+          <span class="ellipsis">â¦</span>
+        </div>
+        <div class="preview-footer">
+          <a href="#" class="preview-share-link">SHARE</a>
+          <a href="#" class="preview-readmore-link">READ MORE</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer">
+    <div class="footer-links" style="text-align:right;">
+      <a href="#">Website built on Blogger</a>
+    </div>
+    <div class="footer-copyright">
+      2004-2023 Tech Tips Hub
+    </div>
+  </div>
+</body>
+</html>

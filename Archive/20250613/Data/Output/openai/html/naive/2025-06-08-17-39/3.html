@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .header {
+            background-color: #e53e3e;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .image-placeholder {
+            width: 100%;
+            height: 150px;
+            background-color: blue;
+            margin: 15px 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-group textarea {
+            height: 100px;
+        }
+        .form-group small {
+            display: block;
+            margin-top: 5px;
+            color: #666;
+        }
+        .form-group input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .form-group .note {
+            font-size: 12px;
+            color: #666;
+        }
+        .form-group .required {
+            color: #e53e3e;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        .footer a {
+            color: #3182ce;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .submit-button {
+            background-color: #d53f8c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 20px;
+        }
+    </style>
+    <title>Artist Application</title>
+</head>
+<body>
+<div class="container">
+    <div class="image-placeholder">
+        <img src="src/placeholder.jpg" alt="Image Placeholder" style="width:100%; height:100%; object-fit: cover; display: block;">
+    </div>
+    <div class="header">Artist Application</div>
+    <p>Share your background with us and tell us more. <a href="#">Help</a> if you need more details.</p>
+    <form>
+        <div class="form-group">
+            <label for="given-name">Given Name <span class="required">*</span></label>
+            <input type="text" id="given-name" name="given-name">
+        </div>
+        <div class="form-group">
+            <label for="family-name">Family Name <span class="required">*</span></label>
+            <input type="text" id="family-name" name="family-name">
+        </div>
+        <div class="form-group">
+            <label for="email">E-mail Address <span class="required">*</span></label>
+            <input type="email" id="email" name="email">
+        </div>
+        <div class="form-group">
+            <label for="contact-number">Contact Number <span class="required">*</span></label>
+            <input type="text" id="contact-number" name="contact-number">
+        </div>
+        <div class="form-group">
+            <label for="location">Where Are You Located? <span class="required">*</span></label>
+            <input type="text" id="location" name="location">
+        </div>
+        <div class="form-group">
+            <label for="confirmation">I Confirm That I am Over 18 <span class="required">*</span></label>
+            <input type="checkbox" id="confirmation" name="confirmation"> True
+        </div>
+        <div class="form-group">
+            <label>Do You Run a Production Business? <span class="required">*</span></label>
+            <input type="radio" name="production" value="true"> True
+            <input type="radio" name="production" value="false"> False
+        </div>
+        <div class="form-group">
+            <label for="background">Explain Your Background More Fully. <span class="required">*</span></label>
+            <textarea id="background" name="background"></textarea>
+        </div>
+        <div class="form-group">
+            <label for="work-type">Your Favourite Type of Work <span class="required">*</span></label>
+            <select id="work-type" name="work-type">
+                <option value="">Select</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Do You Have the Skills Required to Make Full Episodes (12-25 minutes) on a Small Budget and To Carry on Making Episodes if they get Commissioned by Our Users? <span class="required">*</span></label>
+            <input type="radio" name="skills" value="true"> True
+            <input type="radio" name="skills" value="false"> False
+        </div>
+        <div class="form-group">
+            <label>If You are a Final Nominee, Can You Begin Development by May or June (2019)? <span class="required">*</span></label>
+            <input type="radio" name="development" value="true"> True
+            <input type="radio" name="development" value="false"> False
+        </div>
+        <div class="form-group">
+            <label for="team">Names of People You Will Work With (If Applicable)</label>
+            <textarea id="team" name="team"></textarea>
+        </div>
+        <div class="form-group">
+            <label>Are you a PGA Member? <span class="required">*</span></label>
+            <input type="radio" name="pga" value="true"> True
+            <input type="radio" name="pga" value="false"> False
+        </div>
+        <div class="form-group">
+            <label for="social-media">OPTIONAL: Having Big Social Media Connections will help. Tell us of Social Media You Frequent.</label>
+            <textarea id="social-media" name="social-media"></textarea>
+            <small>0/800 characters</small>
+        </div>
+        <div class="form-group">
+            <label for="heard-about-us">How did you hear of us?</label>
+            <select id="heard-about-us" name="heard-about-us">
+                <option value="">Select</option>
+            </select>
+        </div>
+        <div class="form-group">
+            <input type="checkbox" id="terms" name="terms">
+            <label for="terms">I Have Read and I Accept the Rules Below <span class="required">*</span></label>
+        </div>
+        <div class="footer">
+            <a href="#">Our Guidelines</a>
+            <div>
+                <a href="#">Abuse Notification</a>
+                <span> | Site Provided by <img src="src/placeholder.jpg" alt="Provider Logo" style="width: 15px; height: 15px;"> </span>
+            </div>
+        </div>
+        <button type="submit" class="submit-button">Send</button>
+    </form>
+</div>
+</body>
+</html>

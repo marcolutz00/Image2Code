@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Export news from google sites</title>
+<style>
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+    line-height: 1.6;
+}
+.container {
+    width: 80%;
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+}
+h1 {
+    font-size: 2.5em;
+    margin-bottom: 0.5em;
+    color: #444;
+}
+h2 {
+    font-size: 1.8em;
+    margin-top: 1.5em;
+    margin-bottom: 0.8em;
+    color: #444;
+}
+p {
+    margin-bottom: 1em;
+}
+pre {
+    background-color: #f0f0f0;
+    padding: 10px;
+    overflow-x: auto;
+    border-radius: 4px;
+    font-family: monospace, monospace;
+    font-size: 0.9em;
+}
+a {
+    color: #0077cc;
+    text-decoration: none;
+}
+a:hover {
+    text-decoration: underline;
+}
+.header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.header a {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+
+.header a:hover {
+    color: #0077cc;
+}
+.date {
+    font-size: 0.8em;
+    color: #777;
+    margin-bottom: 0.5em;
+}
+.footer {
+    text-align: center;
+    margin-top: 30px;
+    padding: 20px;
+    background-color: #333;
+    color: #fff;
+}
+
+.footer a {
+    color: #fff;
+    text-decoration: none;
+}
+
+.footer a:hover {
+    text-decoration: underline;
+}
+.image-placeholder {
+    width: 50px;
+    height: 50px;
+    background-color: blue;
+    margin-bottom: 10px;
+}
+.header-placeholder {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: #fff;
+    margin-bottom: 20px;
+}
+
+.header-placeholder a {
+    color: #333;
+    text-decoration: none;
+    font-size: 0.9em;
+}
+</style>
+</head>
+<body>
+<div class="header-placeholder">
+    <a href="#">Homepage</a>
+    <a href="#">Amenities</a>
+    <a href="#">Suite Layouts</a>
+    <div class="image-placeholder"></div>
+    <a href="#">Image Showcase</a>
+    <a href="#">Reach Out</a>
+    <a href="#">303.716.6000</a>
+    <a href="#">Send Email</a>
+</div>
+<div class="container">
+    <h1>Export news from google
+sites</h1>
+    <p class="date">Apr 27, 2012<br>
+One min of reading</p>
+    <h2>Genesis of This</h2>
+    <p>When Free It Athens migrated their site away from Google Sites over to Drupal, they went
+fresh, losing all the previous content. I just realized that news data on the old site was valuable
+historical content, and I hadn't saved it.</p>
+    <p>Initially, I gave recursive wget a whirl.</p>
+    <pre>wget -r --no-parent --no-clobber </pre>
+    <p>I've put online a quick code snippet, <a href="#">export_google_site_news</a>, to my main repository located
+on github.</p>
+    <p>To illustrate, for pulling the news posts from
+https://sites.google.com/a/medinacommunityband.org/www/announcements, you can call:</p>
+    <pre>export_google_site_news https://sites.google.com/a/medinacommunityband.org/wwwannouncements</pre>
+    <p>This just flat failed as Google made the mistake of using javascript rather than anchor tags to
+connect news pages.</p>
+    <p>I hunted down and tried Google's own google-sites-export from their Data Liberation Team, but
+could never authenticate correctly.</p>
+    <p>I then feared I'd need Selenium to trigger the javascript, but then realized that the news pages
+took a single parameter to determine which paginated results to display. Looping would get
+them all.</p>
+    <pre>for i in $(seq 0 10 120); do
+wget "" "-Onews.$i"
+done</pre>
+    <p>After getting the first one, I saw a pattern to match each news stories' relative paths. Then
+extracted out all those paths.</p>
+    <pre>grep -E -h -o '/a/freeitathens.org/foo/news/[a-z0-9\-]+' news.* |
+sort -u > news_links</pre>
+    <p>Once I had all the paths, it was easy to get wget to fetch them all.</p>
+    <pre>wget -i news_links -B https://sites.google.com</pre>
+    <p>Since I found zero guides online, I tried writing up a simple script from the above, and am
+detailing it here.</p>
+</div>
+<div class="footer">
+    Created with by <a href="#">YesLearners.com-YesLearners</a>
+</div>
+</body>
+</html>

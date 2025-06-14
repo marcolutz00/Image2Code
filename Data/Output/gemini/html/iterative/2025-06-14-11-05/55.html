@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs Forum</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #2b3445;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #00a896;
+            color: #ffffff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left img {
+            height: 40px;
+            margin-right: 20px;
+        }
+
+        .header-nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 16px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-right input {
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+            margin-right: 10px;
+        }
+
+        .header-right a {
+            color: #ffffff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .login-button {
+            background-color: transparent;
+            color: white;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .signup-button {
+            background-color: #feca57;
+            color: #2b3445;
+            border: none;
+            padding: 8px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .sidebar {
+            width: 25%;
+            padding-right: 20px;
+        }
+
+        .forum-content {
+            width: 75%;
+        }
+
+        .categories {
+            margin-top: 20px;
+        }
+
+        .categories h2 {
+            color: #2b3445;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .categories ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .categories li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+            color: #2b3445;
+            font-size: 16px;
+        }
+
+        .forum-content h1 {
+            color: #2b3445;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .forum-content p {
+            color: #2b3445;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .discussion {
+            background-color: #ffffff;
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+
+        .discussion-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .discussion-icon {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #64ccc5;
+            color: #ffffff;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+        }
+
+        .discussion-meta {
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .discussion-title {
+            color: #2b3445;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .discussion-content {
+            color: #2b3445;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .discussion-details {
+            color: #718096;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        .discussion-details span {
+            margin-right: 15px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #f7f9fb;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            width: 20%;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            color: #2b3445;
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section a {
+            text-decoration: none;
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .footer-bottom {
+            text-align: left;
+            padding: 20px;
+            font-size: 12px;
+            color: #718096;
+        }
+
+        .footer-bottom a {
+            color: #718096;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+
+        .newsletter-input {
+            display: flex;
+        }
+
+        .newsletter-input input {
+            padding: 10px;
+            border: 1px solid #e2e8f0;
+            border-radius: 4px;
+            margin-right: 10px;
+            width: 200px;
+        }
+
+        .newsletter-input button {
+            background-color: #00a896;
+            color: #ffffff;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .icon {
+            margin-right: 5px;
+        }
+        [type="checkbox"] {
+            /* Add if not using autoprefixer */
+            -webkit-appearance: none;
+            appearance: none;
+            /* For iOS < 15 */
+            background-color: #fff;
+            margin: 0;
+        
+            font: inherit;
+            color: currentColor;
+            width: 1.15em;
+            height: 1.15em;
+            border: 0.15em solid currentColor;
+            border-radius: 0.15em;
+            transform: translateY(-0.075em);
+            display: grid;
+            place-content: center;
+        }
+        [type="checkbox"]::before {
+            content: "";
+            width: 0.65em;
+            height: 0.65em;
+            clip-path: polygon(14% 44%, 0 65%, 50% 100%, 100% 16%, 80% 0%, 43% 62%);
+            transform: scale(0);
+            transition: 120ms transform ease-in-out;
+            box-shadow: inset 1em 1em var(--form-control-color);
+        
+        }
+        [type="checkbox"]:checked::before {
+            transform: scale(1);
+        }
+        
+        [type="checkbox"]:focus {
+            outline: max(2px, 0.15em) solid currentColor;
+            outline-offset: max(2px, 0.15em);
+        }
+        
+        [type="checkbox"]:disabled {
+            --form-control-color: var(--form-control-disabled);
+            cursor: not-allowed;
+        }
+
+        .all-categories{
+            font-weight: bold;
+        }
+        .categories ul li{
+            display: flex;
+            align-items: center;
+        }
+        .categories ul li span{
+            margin-left: auto;
+        }
+        .footer-icons{
+            display: flex;
+            gap: 15px;
+        }
+        
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding-right: 0;
+            }
+
+            .forum-content {
+                width: 100%;
+            }
+
+            .footer {
+                flex-direction: column;
+            }
+
+            .footer-section {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header Section -->
+        <div class="header">
+            <div class="header-left">
+                <img src="src/placeholder.jpg" alt="Logo" height="40px">
+                <div style="font-size: 22px; font-weight: bold;">Alpha One Labs</div>
+            </div>
+            <div class="header-nav">
+                <a href="#">LEARN</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">RESOURCES</a>
+                <a href="#">ABOUT</a>
+            </div>
+            <div class="header-right">
+                <input type="text" placeholder="What do you want to learn?">
+                <a href="#" class="login-button">Login</a>
+                <button class="signup-button">Signup</button>
+            </div>
+        </div>
+
+        <!-- Main Content Section -->
+        <div class="main-content">
+            <div class="sidebar">
+                <h2>Forum</h2>
+                <p>Join discussions, ask questions, and share knowledge</p>
+
+                <div class="categories">
+                    <h2>CATEGORIES</h2>
+                    <ul>
+                        <li class="all-categories"><input type="checkbox" checked><label>All Categories</label></li>
+                        <li><input type="checkbox"><label>Category 1</label><span>3</span></li>
+                        <li><input type="checkbox"><label>Category 2</label><span>3</span></li>
+                        <li><input type="checkbox"><label>Category 3</label><span>3</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="forum-content">
+                <h1>Forum Categories</h1>
+                <p>Browse all categories or select one to see its topics</p>
+
+                <h2>Recent Discussions</h2>
+                <div class="discussion">
+                    <div class="discussion-header">
+                        <div class="discussion-icon">S</div>
+                        <div>
+                            <div class="discussion-meta">student5 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 1</a></div>
+                            <div class="discussion-title">Topic 3</div>
+                        </div>
+                    </div>
+                    <div class="discussion-content">Content for topic 3</div>
+                    <div class="discussion-details">
+                        <span><i class="icon"></i>0 views</span>
+                        <span><i class="icon"></i>5 replies</span>
+                        <span><i class="icon"></i>0 upvotes</span>
+                        <span><i class="icon"></i>0 downvotes</span>
+                        <span><i class="icon"></i>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion">
+                    <div class="discussion-header">
+                        <div class="discussion-icon">S</div>
+                        <div>
+                            <div class="discussion-meta">student3 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 1</a></div>
+                            <div class="discussion-title">Topic 2</div>
+                        </div>
+                    </div>
+                    <div class="discussion-content">Content for topic 2</div>
+                    <div class="discussion-details">
+                        <span><i class="icon"></i>0 views</span>
+                        <span><i class="icon"></i>2 replies</span>
+                        <span><i class="icon"></i>0 upvotes</span>
+                        <span><i class="icon"></i>0 downvotes</span>
+                        <span><i class="icon"></i>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion">
+                    <div class="discussion-header">
+                        <div class="discussion-icon">T</div>
+                        <div>
+                            <div class="discussion-meta">teacher2 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 1</a></div>
+                            <div class="discussion-title">Topic 1</div>
+                        </div>
+                    </div>
+                    <div class="discussion-content">Content for topic 1</div>
+                    <div class="discussion-details">
+                        <span><i class="icon"></i>0 views</span>
+                        <span><i class="icon"></i>4 replies</span>
+                        <span><i class="icon"></i>0 upvotes</span>
+                        <span><i class="icon"></i>0 downvotes</span>
+                        <span><i class="icon"></i>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion">
+                    <div class="discussion-header">
+                        <div class="discussion-icon">S</div>
+                        <div>
+                            <div class="discussion-meta">student8 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 2</a></div>
+                            <div class="discussion-title">Topic 3</div>
+                        </div>
+                    </div>
+                    <div class="discussion-content">Content for topic 3</div>
+                    <div class="discussion-details">
+                        <span><i class="icon"></i>0 views</span>
+                        <span><i class="icon"></i>5 replies</span>
+                        <span><i class="icon"></i>0 upvotes</span>
+                        <span><i class="icon"></i>0 downvotes</span>
+                        <span><i class="icon"></i>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion">
+                    <div class="discussion-header">
+                        <div class="discussion-icon">S</div>
+                        <div>
+                            <div class="discussion-meta">student7 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 2</a></div>
+                            <div class="discussion-title">Topic 2</div>
+                        </div>
+                    </div>
+                    <div class="discussion-content">Content for topic 2</div>
+                    <div class="discussion-details">
+                        <span><i class="icon"></i>0 views</span>
+                        <span><i class="icon"></i>5 replies</span>
+                        <span><i class="icon"></i>0 upvotes</span>
+                        <span><i class="icon"></i>0 downvotes</span>
+                        <span><i class="icon"></i>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion">
+                    <div class="discussion-header">
+                        <div class="discussion-icon">S</div>
+                        <div>
+                            <div class="discussion-meta">student7 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 2</a></div>
+                            <div class="discussion-title">Topic 1</div>
+                        </div>
+                    </div>
+                    <div class="discussion-content">Content for topic 1</div>
+                    <div class="discussion-details">
+                        <span><i class="icon"></i>0 views</span>
+                        <span><i class="icon"></i>2 replies</span>
+                        <span><i class="icon"></i>0 upvotes</span>
+                        <span><i class="icon"></i>0 downvotes</span>
+                        <span><i class="icon"></i>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion">
+                    <div class="discussion-header">
+                        <div class="discussion-icon">T</div>
+                        <div>
+                            <div class="discussion-meta">teacher1 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 3</a></div>
+                            <div class="discussion-title">Topic 3</div>
+                        </div>
+                    </div>
+                    <div class="discussion-content">Content for topic 3</div>
+                    <div class="discussion-details">
+                        <span><i class="icon"></i>0 views</span>
+                        <span><i class="icon"></i>4 replies</span>
+                        <span><i class="icon"></i>0 upvotes</span>
+                        <span><i class="icon"></i>0 downvotes</span>
+                        <span><i class="icon"></i>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion">
+                    <div class="discussion-header">
+                        <div class="discussion-icon">S</div>
+                        <div>
+                            <div class="discussion-meta">student6 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 3</a></div>
+                            <div class="discussion-title">Topic 2</div>
+                        </div>
+                    </div>
+                    <div class="discussion-content">Content for topic 2</div>
+                    <div class="discussion-details">
+                        <span><i class="icon"></i>0 views</span>
+                        <span><i class="icon"></i>3 replies</span>
+                        <span><i class="icon"></i>0 upvotes</span>
+                        <span><i class="icon"></i>0 downvotes</span>
+                        <span><i class="icon"></i>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion">
+                    <div class="discussion-header">
+                        <div class="discussion-icon">S</div>
+                        <div>
+                            <div class="discussion-meta">student3 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#">Category 3</a></div>
+                            <div class="discussion-title">Topic 1</div>
+                        </div>
+                    </div>
+                    <div class="discussion-content">Content for topic 1</div>
+                    <div class="discussion-details">
+                        <span><i class="icon"></i>0 views</span>
+                        <span><i class="icon"></i>4 replies</span>
+                        <span><i class="icon"></i>0 upvotes</span>
+                        <span><i class="icon"></i>0 downvotes</span>
+                        <span><i class="icon"></i>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Section -->
+        <div class="footer">
+            <div class="footer-section">
+                <h3>LEARNING</h3>
+                <ul>
+                    <li><a href="#"><i class="icon"></i>Courses</a></li>
+                    <li><a href="#"><i class="icon"></i>Subjects</a></li>                    
+                    <li><a href="#"><i class="icon"></i>Quizzes</a></li>
+                    <li><a href="#"><i class="icon"></i>Videos</a></li>
+                    <li><a href="#"><i class="icon"></i>Challenges</a></li>
+                    <li><a href="#"><i class="icon"></i>Study Groups</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>COMMUNITY</h3>
+                <ul>
+                    <li><a href="#"><i class="icon"></i>Forum</a></li>
+                    <li><a href="#"><i class="icon"></i>Blog</a></li>
+                    <li><a href="#"><i class="icon"></i>Features</a></li>
+                    <li><a href="#"><i class="icon"></i>Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>RESOURCES & INFO</h3>
+                <ul>
+                    <li><a href="#"><i class="icon"></i>GSOC'25</a></li>
+                    <li><a href="#"><i class="icon"></i>Status</a></li>
+                    <li><a href="#"><i class="icon"></i>Feedback</a></li>
+                    <li><a href="#"><i class="icon"></i>Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>CONNECT WITH US</h3>
+                <div class="footer-icons">
+                    <a href="#"><img src="src/placeholder.jpg" alt="Icon" width="30px" height="30px"></a>
+                    <a href="#"><img src="src/placeholder.jpg" alt="Icon" width="30px" height="30px"></a>
+                    <a href="#"><img src="src/placeholder.jpg" alt="Icon" width="30px" height="30px"></a>
+                    <a href="#"><img src="src/placeholder.jpg" alt="Icon" width="30px" height="30px"></a>
+                    <a href="#"><img src="src/placeholder.jpg" alt="Icon" width="30px" height="30px"></a>
+                </div>
+                <div class="newsletter-input">
+                    <input type="email" placeholder="Your email">
+                    <button> > </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer Bottom Section -->
+        <div class="footer-bottom">
+            Â© 2025 Alpha One Labs. All rights reserved. <br>
+            Last updated: 06/12/2025 12:14nachm.
+            <a href="#">About Us</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+        </div>
+    </div>
+</body>
+
+</html>

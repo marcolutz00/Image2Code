@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artist Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f3f3f3;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            width: 80%;
+            max-width: 600px;
+            margin: 20px auto 0;
+            background-color: white;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .header {
+            text-align: center;
+            background-color: #ff4757;
+            color: white;
+            padding: 10px;
+            font-size: 1.5em;
+            margin-top: -20px;
+            margin-left: -20px;
+            margin-right: -20px;
+        }
+        .image-placeholder {
+            width: 100%;
+            height: 150px;
+            background-color: blue;
+            margin: -20px -20px 20px;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+            font-size: 0.9em;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 3px;
+            width: 100%;
+            box-sizing: border-box;
+        }
+        textarea {
+            resize: vertical;
+            height: 100px;
+        }
+        .checkbox-group,
+        .radio-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        .checkbox-group label,
+        .radio-group label {
+            font-weight: normal;
+        }
+        .checkbox-group input,
+        .radio-group input {
+            margin-right: 5px;
+        }
+        .footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .footer a {
+            color: #555;
+            text-decoration: none;
+            font-size: 0.9em;
+        }
+        .submit-button {
+            background-color: #ff00ff;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1em;
+            cursor: pointer;
+            border-radius: 3px;
+            margin: 0 auto;
+            display: block;
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="image-placeholder"></div>
+        <div class="header">Artist Application</div>
+        <p>Share your background with us and tell us more. <a href="#">Help</a> if you need more details.</p>
+        <form>
+            <label for="given-name">Given Name <span style="color: red;">*</span></label>
+            <input type="text" id="given-name" required>
+
+            <label for="family-name">Family Name <span style="color: red;">*</span></label>
+            <input type="text" id="family-name" required>
+
+            <label for="email">E-mail Address <span style="color: red;">*</span></label>
+            <input type="email" id="email" required>
+
+            <label for="contact-number">Contact Number <span style="color: red;">*</span></label>
+            <input type="text" id="contact-number" required>
+
+            <label for="location">Where Are You Located? <span style="color: red;">*</span></label>
+            <input type="text" id="location" required>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="over-18">
+                <label for="over-18">I Confirm That I am Over 18 <span style="color: red;">*</span></label>
+            </div>
+
+            <div class="radio-group">
+                <input type="radio" name="production-business" id="production-yes">
+                <label for="production-yes">True</label>
+                <input type="radio" name="production-business" id="production-no">
+                <label for="production-no">False</label>
+            </div>
+
+            <label for="background">Explain Your Background More Fully. <span style="color: red;">*</span></label>
+            <textarea id="background" required></textarea>
+
+            <label for="work-type">Your Favourite Type of Work <span style="color: red;">*</span></label>
+            <select id="work-type">
+                <option value="">Select</option>
+            </select>
+
+            <div class="radio-group">
+                <input type="radio" name="skills" id="skills-yes">
+                <label for="skills-yes">True</label>
+                <input type="radio" name="skills" id="skills-no">
+                <label for="skills-no">False</label>
+            </div>
+
+            <div class="radio-group">
+                <input type="radio" name="final-nominee" id="final-yes">
+                <label for="final-yes">True</label>
+                <input type="radio" name="final-nominee" id="final-no">
+                <label for="final-no">False</label>
+            </div>
+
+            <label for="names">Names of People You Will Work With (If Applicable)</label>
+            <textarea id="names"></textarea>
+
+            <div class="radio-group">
+                <input type="radio" name="pga-member" id="pga-yes">
+                <label for="pga-yes">True</label>
+                <input type="radio" name="pga-member" id="pga-no">
+                <label for="pga-no">False</label>
+            </div>
+
+            <label for="social-media">OPTIONAL: Having Big Social Media Connections will help. Tell us of Social Media You Frequent.</label>
+            <textarea id="social-media"></textarea>
+            <p>0/800 characters</p>
+
+            <label for="how-hear">How did you hear of us?</label>
+            <select id="how-hear">
+                <option value="">Select</option>
+            </select>
+
+            <div class="checkbox-group">
+                <input type="checkbox" id="accept-rules">
+                <label for="accept-rules">I Have Read and I Accept the Rules Below <span style="color: red;">*</span></label>
+            </div>
+
+            <a href="#">Our Guidelines</a>
+
+            <div class="footer">
+                <a href="#">Abuse Notification</a>
+                <a href="#">Site Provided by <img src="src/placeholder.jpg" alt="icon"></a>
+            </div>
+
+            <button type="submit" class="submit-button">Send</button>
+        </form>
+    </div>
+</body>
+</html>

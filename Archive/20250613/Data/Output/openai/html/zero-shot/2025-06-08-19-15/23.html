@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site by Alex</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 1px solid #333;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        header p {
+            font-size: 14px;
+            margin: 5px 0;
+        }
+
+        nav {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        nav a {
+            color: #999;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .post-date {
+            color: #ccc;
+            font-size: 14px;
+            margin-bottom: 10px;
+        }
+
+        .post-title {
+            font-size: 32px;
+            margin: 20px 0;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #333;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 3px;
+            padding: 2px 8px;
+            margin-right: 5px;
+        }
+
+        .content p {
+            line-height: 1.6;
+            margin: 15px 0;
+        }
+
+        .content a {
+            color: #ff9900;
+            text-decoration: none;
+        }
+
+        .share {
+            color: #ccff33;
+            margin: 20px 0;
+            display: block;
+        }
+
+        .coffee-support {
+            background-color: #444;
+            padding: 20px;
+            text-align: center;
+            border-radius: 5px;
+            margin-bottom: 30px;
+        }
+
+        .coffee-support button {
+            background-color: #fc2851;
+            border: none;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .related-posts {
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        .related-posts h2 {
+            font-size: 20px;
+            margin: 20px 0;
+        }
+
+        .post-preview {
+            background-color: #292929;
+            display: inline-block;
+            width: calc(50% - 10px);
+            margin: 5px;
+            padding: 10px;
+            vertical-align: top;
+            border-radius: 3px;
+        }
+
+        .post-preview h3 {
+            margin: 10px 0;
+            font-size: 18px;
+            color: #ccc;
+        }
+
+        .post-preview p {
+            font-size: 14px;
+            color: #999;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px 0;
+            border-top: 1px solid #333;
+            margin-top: 30px;
+            color: #999;
+        }
+
+        footer a {
+            color: #999;
+            text-decoration: none;
+            display: inline-block;
+            margin: 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Site by Alex</h1>
+        <p>A world of code 💻, by Alejandro Martinez</p>
+    </header>
+
+    <nav>
+        <a href="#">| Swift</a>
+        <a href="#">Dev</a>
+    </nav>
+
+    <main>
+        <div class="post-date">June 5, 2016</div>
+        <div class="badge-container">
+            <span class="badge">Scripting</span>
+            <span class="badge">Swift</span>
+            <span class="badge">Goodies</span>
+        </div>
+        <h1 class="post-title">Easy Swift script auto-reloading hack</h1>
+        <p class="content">I was writing a <a href="#">Swift script</a> the other day, and I wanted it to run forever as a server, so I added
+            a continuous running option. <strong>Forever.</strong></p>
+        <p class="content">I just used a <code>repeat</code> loop with <code>NSTask</code>s that executed the script. <strong>Recursion.</strong>
+        </p>
+
+        <p class="content">It turns out this is a neat hack for auto-reloading the script!</p>
+
+        <p class="content">
+            let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() task.launchPath =
+            Process.arguments.first! task.arguments = Array(Process.arguments.suffixFrom(1).filter( { $0 != reload}))
+            task.launch() task.waitUntilExit() } while true } Add this snippet to the script, then call it with the
+            <code>reload</code> arg to loop it forever.
+        </p>
+        <p class="content">To call it from the command line:</p>
+
+        <p class="content">
+            main.swift reload other params Now just modify and save the script. Next time around, the changes will be
+            there. If compilation fails, no problem! The old script will just retry.
+        </p>
+
+        <p class="content">It's not perfect. The console gets spammed, but it is great for rapid iteration.</p>
+
+        <p class="content">
+            Remember to use <a href="#">OS signals</a> to stop the looping task when the script is killed.
+        </p>
+
+        <a href="#" class="share">Share to Twitter</a>
+
+        <div class="coffee-support">
+            <p>If you enjoyed this post, please consider supporting me</p>
+            <button>Buy me coffee</button>
+        </div>
+
+        <div class="related-posts">
+            <h2>Keep Reading</h2>
+            <div class="post-preview">
+                <h3>Next post</h3>
+                <h4>Simplify code with closures</h4>
+                <p>June 7, 2016</p>
+            </div>
+            <div class="post-preview">
+                <h3>Previous post</h3>
+                <h4>Catch OS signals in Swift</h4>
+                <p>May 29, 2016</p>
+            </div>
+        </div>
+
+        <div class="related-posts">
+            <h2>You might like these posts</h2>
+            <div class="post-preview">
+                <p>Based on tag <a href="#">Swift</a></p>
+                <h4>Compat SwiftUI modifiers</h4>
+                <p>October 20, 2023</p>
+            </div>
+            <div class="post-preview">
+                <p>Based on tag <a href="#">Scripting</a></p>
+                <h4>Export Reminders lists using Swift</h4>
+                <p>May 8, 2019</p>
+            </div>
+            <div class="post-preview">
+                <p>Based on tag <a href="#">Goodies</a></p>
+                <h4>Swift Collection prefix for tests</h4>
+                <p>March 16, 2019</p>
+            </div>
+        </div>
+
+        <div class="related-posts">
+            <h2>Tags of this article</h2>
+            <span class="badge">Scripting</span>
+            <span class="badge">Swift</span>
+            <span class="badge">Goodies</span>
+        </div>
+    </main>
+
+    <footer>
+        <a href="#">RSS</a>
+        <a href="#">alextio4</a>
+        <a href="#">alextio4</a>
+        <a href="#">alextio4</a>
+        <p>Made with Publish</p>
+        <p>Open Door</p>
+    </footer>
+
+</body>
+
+</html>

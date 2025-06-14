@@ -19,6 +19,8 @@ import Utils.utils_html as utils_html
 CURR_DIR = pathlib.Path(__file__).parent
 INPUT_HTML_DIR = pathlib.Path(__file__).parent.parent / "Data" / "Input" / "html"
 
+random.seed(11)
+
 # Change Parameter
 FONT_ALTERNATIVES    = [
     "Inter, sans-serif",
@@ -62,7 +64,7 @@ def change_color(c):
 
 
 
-def mutate_declaration(name, value):
+def _mutate_declaration(name, value):
     name = name.lower()
     if name in ("font-family",):
         return random.choice(FONT_ALTERNATIVES)
@@ -72,7 +74,7 @@ def mutate_declaration(name, value):
     # no cchange
     return value 
 
-def mutate_css(css_text):
+def _mutate_css(css_text):
     """
         Randomizes CSS 
     """
@@ -90,7 +92,7 @@ def mutate_css(css_text):
 
     return sheet.cssText.decode()
 
-def strip_styles(soup: BeautifulSoup):
+def _strip_styles(soup: BeautifulSoup):
     """
         deletes <style> & style=""
         -> necessary in order to rewrite text
@@ -108,7 +110,7 @@ def strip_styles(soup: BeautifulSoup):
 
     return soup, styles, inline_map
 
-def reattach_styles(rewritten_html: str, styles, inline_map):
+def _reattach_styles(rewritten_html: str, styles, inline_map):
     """
         Reattaches styles to the new HTML
     """
@@ -130,33 +132,41 @@ def reattach_styles(rewritten_html: str, styles, inline_map):
 
 
 
-async def process_html(path: pathlib.Path, client, out_dir="out"):
+async def randomize_html_low(path: pathlib.Path, client, out_dir="out"):
+    """
+        Radnomizes HTML content:
+        - Rewrite text content
+        - change colors
+        - change font families
+
+        -> low, because not many changes
+    """
     print(f"Start of {path.name}...")
 
     soup = BeautifulSoup(path.read_text("utf-8"), "html.parser")
-    soup_no_style, styles, inline_map = strip_styles(soup)
+    soup_no_style, styles, inline_map = _strip_styles(soup)
 
     prompt = utils_prompt.get_rewrite_text_prompt()
     
-    raw_html = await client.generate_text_rewrite(prompt, str(soup_no_style))
+    raw_html = await client.get_rewrite_text_prompt(prompt, str(soup_no_style))
     clean_html = utils_html.clean_html_result(raw_html)
 
-    final_html = reattach_styles(clean_html, styles, inline_map)
+    final_html = _reattach_styles(clean_html, styles, inline_map)
 
 
     soup = BeautifulSoup(final_html, "html.parser")
 
     # randomize css
     for tag in soup.find_all("style"):
-        tag.string = mutate_css(tag.string or "")
+        tag.string = _mutate_css(tag.string or "")
 
 
     for tag in soup.find_all("style"):
-        tag.string = mutate_css(tag.string or "")
+        tag.string = _mutate_css(tag.string or "")
     for tag in soup.find_all(style=True):
         style = cssutils.parseStyle(tag["style"])
         for decl in list(style):
-            new_val = mutate_declaration(decl.name, decl.value)
+            new_val = _mutate_declaration(decl.name, decl.value)
             if new_val != decl.value:
                 style[decl.name] = new_val
         tag["style"] = style.cssText
@@ -168,16 +178,118 @@ async def process_html(path: pathlib.Path, client, out_dir="out"):
     print(f"{path.name} {out_path}")
 
 
-async def main():
-    strategy = utils_general.get_model_strategy("gemini")
-    client = LLMClient(strategy)
+
+
+
+
+
+def _swap_header_footer(soup: BeautifulSoup):
+    """
+        Swap header and footers
+    """
+    header = soup.find("header")
+    footer = soup.find("footer")
+
+    if header and footer:
+        header.replace_with(footer.extract())
+        soup.body.insert(0, header)
+
+
+def _swap_between_files(files: list, output_path: pathlib.Path):
+    """
+        Randomly swaps headers and footers between files
+    """
+    # get all files as soups
+    soups = []
+    for file in files:
+        with open(file, "r", encoding="utf-8") as f:
+            html = f.read()
+        soups.append(BeautifulSoup(html, "html.parser"))
     
-    html_files = list(INPUT_HTML_DIR.glob("*.html"))
-    tasks = [
-        process_html(file, client)
-        for file in utils_dataset.sorted_alphanumeric(html_files)
-    ]
-    await asyncio.gather(*tasks)
+    # get all headers and footers
+    headers = [soup.header.extract() if soup.header else None for soup in soups]
+    footers = [soup.footer.extract() if soup.footer else None for soup in soups]
+
+    # Mix up everthing
+    random.shuffle(headers)
+    random.shuffle(footers)
+
+    # Combine back
+    for i, soup in enumerate(soups):
+        if headers[i]:
+            soup.body.insert(0, headers[i])
+        if footers[i]:
+            soup.body.append(footers[i])
+
+        # Store the modified soup back to the file
+        with open(output_path / f"2_{os.path.basename(files[i])}", "w", encoding="utf-8") as f:
+            f.write(str(soup))
+
+
+def randomize_html_high(input_path: pathlib.Path, output_path: pathlib.Path):
+    """
+        Randomizes HTML content:
+        - Change Layout: Exchange header, footer, ...
+        - Exchange layouts within different files
+        -> high, because changes more visible
+    """
+
+    # get 10 random numbers
+    random_numbers = random.sample(range(1, 54), 10)
+
+    for random_number in random_numbers:
+        html_file = input_path / f"{random_number}.html"
+        if not html_file.exists():
+            print(f"{html_file} not found")
+            continue
+        
+        with open(html_file, "r", encoding="utf-8") as f:
+            html = f.read()
+
+        soup = BeautifulSoup(html, "html.parser")
+
+
+        # do internal randomization within files
+        _swap_header_footer(soup)
+
+        with open(output_path / f"{random_number}.html", "w", encoding="utf-8") as f:
+            f.write(str(soup))
+
+
+    # do external randomization between files
+    _swap_between_files([os.path.join(input_path, f"{i}.html") for i in random_numbers], output_path)
+
+
+
+
+
+
+async def main():
+    # Test in order to randomize html files (low)
+    # strategy = utils_general.get_model_strategy("gemini")
+    # client = LLMClient(strategy)
+    
+    # html_files = list(INPUT_HTML_DIR.glob("*.html"))
+    # tasks = [
+    #     randomize_html_low(file, client)
+    #     for file in utils_dataset.sorted_alphanumeric(html_files)
+    # ]
+    # await asyncio.gather(*tasks)
+
+    # Test in order to randomize html files (high) (not working yet, can be deleted)
+    # input_path = INPUT_HTML_DIR
+    # output_path = CURR_DIR.parent / "test"
+    # randomize_html_high(input_path, output_path)
+
+    # Do it manually
+    # list of random numbers
+    random_numbers = random.sample(range(1, 54), 10)
+    random_numbers_shuffle_header = random.sample(random_numbers, len(random_numbers))
+    random.seed(13)
+    random_numbers_shuffle_footer = random.sample(random_numbers, len(random_numbers))
+    zip_random_numbers = list(zip(random_numbers, random_numbers_shuffle_header, random_numbers_shuffle_footer))
+    print(f"Random numbers: {random_numbers}")
+    print(f"Random numbers zip : {zip_random_numbers}")
 
 # Start
 if __name__ == "__main__":

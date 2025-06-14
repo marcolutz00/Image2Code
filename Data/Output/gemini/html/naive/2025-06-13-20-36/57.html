@@ -1,0 +1,783 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #fff;
+            padding: 20px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #00a87f;
+            font-weight: bold;
+        }
+
+        main {
+            padding: 20px 0;
+            text-align: center;
+        }
+        .alpha-one-labs {
+            display: flex;
+            align-items: center;
+        }
+        .alpha-one-labs img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .alpha-one-labs span {
+            font-size: 20px;
+            font-weight: bold;
+            color: #0052cc;
+        }
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input[type="text"] {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+
+        .search-bar button {
+            padding: 8px 12px;
+            background-color: #00a87f;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .login-signup {
+            display: flex;
+            align-items: center;
+        }
+
+        .login-signup a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #00a87f;
+            font-weight: bold;
+        }
+
+        .login-signup .signup-btn {
+            background-color: #ff7700;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+        }
+        .login-container {
+            width: 320px;
+            margin: 50px auto;
+            background-color: #fff;
+            border: 1px solid #eee;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .login-container h2 {
+            text-align: center;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #777;
+        }
+
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .form-group .remember-me input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .form-group .forgot-password {
+            text-decoration: none;
+            color: #ff7700;
+        }
+
+        .form-group button[type="submit"] {
+            background-color: #ff7700;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .login-container .signup-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .login-container .signup-link a {
+            color: #ff7700;
+            text-decoration: none;
+        }
+        .learning-links {
+            display: flex;
+            justify-content: space-around;
+            padding: 20px 0;
+        }
+
+        .learning-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .learning-links li {
+            margin-bottom: 5px;
+        }
+
+        .learning-links a {
+            text-decoration: none;
+            color: #777;
+        }
+        footer {
+            background-color: #f9f9f9;
+            padding: 20px 0;
+            text-align: center;
+            font-size: 0.8em;
+            color: #777;
+        }
+        .footer-links {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #777;
+            margin: 0 10px;
+        }
+        .login-form {
+            padding: 16px;
+        }
+
+        .login-title {
+            font-size: 18px;
+            font-weight: 600;
+            color: #2e3131;
+            margin-bottom: 24px;
+        }
+
+        .input-field {
+            margin-bottom: 16px;
+        }
+
+        .input-field label {
+            display: block;
+            margin-bottom: 8px;
+            font-size: 12px;
+            color: #72777a;
+        }
+
+        .input-field input[type="email"],
+        .input-field input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd1d2;
+            border-radius: 5px;
+            outline: none;
+        }
+
+        .remember-me-section {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 24px;
+        }
+
+        .remember-me-section label {
+            display: flex;
+            align-items: center;
+            font-size: 12px;
+            color: #72777a;
+        }
+
+        .remember-me-section input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .remember-me-section a {
+            font-size: 12px;
+            color: #ff7700;
+            text-decoration: none;
+        }
+
+        .login-button {
+            background-color: #ff7700;
+            color: #ffffff;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 100%;
+            font-size: 14px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        .create-account-link {
+            margin-top: 24px;
+            text-align: center;
+            font-size: 12px;
+            color: #72777a;
+        }
+
+        .create-account-link a {
+            color: #ff7700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        .nav-links {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links li {
+            margin-left: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #00a87f;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .login-signup {
+            display: flex;
+            align-items: center;
+        }
+
+        .login-signup a {
+            margin-left: 10px;
+            text-decoration: none;
+            color: #00a87f;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .signup-btn {
+            background-color: #ff7700;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        .connect-with-us {
+            display: flex;
+            align-items: center;
+        }
+        .connect-with-us-icons {
+            display: flex;
+            gap: 10px;
+            margin-left: auto;
+        }
+        .social-icon {
+            width: 30px;
+            height: 30px;
+            background-color: #e9ecef;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #72777a;
+            text-decoration: none;
+        }
+
+        .social-icon i {
+            font-size: 16px;
+        }
+        .newsletter-signup {
+            margin-top: 20px;
+        }
+        .email-input {
+            width: 200px;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            margin-right: 10px;
+        }
+        .signup-button {
+            background-color: #00a87f;
+            color: #ffffff;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            font-size: 12px;
+            color: #72777a;
+        }
+
+        .footer-copyright {
+            text-align: left;
+        }
+
+        .footer-links {
+            text-align: right;
+        }
+
+        .footer-links a {
+            color: #72777a;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+        .nav-item {
+            padding: 8px 12px;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: #00a87f;
+            font-weight: bold;
+            font-size: 14px;
+            padding: 8px 12px;
+            display: block;
+        }
+        .learning-section,
+        .community-section,
+        .resources-section {
+            width: 30%;
+        }
+
+        .learning-section h4,
+        .community-section h4,
+        .resources-section h4 {
+            font-size: 16px;
+            font-weight: bold;
+            color: #2e3131;
+            margin-bottom: 16px;
+        }
+
+        .learning-list,
+        .community-list,
+        .resources-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .learning-list li,
+        .community-list li,
+        .resources-list li {
+            margin-bottom: 8px;
+            font-size: 14px;
+        }
+
+        .learning-list li::before,
+        .community-list li::before,
+        .resources-list li::before {
+            content: "096";
+            font-family: FontAwesome;
+            margin-right: 8px;
+            color: #00a87f;
+        }
+
+        .learning-list a,
+        .community-list a,
+        .resources-list a {
+            color: #72777a;
+            text-decoration: none;
+        }
+        .newsletter-section {
+            margin-top: 20px;
+        }
+
+        .newsletter-section p {
+            font-size: 14px;
+            color: #72777a;
+            margin-bottom: 10px;
+        }
+        .social-media-section {
+            display: flex;
+            align-items: center;
+            margin-top: 20px;
+        }
+
+        .social-media-section a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #e9ecef;
+            color: #72777a;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .social-media-section a:hover {
+            background-color: #ced4da;
+        }
+        .login-page {
+            width: 360px;
+            padding: 8% 0 0;
+            margin: auto;
+        }
+
+        .login-form {
+            background: #FFFFFF;
+            max-width: 360px;
+            margin: 0 auto 100px;
+            padding: 45px;
+            text-align: center;
+            box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
+        }
+
+        .login-form input {
+            font-family: "Roboto", sans-serif;
+            outline: 0;
+            background: #f2f2f2;
+            width: 100%;
+            border: 0;
+            margin: 0 0 15px;
+            padding: 15px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+
+        .login-form button {
+            font-family: "Roboto", sans-serif;
+            text-transform: uppercase;
+            outline: 0;
+            background: #4CAF50;
+            width: 100%;
+            border: 0;
+            padding: 15px;
+            color: #FFFFFF;
+            font-size: 14px;
+            -webkit-transition: all 0.3 ease;
+            transition: all 0.3 ease;
+            cursor: pointer;
+        }
+
+        .login-form button:hover,
+        .login-form button:active,
+        .login-form button:focus {
+            background: #43A047;
+        }
+
+        .login-form .message {
+            margin: 15px 0 0;
+            color: #b3b3b3;
+            font-size: 12px;
+        }
+
+        .login-form .message a {
+            color: #4CAF50;
+            text-decoration: none;
+        }
+
+        .login-form .register-form {
+            display: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 1;
+            max-width: 300px;
+            margin: 0 auto;
+        }
+        .alpha-one-labs-logo {
+            display: flex;
+            align-items: center;
+        }
+
+        .alpha-one-labs-logo img {
+            width: 30px;
+            height: 30px;
+            margin-right: 8px;
+        }
+
+        .alpha-one-labs-logo span {
+            font-size: 20px;
+            font-weight: bold;
+            color: #0052cc;
+        }
+        .main-content {
+            width: 100%;
+            max-width: 960px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        .login-box {
+            width: 420px;
+            padding: 30px;
+            border: 1px solid #e9ecef;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+        .login-form-box {
+            padding: 16px;
+        }
+        .create-account-box {
+            text-align: center;
+            margin-top: 24px;
+        }
+
+        .create-account-link {
+            color: #ff7700;
+            text-decoration: none;
+        }
+        .login-form {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .form-box {
+            width: 100%;
+            margin-bottom: 15px;
+        }
+
+        .form-box label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+            color: #343a40;
+        }
+
+        .form-box input[type="email"],
+        .form-box input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            outline: none;
+        }
+        .remember-section {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .remember-label {
+            display: flex;
+            align-items: center;
+            font-size: 14px;
+            color: #343a40;
+        }
+
+        .remember-label input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .forgot-password {
+            text-decoration: none;
+            color: #ff7700;
+            font-size: 14px;
+        }
+
+        .login-button {
+            background-color: #ff7700;
+            color: #ffffff;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .login-button:hover {
+            background-color: #e06200;
+        }
+
+        .create-account-box {
+            margin-top: 24px;
+            font-size: 14px;
+            color: #343a40;
+        }
+
+        .create-account-link {
+            color: #ff7700;
+            text-decoration: none;
+            font-weight: bold;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <header>
+        <div class="alpha-one-labs-logo">
+            <img src="src/placeholder.jpg" alt="Logo">
+            <span>Alpha One Labs</span>
+        </div>
+        <nav>
+            <ul class="nav-links">
+                <li class="nav-item"><a class="nav-link" href="#">LEARN</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">COMMUNITY</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">RESOURCES</a></li>
+                <li class="nav-item"><a class="nav-link" href="#">ABOUT</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="What do you want to learn?">
+        </div>
+        <div class="login-signup">
+            <a href="#">Login</a>
+            <a href="#" class="signup-btn">Signup</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="main-content">
+            <div class="login-box">
+                <div class="login-form-box">
+                    <h2 class="login-title"><i class="fa-regular fa-square"></i> Sign in to your account</h2>
+                    <form class="login-form">
+                        <div class="form-box">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" placeholder="Enter your email address">
+                        </div>
+                        <div class="form-box">
+                            <label for="password">Password</label>
+                            <input type="password" id="password" placeholder="Enter your password">
+                        </div>
+                        <div class="remember-section">
+                            <label class="remember-label">
+                                <input type="checkbox"> Remember me
+                            </label>
+                            <a href="#" class="forgot-password">Forgot password?</a>
+                        </div>
+                        <button type="submit" class="login-button"><i class="fa-regular fa-square"></i> SIGN IN</button>
+                        <div class="create-account-box">
+                            Don't have an account? <a href="#" class="create-account-link"><i class="fa-regular fa-square"></i> Sign up</a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <section class="learning-links">
+        <div class="learning-section">
+            <h4>LEARNING</h4>
+            <ul class="learning-list">
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Subjects</a></li>
+                <li><a href="#">Quizzes</a></li>
+                <li><a href="#">Videos</a></li>
+                <li><a href="#">Challenges</a></li>
+                <li><a href="#">Study Groups</a></li>
+            </ul>
+        </div>
+        <div class="community-section">
+            <h4>COMMUNITY</h4>
+            <ul class="community-list">
+                <li><a href="#">Forum</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Success Stories</a></li>
+            </ul>
+        </div>
+        <div class="resources-section">
+            <h4>RESOURCES & INFO</h4>
+            <ul class="resources-list">
+                <li><a href="#">GSOC'25</a></li>
+                <li><a href="#">Status</a></li>
+                <li><a href="#">Feedback</a></li>
+                <li><a href="#">Terms</a></li>
+            </ul>
+        </div>
+    </section>
+
+    <footer>
+        <div class="connect-with-us">
+            <div class="social-media-section">
+                CONNECT WITH US
+                <div class="connect-with-us-icons">
+                <a href="#" class="social-icon"><i class="fa-regular fa-square"></i></a>
+                <a href="#" class="social-icon"><i class="fa-regular fa-square"></i></a>
+                <a href="#" class="social-icon"><i class="fa-regular fa-square"></i></a>
+                <a href="#" class="social-icon"><i class="fa-regular fa-square"></i></a>
+                <a href="#" class="social-icon"><i class="fa-regular fa-square"></i></a>
+                </div>
+            </div>
+            <div class="newsletter-section">
+                <p>SUBSCRIBE TO NEWSLETTER</p>
+                <div class="newsletter-signup">
+                    <input type="email" class="email-input" placeholder="Your email">
+                    <button class="signup-button"><i class="fa-regular fa-square"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-content">
+            <div class="footer-copyright">
+                Â© 2025 Alpha One Labs. All rights reserved.<br>
+                Last updated: 06/12/2025 01:23nachm.
+            </div>
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

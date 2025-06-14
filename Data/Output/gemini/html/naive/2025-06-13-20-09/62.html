@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Header */
+        .header {
+            background-color: #00bfff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        .header .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: white;
+        }
+
+        .header .nav {
+            display: flex;
+            align-items: center;
+        }
+
+        .header .nav input {
+            padding: 8px;
+            border-radius: 5px;
+            border: none;
+            margin-right: 20px;
+        }
+
+        .header .nav button {
+            background-color: #ffa500;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        .container {
+            padding: 20px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .container h1 {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .container p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .subjects {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .subject {
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #fff;
+        }
+
+        .subject h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .subject p {
+            text-align: left;
+            margin: 5px 0;
+        }
+
+        .subject .buttons {
+            margin-top: 15px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .subject .buttons button {
+            background-color: #6a5acd;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .subject .buttons button:last-child {
+            background-color: #ffa500;
+        }
+
+        /* Interest Form */
+        .interest-form {
+            border: 1px solid #ddd;
+            padding: 20px;
+            border-radius: 5px;
+            margin-top: 20px;
+            background-color: #fff;
+        }
+
+        .interest-form h2 {
+            text-align: center;
+            font-size: 1.5em;
+            margin-bottom: 15px;
+        }
+
+        .interest-form input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+        }
+
+        .interest-form .buttons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+        }
+
+        .interest-form .buttons button {
+            background-color: #6a5acd;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .interest-form .buttons button:last-child {
+            background-color: #ffa500;
+        }
+
+        .interest-form p {
+            text-align: center;
+            font-size: 0.9em;
+            color: #666;
+            margin-top: 15px;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f9f9f9;
+            padding: 20px;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column ul li {
+            margin-bottom: 8px;
+            color: #777;
+        }
+
+        .footer-column h4 {
+            color: #555;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #888;
+            font-size: 0.8em;
+        }
+
+        .footer-bottom a {
+            color: #888;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .footer-column.connect-with-us {
+            text-align: center;
+        }
+
+        .footer-column.connect-with-us a {
+            display: inline-block;
+            margin: 0 5px;
+            color: #aaa;
+            font-size: 1.5em;
+        }
+
+        .footer-column.connect-with-us input[type="email"] {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            margin-bottom: 10px;
+            width: 200px;
+        }
+
+        .footer-column.connect-with-us button {
+            background-color: #00bfff;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <a href="#" class="logo">Alpha One Labs</a>
+        <div class="nav">
+            <input type="text" placeholder="What do you want to learn?">
+            <a href="#">â¡</a>
+            <a href="#">â¡</a>
+            <a href="#">â¡</a>
+            <a href="#">â¡</a>
+            <a href="#">â¡</a>
+            <a href="#">Login</a>
+            <button>Signup</button>
+        </div>
+    </div>
+
+    <div class="container">
+        <h1>Explore Subjects</h1>
+        <p>Browse exciting topics, see how many people are interested, and find out if there's already a teacher or not.</p>
+
+        <div class="subjects">
+            <div class="subject">
+                <h2>â  Chemistry</h2>
+                <p>Interested: 57 learners</p>
+                <p>Teacher Available: Yes</p>
+                <p>Courses: 4</p>
+                <div class="buttons">
+                    <button>Teach</button>
+                    <button>Learn</button>
+                </div>
+            </div>
+
+            <div class="subject">
+                <h2>â  Mathematics</h2>
+                <p>Interested: 82 learners</p>
+                <p>Teacher Available: Yes</p>
+                <p>Courses: 7</p>
+                <div class="buttons">
+                    <button>Teach</button>
+                    <button>Learn</button>
+                </div>
+            </div>
+
+            <div class="subject">
+                <h2>â  Programming</h2>
+                <p>Interested: 134 learners</p>
+                <p>Teacher Available: No</p>
+                <p>Courses: 3</p>
+                <div class="buttons">
+                    <button>Teach</button>
+                    <button>Learn</button>
+                </div>
+            </div>
+
+            <div class="subject">
+                <h2>â  Psychology</h2>
+                <p>Interested: 29 learners</p>
+                <p>Teacher Available: Yes</p>
+                <p>Courses: 1</p>
+                <div class="buttons">
+                    <button>Teach</button>
+                    <button>Learn</button>
+                </div>
+            </div>
+
+            <div class="subject">
+                <h2>â  Electronics</h2>
+                <p>Interested: 16 learners</p>
+                <p>Teacher Available: No</p>
+                <p>Courses: 0</p>
+                <div class="buttons">
+                    <button>Teach</button>
+                    <button>Learn</button>
+                </div>
+            </div>
+
+            <div class="subject">
+                <h2>â  Geography</h2>
+                <p>Interested: 48 learners</p>
+                <p>Teacher Available: Yes</p>
+                <p>Courses: 2</p>
+                <div class="buttons">
+                    <button>Teach</button>
+                    <button>Learn</button>
+                </div>
+            </div>
+
+            <div class="subject">
+                <h2>â  Literature</h2>
+                <p>Interested: 65 learners</p>
+                <p>Teacher Available: Yes</p>
+                <p>Courses: 3</p>
+                <div class="buttons">
+                    <button>Teach</button>
+                    <button>Learn</button>
+                </div>
+            </div>
+
+            <div class="subject">
+                <h2>â  Music Theory</h2>
+                <p>Interested: 22 learners</p>
+                <p>Teacher Available: Yes</p>
+                <p>Courses: 2</p>
+                <div class="buttons">
+                    <button>Teach</button>
+                    <button>Learn</button>
+                </div>
+            </div>
+
+            <div class="subject">
+                <h2>â  Robotics</h2>
+                <p>Interested: 73 learners</p>
+                <p>Teacher Available: No</p>
+                <p>Courses: 5</p>
+                <div class="buttons">
+                    <button>Teach</button>
+                    <button>Learn</button>
+                </div>
+            </div>
+
+            <div class="subject">
+                <h2>â  Health & Wellness</h2>
+                <p>Interested: 41 learners</p>
+                <p>Teacher Available: Yes</p>
+                <p>Courses: 2</p>
+                <div class="buttons">
+                    <button>Teach</button>
+                    <button>Learn</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="interest-form">
+            <h2>Express Your Interest</h2>
+            <input type="text" placeholder="Enter a subject...">
+            <div class="buttons">
+                <button>Teach</button>
+                <button>Learn</button>
+            </div>
+            <p>Share what you'd like to learn or teach, and we'll help make it happen!</p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h4>LEARNING</h4>
+                <ul>
+                    <li>â¡ Courses</li>
+                    <li>â¡ Subjects</li>
+                    <li>â¡ Quizzes</li>
+                    <li>â¡ Videos</li>
+                    <li>â¡ Challenges</li>
+                    <li>â¡ Study Groups</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>COMMUNITY</h4>
+                <ul>
+                    <li>â¡ Forum</li>
+                    <li>â¡ Blog</li>
+                    <li>â¡ Features</li>
+                    <li>â¡ Success Stories</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>RESOURCES & INFO</h4>
+                <ul>
+                    <li>â¡ GSOC'25</li>
+                    <li>â¡ Status</li>
+                    <li>â¡ Feedback</li>
+                    <li>â¡ Terms</li>
+                </ul>
+            </div>
+            <div class="footer-column connect-with-us">
+                <h4>CONNECT WITH US</h4>
+                <a href="#">â¡</a>
+                <a href="#">â¡</a>
+                <a href="#">â¡</a>
+                <a href="#">â¡</a>
+                <a href="#">â¡</a>
+                <p>SUBSCRIBE TO NEWSLETTER</p>
+                <input type="email" placeholder="Your email">
+                <button>â¡</button>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>Â© 2025 Alpha One Labs. All rights reserved.
+                Last updated: 06/12/2025 12:12nachm.</p>
+            <div>
+                <a href="#">About Us</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

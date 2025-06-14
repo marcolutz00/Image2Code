@@ -1,29 +1,17 @@
-import requests, random, asyncio, aiohttp, pathlib, csv
-from datetime import date
+import sys
+import os
 
-# 1. Domain-Feed holen (Beispiel: 14-Tage-Liste – plain text)
-url = "https://raw.githubusercontent.com/xRuffKez/NRD/main/14d/domains.txt"
-domains = requests.get(url, timeout=30).text.splitlines()
+sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+import Utils.utils_html as utils_html
 
-# 2. Zufällig 300 Domains zum Testen auswählen
-sample = random.sample(domains, 300)
 
-# 3. Asynchron HTML + Screenshot (Playwright)
-from playwright.async_api import async_playwright
 
-# async def fetch_site(domain, outdir="data"):
-#     out = pathlib.Path(outdir); out.mkdir(exist_ok=True)
-#     async with async_playwright() as p:
-#         browser = await p.chromium.launch()
-#         page   = await browser.new_page()
-#         try:
-#             await page.goto(f"https://{domain}", timeout=15000)
-#             html = await page.content()
-#             (out / f"{domain}.html").write_text(html, encoding="utf-8")
-#             await page.screenshot(path=str(out / f"{domain}.png"), full_page=True)
-#         except Exception:
-#             pass
-#         finally:
-            # await browser.close()
+for html_file in os.listdir(os.path.dirname(__file__)):
+    if html_file.endswith(".html"):
+        with open(os.path.join(os.path.dirname(__file__), html_file), "r", encoding="utf-8") as f:
+            html = f.read()
+        
+        html_clean = utils_html.change_links_and_img(html)
 
-# asyncio.run(asyncio.gather(*(fetch_site(d) for d in sample)))
+        with open(os.path.join(os.path.dirname(__file__), "cleaned_" + html_file), "w", encoding="utf-8") as f:
+            f.write(html_clean)

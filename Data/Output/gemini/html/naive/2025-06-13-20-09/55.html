@@ -1,0 +1,534 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs Forum</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #212529;
+            background-color: #f8f9fa;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #00a884;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left img {
+            height: 40px;
+            margin-right: 10px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            padding: 5px;
+            width: 200px;
+        }
+
+        .search-bar button {
+            background-color: transparent;
+            border: none;
+            color: #6c757d;
+            cursor: pointer;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-right a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-weight: bold;
+        }
+
+        .header-right .login-btn {
+            color: white;
+            font-weight: bold;
+        }
+
+        .header-right .signup-btn {
+            background-color: #fca311;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 250px;
+            padding-right: 20px;
+        }
+
+        .forum-categories {
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            color: #212529;
+        }
+
+        .category-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .category-item {
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 5px;
+            cursor: pointer;
+            color: #212529;
+        }
+        .category-item:hover {
+            background-color: #e9ecef;
+        }
+
+        .category-item::before {
+            content: "096"; /* Font Awesome square unchecked icon */
+            font-family: FontAwesome;
+            margin-right: 8px;
+            color: #6c757d;
+        }
+        .category-item.active {
+            background-color: #e9ecef;
+        }
+
+        .category-item.active::before {
+            content: "14a"; /* Font Awesome check square icon */
+            font-family: FontAwesome;
+            margin-right: 8px;
+            color: #00a884;
+        }
+
+        .discussion {
+            background-color: #fff;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            padding: 15px;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            display: flex;
+        }
+
+        .discussion-avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #00a884;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-right: 10px;
+        }
+
+        .discussion-content {
+            flex: 1;
+        }
+
+        .discussion-meta {
+            font-size: 12px;
+            color: #6c757d;
+        }
+
+        .discussion-category {
+            color: #00a884;
+            text-decoration: none;
+        }
+
+        .discussion-title {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .discussion-summary {
+            color: #212529;
+        }
+
+        .discussion-stats {
+            font-size: 12px;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .discussion-stats span {
+            margin-right: 10px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: left;
+            color: #6c757d;
+            border-top: 1px solid #dee2e6;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+        }
+        .footer-links div {
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .footer-links h4 {
+            color: #212529;
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links a {
+            color: #6c757d;
+            text-decoration: none;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .connect-with-us a {
+            display: inline-block;
+            margin-right: 10px;
+            color: #fff;
+            background-color: #00a884;
+            border-radius: 5px;
+            text-decoration: none;
+            width: 30px;
+            height: 30px;
+            text-align: center;
+            line-height: 30px;
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-form input[type="email"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ced4da;
+            border-radius: 5px;
+        }
+
+        .newsletter-form button {
+            background-color: #00a884;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .copyright {
+            margin-top: 20px;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .footer-bottom a {
+            color: #6c757d;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        /* Font Awesome Import (You may need to include this in your HTML <head>) */
+        @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <img src="src/placeholder.jpg" alt="Logo" style="width: 24px; height: 24px;">
+            <h1>Alpha One Labs</h1>
+            <ul class="nav-links">
+                <li><a href="#">LEARN</a></li>
+                <li><a href="#">COMMUNITY</a></li>
+                <li><a href="#">RESOURCES</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+        </div>
+        <div class="search-bar">
+            <input type="text" placeholder="What do you want to learn?">
+            <button type="submit"><i class="fa fa-search"></i></button>
+        </div>
+        <div class="header-right">
+            <i class="fa fa-bell-o"></i>
+            <i class="fa fa-envelope-o"></i>
+            <i class="fa fa-question-circle-o"></i>
+            <a href="#" class="login-btn">Login</a>
+            <button class="signup-btn">Signup</button>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="sidebar">
+            <div class="section-title">Forum</div>
+            <p>Join discussions, ask questions, and share knowledge</p>
+            <div class="section-title">CATEGORIES</div>
+            <ul class="category-list">
+                <li class="category-item active"><i class="fa fa-check-square-o"></i> All Categories</li>
+                <li class="category-item"><i class="fa fa-square-o"></i> Category 1 3</li>
+                <li class="category-item"><i class="fa fa-square-o"></i> Category 2 3</li>
+                <li class="category-item"><i class="fa fa-square-o"></i> Category 3 3</li>
+            </ul>
+        </div>
+
+        <div class="forum-categories">
+            <div class="section-title">Forum Categories</div>
+            <p>Browse all categories or select one to see its topics</p>
+            <div class="section-title">Recent Discussions</div>
+            <div class="discussion">
+                <div class="discussion-avatar">S</div>
+                <div class="discussion-content">
+                    <div class="discussion-meta">student5 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#" class="discussion-category">Category 1</a></div>
+                    <div class="discussion-title">Topic 3</div>
+                    <div class="discussion-summary">Content for topic 3</div>
+                    <div class="discussion-stats">
+                        <span><i class="fa fa-eye"></i> 0 views</span>
+                        <span><i class="fa fa-comment"></i> 5 replies</span>
+                        <span><i class="fa fa-arrow-up"></i> 0 upvotes</span>
+                        <span><i class="fa fa-arrow-down"></i> 0 downvotes</span>
+                        <span><i class="fa fa-clock-o"></i> Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+            </div>
+             <div class="discussion">
+                <div class="discussion-avatar">S</div>
+                <div class="discussion-content">
+                    <div class="discussion-meta">student3 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#" class="discussion-category">Category 1</a></div>
+                    <div class="discussion-title">Topic 2</div>
+                    <div class="discussion-summary">Content for topic 2</div>
+                    <div class="discussion-stats">
+                        <span><i class="fa fa-eye"></i> 0 views</span>
+                        <span><i class="fa fa-comment"></i> 2 replies</span>
+                        <span><i class="fa fa-arrow-up"></i> 0 upvotes</span>
+                        <span><i class="fa fa-arrow-down"></i> 0 downvotes</span>
+                        <span><i class="fa fa-clock-o"></i> Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+            </div>
+             <div class="discussion">
+                <div class="discussion-avatar">T</div>
+                <div class="discussion-content">
+                    <div class="discussion-meta">teacher2 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#" class="discussion-category">Category 1</a></div>
+                    <div class="discussion-title">Topic 1</div>
+                    <div class="discussion-summary">Content for topic 1</div>
+                    <div class="discussion-stats">
+                        <span><i class="fa fa-eye"></i> 0 views</span>
+                        <span><i class="fa fa-comment"></i> 4 replies</span>
+                        <span><i class="fa fa-arrow-up"></i> 0 upvotes</span>
+                        <span><i class="fa fa-arrow-down"></i> 0 downvotes</span>
+                        <span><i class="fa fa-clock-o"></i> Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="discussion">
+                <div class="discussion-avatar">S</div>
+                <div class="discussion-content">
+                    <div class="discussion-meta">student8 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#" class="discussion-category">Category 2</a></div>
+                    <div class="discussion-title">Topic 3</div>
+                    <div class="discussion-summary">Content for topic 3</div>
+                    <div class="discussion-stats">
+                        <span><i class="fa fa-eye"></i> 0 views</span>
+                        <span><i class="fa fa-comment"></i> 5 replies</span>
+                        <span><i class="fa fa-arrow-up"></i> 0 upvotes</span>
+                        <span><i class="fa fa-arrow-down"></i> 0 downvotes</span>
+                        <span><i class="fa fa-clock-o"></i> Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+            </div>
+              <div class="discussion">
+                <div class="discussion-avatar">S</div>
+                <div class="discussion-content">
+                    <div class="discussion-meta">student7 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#" class="discussion-category">Category 2</a></div>
+                    <div class="discussion-title">Topic 2</div>
+                    <div class="discussion-summary">Content for topic 2</div>
+                    <div class="discussion-stats">
+                        <span><i class="fa fa-eye"></i> 0 views</span>
+                        <span><i class="fa fa-comment"></i> 5 replies</span>
+                        <span><i class="fa fa-arrow-up"></i> 0 upvotes</span>
+                        <span><i class="fa fa-arrow-down"></i> 0 downvotes</span>
+                        <span><i class="fa fa-clock-o"></i> Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="discussion">
+                <div class="discussion-avatar">S</div>
+                <div class="discussion-content">
+                    <div class="discussion-meta">student7 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#" class="discussion-category">Category 2</a></div>
+                    <div class="discussion-title">Topic 1</div>
+                    <div class="discussion-summary">Content for topic 1</div>
+                    <div class="discussion-stats">
+                        <span><i class="fa fa-eye"></i> 0 views</span>
+                        <span><i class="fa fa-comment"></i> 2 replies</span>
+                        <span><i class="fa fa-arrow-up"></i> 0 upvotes</span>
+                        <span><i class="fa fa-arrow-down"></i> 0 downvotes</span>
+                        <span><i class="fa fa-clock-o"></i> Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+            </div>
+             <div class="discussion">
+                <div class="discussion-avatar">T</div>
+                <div class="discussion-content">
+                    <div class="discussion-meta">teacher1 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#" class="discussion-category">Category 3</a></div>
+                    <div class="discussion-title">Topic 3</div>
+                    <div class="discussion-summary">Content for topic 3</div>
+                    <div class="discussion-stats">
+                        <span><i class="fa fa-eye"></i> 0 views</span>
+                        <span><i class="fa fa-comment"></i> 4 replies</span>
+                        <span><i class="fa fa-arrow-up"></i> 0 upvotes</span>
+                        <span><i class="fa fa-arrow-down"></i> 0 downvotes</span>
+                        <span><i class="fa fa-clock-o"></i> Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+            </div>
+            <div class="discussion">
+                <div class="discussion-avatar">S</div>
+                <div class="discussion-content">
+                    <div class="discussion-meta">student6 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#" class="discussion-category">Category 3</a></div>
+                    <div class="discussion-title">Topic 2</div>
+                    <div class="discussion-summary">Content for topic 2</div>
+                    <div class="discussion-stats">
+                        <span><i class="fa fa-eye"></i> 0 views</span>
+                        <span><i class="fa fa-comment"></i> 3 replies</span>
+                        <span><i class="fa fa-arrow-up"></i> 0 upvotes</span>
+                        <span><i class="fa fa-arrow-down"></i> 0 downvotes</span>
+                        <span><i class="fa fa-clock-o"></i> Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+            </div>
+               <div class="discussion">
+                <div class="discussion-avatar">S</div>
+                <div class="discussion-content">
+                    <div class="discussion-meta">student3 â¢ 19 Stunden, 22 Minuten ago â¢ <a href="#" class="discussion-category">Category 3</a></div>
+                    <div class="discussion-title">Topic 1</div>
+                    <div class="discussion-summary">Content for topic 1</div>
+                    <div class="discussion-stats">
+                        <span><i class="fa fa-eye"></i> 0 views</span>
+                        <span><i class="fa fa-comment"></i> 4 replies</span>
+                        <span><i class="fa fa-arrow-up"></i> 0 upvotes</span>
+                        <span><i class="fa fa-arrow-down"></i> 0 downvotes</span>
+                        <span><i class="fa fa-clock-o"></i> Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-links">
+            <div>
+                <h4>LEARNING</h4>
+                <ul>
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Courses</a></li>
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Subjects</a></li>
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Quizzes</a></li>                    
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Videos</a></li>                    
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Challenges</a></li>
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Study Groups</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>COMMUNITY</h4>
+                <ul>
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Forum</a></li>
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Blog</a></li>
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Features</a></li>
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Success Stories</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>RESOURCES & INFO</h4>
+                <ul>
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> GSOC'25</a></li>
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Status</a></li>
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Feedback</a></li>
+                    <li><a href="#"><i class="fa fa-check-square-o"></i> Terms</a></li>
+                </ul>
+            </div>
+            <div class="connect-with-us">
+                <h4>CONNECT WITH US</h4>
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+                <h4>SUBSCRIBE TO NEWSLETTER</h4>
+                <div class="newsletter-form">
+                    <input type="email" placeholder="Your email">
+                    <button type="submit"><i class="fa fa-arrow-right"></i></button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>&copy; 2025 Alpha One Labs. All rights reserved. <br>Last updated: 06/12/2025 12:14nachm.</p>
+            <div>
+                <a href="#">About Us</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

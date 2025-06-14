@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Forum</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #212529;
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            background-color: #00a693;
+            color: white;
+            padding: 20px;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .content {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .sidebar {
+            width: 250px;
+            padding-right: 20px;
+        }
+
+        .main {
+            flex: 1;
+        }
+
+        .categories {
+            margin-bottom: 20px;
+        }
+
+        .categories h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #212529;
+        }
+
+        .categories ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .categories li {
+            padding: 8px 0;
+            border-bottom: 1px solid #dee2e6;
+        }
+
+        .categories li:last-child {
+            border-bottom: none;
+        }
+
+        .categories a {
+            text-decoration: none;
+            color: #495057;
+            display: block;
+        }
+
+        .discussions {
+            margin-bottom: 20px;
+        }
+
+        .discussions h2 {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+            color: #212529;
+        }
+
+        .discussion-item {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #e9ecef;
+        }
+
+        .discussion-item h3 {
+            font-size: 1.1em;
+            margin-bottom: 5px;
+            color: #212529;
+        }
+
+        .discussion-item p {
+            color: #495057;
+            margin-bottom: 10px;
+        }
+
+        .discussion-meta {
+            font-size: 0.8em;
+            color: #6c757d;
+        }
+
+        .footer {
+            background-color: #f8f9fa;
+            padding: 20px;
+            text-align: center;
+            border-top: 1px solid #dee2e6;
+            margin-top: 20px;
+        }
+
+        /* Specific adjustments to match the image */
+        .alpha-one-labs {
+            font-size: 2em;
+            font-weight: bold;
+        }
+
+        .categories-list li {
+            border-bottom: none;
+            margin-bottom: 15px;
+            padding-left: 10px;
+        }
+
+        .categories-list li:hover {
+            background-color: #e9ecef;
+            cursor: pointer;
+        }
+
+        .categories-list li span {
+            float: right;
+            color: #6c757d;
+        }
+
+        .discussion-item {
+            border-radius: 0;
+            border: none;
+            border-bottom: 1px solid #e9ecef;
+            padding: 10px;
+        }
+
+        .discussion-item:last-child {
+            border-bottom: none;
+        }
+
+        .discussion-title {
+            color: #212529;
+            font-weight: bold;
+        }
+
+        .discussion-item p {
+            margin-bottom: 5px;
+            color: #495057;
+        }
+
+        .discussion-meta {
+            font-size: 0.75em;
+            color: #6c757d;
+        }
+
+        .topic-title {
+            font-size: 1em;
+            font-weight: bold;
+        }
+
+        .topic-content {
+            font-size: 0.9em;
+            color: #495057;
+        }
+        .square{
+            width: 25px;
+            height: 25px;
+            background-color: #00a693;
+            border-radius: 3px;
+            color: white;
+            text-align: center;
+            line-height: 25px;
+            margin-right: 10px;
+            float: left;
+        }
+
+        .meta-info{
+            margin-top: 5px;
+        }
+
+        .footer-container{
+        display: flex;
+        justify-content: space-between;
+        }
+
+        .learning, .community, .resources{
+            flex: 1;
+        }
+
+        .connect-us{
+            flex: 1;
+        }
+
+    </style>
+</head>
+
+<body>
+    <div style="background-color:#00a693; padding: 20px;">
+    <div style="max-width: 1200px; margin: 0 auto; padding: 20px;">
+    <div style="display: flex; align-items: center; justify-content: space-between; padding-right: 3%;">
+            <div style="font-size: 2em; font-weight: bold; color: white;">Alpha One Labs</div>
+        
+        <div style="display: flex; align-items: center;">
+            <a href="#" style="color: white; text-decoration: none; margin-right: 15px;">LEARN</a>
+            <a href="#" style="color: white; text-decoration: none; margin-right: 15px;">COMMUNITY</a>
+            <a href="#" style="color: white; text-decoration: none; margin-right: 15px;">RESOURCES</a>
+            <a href="#" style="color: white; text-decoration: none; margin-right: 15px;">ABOUT</a>
+            <input type="text" placeholder="What do you want to learn?"
+                style="padding: 8px; border: none; border-radius: 5px; margin-right: 15px;">
+            <a href="#" style="color: white; text-decoration: none; margin-right: 15px;">Î </a>
+            <a href="#" style="color: white; text-decoration: none; margin-right: 15px;">Î </a>
+            <a href="#" style="color: white; text-decoration: none; margin-right: 15px;">Î </a>
+            <a href="#" style="color: white; text-decoration: none; margin-right: 15px;">Î </a>
+            <a href="#" style="color: white; text-decoration: none; margin-right: 15px;">Î </a>
+            <a href="#" style="color: white; text-decoration: none; margin-right: 15px;">Login</a>
+            <a href="#"
+                style="background-color: #FFA000; color: white; text-decoration: none; padding: 8px 15px; border-radius: 5px;">Signup</a>
+        </div>
+    </div>
+    </div>
+    </div>
+    <div class="container">
+        <div class="content">
+            <div class="sidebar">
+                <div class="categories">
+                    <h2>Forum</h2>
+                    Join discussions, ask questions, and share knowledge
+                    <h2>CATEGORIES</h2>
+                    <ul class="categories-list">
+                        <li>All Categories</li>
+                        <li>Category 1<span>3</span></li>
+                        <li>Category 2<span>3</span></li>
+                        <li>Category 3<span>3</span></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="main">
+                <div class="discussions">
+                    <h2>Forum Categories</h2>
+                    Browse all categories or select one to see its topics
+                    <h2>Recent Discussions</h2>
+                    <div class="discussion-item">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div class="square">S</div>
+                    <div>
+                        <span style="margin-right: 5px; font-size:0.8em">student5</span>
+                         <span style="margin-right: 5px; font-size:0.8em">19 Stunden, 22 Minuten ago</span>
+                          <span style="margin-right: 5px; font-size:0.8em">Category 1</span>
+                        <div class="topic-title">Topic 3</div>
+                        <p class="topic-content">Content for topic 3</p>
+                        <div class="meta-info">
+                            <span style="margin-right: 5px; font-size:0.8em">0 views</span>
+                            <span style="margin-right: 5px; font-size:0.8em">5 replies</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 upvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 downvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">Last reply 19 Stunden, 22 Minuten ago</span>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="discussion-item">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div class="square">S</div>
+                    <div>
+                        <span style="margin-right: 5px; font-size:0.8em">student3</span>
+                         <span style="margin-right: 5px; font-size:0.8em">19 Stunden, 22 Minuten ago</span>
+                          <span style="margin-right: 5px; font-size:0.8em">Category 1</span>
+                        <div class="topic-title">Topic 2</div>
+                        <p class="topic-content">Content for topic 2</p>
+                        <div class="meta-info">
+                            <span style="margin-right: 5px; font-size:0.8em">0 views</span>
+                            <span style="margin-right: 5px; font-size:0.8em">2 replies</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 upvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 downvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">Last reply 19 Stunden, 22 Minuten ago</span>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="discussion-item">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div class="square" style="background-color:#673ab7;">T</div>
+                    <div>
+                        <span style="margin-right: 5px; font-size:0.8em">teacher2</span>
+                         <span style="margin-right: 5px; font-size:0.8em">19 Stunden, 22 Minuten ago</span>
+                          <span style="margin-right: 5px; font-size:0.8em">Category 1</span>
+                        <div class="topic-title">Topic 1</div>
+                        <p class="topic-content">Content for topic 1</p>
+                        <div class="meta-info">
+                            <span style="margin-right: 5px; font-size:0.8em">0 views</span>
+                            <span style="margin-right: 5px; font-size:0.8em">4 replies</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 upvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 downvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">Last reply 19 Stunden, 22 Minuten ago</span>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="discussion-item">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div class="square">S</div>
+                    <div>
+                        <span style="margin-right: 5px; font-size:0.8em">student8</span>
+                         <span style="margin-right: 5px; font-size:0.8em">19 Stunden, 22 Minuten ago</span>
+                          <span style="margin-right: 5px; font-size:0.8em">Category 2</span>
+                        <div class="topic-title">Topic 3</div>
+                        <p class="topic-content">Content for topic 3</p>
+                        <div class="meta-info">
+                            <span style="margin-right: 5px; font-size:0.8em">0 views</span>
+                            <span style="margin-right: 5px; font-size:0.8em">5 replies</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 upvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 downvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">Last reply 19 Stunden, 22 Minuten ago</span>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="discussion-item">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div class="square">S</div>
+                    <div>
+                        <span style="margin-right: 5px; font-size:0.8em">student7</span>
+                         <span style="margin-right: 5px; font-size:0.8em">19 Stunden, 22 Minuten ago</span>
+                          <span style="margin-right: 5px; font-size:0.8em">Category 2</span>
+                        <div class="topic-title">Topic 2</div>
+                        <p class="topic-content">Content for topic 2</p>
+                        <div class="meta-info">
+                            <span style="margin-right: 5px; font-size:0.8em">0 views</span>
+                            <span style="margin-right: 5px; font-size:0.8em">5 replies</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 upvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 downvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">Last reply 19 Stunden, 22 Minuten ago</span>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="discussion-item">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div class="square">S</div>
+                    <div>
+                        <span style="margin-right: 5px; font-size:0.8em">student7</span>
+                         <span style="margin-right: 5px; font-size:0.8em">19 Stunden, 22 Minuten ago</span>
+                          <span style="margin-right: 5px; font-size:0.8em">Category 2</span>
+                        <div class="topic-title">Topic 1</div>
+                        <p class="topic-content">Content for topic 1</p>
+                        <div class="meta-info">
+                            <span style="margin-right: 5px; font-size:0.8em">0 views</span>
+                            <span style="margin-right: 5px; font-size:0.8em">2 replies</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 upvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 downvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">Last reply 19 Stunden, 22 Minuten ago</span>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="discussion-item">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div class="square" style="background-color:#673ab7;">T</div>
+                    <div>
+                        <span style="margin-right: 5px; font-size:0.8em">teacher1</span>
+                         <span style="margin-right: 5px; font-size:0.8em">19 Stunden, 22 Minuten ago</span>
+                          <span style="margin-right: 5px; font-size:0.8em">Category 3</span>
+                        <div class="topic-title">Topic 3</div>
+                        <p class="topic-content">Content for topic 3</p>
+                        <div class="meta-info">
+                            <span style="margin-right: 5px; font-size:0.8em">0 views</span>
+                            <span style="margin-right: 5px; font-size:0.8em">4 replies</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 upvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 downvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">Last reply 19 Stunden, 22 Minuten ago</span>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="discussion-item">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div class="square">S</div>
+                    <div>
+                        <span style="margin-right: 5px; font-size:0.8em">student6</span>
+                         <span style="margin-right: 5px; font-size:0.8em">19 Stunden, 22 Minuten ago</span>
+                          <span style="margin-right: 5px; font-size:0.8em">Category 3</span>
+                        <div class="topic-title">Topic 2</div>
+                        <p class="topic-content">Content for topic 2</p>
+                        <div class="meta-info">
+                            <span style="margin-right: 5px; font-size:0.8em">0 views</span>
+                            <span style="margin-right: 5px; font-size:0.8em">3 replies</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 upvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 downvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">Last reply 19 Stunden, 22 Minuten ago</span>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                    <div class="discussion-item">
+                    <div style="display: flex; align-items: center; margin-bottom: 10px;">
+                    <div class="square">S</div>
+                    <div>
+                        <span style="margin-right: 5px; font-size:0.8em">student3</span>
+                         <span style="margin-right: 5px; font-size:0.8em">19 Stunden, 22 Minuten ago</span>
+                          <span style="margin-right: 5px; font-size:0.8em">Category 3</span>
+                        <div class="topic-title">Topic 1</div>
+                        <p class="topic-content">Content for topic 1</p>
+                        <div class="meta-info">
+                            <span style="margin-right: 5px; font-size:0.8em">0 views</span>
+                            <span style="margin-right: 5px; font-size:0.8em">4 replies</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 upvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">0 downvotes</span>
+                            <span style="margin-right: 5px; font-size:0.8em">Last reply 19 Stunden, 22 Minuten ago</span>
+                        </div>
+                    </div>
+                </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer">
+        <div class="footer-container">
+            <div class="learning">
+                <h3>LEARNING</h3>
+                <ul>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="#">Quizzes</a></li>                    
+                    <li><a href="#">Videos</a></li>
+                    <li><a href="#">Challenges</a></li>
+                    <li><a href="#">Study Groups</a></li>
+                </ul>
+            </div>
+            <div class="community">
+                <h3>COMMUNITY</h3>
+                <ul>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="resources">
+                <h3>RESOURCES & INFO</h3>
+                <ul>
+                    <li><a href="#">GSOC'25</a></li>
+                    <li><a href="#">Status</a></li>
+                    <li><a href="#">Feedback</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+            <div class="connect-us">
+                <h3>CONNECT WITH US</h3>
+                <div style="display:flex">
+                <div style="width: 25px;height: 25px;background-color: #3b5998; border-radius: 3px; margin: 3px;"></div>
+                <div style="width: 25px;height: 25px;background-color: #e9ecef; border-radius: 3px; margin: 3px;"></div>
+                <div style="width: 25px;height: 25px;background-color: #e9ecef; border-radius: 3px; margin: 3px;"></div>
+                <div style="width: 25px;height: 25px;background-color: #e9ecef; border-radius: 3px; margin: 3px;"></div>
+                <div style="width: 25px;height: 25px;background-color: #e9ecef; border-radius: 3px; margin: 3px;"></div>
+                </div>
+                
+                <div style="margin-top: 10px; display: flex;">
+                <input type="email" placeholder="Your email"
+                style="padding: 8px; border: none; border-radius: 5px; margin-right: 15px;">
+                <button style="background-color: #00a693; color: white; text-decoration: none; padding: 8px 15px; border-radius: 5px; border: none;">Î </button>
+                </div>
+            </div>
+        </div>
+        <div style="margin-top: 30px;">
+            <p>Â© 2025 Alpha One Labs. All rights reserved.</p>
+            <p>Last updated: 06/12/2025 12:14nachm.</p>
+        </div>
+        <div style="margin-top: 10px; display: flex; justify-content: flex-end;">
+        <a href="#" style="color: black; text-decoration: none; margin-right: 15px; font-size: 0.9em">About Us</a>
+        <a href="#" style="color: black; text-decoration: none; margin-right: 15px; font-size: 0.9em">Terms & Conditions</a>
+        <a href="#" style="color: black; text-decoration: none; margin-right: 15px; font-size: 0.9em">Privacy Policy</a>
+        <a href="#" style="color: black; text-decoration: none; margin-right: 15px; font-size: 0.9em">Cookie Policy</a>
+        </div>
+    </div>
+</body>
+
+</html>

@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs Marketplace</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: #00a699;
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #00a699;
+            font-size: 14px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            padding: 5px 10px;
+        }
+
+        .search-bar input[type="text"] {
+            border: none;
+            outline: none;
+            padding: 5px;
+            width: 200px;
+        }
+
+        .auth-links {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .auth-links a {
+            text-decoration: none;
+            color: #00a699;
+        }
+
+        .auth-links .signup-btn {
+            background-color: #f27059;
+            color: white;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        /* Main Content Styles */
+        main {
+            padding: 20px;
+        }
+
+        .breadcrumbs {
+            margin-bottom: 20px;
+            color: #777;
+            font-size: 14px;
+        }
+
+        .breadcrumbs a {
+            color: #00a699;
+            text-decoration: none;
+        }
+
+        .marketplace {
+            display: flex;
+            gap: 20px;
+        }
+
+        .filters {
+            width: 250px;
+            padding: 20px;
+            border: 1px solid #eee;
+            border-radius: 5px;
+        }
+
+        .filters h3 {
+            margin-top: 0;
+        }
+
+        .filters label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .filters select, .filters input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .filters .button-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .filters button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .filters button.apply {
+            background-color: #00a699;
+            color: white;
+        }
+
+        .filters button.clear {
+            background-color: #ddd;
+            color: #333;
+        }
+
+        .products {
+            flex-grow: 1;
+        }
+
+        .products h2 {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .product-card {
+            border: 1px solid #eee;
+            border-radius: 5px;
+            padding: 15px;
+            text-align: left;
+        }
+
+        .product-card img {
+            width: 100%;
+            height: 200px; /* Fixed height for placeholder consistency */
+            object-fit: cover;
+            margin-bottom: 10px;
+        }
+
+        .product-card h4 {
+            margin-top: 0;
+        }
+
+        .product-card .price {
+            font-weight: bold;
+            color: #f27059;
+        }
+
+        .product-card button {
+            background-color: #f27059;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .product-card .sold-out {
+            background-color: #999;
+            cursor: not-allowed;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #f9f9f9;
+            padding: 30px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        footer h4 {
+            margin-top: 0;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 5px;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #555;
+        }
+
+        .social-links {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-links a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ddd;
+            text-align: center;
+            line-height: 30px;
+            color: #555;
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-form input[type="email"] {
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px 0 0 5px;
+            width: 200px;
+        }
+
+        .newsletter-form button {
+            background-color: #00a699;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .copyright {
+            grid-column: 1 / -1;
+            text-align: left;
+            margin-top: 20px;
+            color: #777;
+            font-size: 12px;
+        }
+
+        .bottom-links {
+            text-align: right;
+        }
+
+        .bottom-links a {
+            color: #00a699;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        ul li::before {
+            content: "096"; /* Font Awesome square unchecked */
+            font-family: FontAwesome;
+            display: inline-block;
+            margin-left: -1.3em;
+            width: 1.3em;
+        }
+        
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <header>
+        <div class="logo">Alpha One Labs</div>
+        <nav>
+            <div class="nav-links">
+                <a href="#">LEARN</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">RESOURCES</a>
+                <a href="#">ABOUT</a>
+            </div>
+        </nav>
+        <div class="search-bar">
+            <input type="text" placeholder="What do you want to learn?">
+            <i class="fa fa-search"></i>
+        </div>
+        <div class="auth-links">
+            <a href="#"><i class="fa fa-bell"></i></a>
+            <a href="#">Login</a>
+            <a href="#" class="signup-btn">Signup</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="breadcrumbs">
+            <a href="#">Home</a> > Marketplace
+        </div>
+
+        <section class="marketplace">
+            <aside class="filters">
+                <h3>Filters</h3>
+
+                <label for="store-name">Store Name</label>
+                <select id="store-name">
+                    <option>All</option>
+                </select>
+
+                <label for="product-type">Product Type</label>
+                <select id="product-type">
+                    <option>All</option>
+                </select>
+
+                <label for="category">Category</label>
+                <select id="category">
+                    <option>All</option>
+                </select>
+
+                <label for="min-price">Min Price</label>
+                <input type="text" id="min-price">
+
+                <label for="max-price">Max Price</label>
+                <input type="text" id="max-price">
+
+                <div class="button-group">
+                    <button class="apply">Apply</button>
+                    <button class="clear">Clear</button>
+                </div>
+            </aside>
+
+            <section class="products">
+                <h2>Explore Our Products</h2>
+
+                <div class="product-grid">
+                    <div class="product-card">
+                        <img src="src/placeholder.jpg" alt="Algebra Basics Workbook">
+                        <h4>Algebra Basics Workbook</h4>
+                        <p>A comprehensive workbook for learning algebra basics.</p>
+                        <p><i class="fa fa-check-square-o"></i>Storefront for teacher1</p>
+                        <p><del>$19,99</del></p>
+                        <p class="price">$14,99</p>
+                        <button> Add to Cart</button>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="src/placeholder.jpg" alt="Python Programming eBook">
+                        <h4>Python Programming eBook</h4>
+                        <p>An in-depth guide to Python programming.</p>
+                        <p><i class="fa fa-check-square-o"></i>Storefront for teacher1</p>
+                        <p><del>$29,99</del></p>
+                        <p class="price">$24,99</p>
+                        <button class="sold-out" disabled>Sold Out</button>
+                    </div>
+
+                    <div class="product-card">
+                        <img src="src/placeholder.jpg" alt="Science Experiment Kit">
+                        <h4>Science Experiment Kit</h4>
+                        <p>A kit for conducting various science experiments.</p>
+                        <p><i class="fa fa-check-square-o"></i>Storefront for teacher1</p>
+                        <p class="price">$39,99</p>
+                        <button> Add to Cart</button>
+                    </div>
+                </div>
+            </section>
+        </section>
+    </main>
+
+    <footer>
+        <div>
+            <h4>LEARNING</h4>
+            <ul>
+                <li>Courses</li>
+                <li>Subjects</li>
+                <li>Quizzes</li>
+                <li>Videos</li>
+                <li>Challenges</li>
+                <li>Study Groups</li>
+            </ul>
+        </div>
+
+        <div>
+            <h4>COMMUNITY</h4>
+            <ul>
+                <li>Forum</li>
+                <li>Blog</li>
+                <li>Features</li>
+                <li>Success Stories</li>
+            </ul>
+        </div>
+
+        <div>
+            <h4>RESOURCES & INFO</h4>
+            <ul>
+                <li>GSOC'25</li>
+                <li>Status</li>
+                <li>Feedback</li>
+                <li>Terms</li>
+            </ul>
+        </div>
+
+        <div>
+            <h4>CONNECT WITH US</h4>
+            <div class="social-links">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-youtube"></i></a>
+            </div>
+
+            <p>SUBSCRIBE TO NEWSLETTER</p>
+            <div class="newsletter-form">
+                <input type="email" placeholder="Your email">
+                <button><i class="fa fa-paper-plane"></i></button>
+            </div>
+        </div>
+
+        <div class="copyright">
+            ÃÂ© 2025 Alpha One Labs. All rights reserved.<br>
+            Last updated: 06/12/2025 12:18nachm.
+        </div>
+
+        <div class="bottom-links">
+            <a href="#">About Us</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+        </div>
+    </footer>
+
+</body>
+</html>

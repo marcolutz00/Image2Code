@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Alpha One Labs - Forum</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f9f9f9;
+    }
+
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    /* Header */
+    .header {
+      background-color: #00b894;
+      color: white;
+      padding: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .header a {
+      color: white;
+      text-decoration: none;
+      margin-left: 15px;
+    }
+
+    .header .search-bar {
+      display: flex;
+      align-items: center;
+    }
+
+    .header .search-bar input {
+      padding: 8px;
+      border: none;
+      border-radius: 4px;
+    }
+
+    .header .auth-buttons a {
+      background-color: #f9ca24;
+      color: #333;
+      padding: 8px 16px;
+      border-radius: 4px;
+      margin-left: 10px;
+    }
+
+    /* Main Content */
+    .main-content {
+      display: flex;
+      margin-top: 20px;
+    }
+
+    .sidebar {
+      width: 250px;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .forum-content {
+      flex: 1;
+      padding: 20px;
+      background-color: white;
+      border-radius: 8px;
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+      margin-left: 20px;
+    }
+
+    /* Footer */
+    .footer {
+      background-color: #f0f0f0;
+      padding: 20px;
+      text-align: center;
+      margin-top: 20px;
+    }
+
+    /* Forum Specific Styles */
+    .categories-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .categories-list li {
+      margin-bottom: 10px;
+      cursor: pointer;
+    }
+
+    .discussion {
+      border-bottom: 1px solid #eee;
+      padding: 10px 0;
+    }
+
+    .discussion .topic {
+      font-weight: bold;
+    }
+
+    .discussion .content {
+      color: #777;
+    }
+
+    .discussion .meta {
+      font-size: 0.8em;
+      color: #999;
+    }
+
+    /* Add more CSS to match the image exactly */
+    .alpha-one-labs {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    .categories-list li {
+      color: #34495e;
+    }
+
+    .categories-list li.active {
+      font-weight: bold;
+    }
+
+    .recent-discussions {
+      margin-top: 20px;
+    }
+
+    .recent-discussions .discussion {
+      display: flex;
+      align-items: flex-start;
+      padding: 10px 0;
+    }
+
+    .recent-discussions .discussion-icon {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background-color: #f39c12;
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-right: 10px;
+    }
+
+    .recent-discussions .discussion-details {
+      flex: 1;
+    }
+
+    .recent-discussions .topic {
+      color: #2c3e50;
+    }
+
+    .recent-discussions .meta {
+      font-size: 0.75rem;
+    }
+
+
+    .categories-list {
+            padding-left: 0;
+        }
+
+        .categories-list li {
+            list-style: none;
+            margin-bottom: 8px;
+            color: #34495e;
+            cursor: pointer;
+        }
+
+        .categories-list li::before {
+            content: "\f096"; /* Unicode for Font Awesome square (unchecked box) */
+            font-family: FontAwesome;
+            margin-right: 8px;
+            color: #bdc3c7;
+        }
+
+        .categories-list li:hover {
+            color: #2980b9;
+        }
+
+
+        .categories-list li[data-active="true"]::before {
+            content: "\f046"; /* Unicode for Font Awesome check square (checked box) */
+            font-family: FontAwesome;
+            color: #2980b9;
+        }
+
+
+
+
+
+        .categories-list li {
+            position: relative;
+            padding-left: 24px; /* Adjust for icon size and spacing */
+            margin-bottom: 10px;
+            cursor: pointer;
+            color: #34495e;
+        }
+
+        .categories-list li::before {
+            content: "\f0c8"; /* Font Awesome icon for an empty square */
+            font-family: FontAwesome;
+            position: absolute;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            color: #bdc3c7;
+            font-size: 1em;
+        }
+
+        .categories-list li[data-active="true"]::before {
+            content: "\f14a"; /* Font Awesome icon for a checked square */
+            color: #2980b9;
+        }
+
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      padding: 20px;
+      background-color: #f0f0f0;
+      color: #7f8c8d;
+      font-size: 0.8em;
+    }
+
+    .footer .learning, .footer .community, .footer .resources-info, .footer .connect-with-us {
+      flex: 1;
+      text-align: left;
+    }
+
+
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+  <div class="container">
+    <!-- Header -->
+    <div class="header">
+      <div class="alpha-one-labs">Alpha One Labs</div>
+      <div class="nav-links">
+        <a href="#">LEARN</a>
+        <a href="#">COMMUNITY</a>
+        <a href="#">RESOURCES</a>
+        <a href="#">ABOUT</a>
+      </div>
+      <div class="search-bar">
+        <input type="text" placeholder="What do you want to learn?">
+      </div>
+      <div class="auth-buttons">
+        <a href="#">Login</a>
+        <a href="#">Signup</a>
+      </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <!-- Sidebar -->
+      <div class="sidebar">
+        <h2>Forum</h2>
+        <p>Join discussions, ask questions, and share knowledge</p>
+
+        <h3>CATEGORIES</h3>
+        <ul class="categories-list">
+          <li data-active="true">All Categories</li>
+          <li>Category 1</li>
+          <li>Category 2</li>
+          <li>Category 3</li>
+        </ul>
+      </div>
+
+      <!-- Forum Content -->
+      <div class="forum-content">
+        <h2>Forum Categories</h2>
+        <p>Browse all categories or select one to see its topics</p>
+
+        <h3>Recent Discussions</h3>
+        <div class="recent-discussions">
+          <div class="discussion">
+            <div class="discussion-icon">S</div>
+            <div class="discussion-details">
+              <div class="meta">student5 â¢ 19 Stunden, 22 Minuten ago â¢ Category 1</div>
+              <div class="topic">Topic 3</div>
+              <div class="content">Content for topic 3</div>
+              <div class="meta">0 views 5 replies 0 upvotes 0 downvotes Last reply 19 Stunden, 22 Minuten ago</div>
+            </div>
+          </div>
+
+          <div class="discussion">
+            <div class="discussion-icon">S</div>
+            <div class="discussion-details">
+              <div class="meta">student3 â¢ 19 Stunden, 22 Minuten ago â¢ Category 1</div>
+              <div class="topic">Topic 2</div>
+              <div class="content">Content for topic 2</div>
+              <div class="meta">0 views 2 replies 0 upvotes 0 downvotes Last reply 19 Stunden, 22 Minuten ago</div>
+            </div>
+          </div>
+
+          <div class="discussion">
+            <div class="discussion-icon">T</div>
+            <div class="discussion-details">
+              <div class="meta">teacher2 â¢ 19 Stunden, 22 Minuten ago â¢ Category 1</div>
+              <div class="topic">Topic 1</div>
+              <div class="content">Content for topic 1</div>
+              <div class="meta">0 views 4 replies 0 upvotes 0 downvotes Last reply 19 Stunden, 22 Minuten ago</div>
+            </div>
+          </div>
+
+          <div class="discussion">
+            <div class="discussion-icon">S</div>
+            <div class="discussion-details">
+              <div class="meta">student8 â¢ 19 Stunden, 22 Minuten ago â¢ Category 2</div>
+              <div class="topic">Topic 3</div>
+              <div class="content">Content for topic 3</div>
+              <div class="meta">0 views 5 replies 0 upvotes 0 downvotes Last reply 19 Stunden, 22 Minuten ago</div>
+            </div>
+          </div>
+
+
+          <div class="discussion">
+            <div class="discussion-icon">S</div>
+            <div class="discussion-details">
+              <div class="meta">student7 â¢ 19 Stunden, 22 Minuten ago â¢ Category 2</div>
+              <div class="topic">Topic 2</div>
+              <div class="content">Content for topic 2</div>
+              <div class="meta">0 views 5 replies 0 upvotes 0 downvotes Last reply 19 Stunden, 22 Minuten ago</div>
+            </div>
+          </div>
+
+
+          <div class="discussion">
+            <div class="discussion-icon">S</div>
+            <div class="discussion-details">
+              <div class="meta">student7 â¢ 19 Stunden, 22 Minuten ago â¢ Category 2</div>
+              <div class="topic">Topic 1</div>
+              <div class="content">Content for topic 1</div>
+              <div class="meta">0 views 2 replies 0 upvotes 0 downvotes Last reply 19 Stunden, 22 Minuten ago</div>
+            </div>
+          </div>
+
+
+          <div class="discussion">
+            <div class="discussion-icon">T</div>
+            <div class="discussion-details">
+              <div class="meta">teacher1 â¢ 19 Stunden, 22 Minuten ago â¢ Category 3</div>
+              <div class="topic">Topic 3</div>
+              <div class="content">Content for topic 3</div>
+              <div class="meta">0 views 4 replies 0 upvotes 0 downvotes Last reply 19 Stunden, 22 Minuten ago</div>
+            </div>
+          </div>
+
+
+          <div class="discussion">
+            <div class="discussion-icon">S</div>
+            <div class="discussion-details">
+              <div class="meta">student6 â¢ 19 Stunden, 22 Minuten ago â¢ Category 3</div>
+              <div class="topic">Topic 2</div>
+              <div class="content">Content for topic 2</div>
+              <div class="meta">0 views 3 replies 0 upvotes 0 downvotes Last reply 19 Stunden, 22 Minuten ago</div>
+            </div>
+          </div>
+
+          <div class="discussion">
+            <div class="discussion-icon">S</div>
+            <div class="discussion-details">
+              <div class="meta">student3 â¢ 19 Stunden, 22 Minuten ago â¢ Category 3</div>
+              <div class="topic">Topic 1</div>
+              <div class="content">Content for topic 1</div>
+              <div class="meta">0 views 4 replies 0 upvotes 0 downvotes Last reply 19 Stunden, 22 Minuten ago</div>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <div class="footer">
+      <div class="learning">
+        <h4>LEARNING</h4>
+        <ul>
+          <li>Courses</li>
+          <li>Subjects</li>
+          <li>Quizzes</li>
+          <li>Videos</li>
+          <li>Challenges</li>
+          <li>Study Groups</li>
+        </ul>
+      </div>
+      <div class="community">
+        <h4>COMMUNITY</h4>
+        <ul>
+          <li>Forum</li>
+          <li>Blog</li>
+          <li>Features</li>
+          <li>Success Stories</li>
+        </ul>
+      </div>
+      <div class="resources-info">
+        <h4>RESOURCES &amp; INFO</h4>
+        <ul>
+          <li>GSOC'25</li>
+          <li>Status</li>
+          <li>Feedback</li>
+          <li>Terms</li>
+        </ul>
+      </div>
+      <div class="connect-with-us">
+        <h4>CONNECT WITH US</h4>
+        <p>SUBSCRIBE TO NEWSLETTER</p>
+        <input type="email" placeholder="Your email">
+      </div>
+    </div>
+  </div>
+</body>
+
+</html>

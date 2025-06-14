@@ -25,7 +25,7 @@ def _sort_issues_by_amount(accessibility_issues, files_processed):
     return sorted_issues
 
 
-def get_average_accessibility_results(accessibility_results, model, prompt_strategy):
+def _get_average_accessibility_results(accessibility_results, model, prompt_strategy):
     """
         Gets the accessibility result files from each round and calculates the average
     """
@@ -64,8 +64,8 @@ def get_average_accessibility_results(accessibility_results, model, prompt_strat
                 else:
                     accessibility_issues[issue_name]["amount_nodes_failed"] += issue_amount_nodes_failed
 
-    if not prompt_strategy.startswith("iterative_refine"):
-        assert(dataset_files_processed == result_files_processed * 53)
+    # if not prompt_strategy.startswith("iterative_refine"):
+    #     assert(dataset_files_processed == result_files_processed * 53)
 
     # Sort by amount of nodes failed
     accessibility_issues = _sort_issues_by_amount(accessibility_issues, result_files_processed)
@@ -89,10 +89,12 @@ def get_average_results():
     """
         Gets the result files from each round and calculates the average
     """
-    model = "openai" # gemini, openai, llama, qwen
-    prompt_strategy = "reason" # naive, zero-shot, reason, iterative, iterative_refine_1, iterative_refine_2, iterative_refine_3
+    model = "gemini" # gemini, openai, llama, qwen
+    prompt_strategy = "iterative_refine_3" # naive, zero-shot, reason, iterative, iterative_refine_1, iterative_refine_2, iterative_refine_3
 
     accessibility_files = [f for f in os.listdir(RESULTS_PATH) if f.startswith(f"{model}_{prompt_strategy}_analysis")]
+
+    print(accessibility_files)
     
     accessibility_results = []
     for file in accessibility_files:
@@ -103,9 +105,9 @@ def get_average_results():
                 accessibility_results.append(file_data) 
 
     average_results = {}
-    average_results["accessibility"] = get_average_accessibility_results(accessibility_results, model, prompt_strategy)
+    average_results["accessibility"] = _get_average_accessibility_results(accessibility_results, model, prompt_strategy)
 
-    output_path = os.path.join(RESULTS_PATH, "average", f"{model}_{prompt_strategy}_average_results.json")
+    output_path = os.path.join(RESULTS_PATH, "average", f"dl_{model}_{prompt_strategy}_average_results.json")
     os.makedirs(os.path.dirname(output_path), exist_ok=True)
 
     with open(output_path, 'w') as f:

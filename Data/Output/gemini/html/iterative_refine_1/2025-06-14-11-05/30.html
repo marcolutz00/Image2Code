@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>freemp4movies</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #fff;
+            color: #333;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #ddd 1px solid;
+        }
+
+        header a {
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        header ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        #main {
+            float: left;
+            width: 70%;
+            padding: 0 30px;
+            background: #fff;
+        }
+
+        #sidebar {
+            float: right;
+            width: 30%;
+            background: #fff;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        #sidebar {
+            width: 25%;
+        }
+
+        #main {
+            width: 75%;
+        }
+
+        .categories {
+            margin-top: 20px;
+        }
+
+        .categories ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        .categories li {
+            padding: 8px 0;
+            border-bottom: 1px #f4f4f4 solid;
+        }
+
+        .categories h3 {
+            padding-bottom: 5px;
+            border-bottom: 3px #e8491d solid;
+        }
+        #main {
+            width: 70%;
+            padding: 20px;
+        }
+
+        article {
+            margin-bottom: 20px;
+        }
+        article h1 {
+            color: #333;
+        }
+
+        article p {
+            margin: 10px 0;
+        }
+        .post-content {
+            margin-top: 20px;
+        }
+        .post-content img {
+            width: 300px;
+            height: 200px;
+            background-color: blue;
+            display: block;
+            margin: 10px 0;
+        }
+        .dark-footer {
+            background-color: #292929;
+            color: #fff;
+            padding: 30px 0;
+        }
+
+        .dark-footer .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .dark-footer h3 {
+            border-bottom: 2px solid #fff;
+            padding-bottom: 5px;
+        }
+
+        .dark-footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .dark-footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .dark-footer a:hover {
+            text-decoration: underline;
+        }
+        .categories h3 {
+            color: #333;
+            padding-bottom: 5px;
+            border-bottom: 3px solid #e8491d;
+            font-size: 20px;
+        }
+
+        .categories li {
+            color: #666;
+            padding: 8px 0;
+            border-bottom: 1px solid #f4f4f4;
+        }
+        #main {
+            float: left;
+            width: 70%;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        #sidebar {
+            float: right;
+            width: 25%;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .post-meta {
+            font-size: 14px;
+            color: #888;
+        }
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            color: #e8491d;
+            text-decoration: none;
+        }
+        #sidebar h3 {
+            color: #333;
+            padding-bottom: 5px;
+            border-bottom: 3px solid #e8491d;
+            font-size: 20px;
+        }
+        .main-footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .main-footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        /* Specific styles from the screenshot */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #fff;
+            color: #333;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #ddd 1px solid;
+        }
+
+        header a {
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        header ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        #main {
+            float: left;
+            width: 70%;
+            padding: 0 30px;
+            background: #fff;
+        }
+
+        #sidebar {
+            float: right;
+            width: 30%;
+            background: #fff;
+            padding: 10px;
+            margin-top: 20px;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        #sidebar {
+            width: 25%;
+        }
+
+        #main {
+            width: 75%;
+        }
+
+        .categories {
+            margin-top: 20px;
+        }
+
+        .categories ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        .categories li {
+            padding: 8px 0;
+            border-bottom: 1px #f4f4f4 solid;
+        }
+
+        .categories h3 {
+            padding-bottom: 5px;
+            border-bottom: 3px #e8491d solid;
+        }
+        #main {
+            width: 70%;
+            padding: 20px;
+        }
+
+        article {
+            margin-bottom: 20px;
+        }
+        article h1 {
+            color: #333;
+        }
+
+        article p {
+            margin: 10px 0;
+        }
+        .post-content {
+            margin-top: 20px;
+        }
+        .post-content img {
+            width: 300px;
+            height: 200px;
+            background-color: blue;
+            display: block;
+            margin: 10px 0;
+        }
+        .dark-footer {
+            background-color: #292929;
+            color: #fff;
+            padding: 30px 0;
+        }
+
+        .dark-footer .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .dark-footer h3 {
+            border-bottom: 2px solid #fff;
+            padding-bottom: 5px;
+        }
+
+        .dark-footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .dark-footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .dark-footer a:hover {
+            text-decoration: underline;
+        }
+        .categories h3 {
+            color: #333;
+            padding-bottom: 5px;
+            border-bottom: 3px solid #e8491d;
+            font-size: 20px;
+        }
+
+        .categories li {
+            color: #666;
+            padding: 8px 0;
+            border-bottom: 1px solid #f4f4f4;
+        }
+        #main {
+            float: left;
+            width: 70%;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        #sidebar {
+            float: right;
+            width: 25%;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .post-meta {
+            font-size: 14px;
+            color: #888;
+        }
+        .read-more {
+            display: inline-block;
+            margin-top: 10px;
+            color: #e8491d;
+            text-decoration: none;
+        }
+        #sidebar h3 {
+            color: #333;
+            padding-bottom: 5px;
+            border-bottom: 3px solid #e8491d;
+            font-size: 20px;
+        }
+        /* Dark Footer */
+        .dark-footer {
+            background-color: #292929;
+            color: #fff;
+            padding: 30px 0;
+        }
+
+        .dark-footer .container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .dark-footer h3 {
+            border-bottom: 2px solid #fff;
+            padding-bottom: 5px;
+        }
+
+        .dark-footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .dark-footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .dark-footer a:hover {
+            text-decoration: underline;
+        }
+        /* Footer */
+        .main-footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .main-footer a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        #main {
+            width: 70%;
+            padding: 20px;
+        }
+
+        #sidebar {
+            width: 25%;
+            padding: 20px;
+        }
+        #sidebar h3 {
+            color: #333;
+            padding-bottom: 5px;
+            border-bottom: 3px solid #e8491d;
+            font-size: 20px;
+        }
+        #sidebar input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+        /* Follow styles */
+        #sidebar p {
+            color: #e8491d;
+        }
+        /* Sidebar styles */
+        #sidebar {
+            width: 25%;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        #sidebar h3 {
+            color: #333;
+            padding-bottom: 5px;
+            border-bottom: 3px solid #e8491d;
+            font-size: 20px;
+        }
+
+        #sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        #sidebar li {
+            padding: 8px 0;
+            border-bottom: 1px solid #f4f4f4;
+        }
+
+        #sidebar input[type="text"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <aside id="sidebar">
+            <p style="color: #000;">Follow @freemp4movies</p>
+            <label for="search">Search:</label>
+            <input type="text" id="search" placeholder="Search...">
+            <div class="categories">
+                <h3>CATEGORIES</h3>
+                <ul>
+                    <li>Films of 2016</li>
+                    <li>Films of 2017</li>
+                    <li>2018 movies</li>
+                    <li>2019 Movies</li>
+                    <li>2020 Movies</li>
+                    <li>Action Movies</li>
+                    <li>Adventure Movies</li>
+                    <li>Animated Films</li>
+                    <li>Biographical Films</li>
+                    <li>Comedy Films</li>
+                    <li>Crime Movies</li>
+                    <li>Documentaries</li>
+                    <li>Dramatic Films</li>
+                    <li>Family Movies</li>
+                    <li>Fantasy Films</li>
+                    <li>Historical Films</li>
+                    <li>Horror Films</li>
+                    <li>Musical Films</li>
+                    <li>Mystery Movies</li>
+                    <li>Romance Films</li>
+                    <li>Romantic Movies</li>
+                    <li>Sci-Fi Movies</li>
+                    <li>Sports Films</li>
+                    <li>Thriller Films</li>
+                    <li>Uncategorized</li>
+                    <li>War Movies</li>
+                    <li>Will Smith Films</li>
+                </ul>
+            </div>
+        </aside>
+        <main id="main">
+            <article>
+                <h1>DOWNLOAD CAPTAIN MARVEL 2019 HD MOVIE POINT</h1>
+                <h2>Captain Marvel (2019)</h2>
+                <p class="post-meta" style="color: #777;">Posted on May 28, 2019 by Jessica Smith</p>
+                <div class="post-content">
+                    <img src="src/placeholder.jpg" alt="Captain Marvel Poster">
+                    <p>This is the journey of Carol Danvers becoming one of the strongest heroes in the galaxy after Earth gets
+                        caught in the crossfire of a galactic war between alien forces. Taking place during the 90s, Captain Marvel is
+                        a...</p>
+                    <a href="#" class="read-more" style="color:#000;">Read More â</a>
+                    <img src="src/placeholder.jpg" alt="Captain Marvel Poster">
+                    <p>2019 Movies, Action Movies, Adventure Movies, Sci-Fi Movies Download Ben Mendelsohn Movies,                        Download Captain Marvel 2019 hd movie point, Download Captain Marvel 2019 movies, Download                        Captain Marvel 2019 openload Movie, Download Captain Marvel 2019 sd movie point, Download                        Samuel L. Jackson Movies</p>
+                </div>
+            </article>
+        </main>
+    </div>
+    <footer class="dark-footer">
+        <div class="container">
+            <div>
+                <h3>Quick Links</h3>
+                <ul>
+                    <li><a href="#">home</a></li>
+                    <li><a href="#">contact us</a></li>
+                    <li><a href="#">About Fintech Express</a></li>
+                    <li><a href="#">terms and conditions</a></li>
+                    <li><a href="#">Glossary</a></li>
+                </ul>
+            </div>
+            <div>
+                <h3>Top Categories</h3>
+                <ul>
+                    <li><a href="#">Banking</a></li>
+                    <li><a href="#">Cryptocurrencies</a></li>
+                    <li><a href="#">Markets</a></li>
+                    <li><a href="#">Podcast</a></li>
+                    <li><a href="#">Technology</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+    <footer class="main-footer">
+        <a href="#">home</a>
+        <a href="#">contact us</a>
+        <a href="#">About Fintech Express</a>
+        <a href="#">terms and conditions</a>
+        <a href="#">Glossary</a>
+        <p>Â© 2023 Fintech Express. All Rights Reserved</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Site by Alex</title>
+    <style>
+        body {
+            background-color: #1a1a1a;
+            color: #ffffff;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background-color: #000000;
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 3px solid #ff9900;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin: 0;
+        }
+
+        header p {
+            font-size: 1em;
+            margin: 0;
+        }
+
+        nav {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        nav a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .date {
+            text-align: center;
+            font-size: 0.9em;
+            margin: 20px 0;
+        }
+
+        article {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        article h2 {
+            color: #ff9900;
+            font-size: 1.5em;
+        }
+
+        article p {
+            line-height: 1.6;
+        }
+
+        .tag {
+            display: inline-block;
+            background-color: #333333;
+            color: #ffffff;
+            padding: 5px 10px;
+            margin: 5px 5px 10px 0;
+            font-size: 0.8em;
+            border-radius: 4px;
+        }
+
+        .coffee {
+            background-color: #ff3366;
+            color: #ffffff;
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .coffee button {
+            background-color: #ffffff;
+            color: #ff3366;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .post-link {
+            display: inline-block;
+            padding: 10px 0;
+            color: #ff9900;
+            text-decoration: none;
+        }
+
+        .footer-nav {
+            background-color: #111111;
+            padding: 30px 0;
+            text-align: center;
+            color: #999999;
+        }
+
+        .footer-nav a {
+            color: #999999;
+            margin: 0 15px;
+            text-decoration: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>Site by Alex</h1>
+        <p>A world of code ð», by Alejandro Martinez</p>
+        <nav>
+            <a href="#">| Swift</a>
+            <a href="#">Dev</a>
+        </nav>
+    </header>
+
+    <div class="date">
+        <p>June 5, 2016 | <img src="src/placeholder.jpg" alt="Profile icon"> 1 min read</p>
+    </div>
+
+    <article>
+        <h2>Easy Swift script auto-reloading hack</h2>
+        <p>I was writing a <span style="color:#ff9900;">Swift script</span> the other day, and I wanted it to run forever
+            as a server, so I added a continuous running option. <strong>Forever.</strong></p>
+
+        <p>I just used a <code>repeat</code> loop with <code>NSTask</code>s that executed the script. <em>Recursion.</em>
+        </p>
+
+        <p>It turns out this is a neat hack for auto-reloading the script!</p>
+
+        <pre><code>let reload = "reload" if Process.arguments.contains(reload) {
+    repeat { let task = NSTask()
+    task.launchPath = Process.arguments.first!
+    task.arguments = Array(Process.arguments.suffixFrom(1)).filter{ $0 != reload})
+    task.launch()
+    task.waitUntilExit() } while true
+} Add this snippet to the script, then call it with the <code>reload</code> 
+arg to loop it forever.
+        </code></pre>
+
+        <p>To call it from the command line:</p>
+
+        <p>Main.swift reload other params Now just modify and save the script. Next time around, the changes will be
+            there. If compilation fails, no problem! The old script will just retry.</p>
+
+        <p>It's not perfect. The console gets spammed, but it is great for rapid iteration.</p>
+
+        <p>Remember to use <strong>OS signals</strong> to stop the looping task when the script is killed.</p>
+
+        <a class="post-link" href="#">Share to Twitter</a>
+    </article>
+
+    <div class="coffee">
+        <p>If you enjoyed this post, please consider supporting me</p>
+        <button>Buy me coffee</button>
+    </div>
+
+    <hr style="border-color: #ff9900;">
+
+    <section>
+        <h3 style="text-align:center; color: #ff9900;">Keep Reading</h3>
+        <div style="display:flex; justify-content:center; margin:20px 0;">
+            <div style="margin: 0 20px;">
+                <p>Next post</p>
+                <h4>Simplify code with closures</h4>
+                <p>June 7, 2016</p>
+            </div>
+            <div style="margin: 0 20px;">
+                <p>Previous post</p>
+                <h4>Catch OS signals in Swift</h4>
+                <p>May 29, 2016</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h3 style="text-align:center; color: #ff9900;">You might like these posts</h3>
+        <div style="display:flex; justify-content:center; margin: 20px 0;">
+            <div class="tag-box" style="margin: 0 20px;">
+                <p>Based on tag <span style="color: #ff9900;">Swift</span></p>
+                <h4>Compat SwiftUI modifiers</h4>
+                <p>October 20, 2023</p>
+            </div>
+            <div class="tag-box" style="margin: 0 20px;">
+                <p>Based on tag <span style="color: #ff9900;">Scripting</span></p>
+                <h4>Export Reminders lists using Swift</h4>
+                <p>May 8, 2019</p>
+            </div>
+            <div class="tag-box" style="margin: 0 20px;">
+                <p>Based on tag <span style="color: #ff9900;">Goodies</span></p>
+                <h4>Swift Collection prefix for tests</h4>
+                <p>March 16, 2019</p>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h3 style="text-align:center; color: #ff9900;">Tags of this article</h3>
+        <div style="text-align:center;">
+            <span class="tag">Scripting</span>
+            <span class="tag">Swift</span>
+            <span class="tag">Goodies</span>
+        </div>
+    </section>
+
+    <footer class="footer-nav">
+        <a href="#">RSS</a>
+        <a href="#">alexit04</a>
+        <a href="#">alexit04</a>
+        <a href="#">alexit04</a>
+        <p>Made with <span style="color:#ff3366;">Publish</span></p>
+    </footer>
+
+</body>
+</html>

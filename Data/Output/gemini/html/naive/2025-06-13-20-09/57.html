@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #4A5568;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #FFFFFF;
+            padding: 20px 30px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            color: #03A9F4;
+            font-size: 24px;
+            font-weight: 600;
+        }
+
+        .logo img {
+            margin-right: 10px;
+            width: 40px;
+            height: 40px;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            align-items: center;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #4A5568;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-input {
+            padding: 8px 15px;
+            border: 1px solid #E2E8F0;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 200px;
+            font-size: 14px;
+        }
+
+        .auth-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .auth-buttons a {
+            text-decoration: none;
+            color: #4A5568;
+            font-weight: 500;
+            font-size: 14px;
+            margin-left: 20px;
+        }
+
+        .signup-button {
+            background-color: #F97316;
+            color: #FFFFFF !important;
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        /* Main Content Styles */
+        main {
+            display: flex;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .login-container {
+            width: 380px;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            background-color: #FFFFFF;
+        }
+
+        .login-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 14px;
+            margin-bottom: 5px;
+        }
+
+        .form-input {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #E2E8F0;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+
+        .remember-me {
+            display: flex;
+            align-items: center;
+        }
+
+        .remember-me input {
+            margin-right: 5px;
+        }
+
+        .forgot-password {
+            color: #F97316;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .login-button {
+            background-color: #F97316;
+            color: #FFFFFF;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: 500;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .signup-link {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 14px;
+        }
+
+        .signup-link a {
+            color: #F97316;
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #FFFFFF;
+            padding: 30px;
+            color: #718096;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .footer-column {
+            width: 20%;
+        }
+
+        .footer-column h4 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 8px;
+        }
+
+        .footer-column a {
+            text-decoration: none;
+            color: #718096;
+            font-size: 14px;
+        }
+
+        .connect-with-us {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .social-icons {
+            display: flex;
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 35px;
+            height: 35px;
+            border-radius: 50%;
+            background-color: #E2E8F0;
+            color: #4A5568;
+            text-decoration: none;
+            margin-right: 10px;
+        }
+
+        .social-icons a:hover {
+            background-color: #CBD5E0;
+        }
+
+        .newsletter-subscription {
+            display: flex;
+        }
+
+        .newsletter-input {
+            padding: 10px 15px;
+            border: 1px solid #E2E8F0;
+            border-radius: 5px 0 0 5px;
+            width: 200px;
+            font-size: 14px;
+        }
+
+        .subscribe-button {
+            background-color: #2DD4BF;
+            color: #FFFFFF;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 0 5px 5px 0;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 30px;
+            font-size: 12px;
+        }
+
+        .copyright {
+            color: #718096;
+        }
+
+        .footer-links {
+            display: flex;
+        }
+
+        .footer-links a {
+            text-decoration: none;
+            color: #718096;
+            margin-left: 20px;
+        }
+
+        .icon {
+            width: 10px;
+            height: 10px;
+            margin-right: 5px;
+        }
+
+        .blue {
+            background-color: #3b82f6;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <img src="src/placeholder.jpg" alt="Alpha One Labs Logo" width="30" height="30" style="width: 30px; height: 30px;">
+            Alpha One Labs
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">LEARN</a></li>
+                <li><a href="#">COMMUNITY</a></li>
+                <li><a href="#">RESOURCES</a></li>
+                <li><a href="#">ABOUT</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" class="search-input" placeholder="What do you want to learn?">
+        </div>
+        <div class="auth-buttons">
+            <a href="#">Login</a>
+            <a href="#" class="signup-button">Signup</a>
+        </div>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <h2 class="login-title">Sign in to your account</h2>
+            <form>
+                <div class="form-group">
+                    <label for="email" class="form-label">Email Address</label>
+                    <input type="email" id="email" class="form-input" placeholder="Enter your email address">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" id="password" class="form-input" placeholder="Enter your password">
+                </div>
+                <div class="remember-forgot">
+                    <div class="remember-me">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password">Forgot password?</a>
+                </div>
+                <button type="submit" class="login-button">Sign In</button>
+            </form>
+            <p class="signup-link">Don't have an account? <a href="#">Sign up</a></p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h4>LEARNING</h4>
+                <ul>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Courses</a></li>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Subjects</a></li>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Quizzes</a></li>                    
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Videos</a></li>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Challenges</a></li>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Study Groups</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>COMMUNITY</h4>
+                <ul>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Forum</a></li>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Blog</a></li>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Features</a></li>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>RESOURCES & INFO</h4>
+                <ul>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">GSOC'25</a></li>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Status</a></li>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Feedback</a></li>
+                    <li><a href="#"><img src="src/placeholder.jpg" alt="Icon" class="icon">Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-column connect-with-us">
+                <h4>CONNECT WITH US</h4>
+                <div class="social-icons">
+                    <a href="#" class="blue"></a>
+                    <a href="#"></a>
+                    <a href="#"></a>
+                    <a href="#"></a>
+                    <a href="#"></a>
+                </div>
+                <div>
+                    SUBSCRIBE TO NEWSLETTER
+                    <div class="newsletter-subscription">
+                        <input type="email" class="newsletter-input" placeholder="Your email">
+                        <button class="subscribe-button"></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <div class="copyright">Â© 2025 Alpha One Labs. All rights reserved.
+                Last updated: 06/12/2025 01:23nachm.</div>
+            <div class="footer-links">
+                <a href="#">About Us</a>
+                <a href="#">Terms & Conditions</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Cookie Policy</a>
+            </div>
+        </div>
+    </footer>
+</body>
+
+</html>

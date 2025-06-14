@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #045e8d;
+            color: white;
+            padding: 20px;
+            text-align: left;
+            display: flex;
+            align-items: center;
+            border-radius: 5px;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Create Account section styles */
+        .create-account {
+            padding: 20px;
+        }
+
+        .create-account h2 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 5px;
+        }
+
+        .form-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 5px;
+            resize: vertical;
+        }
+
+        .submit-button {
+            background-color: #f0711d;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background-color: #e06518;
+        }
+
+        .footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            font-size: 0.8em;
+            border-top: 1px solid #eee;
+        }
+
+        .footer a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .menu-items {
+            display: flex;
+            align-items: center;
+        }
+        .menu-items a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .menu-items input {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+        }
+        .menu-items .login {
+            margin-left: auto;
+        }
+        .menu-items .signup {
+             background-color: #f0711d;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+        }
+        .content {
+            display: flex;
+            align-items: flex-start;
+            padding: 20px;
+        }
+        .left-content {
+            width: 30%;
+            padding-right: 20px;
+        }
+
+        .right-content {
+            width: 70%;
+        }
+        .icon-item {
+            margin-bottom: 5px;
+            color: #777;
+        }
+        .icon-item::before {
+            content: "096"; /* Unchecked box */
+            font-family: FontAwesome;
+            margin-right: 5px;
+            color: #ddd; /* Lighter gray */
+        }
+        .icon-item-footer {
+            color: #777;
+            margin-right: 20px;
+        }
+        .footer-menu {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
+        .footer-item {
+             margin-right: 20px;
+             color: #777;
+        }
+        .footer-item a {
+            color: #777;
+            text-decoration: none;
+        }
+        .footer-item a:hover {
+            text-decoration: underline;
+        }
+        .create-account-title {
+            text-align: center;
+            color: #f0711d;
+            margin-bottom: 20px;
+            font-size: 1.5em;
+            font-weight: bold;
+        }
+        .required {
+            color: red;
+            margin-left: 3px;
+        }
+        .half-width {
+            width: 48%;
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .half-width:last-child {
+            margin-right: 0;
+        }
+        .referral-optional {
+            font-size: 0.8em;
+            color: #777;
+            margin-top: 5px;
+        }
+        .radio-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+        .radio-group input[type="radio"] {
+            margin-right: 5px;
+        }
+        .radio-group label {
+            margin-right: 15px;
+        }
+        .privacy-message {
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-top: 10px;
+            background-color: #f9f9f9;
+            color: #555;
+            font-size: 0.9em;
+        }
+        .small-text {
+            font-size: 0.8em;
+            color: #777;
+        }
+        .icon-box {
+             width: 30px;
+            height: 30px;
+            border: 1px solid #ddd;
+            display: inline-block;
+            margin-left: 10px;
+        }
+        .verification-group {
+            display: flex;
+            align-items: center;
+        }
+        .connect-with-us-icons {
+            display: flex;
+            justify-content: flex-start; /* Aligns icons to the start */
+        }
+        .connect-with-us-icons a {
+            display: inline-flex; /* Use inline-flex for better alignment */
+            align-items: center; /* Vertically align the contents */
+            justify-content: center; /* Horizontally align the contents */
+            width: 30px; /* Set the width of the icon container */
+            height: 30px; /* Set the height of the icon container */
+            margin-right: 10px; /* Add some spacing between icons */
+            background-color: #ddd; /* Example background color */
+            border-radius: 50%; /* Make them round */
+            color: #fff; /* Example color */
+            text-decoration: none; /* Remove underlines */
+        }
+        .subscribe-to-newsletter {
+            margin-top: 10px;
+            display: flex;
+        }
+
+        .subscribe-to-newsletter input[type="email"] {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 5px;
+        }
+
+        .subscribe-to-newsletter button {
+           background-color: #2db696;
+            color: white;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .footer-container {
+            margin-top: 20px;
+            font-size: 0.8em;
+        }
+        .footer-container .copyright {
+            text-align: left;
+        }
+
+        .footer-container .last-updated {
+            text-align: left;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+
+    <div class="header">
+        <a href="#" style="font-weight: bold; font-size: 1.2em;">Alpha One Labs</a>
+        <div class="menu-items">
+            <a href="#">LEARN</a>
+            <a href="#">COMMUNITY</a>
+            <a href="#">RESOURCES</a>
+            <a href="#">ABOUT</a>
+            <input type="text" placeholder="What do you want to learn?">
+            <a href="#"><i class="fa fa-bell-o"></i></a>
+            <a href="#"><i class="fa fa-comment-o"></i></a>
+            <a href="#"><i class="fa fa-question-circle-o"></i></a>
+            <a href="#"><i class="fa fa-search"></i></a>
+            <a class="login" href="#">Login</a>
+            <button class="signup">Signup</button>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="left-content">
+            <img src="src/placeholder.jpg" alt="Placeholder Image" width="200" height="150" style="margin: 20px auto; display: block;">
+            <div style="text-align: center; color: #555;">Join our community of learners<br>and teachers</div>
+        </div>
+
+        <div class="right-content">
+            <div class="create-account">
+                <h2 class="create-account-title"><i class="fa fa-plus-square-o" style="color: #f0711d; margin-right: 5px;"></i>Create Account</h2>
+
+                <div class="form-group">
+                    <label for="first_name">First Name <span class="required">*</span></label>
+                    <input type="text" id="first_name" name="first_name">
+                </div>
+
+                <div class="form-group">
+                    <label for="last_name">Last Name <span class="required">*</span></label>
+                    <input type="text" id="last_name" name="last_name">
+                </div>
+                
+                <div class="form-group">
+                    <label for="username">Username <span class="required">*</span></label>
+                    <input type="text" id="username" name="username">
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email <span class="required">*</span></label>
+                    <input type="email" id="email" name="email">
+                </div>
+                
+                <div class="form-group">
+                    <label for="referral_code"><i class="fa fa-users" style="color: #777; margin-right: 5px;"></i>Referral Code</label>
+                    <input type="text" id="referral_code" name="referral_code">
+                    <div class="referral-optional">Optional - Enter a referral code if you have one</div>
+                </div>
+                
+                 <div class="form-group">
+                    <label for="how_did_you_hear_about_us"><i class="fa fa-question-circle" style="color: #777; margin-right: 5px;"></i>How did you hear about us?</label>
+                    <textarea id="how_did_you_hear_about_us" name="how_did_you_hear_about_us" rows="3"></textarea>
+                    <div class="referral-optional">Optional - Tell us how you found us. You can enter text or a link.</div>
+                </div>
+                
+                <div class="privacy-message">
+                    We value your privacy and encourage you to stay safe online. A private profile will only be visible to you and site administrators, while a public profile can be viewed by anyone.
+                    <div class="radio-group">
+                        <input type="radio" id="public" name="profile_visibility" value="public">
+                        <label for="public">Public</label>
+                        <input type="radio" id="private" name="profile_visibility" value="private" checked>
+                        <label for="private">Private</label>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password <span class="required">*</span></label>
+                    <input type="password" id="password" name="password">
+                    <div class="small-text">Create a strong password</div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password <span class="required">*</span></label>
+                    <input type="password" id="confirm_password" name="confirm_password">
+                    <div class="small-text">Repeat your password</div>
+                </div>
+                
+                <div class="form-group">
+                    <input type="checkbox" id="teach_courses" name="teach_courses">
+                    <label for="teach_courses">I want to teach courses</label>
+                </div>
+                
+                 <div class="form-group">
+                    <label for="verification">Verification</label>
+                    <div class="verification-group">
+                        <input type="text" id="verification" name="verification">
+                        <span class="icon-box"></span>
+                    </div>
+                </div>
+                
+                <button type="submit" class="submit-button"><i class="fa fa-plus-circle" style="margin-right: 5px;"></i>CREATE ACCOUNT</button>
+                
+                <div style="text-align: center; margin-top: 10px;">
+                    Already have an account? <a href="#">Sign in<i class="fa fa-arrow-right"></i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div style="padding: 20px; display: flex; justify-content: space-between; align-items: flex-start; background-color: #f9f9f9;">
+        <div style="width: 20%;">
+            <h4 style="color: #555;">LEARNING</h4>
+            <div class="icon-item">Courses</div>
+            <div class="icon-item">Subjects</div>
+            <div class="icon-item">Quizzes</div>
+            <div class="icon-item">Videos</div>
+            <div class="icon-item">Challenges</div>
+            <div class="icon-item">Study Groups</div>
+        </div>
+        
+        <div style="width: 20%;">
+            <h4 style="color: #555;">COMMUNITY</h4>
+            <div class="icon-item">Forum</div>
+            <div class="icon-item">Blog</div>
+            <div class="icon-item">Features</div>
+            <div class="icon-item">Success Stories</div>
+        </div>
+
+        <div style="width: 20%;">
+            <h4 style="color: #555;">RESOURCES & INFO</h4>
+            <div class="icon-item">GSOC'25</div>
+            <div class="icon-item">Status</div>
+            <div class="icon-item">Feedback</div>
+            <div class="icon-item">Terms</div>
+        </div>
+        
+        <div style="width: 20%;">
+            <h4 style="color: #555;">CONNECT WITH US</h4>
+            <div class="connect-with-us-icons">
+                <a href="#"><i class="fa fa-facebook"></i></a>
+                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="#"><i class="fa fa-linkedin"></i></a>
+                <a href="#"><i class="fa fa-instagram"></i></a>
+                <a href="#"><i class="fa fa-youtube-play"></i></a>
+            </div>
+            <div class="subscribe-to-newsletter">
+                <input type="email" placeholder="Your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-container" style="display: flex; justify-content: space-between; align-items: flex-start; padding: 20px;">
+        <div class="copyright">
+            Â© 2025 Alpha One Labs. All rights reserved.
+        </div>
+
+        <div class="footer-menu">
+            <span class="footer-item"><a href="#">About Us</a></span>
+            <span class="footer-item"><a href="#">Terms & Conditions</a></span>
+            <span class="footer-item"><a href="#">Privacy Policy</a></span>
+            <span class="footer-item"><a href="#">Cookie Policy</a></span>
+        </div>
+        
+         <div class="last-updated">
+            Last updated: 06/12/2025 01:23nachm.
+        </div>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        header {
+            background-color: #00A693;
+            color: white;
+            padding: 20px 0;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        nav li {
+            margin-left: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .main-content {
+            padding: 50px 0;
+            background-color: #fff;
+        }
+        
+        .main-content .container {
+            max-width: 800px;
+        }
+
+        .learning-form {
+            margin-top: 30px;
+        }
+
+        .learning-form label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .learning-form input[type="text"],
+        .learning-form textarea {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .learning-form textarea {
+            height: 100px;
+        }
+
+        .learning-form button {
+            background-color: #F07D00;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        .learning-form button:hover {
+            background-color: #d66d00;
+        }
+        
+        footer {
+            background-color: #f9f9f9;
+            padding: 20px 0;
+            font-size: 0.8em;
+            color: #777;
+        }
+
+        footer .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-section {
+            width: 23%;
+        }
+
+        .footer-section h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section a {
+            color: #777;
+            text-decoration: none;
+        }
+
+        .footer-section a:hover {
+            text-decoration: underline;
+        }
+        
+        .input-group {
+            display: flex;
+            gap: 10px;
+        }
+
+        .input-group input {
+            flex-grow: 1;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .input-group button {
+            background-color: #00A693;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .footer-bottom {
+            background-color: #f9f9f9;
+            padding: 20px 0;
+            font-size: 0.8em;
+            color: #777;
+        }
+
+        .footer-bottom .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-bottom ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        .footer-bottom li {
+            margin-left: 20px;
+        }
+
+        .footer-bottom a {
+            color: #777;
+            text-decoration: none;
+        }
+
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+        
+        .social-icons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 30px;
+            height: 30px;
+            background-color: #e9e9e9;
+            border-radius: 50%;
+            color: #777;
+            text-decoration: none;
+        }
+        
+        .quick-links li::before {
+            content: "Ã¢Âª ";
+        }
+        
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .nav-right a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .nav-right .login {
+            color: white;
+        }
+
+        .nav-right .signup {
+            background-color: #F07D00;
+            padding: 10px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: white;
+        }
+        
+        header .container nav ul li::before {
+            content: "096";
+            font-family: FontAwesome;
+            margin-right: 5px;
+        }
+        
+        .main-content .container::before {
+            content: "096";
+            font-family: FontAwesome;
+            margin-right: 5px;
+        }
+        
+        .footer-section li::before {
+            content: "096";
+            font-family: FontAwesome;
+            margin-right: 5px;
+        }
+
+        /* Accessibility fixes: added contrast and main landmark */
+        nav a, .nav-right a, .footer-section a, .footer-bottom a {
+            color: #ddd; /* Increased contrast */
+        }
+
+        .learning-form button {
+            background-color: #d66d00; /* Increased contrast */
+        }
+
+        .input-group button {
+          background-color: #00796b; /* Increased Contrast */
+        }
+        
+        .footer-bottom {
+          color: #ccc; /* Increased Contrast */
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">
+                <h1>Alpha One Labs</h1>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">LEARN</a></li>
+                    <li><a href="#">COMMUNITY</a></li>
+                    <li><a href="#">RESOURCES</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                </ul>
+            </nav>
+            <div class="nav-right">
+                <label for="search" hidden>Search</label>
+                <input type="text" id="search" name="search" placeholder="What do you want to learn?">
+                <a href="#" class="social-icon"><i class="fa fa-facebook" aria-label="Facebook"></i></a>
+                <a href="#" class="social-icon"><i class="fa fa-twitter" aria-label="Twitter"></i></a>
+                <a href="#" class="social-icon"><i class="fa fa-linkedin" aria-label="LinkedIn"></i></a>
+                <a href="#" class="social-icon"><i class="fa fa-youtube" aria-label="YouTube"></i></a>
+                <a href="#" class="login">Login</a>
+                <a href="#" class="signup">Signup</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+      <section class="main-content">
+          <div class="container">
+              <h2>Learn with Alpha One Labs</h2>
+              <p>Ready to expand your knowledge? Fill out the form below to get started!</p>
+
+              <div class="learning-form">
+                  <h3>Learning Inquiry Form</h3>
+                  <form action="#" method="post">
+                      <label for="title">Title</label>
+                      <input type="text" id="title" name="title" placeholder="What would you like to learn?">
+                      <small>Give your waiting room a descriptive title</small>
+
+                      <label for="description">Description</label>
+                      <textarea id="description" name="description" placeholder="Describe what you want to learn"></textarea>
+
+                      <label for="subject">Subject</label>
+                      <input type="text" id="subject" name="subject" placeholder="Main subject (e.g., Mathematics, Programming)">
+                      <small>The main subject area for this waiting room</small>
+
+                      <label for="topics">Topics</label>
+                      <input type="text" id="topics" name="topics" placeholder="e.g., Python, Machine Learning, Data Science">
+                      <small>Enter topics separated by commas</small>
+
+                      <button type="submit">Submit Inquiry</button>
+                  </form>
+              </div>
+          </div>
+      </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="footer-section">
+                <h3>LEARNING</h3>
+                <ul class="quick-links">
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="#">Quizzes</a></li>
+                    <li><a href="#">Videos</a></li>
+                    <li><a href="#">Challenges</a></li>
+                    <li><a href="#">Study Groups</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>COMMUNITY</h3>
+                <ul class="quick-links">
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>RESOURCES &amp; INFO</h3>
+                <ul class="quick-links">
+                    <li><a href="#">GSOC'25</a></li>
+                    <li><a href="#">Status</a></li>
+                    <li><a href="#">Feedback</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-section">
+                <h3>CONNECT WITH US</h3>
+                <div class="social-icons">
+                    <a href="#" class="social-icon"><i class="fa fa-facebook" aria-label="Facebook"></i></a>
+                    <a href="#" class="social-icon"><i class="fa fa-twitter" aria-label="Twitter"></i></a>
+                    <a href="#" class="social-icon"><i class="fa fa-linkedin" aria-label="LinkedIn"></i></a>
+                    <a href="#" class="social-icon"><i class="fa fa-youtube" aria-label="YouTube"></i></a>
+                </div>
+                
+                <h3>SUBSCRIBE TO NEWSLETTER</h3>
+                <div class="input-group">
+                    <label for="email" hidden>Email</label>
+                    <input type="email" id="email" name="email" placeholder="Your email">
+                    <button aria-label="submit email">&gt;</button>
+                </div>
+            </div>
+        </div>
+    </footer>
+    
+    <div class="footer-bottom">
+        <div class="container">
+            <div>ÃÂ© 2025 Alpha One Labs. All rights reserved. Last updated: 06/12/2025 12:19nachm.</div>
+            <ul>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Terms & Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Cookie Policy</a></li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
