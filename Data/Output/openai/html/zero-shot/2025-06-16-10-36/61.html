@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #1b9db7;
+            padding: 10px 30px;
+        }
+        .header .logo {
+            display: flex;
+            align-items: center;
+            color: white;
+            font-size: 18px;
+        }
+        .header .logo img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .header nav a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+        .header .search {
+            background-color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+        }
+        .header .auth {
+            display: flex;
+            align-items: center;
+        }
+        .header .auth a {
+            color: white;
+            margin-left: 10px;
+            text-decoration: none;
+        }
+        .header .signup-btn {
+            background-color: #ff6b22;
+            border: none;
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer;
+        }
+        .breadcrumb {
+            padding: 15px 30px;
+        }
+        .breadcrumb a {
+            text-decoration: none;
+            color: #333;
+        }
+        .page-title {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+        .main-content {
+            display: flex;
+            padding: 0 30px;
+            gap: 20px;
+        }
+        .filters {
+            width: 20%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        .filters h3 {
+            margin: 10px 0;
+        }
+        .filters select,
+        .filters input {
+            width: 100%;
+            margin: 10px 0;
+            padding: 5px;
+        }
+        .filters button {
+            padding: 5px 10px;
+            margin-right: 5px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .filters .apply-btn {
+            background-color: #007bff;
+            color: white;
+        }
+        .filters .clear-btn {
+            background-color: #ccc;
+        }
+        .product-cards {
+            display: flex;
+            justify-content: space-between;
+            flex-grow: 1;
+        }
+        .card {
+            width: 30%;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .card img {
+            width: 100%;
+        }
+        .card-content {
+            padding: 15px;
+            text-align: center;
+        }
+        .card-content h4 {
+            margin: 10px 0;
+        }
+        .price {
+            text-decoration: line-through;
+        }
+        .price.new {
+            color: #d9534f;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 18px;
+        }
+        .add-to-cart {
+            background-color: #ff6b22;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .sold-out {
+            background-color: #ccc;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 10px;
+        }
+        .footer {
+            background-color: #f9f9f9;
+            padding: 30px 0;
+        }
+        .footer-content {
+            display: flex;
+            justify-content: space-evenly;
+            max-width: 1200px;
+            margin: auto;
+        }
+        .footer-column {
+            width: 20%;
+        }
+        .footer-column h4 {
+            margin-bottom: 10px;
+        }
+        .footer-column a {
+            text-decoration: none;
+            color: #333;
+            display: block;
+            margin-bottom: 5px;
+        }
+        .footer-bottom {
+            text-align: center;
+            margin-top: 20px;
+            color: #666;
+            font-size: 14px;
+        }
+        .subscribe {
+            background-color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+        .subscribe input {
+            border: none;
+            margin-right: 5px;
+            padding: 5px;
+        }
+        .subscribe button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <div class="logo">
+            <img src="src/placeholder.jpg" alt="Logo">
+            Alpha One Labs
+        </div>
+        <nav>
+            <a href="#">LEARN</a>
+            <a href="#">COMMUNITY</a>
+            <a href="#">RESOURCES</a>
+            <a href="#">ABOUT</a>
+            <input class="search" type="text" placeholder="What do you want to learn?">
+        </nav>
+        <div class="auth">
+            <a href="#">Login</a>
+            <button class="signup-btn">Signup</button>
+        </div>
+    </header>
+
+    <div class="breadcrumb">
+        <a href="#">Home</a> &gt; <span>Marketplace</span>
+    </div>
+
+    <h2 class="page-title">Explore Our Products</h2>
+
+    <div class="main-content">
+        <div class="filters">
+            <h3>Filters</h3>
+            <label>Store Name</label><br>
+            <select>
+                <option>All</option>
+            </select><br>
+            <label>Product Type</label><br>
+            <select>
+                <option>All</option>
+            </select><br>
+            <label>Category</label><br>
+            <select>
+                <option>All</option>
+            </select><br>
+            <input type="text" placeholder="Min Price"> -
+            <input type="text" placeholder="Max Price"><br>
+            <button class="apply-btn">Apply</button>
+            <button class="clear-btn">Clear</button>
+        </div>
+        <div class="product-cards">
+            <div class="card">
+                <img src="src/placeholder.jpg" alt="Product Image">
+                <div class="card-content">
+                    <h4>Algebra Basics Workbook</h4>
+                    <p>A comprehensive workbook for learning algebra basics.</p>
+                    <div><small>Storefront for teacher1</small></div>
+                    <span class="price">$19.99</span> <span class="price new">$14.99</span><br>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="src/placeholder.jpg" alt="Product Image">
+                <div class="card-content">
+                    <h4>Python Programming eBook</h4>
+                    <p>An in-depth guide to Python programming.</p>
+                    <div><small>Storefront for teacher1</small></div>
+                    <span class="price">$29.99</span> <span class="price new">$24.99</span><br>
+                    <button class="sold-out">Sold Out</button>
+                </div>
+            </div>
+            <div class="card">
+                <img src="src/placeholder.jpg" alt="Product Image">
+                <div class="card-content">
+                    <h4>Science Experiment Kit</h4>
+                    <p>A kit for conducting various science experiments.</p>
+                    <div><small>Storefront for teacher1</small></div>
+                    <span class="new">$39.99</span><br>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>LEARNING</h4>
+                <a href="#">Courses</a>
+                <a href="#">Subjects</a>
+                <a href="#">Quizzes</a>
+                <a href="#">Videos</a>
+                <a href="#">Challenges</a>
+                <a href="#">Study Groups</a>
+            </div>
+            <div class="footer-column">
+                <h4>COMMUNITY</h4>
+                <a href="#">Forum</a>
+                <a href="#">Blog</a>
+                <a href="#">Features</a>
+                <a href="#">Success Stories</a>
+            </div>
+            <div class="footer-column">
+                <h4>RESOURCES & INFO</h4>
+                <a href="#">GSOC'25</a>
+                <a href="#">Status</a>
+                <a href="#">Feedback</a>
+                <a href="#">Terms</a>
+            </div>
+            <div class="footer-column">
+                <h4>CONNECT WITH US</h4>
+                <div>
+                    <img src="src/placeholder.jpg" alt="Social Icon" width="20" height="20">
+                    <img src="src/placeholder.jpg" alt="Social Icon" width="20" height="20">
+                    <img src="src/placeholder.jpg" alt="Social Icon" width="20" height="20">
+                    <img src="src/placeholder.jpg" alt="Social Icon" width="20" height="20">
+                    <img src="src/placeholder.jpg" alt="Social Icon" width="20" height="20">
+                </div>
+                <div class="subscribe">
+                    <input type="email" placeholder="Your email">
+                    <button>Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            Â© 2025 Alpha One Labs. All rights reserved.<br>
+            Last updated: 06/12/2025 12:18nachm.<br>
+            <a href="#">About Us</a> | 
+            <a href="#">Terms & Conditions</a> | 
+            <a href="#">Privacy Policy</a> | 
+            <a href="#">Cookie Policy</a>
+        </div>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs Marketplace</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+
+        header {
+            background-color: #00a087;
+            color: white;
+            padding: 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header img {
+            height: 40px;
+        }
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .search-bar {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 5px;
+            padding: 5px;
+            width: 250px;
+        }
+
+        .search-bar input {
+            border: none;
+            outline: none;
+            width: 100%;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .buttons a {
+            color: white;
+            text-decoration: none;
+            border: 1px solid white;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        .signup-btn {
+            background-color: #ff6700;
+        }
+
+        .breadcrumbs {
+            padding: 10px 25px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        .breadcrumbs a {
+            text-decoration: none;
+            color: #666;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+
+        .content {
+            display: flex;
+            justify-content: space-around;
+            padding: 25px;
+        }
+
+        .filters {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 200px;
+            padding: 20px;
+            font-size: 14px;
+        }
+
+        .filters select, .filters input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+        }
+
+        .filters button {
+            width: 48%;
+            padding: 8px;
+            margin: 2%;
+            border: none;
+            background-color: #00a087;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .filters .clear-btn {
+            background-color: #ccc;
+        }
+
+        .product-card {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 240px;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .product-image {
+            background-color: blue;
+            height: 150px;
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            color: #ff3434;
+            font-size: 18px;
+            font-weight: bold;
+        }
+
+        .old-price {
+            text-decoration: line-through;
+            color: #666;
+        }
+
+        .btn-add-to-cart {
+            background-color: #ff6700;
+            color: white;
+            border: none;
+            padding: 8px;
+            cursor: pointer;
+            width: 100%;
+            border-radius: 5px;
+        }
+
+        .btn-sold-out {
+            background-color: #ccc;
+            color: white;
+            border: none;
+            padding: 8px;
+            width: 100%;
+            border-radius: 5px;
+            cursor: not-allowed;
+        }
+
+        footer {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+
+        .footer-top {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .footer-column {
+            width: 200px;
+            text-align: left;
+        }
+
+        .footer-column h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .footer-column a {
+            color: #333;
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .footer-bottom {
+            font-size: 12px;
+            color: #666;
+        }
+
+        .connect-icons {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .newsletter {
+            display: flex;
+            justify-content: center;
+            gap: 5px;
+        }
+
+        .newsletter input[type="email"] {
+            padding: 5px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            outline: none;
+            width: 200px;
+        }
+
+        .newsletter input[type="submit"] {
+            background-color: #00a087;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            padding: 5px 15px;
+            cursor: pointer;
+        }
+
+        .connect-icon {
+            width: 20px;
+            height: 20px;
+            background-color: blue;
+            border-radius: 50%;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <img src="src/placeholder.jpg" alt="Logo">
+    <nav>
+        <a href="#">LEARN</a>
+        <a href="#">COMMUNITY</a>
+        <a href="#">RESOURCES</a>
+        <a href="#">ABOUT</a>
+    </nav>
+    <div class="search-bar">
+        <input type="text" placeholder="What do you want to learn?">
+    </div>
+    <div class="buttons">
+        <a href="#">Login</a>
+        <a href="#" class="signup-btn">Signup</a>
+    </div>
+</header>
+
+<div class="breadcrumbs">
+    <a href="#">Home</a> > Marketplace
+</div>
+
+<div class="hero">
+    <h1>Explore Our Products</h1>
+</div>
+
+<div class="content">
+    <div class="filters">
+        <h2>Filters</h2>
+        <label>Store Name</label>
+        <select>
+            <option>All</option>
+        </select>
+        <label>Product Type</label>
+        <select>
+            <option>All</option>
+        </select>
+        <label>Category</label>
+        <select>
+            <option>All</option>
+        </select>
+
+        <label>Min Price</label>
+        <input type="text">
+        <label>Max Price</label>
+        <input type="text">
+
+        <div>
+            <button>Apply</button>
+            <button class="clear-btn">Clear</button>
+        </div>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"></div>
+        <h3>Algebra Basics Workbook</h3>
+        <p>A comprehensive workbook for learning algebra basics.</p>
+        <span class="old-price">$19.99</span>
+        <div class="product-price">$14.99</div>
+        <button class="btn-add-to-cart">Add to Cart</button>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"></div>
+        <h3>Python Programming eBook</h3>
+        <p>An in-depth guide to Python programming.</p>
+        <span class="old-price">$29.99</span>
+        <div class="product-price">$24.99</div>
+        <button class="btn-sold-out">Sold Out</button>
+    </div>
+
+    <div class="product-card">
+        <div class="product-image"></div>
+        <h3>Science Experiment Kit</h3>
+        <p>A kit for conducting various science experiments.</p>
+        <div class="product-price">$39.99</div>
+        <button class="btn-add-to-cart">Add to Cart</button>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-top">
+        <div class="footer-column">
+            <h3>LEARNING</h3>
+            <a href="#">Courses</a>
+            <a href="#">Subjects</a>
+            <a href="#">Quizzes</a>
+            <a href="#">Videos</a>
+            <a href="#">Challenges</a>
+            <a href="#">Study Groups</a>
+        </div>
+        <div class="footer-column">
+            <h3>COMMUNITY</h3>
+            <a href="#">Forum</a>
+            <a href="#">Blog</a>
+            <a href="#">Features</a>
+            <a href="#">Success Stories</a>
+        </div>
+        <div class="footer-column">
+            <h3>RESOURCES & INFO</h3>
+            <a href="#">GSOCâ25</a>
+            <a href="#">Status</a>
+            <a href="#">Feedback</a>
+            <a href="#">Terms</a>
+        </div>
+        <div class="footer-column">
+            <h3>CONNECT WITH US</h3>
+            <div class="connect-icons">
+                <div class="connect-icon"></div>
+                <div class="connect-icon"></div>
+                <div class="connect-icon"></div>
+                <div class="connect-icon"></div>
+            </div>
+            <p>SUBSCRIBE TO NEWSLETTER</p>
+            <div class="newsletter">
+                <input type="email" placeholder="Your email">
+                <input type="submit" value="Subscribe">
+            </div>
+        </div>
+    </div>
+
+    <div class="footer-bottom">
+        Â© 2025 Alpha One Labs. All rights reserved. <br>
+        Last updated: 06/12/2025 12:18nachm.
+    </div>
+</footer>
+
+</body>
+</html>

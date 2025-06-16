@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export News</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', sans-serif;
+            background-color: #F4F4F4;
+            color: #555;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #FAFAFA;
+            padding: 20px;
+            border-bottom: 1px solid #E0E0E0;
+        }
+        header img {
+            height: 40px;
+            width: 40px;
+            vertical-align: middle;
+        }
+        nav {
+            display: inline-block;
+            margin-left: 20px;
+            vertical-align: middle;
+        }
+        nav a {
+            text-decoration: none;
+            color: #777;
+            margin: 0 10px;
+            font-size: 14px;
+        }
+        main {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            font-weight: bold;
+            font-size: 32px;
+            color: #333;
+        }
+        h2 {
+            font-size: 20px;
+            color: #111;
+        }
+        .date, .reading-time {
+            color: #888;
+            font-size: 14px;
+        }
+        code, pre {
+            background-color: #EEE;
+            padding: 10px;
+            display: block;
+            font-size: 14px;
+            margin-top: 20px;
+        }
+        footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            margin-top: 40px;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <img src="src/placeholder.jpg" alt="logo">
+        <nav>
+            <a href="#">Homepage</a>
+            <a href="#">Amenities</a>
+            <a href="#">Suite Layouts</a>
+            <a href="#">Image Showcase</a>
+            <a href="#">Reach Out</a>
+            <a href="#">303.716.6000</a>
+            <a href="#">Send Email</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Export news from google sites</h1>
+        <p class="date">Apr 27, 2012</p>
+        <p class="reading-time">One min of reading</p>
+        <h2>Genesis of This</h2>
+        <p>...</p>
+        <pre>wget -r --no-parent --no-clobber  ...</pre>
+        <p>...</p>
+        <pre>export_google_site_news  ...</pre>
+        <p>...</p>
+        <pre>for i in $(seq 0 10 120); do
+  wget "...Onews.$i"
+done</pre>
+        <p>...</p>
+        <pre>grep -E -h -o '/a/freeitathens.org/foo/news/[a-z0-9-]+' news.* |
+  sort -u > news_links</pre>
+        <p>...</p>
+        <pre>wget -i news_links -B https://sites.google.com</pre>
+        <p>...</p>
+    </main>
+    <footer>
+        <p>Created with by <a href="#">YesLearners.com - YesLearners</a></p>
+    </footer>
+</body>
+</html>

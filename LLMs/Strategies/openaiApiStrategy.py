@@ -13,23 +13,33 @@ class OpenAIStrategy(LLMStrategy):
         self.used_model = MODEL
         self.client = OpenAI(api_key=api_key)
 
+    def _upload_image(self, file_path):
+        with open(file_path, "rb") as f:
+            file = self.client.files.create(
+                file=f,
+                purpose="vision",
+            )
+        return file.id
 
     async def llm_frontend_generation(self, prompt, image_information):
-        with open(image_information["path"], "rb") as image_file:
-            image_data = base64.b64encode(image_file.read()).decode("utf-8")
+        # B64 encoding
+        # with open(image_information["path"], "rb") as image_file:
+        #     image_data = base64.b64encode(image_file.read()).decode("utf-8")
+        
+        image_data = self._upload_image(image_information["path"])
 
         response = self.client.responses.create(
             model=self.used_model,
             input=[
                 {
-                    "role": "system", "content": f"Imagine that you are a senior frontend developper focusing on implementing HTML/CSS from UI-Images. It is the goal to copy the image as precise as possible. Please only answer with the code, meaning without any explanation.",
+                    # "role": "system", "content": f"Imagine that you are a senior frontend developper focusing on implementing HTML/CSS from UI-Images. It is the goal to copy the image as precise as possible. Please only answer with the code, meaning without any explanation.",
                     "role": "user",
                     "content": [
                         { "type": "input_text", "text": prompt },
                         {
                             "type": "input_image",
-                            "image_url": f"data:image/png;base64,{image_data}",
-                            # "image_url": f"data:image/jpeg;base64,{image_data}",
+                            "file_id": image_data,
+                            # "image_url": f"data:image/png;base64,{image_data}",
                         },
                     ],
                 }

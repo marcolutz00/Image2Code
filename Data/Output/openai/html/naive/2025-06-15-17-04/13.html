@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export News from Google Sites</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            color: #333;
+        }
+        .header {
+            background-color: #f7f7f7;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .header img {
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 15px;
+        }
+        .nav {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            font-size: 14px;
+            color: #555;
+        }
+        .content {
+            max-width: 700px;
+            background: white;
+            margin: 40px auto;
+            padding: 20px;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+        }
+        .content h1 {
+            font-size: 32px;
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .content .date-author {
+            font-size: 16px;
+            color: #999;
+            margin-bottom: 30px;
+        }
+        .content pre {
+            background-color: #ececec;
+            padding: 10px;
+            overflow-x: auto;
+            font-size: 14px;
+            margin-bottom: 30px;
+        }
+        .content a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .content p {
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .footer {
+            background-color: black;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 12px;
+            position: relative;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="src/placeholder.jpg" alt="Logo" width="50" height="50">
+        <div class="nav">
+            <div>Homepage</div>
+            <div>Amenities</div>
+            <div>Suite Layouts</div>
+            <div>Image Showcase</div>
+            <div>Reach Out</div>
+            <div>303.716.5000</div>
+            <div>Send Email</div>
+        </div>
+    </div>
+    <div class="content">
+        <h1>Export news from google sites</h1>
+        <div class="date-author">
+            Apr 27, 2012<br>
+            One min of reading
+        </div>
+        <h2>Genesis of This</h2>
+        <p>When Free It Athens migrated their site away from Google Sites over to Drupal, they went fresh, losing all the previous content. I just realized that news data on the old site was valuable historical content, and I hadn't saved it.</p>
+        <p>Initially, I gave recursive wget a whirl.</p>
+        <pre>wget -r --no-parent --no-clobber  <br>""</pre>
+        <p>I've put online a quick code snippet, <a href="#">export_google_site_news</a>, to my main repository located on github.</p>
+        <p>To illustrate, for pulling the news posts from https://sites.google.com/a/medinacommunityband.org/www/announcements, you can call:</p>
+        <pre>export_google_site_news  <br>https://sites.google.com/a/medinacommunityband.org/www  <br>announcements</pre>
+        <p>This just flat failed as Google made the mistake of using javascript rather than anchor tags to connect news pages.</p>
+        <p>I hunted down and tried Google's own google-sites-export from their Data Liberation Team, but could never authenticate correctly.</p>
+        <p>I then feared I'd need Selenium to trigger the javascript, but then realized that the news pages took a single parameter to determine which paginated results to display. Looping would get them all.</p>
+        <pre>for i in $(seq 0 10 120); do <br> wget ""  <br> "-Onews.$i" <br>done</pre>
+        <p>After getting the first one, I saw a pattern to match each news stories' relative paths. Then extracted out all those paths.</p>
+        <pre>grep -E -h -o '/a/freeitathens.org/foo/news/[a-z0-9]+/+' news.* | <br>sort -u > news_links</pre>
+        <p>Once I had all the paths, it was easy to get wget to fetch them all.</p>
+        <pre>wget -i news_links -B https://sites.google.com</pre>
+        <p>Since I found zero guides online, I tried writing up a simple script from the above, and am detailing it here.</p>
+    </div>
+    <div class="footer">
+        Created with by YesLearners.com - YesLearners
+    </div>
+</body>
+</html>

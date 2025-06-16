@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Explore Subjects</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+        color: #333;
+        background-color: #f7f9fc;
+        line-height: 1.6;
+    }
+    header {
+        background-color: #036666;
+        padding: 10px 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    header .logo {
+        display: flex;
+        align-items: center;
+        color: white;
+        font-weight: bold;
+    }
+    header .logo img {
+        width: 40px;
+        height: 40px;
+        margin-right: 10px;
+    }
+    header nav {
+        display: flex;
+        align-items: center;
+    }
+    header nav a {
+        color: white;
+        text-decoration: none;
+        margin: 0 15px;
+        font-size: 14px;
+    }
+    header input[type="search"] {
+        border: none;
+        padding: 5px;
+        border-radius: 5px;
+    }
+    header .auth {
+        display: flex;
+        align-items: center;
+    }
+    header .auth a {
+        color: #333;
+        background-color: #ffffff;
+        padding: 5px 15px;
+        border-radius: 20px;
+        text-decoration: none;
+        margin-left: 10px;
+    }
+    header .auth a.signup {
+        background-color: #ff5e00;
+        color: white;
+    }
+    main {
+        text-align: center;
+        padding: 50px 20px;
+    }
+    main h1 {
+        margin-bottom: 20px;
+        font-size: 36px;
+        color: #333;
+    }
+    main p {
+        margin-bottom: 40px;
+        color: #555;
+        font-size: 16px;
+    }
+    .subjects {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 20px;
+        justify-items: center;
+    }
+    .subjects .card {
+        background-color: white;
+        border: 1px solid #eee;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 20px;
+        width: 90%;
+        max-width: 300px;
+        text-align: left;
+    }
+    .subjects .card h3 {
+        font-size: 18px;
+        margin-bottom: 10px;
+        color: #555;
+    }
+    .subjects .card p {
+        font-size: 14px;
+        margin-bottom: 10px;
+        color: #777;
+    }
+    .subjects .card .buttons {
+        display: flex;
+        justify-content: space-between;
+    }
+    .subjects .card .buttons a {
+        text-decoration: none;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 5px;
+    }
+    .subjects .card .teach {
+        background-color: #4f46e5;
+    }
+    .subjects .card .learn {
+        background-color: #ff5e00;
+    }
+    .interest {
+        background-color: white;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        padding: 30px;
+        margin: 50px auto;
+        width: 80%;
+        max-width: 600px;
+    }
+    .interest h2 {
+        margin-bottom: 20px;
+        font-size: 24px;
+    }
+    .interest input[type="text"] {
+        width: calc(100% - 125px);
+        padding: 10px;
+        margin-right: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+    .interest .buttons {
+        display: inline-block;
+    }
+    .interest .buttons a {
+        text-decoration: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 5px;
+        margin-left: 5px;
+    }
+    .interest .teach {
+        background-color: #4f46e5;
+    }
+    .interest .learn {
+        background-color: #ff5e00;
+    }
+    footer {
+        background-color: #fff;
+        padding: 40px 20px;
+        text-align: center;
+        border-top: 1px solid #eee;
+    }
+    footer .content {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 20px;
+        justify-items: center;
+        margin-bottom: 40px;
+    }
+    footer .content div h3 {
+        margin-bottom: 15px;
+        font-size: 18px;
+    }
+    footer .content div ul {
+        list-style: none;
+        padding: 0;
+    }
+    footer .content div ul li {
+        margin: 5px 0;
+    }
+    footer .content div ul li a {
+        text-decoration: none;
+        color: #336699;
+        font-size: 14px;
+    }
+    footer .newsletter {
+        margin-bottom: 20px;
+    }
+    footer .newsletter input[type="email"] {
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        width: calc(100% - 50px);
+        margin-right: 10px;
+    }
+    footer .newsletter button {
+        background-color: #4f46e5;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    footer .copyright {
+        border-top: 1px solid #eee;
+        padding-top: 20px;
+        margin-top: 20px;
+        color: #777;
+        font-size: 14px;
+    }
+</style>
+</head>
+<body>
+<header>
+    <div class="logo"><img src="src/placeholder.jpg" alt="Logo">Alpha One Labs</div>
+    <nav>
+        <a href="#">Learn</a>
+        <a href="#">Community</a>
+        <a href="#">Resources</a>
+        <a href="#">About</a>
+        <input type="search" placeholder="What do you want to learn?" />
+    </nav>
+    <div class="auth">
+        <a href="#">Login</a>
+        <a href="#" class="signup">Signup</a>
+    </div>
+</header>
+
+<main>
+    <h1>Explore Subjects</h1>
+    <p>Browse exciting topics, see how many people are interested, and find out if there's already a teacher or not.</p>
+      
+    <div class="subjects">
+        <div class="card">
+            <h3>Chemistry</h3>
+            <p>Interested: 57 learners<br>Teacher Available: Yes<br>Courses: 4</p>
+            <div class="buttons">
+                <a href="#" class="teach">Teach</a>
+                <a href="#" class="learn">Learn</a>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Mathematics</h3>
+            <p>Interested: 82 learners<br>Teacher Available: Yes<br>Courses: 7</p>
+            <div class="buttons">
+                <a href="#" class="teach">Teach</a>
+                <a href="#" class="learn">Learn</a>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Programming</h3>
+            <p>Interested: 134 learners<br>Teacher Available: No<br>Courses: 3</p>
+            <div class="buttons">
+                <a href="#" class="teach">Teach</a>
+                <a href="#" class="learn">Learn</a>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Psychology</h3>
+            <p>Interested: 29 learners<br>Teacher Available: No<br>Courses: 1</p>
+            <div class="buttons">
+                <a href="#" class="teach">Teach</a>
+                <a href="#" class="learn">Learn</a>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Electronics</h3>
+            <p>Interested: 16 learners<br>Teacher Available: No<br>Courses: 0</p>
+            <div class="buttons">
+                <a href="#" class="teach">Teach</a>
+                <a href="#" class="learn">Learn</a>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Geography</h3>
+            <p>Interested: 48 learners<br>Teacher Available: No<br>Courses: 4</p>
+            <div class="buttons">
+                <a href="#" class="teach">Teach</a>
+                <a href="#" class="learn">Learn</a>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Literature</h3>
+            <p>Interested: 65 learners<br>Teacher Available: Yes<br>Courses: 2</p>
+            <div class="buttons">
+                <a href="#" class="teach">Teach</a>
+                <a href="#" class="learn">Learn</a>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Music Theory</h3>
+            <p>Interested: 22 learners<br>Teacher Available: Yes<br>Courses: 3</p>
+            <div class="buttons">
+                <a href="#" class="teach">Teach</a>
+                <a href="#" class="learn">Learn</a>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Robotics</h3>
+            <p>Interested: 73 learners<br>Teacher Available: No<br>Courses: 5</p>
+            <div class="buttons">
+                <a href="#" class="teach">Teach</a>
+                <a href="#" class="learn">Learn</a>
+            </div>
+        </div>
+        <div class="card">
+            <h3>Health & Wellness</h3>
+            <p>Interested: 41 learners<br>Teacher Available: No<br>Courses: 2</p>
+            <div class="buttons">
+                <a href="#" class="teach">Teach</a>
+                <a href="#" class="learn">Learn</a>
+            </div>
+        </div>
+    </div>
+    
+    <div class="interest">
+        <h2>Express Your Interest</h2>
+        <input type="text" placeholder="Enter a subject..." />
+        <div class="buttons">
+            <a href="#" class="teach">Teach</a>
+            <a href="#" class="learn">Learn</a>
+        </div>
+        <p>Share what you'd like to learn or teach, and we'll help make it happen!</p>
+    </div>
+</main>
+
+<footer>
+    <div class="content">
+        <div>
+            <h3>LEARNING</h3>
+            <ul>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Subjects</a></li>
+                <li><a href="#">Quizzes</a></li>
+                <li><a href="#">Videos</a></li>
+                <li><a href="#">Challenges</a></li>
+                <li><a href="#">Study Groups</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>COMMUNITY</h3>
+            <ul>
+                <li><a href="#">Forum</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Success Stories</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>RESOURCES & INFO</h3>
+            <ul>
+                <li><a href="#">GSOC'25</a></li>
+                <li><a href="#">Status</a></li>
+                <li><a href="#">Feedback</a></li>
+                <li><a href="#">Terms</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>CONNECT WITH US</h3>
+            <a href="#"><img src="src/placeholder.jpg" alt="Social Media" width="40" height="40"></a>
+            <a href="#"><img src="src/placeholder.jpg" alt="Social Media" width="40" height="40"></a>
+            <a href="#"><img src="src/placeholder.jpg" alt="Social Media" width="40" height="40"></a>
+            <a href="#"><img src="src/placeholder.jpg" alt="Social Media" width="40" height="40"></a>
+            <div class="newsletter">
+                <h4>SUBSCRIBE TO NEWSLETTER</h4>
+                <input type="email" placeholder="Your email">
+                <button>Subscribe</button>
+            </div>
+        </div>
+    </div>
+    <div class="copyright">
+        Â© 2025 Alpha One Labs. All rights reserved.<br>
+        Last updated: 06/12/2025 12:12nachm.
+        <br>
+        <a href="#">About Us</a> | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a>
+    </div>
+</footer>
+</body>
+</html>

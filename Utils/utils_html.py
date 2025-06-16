@@ -326,12 +326,12 @@ if __name__ == "__main__":
     htmls_path = os.path.join(DIR_PATH, "..", "Data", "Input", "html")
     images_path = os.path.join(DIR_PATH, "..", "Data", "Input", "images")
 
-    for html_file in os.listdir(htmls_path):
-        if html_file.endswith(".html"):
-            html_path = os.path.join(htmls_path, html_file)
-            image_path = os.path.join(images_path, f"{os.path.splitext(html_file)[0]}.png")
-            save_screenshots(html_path, image_path)
-            print(f"Screenshot saved for {html_file} at {image_path}")
+    # for html_file in os.listdir(htmls_path):
+    #     if html_file.endswith(".html"):
+    #         html_path = os.path.join(htmls_path, html_file)
+    #         image_path = os.path.join(images_path, f"{os.path.splitext(html_file)[0]}.png")
+    #         save_screenshots(html_path, image_path)
+    #         print(f"Screenshot saved for {html_file} at {image_path}")
 
 
 
