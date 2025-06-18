@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marketplace</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        .header {
+            background-color: #00a67e;
+            padding: 10px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+        }
+        .logo img {
+            margin-right: 10px;
+        }
+        .nav {
+            display: flex;
+            gap: 30px;
+        }
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        .search-bar {
+            flex-grow: 1;
+            margin: 0 30px;
+            display: flex;
+            align-items: center;
+            border: 1px solid #ccc;
+            border-radius: 30px;
+            padding: 5px 15px;
+            background-color: #f7f7f7;
+        }
+        .search-bar input {
+            border: none;
+            flex-grow: 1;
+            outline: none;
+        }
+        .login-signup {
+            display: flex;
+            gap: 20px;
+        }
+        .login, .signup {
+            color: #fff;
+            text-decoration: none;
+            border-radius: 20px;
+            font-size: 14px;
+            background-color: #007960;
+            padding: 5px 15px;
+        }
+        .signup {
+            background-color: #ff6200;
+        }
+        .breadcrumb {
+            margin: 20px 50px;
+            font-size: 12px;
+            color: #606060;
+        }
+        .products-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+        .products-title {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 30px;
+        }
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            margin: 0 50px;
+        }
+        .sidebar {
+            background-color: #f7f7f7;
+            width: 200px;
+            padding: 20px;
+            border-radius: 10px;
+        }
+        .sidebar h3, .sidebar label {
+            font-size: 14px;
+            color: #000;
+            margin: 10px 0;
+        }
+        .sidebar .filters {
+            margin-top: 20px;
+        }
+        .sidebar select, .sidebar input {
+            width: 100%;
+            padding: 7px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+        .sidebar button {
+            width: 48%;
+            padding: 8px;
+            margin-right: 4%;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .apply-btn {
+            background-color: #00695c;
+            color: #fff;
+        }
+        .clear-btn {
+            background-color: #fff;
+            border: 1px solid #ccc;
+            color: #000;
+        }
+        .product-cards {
+            display: flex;
+            justify-content: space-between;
+            flex-grow: 1;
+            margin-left: 20px;
+        }
+        .product-card {
+            width: 250px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        .product-card img {
+            width: 100%;
+            height: 150px;
+            background-color: #00f;
+            border-radius: 10px;
+        }
+        .product-card h4, .product-card p {
+            margin: 10px 0;
+        }
+        .product-card .price {
+            margin: 10px 0;
+            font-size: 16px;
+            font-weight: 700;
+        }
+        .product-card .old-price {
+            text-decoration: line-through;
+            color: #a0a0a0;
+        }
+        .product-card button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            cursor: pointer;
+            background-color: #00695c;
+        }
+        .product-card button.sold-out {
+            background-color: #a0a0a0;
+        }
+        .footer {
+            background-color: #f7f7f7;
+            padding: 40px 50px;
+            display: flex;
+            justify-content: space-between;
+            color: #000;
+        }
+        .footer div {
+            width: 20%;
+        }
+        .footer h4 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+        .footer ul li {
+            margin: 5px 0;
+        }
+        .footer ul li a {
+            text-decoration: none;
+            color: #000;
+            font-size: 12px;
+        }
+        .footer .social-icons {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        .footer .social-icons div {
+            width: 25px;
+            height: 25px;
+            background-color: #00f;
+            border-radius: 50%;
+        }
+        .subscribe-newsletter {
+            margin-top: 20px;
+        }
+        .subscribe-newsletter input {
+            width: 80%;
+            padding: 7px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .subscribe-newsletter button {
+            background-color: #007960;
+            color: #fff;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .footer-bottom {
+            text-align: center;
+            padding: 20px 0;
+            color: #404040;
+            font-size: 12px;
+        }
+        .footer-bottom a {
+            color: #404040;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .footer-bottom a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="header">
+        <div class="logo">
+            <img src="src/placeholder.jpg" alt="Logo" width="40" height="40">
+            <a href="#" class="nav-link"><strong>Alpha One Labs</strong></a>
+        </div>
+        <div class="nav">
+            <a href="#" class="nav-link">LEARN</a>
+            <a href="#" class="nav-link">COMMUNITY</a>
+            <a href="#" class="nav-link">RESOURCES</a>
+            <a href="#" class="nav-link">ABOUT</a>
+        </div>
+        <div class="search-bar">
+            <input type="text" aria-label="Search" placeholder="What do you want to learn?">
+        </div>
+        <div class="login-signup">
+            <a href="#" class="login">Login</a>
+            <a href="#" class="signup">Signup</a>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        Home > Marketplace
+    </div>
+
+    <div class="products-section">
+        <div class="products-title">Explore Our Products</div>
+        <div class="main-content">
+            <aside class="sidebar">
+                <h3>Filters</h3>
+                <div class="filters">
+                    <label for="storeName">Store Name</label>
+                    <select id="storeName">
+                        <option>All</option>
+                    </select>
+                    <label for="productType">Product Type</label>
+                    <select id="productType">
+                        <option>All</option>
+                    </select>
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option>All</option>
+                    </select>
+                    <label for="minPrice">Min Price</label>
+                    <input type="number" id="minPrice" aria-label="Min Price">
+                    <label for="maxPrice">Max Price</label>
+                    <input type="number" id="maxPrice" aria-label="Max Price">
+                    <div>
+                        <button class="apply-btn">Apply</button>
+                        <button class="clear-btn">Clear</button>
+                    </div>
+                </div>
+            </aside>
+            <main class="product-cards">
+                <div class="product-card">
+                    <img src="src/placeholder.jpg" alt="Algebra Basics Workbook Image">
+                    <h4>Algebra Basics Workbook</h4>
+                    <p>A comprehensive workbook for learning algebra basics.</p>
+                    <div class="storefront-tag"><small>Storefront for teacher1</small></div>
+                    <div class="price">
+                        <span class="old-price">$19.99</span> $14.99
+                    </div>
+                    <button>Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="src/placeholder.jpg" alt="Python Programming eBook Image">
+                    <h4>Python Programming eBook</h4>
+                    <p>An in-depth guide to Python programming.</p>
+                    <div class="storefront-tag"><small>Storefront for teacher1</small></div>
+                    <div class="price">
+                        <span class="old-price">$29.99</span> $24.99
+                    </div>
+                    <button class="sold-out">Sold Out</button>
+                </div>
+                <div class="product-card">
+                    <img src="src/placeholder.jpg" alt="Science Experiment Kit Image">
+                    <h4>Science Experiment Kit</h4>
+                    <p>A kit for conducting various science experiments.</p>
+                    <div class="storefront-tag"><small>Storefront for teacher1</small></div>
+                    <div class="price">$39.99</div>
+                    <button>Add to Cart</button>
+                </div>
+            </main>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div>
+            <h4>LEARNING</h4>
+            <ul>
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Subjects</a></li>
+                <li><a href="#">Quizzes</a></li>
+                <li><a href="#">Videos</a></li>
+                <li><a href="#">Challenges</a></li>
+                <li><a href="#">Study Groups</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>COMMUNITY</h4>
+            <ul>
+                <li><a href="#">Forum</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Success Stories</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>RESOURCES & INFO</h4>
+            <ul>
+                <li><a href="#">GSOC '25</a></li>
+                <li><a href="#">Status</a></li>
+                <li><a href="#">Feedback</a></li>
+                <li><a href="#">Terms</a></li>
+            </ul>
+        </div>
+        <div>
+            <h4>CONNECT WITH US</h4>
+            <div class="social-icons">
+                <div></div>
+                <div></div>
+                <div></div>
+                <div></div>
+            </div>
+            <div class="subscribe-newsletter">
+                <div>SUBSCRIBE TO NEWSLETTER</div>
+                <input type="email" placeholder="Your email" aria-label="Email">
+                <button aria-label="Subscribe">&#10148;</button>
+            </div>
+        </div>
+    </footer>
+
+    <div class="footer-bottom">
+        Â© 2025 Alpha One Labs. All rights reserved. <br> Last updated: 06/12/2025 12:18nachm. <br>
+        <a href="#">About Us</a><a href="#">Terms & Conditions</a><a href="#">Privacy Policy</a><a href="#">Cookie Policy</a>
+    </div>
+
+</body>
+</html>

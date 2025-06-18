@@ -1,0 +1,799 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs - Forum</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #000;
+            background-color: #f9fbfb;
+        }
+
+        a {
+            text-decoration: none;
+            color: #000;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #00a9b5;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-left img {
+            height: 40px;
+            margin-right: 20px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-right a {
+            color: white;
+            margin-left: 20px;
+        }
+
+        /* Main content styles */
+        .main-content {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .sidebar {
+            width: 250px;
+            padding-right: 20px;
+        }
+
+        .forum-content {
+            flex: 1;
+        }
+
+        /* Sidebar styles */
+        .categories {
+            margin-top: 20px;
+        }
+
+        .categories h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+            color: #555;
+        }
+
+        .categories ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .categories li {
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-bottom: 5px;
+        }
+
+        .categories li:hover {
+            background-color: #e9ecef;
+        }
+
+        /* Forum content styles */
+        .forum-content h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .forum-content p {
+            color: #555;
+        }
+
+        .discussion {
+            border-bottom: 1px solid #e9ecef;
+            padding: 10px 0;
+        }
+
+        .discussion-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 5px;
+        }
+
+        .discussion-header span {
+            font-size: 0.8em;
+            color: #555;
+            margin-left: 10px;
+        }
+
+        .discussion-title {
+            font-weight: bold;
+        }
+
+        .discussion-content {
+            color: #555;
+        }
+
+        .discussion-meta {
+            font-size: 0.8em;
+            color: #555;
+            margin-top: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .discussion-meta span {
+            margin-right: 10px;
+        }
+
+        /* Footer styles */
+        .footer {
+            background-color: #f9fbfb;
+            padding: 20px;
+            color: #555;
+            text-align: left;
+            font-size: 0.8em;
+            border-top: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            flex-wrap: wrap;
+        }
+
+        .footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer li {
+            margin-bottom: 5px;
+        }
+
+        .footer-links {
+            display: flex;
+            flex-direction: column;
+            margin-left: 100px;
+        }
+
+        .footer-links ul {
+            display: flex;
+            flex-direction: column;
+            margin-right: 50px;
+            /* Added margin for better spacing */
+        }
+
+        .footer-links ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-newsletter {
+            margin-top: 10px;
+        }
+
+        .footer-newsletter input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .footer-newsletter button {
+            padding: 8px 15px;
+            background-color: #00a9b5;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .footer-bottom {
+            margin-top: 20px;
+            text-align: left;
+            width: 100%;
+        }
+
+        .footer-bottom-links {
+            margin-top: 10px;
+        }
+
+        .footer-bottom-links a {
+            margin-right: 10px;
+        }
+
+        .all-categories {
+            background-color: #e9ecef;
+        }
+
+
+        .header {
+            background-color: #00A9B5;
+            color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-logo {
+            height: 30px;
+            margin-right: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .search-input {
+            padding: 8px;
+            border: none;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+
+        .auth-links a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .signup-button {
+            background-color: #FFAA00;
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .section-header {
+            font-size: 1.5em;
+            color: #212529;
+            margin-bottom: 5px;
+        }
+
+        .section-subheader {
+            color: #495057;
+            margin-bottom: 20px;
+        }
+
+        .category-item {
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            color: #212529;
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .category-item:hover {
+            background-color: #E9ECEF;
+        }
+
+        .category-item.active {
+            background-color: #E9ECEF;
+        }
+
+
+        .discussion-container {
+            background-color: #FFFFFF;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        .discussion-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+        }
+
+        .discussion-avatar {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            margin-right: 10px;
+            background-color: #778da9;
+            /* Placeholder color */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #fff;
+            font-weight: bold;
+            font-size: 1em;
+        }
+
+        .discussion-meta {
+            font-size: 0.8em;
+            color: #6C757D;
+        }
+
+        .discussion-title {
+            font-size: 1em;
+            color: #212529;
+            font-weight: bold;
+        }
+
+        .discussion-content {
+            color: #495057;
+            margin-bottom: 8px;
+        }
+
+        .discussion-stats {
+            font-size: 0.75em;
+            color: #6C757D;
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .all-categories {
+            background-color: #E9ECEF;
+        }
+
+        .footer-container {
+            background-color: #FFFFFF;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            color: #495057;
+            margin-top: 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h4 {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .footer-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-list li {
+            margin-bottom: 5px;
+        }
+
+        .footer-list a {
+            color: #495057;
+            text-decoration: none;
+            font-size: 0.8em;
+        }
+
+        .connect-with-us {
+            flex: 1;
+            min-width: 200px;
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .connect-with-us h4 {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .social-icons a {
+            color: #FFFFFF;
+            background-color: #3B5998;
+            /* Facebook color */
+            border-radius: 5px;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .newsletter-form {
+            display: flex;
+            align-items: center;
+        }
+
+        .newsletter-input {
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #CED4DA;
+            margin-right: 10px;
+            width: 60%;
+        }
+
+        .newsletter-button {
+            background-color: #00A9B5;
+            color: #FFFFFF;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .footer-bottom-container {
+            background-color: #FFFFFF;
+            padding: 15px;
+            text-align: left;
+            font-size: 0.75em;
+            color: #6C757D;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .bottom-links a {
+            color: #6C757D;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .categories-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .categories-list li {
+            padding: 12px 15px;
+            border-radius: 5px;
+            margin-bottom: 8px;
+            cursor: pointer;
+            color: #212529;
+            background-color: #FFFFFF;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .categories-list li:hover {
+            background-color: #E9ECEF;
+        }
+
+        .categories-list li.active {
+            background-color: #E9ECEF;
+        }
+
+        .category-count {
+            color: #6C757D;
+        }
+
+        #all-categories {
+            background-color: #E9ECEF;
+        }
+
+        .main {
+            display: flex;
+        }
+
+        .left-side {
+            width: 20%;
+        }
+
+        .right-side {
+            width: 80%;
+            padding-left: 50px;
+        }
+
+        .search-box {
+            display: flex;
+        }
+
+        .search-box input {
+            border: none;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: white;
+            padding: 12px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="header-left">
+            <img src="src/placeholder.jpg" alt="Alpha One Labs Logo" class="header-logo"
+                style="width: 120px; height: 30px;">
+            <nav class="nav-links">
+                <a href="#" class="nav-link" style="color:#d3d3d3;">LEARN</a>
+                <a href="#" class="nav-link" style="color:#d3d3d3;">COMMUNITY</a>
+                <a href="#" class="nav-link" style="color:#d3d3d3;">RESOURCES</a>
+                <a href="#" class="nav-link" style="color:#d3d3d3;">ABOUT</a>
+            </nav>
+        </div>
+        <div class="header-right">
+            <div class="search-box">
+                <label for="search-input">
+                    <input type="text" class="search-input" id="search-input" placeholder="What do you want to learn?">
+                </label>
+            </div>
+            <a href="#" class="nav-link" style="color:#d3d3d3;">Login</a>
+            <button class="signup-button" style="background-color: #FFAA00; color:black;">Signup</button>
+        </div>
+    </header>
+    <div class="main">
+        <div class="left-side">
+            <section class="categories">
+                <h2 class="section-header">Forum</h2>
+                <p class="section-subheader">Join discussions, ask questions, and share knowledge</p>
+                <h3>CATEGORIES</h3>
+                <ul class="categories-list">
+                    <li class="category-item active" id="all-categories">
+                        All Categories
+                    </li>
+                    <li class="category-item">
+                        Category 1
+                        <span class="category-count">3</span>
+                    </li>
+                    <li class="category-item">
+                        Category 2
+                        <span class="category-count">3</span>
+                    </li>
+                    <li class="category-item">
+                        Category 3
+                        <span class="category-count">3</span>
+                    </li>
+                </ul>
+            </section>
+        </div>
+        <div class="right-side">
+            <section class="recent-discussions">
+                <h1 class="section-header">Forum Categories</h1>
+                <p class="section-subheader">Browse all categories or select one to see its topics</p>
+                <h2 class="section-header">Recent Discussions</h2>
+                <div class="discussion-container">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">S</div>
+                        <div class="discussion-meta">
+                            student5 Ã¢ÂÂ¢ 19 Stunden, 22 Minuten ago Ã¢ÂÂ¢ <a href="#">Category 1</a>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">Topic 3</h3>
+                    <p class="discussion-content">Content for topic 3</p>
+                    <div class="discussion-stats">
+                        <span>0 views</span>
+                        <span>5 replies</span>
+                        <span>0 upvotes</span>
+                        <span>0 downvotes</span>
+                        <span>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion-container">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">S</div>
+                        <div class="discussion-meta">
+                            student3 Ã¢ÂÂ¢ 19 Stunden, 22 Minuten ago Ã¢ÂÂ¢ <a href="#">Category 1</a>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">Topic 2</h3>
+                    <p class="discussion-content">Content for topic 2</p>
+                    <div class="discussion-stats">
+                        <span>0 views</span>
+                        <span>2 replies</span>
+                        <span>0 upvotes</span>
+                        <span>0 downvotes</span>
+                        <span>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion-container">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">T</div>
+                        <div class="discussion-meta">
+                            teacher2 Ã¢ÂÂ¢ 19 Stunden, 22 Minuten ago Ã¢ÂÂ¢ <a href="#">Category 1</a>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">Topic 1</h3>
+                    <p class="discussion-content">Content for topic 1</p>
+                    <div class="discussion-stats">
+                        <span>0 views</span>
+                        <span>4 replies</span>
+                        <span>0 upvotes</span>
+                        <span>0 downvotes</span>
+                        <span>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion-container">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">S</div>
+                        <div class="discussion-meta">
+                            student8 Ã¢ÂÂ¢ 19 Stunden, 22 Minuten ago Ã¢ÂÂ¢ <a href="#">Category 2</a>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">Topic 3</h3>
+                    <p class="discussion-content">Content for topic 3</p>
+                    <div class="discussion-stats">
+                        <span>0 views</span>
+                        <span>5 replies</span>
+                        <span>0 upvotes</span>
+                        <span>0 downvotes</span>
+                        <span>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion-container">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">S</div>
+                        <div class="discussion-meta">
+                            student7 Ã¢ÂÂ¢ 19 Stunden, 22 Minuten ago Ã¢ÂÂ¢ <a href="#">Category 2</a>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">Topic 2</h3>
+                    <p class="discussion-content">Content for topic 2</p>
+                    <div class="discussion-stats">
+                        <span>0 views</span>
+                        <span>5 replies</span>
+                        <span>0 upvotes</span>
+                        <span>0 downvotes</span>
+                        <span>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion-container">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">S</div>
+                        <div class="discussion-meta">
+                            student7 Ã¢ÂÂ¢ 19 Stunden, 22 Minuten ago Ã¢ÂÂ¢ <a href="#">Category 2</a>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">Topic 1</h3>
+                    <p class="discussion-content">Content for topic 1</p>
+                    <div class="discussion-stats">
+                        <span>0 views</span>
+                        <span>2 replies</span>
+                        <span>0 upvotes</span>
+                        <span>0 downvotes</span>
+                        <span>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion-container">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">T</div>
+                        <div class="discussion-meta">
+                            teacher1 Ã¢ÂÂ¢ 19 Stunden, 22 Minuten ago Ã¢ÂÂ¢ <a href="#">Category 3</a>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">Topic 3</h3>
+                    <p class="discussion-content">Content for topic 3</p>
+                    <div class="discussion-stats">
+                        <span>0 views</span>
+                        <span>4 replies</span>
+                        <span>0 upvotes</span>
+                        <span>0 downvotes</span>
+                        <span>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion-container">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">S</div>
+                        <div class="discussion-meta">
+                            student6 Ã¢ÂÂ¢ 19 Stunden, 22 Minuten ago Ã¢ÂÂ¢ <a href="#">Category 3</a>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">Topic 2</h3>
+                    <p class="discussion-content">Content for topic 2</p>
+                    <div class="discussion-stats">
+                        <span>0 views</span>
+                        <span>3 replies</span>
+                        <span>0 upvotes</span>
+                        <span>0 downvotes</span>
+                        <span>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+                <div class="discussion-container">
+                    <div class="discussion-header">
+                        <div class="discussion-avatar">S</div>
+                        <div class="discussion-meta">
+                            student3 Ã¢ÂÂ¢ 19 Stunden, 22 Minuten ago Ã¢ÂÂ¢ <a href="#">Category 3</a>
+                        </div>
+                    </div>
+                    <h3 class="discussion-title">Topic 1</h3>
+                    <p class="discussion-content">Content for topic 1</p>
+                    <div class="discussion-stats">
+                        <span>0 views</span>
+                        <span>4 replies</span>
+                        <span>0 upvotes</span>
+                        <span>0 downvotes</span>
+                        <span>Last reply 19 Stunden, 22 Minuten ago</span>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </div>
+    <footer class="footer-container">
+        <div class="footer-section">
+            <h4>LEARNING</h4>
+            <ul class="footer-list">
+                <li><a href="#">Courses</a></li>
+                <li><a href="#">Subjects</a></li>
+                <li><a href="#">Quizzes</a></li>
+                <li><a href="#">Videos</a></li>
+                <li><a href="#">Challenges</a></li>
+                <li><a href="#">Study Groups</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>COMMUNITY</h4>
+            <ul class="footer-list">
+                <li><a href="#">Forum</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Features</a></li>
+                <li><a href="#">Success Stories</a></li>
+            </ul>
+        </div>
+        <div class="footer-section">
+            <h4>RESOURCES &amp; INFO</h4>
+            <ul class="footer-list">
+                <li><a href="#">GSOC'25</a></li>
+                <li><a href="#">Status</a></li>
+                <li><a href="#">Feedback</a></li>
+                <li><a href="#">Terms</a></li>
+            </ul>
+        </div>
+        <div class="connect-with-us">
+            <h4>CONNECT WITH US</h4>
+            <div class="social-icons">
+                <a href="#" style="background-color: #1877F2;" aria-label="Facebook"></a>
+                <a href="#" style="background-color: #1DA1F2;" aria-label="Twitter"></a>
+                <a href="#" style="background-color: #0077B5;" aria-label="LinkedIn"></a>
+                <a href="#" style="background-color: #E4405F;" aria-label="Instagram"></a>
+            </div>
+            <h4>SUBSCRIBE TO NEWSLETTER</h4>
+            <div class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your email">
+                <button class="newsletter-button">&gt;</button>
+            </div>
+        </div>
+    </footer>
+
+    <footer class="footer-bottom-container">
+        <div>ÃÂ© 2025 Alpha One Labs. All rights reserved.
+            Last updated: 06/12/2025 12:14nachm.</div>
+        <div class="bottom-links">
+            <a href="#">About Us</a>
+            <a href="#">Terms &amp; Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+        </div>
+    </footer>
+</body>
+
+</html>

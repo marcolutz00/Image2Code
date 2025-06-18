@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        .header {
+            background-color: #00A699;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .search-bar {
+            background-color: #fff;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            padding: 5px;
+        }
+
+        .search-bar input[type="text"] {
+            border: none;
+            padding: 5px;
+            font-size: 14px;
+            outline: none;
+        }
+
+        .search-bar button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+            padding: 5px;
+        }
+
+        .auth-buttons a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 10px;
+            font-size: 14px;
+        }
+
+        .auth-buttons .signup {
+            background-color: #F26419;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+            justify-content: center;
+            padding: 30px;
+        }
+
+        .form-container {
+            width: 600px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .form-container h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group input[type="password"] {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        .privacy-note {
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 13px;
+            color: #555;
+        }
+
+        .privacy-note input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .submit-button {
+            background-color: #F26419;
+            color: #fff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+
+        .submit-button:hover {
+            background-color: #d9530f;
+        }
+
+        .login-link {
+            text-align: center;
+            margin-top: 15px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .login-link a {
+            color: #00A699;
+            text-decoration: none;
+        }
+
+        .side-content {
+            width: 300px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .side-content img {
+            width: 150px;
+            height: 150px;
+            background-color: #ddd;
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background-color: #f9f9f9;
+            padding: 30px 20px;
+            font-size: 14px;
+            color: #555;
+        }
+
+        .footer-sections {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+        }
+
+        .footer-section {
+            width: 200px;
+            margin-bottom: 20px;
+        }
+
+        .footer-section h3 {
+            margin-bottom: 15px;
+            color: #333;
+            font-size: 16px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section a {
+            color: #555;
+            text-decoration: none;
+            display: block;
+        }
+
+        .footer-bottom {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+
+        .social-links a {
+            margin-left: 10px;
+            color: #999;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        .newsletter {
+            display: flex;
+            align-items: center;
+        }
+
+        .newsletter input[type="email"] {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            margin-right: 10px;
+            font-size: 14px;
+        }
+
+        .newsletter button {
+            background-color: #00A699;
+            color: #fff;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+
+        .copyright {
+            color: #999;
+            font-size: 12px;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 20px;
+            font-size: 12px;
+        }
+
+        .footer-links a {
+            color: #999;
+            text-decoration: none;
+        }
+        .form-container span {
+            color:red;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="display:none">Alpha One Labs</h1>
+    <div class="header">
+        <div class="header-left">
+            <div class="logo">Alpha One Labs</div>
+            <div class="nav-links">
+                <a href="#" style="color:#b3e5fc">LEARN</a>
+                <a href="#" style="color:#b3e5fc">COMMUNITY</a>
+                <a href="#" style="color:#b3e5fc">RESOURCES</a>
+                <a href="#" style="color:#b3e5fc">ABOUT</a>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="search-bar">
+                <input type="text" placeholder="What do you want to learn?">
+                <button type="submit" aria-label="Search"></button>
+            </div>
+            <div class="auth-buttons">
+                <a href="#" style="color:#b3e5fc">Login</a>
+                <a href="#" class="signup" style="color:#b3e5fc">Signup</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <div class="side-content">
+            <img src="src/placeholder.jpg" alt="Placeholder Image">
+            <p>Join our community of learners and teachers</p>
+        </div>
+        <div class="form-container">
+            <h2> Create Account</h2>
+            <form action="#" method="post">
+                <div class="form-group">
+                    <label for="first_name">First Name<span>*</span></label>
+                    <input type="text" id="first_name" name="first_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="last_name">Last Name<span>*</span></label>
+                    <input type="text" id="last_name" name="last_name" required>
+                </div>
+                <div class="form-group">
+                    <label for="username">Username<span>*</span></label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email<span>*</span></label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="referral_code">Referral Code</label>
+                    <input type="text" id="referral_code" name="referral_code">
+                    <small>Optional - Enter a referral code if you have one</small>
+                </div>
+                <div class="form-group">
+                    <label for="how_heard">How did you hear about us?</label>
+                    <textarea id="how_heard" name="how_heard" rows="3"></textarea>
+                    <small>Optional - Tell us how you found us. You can enter text or a link.</small>
+                </div>
+                <div class="privacy-note">
+                    <p>We value your privacy and encourage you to stay safe online. A private profile will only be visible to you and
+                        site administrators, while a public profile can be viewed by anyone.</p>
+                    <input type="radio" id="public_profile" name="profile_visibility" value="public">
+                    <label for="public_profile">Public</label>
+                    <input type="radio" id="private_profile" name="profile_visibility" value="private" checked>
+                    <label for="private_profile">Private</label>
+                </div>
+                <div class="form-group">
+                    <label for="password">Password<span>*</span></label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password<span>*</span></label>
+                    <input type="password" id="confirm_password" name="confirm_password" required>
+                </div>
+                <div class="form-group">
+                    <input type="checkbox" id="teach_courses" name="teach_courses">
+                    <label for="teach_courses">I want to teach courses</label>
+                </div>
+                <div class="form-group">
+                    <label for="captcha">Verification</label>
+                    <input type="text" id="captcha" name="captcha">
+                    <button type="button" aria-label="Refresh Captcha"></button>
+                </div>
+                <button type="submit" class="submit-button" style="color:#b3e5fc"> Create Account</button>
+                <div class="login-link">
+                    Already have an account? <a href="#">Sign in</a>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-sections">
+            <div class="footer-section">
+                <h3>LEARNING</h3>
+                <ul>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="#">Quizzes</a></li>
+                    <li><a href="#">Videos</a></li>
+                    <li><a href="#">Challenges</a></li>
+                    <li><a href="#">Study Groups</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>COMMUNITY</h3>
+                <ul>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>RESOURCES & INFO</h3>
+                <ul>
+                    <li><a href="#">GSOC'25</a></li>
+                    <li><a href="#">Status</a></li>
+                    <li><a href="#">Feedback</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>CONNECT WITH US</h3>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook" style="color:#777">Facebook</a>
+                    <a href="#" aria-label="Twitter" style="color:#777">Twitter</a>
+                    <a href="#" aria-label="Instagram" style="color:#777">Instagram</a>
+                    <a href="#" aria-label="LinkedIn" style="color:#777">LinkedIn</a>
+                    <a href="#" aria-label="YouTube" style="color:#777">YouTube</a>
+                </div>
+                <div class="newsletter">
+                    <input type="email" placeholder="Your email">
+                    <button type="submit" style="color:#fff; background-color:#00A699">Subscribe</button>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p class="copyright" style="color:#777">ÃÂ© 2025 Alpha One Labs. All rights reserved.</p>
+            <div class="footer-links">
+                <a href="#" style="color:#777">About Us</a>
+                <a href="#" style="color:#777">Terms & Conditions</a>
+                <a href="#" style="color:#777">Privacy Policy</a>
+                <a href="#" style="color:#777">Cookie Policy</a>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

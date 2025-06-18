@@ -1,0 +1,1079 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_4.1_4_3.G18",
+        "Principle1.Guideline1_4.1_4_3.G18.Fail",
+        "Principle1.Guideline1_4.1_4_3.G145",
+        "Principle1.Guideline1_4.1_4_3.G145.Fail",
+        "Principle1.Guideline1_4.1_4_6.G17",
+        "Principle1.Guideline1_4.1_4_6.G18"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+      ],
+      "impact": "serious",
+      "name": "Color Contrast; Text;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#5e5054",
+                  "bgColor": "#0c0c0c",
+                  "contrastRatio": 2.56,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div id=\"footer-bottom\">\n        <div class=\"container clearfix\">\n          <div id=\"footer-info\">@Copyright 2020</div>\n        </div>\n      </div>",
+                    "target": [
+                      "#footer-bottom"
+                    ]
+                  },
+                  {
+                    "html": "<footer id=\"main-footer\">\n      <div id=\"footer-bottom\">\n        <div class=\"container clearfix\">\n          <div id=\"footer-info\">@Copyright 2020</div>\n        </div>\n      </div>\n    </footer>",
+                    "target": [
+                      "#main-footer"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.56 (foreground color: #5e5054, background color: #0c0c0c, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div id=\"footer-info\">@Copyright 2020</div>",
+            "target": [
+              "#footer-info"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.56 (foreground color: #5e5054, background color: #0c0c0c, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-DIV",
+              "path": "1,HTML,1,BODY,7,FOOTER,0,DIV,0,DIV,0,DIV",
+              "selector": "footer#main-footer > div#footer-bottom > div.container > div#footer-info",
+              "boundingRect": {
+                "top": 1609,
+                "bottom": 1639,
+                "left": 56,
+                "right": 165,
+                "width": 109,
+                "height": 30
+              },
+              "snippet": "<div id=\"footer-info\">",
+              "nodeLabel": "@Copyright 2020",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.56 (foreground color: #5e5054, background color: #0c0c0c, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-1-DIV",
+                    "path": "1,HTML,1,BODY,7,FOOTER,0,DIV",
+                    "selector": "body.layout-list > footer#main-footer > div#footer-bottom",
+                    "boundingRect": {
+                      "top": 1594,
+                      "bottom": 1644,
+                      "left": 0,
+                      "right": 412,
+                      "width": 412,
+                      "height": 50
+                    },
+                    "snippet": "<div id=\"footer-bottom\">",
+                    "nodeLabel": "@Copyright 2020"
+                  }
+                },
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-FOOTER",
+                    "path": "1,HTML,1,BODY,7,FOOTER",
+                    "selector": "body.layout-list > footer#main-footer",
+                    "boundingRect": {
+                      "top": 1594,
+                      "bottom": 1644,
+                      "left": 0,
+                      "right": 412,
+                      "width": 412,
+                      "height": 50
+                    },
+                    "snippet": "<footer id=\"main-footer\">",
+                    "nodeLabel": "@Copyright 2020"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle3.Guideline3_1.3_1_1.H57.2",
+        "Principle3.Guideline3_1.3_1_1.H57.3.Lang",
+        "Principle3.Guideline3_1.3_1_1.H57.3.XmlLang",
+        "Principle3.Guideline3_1.3_1_2.H58.1.Lang",
+        "Principle3.Guideline3_1.3_1_2.H58.1.XmlLang"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+        "https://dequeuniversity.com/rules/axe/4.10/html-lang-valid",
+        "https://dequeuniversity.com/rules/axe/4.10/html-xml-lang-mismatch",
+        "https://dequeuniversity.com/rules/axe/4.10/valid-lang"
+      ],
+      "impact": "serious",
+      "name": "Language; Document Lang; Missing & Invalid",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+          "source": "axe-core",
+          "title": "<html> element must have a lang attribute",
+          "description": "Ensure every HTML document has a lang attribute",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-lang",
+                "data": {
+                  "messageKey": "noLang"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "The <html> element does not have a lang attribute"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<html class=\"ng-scope\" ng-app=\"app\">",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute"
+          }
+        },
+        {
+          "id": "Principle3.Guideline3_1.3_1_1.H57.2",
+          "source": "pa11y",
+          "title": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
+          "description": "<html class=\"ng-scope\" ng-app=\"app\"><head>\n    <meta charset=\"utf-8...</html>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
+            "type": "error",
+            "typeCode": 1,
+            "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
+            "context": "<html class=\"ng-scope\" ng-app=\"app\"><head>\n    <meta charset=\"utf-8...</html>",
+            "selector": "html",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+          "source": "lighthouse",
+          "title": "`<html>` element does not have a `[lang]` attribute",
+          "description": "If a page doesn't specify a `lang` attribute, a screen reader assumes that the page is in the default language that the user chose when setting up the screen reader. If the page isn't actually in the default language, then the screen reader might not announce the page's text correctly. [Learn more about the `lang` attribute](https://dequeuniversity.com/rules/axe/4.10/html-has-lang).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-3-HTML",
+              "path": "1,HTML",
+              "selector": "html.ng-scope",
+              "boundingRect": {
+                "top": 0,
+                "bottom": 1644,
+                "left": 0,
+                "right": 412,
+                "width": 412,
+                "height": 1644
+              },
+              "snippet": "<html class=\"ng-scope\" ng-app=\"app\">",
+              "nodeLabel": "html.ng-scope",
+              "explanation": "Fix any of the following:\n  The <html> element does not have a lang attribute"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+        "https://dequeuniversity.com/rules/axe/4.10/region",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
+      ],
+      "impact": "moderate",
+      "name": "Landmark & Region; Missing & Unique Landmarks;",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+          "source": "axe-core",
+          "title": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+          "description": "Ensure landmarks are unique",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "landmark-is-unique",
+                "data": {
+                  "role": "navigation",
+                  "accessibleText": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<nav class=\"main-navigation\" id=\"main-navigation\">",
+                    "target": [
+                      "#main-navigation"
+                    ]
+                  }
+                ],
+                "impact": "moderate",
+                "message": "The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<nav class=\"nav-main\">",
+            "target": [
+              ".nav-main"
+            ],
+            "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"contact\">",
+            "target": [
+              ".contact"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_1.1_1_1.H30.2",
+        "Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId",
+        "Principle4.Guideline4_1.4_1_2.H91.A.NoContent"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/link-name"
+      ],
+      "impact": "serious",
+      "name": "Links; Missing descriptive content of <a>;",
+      "amount_nodes_failed": 5,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "axe-core",
+          "title": "Links must have discernible text",
+          "description": "Ensure links have discernible text",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element does not have text that is visible to screen readers"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
+              }
+            ],
+            "all": [],
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is in tab order and does not have accessible text"
+              }
+            ],
+            "impact": "serious",
+            "html": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src/placeholder.jpg\" style=\"max-height: 3rem\">\n        </a>",
+            "target": [
+              "p:nth-child(3) > a[target=\"_blank\"]:nth-child(1)"
+            ],
+            "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "axe-core",
+          "title": "Links must have discernible text",
+          "description": "Ensure links have discernible text",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element does not have text that is visible to screen readers"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
+              }
+            ],
+            "all": [],
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is in tab order and does not have accessible text"
+              }
+            ],
+            "impact": "serious",
+            "html": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src/placeholder.jpg\" style=\"max-height: 3rem\">\n        </a>",
+            "target": [
+              "p:nth-child(3) > a[target=\"_blank\"]:nth-child(2)"
+            ],
+            "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "axe-core",
+          "title": "Links must have discernible text",
+          "description": "Ensure links have discernible text",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element does not have text that is visible to screen readers"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
+              }
+            ],
+            "all": [],
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is in tab order and does not have accessible text"
+              }
+            ],
+            "impact": "serious",
+            "html": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src/placeholder.jpg\" style=\"max-height: 3rem\">\n        </a>",
+            "target": [
+              "a[target=\"_blank\"]:nth-child(3)"
+            ],
+            "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "axe-core",
+          "title": "Links must have discernible text",
+          "description": "Ensure links have discernible text",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element does not have text that is visible to screen readers"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
+              }
+            ],
+            "all": [],
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is in tab order and does not have accessible text"
+              }
+            ],
+            "impact": "serious",
+            "html": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src/placeholder.jpg\" style=\"max-height: 3rem\">\n        </a>",
+            "target": [
+              "p:nth-child(4) > a[target=\"_blank\"]:nth-child(1)"
+            ],
+            "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "axe-core",
+          "title": "Links must have discernible text",
+          "description": "Ensure links have discernible text",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element does not have text that is visible to screen readers"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
+              }
+            ],
+            "all": [],
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is in tab order and does not have accessible text"
+              }
+            ],
+            "impact": "serious",
+            "html": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src/placeholder.jpg\" style=\"max-height: 3rem\">\n        </a>",
+            "target": [
+              "p:nth-child(4) > a[target=\"_blank\"]:nth-child(2)"
+            ],
+            "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_1.1_1_1.H30.2",
+          "source": "pa11y",
+          "title": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+          "description": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src...</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H30.2",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+            "context": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src...</a>",
+            "selector": "html > body > div:nth-child(4) > p:nth-child(3) > a:nth-child(1)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_1.1_1_1.H30.2",
+          "source": "pa11y",
+          "title": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+          "description": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src...</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H30.2",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+            "context": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src...</a>",
+            "selector": "html > body > div:nth-child(4) > p:nth-child(3) > a:nth-child(2)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_1.1_1_1.H30.2",
+          "source": "pa11y",
+          "title": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+          "description": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src...</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H30.2",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+            "context": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src...</a>",
+            "selector": "html > body > div:nth-child(4) > p:nth-child(3) > a:nth-child(3)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_1.1_1_1.H30.2",
+          "source": "pa11y",
+          "title": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+          "description": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src...</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H30.2",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+            "context": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src...</a>",
+            "selector": "html > body > div:nth-child(4) > p:nth-child(4) > a:nth-child(1)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_1.1_1_1.H30.2",
+          "source": "pa11y",
+          "title": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+          "description": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src...</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H30.2",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+            "context": "<a href=\"#\" target=\"_blank\">\n          <img alt=\"\" src=\"src...</a>",
+            "selector": "html > body > div:nth-child(4) > p:nth-child(4) > a:nth-child(2)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "lighthouse",
+          "title": "Links do not have a discernible name",
+          "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-A",
+              "path": "1,HTML,1,BODY,5,DIV,4,P,0,A",
+              "selector": "body.layout-list > div.contact > p > a",
+              "boundingRect": {
+                "top": 1500,
+                "bottom": 1516,
+                "left": 50,
+                "right": 84,
+                "width": 34,
+                "height": 16
+              },
+              "snippet": "<a href=\"#\" target=\"_blank\">",
+              "nodeLabel": " ",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "lighthouse",
+          "title": "Links do not have a discernible name",
+          "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-5-A",
+              "path": "1,HTML,1,BODY,5,DIV,4,P,1,A",
+              "selector": "body.layout-list > div.contact > p > a",
+              "boundingRect": {
+                "top": 1500,
+                "bottom": 1516,
+                "left": 92,
+                "right": 126,
+                "width": 34,
+                "height": 16
+              },
+              "snippet": "<a href=\"#\" target=\"_blank\">",
+              "nodeLabel": " ",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "lighthouse",
+          "title": "Links do not have a discernible name",
+          "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-6-A",
+              "path": "1,HTML,1,BODY,5,DIV,4,P,2,A",
+              "selector": "body.layout-list > div.contact > p > a",
+              "boundingRect": {
+                "top": 1500,
+                "bottom": 1516,
+                "left": 134,
+                "right": 165,
+                "width": 30,
+                "height": 16
+              },
+              "snippet": "<a href=\"#\" target=\"_blank\">",
+              "nodeLabel": "body.layout-list > div.contact > p > a",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "lighthouse",
+          "title": "Links do not have a discernible name",
+          "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-7-A",
+              "path": "1,HTML,1,BODY,5,DIV,5,P,0,A",
+              "selector": "body.layout-list > div.contact > p > a",
+              "boundingRect": {
+                "top": 1540,
+                "bottom": 1556,
+                "left": 50,
+                "right": 84,
+                "width": 34,
+                "height": 16
+              },
+              "snippet": "<a href=\"#\" target=\"_blank\">",
+              "nodeLabel": " ",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "lighthouse",
+          "title": "Links do not have a discernible name",
+          "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-8-A",
+              "path": "1,HTML,1,BODY,5,DIV,5,P,1,A",
+              "selector": "body.layout-list > div.contact > p > a",
+              "boundingRect": {
+                "top": 1540,
+                "bottom": 1556,
+                "left": 92,
+                "right": 122,
+                "width": 30,
+                "height": 16
+              },
+              "snippet": "<a href=\"#\" target=\"_blank\">",
+              "nodeLabel": "body.layout-list > div.contact > p > a",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H48"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/list",
+        "https://dequeuniversity.com/rules/axe/4.10/listitem"
+      ],
+      "impact": "serious",
+      "name": "List; Incorrect Structure;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/list",
+          "source": "axe-core",
+          "title": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "description": "Ensure that lists are structured correctly",
+          "impact": "serious",
+          "nodes": {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "only-listitems",
+                "data": {
+                  "values": "div"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"newsletter ng-scope\" id=\"mc_embed_signup\" newsletter=\"\">",
+                    "target": [
+                      "#mc_embed_signup"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "List element has direct children that are not allowed: div"
+              }
+            ],
+            "impact": "serious",
+            "html": "<ul>",
+            "target": [
+              "ul:nth-child(2)"
+            ],
+            "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed: div"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/list",
+          "source": "lighthouse",
+          "title": "Lists do not contain only `<li>` elements and script supporting elements (`<script>` and `<template>`).",
+          "description": "Screen readers have a specific way of announcing lists. Ensuring proper list structure aids screen reader output. [Learn more about proper list structure](https://dequeuniversity.com/rules/axe/4.10/list).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-9-UL",
+              "path": "1,HTML,1,BODY,3,NAV,1,DIV,1,UL",
+              "selector": "body.layout-list > nav.nav-main > div.menu > ul",
+              "boundingRect": {
+                "top": 110,
+                "bottom": 185,
+                "left": 175,
+                "right": 300,
+                "width": 125,
+                "height": 75
+              },
+              "snippet": "<ul>",
+              "nodeLabel": "X\nTHREADS\nINSTA",
+              "explanation": "Fix all of the following:\n  List element has direct children that are not allowed: div"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-10-DIV",
+                    "path": "1,HTML,1,BODY,3,NAV,1,DIV,1,UL,1,DIV",
+                    "selector": "nav.nav-main > div.menu > ul > div#mc_embed_signup",
+                    "boundingRect": {
+                      "top": 110,
+                      "bottom": 129,
+                      "left": 175,
+                      "right": 295,
+                      "width": 120,
+                      "height": 19
+                    },
+                    "snippet": "<div class=\"newsletter ng-scope\" id=\"mc_embed_signup\" newsletter=\"\">",
+                    "nodeLabel": "nav.nav-main > div.menu > ul > div#mc_embed_signup"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H42.2",
+        "Principle1.Guideline1_3.1_3_1.G141"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
+        "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+        "https://dequeuniversity.com/rules/axe/4.10/empty-heading"
+      ],
+      "impact": "moderate",
+      "name": "Headings; Wrong Order, Empty & Missing Headings;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
+          "source": "axe-core",
+          "title": "Page should contain a level-one heading",
+          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+          "impact": "moderate",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "page-has-heading-one",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Page must have a level-one heading"
+              }
+            ],
+            "none": [],
+            "impact": "moderate",
+            "html": "<html class=\"ng-scope\" ng-app=\"app\">",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix all of the following:\n  Page must have a level-one heading"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputSearch.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.Textarea.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputCheckbox.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
+        "Principle1.Guideline1_3.1_3_1.F68",
+        "Principle4.Guideline4_1.4_1_2.H91.Fieldset.Name"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/label"
+      ],
+      "impact": "critical",
+      "name": "Label; Multiple Elements; Content missing",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
+          "source": "pa11y",
+          "title": "This emailinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
+          "description": "<input class=\"required email\" id=\"mce-EMAIL\" name=\"EMAIL\" ng-class=\"{ 'active': active }\" ng-focus=\"active = true\" placeholder=\"E-Mail List\" type=\"email\" value=\"\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This emailinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
+            "context": "<input class=\"required email\" id=\"mce-EMAIL\" name=\"EMAIL\" ng-class=\"{ 'active': active }\" ng-focus=\"active = true\" placeholder=\"E-Mail List\" type=\"email\" value=\"\">",
+            "selector": "#mce-EMAIL",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-18-A",
+              "path": "1,HTML,1,BODY,3,NAV,1,DIV,1,UL,5,LI,0,A",
+              "selector": "div.menu > ul > li > a",
+              "boundingRect": {
+                "top": 166,
+                "bottom": 185,
+                "left": 175,
+                "right": 211,
+                "width": 36,
+                "height": 19
+              },
+              "snippet": "<a href=\"#\" target=\"_blank\">",
+              "nodeLabel": "INSTA",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (35.9px by 18.8px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18.8px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-17-A",
+                    "path": "1,HTML,1,BODY,3,NAV,1,DIV,1,UL,4,LI,0,A",
+                    "selector": "div.menu > ul > li > a",
+                    "boundingRect": {
+                      "top": 148,
+                      "bottom": 166,
+                      "left": 175,
+                      "right": 235,
+                      "width": 60,
+                      "height": 19
+                    },
+                    "snippet": "<a href=\"#\" target=\"_blank\">",
+                    "nodeLabel": "THREADS"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

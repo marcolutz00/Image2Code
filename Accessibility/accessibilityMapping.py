@@ -15,8 +15,12 @@ CSANDAXEMAPPER_JSON_PATH = os.path.join(DIR_PATH, 'mappingCsAndAxeCore.json')
     based on both the id and the url.
 '''
 
-# update amount to get the maximum of pa11y, axe-core and lighthouse
-def calculate_max_issue_counts(wcag_issues_dict):
+
+def calculate_max_issue_counts(wcag_issues_dict: dict):
+    '''
+        Updates the amount of issues in the wcag_issues_dict.
+        New amount = maximum of pa11y, axe-core and lighthouse
+    '''
     wcag_issues_dict_clone = wcag_issues_dict.copy()
 
     for key, issues_list in wcag_issues_dict.items():
@@ -43,8 +47,11 @@ def calculate_max_issue_counts(wcag_issues_dict):
     return wcag_issues_dict_clone
 
 
-# Convert it to json readable format
+
 def create_accessibility_report(wcag_issues_dict):
+    '''
+        Converts the wcag_issues_dict to a json readable format.
+    '''
     issues = []
 
     total_nodes_failed = 0
@@ -60,6 +67,7 @@ def create_accessibility_report(wcag_issues_dict):
         total_nodes_failed += amount
         issues.append(item)
 
+    # Manual results have been inspected, however due to the amount of manual inspections and the timeline not possible in this thesis
     manual_results = {
         "checks": {
             "1.4.4": "tbd",
@@ -80,8 +88,13 @@ def create_accessibility_report(wcag_issues_dict):
     return output, total_nodes_failed
 
 
-# Convert the overview of issues to json-readable format
+
+
 def create_overview_report(lighthouse_accessibility_score, total_nodes_checked, total_nodes_failed):
+    '''
+        Overview Report for the accessibility issues.
+        Useful in order to store as json.
+    '''
 
     automatic_results = {
         "lighthouse_accessibility_score": lighthouse_accessibility_score,
@@ -110,7 +123,11 @@ def create_overview_report(lighthouse_accessibility_score, total_nodes_checked, 
 
 
 
-def map_htmlcsniffer_and_axecore(id, htmlcsniffer=True):
+def map_htmlcsniffer_and_axecore(id: str, htmlcsniffer: bool=True):
+    '''
+        Maps the found ids from the tools to a common format.
+        -> no violations is counted twice
+    '''
     with open(CSANDAXEMAPPER_JSON_PATH, "r") as f:
         cs_and_axe_mapping = json.load(f)
 
@@ -268,7 +285,7 @@ def process_lighthouse_issues(issues, wcag_issues_dict):
             for key, issues_list in list(wcag_issues_dict.items()):
                 existing_wcag_id, existing_url, existing_impact, existing_amount, existing_name = key
 
-                assert issue_data.get("details") is not None
+                # assert issue_data.get("details") is not None
 
                 if axe_url_tuple == existing_url:
                     for issue_detail in issue_data.get("details", {}).get("items", []):

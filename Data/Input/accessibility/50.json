@@ -1,13 +1,13 @@
 {
   "manual": {
     "checks": {
-      "1.4.4": "tbd",
-      "1.4.10": "tbd",
-      "1.4.12": "tbd",
-      "2.1.1+2.1.2": "tbd",
-      "2.4.3": "tbd",
-      "2.4.6": "tbd",
-      "2.4.7": "tbd"
+      "1.4.4": "pass",
+      "1.4.10": "pass",
+      "1.4.12": "pass",
+      "2.1.1+2.1.2": "pass",
+      "2.4.3": "pass",
+      "2.4.6": "pass",
+      "2.4.7": "pass"
     }
   },
   "automatic": [
@@ -22,7 +22,7 @@
       ],
       "impact": "critical",
       "name": "Label; Button; Missing Label",
-      "amount_nodes_failed": 1,
+      "amount_nodes_failed": 2,
       "issues": [
         {
           "id": "https://dequeuniversity.com/rules/axe/4.10/button-name",
@@ -87,11 +87,98 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<button class=\"UnsegmentedControlWithImageOnly__Button-sc-1ajinsl-0 flTUlF\">\n                    <img class=\"UnsegmentedControlWithImageOnly__Image-sc-1ajinsl-1 kzTiRU\" height=\"128\" src=\"src/placeholder.jpg\" width=\"128\">\n                  </button>",
+            "html": "<button class=\"HamburgerToggle__StyledHamburger-sc-1h2ha32-0 clBLvs\">\n                  <span></span><span></span><span></span>\n                </button>",
+            "target": [
+              ".HamburgerToggle__StyledHamburger-sc-1h2ha32-0"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/button-name",
+          "source": "axe-core",
+          "title": "Buttons must have discernible text",
+          "description": "Ensure buttons have discernible text",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "button-has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have inner text that is visible to screen readers"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "implicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an implicit (wrapped) <label>"
+              },
+              {
+                "id": "explicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an explicit <label>"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<button class=\"UnsegmentedControlWithImageOnly__Button-sc-1ajinsl-0 flTUlF\">",
             "target": [
               ".UnsegmentedControlWithImageOnly__Button-sc-1ajinsl-0"
             ],
             "failureSummary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.Button.Name",
+          "source": "pa11y",
+          "title": "This button element does not have a name available to an accessibility API. Valid names are: title undefined, element content, aria-label undefined, aria-labelledby undefined.",
+          "description": "<button class=\"HamburgerToggle__StyledHamburger-sc-1h2ha32-0 clBLvs\">\n                  <span></span...</button>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Button.Name",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This button element does not have a name available to an accessibility API. Valid names are: title undefined, element content, aria-label undefined, aria-labelledby undefined.",
+            "context": "<button class=\"HamburgerToggle__StyledHamburger-sc-1h2ha32-0 clBLvs\">\n                  <span></span...</button>",
+            "selector": "#header-small > nav > div:nth-child(2) > div > button",
+            "runner": "htmlcs",
+            "runnerExtras": {}
           }
         },
         {
@@ -106,7 +193,7 @@
             "typeCode": 1,
             "message": "This button element does not have a name available to an accessibility API. Valid names are: title undefined, element content, aria-label undefined, aria-labelledby undefined.",
             "context": "<button class=\"UnsegmentedControlWithImageOnly__Button-sc-1ajinsl-0 flTUlF\">\n                    <img class...</button>",
-            "selector": "#__next > div > div > div:nth-child(1) > div:nth-child(1) > div > div:nth-child(2) > button",
+            "selector": "#__next > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(1) > div > div:nth-child(2) > button",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -121,15 +208,41 @@
             "node": {
               "type": "node",
               "lhId": "1-0-BUTTON",
-              "path": "1,HTML,1,BODY,1,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,1,DIV,0,BUTTON",
+              "path": "1,HTML,1,BODY,0,DIV,0,HEADER,0,DIV,0,NAV,1,DIV,0,DIV,0,BUTTON",
+              "selector": "nav.navigation__Container8-sc-1xys7e-33 > div.navigation__NavPrimary4-sc-1xys7e-34 > div > button.HamburgerToggle__StyledHamburger-sc-1h2ha32-0",
+              "boundingRect": {
+                "top": 15,
+                "bottom": 32,
+                "left": 942,
+                "right": 962,
+                "width": 20,
+                "height": 18
+              },
+              "snippet": "<button class=\"HamburgerToggle__StyledHamburger-sc-1h2ha32-0 clBLvs\">",
+              "nodeLabel": "nav.navigation__Container8-sc-1xys7e-33 > div.navigation__NavPrimary4-sc-1xys7e-34 > div > button.HamburgerToggle__StyledHamburger-sc-1h2ha32-0",
+              "explanation": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/button-name",
+          "source": "lighthouse",
+          "title": "Buttons do not have an accessible name",
+          "description": "When a button doesn't have an accessible name, screen readers announce it as \"button\", making it unusable for users who rely on screen readers. [Learn how to make buttons more accessible](https://dequeuniversity.com/rules/axe/4.10/button-name).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-BUTTON",
+              "path": "1,HTML,1,BODY,0,DIV,1,DIV,0,DIV,0,DIV,0,DIV,0,DIV,1,DIV,0,BUTTON",
               "selector": "div.ProductDetailsPage__LeftContent-sc-1dd3yqh-4 > div.ThumbnailProductImageCarousel__Container-sc-cw3mbw-0 > div.ThumbnailProductImageCarousel__ThumbnailsGrid-sc-cw3mbw-2 > button.UnsegmentedControlWithImageOnly__Button-sc-1ajinsl-0",
               "boundingRect": {
-                "top": 528,
-                "bottom": 600,
+                "top": 660,
+                "bottom": 773,
                 "left": 40,
-                "right": 112,
-                "width": 72,
-                "height": 72
+                "right": 153,
+                "width": 113,
+                "height": 113
               },
               "snippet": "<button class=\"UnsegmentedControlWithImageOnly__Button-sc-1ajinsl-0 flTUlF\">",
               "nodeLabel": "div.ProductDetailsPage__LeftContent-sc-1dd3yqh-4 > div.ThumbnailProductImageCarousel__Container-sc-cw3mbw-0 > div.ThumbnailProductImageCarousel__ThumbnailsGrid-sc-cw3mbw-2 > button.UnsegmentedControlWithImageOnly__Button-sc-1ajinsl-0",
@@ -154,7 +267,7 @@
       ],
       "impact": "serious",
       "name": "Color Contrast; Text;",
-      "amount_nodes_failed": 4,
+      "amount_nodes_failed": 1,
       "issues": [
         {
           "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
@@ -167,9 +280,9 @@
               {
                 "id": "color-contrast",
                 "data": {
-                  "fgColor": "#8387a0",
+                  "fgColor": "#8b8c90",
                   "bgColor": "#ffffff",
-                  "contrastRatio": 3.53,
+                  "contrastRatio": 3.35,
                   "fontSize": "12.8pt (17px)",
                   "fontWeight": "normal",
                   "messageKey": null,
@@ -178,170 +291,17 @@
                 },
                 "relatedNodes": [],
                 "impact": "serious",
-                "message": "Element has insufficient color contrast of 3.53 (foreground color: #8387a0, background color: #ffffff, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
+                "message": "Element has insufficient color contrast of 3.35 (foreground color: #8b8c90, background color: #ffffff, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
               }
             ],
             "all": [],
             "none": [],
             "impact": "serious",
-            "html": "<h2 class=\"PrimaryInfoPDP__Source-sc-15o7u5t-1 jEjYFI\">\n                  Global Views Co.\n                </h2>",
+            "html": "<h2 class=\"PrimaryInfoPDP__Source-sc-15o7u5t-1 jEjYFI\">\n                  Global Views\n                </h2>",
             "target": [
               ".PrimaryInfoPDP__Source-sc-15o7u5t-1"
             ],
-            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.53 (foreground color: #8387a0, background color: #ffffff, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
-          "source": "axe-core",
-          "title": "Elements must meet minimum color contrast ratio thresholds",
-          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
-          "impact": "serious",
-          "nodes": {
-            "any": [
-              {
-                "id": "color-contrast",
-                "data": {
-                  "fgColor": "#ffffff",
-                  "bgColor": "#a76398",
-                  "contrastRatio": 4.3,
-                  "fontSize": "12.8pt (17px)",
-                  "fontWeight": "normal",
-                  "messageKey": null,
-                  "expectedContrastRatio": "4.5:1",
-                  "shadowColor": null
-                },
-                "relatedNodes": [
-                  {
-                    "html": "<button class=\"PrimaryButton__Button-sc-9p4jl9-0 nJNLD ProductDetailsPage__SignUpToContinueButtonMobile-sc-1dd3yqh-7 heTcHm\">\n                Create account to proceed\n              </button>",
-                    "target": [
-                      ".ProductDetailsPage__SignUpToContinueButtonMobile-sc-1dd3yqh-7"
-                    ]
-                  }
-                ],
-                "impact": "serious",
-                "message": "Element has insufficient color contrast of 4.3 (foreground color: #ffffff, background color: #a76398, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "serious",
-            "html": "<button class=\"PrimaryButton__Button-sc-9p4jl9-0 nJNLD ProductDetailsPage__SignUpToContinueButtonMobile-sc-1dd3yqh-7 heTcHm\">\n                Create account to proceed\n              </button>",
-            "target": [
-              ".ProductDetailsPage__SignUpToContinueButtonMobile-sc-1dd3yqh-7"
-            ],
-            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.3 (foreground color: #ffffff, background color: #a76398, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
-          "source": "axe-core",
-          "title": "Elements must meet minimum color contrast ratio thresholds",
-          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
-          "impact": "serious",
-          "nodes": {
-            "any": [
-              {
-                "id": "color-contrast",
-                "data": {
-                  "fgColor": "#ffffff",
-                  "bgColor": "#a76398",
-                  "contrastRatio": 4.3,
-                  "fontSize": "12.8pt (17px)",
-                  "fontWeight": "normal",
-                  "messageKey": null,
-                  "expectedContrastRatio": "4.5:1",
-                  "shadowColor": null
-                },
-                "relatedNodes": [
-                  {
-                    "html": "<button class=\"PrimaryButton__Button-sc-9p4jl9-0 nJNLD ProductDetailsPage__SignUpToContinueButtonDesktop-sc-1dd3yqh-6 kSTCha\">\n                Create account to proceed\n              </button>",
-                    "target": [
-                      ".ProductDetailsPage__SignUpToContinueButtonDesktop-sc-1dd3yqh-6"
-                    ]
-                  }
-                ],
-                "impact": "serious",
-                "message": "Element has insufficient color contrast of 4.3 (foreground color: #ffffff, background color: #a76398, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "serious",
-            "html": "<button class=\"PrimaryButton__Button-sc-9p4jl9-0 nJNLD ProductDetailsPage__SignUpToContinueButtonDesktop-sc-1dd3yqh-6 kSTCha\">\n                Create account to proceed\n              </button>",
-            "target": [
-              ".ProductDetailsPage__SignUpToContinueButtonDesktop-sc-1dd3yqh-6"
-            ],
-            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.3 (foreground color: #ffffff, background color: #a76398, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
-          "source": "axe-core",
-          "title": "Elements must meet minimum color contrast ratio thresholds",
-          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
-          "impact": "serious",
-          "nodes": {
-            "any": [
-              {
-                "id": "color-contrast",
-                "data": {
-                  "fgColor": "#bbb6b8",
-                  "bgColor": "#ffffff",
-                  "contrastRatio": 2,
-                  "fontSize": "12.0pt (16px)",
-                  "fontWeight": "normal",
-                  "messageKey": null,
-                  "expectedContrastRatio": "4.5:1",
-                  "shadowColor": null
-                },
-                "relatedNodes": [],
-                "impact": "serious",
-                "message": "Element has insufficient color contrast of 2 (foreground color: #bbb6b8, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "serious",
-            "html": "<footer>\n      © Official Data Group / Alioth LLC. <a href=\"#\">Contact</a> ·\n      <a href=\"#\">Privacy agreement</a>\n    </footer>",
-            "target": [
-              "footer"
-            ],
-            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2 (foreground color: #bbb6b8, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
-          }
-        },
-        {
-          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
-          "source": "pa11y",
-          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 4.3:1. Recommendation:  change background to #636363.",
-          "description": "<button class=\"PrimaryButton__Button-sc-9p4jl9-0 nJNLD ProductDetailsPage__SignUpToContinueButtonMobile-sc-1dd3yqh-7 heTcHm\">\n                Create account...</button>",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
-            "type": "error",
-            "typeCode": 1,
-            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 4.3:1. Recommendation:  change background to #636363.",
-            "context": "<button class=\"PrimaryButton__Button-sc-9p4jl9-0 nJNLD ProductDetailsPage__SignUpToContinueButtonMobile-sc-1dd3yqh-7 heTcHm\">\n                Create account...</button>",
-            "selector": "#__next > div > div > div:nth-child(1) > div:nth-child(2) > button:nth-child(3)",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
-          "source": "pa11y",
-          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 4.3:1. Recommendation:  change background to #636363.",
-          "description": "<button class=\"PrimaryButton__Button-sc-9p4jl9-0 nJNLD ProductDetailsPage__SignUpToContinueButtonDesktop-sc-1dd3yqh-6 kSTCha\">\n                Create account...</button>",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
-            "type": "error",
-            "typeCode": 1,
-            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 4.3:1. Recommendation:  change background to #636363.",
-            "context": "<button class=\"PrimaryButton__Button-sc-9p4jl9-0 nJNLD ProductDetailsPage__SignUpToContinueButtonDesktop-sc-1dd3yqh-6 kSTCha\">\n                Create account...</button>",
-            "selector": "#__next > div > div > div:nth-child(1) > div:nth-child(2) > button:nth-child(5)",
-            "runner": "htmlcs",
-            "runnerExtras": {}
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #8b8c90, background color: #ffffff, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
           }
         },
         {
@@ -353,98 +313,20 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-1-H2",
-              "path": "1,HTML,1,BODY,1,DIV,0,DIV,0,DIV,0,DIV,1,DIV,1,DIV,0,H2",
+              "lhId": "1-2-H2",
+              "path": "1,HTML,1,BODY,0,DIV,1,DIV,0,DIV,0,DIV,1,DIV,1,DIV,0,H2",
               "selector": "div.ProductDetailsPage__PDPGrid-sc-1dd3yqh-1 > div.ProductDetailsPage__MainContent-sc-1dd3yqh-2 > div.PrimaryInfoPDP__Container-sc-15o7u5t-0 > h2.PrimaryInfoPDP__Source-sc-15o7u5t-1",
               "boundingRect": {
-                "top": 382,
-                "bottom": 406,
-                "left": 456,
-                "right": 671,
-                "width": 214,
+                "top": 357,
+                "bottom": 381,
+                "left": 663,
+                "right": 924,
+                "width": 261,
                 "height": 24
               },
               "snippet": "<h2 class=\"PrimaryInfoPDP__Source-sc-15o7u5t-1 jEjYFI\">",
-              "nodeLabel": "Global Views Co.",
-              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.53 (foreground color: #8387a0, background color: #ffffff, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
-          "source": "lighthouse",
-          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
-          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
-          "score": 0,
-          "details": {
-            "node": {
-              "type": "node",
-              "lhId": "1-2-BUTTON",
-              "path": "1,HTML,1,BODY,1,DIV,0,DIV,0,DIV,0,DIV,1,DIV,2,BUTTON",
-              "selector": "div.ProductDetailsPage__PDPWrapper-sc-1dd3yqh-0 > div.ProductDetailsPage__PDPGrid-sc-1dd3yqh-1 > div.ProductDetailsPage__MainContent-sc-1dd3yqh-2 > button.PrimaryButton__Button-sc-9p4jl9-0",
-              "boundingRect": {
-                "top": 492,
-                "bottom": 540,
-                "left": 456,
-                "right": 671,
-                "width": 214,
-                "height": 48
-              },
-              "snippet": "<button class=\"PrimaryButton__Button-sc-9p4jl9-0 nJNLD ProductDetailsPage__SignUpToContin…\">",
-              "nodeLabel": "Create account to proceed",
-              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 4.3 (foreground color: #ffffff, background color: #a76398, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
-          "source": "lighthouse",
-          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
-          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
-          "score": 0,
-          "details": {
-            "node": {
-              "type": "node",
-              "lhId": "1-3-BUTTON",
-              "path": "1,HTML,1,BODY,1,DIV,0,DIV,0,DIV,0,DIV,1,DIV,4,BUTTON",
-              "selector": "div.ProductDetailsPage__PDPWrapper-sc-1dd3yqh-0 > div.ProductDetailsPage__PDPGrid-sc-1dd3yqh-1 > div.ProductDetailsPage__MainContent-sc-1dd3yqh-2 > button.PrimaryButton__Button-sc-9p4jl9-0",
-              "boundingRect": {
-                "top": 646,
-                "bottom": 694,
-                "left": 440,
-                "right": 687,
-                "width": 246,
-                "height": 48
-              },
-              "snippet": "<button class=\"PrimaryButton__Button-sc-9p4jl9-0 nJNLD ProductDetailsPage__SignUpToContin…\">",
-              "nodeLabel": "Create account to proceed",
-              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 4.3 (foreground color: #ffffff, background color: #a76398, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
-            }
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
-          "source": "lighthouse",
-          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
-          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
-          "score": 0,
-          "details": {
-            "node": {
-              "type": "node",
-              "lhId": "1-4-FOOTER",
-              "path": "1,HTML,1,BODY,2,FOOTER",
-              "selector": "body > footer",
-              "boundingRect": {
-                "top": 1156,
-                "bottom": 1175,
-                "left": 0,
-                "right": 980,
-                "width": 980,
-                "height": 18
-              },
-              "snippet": "<footer>",
-              "nodeLabel": "© Official Data Group / Alioth LLC. Contact · Privacy agreement",
-              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2 (foreground color: #bbb6b8, background color: #ffffff, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              "nodeLabel": "Global Views",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 3.35 (foreground color: #8b8c90, background color: #ffffff, font size: 12.8pt (17px), font weight: normal). Expected contrast ratio of 4.5:1"
             }
           }
         }
@@ -522,16 +404,16 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-5-HTML",
+              "lhId": "1-3-HTML",
               "path": "1,HTML",
               "selector": "html",
               "boundingRect": {
                 "top": 0,
-                "bottom": 1183,
+                "bottom": 1466,
                 "left": 0,
                 "right": 980,
                 "width": 980,
-                "height": 1183
+                "height": 1466
               },
               "snippet": "<html>",
               "nodeLabel": "html",
@@ -553,7 +435,7 @@
       ],
       "impact": "critical",
       "name": "Alt-Text; Images;",
-      "amount_nodes_failed": 4,
+      "amount_nodes_failed": 3,
       "issues": [
         {
           "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
@@ -604,63 +486,7 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<img height=\"72\" id=\"logo\" src=\"src/placeholder.jpg\" width=\"260\">",
-            "target": [
-              "#logo"
-            ],
-            "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
-          "source": "axe-core",
-          "title": "Images must have alternative text",
-          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
-          "impact": "critical",
-          "nodes": {
-            "any": [
-              {
-                "id": "has-alt",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element does not have an alt attribute"
-              },
-              {
-                "id": "aria-label",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "aria-label attribute does not exist or is empty"
-              },
-              {
-                "id": "aria-labelledby",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
-              },
-              {
-                "id": "non-empty-title",
-                "data": {
-                  "messageKey": "noAttr"
-                },
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element has no title attribute"
-              },
-              {
-                "id": "presentational-role",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "critical",
-            "html": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"src/placeholder.jpg\">",
+            "html": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"https://cache.modsy.com/imgresize/pimg/329844876bbf8aa3080aaceb89df3029b2545540b2c0310ed5e7bf476ea8951d.jpg?auto=compress%2Cformat&amp;fit=clip\">",
             "target": [
               ".ThumbnailProductImageCarousel__HeroImage-sc-cw3mbw-1 > .ProductImage__Image-sc-1pa4dwc-1.kmrvUd"
             ],
@@ -716,7 +542,7 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<img class=\"UnsegmentedControlWithImageOnly__Image-sc-1ajinsl-1 kzTiRU\" height=\"128\" src=\"src/placeholder.jpg\" width=\"128\">",
+            "html": "<img class=\"UnsegmentedControlWithImageOnly__Image-sc-1ajinsl-1 kzTiRU\" height=\"128\" src=\"https://cache.modsy.com/imgresize/pimg/329844876bbf8aa3080aaceb89df3029b2545540b2c0310ed5e7bf476ea8951d.jpg?auto=compress%2Cformat&amp;fit=clip&amp;h=128&amp;w=128\" width=\"128\">",
             "target": [
               ".UnsegmentedControlWithImageOnly__Image-sc-1ajinsl-1"
             ],
@@ -772,7 +598,7 @@
             "all": [],
             "none": [],
             "impact": "critical",
-            "html": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"src/placeholder.jpg\">",
+            "html": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"https://cache.modsy.com/imgresize/pimg/329844876bbf8aa3080aaceb89df3029b2545540b2c0310ed5e7bf476ea8951d.jpg?auto=compress%2Cformat&amp;fit=clip\">",
             "target": [
               ".StackedProductImageCarousel__MainProductImage-sc-mgjq2m-2 > .ProductImage__Image-sc-1pa4dwc-1.kmrvUd"
             ],
@@ -783,15 +609,15 @@
           "id": "Principle1.Guideline1_1.1_1_1.H37",
           "source": "pa11y",
           "title": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
-          "description": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"src/placeholder.jpg\">",
+          "description": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"https://cache.modsy.com/imgresize/pimg/329844876bbf8aa3080aaceb89df3029b2545540b2c0310ed5e7bf476ea8951d.jpg?auto=compress%2Cformat&amp;fit=clip\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
             "type": "error",
             "typeCode": 1,
             "message": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
-            "context": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"src/placeholder.jpg\">",
-            "selector": "#__next > div > div > div:nth-child(1) > div:nth-child(1) > div > div:nth-child(1) > img",
+            "context": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"https://cache.modsy.com/imgresize/pimg/329844876bbf8aa3080aaceb89df3029b2545540b2c0310ed5e7bf476ea8951d.jpg?auto=compress%2Cformat&amp;fit=clip\">",
+            "selector": "#__next > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(1) > div > div:nth-child(1) > img",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -800,15 +626,15 @@
           "id": "Principle1.Guideline1_1.1_1_1.H37",
           "source": "pa11y",
           "title": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
-          "description": "<img class=\"UnsegmentedControlWithImageOnly__Image-sc-1ajinsl-1 kzTiRU\" height=\"128\" src=\"src/placeholder.jpg\" width=\"128\">",
+          "description": "<img class=\"UnsegmentedControlWithImageOnly__Image-sc-1ajinsl-1 kzTiRU\" height=\"128\" src=\"https://cache.modsy.com/imgresize/pimg/329844876bbf8aa3080aaceb89df3029b2545540b2c0310ed5e7bf476ea8951d.jpg?auto=compress%2Cformat&amp;fit=clip&amp;h=128&amp;w=...",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
             "type": "error",
             "typeCode": 1,
             "message": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
-            "context": "<img class=\"UnsegmentedControlWithImageOnly__Image-sc-1ajinsl-1 kzTiRU\" height=\"128\" src=\"src/placeholder.jpg\" width=\"128\">",
-            "selector": "#__next > div > div > div:nth-child(1) > div:nth-child(1) > div > div:nth-child(2) > button > img",
+            "context": "<img class=\"UnsegmentedControlWithImageOnly__Image-sc-1ajinsl-1 kzTiRU\" height=\"128\" src=\"https://cache.modsy.com/imgresize/pimg/329844876bbf8aa3080aaceb89df3029b2545540b2c0310ed5e7bf476ea8951d.jpg?auto=compress%2Cformat&amp;fit=clip&amp;h=128&amp;w=...",
+            "selector": "#__next > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(1) > div > div:nth-child(2) > button > img",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -817,15 +643,15 @@
           "id": "Principle1.Guideline1_1.1_1_1.H37",
           "source": "pa11y",
           "title": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
-          "description": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"src/placeholder.jpg\">",
+          "description": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"https://cache.modsy.com/imgresize/pimg/329844876bbf8aa3080aaceb89df3029b2545540b2c0310ed5e7bf476ea8951d.jpg?auto=compress%2Cformat&amp;fit=clip\">",
           "impact": "error",
           "original_issue": {
             "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
             "type": "error",
             "typeCode": 1,
             "message": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
-            "context": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"src/placeholder.jpg\">",
-            "selector": "#__next > div > div > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(1) > div > img",
+            "context": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"https://cache.modsy.com/imgresize/pimg/329844876bbf8aa3080aaceb89df3029b2545540b2c0310ed5e7bf476ea8951d.jpg?auto=compress%2Cformat&amp;fit=clip\">",
+            "selector": "#__next > div:nth-child(2) > div > div:nth-child(1) > div:nth-child(2) > div:nth-child(1) > div > div:nth-child(1) > div > img",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -839,44 +665,18 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-6-IMG",
-              "path": "1,HTML,1,BODY,0,HEADER,0,DIV,0,DIV,1,A,0,IMG",
-              "selector": "div.container > div.logo_container > a > img#logo",
-              "boundingRect": {
-                "top": 0,
-                "bottom": 72,
-                "left": 0,
-                "right": 73,
-                "width": 73,
-                "height": 72
-              },
-              "snippet": "<img height=\"72\" id=\"logo\" src=\"src/placeholder.jpg\" width=\"260\">",
-              "nodeLabel": "div.container > div.logo_container > a > img#logo",
-              "explanation": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
-            }
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
-          "source": "lighthouse",
-          "title": "Image elements do not have `[alt]` attributes",
-          "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
-          "score": 0,
-          "details": {
-            "node": {
-              "type": "node",
-              "lhId": "1-7-IMG",
-              "path": "1,HTML,1,BODY,1,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,IMG",
+              "lhId": "1-4-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,1,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,IMG",
               "selector": "div.ProductDetailsPage__LeftContent-sc-1dd3yqh-4 > div.ThumbnailProductImageCarousel__Container-sc-cw3mbw-0 > div.ProductImage__OneByOneAspectRatioContainer-sc-1pa4dwc-0 > img.ProductImage__Image-sc-1pa4dwc-1",
               "boundingRect": {
-                "top": 121,
-                "bottom": 515,
+                "top": 49,
+                "bottom": 647,
                 "left": 41,
-                "right": 433,
-                "width": 392,
-                "height": 394
+                "right": 637,
+                "width": 596,
+                "height": 598
               },
-              "snippet": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"src/placeholder.jpg\">",
+              "snippet": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"https://cache.modsy.com/imgresize/pimg/329844876bbf8aa3080aaceb89df3029b25…\">",
               "nodeLabel": "div.ProductDetailsPage__LeftContent-sc-1dd3yqh-4 > div.ThumbnailProductImageCarousel__Container-sc-cw3mbw-0 > div.ProductImage__OneByOneAspectRatioContainer-sc-1pa4dwc-0 > img.ProductImage__Image-sc-1pa4dwc-1",
               "explanation": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
             }
@@ -891,18 +691,18 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-8-IMG",
-              "path": "1,HTML,1,BODY,1,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,DIV,1,DIV,0,BUTTON,0,IMG",
+              "lhId": "1-5-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,1,DIV,0,DIV,0,DIV,0,DIV,0,DIV,1,DIV,0,BUTTON,0,IMG",
               "selector": "div.ThumbnailProductImageCarousel__Container-sc-cw3mbw-0 > div.ThumbnailProductImageCarousel__ThumbnailsGrid-sc-cw3mbw-2 > button.UnsegmentedControlWithImageOnly__Button-sc-1ajinsl-0 > img.UnsegmentedControlWithImageOnly__Image-sc-1ajinsl-1",
               "boundingRect": {
-                "top": 531,
-                "bottom": 597,
+                "top": 663,
+                "bottom": 770,
                 "left": 43,
-                "right": 109,
-                "width": 66,
-                "height": 66
+                "right": 150,
+                "width": 107,
+                "height": 107
               },
-              "snippet": "<img class=\"UnsegmentedControlWithImageOnly__Image-sc-1ajinsl-1 kzTiRU\" height=\"128\" src=\"src/placeholder.jpg\" width=\"128\">",
+              "snippet": "<img class=\"UnsegmentedControlWithImageOnly__Image-sc-1ajinsl-1 kzTiRU\" height=\"128\" src=\"https://cache.modsy.com/imgresize/pimg/329844876bbf8aa3080aaceb89df3029b25…\" width=\"128\">",
               "nodeLabel": "div.ThumbnailProductImageCarousel__Container-sc-cw3mbw-0 > div.ThumbnailProductImageCarousel__ThumbnailsGrid-sc-cw3mbw-2 > button.UnsegmentedControlWithImageOnly__Button-sc-1ajinsl-0 > img.UnsegmentedControlWithImageOnly__Image-sc-1ajinsl-1",
               "explanation": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
             }
@@ -917,172 +717,20 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-9-IMG",
-              "path": "1,HTML,1,BODY,1,DIV,0,DIV,0,DIV,0,DIV,1,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,IMG",
+              "lhId": "1-6-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,1,DIV,0,DIV,0,DIV,1,DIV,0,DIV,0,DIV,0,DIV,0,DIV,0,IMG",
               "selector": "div.StackedProductImageCarousel__Container-sc-mgjq2m-0 > div.StackedProductImageCarousel__Animated-sc-mgjq2m-1 > div.ProductImage__OneByOneAspectRatioContainer-sc-1pa4dwc-0 > img.ProductImage__Image-sc-1pa4dwc-1",
               "boundingRect": {
-                "top": 120,
-                "bottom": 366,
-                "left": 440,
-                "right": 687,
-                "width": 246,
-                "height": 246
+                "top": 48,
+                "bottom": 341,
+                "left": 647,
+                "right": 940,
+                "width": 293,
+                "height": 293
               },
-              "snippet": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"src/placeholder.jpg\">",
+              "snippet": "<img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"https://cache.modsy.com/imgresize/pimg/329844876bbf8aa3080aaceb89df3029b25…\">",
               "nodeLabel": "div.StackedProductImageCarousel__Container-sc-mgjq2m-0 > div.StackedProductImageCarousel__Animated-sc-mgjq2m-1 > div.ProductImage__OneByOneAspectRatioContainer-sc-1pa4dwc-0 > img.ProductImage__Image-sc-1pa4dwc-1",
               "explanation": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
-            }
-          }
-        }
-      ]
-    },
-    {
-      "wcag_id": [
-        "Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
-        "Principle4.Guideline4_1.4_1_2.H91.InputSearch.Name",
-        "Principle4.Guideline4_1.4_1_2.H91.Textarea.Name",
-        "Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
-        "Principle4.Guideline4_1.4_1_2.H91.InputCheckbox.Name",
-        "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
-        "Principle1.Guideline1_3.1_3_1.F68",
-        "Principle4.Guideline4_1.4_1_2.H91.Fieldset.Name"
-      ],
-      "url": [
-        "https://dequeuniversity.com/rules/axe/4.10/label"
-      ],
-      "impact": "critical",
-      "name": "Label; Multiple Elements; Content missing",
-      "amount_nodes_failed": 2,
-      "issues": [
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
-          "source": "axe-core",
-          "title": "Form elements must have labels",
-          "description": "Ensure every form element has a label",
-          "impact": "critical",
-          "nodes": {
-            "any": [
-              {
-                "id": "implicit-label",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element does not have an implicit (wrapped) <label>"
-              },
-              {
-                "id": "explicit-label",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element does not have an explicit <label>"
-              },
-              {
-                "id": "aria-label",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "aria-label attribute does not exist or is empty"
-              },
-              {
-                "id": "aria-labelledby",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
-              },
-              {
-                "id": "non-empty-title",
-                "data": {
-                  "messageKey": "noAttr"
-                },
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element has no title attribute"
-              },
-              {
-                "id": "non-empty-placeholder",
-                "data": {
-                  "messageKey": "noAttr"
-                },
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element has no placeholder attribute"
-              },
-              {
-                "id": "presentational-role",
-                "data": null,
-                "relatedNodes": [],
-                "impact": "critical",
-                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
-              }
-            ],
-            "all": [],
-            "none": [],
-            "impact": "critical",
-            "html": "<input class=\"et-search-field\">",
-            "target": [
-              "input"
-            ],
-            "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
-          }
-        },
-        {
-          "id": "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
-          "source": "pa11y",
-          "title": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-          "description": "<input class=\"et-search-field\">",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
-            "type": "error",
-            "typeCode": 1,
-            "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
-            "context": "<input class=\"et-search-field\">",
-            "selector": "#main-header > div:nth-child(2) > div > form > input",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "Principle1.Guideline1_3.1_3_1.F68",
-          "source": "pa11y",
-          "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-          "description": "<input class=\"et-search-field\">",
-          "impact": "error",
-          "original_issue": {
-            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
-            "type": "error",
-            "typeCode": 1,
-            "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
-            "context": "<input class=\"et-search-field\">",
-            "selector": "#main-header > div:nth-child(2) > div > form > input",
-            "runner": "htmlcs",
-            "runnerExtras": {}
-          }
-        },
-        {
-          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
-          "source": "lighthouse",
-          "title": "Form elements do not have associated labels",
-          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
-          "score": 0,
-          "details": {
-            "node": {
-              "type": "node",
-              "lhId": "1-10-INPUT",
-              "path": "1,HTML,1,BODY,0,HEADER,1,DIV,0,DIV,0,FORM,0,INPUT",
-              "selector": "div.et_search_outer > div.container > form.et-search-form > input.et-search-field",
-              "boundingRect": {
-                "top": 0,
-                "bottom": 2,
-                "left": 68,
-                "right": 950,
-                "width": 882,
-                "height": 2
-              },
-              "snippet": "<input class=\"et-search-field\">",
-              "nodeLabel": "div.et_search_outer > div.container > form.et-search-form > input.et-search-field",
-              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
             }
           }
         }
@@ -1096,16 +744,11 @@
         "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
         "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
         "https://dequeuniversity.com/rules/axe/4.10/region",
-        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
-        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
-        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
-        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
-        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
-        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level"
       ],
       "impact": "moderate",
       "name": "Landmark & Region; Missing & Unique Landmarks;",
-      "amount_nodes_failed": 6,
+      "amount_nodes_failed": 8,
       "issues": [
         {
           "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
@@ -1134,6 +777,42 @@
           }
         },
         {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+          "source": "axe-core",
+          "title": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+          "description": "Ensure landmarks are unique",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "landmark-is-unique",
+                "data": {
+                  "role": "navigation",
+                  "accessibleText": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<nav class=\"navigation__Container7-sc-1xys7e-28 kgwoAY\">",
+                    "target": [
+                      ".navigation__Container7-sc-1xys7e-28"
+                    ]
+                  }
+                ],
+                "impact": "moderate",
+                "message": "The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<nav class=\"navigation__Container8-sc-1xys7e-33 ZhkQB\">",
+            "target": [
+              ".navigation__Container8-sc-1xys7e-33"
+            ],
+            "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+          }
+        },
+        {
           "id": "https://dequeuniversity.com/rules/axe/4.10/region",
           "source": "axe-core",
           "title": "All page content should be contained by landmarks",
@@ -1154,7 +833,7 @@
             "all": [],
             "none": [],
             "impact": "moderate",
-            "html": "<div class=\"ProductImage__OneByOneAspectRatioContainer-sc-1pa4dwc-0 ysZQh ThumbnailProductImageCarousel__HeroImage-sc-cw3mbw-1 egZXvb\">\n                  <img class=\"ProductImage__Image-sc-1pa4dwc-1 kmrvUd\" src=\"src/placeholder.jpg\">\n                </div>",
+            "html": "<div class=\"ProductImage__OneByOneAspectRatioContainer-sc-1pa4dwc-0 ysZQh ThumbnailProductImageCarousel__HeroImage-sc-cw3mbw-1 egZXvb\">",
             "target": [
               ".ThumbnailProductImageCarousel__HeroImage-sc-cw3mbw-1"
             ],
@@ -1272,6 +951,34 @@
             ],
             "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
           }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div style=\"width: 100%\">",
+            "target": [
+              "#__next > div:nth-child(3)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
         }
       ]
     },
@@ -1338,26 +1045,26 @@
               }
             ],
             "impact": "serious",
-            "html": "<a href=\"#\"><img height=\"72\" id=\"logo\" src=\"src/placeholder.jpg\" width=\"260\"></a>",
+            "html": "<a href=\"#\" class=\"navigation__Link1-sc-1xys7e-5 kznHRb\"></a>",
             "target": [
-              ".logo_container > a"
+              ".navigation__NavPrimary3-sc-1xys7e-30.DVEtL:nth-child(1) > .navigation__Container2-sc-1xys7e-4.jJdBkB > .navigation__Link1-sc-1xys7e-5.kznHRb"
             ],
             "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
           }
         },
         {
-          "id": "Principle1.Guideline1_1.1_1_1.H30.2",
+          "id": "Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
           "source": "pa11y",
-          "title": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
-          "description": "<a href=\"#\"><img height=\"72\" id=\"logo\" src=...</a>",
+          "title": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+          "description": "<a href=\"#\" class=\"navigation__Link1-sc-1xys7e-5 kznHRb\"></a>",
           "impact": "error",
           "original_issue": {
-            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H30.2",
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.A.NoContent",
             "type": "error",
             "typeCode": 1,
-            "message": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
-            "context": "<a href=\"#\"><img height=\"72\" id=\"logo\" src=...</a>",
-            "selector": "#main-header > div:nth-child(1) > div:nth-child(1) > a",
+            "message": "Anchor element found with a valid href attribute, but no link content has been supplied.",
+            "context": "<a href=\"#\" class=\"navigation__Link1-sc-1xys7e-5 kznHRb\"></a>",
+            "selector": "#__next > header > div:nth-child(2) > nav > div:nth-child(1) > div > a",
             "runner": "htmlcs",
             "runnerExtras": {}
           }
@@ -1371,19 +1078,19 @@
           "details": {
             "node": {
               "type": "node",
-              "lhId": "1-11-A",
-              "path": "1,HTML,1,BODY,0,HEADER,0,DIV,0,DIV,1,A",
-              "selector": "header#main-header > div.container > div.logo_container > a",
+              "lhId": "1-7-A",
+              "path": "1,HTML,1,BODY,0,DIV,0,HEADER,1,DIV,0,NAV,0,DIV,2,DIV,0,A",
+              "selector": "nav.navigation__Container7-sc-1xys7e-28 > div.navigation__NavPrimary3-sc-1xys7e-30 > div.navigation__Container2-sc-1xys7e-4 > a.navigation__Link1-sc-1xys7e-5",
               "boundingRect": {
-                "top": 26,
-                "bottom": 44,
-                "left": 0,
-                "right": 73,
-                "width": 73,
-                "height": 18
+                "top": 48,
+                "bottom": 111,
+                "left": 188,
+                "right": 212,
+                "width": 24,
+                "height": 63
               },
-              "snippet": "<a href=\"#\">",
-              "nodeLabel": "header#main-header > div.container > div.logo_container > a",
+              "snippet": "<a href=\"#\" class=\"navigation__Link1-sc-1xys7e-5 kznHRb\">",
+              "nodeLabel": "nav.navigation__Container7-sc-1xys7e-28 > div.navigation__NavPrimary3-sc-1xys7e-30 > div.navigation__Container2-sc-1xys7e-4 > a.navigation__Link1-sc-1xys7e-5",
               "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
             }
           }
@@ -1392,28 +1099,45 @@
     },
     {
       "wcag_id": [
-        "Principle3.Guideline3_2.3_2_2.H32.2"
+        "Principle4.Guideline4_1.4_1_1.F77"
       ],
       "url": [
         null
       ],
-      "impact": "serious",
-      "name": "Elements; Form; No Submit Button",
-      "amount_nodes_failed": 1,
+      "impact": "minor",
+      "name": "ID; Duplicate IDs;",
+      "amount_nodes_failed": 2,
       "issues": [
         {
-          "id": "Principle3.Guideline3_2.3_2_2.H32.2",
+          "id": "Principle4.Guideline4_1.4_1_1.F77",
           "source": "pa11y",
-          "title": "This form does not contain a submit button, which creates issues for those who cannot submit the form using the keyboard. Submit buttons are INPUT elements with type attribute \"submit\" or \"image\", or BUTTON elements with type \"submit\" or omitted/invalid.",
-          "description": "<form class=\"et-search-form\">\n              <input class=\"et...</form>",
+          "title": "Duplicate id attribute value \"modsy-logo-title-\" found on the web page.",
+          "description": "<title id=\"modsy-logo-title-\">Go to modsy homepage</title>",
           "impact": "error",
           "original_issue": {
-            "code": "WCAG2AA.Principle3.Guideline3_2.3_2_2.H32.2",
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
             "type": "error",
             "typeCode": 1,
-            "message": "This form does not contain a submit button, which creates issues for those who cannot submit the form using the keyboard. Submit buttons are INPUT elements with type attribute \"submit\" or \"image\", or BUTTON elements with type \"submit\" or omitted/invalid.",
-            "context": "<form class=\"et-search-form\">\n              <input class=\"et...</form>",
-            "selector": "#main-header > div:nth-child(2) > div > form",
+            "message": "Duplicate id attribute value \"modsy-logo-title-\" found on the web page.",
+            "context": "<title id=\"modsy-logo-title-\">Go to modsy homepage</title>",
+            "selector": "#modsy-logo-title-",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_1.F77",
+          "source": "pa11y",
+          "title": "Duplicate id attribute value \"modsy-logo-desc-\" found on the web page.",
+          "description": "<desc id=\"modsy-logo-desc-\">\n                    Logo to re...</desc>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Duplicate id attribute value \"modsy-logo-desc-\" found on the web page.",
+            "context": "<desc id=\"modsy-logo-desc-\">\n                    Logo to re...</desc>",
+            "selector": "#modsy-logo-desc-",
             "runner": "htmlcs",
             "runnerExtras": {}
           }

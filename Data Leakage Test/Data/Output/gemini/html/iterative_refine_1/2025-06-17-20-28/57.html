@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        /* Header styles */
+        .header {
+            background-color: #00C49A;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .search-bar {
+            background-color: white;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar input {
+            border: none;
+            padding: 8px 10px;
+            border-radius: 5px;
+        }
+
+        .search-bar button {
+            background-color: transparent;
+            border: none;
+            cursor: pointer;
+        }
+
+        .login-signup {
+            display: flex;
+            gap: 10px;
+        }
+
+        .login-signup a {
+            color: white;
+            text-decoration: none;
+            border: 1px solid white;
+            padding: 8px 15px;
+            border-radius: 5px;
+        }
+
+        .signup-button {
+            background-color: #FFA34B;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Main content styles */
+        .main-content {
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+        }
+
+        .sign-in-form {
+            width: 350px;
+            padding: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+
+        .sign-in-form h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #777;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        .remember-forgot {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+
+        .remember-forgot a {
+            color: #00C49A;
+            text-decoration: none;
+        }
+
+        .sign-in-button {
+            background-color: #FFA34B;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .sign-up-link {
+            text-align: center;
+            margin-top: 15px;
+        }
+
+        .sign-up-link a {
+            color: #00C49A;
+            text-decoration: none;
+        }
+        /* Footer Styles */
+        .footer {
+            background-color: #f9f9f9;
+            padding: 30px 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .footer-section {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        .footer-section h4 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-section li {
+            margin-bottom: 8px;
+        }
+
+        .footer-section a {
+            color: #777;
+            text-decoration: none;
+        }
+        .social-links a {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            background-color: #ddd;
+            margin-right: 10px;
+            text-align: center;
+            line-height: 30px;
+            color: white;
+        }
+        .social-links a i {
+        font-size: 16px; /* Adjust the icon size as needed */
+        }
+
+        .newsletter-form {
+            display: flex;
+        }
+
+        .newsletter-form input {
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            margin-right: 10px;
+            width: 200px;
+        }
+
+        .newsletter-form button {
+            background-color: #00C49A;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .bottom-bar {
+            text-align: left;
+            color: #777;
+            font-size: 0.8em;
+            padding: 0 20px;
+        }
+
+        .bottom-bar a {
+            color: #777;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+        .footer-section i {
+            margin-right: 5px;
+            color: #00C49A;
+        }
+        .content-container{
+            display: flex;
+        }
+        .checkbox {
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .checkbox input[type="checkbox"] {
+            margin-right: 5px; /* Adjust the spacing as needed */
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo"><h1>Alpha One Labs</h1></div>
+        <nav class="nav">
+            <a href="#">LEARN</a>
+            <a href="#">COMMUNITY</a>
+            <a href="#">RESOURCES</a>
+            <a href="#">ABOUT</a>
+        </nav>
+        <div class="content-container">
+             <div class="search-bar">
+               <input type="text" placeholder="What do you want to learn?" aria-label="Search">
+            </div>
+            <div class="login-signup">
+                <a href="#">Login</a>
+                <button class="signup-button">Signup</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <div class="sign-in-form">
+            <h2>Sign in to your account</h2>
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="email" placeholder="Enter your email address">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" placeholder="Enter your password">
+            </div>
+            <div class="remember-forgot">
+                <div class="checkbox">
+                  <input type="checkbox" id="remember" name="remember">
+                  <label for="remember">Remember me</label>
+                </div>
+                <a href="#">Forgot password?</a>
+            </div>
+            <button class="sign-in-button">Sign In</button>
+            <div class="sign-up-link">
+                Don't have an account? <a href="#">Sign up</a>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-section">
+                <h4>LEARNING</h4>
+                <ul>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Courses</a></li>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Subjects</a></li>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Quizzes</a></li>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Videos</a></li>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Challenges</a></li>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Study Groups</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>COMMUNITY</h4>
+                <ul>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Forum</a></li>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Blog</a></li>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Features</a></li>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>RESOURCES & INFO</h4>
+                <ul>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">GSOC'25</a></li>                    
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Status</a></li>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Feedback</a></li>
+                    <li><i class="fa fa-check-square-o"></i><a href="#">Terms</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>CONNECT WITH US</h4>
+                <div class="social-links">
+                    <a href="#" aria-label="Facebook"><i class="fa fa-facebook"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fa fa-twitter"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fa fa-instagram"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fa fa-linkedin"></i></a>
+                </div>
+                <h4>SUBSCRIBE TO NEWSLETTER</h4>
+                <form class="newsletter-form">
+                    <input type="email" placeholder="Your email" aria-label="Your email">
+                    <button type="submit" aria-label="Subscribe">Subscribe</button>
+                </form>
+            </div>
+        </div>
+        <div class="bottom-bar">
+            ÃÂ© 2025 Alpha One Labs. All rights reserved.
+            Last updated: 06/12/2025 01:23nachm.
+            <a href="#">About Us</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+        </div>
+    </footer>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</body>
+</html>

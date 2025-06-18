@@ -24,7 +24,7 @@ OUTPUT_PATH = os.path.join(DATA_PATH, 'Output')
 NUMBER_ITERATIONS = 3
 DATE = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
 # Test
-# DATE = "2025-06-16-13-40"
+# DATE = "2025-06-17-20-28"
 
 
 async def _process_image(client, image_information, prompt, model, prompt_strategy):
@@ -146,9 +146,9 @@ def _overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy, 
 
 
 async def main():
-    model = "openai" # option openai, gemini, qwen_local, qwen_hf, llama_local, llama_hf, hf-finetuned
+    model = "gemini" # option openai, gemini, qwen_local, qwen_hf, llama_local, llama_hf, hf-finetuned
     model_dir = model.split("_")[0]
-    prompt_strategy = "reason" # option naive, zero-shot, reason, iterative
+    prompt_strategy = "naive" # option naive, zero-shot, reason, iterative
 
     # 1. Load API-Key and define model strategy
     strategy = utils_general.get_model_strategy(model)
@@ -170,8 +170,8 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            if int(image.split(".")[0]) < 54:
-                continue
+            # if int(image.split(".")[0]) < 21:
+            #     continue
 
             image_information = {
                 "name": os.path.splitext(image)[0],

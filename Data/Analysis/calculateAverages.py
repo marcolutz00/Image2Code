@@ -13,7 +13,7 @@ RESULTS_ACCESSIBILITY_PATH = os.path.join(os.path.dirname(os.path.dirname(os.pat
 RESULTS_BENCHMARKS_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), "Results", "benchmarks")
 
 
-def _sort_issues_by_amount(accessibility_issues, files_processed):
+def _sort_issues_by_amount(accessibility_issues: dict, files_processed: int) -> list:
     '''
         Sort the issues by the amount of nodes failed in descending order.
         Apart from that, the division by the number of files processed is done here to get average
@@ -38,7 +38,7 @@ def _get_result_files(model: str, prompt_strategy: str, path) -> list:
     return result_files
 
 
-def _get_average_accessibility_results(model, prompt_strategy):
+def _get_average_accessibility_results(model: str, prompt_strategy: str) -> dict:
     """
         Gets the accessibility result files from each round and calculates the average
     """
@@ -46,7 +46,10 @@ def _get_average_accessibility_results(model, prompt_strategy):
     accessibility_files = _get_result_files(model, prompt_strategy, RESULTS_ACCESSIBILITY_PATH)
     print(accessibility_files)
 
-    accessibility_results = [json.loads(p.read_text(encoding="utf-8")) for p in accessibility_files]
+    accessibility_results = []
+    for file in accessibility_files:
+        with open(os.path.join(RESULTS_ACCESSIBILITY_PATH, file), 'r', encoding="utf-8") as f:
+            accessibility_results.append(json.load(f))
 
     average_accessibility_results = {}
 
@@ -102,7 +105,7 @@ def _get_average_accessibility_results(model, prompt_strategy):
     return average_accessibility_results
 
 
-def _get_average_benchmark_results(model, prompt_strategy):
+def _get_average_benchmark_results(model: str, prompt_strategy: str) -> dict:
     """
         Gets the benchmark result files from each round and calculates the average
     """
@@ -110,7 +113,10 @@ def _get_average_benchmark_results(model, prompt_strategy):
     benchmark_files = _get_result_files(model, prompt_strategy, RESULTS_BENCHMARKS_PATH)
     print(benchmark_files)
 
-    benchmarks_results = [json.loads(p.read_text(encoding="utf-8")) for p in benchmark_files]
+    benchmarks_results = []
+    for file in benchmark_files:
+        with open(os.path.join(RESULTS_BENCHMARKS_PATH, file), 'r', encoding="utf-8") as f:
+            benchmarks_results.append(json.load(f))
     
     average_benchmark_results = {}
 
@@ -129,7 +135,6 @@ def _get_average_benchmark_results(model, prompt_strategy):
     total_final_clip_score = 0
 
     for result in benchmarks_results:
-        result_files_processed += 1
 
         dates.append(result.get("date"))
 
@@ -172,12 +177,12 @@ def _get_average_benchmark_results(model, prompt_strategy):
 
 
 
-def get_average_results():
+def get_average_results() -> tuple:
     """
         Gets the result files from each round and calculates the average
     """
     model = "gemini" # gemini, openai, llama, qwen
-    prompt_strategy = "reason" # naive, zero-shot, reason, iterative, iterative_refine_1, iterative_refine_2, iterative_refine_3
+    prompt_strategy = "iterative_refine_3" # naive, zero-shot, reason, iterative, iterative_refine_1, iterative_refine_2, iterative_refine_3
 
     accessibility_results = _get_average_accessibility_results(model, prompt_strategy)
     benchmark_results = _get_average_benchmark_results(model, prompt_strategy)

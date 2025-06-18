@@ -24,10 +24,15 @@ DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
 
 
-async def process_html_file(html_path):
+async def process_html_file(html_path: str) -> tuple:
+    """
+        Processes the HTML file and returns:
+        1. The DOM as a string
+        2. Bounding boxes for each element
+        3. Accessibility tree
+    """
     # Browser Session
     async with async_playwright() as p:
-        # TODO: Check if size of screen correct
         browser = await p.chromium.launch()
         page = await browser.new_page()
         await page.goto(f"file://{os.path.abspath(html_path)}")
@@ -61,7 +66,7 @@ async def process_html_file(html_path):
     return dom_html, bounding_boxes, accessibility_tree
 
 
-async def create_data_entry(name, html_path, llm_output):
+async def create_data_entry(name: int, html_path: str, llm_output: bool) -> dict:
     # 1. Analyze HTML
     dom_html, bounding_boxes, accessibility_tree = await process_html_file(html_path)
 
