@@ -16,6 +16,22 @@ from LLMs.Strategies.hfFinetunedStrategy import HfFinetunedStrategy
 from LLMs.Strategies.hfEndpointStrategy import HfEndpointStrategy
 
 
+
+def read_html(html_path: str) -> str:
+    """
+    Reads HTML file and returns content
+    """
+    with open(html_path, 'r', encoding='utf-8') as file:
+        return file.read()
+    
+def read_json(json_path: str) -> dict:
+    """
+    Reads JSON file and returns content
+    """
+    with open(json_path, 'r', encoding='utf-8') as file:
+        return json.load(file)
+
+
 def util_load_keys(source):
     '''
         Util-Functions for API-Calls
@@ -201,6 +217,11 @@ def util_create_directories(output_path, model, prompt_strategy, date):
     return output_base_html_path, output_base_accessibility_path, output_base_images_path, output_base_insights_path
 
 
+
+
+
+
 if __name__ == "__main__":
     # Example usage
-    util_create_dir_structure()
+    # util_create_dir_structure()
+    pass

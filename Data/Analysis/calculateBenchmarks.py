@@ -6,9 +6,9 @@ from collections import Counter
 import matplotlib.pyplot as plt
 
 
-DATE = '2025-06-17-20-28'
+DATE = '2025-06-18-11-53'
 MODEL = 'gemini' # gemini, openai, llama, qwen
-PROMPTING_STRATEGY = 'iterative_refine_3'  # naive, zero-shot, reason, iterative, iterative_refine_1, iterative_refine_2, iterative_refine_3
+PROMPTING_STRATEGY = 'naive'  # naive, zero-shot, reason, iterative, iterative_refine_1, iterative_refine_2, iterative_refine_3
 
 CURR_DIR = os.path.dirname(os.path.realpath(__file__))
 INSIGHTS_DIR = os.path.join(CURR_DIR, '..', 'Output', MODEL, 'insights', PROMPTING_STRATEGY, DATE)
