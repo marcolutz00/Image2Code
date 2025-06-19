@@ -182,14 +182,14 @@ def get_average_results() -> tuple:
         Gets the result files from each round and calculates the average
     """
     model = "gemini" # gemini, openai, llama, qwen
-    prompt_strategy = "naive" # naive, zero-shot, reason, iterative, iterative_refine_1, iterative_refine_2, iterative_refine_3
+    prompt_strategy = "zero-shot" # naive, zero-shot, reason, iterative, iterative_refine_1, iterative_refine_2, iterative_refine_3
 
     accessibility_results = _get_average_accessibility_results(model, prompt_strategy)
     benchmark_results = _get_average_benchmark_results(model, prompt_strategy)
 
-    output_path_accessibility = os.path.join(RESULTS_ACCESSIBILITY_PATH, "average", f"dl_{model}_{prompt_strategy}_average_results.json")
+    output_path_accessibility = os.path.join(RESULTS_ACCESSIBILITY_PATH, "average", f"{model}_{prompt_strategy}_average_results.json")
     os.makedirs(os.path.dirname(output_path_accessibility), exist_ok=True)
-    output_path_benchmarks = os.path.join(RESULTS_BENCHMARKS_PATH, "average", f"dl_{model}_{prompt_strategy}_average_results.json")
+    output_path_benchmarks = os.path.join(RESULTS_BENCHMARKS_PATH, "average", f"{model}_{prompt_strategy}_average_results.json")
     os.makedirs(os.path.dirname(output_path_benchmarks), exist_ok=True)
 
     with open(output_path_accessibility, 'w') as f:

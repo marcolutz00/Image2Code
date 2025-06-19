@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Traffic Management</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #fff;
+            color: #333;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        header a {
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            margin: 0;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        section {
+            padding: 20px 0;
+        }
+        .highlight {
+            color: #e8491d;
+            font-weight: bold;
+        }
+        #main {
+            padding: 30px;
+        }
+        #main h1 {
+            font-size: 2em;
+            margin-bottom: 10px;
+            text-align: center;
+        }
+        #main p {
+            font-size: 16px;
+            text-align: center;
+        }
+        #content {
+            float: left;
+            width: 65%;
+            padding: 0 20px;
+        }
+        #sidebar {
+            float: right;
+            width: 30%;
+            padding: 0 20px;
+            margin-top: 30px;
+        }
+        #sidebar input[type="text"] {
+            width: 90%;
+            padding: 4px;
+            margin-bottom: 10px;
+        }
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+            color: #555;
+            background-color: #f4f4f4;
+            text-align: center;
+        }
+        .button_1 {
+            height: 38px;
+            background: #e8491d;
+            border: 0;
+            padding-left: 20px;
+            padding-right: 20px;
+            color: #fff;
+        }
+        /* Boxes */
+        #boxes {
+            margin-top: 20px;
+        }
+        #boxes .box {
+            float: left;
+            width: 30%;
+            padding: 10px;
+            text-align: center;
+        }
+        #boxes .box img {
+            width: 90px;
+        }
+        @media(max-width: 768px) {
+            header #branding,
+            header nav,
+            header nav li,
+            #boxes .box,
+            #content,
+            #sidebar {
+                float: none;
+                text-align: center;
+                width: 100%;
+            }
+            header {
+                padding-bottom: 20px;
+            }
+            #showcase h1 {
+                margin-top: 40px;
+            }
+            #sidebar input[type="text"] {
+                width: 100%;
+            }
+        }
+        .home-content {
+            text-align: center;
+            padding: 20px;
+        }
+        .home-content h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        .home-content p {
+            font-size: 1.2em;
+        }
+        /* Custom Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #444;
+        }
+        .container {
+            width: 75%;
+            margin: auto;
+        }
+        /* Header */
+        header {
+            padding: 10px 0;
+            text-align: center;
+        }
+        header ul {
+            margin: 0;
+            padding: 0;
+        }
+        header li {
+            display: inline;
+            margin: 0 15px;
+        }
+        header a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+        /* Home Content */
+        .home-content {
+            margin-top: 20px;
+        }
+        .home-content h1 {
+            font-size: 28px;
+            color: #333;
+            font-weight: bold;
+        }
+        .home-content p {
+            font-size: 14px;
+            color: #555;
+        }
+        /* Section Headings */
+        section h2 {
+            font-size: 22px;
+            color: #333;
+            text-align: center;
+        }
+        /* Paragraphs */
+        section p {
+            font-size: 13px;
+        }
+        /* Industry Associations */
+        .industry-associations {
+            text-align: center;
+            margin-top: 30px;
+        }
+        /* Awards */
+        .awards {
+            margin-top: 30px;
+        }
+        .awards ul {
+            list-style: none;
+            padding: 0;
+        }
+        .awards li {
+            margin-bottom: 5px;
+            font-size: 13px;
+        }
+        /* Footer */
+        footer {
+            margin-top: 50px;
+            padding: 20px 0;
+            background-color: #f9f9f9;
+            text-align: center;
+            color: #777;
+            font-size: 12px;
+        }
+        /* Call to Action */
+        .call-to-action {
+            margin-top: 40px;
+            text-align: center;
+        }
+        .call-to-action a {
+            padding: 10px 20px;
+            margin: 0 10px;
+            text-decoration: none;
+            border: 1px solid #007bff;
+            color: #007bff;
+            border-radius: 5px;
+            display: inline-block;
+            font-size: 14px;
+        }
+        /* Contact Info */
+        .contact-info {
+            margin-top: 20px;
+            text-align: left;
+        }
+        .contact-info p {
+            font-size: 14px;
+            color: #555;
+            margin: 5px 0;
+        }
+        .blue-placeholder {
+            background-color: blue;
+            width: 200px;
+            height: 150px;
+            display: inline-block;
+            margin: 10px;
+        }
+        .button {
+            background-color: transparent;
+            border: 1px solid #46b8e9;
+            color: #46b8e9;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .copyright {
+            font-size: 11px;
+            color: #737373;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">GET A QUOTE</a></li>
+                    <li><a href="#">Jobs at Traffic Management</a></li>
+                    <li><a href="#">News</a></li>
+                    <li><a href="#">Â© Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <main>
+    <section id="main">
+        <div class="container">
+            <div class="home-content">
+                <h1>Empowering Your Business with Flawless Freight Solutions</h1>
+                <p>At Traffic Management, we don't just move freight; we elevate your logistics game to a whole new level. Based in the heart of Minneapolis, MN, we're more than just a logistics company - we're your trusted partner in navigating the intricate world of freight management.</p>
+            </div>
+            <section>
+                <h2>Why Choose Traffic Management?</h2>
+                <p><b>Experience That Delivers:</b> With a combined 30 years of trucking and logistics expertise, our seasoned team has forged enduring relationships with the most dependable and cost-effective carriers in the industry. This translates to substantial savings and reliability for your business.</p>
+                <p><b>Global Reach, Local Commitment:</b> Whether your freight needs span across North America or extend to destinations around the world, we've got you covered. Our network ensures that your cargo reaches its destination safely and on time, every time.</p>
+                <p><b>Founder's Vision:</b> Traffic Management, Inc. was founded in 1997 by the visionary Dawn Montez. Her commitment to excellence and passion for delivering top-tier logistics solutions have been the driving force behind our company's success.</p>
+                <p><b>Trusted and Licensed:</b> Rest assured, we are fully licensed by the Federal Motor Carrier Safety Association as a freight broker. Our commitment to safety and compliance is unwavering.</p>
+            </section>
+            <section>
+                <h2>Industry Associations:</h2>
+                <div class="industry-associations">
+                    <div class="blue-placeholder"></div>
+                    <div class="blue-placeholder"></div>
+                </div>
+            </section>
+            <section class="awards">
+                <h2>Awards:</h2>
+                <ul>
+                    <li>â¢ Largest Twin Cities Metro-Area Women Owned Company for 2020, 2021, 2022</li>
+                    <li>â¢ Fast 50 Fastest Growing Companies 2019 (Twin Cities Business Journal)</li>
+                    <li>â¢ Top 25 Freight Forwarders in Minneapolis/St Paul Metro area for 2004, 2005, 2012, 2019, 2020, 2021, & 2022 (Twin Cities Business Journal)</li>
+                    <li>â¢ Inc. 500 America's Fastest Growing Private Companies 2002</li>
+                </ul>
+            </section>
+            <section class="call-to-action">
+                <p><b>Partner with us,</b> and experience the difference professionalism, reliability, and excellence can make in your logistics journey.
+                    Let Traffic Management, Inc. be the key to unlocking your freight's full potential. Contact us today to discover a <b>brighter future</b> for your business!</p>
+                <a href="#" class="button" style="color:#FFFFFF; background-color:#007bff; border-color:#007bff;">Our services</a>
+                <a href="#" class="button" style="color:#FFFFFF; background-color:#007bff; border-color:#007bff;">Get a quote</a>
+                <div class="contact-info">
+                    <p>Call:</p>
+                    <p>Office hours:</p>
+                </div>
+            </section>
+        </div>
+    </section>
+    </main>
+    <footer>
+        <div class="container">
+            <p class="copyright">Copyright Â© 2021 Traffic Management, Inc. | Trucking Minneapolis | Digital by <a href="#" style="color:#737373;">Corrective Crew</a></p>
+        </div>
+    </footer>
+</body>
+</html>

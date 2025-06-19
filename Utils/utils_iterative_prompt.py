@@ -6,7 +6,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import Utils.utils_html as utils_html
 
-def _extract_issues_tools(accessibility_data) -> list:
+def extract_issues_tools(accessibility_data: dict) -> list:
     """
         Returns the html snippets which have been stored by the tools 
         Important: This is not yet the lines of code, but only a citation of the tools to make sure which line is affected.
@@ -19,8 +19,12 @@ def _extract_issues_tools(accessibility_data) -> list:
     }
 
     snippets = []
+    seen = []
 
     for issue_group in accessibility_data["automatic"]:
+        hash_wcag_id = hash(str(issue_group.get("hash_wcag_id")))
+        hash_url = hash(str(issue_group.get("url")))
+
         for issue in issue_group["issues"]:
             # Only tool with max amount relevant
             if issue_group["impact"] == "tbd":
@@ -40,10 +44,11 @@ def _extract_issues_tools(accessibility_data) -> list:
                 snippet = "No code snippet available for this issue."
             
             # check if snippet already exists
-            if any(s["snippet"] == snippet for s in snippets):
+            if any(s[0] == snippet and s[1] == hash_wcag_id and s[2] == hash_url for s in seen):
                 continue
 
             snippets.append({"snippet": snippet, "id": id_violation, "message": message, "impact": issue_group["impact"]})
+            seen.append((snippet, hash_wcag_id, hash_url))
 
     return snippets
 
@@ -51,7 +56,7 @@ def get_violation_snippets(html_generated, accessibility_data) -> list:
     """ 
         Returns combination of whole generated HTML and the snippets of violations ordered as a json
     """
-    snippets_reported_tools = _extract_issues_tools(accessibility_data)
+    snippets_reported_tools = extract_issues_tools(accessibility_data)
 
     result = {
         "html": html_generated,

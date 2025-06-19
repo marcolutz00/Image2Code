@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LibriVox</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5fafa;
+      font-size: 13px;
+      line-height: 1.4;
+    }
+
+    .container {
+      width: 80%;
+      margin: 20px auto;
+      background-color: white;
+    }
+
+    .header {
+      text-align: right;
+      padding: 10px 20px;
+    }
+
+    .header a {
+      margin: 0 5px;
+      text-decoration: none;
+      color: #000000;
+    }
+
+    .search-bar {
+      text-align: right;
+      padding: 0 20px 10px;
+    }
+
+    .search-bar input[type="text"] {
+      width: 200px;
+      padding: 5px;
+      border: 1px solid #ccc;
+    }
+
+    .search-bar a {
+      display: block;
+      text-align: right;
+      font-size: 11px;
+    }
+
+    .main-content {
+      display: flex;
+      padding: 20px;
+    }
+
+    .sidebar {
+      width: 25%;
+      padding-right: 20px;
+    }
+
+    .main-area {
+      width: 75%;
+    }
+
+    .sidebar h3 {
+      margin-top: 0;
+    }
+
+    .sidebar ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar li {
+      margin-bottom: 5px;
+    }
+
+    .sidebar a {
+      text-decoration: none;
+      color: #0066cc;
+    }
+
+    .browse-catalog {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 20px;
+    }
+
+    .browse-catalog th {
+      background-color: #b0e2ff;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .browse-catalog td {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+
+    .book-details img {
+      float: right;
+      width: 150px;
+      height: 150px;
+      border: 1px solid #ccc;
+      margin-left: 20px;
+      margin-bottom: 10px;
+    }
+
+    .book-details a {
+      color: #0066cc;
+      display: block;
+    }
+
+    .chapter-list {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    .chapter-list th {
+      background-color: #b0e2ff;
+      padding: 8px;
+      text-align: left;
+    }
+
+    .chapter-list td {
+      padding: 8px;
+      border-bottom: 1px solid #eee;
+    }
+    .donate-box {
+        background-color: #f0fff0;
+        padding: 10px;
+        margin-bottom: 10px;
+    }
+
+    .green-button {
+        background-color: #4CAF50;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        cursor: pointer;
+    }
+    
+     .green-button-rss {
+        background-color: #f00;
+        border: none;
+        color: white;
+        padding: 5px 10px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 13px;
+        cursor: pointer;
+    }
+    .placeholder-image {
+            width: 150px;
+            height: 150px;
+            background-color: blue;
+        }
+    #browse-table {
+      border-collapse: collapse;
+      width: 100%;
+    }
+
+    #browse-table th {
+      background-color: #b0e2ff;
+      padding: 8px;
+      text-align: left;
+      border: 1px solid #ddd;
+    }
+
+    #browse-table td {
+      padding: 8px;
+      border: 1px solid #ddd;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <a href="#">About</a>
+      <a href="#">Contact</a>
+      <a href="#">Forum</a>
+      <a href="#">Help</a>
+    </div>
+
+    <div class="search-bar">
+      <input type="text" placeholder="Search by Author, Title or Reader">
+      <a href="#">Advanced search</a>
+    </div>
+    <div style="text-align:center; margin-top: 10px;">
+        <div class="placeholder-image" style="display: inline-block;"></div>
+        <p>Acoustical liberation of books in the public domain</p>
+    </div>
+
+    <div>
+    <table id="browse-table">
+      <thead>
+        <tr>
+          <th>Author</th>
+          <th>Title</th>
+          <th>Genre/Subject</th>
+          <th>Language</th>
+        </tr>
+      </thead>
+    </table>
+    </div>
+
+    <div class="main-content">
+      <div class="sidebar">
+        <div class="donate-box">
+            <a href="#">Donate to LibriVox</a>
+        </div>
+        <div class="donate-box">
+            <a href="#">Thank a reader</a>
+        </div>
+        <p>LibriVox recordings are Public Domain in
+          the USA. If you are not in the USA,
+          please verify the copyright status of
+          these works in your own country before
+          downloading, otherwise you may be
+          violating copyright laws.</p>
+
+        <h3>Listen/Download (<a href="#">help?</a>)</h3>
+        <ul>
+          <li>Whole book (zip file) <a href="#" class="green-button">Download</a></li>
+          <li>Subscribe by iTunes <a href="#" class="green-button">iTunes</a></li>
+          <li>RSS Feed <a href="#" class="green-button-rss">RSS</a></li>
+          <li>Download torrent <a href="#" class="green-button">Torrent</a></li>
+        </ul>
+
+        <h3>Production details</h3>
+        <ul>
+          <li>Running Time: 02:32:05</li>
+          <li>Zip file size: 71MB</li>
+          <li>Catalog date: 2018-09-12</li>
+          <li>Read by: <a href="#">Jim Locke</a></li>
+          <li>Book Coordinator: <a href="#">Jim Locke</a></li>
+          <li>Meta Coordinator: <a href="#">DaveC</a></li>
+          <li>Proof Listener: <a href="#">DaveC</a></li>
+        </ul>
+
+        <h3>Links</h3>
+        <ul>
+          <li><a href="#">Internet Archive Page</a></li>
+          <li><a href="#">Online text</a></li>
+          <li><a href="#">Wikipedia - Josephine Brown</a></li>
+          <li><a href="#">M4B Audiobook (70MB)</a></li>
+        </ul>
+      </div>
+
+      <div class="main-area">
+        <div class="book-details">
+            <h2>Biography of an American Bondman, By His
+                Daughter</h2>
+            <p>By <a href="#">Josephine Brown</a> (1839 - 1874)</p>
+
+            <p>Josephine Brown's Biography of an American Bondsman faithfully follows
+                the trajectory of her father's life as previously explored in his own
+                narratives. She distills and summarizes the major revelatory moments of
+                his autobiography while she also incorporates new anecdotal information
+                and offers her own perspective on Brown's life.</p>
+
+            <p><b>Genre(s):</b> Biography &amp; Autobiography</p>
+            <p><b>Language:</b> English</p>
+            <div class="placeholder-image" style="float:right;"></div>
+
+            <a href="#">Download cover art</a>
+            <a href="#">Download CD case insert</a>
+        </div>
+
+        <table class="chapter-list">
+          <thead>
+            <tr>
+              <th>SECTION</th>
+              <th>CHAPTER</th>
+              <th>READER</th>
+              <th>TIME</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>01</td>
+              <td>Chapters 1 and 2</td>
+              <td>Jim Locke</td>
+              <td>00:14:18</td>
+            </tr>
+            <tr>
+              <td>02</td>
+              <td>Chapters 3 and 4</td>
+              <td>Jim Locke</td>
+              <td>00:07:04</td>
+            </tr>
+            <tr>
+              <td>03</td>
+              <td>Chapters 5 and 6</td>
+              <td>Jim Locke</td>
+              <td>00:09:26</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
