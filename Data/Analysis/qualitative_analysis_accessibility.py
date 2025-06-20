@@ -101,11 +101,13 @@ def _build_score_matrix(df1: pd.DataFrame, df2: pd.DataFrame):
                                          or 
                                          (not row1['violation_id'].startswith("https") and not row2['violation_id'].startswith("https")))
                                     ) else 0
-            
-            # calculate score
-            score = (text_similarity * 2 + wcag_obj_similarity * 3 + same_wcag_format + parsed_snippet_text_similarity + parsed_snippet_tag_similarity) / 8
+            violation_message_similarity = _text_similarity(
+                row1["violation_message"], row2["violation_message"]
+            )
+            source_similarity = 1.0 if (row1["source"] == row2["source"]) else 0.0
 
-            
+            # calculate score
+            score = (violation_message_similarity * 2 + text_similarity * 4 + wcag_obj_similarity + same_wcag_format + parsed_snippet_text_similarity + parsed_snippet_tag_similarity + 2 * source_similarity) / 12
 
             score_matrix[index1, index2] = score
     
@@ -125,8 +127,8 @@ def _find_best_matches(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
     n, m = score_matrix.shape
 
     if n != m:
-        max_amound = max(n, m)
-        padded = np.zeros((max_amound, max_amound))
+        max_amount = max(n, m)
+        padded = np.zeros((max_amount, max_amount))
         padded[:n, :m] =  score_matrix
         score_matrix = padded
 
@@ -141,8 +143,8 @@ def _find_best_matches(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
             if score > threshold:
                 df1.at[row, "matched_to"] = id2
                 df1.at[row, "match_score"] = score
-                df2.at[row, "matched_to"] = id1
-                df2.at[row, "match_score"] = score
+                df2.at[column, "matched_to"] = id1
+                df2.at[column, "match_score"] = score
 
     # Concatenate dataframes
     df_combined = pd.concat([df1, df2], ignore_index=True)
@@ -157,13 +159,14 @@ def _structure_violations(violations: list, model: str, prompt: str, file: str) 
 
     structured_violations = []
 
-    violation_snippets = utils_iterative_prompt.extract_issues_tools(violations)
+    violation_snippets = utils_iterative_prompt.extract_issues_tools(violations, source_show=True)
 
     for snippet in violation_snippets:
         snippet_data = snippet["snippet"]
         snippet_id = snippet["id"]
         snippet_message = snippet["message"]
         snippet_impact = snippet["impact"]
+        snippet_source = snippet["source"]
 
         wcag_object = _get_wcag_object(snippet_id)
 
@@ -177,6 +180,7 @@ def _structure_violations(violations: list, model: str, prompt: str, file: str) 
             "prompt": prompt,
             "wcag_id": wcag_object["wcag_id"],
             "wcag_url": wcag_object["url"],
+            "source": snippet_source,
             "violation_id": snippet_id,
             "violation_message": snippet_message,
             "impact": snippet_impact,

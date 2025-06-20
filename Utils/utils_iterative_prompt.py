@@ -6,7 +6,7 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 import Utils.utils_html as utils_html
 
-def extract_issues_tools(accessibility_data: dict) -> list:
+def extract_issues_tools(accessibility_data: dict, source_show: bool=False) -> list:
     """
         Returns the html snippets which have been stored by the tools 
         Important: This is not yet the lines of code, but only a citation of the tools to make sure which line is affected.
@@ -46,8 +46,11 @@ def extract_issues_tools(accessibility_data: dict) -> list:
             # check if snippet already exists
             if any(s[0] == snippet and s[1] == hash_wcag_id and s[2] == hash_url for s in seen):
                 continue
-
-            snippets.append({"snippet": snippet, "id": id_violation, "message": message, "impact": issue_group["impact"]})
+            
+            if source_show:
+                snippets.append({"snippet": snippet, "id": id_violation, "source": source, "message": message, "impact": issue_group["impact"]})
+            else:
+                snippets.append({"snippet": snippet, "id": id_violation, "message": message, "impact": issue_group["impact"]})
             seen.append((snippet, hash_wcag_id, hash_url))
 
     return snippets

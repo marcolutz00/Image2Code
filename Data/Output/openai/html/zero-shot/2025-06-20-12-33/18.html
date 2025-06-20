@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #666;
+        }
+        .header {
+            background-color: #58a858;
+            color: white;
+            padding: 10px 20px;
+        }
+        .header-title {
+            font-size: 24px;
+            margin: 0;
+        }
+        .header-subtitle {
+            font-size: 12px;
+            margin: 0;
+        }
+        .header-nav {
+            float: right;
+            font-size: 14px;
+            margin-top: -50px;
+        }
+        .header-nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .content {
+            padding: 20px;
+        }
+        .main-title {
+            font-size: 28px;
+            color: #58a858;
+            margin: 0;
+            padding: 0 0 10px 0;
+        }
+        .post-info {
+            font-size: 12px;
+            color: #999;
+            margin: 0;
+        }
+        .post-content {
+            margin-top: 20px;
+        }
+        .highlight {
+            color: #58a858;
+            text-decoration: none;
+        }
+        .quote {
+            border-left: 2px solid #ccc;
+            padding-left: 20px;
+            margin: 10px 0;
+            font-style: italic;
+            color: #666;
+        }
+        .footnote {
+            font-size: 12px;
+            color: #666;
+            margin: 20px 0 0 0;
+        }
+        .footer {
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 20px 0;
+            font-size: 12px;
+        }
+        .footer img {
+            width: 20px;
+            height: 20px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1 class="header-title">David Simpson</h1>
+        <p class="header-subtitle">deliver. iterate.</p>
+        <div class="header-nav">
+            <a href="#">Blog</a>
+            <a href="#">About</a>
+            <a href="#">Projects</a>
+            <a href="#">Apps</a>
+        </div>
+    </div>
+    <div class="content">
+        <h2 class="main-title">Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</h2>
+        <p class="post-info">
+            Posted by David Simpson on May 22, 2014. <a href="#" class="highlight">Return to index</a>. Tags:
+        </p>
+        <div class="post-content">
+            <p>Following yesterdays <a href="#" class="highlight">Atlassian security advisory for Confluence</a>, it looks like there are some added steps required for people who have user macros. Be careful folks.</p>
+            <p><a href="#" class="highlight">@BergerofLondon</a> spotted this first:</p>
+            <div class="quote">
+                <p>Following upgrade to Confluence 5.5.1 the values of parameters in user macros cannot be evaluated the same way. Discovered this the hard way</p>
+                <p>â Berger (<a href="#" class="highlight">@BergerofLondon</a>) May 22, 2014</p>
+            </div>
+            <div class="quote">
+                <p>You can't use the same shorthand you use for standard variables. <span class="highlight">#if ($paramistrue)</span> will always evaluate as true.</p>
+                <p>â Berger (<a href="#" class="highlight">@BergerofLondon</a>) May 22, 2014</p>
+            </div>
+            <div class="quote">
+                <p>You now have to use things like <span class="highlight">#if ($paramistrue == true)</span> or <span class="highlight">#if ($paramistrue == false)</span>.</p>
+                <p>â Berger (<a href="#" class="highlight">@BergerofLondon</a>) May 22, 2014</p>
+            </div>
+            <p><a href="#" class="highlight">@baitman</a> For strings I can no longer do <span class="highlight">#if ($paramfoo)</span>, I have to do <span class="highlight">#if ($paramfoo.length() &gt; 0)</span>. Which is crazy.</p>
+            <p>â Berger (<a href="#" class="highlight">@BergerofLondon</a>) May 22, 2014</p>
+            <p><a href="#" class="highlight">@baitman</a> Also, if you're upgrading to 5.5.1 to fix the security vulnerability double-check that it's upgraded xwork to 1.17. Ours wasn't.</p>
+            <p>â Berger (<a href="#" class="highlight">@BergerofLondon</a>) May 22, 2014</p>
+        </div>
+        <p class="footnote">The update to <span class="highlight">atlassian-xwork-core-1.17.jar</span> means you have to be more specific with your coding. Thanks to <a href="#" class="highlight">@BergerofLondon</a> for the heads up.</p>
+    </div>
+    <div class="footer">
+        <img src="src/placeholder.jpg" alt="social media icon">
+        <img src="src/placeholder.jpg" alt="social media icon">
+        <img src="src/placeholder.jpg" alt="social media icon">
+        <img src="src/placeholder.jpg" alt="social media icon">
+    </div>
+</body>
+</html>

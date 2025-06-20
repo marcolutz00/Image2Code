@@ -148,7 +148,8 @@ def _overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy, 
 async def main():
     model = "openai" # option openai, gemini, qwen_local, qwen_hf, llama_local, llama_hf, hf-finetuned
     model_dir = model.split("_")[0]
-    prompt_strategy = "zero-shot" # option naive, zero-shot, reason, iterative
+    prompt_strategy = "reason" # option naive, zero-shot, reason, iterative
+    max_attempts = 3
 
     # 1. Load API-Key and define model strategy
     strategy = utils_general.get_model_strategy(model)
@@ -170,8 +171,8 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            # if int(image.split(".")[0]) < 45:
-            #     continue
+            if int(image.split(".")[0]) < 15:
+                continue
 
             image_information = {
                 "name": os.path.splitext(image)[0],
@@ -179,7 +180,15 @@ async def main():
             }
             
             # 4. Start the API Call and store information locally
-            generated_html = await _process_image(client, image_information, prompt, model_dir, prompt_strategy)
+            # Sometimes the LLMs return errors messages (e.g. "I can't do this task ...")
+            for i in range(max_attempts):
+                try: 
+                    generated_html = await _process_image(client, image_information, prompt, model_dir, prompt_strategy)
+                    break
+                except Exception as e:
+                    print(f"Failed at image {image} on attempt {i + 1}")
+                    if i == max_attempts - 1:
+                        raise e
 
             # 5. Analyze outputs for Input & Output
             _, accessibility_issues, _ = await _analyze_outputs(image, model_dir, prompt_strategy)
