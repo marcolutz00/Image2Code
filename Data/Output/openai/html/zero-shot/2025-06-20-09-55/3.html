@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Producer Application</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        color: #333;
+        line-height: 1.5;
+        background-color: #f8f8f8;
+        margin: 0;
+        padding: 20px;
+    }
+
+    .container {
+        max-width: 800px;
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+        border-radius: 5px;
+    }
+
+    .header {
+        text-align: center;
+        padding: 10px 0;
+    }
+
+    .header img {
+        display: block;
+        margin: 0 auto;
+        height: 150px;
+        width: 150px;
+    }
+
+    .title-bar {
+        background-color: #ff4081;
+        text-align: center;
+        color: white;
+        padding: 10px;
+        font-size: 24px;
+        font-weight: bold;
+    }
+
+    label {
+        display: block;
+        margin-top: 20px;
+        font-weight: bold;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    select,
+    textarea {
+        width: calc(100% - 12px);
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        font-size: 16px;
+    }
+
+    input[type="checkbox"],
+    input[type="radio"] {
+        margin-right: 8px;
+    }
+
+    .note {
+        font-style: italic;
+        font-size: 14px;
+        margin-top: -10px;
+    }
+
+    .red-asterisk {
+        color: red;
+    }
+
+    .submit {
+        background-color: #ff4081;
+        color: white;
+        border: none;
+        padding: 15px;
+        width: 100%;
+        cursor: pointer;
+        font-size: 16px;
+        margin-top: 20px;
+        border-radius: 3px;
+    }
+
+    .faq-link a,
+    .terms-link a {
+        color: #00f;
+        text-decoration: none;
+    }
+
+    .footer {
+        font-size: 12px;
+        margin-top: 10px;
+        text-align: center;
+        border-top: 1px solid #ccc;
+        padding-top: 10px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <div class="header">
+        <img src="src/placeholder.jpg" alt="Producer Image">
+    </div>
+    <div class="title-bar">Producer Application</div>
+    <p>Tell us a little about you and your experience. <span class="faq-link"><a href="#">FAQ</a></span> for more information.</p>
+    <form>
+        <label for="first-name">First Name <span class="red-asterisk">*</span></label>
+        <input type="text" id="first-name" name="first-name" required>
+
+        <label for="last-name">Last Name <span class="red-asterisk">*</span></label>
+        <input type="text" id="last-name" name="last-name" required>
+
+        <label for="email">Email Address <span class="red-asterisk">*</span></label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="phone">Phone Number <span class="red-asterisk">*</span></label>
+        <input type="text" id="phone" name="phone" required>
+
+        <label for="location">Where Do You Live? <span class="red-asterisk">*</span></label>
+        <input type="text" id="location" name="location" required>
+
+        <label>I am at Least 18 Years of Age <span class="red-asterisk">*</span></label>
+        <input type="checkbox" id="age" name="age" required> <label for="age">Yes</label>
+
+        <label>Do You Have a Production Company? <span class="red-asterisk">*</span></label>
+        <input type="radio" id="company-yes" name="company" value="yes" required> <label for="company-yes">Yes</label>
+        <input type="radio" id="company-no" name="company" value="no"> <label for="company-no">No</label>
+
+        <label for="about">Tell Us More About You. <span class="red-asterisk">*</span></label>
+        <textarea id="about" name="about" rows="4" required></textarea>
+
+        <label for="genre">Preferred Genre <span class="red-asterisk">*</span></label>
+        <select id="genre" name="genre" required>
+            <option value="" disabled selected>Select your option</option>
+        </select>
+
+        <label>Are You Confident You Can Create Full-Length Episodes (12-25 minutes) on a Low-Budget and Continue to Create Episodes if they are Renewed by Candivan Subscribers? <span class="red-asterisk">*</span></label>
+        <input type="radio" id="confident-yes" name="confident" value="yes" required> <label for="confident-yes">Yes</label>
+        <input type="radio" id="confident-no" name="confident" value="no"> <label for="confident-no">No</label>
+
+        <label>If Selected as a Winner, Would You be Able to Start Production by this May or June (2019)? <span class="red-asterisk">*</span></label>
+        <input type="radio" id="start-yes" name="start" value="yes" required> <label for="start-yes">Yes</label>
+        <input type="radio" id="start-no" name="start" value="no"> <label for="start-no">No</label>
+
+        <label for="collaborate">Names of Others Plan to Collaborate with (If Applicable)</label>
+        <textarea id="collaborate" name="collaborate" rows="4"></textarea>
+
+        <label>Are you a member of the PGA? <span class="red-asterisk">*</span></label>
+        <input type="radio" id="pga-yes" name="pga" value="yes" required> <label for="pga-yes">Yes</label>
+        <input type="radio" id="pga-no" name="pga" value="no"> <label for="pga-no">No</label>
+
+        <label for="optional">OPTIONAL: Those with large social networks are preferable. Feel free to list any large networks you are part of or your Twitter.</label>
+        <textarea id="optional" name="optional" rows="4"></textarea>
+
+        <label for="how-did-you-find">How did you find out about us?</label>
+        <select id="how-did-you-find" name="how-did-you-find">
+            <option value="" disabled selected>Select your option</option>
+        </select>
+
+        <p><span class="red-asterisk">*</span> <input type="checkbox" id="terms" name="terms" required>
+        <label for="terms">I Have Read and I Accept the Terms and Conditions Below</label></p>
+
+        <p class="terms-link"><a href="#">Terms and Conditions</a></p>
+
+        <div class="footer">
+            Report abuse
+            <span> | </span>
+            Powered by <img src="src/placeholder.jpg" alt="Company Logo" style="vertical-align: middle; height: 15px; width: 15px;">
+        </div>
+
+        <button type="submit" class="submit">Submit</button>
+    </form>
+</div>
+</body>
+</html>

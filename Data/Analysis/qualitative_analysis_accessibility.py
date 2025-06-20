@@ -3,8 +3,10 @@ import sys
 from copy import deepcopy
 from difflib import SequenceMatcher
 import pandas as pd
-import pathlib
+from scipy.optimize import linear_sum_assignment
 from bs4 import BeautifulSoup
+import uuid
+import numpy as np
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
@@ -14,45 +16,6 @@ import Utils.utils_general as utils_general
 import Utils.utils_iterative_prompt as utils_iterative_prompt
 
 BENCHMARKS_PATH = os.path.join(os.path.dirname(__file__), '..', '..', 'Benchmarks')
-
-
-
-def _get_matched_blocks(image1_path: str, image2_path: str, html1_path: str, html2_path: str) -> tuple:
-    """
-    Uses the matching algorithm which has been used in benchmarks
-    -> Finds corresponding blocks in two files. Necessary for comparison
-    """
-
-    # Get blocks of both files
-    blocks1 = ocr_free_utils.get_blocks_ocr_free(image1_path, html1_path)
-    blocks2 = ocr_free_utils.get_blocks_ocr_free(image2_path, html2_path)
-
-    # Merge blocks by bounding box if similar
-    # blocks1 = visual_score.merge_blocks_by_bbox(blocks1)
-    # blocks2 = visual_score.merge_blocks_by_bbox(blocks2)
-
-    if not blocks1 or not blocks2:
-        print("Qualitative Analysis: No blocks found.")
-        return []
-    
-    # parameters similar to benchmarks
-    consecutive_bonus = 0.1
-    window_size = 1
-
-    blocks1, blocks2, matching = visual_score.find_possible_merge(deepcopy(blocks1), deepcopy(blocks2), consecutive_bonus, window_size, False)
-
-    filtered_matching = []
-    for i, j in matching:
-        text_similarity = SequenceMatcher(None, blocks1[i]['text'], blocks2[j]['text']).ratio()
-        # Filter out matching with low similarity
-        if text_similarity < 0.5:
-            continue
-        filtered_matching.append([i, j, text_similarity])
-    matching = filtered_matching
-
-
-    # TODO: Check if some components are not matched to anything!!!!
-    return matching, blocks1, blocks2
 
 
 def _normalize_text(text: str) -> str:
@@ -109,92 +72,158 @@ def _get_wcag_object(violation_id: str):
     }
 
 
-def _match_blocks_and_violations(information: list, blocks: list, html: str, violations_tools: list) -> pd.DataFrame:
+
+def _build_score_matrix(df1: pd.DataFrame, df2: pd.DataFrame):
     """
-    Match blocks with accessibility violations
+        In order to make sure to find a 1:1 match with the best fitting score, 
+        we need a score matrix and use hungarian algorihtm.
     """
-    file_id, model, prompt = information
-
-    df = pd.DataFrame(columns=['File_Id', 'Block_Text', 'Violation_Tag', 'Model', 'Prompt', 'Wcag_Obj', 'Violation_Id', 'Violation_Message', 'Violation_Impact', 'Html_Snippet'])
-
-    # define threshold for text simliarity (similar to benchmark)
-    threshold_text_similarity = 0.5
+    n = len(df1)
+    m = len(df2)
 
 
-    for block in blocks:
-        block["normalized_text"] = _normalize_text(block['text'])
+    score_matrix = np.zeros((n, m),dtype=float)
 
-    for violation in violations_tools:
-        snippet = _parse_html_snippet(violation['snippet'])
-
-        # Matching algorithm
-        best_score = 0
-        best_block = None
-
-        wcag_obj = _get_wcag_object(violation['id'])
-
-        if snippet["text"] == "":
-            df.loc[len(df)] = [file_id, "No Text", snippet["tag"], model, prompt, wcag_obj, violation['id'], violation['message'], violation['impact'], violation['snippet']]
-            continue
-
-        for index_block, block in enumerate(blocks):
-            temp_score = _text_similarity(block["normalized_text"], snippet["text"])
-
-            if temp_score > best_score:
-                best_block = block
-                best_score = temp_score
+    for index1, row1 in df1.iterrows():
+        for index2, row2 in df2.iterrows():
+            text_similarity = _text_similarity(row1["html_snippet"], row2["html_snippet"])
+            wcag_obj_similarity = 1.0 if (
+                row1["wcag_id"] == row2["wcag_id"]
+                and row1["wcag_url"] == row2["wcag_url"]
+            ) else 0.0
+            parsed_snippet_text_similarity= _text_similarity(
+                row1["parsed_snippet"]["text"], row2["parsed_snippet"]["text"]
+            )
+            parsed_snippet_tag_similarity = _text_similarity(row1['parsed_snippet']['tag'], row2['parsed_snippet']["tag"]) if row1['parsed_snippet']["tag"] and row2['parsed_snippet']["tag"] else 0
+            same_wcag_format = 1 if (row1['violation_id'] == row2['violation_id'] and 
+                                     ((
+                                         row1['violation_id'].startswith("https") and row2['violation_id'].startswith("https")) 
+                                         or 
+                                         (not row1['violation_id'].startswith("https") and not row2['violation_id'].startswith("https")))
+                                    ) else 0
             
-        final_block_index = index_block if best_score > threshold_text_similarity else None
+            # calculate score
+            score = (text_similarity * 2 + wcag_obj_similarity * 3 + same_wcag_format + parsed_snippet_text_similarity + parsed_snippet_tag_similarity) / 8
 
-        df.loc[len(df)] = [file_id, best_block['text'], snippet["tag"], model, prompt, wcag_obj, violation['id'], violation['message'], violation['impact'], violation['snippet']]
             
 
-    return df
-
-        
-
-
-
-
-def _match_blocks_internal(information: list, blocks: list, html_path: str, accessibility_path: str) -> pd.DataFrame:
-    """
-    Internal: Match between blocks found and accessibility violations in one file
-    merges all found components / blocks with accessibility violations into one DataFrame
-    -> Functionality: Full Outer Join
-    """
-    html = utils_general.read_html(html_path)
-    accessibility_violations = utils_general.read_json(accessibility_path)
-
-    violations_tools = utils_iterative_prompt.extract_issues_tools(accessibility_violations)
-
-    df_blocks_violations = _match_blocks_and_violations(information, blocks, html, violations_tools)
+            score_matrix[index1, index2] = score
     
-    print(df_blocks_violations)
-    print(df_blocks_violations.columns)
-
-    pass
+    return score_matrix
 
 
 
-def _match_blocks_external(info1: list, df1: pd.DataFrame, info2: list, df2: pd.DataFrame) -> pd.DataFrame:
+def _find_best_matches(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
     """
-    External: Match between different files based on their dataframes
     """
-    file_id1, model1, prompt1 = info1
-    file_id2, model2, prompt2 = info2
-    join_keys = ['File_Id', 'Block_Text', 'Wcag_Obj']
 
-    df_final = df1.merge(df2, on=join_keys, how='outer', indicator=True, suffixes=(f'_{prompt1}-{model1}', f'_{prompt2}-{model2}'))
+    score_matrix = _build_score_matrix(df1, df2)
 
-    return df_final
+    # threshold for matching
+    threshold = 0.75
+
+    n, m = score_matrix.shape
+
+    if n != m:
+        max_amound = max(n, m)
+        padded = np.zeros((max_amound, max_amound))
+        padded[:n, :m] =  score_matrix
+        score_matrix = padded
+
+    row_index, column_index = linear_sum_assignment(-score_matrix)
+
+    for row, column in zip(row_index, column_index):
+        if row < len(df1) and column < len(df2):
+            id1, id2 = df1.at[row, "unique_id"], df2.at[column, "unique_id"]
+            score = float(score_matrix[row, column])
+
+            # Only match if higher than theshiold
+            if score > threshold:
+                df1.at[row, "matched_to"] = id2
+                df1.at[row, "match_score"] = score
+                df2.at[row, "matched_to"] = id1
+                df2.at[row, "match_score"] = score
+
+    # Concatenate dataframes
+    df_combined = pd.concat([df1, df2], ignore_index=True)
+
+    return df_combined
+
+
+
+def _structure_violations(violations: list, model: str, prompt: str, file: str) -> pd.DataFrame:
+    """
+    """
+
+    structured_violations = []
+
+    violation_snippets = utils_iterative_prompt.extract_issues_tools(violations)
+
+    for snippet in violation_snippets:
+        snippet_data = snippet["snippet"]
+        snippet_id = snippet["id"]
+        snippet_message = snippet["message"]
+        snippet_impact = snippet["impact"]
+
+        wcag_object = _get_wcag_object(snippet_id)
+
+        # unique hash
+        unique_hash = uuid.uuid4().hex
+
+        structured_violations.append({
+            "unique_id": unique_hash,
+            "file_id": file,
+            "model": model,
+            "prompt": prompt,
+            "wcag_id": wcag_object["wcag_id"],
+            "wcag_url": wcag_object["url"],
+            "violation_id": snippet_id,
+            "violation_message": snippet_message,
+            "impact": snippet_impact,
+            "html_snippet": snippet_data,
+            "parsed_snippet": _parse_html_snippet(snippet_data),
+            "matched_to": None,
+            "match_score": 0.0
+        })
+
+    return pd.DataFrame(structured_violations)
+
+def _match_violations_external(information1: list, information2: list) -> pd.DataFrame:
+    """
+
+    """
+
+    accessibility1_path, model1, prompt1 = information1
+    accessibility2_path, model2, prompt2 = information2
+
+    violations1 = utils_general.read_json(accessibility1_path) 
+    violations2 = utils_general.read_json(accessibility2_path) 
+
+    base_file1 = accessibility1_path.split("/")[-1].split('.')[0]
+    base_file2 = accessibility2_path.split("/")[-1].split('.')[0]
+
+    df_violations1 = _structure_violations(violations1, model1, prompt1, base_file1)
+    df_violations2 = _structure_violations(violations2, model2, prompt2, base_file2)
+
+    df_matched_violations = _find_best_matches(df_violations1, df_violations2)
+
+    print(df_matched_violations.shape)
+
+    print(len(df_matched_violations[df_matched_violations['matched_to'].notnull()]))
+    print(df_matched_violations)
+
+
+    return df_matched_violations
+
+
 
 
 def _export_df_to_excel(df: pd.DataFrame, output_path: str, information1: list, information2: list) -> None:
     """
     Exports dataframe to excel
     """
-    model1, prompt1 = information1
-    model2, prompt2 = information2
+    file_id1, model1, prompt1 = information1
+    file_id2, model2, prompt2 = information2
 
     output_file = os.path.join(output_path, f"{model1}_{prompt1}_{model2}_{prompt2}_analysis.xlsx")
     df.to_excel(output_file, index=False)
@@ -203,29 +232,58 @@ def _export_df_to_excel(df: pd.DataFrame, output_path: str, information1: list, 
 
 
 
-def create_analysis_df(pack1: list, pack2: list, model: str, prompt: str) -> pd.DataFrame:
+def create_analysis_df(pack1: list, pack2: list) -> pd.DataFrame:
     """
     Creates a Dataframe which will be used for analysis purposes
     Columns: File_id, Model, Prompt, Wcag_id, name, impact, html_snippet
     """
-    image1_path, html1_path, accessibility1_path = pack1
-    image2_path, html2_path, accessibility2_path = pack2
+    accessibility1_path, model1, prompt1 = pack1
+    accessibility2_path, model2, prompt2 = pack2
 
-    # get matching
-    matching, blocks1, blocks2 = _get_matched_blocks(image1_path, image2_path, html1_path, html2_path)
 
-    html1_base_name = html1_path.split('/')[-1].split('.')[0]
-    html2_base_name = html2_path.split('/')[-1].split('.')[0]
+    information1 = [accessibility1_path, model1, prompt1]
+    information2 = [accessibility2_path, model2, prompt2]
 
-    information1 = [html1_base_name, model, prompt]
-    information2 = [html2_base_name, model, prompt]
+    df_violations_merge = _match_violations_external(information1, information2)
 
-    df_internal_1 = _match_blocks_internal(information1, blocks1, html1_path, accessibility1_path)
-    df_internal_2 = _match_blocks_internal(information2, blocks2, html2_path, accessibility2_path)
+    return df_violations_merge
 
-    df_external_merge = _match_blocks_external(information1, df_internal_1, information2, df_internal_2)
 
-    return  df_external_merge
+def start_qualitative_analysis(info1: list, info2: list) -> pd.DataFrame:
+    """
+    xxx
+    """
+    full_df = pd.DataFrame()
+
+    accessibility_path1, model1, prompt1 = info1
+    accessibility_path2, model2, prompt2 = info2
+
+
+    for file in os.listdir(accessibility_path1):
+        if os.path.isdir(file) and not file.endswith('.json'):
+            continue
+
+        accessibility1_path_file = os.path.join(accessibility_path1, file)
+        accessibility2_path_file = os.path.join(accessibility_path2, file)
+
+        analysis_df = create_analysis_df(
+            [accessibility1_path_file, model1, prompt1],
+            [accessibility2_path_file, model2, prompt2]
+        )
+
+        print(analysis_df)
+
+        # concat dataframes
+        full_df = pd.concat([full_df, analysis_df], ignore_index=True)
+
+    
+
+    _export_df_to_excel(full_df, os.path.dirname(__file__), info1, info2)
+
+    return full_df
+
+
+
 
 
 
@@ -239,17 +297,15 @@ if __name__ == "__main__":
     output_path = os.path.join(data_path, "Output")
 
     # Example paths
-    image1_path = os.path.join(input_path, 'images', '1.png')
-    image2_path = os.path.join(output_path, 'gemini', 'images', 'naive', '2025-06-18-11-53', '1.png')
-    html1_path = os.path.join(input_path, 'html', '1.html')
-    html2_path = os.path.join(output_path, 'gemini', 'html', 'naive', '2025-06-18-11-53', '1.html')
-    accessibility1_path = os.path.join(input_path, 'accessibility', '1.json')
-    accessibility2_path = os.path.join(output_path, 'gemini', 'accessibility', 'naive', '2025-06-18-11-53', '1.json')
+    accessibility1_path = os.path.join(input_path, 'accessibility')
 
-    pack1 = [image1_path, html1_path, accessibility1_path]
-    pack2 = [image2_path, html2_path, accessibility2_path]
+    accessibility1_naive_path = os.path.join(output_path, 'gemini', 'accessibility', 'naive', '2025-06-18-11-53')
+    accessibility1_reason_path = os.path.join(output_path, 'gemini', 'accessibility', 'reason', '2025-06-18-16-24')
 
-    df_analysis = create_analysis_df(pack1, pack2, model, prompt)
+    pack1 = [accessibility1_naive_path, model, prompt]
+    pack2 = [accessibility1_reason_path, model, "reason"]
+
+    df_analysis = start_qualitative_analysis(pack1, pack2)
 
 
     
