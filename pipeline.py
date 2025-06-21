@@ -148,7 +148,7 @@ def _overwrite_insights(accessibility_dir, insight_dir, model, prompt_strategy, 
 async def main():
     model = "openai" # option openai, gemini, qwen_local, qwen_hf, llama_local, llama_hf, hf-finetuned
     model_dir = model.split("_")[0]
-    prompt_strategy = "reason" # option naive, zero-shot, reason, iterative
+    prompt_strategy = "iterative" # option naive, zero-shot, reason, iterative
     max_attempts = 3
 
     # 1. Load API-Key and define model strategy
@@ -171,7 +171,7 @@ async def main():
         if os.path.isfile(image_path) and image.endswith('.png'):
             print("Start processing: ", image)
 
-            if int(image.split(".")[0]) < 15:
+            if int(image.split(".")[0]) < 22:
                 continue
 
             image_information = {

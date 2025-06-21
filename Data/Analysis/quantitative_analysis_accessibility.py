@@ -4,10 +4,14 @@ import os
 import sys
 from copy import deepcopy
 import numpy as np
+from scipy.spatial.distance import cosine
+import pandas as pd
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import Utils.utils_general as utils_general
+
+BENCHMARKS_PATH = os.path.join(os.path.dirname(__file__), '..', '..', 'Benchmarks')
 
 
 def _structure_and_sort_violations(violations_lists: list, top_violations: int) -> list:
@@ -51,9 +55,7 @@ def _structure_and_sort_violations(violations_lists: list, top_violations: int) 
 
 
 
-
-
-def plot_average_violations(comparison: list) -> None:
+def plot_bar_average_violations(comparison: list) -> None:
     """
         bar chart plot based on average violations
     """
@@ -118,11 +120,176 @@ def plot_average_violations(comparison: list) -> None:
 
 
 
+def plot_cake_average_violations(accessibility_path: str) -> None:
+    """
+        cake chart plot based on average violations
+        https://stackoverflow.com/questions/71669256/matplotlib-pie-chart-label-customize-with-percentage
+    """
+
+    top_violations = 7
+    other_added = False
+
+    data = utils_general.read_json(accessibility_path)
+    violations_list = data.get("accessibility_issues", [])
+
+    labels = []
+    values = []
+    for name, details in violations_list:
+        if len(labels) >= top_violations:
+            if not other_added:
+                labels.append("Other")
+                values.append(details.get("amount_nodes_failed", 0))
+                other_added = True
+            else:
+                values[-1] += details.get("amount_nodes_failed", 0)
+
+            continue
+
+        labels.append(name)
+        values.append(details.get("amount_nodes_failed", 0))
+
+    print(len(labels), len(values))
+
+    values = np.array(values)
+
+    fig, ax = plt.subplots(1, 1, figsize=(12, 12))
+    ax.pie(
+        values,
+        labels=labels,
+        autopct="%1.1f%%",
+        # pctdistance=0.8
+    )
+    ax.axis("equal") 
+
+    plt.title("Average Accessibility Violations")
+    plt.tight_layout()
+    plt.show()
+
+
+def _build_vector_space(comparison: list):
+    """
+        Build vector space for heatmap
+        Vector Length : len(violations in mapping)
+    """
+
+    wcag_mapping_path = os.path.join(BENCHMARKS_PATH, '..', 'Accessibility', 'mappingCsAndAxeCore.json')
+    wcag_mapping = utils_general.read_json(wcag_mapping_path)
+    rule_names = [mapping.get("name") for mapping in wcag_mapping]
+    rule_index_map = {name: index for index, name in enumerate(rule_names)}
+
+
+    vector_space = {}
+    
+    # Iterate over all comparisons (e.g. gemini-naive, gemini-zero-shot)
+    for model, prompt, path in comparison:
+        experiment_id = str(hash(f"{model}{prompt}{path}"))
+        # Iterate over each file 
+        for file in [f for f in os.listdir(path) if f.endswith('.json')]:
+            file_base = file.split(".")[0]
+
+            if file_base not in vector_space:
+                vector_space[file_base] = {}
+
+            file_path = os.path.join(path, file)
+            data_file = utils_general.read_json(file_path)
+
+            # build vector 
+            vector = np.zeros(len(rule_names))
+
+            # Iterate over all issues file
+            for issue in data_file.get("automatic", []):
+                rule_name = issue.get("name")
+                if rule_name in rule_index_map:
+                    index = rule_index_map[rule_name]
+                    vector[index] += issue.get("amount_nodes_failed", 0)
+        
+            # Add vector to vector space
+            vector_space[file_base][experiment_id] = vector
+
+
+    return vector_space, rule_names
+
+
+def _calculate_cosine_similarity(vector_space: dict):
+    """
+        Calculate cosine similarity between vectors in vector space
+        -> Each column in the heatmap is a comparison between two runs 
+    """
+
+    cosine_similarity_dict = {}
+    
+    for file, vector in vector_space.items():
+        # Calculate similarity for each pair (except itself)
+        if file not in cosine_similarity_dict:
+            cosine_similarity_dict[file] = {}
+        
+        seen_experiment_runs = set()
+        for experiment_id1, vector1 in vector.items():
+            for experiment_id2, vector2 in vector.items():
+                if experiment_id1 != experiment_id2 and (experiment_id2, experiment_id1) not in seen_experiment_runs:
+                    seen_experiment_runs.add((experiment_id1, experiment_id2))
+                    similarity = 1 - cosine(vector1, vector2)
+                    cosine_similarity_dict[file][f"{experiment_id1}_vs_{experiment_id2}"] = similarity
+
+    
+    return cosine_similarity_dict
+
+
+
+def plot_heatmap_comparison_violations(comparison: list) -> None:
+    """
+        heatmap plot based on violations for each file
+        -> Each column in the heatmap is a comparison between two runs 
+        Example 1: gemini-naive run1, gemini-naive run2
+        Example 2: gemini-zero-shot run1, gemini-naive run1
+    """
+    # comparison list too long
+    if len(comparison) > 6:
+        raise ValueError("Too many comparisons for heatmap - max 6")
+    
+    experiment_ids = {}
+    for model, prompt, path in comparison:
+        experiment_id = str(hash(f"{model}{prompt}{path}"))
+        experiment_ids[experiment_id] = {
+            "model": model,
+            "prompt": prompt,
+            "path": path
+        }
+
+    # build vector space
+    vector_space, rule_names = _build_vector_space(comparison)
+    # calc cosine similarity for each pari
+    cosine_similarity_dict = _calculate_cosine_similarity(vector_space)
+
+    # dataframe out of dict 
+    df_cosine = pd.DataFrame.from_dict(cosine_similarity_dict, orient='index').fillna(0)
+    # rename columns to human readable
+    df_cosine.columns = [f"{experiment_ids[col.split('_vs_')[0]]['model']}-{experiment_ids[col.split('_vs_')[0]]['prompt']}_vs_{experiment_ids[col.split('_vs_')[1]]['model']}-{experiment_ids[col.split('_vs_')[1]]['prompt']}" for col in df_cosine.columns]
+
+    fig, ax = plt.subplots(figsize=(max(6, df_cosine.shape[1]*1),max(6, df_cosine.shape[0]*0.25)))
+
+    image = ax.imshow(df_cosine.values, cmap='hot', vmin=0, vmax=1, aspect='auto')
+
+    ax.set_xticks(np.arange(df_cosine.shape[1]), labels=df_cosine.columns, rotation=45, ha="right", fontsize=8)
+
+    cbar = fig.colorbar(image, ax=ax, fraction=0.025, pad=0.02)
+    cbar.set_label("Cosine Similarity (0 … 1)", fontsize=9)
+
+    plt.xticks(range(df_cosine.shape[1]), df_cosine.columns, rotation=45, ha='right', fontsize=8)
+    plt.yticks(range(df_cosine.shape[0]), df_cosine.index, fontsize=7)
+    plt.title('Pairwise Cosine Similarity per File across Runs')
+    plt.tight_layout()
+    plt.show()
+
+
+
 # Test
 if __name__ == "__main__":
+
     result_path = os.path.join(os.path.dirname(__file__), "..", "..", "Results", "accessibility", "average")
 
-    comparison_data = [
+    # 1. General Comparison Data (Average)
+    comparison_data_average = [
         ("gemini", "naive", os.path.join(result_path, "gemini_naive_average_results.json")),
         ("gemini", "zero-shot", os.path.join(result_path, "gemini_zero-shot_average_results.json")),
         ("gemini", "reason", os.path.join(result_path, "gemini_reason_average_results.json")),
@@ -132,6 +299,18 @@ if __name__ == "__main__":
         ("gemini", "iterative_refine_3", os.path.join(result_path, "gemini_iterative_refine_3_average_results.json")),
     ]
 
-    plot_average_violations(comparison_data)
+    # plot_bar_average_violations(comparison_data_average)
+    # plot_cake_average_violations(comparison_data_average[0][2])
+
+
+    # 2. Specific (per File) Comparison Data
+    output_path = os.path.join(os.path.dirname(__file__), "..", "Output")
+
+    comparison_data_specific = [
+        ("gemini", "naive", os.path.join(output_path, "gemini", "accessibility", "naive", "2025-06-18-10-18")),
+        ("gemini", "naive", os.path.join(output_path, "gemini", "accessibility", "naive", "2025-06-18-11-24")),
+        ("gemini", "naive", os.path.join(output_path, "gemini", "accessibility", "naive", "2025-06-18-11-53")),
+    ]
+    plot_heatmap_comparison_violations(comparison_data_specific)
 
 
