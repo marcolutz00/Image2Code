@@ -32,6 +32,14 @@ def _parse_html_snippet(snippet: str):
     soup = BeautifulSoup(snippet, 'html.parser')
     node = soup.find()
 
+    if node is None:
+        return {
+            "tag": "",
+            "id": "",
+            "cls": "",
+            "text": ""
+        }
+    
     return {
         "tag":  node.name or "",
         "id":   node.get("id", ""),
@@ -122,7 +130,7 @@ def _find_best_matches(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
     score_matrix = _build_score_matrix(df1, df2)
 
     # threshold for matching
-    threshold = 0.75
+    threshold = 0.8
 
     n, m = score_matrix.shape
 
@@ -206,9 +214,17 @@ def _match_violations_external(information1: list, information2: list) -> pd.Dat
     base_file1 = accessibility1_path.split("/")[-1].split('.')[0]
     base_file2 = accessibility2_path.split("/")[-1].split('.')[0]
 
-    df_violations1 = _structure_violations(violations1, model1, prompt1, base_file1)
-    df_violations2 = _structure_violations(violations2, model2, prompt2, base_file2)
+    one_empty = False
 
+    df_violations1 = _structure_violations(violations1, model1, prompt1, base_file1)
+    len_df_violations1 = len(df_violations1)
+    df_violations2 = _structure_violations(violations2, model2, prompt2, base_file2)
+    len_df_violations2 = len(df_violations2)
+
+    # check if both dataframes not empty
+    if len_df_violations1 == 0 or len_df_violations2 == 0:
+        one_empty = True
+    
     df_matched_violations = _find_best_matches(df_violations1, df_violations2)
 
     print(df_matched_violations.shape)
@@ -217,7 +233,7 @@ def _match_violations_external(information1: list, information2: list) -> pd.Dat
     print(df_matched_violations)
 
 
-    return df_matched_violations
+    return df_matched_violations, one_empty
 
 
 
@@ -248,9 +264,47 @@ def create_analysis_df(pack1: list, pack2: list) -> pd.DataFrame:
     information1 = [accessibility1_path, model1, prompt1]
     information2 = [accessibility2_path, model2, prompt2]
 
-    df_violations_merge = _match_violations_external(information1, information2)
+    df_violations_merge, one_empty = _match_violations_external(information1, information2)
 
-    return df_violations_merge
+    return df_violations_merge, one_empty
+
+
+def _get_mean_component_found(analysis_df: pd.DataFrame) -> float:
+    """
+    
+    """
+    # new column
+    analysis_df["is_matched"] = analysis_df['matched_to'].notnull()
+
+    # divide pd based on 2 columns model and prompt
+    model_prompt_group = {}
+
+    for model, prompt in zip(analysis_df["model"], analysis_df["prompt"]):
+        key = (model, prompt)
+        if key not in model_prompt_group:
+            model_prompt_group[key] = 0
+        model_prompt_group[key] += 1
+
+    biggest_group = max(model_prompt_group.items(), key=lambda x: x[1])
+    biggest_group_key = biggest_group[0]
+    
+    biggest_sub_df = analysis_df[
+        (analysis_df['model'] == biggest_group_key[0]) & 
+        (analysis_df['prompt'] == biggest_group_key[1])
+    ]
+
+    mean_score = biggest_sub_df['is_matched'].mean()
+
+    grouped_df = analysis_df.groupby(['model', 'prompt', 'wcag_id', 'wcag_url']).agg(
+        mean_score=('is_matched', 'mean'),
+        sum_matching=('is_matched', 'sum'),
+        count_entries=('unique_id', 'count')
+    ).reset_index()
+
+    print(grouped_df)
+
+    return mean_score
+
 
 
 def start_qualitative_analysis(info1: list, info2: list) -> pd.DataFrame:
@@ -262,6 +316,7 @@ def start_qualitative_analysis(info1: list, info2: list) -> pd.DataFrame:
     accessibility_path1, model1, prompt1 = info1
     accessibility_path2, model2, prompt2 = info2
 
+    mean_scores = []
 
     for file in os.listdir(accessibility_path1):
         if os.path.isdir(file) and not file.endswith('.json'):
@@ -270,19 +325,25 @@ def start_qualitative_analysis(info1: list, info2: list) -> pd.DataFrame:
         accessibility1_path_file = os.path.join(accessibility_path1, file)
         accessibility2_path_file = os.path.join(accessibility_path2, file)
 
-        analysis_df = create_analysis_df(
+        analysis_df, one_empty = create_analysis_df(
             [accessibility1_path_file, model1, prompt1],
             [accessibility2_path_file, model2, prompt2]
         )
 
-        print(analysis_df)
+        # print(analysis_df)
+        # Interpretation
+        if not one_empty:
+            mean_scores.append(_get_mean_component_found(analysis_df))
 
         # concat dataframes
         full_df = pd.concat([full_df, analysis_df], ignore_index=True)
 
-    
+    # mean Score for all files
+    if mean_scores:
+        mean_score = np.mean(mean_scores)
+        print(f"\n\nMean Score for all files: {mean_score}")
 
-    _export_df_to_excel(full_df, os.path.dirname(__file__), info1, info2)
+    # _export_df_to_excel(full_df, os.path.dirname(__file__), info1, info2)
 
     return full_df
 
@@ -303,11 +364,18 @@ if __name__ == "__main__":
     # Example paths
     accessibility1_path = os.path.join(input_path, 'accessibility')
 
-    accessibility1_naive_path = os.path.join(output_path, 'gemini', 'accessibility', 'naive', '2025-06-18-11-53')
+    # accessibility1_naive_path = os.path.join(output_path, 'gemini', 'accessibility', 'naive', '2025-06-18-11-53')
+    # accessibility1_naive_path = os.path.join(output_path, 'gemini', 'accessibility', 'naive', '2025-06-18-11-24')
+    # accessibility1_naive_path = os.path.join(output_path, 'gemini', 'accessibility', 'naive', '2025-06-18-11-53')
     accessibility1_reason_path = os.path.join(output_path, 'gemini', 'accessibility', 'reason', '2025-06-18-16-24')
+    # accessibility1_reason_path = os.path.join(output_path, 'gemini', 'accessibility', 'reason', '2025-06-18-17-38')
+    # accessibility1_reason_path = os.path.join(output_path, 'gemini', 'accessibility', 'reason', '2025-06-18-20-49')
+    accessibility1_zeroshot_path = os.path.join(output_path, 'gemini', 'accessibility', 'zero-shot', '2025-06-18-13-25')
+    # accessibility1_zeroshot_path = os.path.join(output_path, 'gemini', 'accessibility', 'zero-shot', '2025-06-18-14-29')
+    # accessibility1_zeroshot_path = os.path.join(output_path, 'gemini', 'accessibility', 'zero-shot', '2025-06-18-15-40')
 
-    pack1 = [accessibility1_naive_path, model, prompt]
-    pack2 = [accessibility1_reason_path, model, "reason"]
+    pack1 = [accessibility1_reason_path, model, "reason"]
+    pack2 = [accessibility1_zeroshot_path, model, "zero-shot"]
 
     df_analysis = start_qualitative_analysis(pack1, pack2)
 

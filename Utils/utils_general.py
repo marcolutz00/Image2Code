@@ -109,14 +109,6 @@ def util_encode_image_b64(self, image_data):
 
 
 
-def cutColorChannels(image):
-    '''
-        needed for SSIM - only 3 color channels necessary, 4th channel is alpha and can be deleted
-    '''
-    if(image.shape[2] == 4):
-        return image[:, :, :3]
-
-
 def get_model_strategy(name):
     '''
         Returns strategy of the model and right parameter which can be used later
