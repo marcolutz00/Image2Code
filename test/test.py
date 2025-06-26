@@ -265,9 +265,14 @@ def get_blocks_ocr_free(image_path, html_path):
     return blocks
 
 
+
+
 def draw_boxes_on_image(image_path, blocks, out_path="annotated.png", color=(0, 255, 0), thickness=2):
     """
-        Test boxes 
+        For test cases
+        Just draws boxes in image
+
+        Generated with ChatGPT
     """
     img = cv2.imread(image_path)
     h, w = img.shape[:2]
@@ -287,15 +292,18 @@ def draw_boxes_on_image(image_path, blocks, out_path="annotated.png", color=(0, 
         y2 = max(0, min(y2, h - 1))
 
         cv2.rectangle(img, (x1, y1), (x2, y2), color, thickness)
-        cv2.putText(img, b["text"][:20], (x1, max(15, y1 - 5)),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1, cv2.LINE_AA)
+        cv2.putText(img, b["text"][:20], (x1, max(15, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1, cv2.LINE_AA)
 
     cv2.imwrite(out_path, img)
-    print(f"✓ Annotiertes Bild gespeichert unter  {out_path}")
+    print(f"Annotated image: {out_path}")
 
 
 
 def get_background_color(image_path, blocks):
+    """
+        Just gets background color of each block
+        How? By getting all pixel colors of bounding boxes and determining background color as max of found colors (except font color)
+    """
     img = cv2.imread(image_path)
     height, width = img.shape[:2]
 
@@ -338,27 +346,42 @@ def get_background_color(image_path, blocks):
 
     return background_colors
 
-def is_large_text_bbox(bbox_h_img, dpr, is_bold=False):
-    css_h = bbox_h_img / dpr
-    return (css_h >= 24) or (is_bold and css_h >= 18.66)
+def _check_large_text_bbox(bbox_height):
+    """
+        Simple chek if css corresponds to large text
 
-def rel_lum(rgb):
+        TODO: More sophisticated (e.g. check if bold font or dpr)
+    """
+
+    return bbox_height >= 24
+
+
+def perceived_brightness_rgb(rgb):
+    """
+        Human Eye has different brightness understanding
+
+        Generated with ChatGPT and https://stackoverflow.com/questions/596216/formula-to-determine-perceived-brightness-of-rgb-color?utm_source=chatgpt.com
+    """
     g = [(c/255)/12.92 if c/255<=0.03928 else ((c/255+0.055)/1.055)**2.4 for c in rgb]
     return 0.2126*g[0] + 0.7152*g[1] + 0.0722*g[2]
 
 
-def contrast_ratio(fg,bg):
+def _calculate_contrast_ratio(fg,bg):
     """
+        Calculates current contrast ratio
     """
     if fg is None or bg is None:
         return None
-    L1,L2 = rel_lum(fg), rel_lum(bg)
-    return (max(L1,L2)+0.05)/(min(L1,L2)+0.05)
+    
+    luminance1 = perceived_brightness_rgb(fg)
+    luminance2 = perceived_brightness_rgb(bg)
+    return (max(luminance1,luminance2)+0.05)/(min(luminance1,luminance2)+0.05)
 
 
 def suggest_foreground_color(block_color, background_color, target):
     """
-    Suggests a foreground color that meets the contrast ratio requirement with the background color.
+        Suggests a foreground color that meets the contrast ratio requirement with the background color.
+        It uses a simple list of examplary colors and iterates them
     """
     if block_color is None or background_color is None:
         return None
@@ -368,7 +391,7 @@ def suggest_foreground_color(block_color, background_color, target):
     for color in exchange_colors:
         foreground_color = ImageColor.getrgb(color)
 
-        ratio = contrast_ratio(foreground_color, background_color)
+        ratio = _calculate_contrast_ratio(foreground_color, background_color)
         if ratio is not None and ratio >= target:
             return color
     
@@ -378,16 +401,18 @@ def suggest_foreground_color(block_color, background_color, target):
 
 def calculate_recommended_colors(blocks, target_contrast=4.5):
     """
-    a
+        If Color Contrast issue exists, color recommendation 
     """
     is_large = False
-    dpr = 1.0 
+
     for block in blocks:
-        is_large = is_large_text_bbox(block["bbox"][3], dpr, is_bold=False)
-        ratio = contrast_ratio(block["color"], block["background_color"])
+        is_large = _check_large_text_bbox(block["bbox"][3])
+        ratio = _calculate_contrast_ratio(block["color"], block["background_color"])
         if ratio is None:
             block["suggest_color"] = None
+            is_large = False
             continue
+
         limit = 3.0 if is_large else 4.5  
 
         # 5% tolerance
@@ -400,27 +425,14 @@ def calculate_recommended_colors(blocks, target_contrast=4.5):
 
         else:
             block["suggest_color"] = None
-            continue
 
             
         is_large = False
 
-def delete_images(html_path):
-    """
-    
-    """
-    html_path_str = str(html_path)
-    output_path = Path(html_path_str.replace(".html", "_noimg.html"))
-    soup = BeautifulSoup(html_path.read_text(encoding="utf-8"), "html.parser")
-
-    for img in soup.find_all("img"):
-        img.decompose()
-
-    # write in modified html
-    output_path.write_text(str(soup), encoding="utf-8")
 
 
 
+# Test cases
 if __name__ == "__main__":
     DIR_PATH = os.path.dirname(os.path.realpath(__file__))
     INPUT_HTML_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Input', 'html')
