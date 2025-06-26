@@ -186,8 +186,8 @@ def _structure_violations(violations: list, model: str, prompt: str, file: str) 
             "file_id": file,
             "model": model,
             "prompt": prompt,
-            "wcag_id": wcag_object["wcag_id"],
-            "wcag_url": wcag_object["url"],
+            "wcag_id": str(wcag_object["wcag_id"]),
+            "wcag_url": str(wcag_object["url"]),
             "source": snippet_source,
             "violation_id": snippet_id,
             "violation_message": snippet_message,
@@ -301,9 +301,11 @@ def _get_mean_component_found(analysis_df: pd.DataFrame) -> float:
         count_entries=('unique_id', 'count')
     ).reset_index()
 
-    print(grouped_df)
+    grouped_df = grouped_df[(grouped_df["model"] == biggest_group_key[0]) & (grouped_df["prompt"] == biggest_group_key[1])]
 
-    return mean_score
+    # print(grouped_df)
+
+    return mean_score, grouped_df
 
 
 
@@ -317,6 +319,7 @@ def start_qualitative_analysis(info1: list, info2: list) -> pd.DataFrame:
     accessibility_path2, model2, prompt2 = info2
 
     mean_scores = []
+    grouped_violations_map = {}
 
     for file in os.listdir(accessibility_path1):
         if os.path.isdir(file) and not file.endswith('.json'):
@@ -333,17 +336,53 @@ def start_qualitative_analysis(info1: list, info2: list) -> pd.DataFrame:
         # print(analysis_df)
         # Interpretation
         if not one_empty:
-            mean_scores.append(_get_mean_component_found(analysis_df))
+            mean_score, violations_group_df = _get_mean_component_found(analysis_df)
+            mean_scores.append(mean_score)
+            
+            for model_p, prompt_p, wcag_id_p, wcag_url_p in zip(violations_group_df["model"], violations_group_df["prompt"], violations_group_df["wcag_id"], violations_group_df["wcag_url"]):
+                filter_df = ((violations_group_df['model'] == model_p) & 
+                    (violations_group_df['prompt'] == prompt_p) & 
+                    (violations_group_df['wcag_id'] == wcag_id_p) & 
+                    (violations_group_df['wcag_url'] == wcag_url_p))
+                
+                index_entry = violations_group_df.index[filter_df].item()
+                mean_score_group = violations_group_df.loc[index_entry, 'mean_score']
+                sum_matching_group = violations_group_df.loc[index_entry, 'sum_matching']
+                count_entries_group = violations_group_df.loc[index_entry, 'count_entries']
+                
+                key = (model_p, prompt_p, wcag_id_p, wcag_url_p)
+                if key not in grouped_violations_map:
+                    grouped_violations_map[key] = {
+                        "mean_score": mean_score_group,
+                        "sum_matching": sum_matching_group,
+                        "count_entries": count_entries_group,
+                    }
+                else:
+                    grouped_violations_map[key] = {
+                        "sum_matching": grouped_violations_map[key].get("sum_matching") + sum_matching_group,
+                        "count_entries": grouped_violations_map[key].get("count_entries") + count_entries_group,
+                        "mean_score": grouped_violations_map[key].get("sum_matching") / grouped_violations_map[key].get("count_entries") if grouped_violations_map[key].get("count_entries") > 0 else 0
+                    }
 
         # concat dataframes
         full_df = pd.concat([full_df, analysis_df], ignore_index=True)
+
+    
+
+    grouped_violations_df = pd.DataFrame.from_dict(
+        grouped_violations_map, 
+        orient='index', 
+        columns=['mean_score', 'sum_matching', 'count_entries']
+    ).reset_index()
+
+    _export_df_to_excel(grouped_violations_df, os.path.dirname(__file__), [accessibility1_path, "asdf", "asdf"], [accessibility1_path, "asdfa", "asdaf"])
 
     # mean Score for all files
     if mean_scores:
         mean_score = np.mean(mean_scores)
         print(f"\n\nMean Score for all files: {mean_score}")
 
-    # _export_df_to_excel(full_df, os.path.dirname(__file__), info1, info2)
+    _export_df_to_excel(full_df, os.path.dirname(__file__), info1, info2)
 
     return full_df
 

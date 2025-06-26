@@ -605,6 +605,7 @@ def visual_eval_v3_multi(input_list, debug=False):
 
 
 
+# Tests
 if __name__ == "__main__":
     DIR_PATH = os.path.dirname(os.path.realpath(__file__))
     INPUT_HTML_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Input', 'html')
