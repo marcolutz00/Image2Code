@@ -1,400 +1,316 @@
-import os 
-import sys
-from copy import deepcopy
-from difflib import SequenceMatcher
-import pandas as pd
-from scipy.optimize import linear_sum_assignment
-from bs4 import BeautifulSoup
-import uuid
+import cv2
 import numpy as np
+from scipy.optimize import linear_sum_assignment
+from pathlib import Path
+from typing import List, Tuple, Sequence, Dict, Any, Optional
+import sys
+import os
+import json
+from pathlib import Path
+from bs4 import BeautifulSoup
+import difflib
+from collections import Counter
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__)))))
 
 import Benchmarks.ocr_free_utils as ocr_free_utils
-import Benchmarks.visual_score as visual_score
 import Utils.utils_general as utils_general
-import Utils.utils_iterative_prompt as utils_iterative_prompt
-
-BENCHMARKS_PATH = os.path.join(os.path.dirname(__file__), '..', '..', 'Benchmarks')
+import Utils.utils_dataset as utils_dataset
 
 
-def _normalize_text(text: str) -> str:
+
+
+
+
+def _calculate_best_match(text: str, soup, min_similarity: float = 0.45) -> str:
     """
-    Normalize text (lowercase, ...)
+    Finds best html tag that matches text
     """
-    return " ".join(text.split()).strip().lower() if text else ""
+    if not text or soup is None:
+        return ""
+
+    best_tag = None
+    best_similarity = 0.0
+
+    for tag in soup.find_all(True):
+        tag_txt = tag.get_text(strip=True)
+        if not tag_txt:
+            continue
+        sim = difflib.SequenceMatcher(None, tag_txt, text).ratio()
+
+        if sim > best_similarity:
+            best_similarity, best_tag = sim, tag
+
+    if best_tag is None or best_similarity < min_similarity:
+        return ""
+
+    html_snip = str(best_tag)
+    # only short snippet part
+    return html_snip[:250]
 
 
-def _parse_html_snippet(snippet: str):
+def _extract_ui_blocks(image_path: str, html_path: str,width: int, height: int):
     """
-    Parse the HTML snippet
+    returns ui blocks with bbox and html snippet
     """
-    soup = BeautifulSoup(snippet, 'html.parser')
-    node = soup.find()
+    soup = BeautifulSoup(Path(html_path).read_text(), "html.parser")
 
-    if node is None:
-        return {
-            "tag": "",
-            "id": "",
-            "cls": "",
-            "text": ""
-        }
+    raw_blocks = ocr_free_utils.get_blocks_ocr_free(str(image_path), html_path)
+    boxes= []
+    htmls = []
+
+    for entry in raw_blocks:
+        x_norm, y_norm, w_norm, h_norm = entry["bbox"]
+        x1 = int(round(x_norm * width))
+        y1 = int(round(y_norm * height))
+        x2 = int(round((x_norm + w_norm) * width))
+        y2 = int(round((y_norm + h_norm) * height))
+
+        temp_list = [x1, y1, x2, y2]
+
+        boxes.append(temp_list)
+        text = entry.get("text") or entry.get("innerText") or ""
+
+        html_snippet = _calculate_best_match(text, soup)
+
+        boxes.append(temp_list)
+        htmls.append(html_snippet.strip())
+    return boxes, htmls
+
+
+
+
+
+def _find_dominant_tool(issues) -> Tuple:
+    """
+    just return the dominant tool (max number of issues per issue group)
+    """
+    issues = issues.get("issues")
+
+    sources = [issue.get("source") for issue in issues]
+
+    if not sources:
+        return issues, "unknown"
     
-    return {
-        "tag":  node.name or "",
-        "id":   node.get("id", ""),
-        "cls":  " ".join(node.get("class", [])),
-        "text": _normalize_text(node.get_text(" ", strip=True)),
+    counts = Counter(sources)
+    max_count = max(counts.values())
+
+    dominant_srcs = [src for src, cnt in counts.items() if cnt == max_count]
+    dominant_srcs.sort()
+
+    dominant = dominant_srcs[0]
+    filtered = [iss for iss, src in zip(issues, sources) if src == dominant]
+    return filtered, dominant
+
+
+
+def _extract_violation_items(violations):
+    """
+        Extracts violation item
+    """
+
+    data = violations
+    data = data.get("automatic")
+
+    violation_htmls = []
+
+    for issue_group in data:
+        filtered_issues, dominant_tool = _find_dominant_tool(issue_group)
+        group_name = issue_group.get("name")
+
+        for issue in filtered_issues:
+            # If axe-core
+            nodes = issue.get("nodes")
+            if nodes:
+                node_iter = nodes if isinstance(nodes, list) else [nodes]
+                for n in node_iter:
+                    html_snip = n.get("html") or n.get("snippet") or ""
+                    if html_snip:
+                        violation_htmls.append([group_name, html_snip.strip()])
+                continue
+
+            # If pa11y
+            original_issue = issue.get("original_issue")
+            if original_issue:
+                context = original_issue.get("context")
+                if context:
+                    violation_htmls.append([group_name, context.strip()])
+                continue
+
+            # Lighthouse‑style single node
+            det = issue.get("details")
+            if isinstance(det, dict):
+                node = det.get("node")
+                if isinstance(node, dict):
+                    html_snip = node.get("html") or node.get("snippet")
+                    if html_snip:
+                        violation_htmls.append([group_name, html_snip.strip()])
+
+    return violation_htmls
+
+
+
+def _calculate_similarity(a: str, b: str) -> float:
+    """
+        similartiy of text
+    """
+    if not a or not b:
+        return 0.0
+    
+    return difflib.SequenceMatcher(None, a, b).ratio()
+
+
+
+
+def extract_tag_text(html: str):
+    """
+        Only extracts text from html tags
+    """
+    soup = BeautifulSoup(html, "html.parser")
+
+    texts = list(soup.stripped_strings)
+
+    if not texts:
+        return soup.get_text(strip=True)
+
+    texts = [txt for txt in texts if len(txt) >= 3]
+
+    return texts
+
+
+
+def match_blocks_html(violation_htmls: List[str],block_htmls: List[str], threshold: float = 0.8):
+    """
+        Maps blocks with html
+    """
+    if not violation_htmls or not block_htmls:
+        return {}, list(range(len(violation_htmls))), list(range(len(block_htmls))), {}
+    
+    distribution_violations = {
+        "matched": {},
+        "unmatched": {}
     }
 
-def _text_similarity(text1: str, text2: str) -> float:
-    """ 
-    Text similarity based on sequence Matcher
+    # similarity matrix
+    sim_matrix = np.zeros((len(violation_htmls), len(block_htmls)))
+    for i, violation in enumerate(violation_htmls):
+        clear_text_violation = extract_tag_text(violation[1])
+        for j, block in enumerate(block_htmls):
+            clear_text_block = extract_tag_text(block)
+            max_score = 0.0
+            for text in clear_text_block:
+                for text2 in clear_text_violation:
+                    max_score = _calculate_similarity(text, text2) if _calculate_similarity(text, text2) > max_score else max_score
+            sim_matrix[i, j] = max_score
+
+    matches = {}
+    unmatched_v = []
+
+    # closest score (greedy)
+    for i in range(len(violation_htmls)):
+        best_j = int(np.argmax(sim_matrix[i]))
+        best_similarity = sim_matrix[i, best_j]
+        if best_similarity >= threshold:
+            matches[i] = best_j
+            if violation_htmls[i][0] not in distribution_violations["matched"]:
+                distribution_violations["matched"][violation_htmls[i][0]] = 0
+            distribution_violations["matched"][violation_htmls[i][0]] += 1
+        
+        else:
+            unmatched_v.append(i)
+            if violation_htmls[i][0] not in distribution_violations["unmatched"]:
+                distribution_violations["unmatched"][violation_htmls[i][0]] = 0
+            distribution_violations["unmatched"][violation_htmls[i][0]] += 1
+
+
+    matched_blocks = set(matches.values())
+    unmatched_b = [j for j in range(len(block_htmls)) if j not in matched_blocks]
+
+    return matches, unmatched_v, unmatched_b, distribution_violations
+
+
+
+
+
+
+def annotate_accessibility_issues(image_path: str, violations, html_path: str, similarity_threshold: float = 0.8,
+) -> Dict[str, Any]:
     """
-    return SequenceMatcher(None, text1, text2).ratio()
-
-
-def _get_wcag_object(violation_id: str):
+    Matching of violatinos and UI blocks in an image with stats
     """
-    based on the mapping, get the wcag object (url and id) based on the violation_id
-    violation_id can be URL or WCAG ID
-    """
-    wcag_mapping_path = os.path.join(BENCHMARKS_PATH, '..', 'Accessibility', 'mappingCsAndAxeCore.json')
-    wcag_mapping = utils_general.read_json(wcag_mapping_path)
 
-    for wcag_obj in wcag_mapping:
-        wcag_dict = {
-            "wcag_id": wcag_obj['htmlcs_id'],
-            "url": wcag_obj['axe_url']
-        }
+    img = cv2.imread(str(image_path))
 
-        if violation_id in wcag_obj['htmlcs_id'] and "null" not in wcag_obj['htmlcs_id']:
-            return wcag_dict
-        if violation_id in wcag_obj['axe_url'] and "null" not in wcag_obj['axe_url']:
-            return wcag_dict
+    h, w = img.shape[:2]
+
+    boxes, block_htmls = _extract_ui_blocks(image_path, html_path, w, h)
+    violation_htmls = _extract_violation_items(violations)
+
+    matches, unmatched_v, unmatched_b, matched_v_dict = match_blocks_html(violation_htmls, block_htmls, threshold=similarity_threshold)
 
 
-    return {
-        "wcag_id": "None",
-        "url": "None"
+    stats = {
+        "total_ui_blocks": len(boxes),
+        "total_violations": len(violation_htmls),
+        "matched": len(matches),
+        "unmatched_violations": len(unmatched_v),
+        "unmatched_ui_blocks": len(unmatched_b),
+        "matched_violations_distribution": matched_v_dict,
     }
 
+    return stats
 
 
-def _build_score_matrix(df1: pd.DataFrame, df2: pd.DataFrame):
-    """
-        In order to make sure to find a 1:1 match with the best fitting score, 
-        we need a score matrix and use hungarian algorihtm.
-    """
-    n = len(df1)
-    m = len(df2)
-
-
-    score_matrix = np.zeros((n, m),dtype=float)
-
-    for index1, row1 in df1.iterrows():
-        for index2, row2 in df2.iterrows():
-            text_similarity = _text_similarity(row1["html_snippet"], row2["html_snippet"])
-            wcag_obj_similarity = 1.0 if (
-                row1["wcag_id"] == row2["wcag_id"]
-                and row1["wcag_url"] == row2["wcag_url"]
-            ) else 0.0
-            parsed_snippet_text_similarity= _text_similarity(
-                row1["parsed_snippet"]["text"], row2["parsed_snippet"]["text"]
-            )
-            parsed_snippet_tag_similarity = _text_similarity(row1['parsed_snippet']['tag'], row2['parsed_snippet']["tag"]) if row1['parsed_snippet']["tag"] and row2['parsed_snippet']["tag"] else 0
-            same_wcag_format = 1 if (row1['violation_id'] == row2['violation_id'] and 
-                                     ((
-                                         row1['violation_id'].startswith("https") and row2['violation_id'].startswith("https")) 
-                                         or 
-                                         (not row1['violation_id'].startswith("https") and not row2['violation_id'].startswith("https")))
-                                    ) else 0
-            violation_message_similarity = _text_similarity(
-                row1["violation_message"], row2["violation_message"]
-            )
-            source_similarity = 1.0 if (row1["source"] == row2["source"]) else 0.0
-
-            # calculate score
-            score = (violation_message_similarity * 2 + text_similarity * 4 + wcag_obj_similarity + same_wcag_format + parsed_snippet_text_similarity + parsed_snippet_tag_similarity + 2 * source_similarity) / 12
-
-            score_matrix[index1, index2] = score
-    
-    return score_matrix
-
-
-
-def _find_best_matches(df1: pd.DataFrame, df2: pd.DataFrame) -> pd.DataFrame:
-    """
-    """
-
-    score_matrix = _build_score_matrix(df1, df2)
-
-    # threshold for matching
-    threshold = 0.8
-
-    n, m = score_matrix.shape
-
-    if n != m:
-        max_amount = max(n, m)
-        padded = np.zeros((max_amount, max_amount))
-        padded[:n, :m] =  score_matrix
-        score_matrix = padded
-
-    row_index, column_index = linear_sum_assignment(-score_matrix)
-
-    for row, column in zip(row_index, column_index):
-        if row < len(df1) and column < len(df2):
-            id1, id2 = df1.at[row, "unique_id"], df2.at[column, "unique_id"]
-            score = float(score_matrix[row, column])
-
-            # Only match if higher than theshiold
-            if score > threshold:
-                df1.at[row, "matched_to"] = id2
-                df1.at[row, "match_score"] = score
-                df2.at[column, "matched_to"] = id1
-                df2.at[column, "match_score"] = score
-
-    # Concatenate dataframes
-    df_combined = pd.concat([df1, df2], ignore_index=True)
-
-    return df_combined
-
-
-
-def _structure_violations(violations: list, model: str, prompt: str, file: str) -> pd.DataFrame:
-    """
-    """
-
-    structured_violations = []
-
-    violation_snippets = utils_iterative_prompt.extract_issues_tools(violations, source_show=True)
-
-    for snippet in violation_snippets:
-        snippet_data = snippet["snippet"]
-        snippet_id = snippet["id"]
-        snippet_message = snippet["message"]
-        snippet_impact = snippet["impact"]
-        snippet_source = snippet["source"]
-
-        wcag_object = _get_wcag_object(snippet_id)
-
-        # unique hash
-        unique_hash = uuid.uuid4().hex
-
-        structured_violations.append({
-            "unique_id": unique_hash,
-            "file_id": file,
-            "model": model,
-            "prompt": prompt,
-            "wcag_id": str(wcag_object["wcag_id"]),
-            "wcag_url": str(wcag_object["url"]),
-            "source": snippet_source,
-            "violation_id": snippet_id,
-            "violation_message": snippet_message,
-            "impact": snippet_impact,
-            "html_snippet": snippet_data,
-            "parsed_snippet": _parse_html_snippet(snippet_data),
-            "matched_to": None,
-            "match_score": 0.0
-        })
-
-    return pd.DataFrame(structured_violations)
-
-def _match_violations_external(information1: list, information2: list) -> pd.DataFrame:
-    """
-
-    """
-
-    accessibility1_path, model1, prompt1 = information1
-    accessibility2_path, model2, prompt2 = information2
-
-    violations1 = utils_general.read_json(accessibility1_path) 
-    violations2 = utils_general.read_json(accessibility2_path) 
-
-    base_file1 = accessibility1_path.split("/")[-1].split('.')[0]
-    base_file2 = accessibility2_path.split("/")[-1].split('.')[0]
-
-    one_empty = False
-
-    df_violations1 = _structure_violations(violations1, model1, prompt1, base_file1)
-    len_df_violations1 = len(df_violations1)
-    df_violations2 = _structure_violations(violations2, model2, prompt2, base_file2)
-    len_df_violations2 = len(df_violations2)
-
-    # check if both dataframes not empty
-    if len_df_violations1 == 0 or len_df_violations2 == 0:
-        one_empty = True
-    
-    df_matched_violations = _find_best_matches(df_violations1, df_violations2)
-
-    print(df_matched_violations.shape)
-
-    print(len(df_matched_violations[df_matched_violations['matched_to'].notnull()]))
-    print(df_matched_violations)
-
-
-    return df_matched_violations, one_empty
-
-
-
-
-def _export_df_to_excel(df: pd.DataFrame, output_path: str, information1: list, information2: list) -> None:
-    """
-    Exports dataframe to excel
-    """
-    file_id1, model1, prompt1 = information1
-    file_id2, model2, prompt2 = information2
-
-    output_file = os.path.join(output_path, f"{model1}_{prompt1}_{model2}_{prompt2}_analysis.xlsx")
-    df.to_excel(output_file, index=False)
-
-    print(f"DataFrame exported : {output_file}")
-
-
-
-def create_analysis_df(pack1: list, pack2: list) -> pd.DataFrame:
-    """
-    Creates a Dataframe which will be used for analysis purposes
-    Columns: File_id, Model, Prompt, Wcag_id, name, impact, html_snippet
-    """
-    accessibility1_path, model1, prompt1 = pack1
-    accessibility2_path, model2, prompt2 = pack2
-
-
-    information1 = [accessibility1_path, model1, prompt1]
-    information2 = [accessibility2_path, model2, prompt2]
-
-    df_violations_merge, one_empty = _match_violations_external(information1, information2)
-
-    return df_violations_merge, one_empty
-
-
-def _get_mean_component_found(analysis_df: pd.DataFrame) -> float:
-    """
+def start_qualitative_analysis_accessibility(accessibility_path: str):
     
     """
-    # new column
-    analysis_df["is_matched"] = analysis_df['matched_to'].notnull()
-
-    # divide pd based on 2 columns model and prompt
-    model_prompt_group = {}
-
-    for model, prompt in zip(analysis_df["model"], analysis_df["prompt"]):
-        key = (model, prompt)
-        if key not in model_prompt_group:
-            model_prompt_group[key] = 0
-        model_prompt_group[key] += 1
-
-    biggest_group = max(model_prompt_group.items(), key=lambda x: x[1])
-    biggest_group_key = biggest_group[0]
-    
-    biggest_sub_df = analysis_df[
-        (analysis_df['model'] == biggest_group_key[0]) & 
-        (analysis_df['prompt'] == biggest_group_key[1])
-    ]
-
-    mean_score = biggest_sub_df['is_matched'].mean()
-
-    grouped_df = analysis_df.groupby(['model', 'prompt', 'wcag_id', 'wcag_url']).agg(
-        mean_score=('is_matched', 'mean'),
-        sum_matching=('is_matched', 'sum'),
-        count_entries=('unique_id', 'count')
-    ).reset_index()
-
-    grouped_df = grouped_df[(grouped_df["model"] == biggest_group_key[0]) & (grouped_df["prompt"] == biggest_group_key[1])]
-
-    # print(grouped_df)
-
-    return mean_score, grouped_df
-
-
-
-def start_qualitative_analysis(info1: list, info2: list) -> pd.DataFrame:
+    Start the qualitative analysis for accessibility issues.
     """
-    xxx
-    """
-    full_df = pd.DataFrame()
 
-    accessibility_path1, model1, prompt1 = info1
-    accessibility_path2, model2, prompt2 = info2
+    similarity_threshold = 0.8
 
-    mean_scores = []
-    grouped_violations_map = {}
+    image_path = accessibility_path.replace("accessibility", "images")
+    html_path = accessibility_path.replace("accessibility", "html")
 
-    for file in os.listdir(accessibility_path1):
-        if os.path.isdir(file) and not file.endswith('.json'):
+    general_stats = { }
+
+    for file in utils_dataset.sorted_alphanumeric(os.listdir(accessibility_path)):
+        if not file.endswith('.json') or os.path.isdir(os.path.join(accessibility_path, file)):
             continue
 
-        accessibility1_path_file = os.path.join(accessibility_path1, file)
-        accessibility2_path_file = os.path.join(accessibility_path2, file)
+        violations = utils_general.read_json(os.path.join(accessibility_path, file))
 
-        analysis_df, one_empty = create_analysis_df(
-            [accessibility1_path_file, model1, prompt1],
-            [accessibility2_path_file, model2, prompt2]
+        stats_file = annotate_accessibility_issues(
+            image_path = os.path.join(image_path, file.replace('.json', '.png')),
+            violations=violations,
+            html_path=os.path.join(html_path, file.replace('.json', '.html')),
+            similarity_threshold=similarity_threshold,
         )
 
-        # print(analysis_df)
-        # Interpretation
-        if not one_empty:
-            mean_score, violations_group_df = _get_mean_component_found(analysis_df)
-            mean_scores.append(mean_score)
-            
-            for model_p, prompt_p, wcag_id_p, wcag_url_p in zip(violations_group_df["model"], violations_group_df["prompt"], violations_group_df["wcag_id"], violations_group_df["wcag_url"]):
-                filter_df = ((violations_group_df['model'] == model_p) & 
-                    (violations_group_df['prompt'] == prompt_p) & 
-                    (violations_group_df['wcag_id'] == wcag_id_p) & 
-                    (violations_group_df['wcag_url'] == wcag_url_p))
-                
-                index_entry = violations_group_df.index[filter_df].item()
-                mean_score_group = violations_group_df.loc[index_entry, 'mean_score']
-                sum_matching_group = violations_group_df.loc[index_entry, 'sum_matching']
-                count_entries_group = violations_group_df.loc[index_entry, 'count_entries']
-                
-                key = (model_p, prompt_p, wcag_id_p, wcag_url_p)
-                if key not in grouped_violations_map:
-                    grouped_violations_map[key] = {
-                        "mean_score": mean_score_group,
-                        "sum_matching": sum_matching_group,
-                        "count_entries": count_entries_group,
-                    }
-                else:
-                    grouped_violations_map[key] = {
-                        "sum_matching": grouped_violations_map[key].get("sum_matching") + sum_matching_group,
-                        "count_entries": grouped_violations_map[key].get("count_entries") + count_entries_group,
-                        "mean_score": grouped_violations_map[key].get("sum_matching") / grouped_violations_map[key].get("count_entries") if grouped_violations_map[key].get("count_entries") > 0 else 0
-                    }
+        for key, value in stats_file.items():
+            if key == "matched_violations_distribution":
+                if key not in general_stats:
+                    general_stats[key] = {}
+                for sub_key, sub_value in value.items():
+                    if sub_key not in general_stats["matched_violations_distribution"]:
+                        general_stats["matched_violations_distribution"][sub_key] = {}
+                    for sub_sub_key, sub_sub_value in sub_value.items():
+                        if sub_sub_key not in general_stats["matched_violations_distribution"][sub_key]:
+                            general_stats["matched_violations_distribution"][sub_key][sub_sub_key] = 0
+                        general_stats["matched_violations_distribution"][sub_key][sub_sub_key] += sub_sub_value
+                continue
 
-        # concat dataframes
-        full_df = pd.concat([full_df, analysis_df], ignore_index=True)
-
+            if key not in general_stats:
+                general_stats[key] = 0
+            general_stats[key] += value
     
-
-    grouped_violations_df = pd.DataFrame.from_dict(
-        grouped_violations_map, 
-        orient='index', 
-        columns=['mean_score', 'sum_matching', 'count_entries']
-    ).reset_index()
-
-    _export_df_to_excel(grouped_violations_df, os.path.dirname(__file__), [accessibility1_path, "asdf", "asdf"], [accessibility1_path, "asdfa", "asdaf"])
-
-    # mean Score for all files
-    if mean_scores:
-        mean_score = np.mean(mean_scores)
-        print(f"\n\nMean Score for all files: {mean_score}")
-
-    _export_df_to_excel(full_df, os.path.dirname(__file__), info1, info2)
-
-    return full_df
-
-
-
+    return general_stats
 
 
 
 # Test
 if __name__ == "__main__":
-    model = "gemini"
-    prompt = "naive"
+
 
     data_path = os.path.join(os.path.dirname(__file__), '..')
     input_path = os.path.join(data_path, "Input")
@@ -406,17 +322,32 @@ if __name__ == "__main__":
     # accessibility1_naive_path = os.path.join(output_path, 'gemini', 'accessibility', 'naive', '2025-06-18-11-53')
     # accessibility1_naive_path = os.path.join(output_path, 'gemini', 'accessibility', 'naive', '2025-06-18-11-24')
     # accessibility1_naive_path = os.path.join(output_path, 'gemini', 'accessibility', 'naive', '2025-06-18-11-53')
-    accessibility1_reason_path = os.path.join(output_path, 'gemini', 'accessibility', 'reason', '2025-06-18-16-24')
+    # accessibility1_reason_path = os.path.join(output_path, 'gemini', 'accessibility', 'reason', '2025-06-18-16-24')
     # accessibility1_reason_path = os.path.join(output_path, 'gemini', 'accessibility', 'reason', '2025-06-18-17-38')
     # accessibility1_reason_path = os.path.join(output_path, 'gemini', 'accessibility', 'reason', '2025-06-18-20-49')
-    accessibility1_zeroshot_path = os.path.join(output_path, 'gemini', 'accessibility', 'zero-shot', '2025-06-18-13-25')
+    # accessibility1_zeroshot_path = os.path.join(output_path, 'gemini', 'accessibility', 'zero-shot', '2025-06-18-13-25')
     # accessibility1_zeroshot_path = os.path.join(output_path, 'gemini', 'accessibility', 'zero-shot', '2025-06-18-14-29')
     # accessibility1_zeroshot_path = os.path.join(output_path, 'gemini', 'accessibility', 'zero-shot', '2025-06-18-15-40')
 
-    pack1 = [accessibility1_reason_path, model, "reason"]
-    pack2 = [accessibility1_zeroshot_path, model, "zero-shot"]
+    html1_naive_path = os.path.join(output_path, 'openai', 'html', 'naive', '2025-06-19-15-41', '23.html')
+    image1_naive_path = os.path.join(output_path, 'openai', 'images', 'naive', '2025-06-19-15-41', '23.png')
+    accessibility1_naive_path = os.path.join(output_path, 'openai', 'accessibility', 'naive', '2025-06-19-15-41')
+    # accessibility1_naive_path = os.path.join(output_path, 'openai', 'accessibility', 'naive', '2025-06-19-16-53')
+    # accessibility1_naive_path = os.path.join(output_path, 'openai', 'accessibility', 'naive', '2025-06-19-19-05')
+    accessibility1_reason_path = os.path.join(output_path, 'openai', 'accessibility', 'reason', '2025-06-20-15-39')
+    # accessibility1_reason_path = os.path.join(output_path, 'openai', 'accessibility', 'reason', '2025-06-20-17-42')
+    # accessibility1_reason_path = os.path.join(output_path, 'openai', 'accessibility', 'reason', '2025-06-20-19-43')
+    # accessibility1_zeroshot_path = os.path.join(output_path, 'openai', 'accessibility', 'zero-shot', '2025-06-20-09-55')
+    # accessibility1_zeroshot_path = os.path.join(output_path, 'openai', 'accessibility', 'zero-shot', '2025-06-20-11-10')
+    # accessibility1_zeroshot_path = os.path.join(output_path, 'openai', 'accessibility', 'zero-shot', '2025-06-20-12-33')
 
-    df_analysis = start_qualitative_analysis(pack1, pack2)
+    # violations = utils_general.read_json(accessibility1_naive_path)
+
+
+    start_qualitative_analysis_accessibility(
+        accessibility_path=accessibility1_naive_path
+    )
+    # annotate_accessibility_issues(image1_naive_path, violations, html1_naive_path, os.path.join(os.path.dirname(__file__), 'annotated_accessibility.png'), similarity_threshold=0.35, draw_non_violating=False)
 
 
     

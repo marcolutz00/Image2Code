@@ -8,7 +8,7 @@ import sys
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-import colors as colors
+import Accessibility.colors as colors
 
 
 def rgb_to_hex(rgb):
