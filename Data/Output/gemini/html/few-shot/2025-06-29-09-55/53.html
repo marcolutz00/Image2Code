@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f5f5dc;
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 80%;
+      margin: auto;
+      overflow: hidden;
+    }
+
+    ul {
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Section */
+    header {
+      background: #f5f5dc;
+      color: #e74c3c;
+      padding-top: 10px;
+      min-height: 30px;
+      border-bottom: #e74c3c 3px solid;
+      text-align: center;
+    }
+
+    header a {
+      color: #e74c3c;
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 0.7em;
+      padding: 0 10px;
+    }
+
+    header li {
+      float: left;
+      display: inline;
+      padding: 0 20px 0 20px;
+    }
+
+    /* Showcase Section */
+    #showcase {
+      min-height: 50px;
+      text-align: center;
+      color: #fff;
+    }
+
+    #showcase h1 {
+      margin-top: 10px;
+      font-size: 40px;
+      margin-bottom: 10px;
+    }
+
+    #showcase p {
+      font-size: 20px;
+    }
+
+    /* Newsletter Section */
+    #newsletter {
+      padding: 15px;
+      color: #fff;
+      background: #35424a;
+    }
+
+    #newsletter h1 {
+      float: left;
+    }
+
+    #newsletter form {
+      float: right;
+      margin-top: 15px;
+    }
+
+    #newsletter input[type="email"] {
+      padding: 4px;
+      height: 25px;
+      width: 250px;
+    }
+
+    /* Boxes Section */
+    #boxes {
+      margin-top: 20px;
+    }
+
+    #boxes .box {
+      float: left;
+      text-align: center;
+      width: 30%;
+      padding: 10px;
+    }
+
+    #boxes .box img {
+      width: 90px;
+    }
+
+    /* Main Aside Section */
+    #main-col {
+      float: left;
+      width: 65%;
+    }
+
+    #sidebar {
+      float: right;
+      width: 30%;
+      margin-top: 10px;
+      padding: 10px;
+      background-color: #f4f4f4;
+    }
+
+    /* Footer */
+    footer {
+      padding: 20px;
+      margin-top: 20px;
+      color: #fff;
+      background-color: #000000;
+      text-align: center;
+    }
+
+    /* Navigation */
+    #main-nav {
+      background-color: #fff;
+      color: #000;
+      overflow: hidden;
+      padding: 10px;
+    }
+
+    #main-nav ul {
+      padding: 0;
+      margin: 0;
+      list-style: none;
+    }
+
+    #main-nav li {
+      display: inline;
+      padding: 0 20px 0 20px;
+      font-size: 0.9em;
+    }
+
+    #main-nav a {
+      text-decoration: none;
+      color: #000;
+    }
+
+    /* Article Styling */
+    article#main-col {
+      padding-left: 20px;
+    }
+
+    /* Latest Questions */
+    .latest-questions {
+      margin-top: 20px;
+    }
+
+    .latest-questions ul {
+      list-style: none;
+      padding: 0;
+    }
+
+    .latest-questions li {
+      margin-bottom: 10px;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 5px;
+    }
+
+    .latest-questions li:last-child {
+      border-bottom: none;
+    }
+
+    .latest-questions a {
+      text-decoration: none;
+      color: #c0392b;
+    }
+
+    /* Question Styling */
+    .question {
+      margin-bottom: 20px;
+    }
+
+    .question-header {
+      background-color: #f0ad4e;
+      color: #fff;
+      padding: 5px 10px;
+      margin-bottom: 10px;
+      display: inline-block;
+    }
+
+    .options-list {
+      list-style: none;
+      padding: 0;
+    }
+
+    .options-list li {
+      margin-bottom: 5px;
+      color: #c0392b;
+    }
+
+    .answer {
+      margin-top: 10px;
+      font-weight: bold;
+    }
+
+    .explanation {
+      margin-top: 10px;
+    }
+
+    /* Button Styles */
+    .btn {
+      padding: 8px 12px;
+      background-color: #3498db;
+      color: #fff;
+      text-decoration: none;
+      border-radius: 5px;
+      display: inline-block;
+      margin-top: 10px;
+    }
+
+    .btn:hover {
+      background-color: #2980b9;
+    }
+
+    /* Social Sharing Buttons */
+    .social-sharing {
+      margin-top: 20px;
+      display: flex;
+      justify-content: space-around;
+    }
+
+    .social-btn {
+      background-color: #3498db;
+      color: #fff;
+      padding: 8px 12px;
+      border: none;
+      cursor: pointer;
+      border-radius: 5px;
+      text-decoration: none;
+    }
+
+    .social-btn.tweet {
+      background-color: #3498db;
+    }
+
+    .social-btn.share {
+      background-color: #2980b9;
+    }
+
+    .social-btn.red {
+      background-color: #e74c3c;
+    }
+
+    /* Related Posts and Comments */
+    .related-posts,
+    .comments {
+      margin-top: 30px;
+    }
+
+    .comments p {
+      color: #777;
+    }
+
+    /* Placeholder Box */
+    .placeholder {
+      width: 200px;
+      height: 100px;
+      background-color: blue;
+    }
+
+    /* Media Queries */
+    @media(max-width: 768px) {
+
+      header #branding,
+      header nav,
+      header nav li,
+      #newsletter h1,
+      #newsletter form,
+      #boxes .box,
+      #main-col,
+      #sidebar {
+        float: none;
+        text-align: center;
+        width: 100%;
+      }
+
+      header {
+        padding-bottom: 50px;
+      }
+
+      #showcase h1 {
+        margin-top: 40px;
+      }
+
+      #newsletter form {
+        display: block;
+        padding: 0;
+      }
+
+      #newsletter input[type="email"] {
+        width: 100%;
+        margin-bottom: 5px;
+      }
+    }
+
+    /* Specific Styles */
+    .breadcrumbs {
+      background-color: #f4f4f4;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .breadcrumbs a {
+      color: #c0392b;
+      text-decoration: none;
+    }
+
+    .question-header {
+      background-color: #f0ad4e;
+    }
+
+    .latest-questions a {
+      color: #c0392b;
+    }
+
+    .sidebar-yellow-ad {
+      background-color: #f0ad4e;
+      height: 200px;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <div id="branding">
+      </div>
+      <nav>
+        <ul>
+          <li><a href="#">About</a></li>
+          <li><a href="#">Disclaimer</a></li>
+          <li><a href="#">Sitemap</a></li>
+          <li><a href="#">Contact</a></li>
+          <li><a href="#">Privacy Policy</a></li>
+          <li><a href="#">Visit Kerala PSC</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section id="showcase">
+    <div class="container">
+      <div class="placeholder"></div>
+    </div>
+  </section>
+
+  <nav id="main-nav">
+    <div class="container">
+      <ul>
+        <li><a href="#">Home</a></li>
+        <li><a href="#">Notifications</a></li>
+        <li><a href="#">Mock Exams</a></li>
+        <li><a href="#">Previous Questions</a></li>
+        <li><a href="#">Syllabus</a></li>
+        <li><a href="#">Answer Key</a></li>
+        <li><a href="#">Study Materials</a></li>
+        <li><a href="#">Youtube</a></li>
+      </ul>
+    </div>
+  </nav>
+
+  <section class="container">
+    <div class="breadcrumbs">
+      <a href="#">Home</a> > <a href="#">Facts on India</a> > <a href="#">General Knowledge</a> > <a href="#">Years</a>
+    </div>
+
+    <article id="main-col">
+      <div class="question">
+        <span class="question-header">Facts on India General Knowledge Years</span>
+        <h2>The Indian Oil Corporation was set up in which year?</h2>
+        <ul class="options-list">
+          <li>A - 1964</li>
+          <li>B - 1965</li>
+          <li>C - 1966</li>
+          <li>D - 1970</li>
+        </ul>
+        <div class="answer">
+          Answer : A
+        </div>
+        <div class="explanation">
+          Explanation
+        </div>
+        <p>Indian Oil Corporation is an Indian state owned oil and gas company primarily headquartered in New Delhi. It is the
+          largest commercial oil company in the country.</p>
+        <a href="#" class="btn">Show Answer</a>
+        <div class="social-sharing">
+          <a href="#" class="social-btn tweet">Tweet</a>
+          <a href="#" class="social-btn share">Share</a>
+          <a href="#" class="social-btn red">Share</a>
+          <a href="#" class="social-btn share">Share</a>
+          <a href="#" class="social-btn red">Share</a>
+        </div>
+      </div>
+
+      <div class="related-posts">
+        <h2>RELATED POSTS</h2>
+      </div>
+
+      <div class="comments">
+        <h2>0 COMMENTS:</h2>
+        <p></p>
+      </div>
+    </article>
+
+    <aside id="sidebar">
+      <div class="sidebar-yellow-ad"></div>
+
+      <div class="latest-questions">
+        <h2>LATEST QUESTIONS</h2>
+        <ul>
+          <li><a href="#">Let us go for a walk, Question tag?</a></li>
+          <li><a href="#">Who conducted Panthi Bhojanam first time in India ?</a></li>
+          <li><a href="#">She sang well, __________ ? (Question Tag)</a></li>
+          <li><a href="#">I congratulate you __________ your success.</a></li>
+          <li><a href="#">The founder of 'Samathwa Samajam"</a></li>
+          <li><a href="#">There is an exception __________ every rule.</a></li>
+          <li><a href="#">He died __________ a severe head injury.</a></li>
+          <li><a href="#">Who conducted "Panthi Bhojanam" for the first time in India?</a></li>
+          <li><a href="#">Who founded the Vidya Poshini Sabha?</a></li>
+          <li><a href="#">Who, among the following, has the final right to sanction the expenditure of public money in India ?</a></li>
+        </ul>
+      </div>
+    </aside>
+  </section>
+
+  <footer>
+    <p>Created with by YesLearners.com - YesLearners</p>
+  </footer>
+</body>
+
+</html>

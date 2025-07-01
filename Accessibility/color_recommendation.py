@@ -44,6 +44,18 @@ def draw_boxes_on_image(image_path, blocks, out_path="annotated.png", color=(0, 
 
 
 
+def _is_color_too_similar(color1, color2):
+    """
+        Sometimes color of text not equal, due to bounding of text or similar.
+        This can lead to omitting the true background color.
+        Solution: Check if color is too similar to font color with euclidean distance
+    """
+    threshold = 10
+
+    distance = np.sqrt(sum((rgb1 - rgb2)**2 for rgb1, rgb2 in zip(color1, color2)))
+
+    return distance < threshold
+
 def get_background_color(image_path, blocks):
     """
         Just gets background color of each block
@@ -73,7 +85,7 @@ def get_background_color(image_path, blocks):
         for w in range(x1, x2):
             for h in range(y1, y2):
                 pixel_color = img[h, w]
-                if not np.array_equal(pixel_color, font_color):
+                if not np.array_equal(pixel_color, font_color) and not _is_color_too_similar(pixel_color, font_color):
                     if not tuple(pixel_color) in dict_colors_box:
                         dict_colors_box[tuple(pixel_color)] = 1
                     else:
@@ -188,11 +200,12 @@ def _structure_recommended_colors(blocks):
             continue
 
         old_color = block["color"]
+        old_color_hex =  '#%02x%02x%02x' % old_color
         text = block["text"]
 
         list_output.append({
             "text_snippet": text,
-            "old_color": old_color,
+            "old_color": old_color_hex,
             "new_color": new_color
         })
     
@@ -207,15 +220,15 @@ def get_recommended_colors(html_path, image_path):
 
     os.system(f'python3 "{Path(__file__).parent}/screenshot_single.py" --html "{html_path}" --png "{modified_image_path}"')
 
-    blocks = ocr_free_utils.get_blocks_ocr_free(original_img, original_html)
+    blocks = ocr_free_utils.get_blocks_ocr_free(modified_image_path, html_path)
     # blocks = get_blocks_ocr_free(mod_img, modified_html)
 
     # For Test
     # draw_boxes_on_image(modified_image_path, blocks, out_path=os.path.join(DIR_PATH, f"{base_name}_annotated.png"))
 
-    background_colors = get_background_color(mod_img, blocks)
+    background_colors = get_background_color(modified_image_path, blocks)
 
-    calculate_recommended_colors(blocks, original_img)
+    calculate_recommended_colors(blocks, image_path)
 
     # Delete modified image
     os.system(f'rm "{modified_image_path}"')
@@ -234,9 +247,9 @@ if __name__ == "__main__":
     DIR_PATH = os.path.dirname(os.path.realpath(__file__))
     INPUT_HTML_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Input', 'html')
     INPUT_IMG_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Input', 'images')
-    original_html = os.path.join(DIR_PATH, '9.html')
-    original_img = os.path.join(DIR_PATH, '9.png')
-    mod_img = os.path.join(DIR_PATH, '9_mod.png')
+    original_html = os.path.join(DIR_PATH, '6.html')
+    original_img = os.path.join(DIR_PATH, '6.png')
+    mod_img = os.path.join(DIR_PATH, '6_mod.png')
     # modified_html = os.path.join(DIR_PATH, '2_noimg.html')
     # original_html = os.path.join(os.path.dirname(__file__), 'original.html')
     # predict_html_list = os.path.join(os.path.dirname(__file__), 'generated.html')

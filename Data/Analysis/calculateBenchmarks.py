@@ -6,16 +6,16 @@ from collections import Counter
 import matplotlib.pyplot as plt
 
 
-DATE = '2025-06-21-19-26'
-MODEL = 'openai' # gemini, openai, llama, qwen
-PROMPTING_STRATEGY = 'iterative'  # naive, zero-shot, reason, iterative, iterative_refine_1, iterative_refine_2, iterative_refine_3
+# DATE = '2025-06-29-16-32'
+# MODEL = 'gemini' # gemini, openai, llama, qwen
+# PROMPTING_STRATEGY = 'composite_refine'  # naive, zero-shot, few-shot, reason, iterative, iterative_refine_1, iterative_refine_2, iterative_refine_3, composite, composite_refine
 
-CURR_DIR = os.path.dirname(os.path.realpath(__file__))
-INSIGHTS_DIR = os.path.join(CURR_DIR, '..', 'Output', MODEL, 'insights', PROMPTING_STRATEGY, DATE)
-OUTPUT_DIR = os.path.join(CURR_DIR, '..', '..', 'Results', 'benchmarks')
+# CURR_DIR = os.path.dirname(os.path.realpath(__file__))
+# INSIGHTS_DIR = os.path.join(CURR_DIR, '..', 'Output', MODEL, 'insights', PROMPTING_STRATEGY, DATE)
+# OUTPUT_DIR = os.path.join(CURR_DIR, '..', '..', 'Results', 'benchmarks')
 
 
-def analyze_overview_files(directory):
+def _analyze_overview_files(directory):
     """
         Reads all overview_*.json files and creates a table with IR / IW-IR
         Both for automatic and manual checks.
@@ -79,7 +79,7 @@ def analyze_overview_files(directory):
     }
 
 
-def analyze_benchmark_files(directory):
+def _analyze_benchmark_files(directory):
     """
         Reads all benchmark_*.json files and creates a table with IR / IW-IR
         Both for automatic and manual checks.
@@ -128,22 +128,68 @@ def analyze_benchmark_files(directory):
     return result
 
 
+
+def _start_calculcations(model, prompting_strategy, date, insights_dir, results_path):
+    """
+        Start the calculations for benchmarks
+    """
+    print("Start calculations for benchmarks...")
+    overview_values = _analyze_overview_files(insights_dir)
+    benchmark_values = _analyze_benchmark_files(insights_dir)
+
+    if overview_values and benchmark_values:
+        combination = {
+            "model": model,
+            "prompting_strategy": prompting_strategy,
+            "date": date,
+            "overview": overview_values,
+            "benchmarks": benchmark_values
+        }
+
+        output_path_analysis = os.path.join(results_path, f"{model}_{prompting_strategy}_analysis_benchmarks_{date}.json")
+        with open(output_path_analysis, "w", encoding="utf-8") as fh:
+            json.dump(combination, fh, indent=2)
+
+    else:
+        print("No data found")
+
+    
+def start_process(model, prompting_strategy, date):
+    """
+    """
+    current_path = Path(__file__).resolve().parent
+    output_path = current_path.parent / "Output"
+    insights_dir = output_path / model / "insights"
+    results_path = current_path.parent.parent / "Results" / "benchmarks"
+
+    if prompting_strategy == "composite" or prompting_strategy == "iterative":
+        base_name_strat = prompting_strategy.split("_")[0]
+        insight_dirs_strats = [d for d in os.listdir(insights_dir) if d.startswith(base_name_strat)]
+
+        for prompt_strat in insight_dirs_strats:
+            insight_dir_path =  insights_dir / prompt_strat / date
+            _start_calculcations(model, prompting_strategy, date, insight_dir_path, results_path)
+    else:
+        insight_dir_path = insights_dir / prompting_strategy / date
+        _start_calculcations(model, prompting_strategy, date, insight_dir_path, results_path)
+
+
 # analyze_overview_files(r"..\Input\insights")
 if __name__ == "__main__":
-    print(INSIGHTS_DIR)
+    print("asd")
     
-    overview_values = analyze_overview_files(INSIGHTS_DIR)
-    benchmark_values = analyze_benchmark_files(INSIGHTS_DIR)
-    combination = {
-        "model": MODEL,
-        "prompting_strategy": PROMPTING_STRATEGY,
-        "date": DATE,
-        "overview": overview_values,
-        "benchmarks": benchmark_values
-    }
+    # overview_values = analyze_overview_files(INSIGHTS_DIR)
+    # benchmark_values = analyze_benchmark_files(INSIGHTS_DIR)
+    # combination = {
+    #     "model": MODEL,
+    #     "prompting_strategy": PROMPTING_STRATEGY,
+    #     "date": DATE,
+    #     "overview": overview_values,
+    #     "benchmarks": benchmark_values
+    # }
 
 
-    output_path_analysis = os.path.join(OUTPUT_DIR, f"{MODEL}_{PROMPTING_STRATEGY}_analysis_benchmarks_{DATE}.json")
+    # output_path_analysis = os.path.join(OUTPUT_DIR, f"{MODEL}_{PROMPTING_STRATEGY}_analysis_benchmarks_{DATE}.json")
 
-    with open(output_path_analysis, "w", encoding="utf-8") as fh:
-        json.dump(combination, fh, indent=2)
+    # with open(output_path_analysis, "w", encoding="utf-8") as fh:
+    #     json.dump(combination, fh, indent=2)

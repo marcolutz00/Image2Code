@@ -1,0 +1,337 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
+      ],
+      "impact": "serious",
+      "name": "Links; Distinguishable Color;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 1.25,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#0b57a4",
+                  "parentColor": "#666666"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<p>",
+                    "target": [
+                      "footer > p"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 1.25:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0b57a4, surrounding text: #666666)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<p>",
+                    "target": [
+                      "footer > p"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#christianwatch\">Christian Watch</a>",
+            "target": [
+              "a[href$=\"#christianwatch\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.25:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0b57a4, surrounding text: #666666)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,2,FOOTER,0,P,1,A",
+              "selector": "body > footer > p > a",
+              "boundingRect": {
+                "top": 1304,
+                "bottom": 1318,
+                "left": 244,
+                "right": 321,
+                "width": 77,
+                "height": 14
+              },
+              "snippet": "<a href=\"#christianwatch\">",
+              "nodeLabel": "Christian Watch",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.25:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0b57a4, surrounding text: #666666)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-1-P",
+                    "path": "1,HTML,1,BODY,2,FOOTER,0,P",
+                    "selector": "body > footer > p",
+                    "boundingRect": {
+                      "top": 1289,
+                      "bottom": 1361,
+                      "left": 0,
+                      "right": 412,
+                      "width": 412,
+                      "height": 73
+                    },
+                    "snippet": "<p>",
+                    "nodeLabel": "So then faith cometh by hearing, and hearing by the word of God. (Romans 10.17)…"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+      "url": null,
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 8,
+      "issues": [
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"home\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#home\">Home</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"home\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#home\">Home</a>",
+            "selector": "html > body > header > nav > a:nth-child(1)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"about\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#about\">About Us</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"about\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#about\">About Us</a>",
+            "selector": "html > body > header > nav > a:nth-child(2)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"support\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#support\">Support Us</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"support\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#support\">Support Us</a>",
+            "selector": "html > body > header > nav > a:nth-child(3)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"resources\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#resources\">Resources</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"resources\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#resources\">Resources</a>",
+            "selector": "html > body > header > nav > a:nth-child(4)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"events\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#events\">Diary of Events</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"events\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#events\">Diary of Events</a>",
+            "selector": "html > body > header > nav > a:nth-child(5)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"news\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#news\">News</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"news\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#news\">News</a>",
+            "selector": "html > body > header > nav > a:nth-child(6)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"contact\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#contact\">Contact</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"contact\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#contact\">Contact</a>",
+            "selector": "html > body > header > nav > a:nth-child(7)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"christianwatch\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#christianwatch\">Christian Watch</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"christianwatch\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#christianwatch\">Christian Watch</a>",
+            "selector": "html > body > footer > p > a",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-7-A",
+              "path": "1,HTML,1,BODY,0,HEADER,0,NAV,6,A",
+              "selector": "body > header > nav > a",
+              "boundingRect": {
+                "top": 57,
+                "bottom": 76,
+                "left": 35,
+                "right": 89,
+                "width": 54,
+                "height": 19
+              },
+              "snippet": "<a href=\"#contact\">",
+              "nodeLabel": "Contact",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (54.2px by 18.5px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 15.8px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-3-A",
+                    "path": "1,HTML,1,BODY,0,HEADER,0,NAV,3,A",
+                    "selector": "body > header > nav > a",
+                    "boundingRect": {
+                      "top": 39,
+                      "bottom": 57,
+                      "left": 35,
+                      "right": 104,
+                      "width": 69,
+                      "height": 19
+                    },
+                    "snippet": "<a href=\"#resources\">",
+                    "nodeLabel": "Resources"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

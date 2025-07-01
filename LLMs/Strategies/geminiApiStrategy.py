@@ -7,7 +7,10 @@ from google.genai import types
     https://ai.google.dev/gemini-api/docs/image-understanding?hl=de
 '''
 
+# Model for normal Image-to-Code - IMPORTANT: Multi-Agent Approach uses reasoning model
 MODEL = 'gemini-2.0-flash'
+
+
 SYSTEM_INSTRUCTION_MAPPING = 'You are an expert in understanding accessibility issues in HTML/CSS. ' \
 'Therefore, you often use automatic tools like Google lighthouse, Axe-Core and Pa11y which help you ' \
 'to automatically detect Accessibility Issues within the code'
@@ -18,6 +21,7 @@ class GeminiStrategy(LLMStrategy):
         self.used_model = MODEL
         self.client = genai.Client(api_key=api_key)
 
+    # Image-to-Code 
     async def llm_frontend_generation(self, prompt, image_information):
         '''
             Important! 
@@ -61,6 +65,30 @@ class GeminiStrategy(LLMStrategy):
         return response.text, tokens_used
 
 
+    # Multi-Agent Approach
+    async def agent_call(self, prompt, html_code):
+        '''
+            Detects, identifies and patches accessibility issues in HTML/CSS
+            Uses reasoning model
+        '''
+        reasoning_model = "gemini-2.5-pro"
+
+        response = self.client.models.generate_content(
+            model=reasoning_model,
+            # prompt contains prompt + html_code
+            contents=[prompt],
+        )
+
+        tokens_used = response.usage_metadata
+
+        return response.text, tokens_used
+
+
+
+
+
+
+    # Old - Not necessary anymore
     async def llm_accessibility_matching(self, prompt, current_map, accessibility_data):
         message = f'Prompt: {prompt}, Current Map: {current_map}, New Data: {accessibility_data}'
 

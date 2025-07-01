@@ -322,7 +322,7 @@ def _write_json_result(content, out_path):
         json.dump(content, fh, ensure_ascii=False, indent=2)
 
 
-def overwrite_insights(accessibility_dir, insights_dir, model, prompt_strategy, date):
+def _overwrite_insights(accessibility_dir, insights_dir, model, prompt_strategy, date):
     '''
         Overwrites the insights
     '''
@@ -349,6 +349,32 @@ def overwrite_insights(accessibility_dir, insights_dir, model, prompt_strategy, 
     print(f"Writing insights to {out_path}")
     _write_json_result(json_output_final, out_path)
 
+
+
+def calculate_insights(accessibility_dir, insight_dir, model, prompt_strategy, date):
+    '''
+       Calculates Insights:
+       Accessibility Violation Ranking and benchmarks are calculated
+       Place for the final insight overview: Results/[model]_[prompt-technique]_analysisAccessibilityIssues.json
+    '''
+    if prompt_strategy == "iterative" or prompt_strategy == "composite":
+        base_name_strat = prompt_strategy.split("_")[0]
+        # Find amount of dirs that start with iterative
+        insight_dirs_strats = [d for d in os.listdir(insight_dir) if d.startswith(base_name_strat)]
+        if not insight_dirs_strats:
+            print("No iterative directories found.")
+        else:
+            for prompt_strat in insight_dirs_strats:
+                insight_dir_path = os.path.join(insight_dir, prompt_strat, date)
+                accessibility_dir_path = os.path.join(accessibility_dir, prompt_strat, date)
+                _overwrite_insights(accessibility_dir_path, insight_dir_path, model, prompt_strat, date)
+
+    else:
+        accessibility_prompt_dir = os.path.join(accessibility_dir, prompt_strategy, date)
+        insight_prompt_dir = os.path.join(insight_dir, prompt_strategy, date)
+        _overwrite_insights(accessibility_prompt_dir, insight_prompt_dir, model, prompt_strategy, date)
+
+        
 
 # if __name__ == "__main__":
 #     overwrite_insights()

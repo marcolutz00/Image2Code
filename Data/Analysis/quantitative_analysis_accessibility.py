@@ -309,11 +309,13 @@ if __name__ == "__main__":
     comparison_data_average_gemini = [
         ("gemini", "naive", os.path.join(result_path, "gemini_naive_average_results.json")),
         ("gemini", "zero-shot", os.path.join(result_path, "gemini_zero-shot_average_results.json")),
+        ("gemini", "few-shot", os.path.join(result_path, "gemini_few-shot_average_results.json")),
         ("gemini", "reason", os.path.join(result_path, "gemini_reason_average_results.json")),
         ("gemini", "iterative", os.path.join(result_path, "gemini_iterative_average_results.json")),
         ("gemini", "iterative_refine_1", os.path.join(result_path, "gemini_iterative_refine_1_average_results.json")),
         ("gemini", "iterative_refine_2", os.path.join(result_path, "gemini_iterative_refine_2_average_results.json")),
         ("gemini", "iterative_refine_3", os.path.join(result_path, "gemini_iterative_refine_3_average_results.json")),
+        ("gemini", "composite_refine", os.path.join(result_path, "gemini_composite_refine_average_results.json")),
     ]
 
     comparison_data_average_openai = [
@@ -343,8 +345,8 @@ if __name__ == "__main__":
         ("openai", "iterative_refine_3", os.path.join(result_path, "openai_iterative_refine_3_average_results.json")),
     ]
 
-    # plot_bar_average_violations(comparison_data_average_both)
-    plot_cake_average_violations(comparison_data_average_openai[5][2])
+    plot_bar_average_violations(comparison_data_average_gemini)
+    # plot_cake_average_violations(comparison_data_average_openai[5][2])
 
 
     # 2. Specific (per File) Comparison Data
@@ -400,6 +402,6 @@ if __name__ == "__main__":
         ("gemini", "iterative_refine_1", os.path.join(output_path, "gemini", "accessibility", "iterative_refine_1", "2025-06-19-07-33")),
         # ("gemini", "iterative_refine_1", os.path.join(output_path, "gemini", "accessibility", "iterative_refine_1", "2025-06-19-10-46")),
     ]
-    plot_heatmap_comparison_violations(comparison_data_specific_openai)
+    # plot_heatmap_comparison_violations(comparison_data_specific_openai)
 
 

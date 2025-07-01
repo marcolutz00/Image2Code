@@ -6,23 +6,9 @@ import base64
 import os
 import sys
 import shutil
-
-sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from LLMs.Strategies.openaiApiStrategy import OpenAIStrategy
-from LLMs.Strategies.geminiApiStrategy import GeminiStrategy
-from LLMs.Strategies.llamaLocalStrategy import LlamaStrategy
-from LLMs.Strategies.qwenLocalStrategy import QwenStrategy
-from LLMs.Strategies.hfFinetunedStrategy import HfFinetunedStrategy
-from LLMs.Strategies.hfEndpointStrategy import HfEndpointStrategy
+import re
 
 
-
-def read_html(html_path: str) -> str:
-    """
-    Reads HTML file and returns content
-    """
-    with open(html_path, 'r', encoding='utf-8') as file:
-        return file.read()
     
 def read_json(json_path: str) -> dict:
     """
@@ -30,9 +16,36 @@ def read_json(json_path: str) -> dict:
     """
     with open(json_path, 'r', encoding='utf-8') as file:
         return json.load(file)
+    
+
+def save_json(data_json, file_path):
+    '''
+        Store json in file path
+    '''
+    with open(file_path, "w") as f:
+        json.dump(data_json, f, ensure_ascii=False, indent=2)
 
 
-def util_load_keys(source):
+def clean_json_result(result):
+    '''
+        Finds the json array inside a string and returns it.
+    '''
+    pattern = re.compile(r"\[\s*\{.*?\}\s*\]", re.DOTALL)
+
+    json_pattern = pattern.search(result)
+    if json_pattern:
+        json_result_raw = json_pattern.group(0)
+        try:
+            json_result_clean = json.loads(json_result_raw)
+            return json_result_clean
+
+        except Exception as e:
+            print(f"Error cleaning JSON result : {e}")
+
+    return None
+
+
+def load_keys(source):
     '''
         Util-Functions for API-Calls
     '''
@@ -47,7 +60,7 @@ def util_load_keys(source):
 
 
 
-def util_save_code(code, file_name="generated_code.html"):
+def save_code(code, file_name="generated_code.html"):
     '''
         API-Call and store code
     '''
@@ -56,31 +69,9 @@ def util_save_code(code, file_name="generated_code.html"):
     print(f"Code stored as {file_name}")
 
 
-def util_save_json(data_json, file_path):
-    '''
-        Store json in file path
-    '''
-    with open(file_path, "w") as f:
-        json.dump(data_json, f, ensure_ascii=False, indent=2)
 
 
-
-
-def util_validate_html(generatedHtml_path):
-    '''
-        Util-Functions for HTML/CSS Analysis
-        Check first if any compiler errors
-    '''
-    try:
-        soup = BeautifulSoup(generatedHtml_path, "html.parser")
-        return True
-    except Exception as e:
-        print("HTML error:", e)
-        return False
-
-
-
-async def util_render_and_screenshot(generatedHtml_path, screenshot_path):
+async def render_and_screenshot(generatedHtml_path, screenshot_path):
     '''
         Util-Functions for Images & Screenshots
         Rendering the code and doing a screenshot of it afterwards (headless)
@@ -99,7 +90,7 @@ async def util_render_and_screenshot(generatedHtml_path, screenshot_path):
 
 
 
-def util_encode_image_b64(self, image_data):
+def encode_image_b64(self, image_data):
     '''
         b64 encoding of images
     '''
@@ -109,43 +100,9 @@ def util_encode_image_b64(self, image_data):
 
 
 
-def get_model_strategy(name):
+def create_dir_structure():
     '''
-        Returns strategy of the model and right parameter which can be used later
-        TODO Add other models
-    '''
-    
-    match name:
-        case "openai":
-            strategy = OpenAIStrategy(api_key=util_load_keys("openai"))
-            return strategy
-        case "gemini":
-            strategy = GeminiStrategy(api_key=util_load_keys("gemini"))
-            return strategy
-        case "llama_local":
-            strategy = LlamaStrategy()
-            return strategy
-        case "llama_hf":
-            endpoint_llama = None
-            strategy = HfEndpointStrategy(endpoint_llama)
-            return strategy
-        case "qwen_local":
-            strategy = QwenStrategy()
-            return strategy
-        case "qwen_hf":
-            with open(Path(__file__).resolve().parent.parent / "keys.json", "r", encoding="utf-8") as f:
-                endpoint_qwen = json.load(f)["huggingface"]["endpoint_qwen"]
-            strategy = HfEndpointStrategy(endpoint_qwen)
-            return strategy
-        case "finetuned_hf":
-            strategy = HfFinetunedStrategy()
-            return strategy
-        case _:
-            raise ValueError(f"Model {name} not supported.")
-
-
-def util_create_dir_structure():
-    '''
+    TODO: Nohcmal checken, merge mit unten?
         Creates the necessary folder structures for the project
     '''
     base = Path(__file__).resolve().parent.parent
@@ -179,7 +136,8 @@ def util_create_dir_structure():
 
     print("Directory structure created successfully!")
 
-def util_create_directories(output_path, model, prompt_strategy, date):
+
+def create_directories(output_path, model, prompt_strategy, date):
     '''
         Create the necessary directories for the output
     '''

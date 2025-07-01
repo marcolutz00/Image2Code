@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Simpson - Update Your Macros</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #444;
+        }
+        header {
+            background-color: #38b04c;
+            color: white;
+            padding: 20px;
+        }
+        header h1 {
+            margin: 0;
+            font-size: 20px;
+        }
+        header span {
+            display: block;
+            font-size: 14px;
+        }
+        nav {
+            display: flex;
+            gap: 20px;
+            margin-top: 10px;
+            font-size: 14px;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+        }
+        .container {
+            padding: 20px;
+        }
+        .main-heading {
+            font-size: 24px;
+            color: #58ae46;
+        }
+        .meta-info, .meta-info a {
+            font-size: 14px;
+            color: #888;
+        }
+        article {
+            margin-top: 20px;
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        blockquote {
+            margin: 0;
+            background-color: #fbfbfb;
+            padding: 15px;
+            border-left: 3px solid #ddd;
+            color: #888;
+        }
+        blockquote p {
+            margin: 0;
+        }
+        blockquote footer {
+            color: #58ae46;
+        }
+        footer {
+            margin-top: 40px;
+            font-size: 12px;
+        }
+        footer a {
+            color: #58ae46;
+            text-decoration: none;
+        }
+        .image-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 10px;
+            margin-top: 30px;
+        }
+        .image-placeholder img {
+            width: 40px;
+            height: 40px;
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>David Simpson</h1>
+        <span>deliver. iterate.</span>
+        <nav>
+            <a href="#">Blog</a>
+            <a href="#">About</a>
+            <a href="#">Projects</a>
+            <a href="#">Apps</a>
+        </nav>
+    </header>
+    <div class="container">
+        <h1 class="main-heading">Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</h1>
+        <div class="meta-info">
+            Posted by David Simpson on May 22, 2014. Return to <a href="#">index</a>. Tags:
+        </div>
+        <article>
+            Following yesterdays <a href="#" style="color: #58ae46;">Atlassian security advisory for Confluence</a>, it looks like there are some added steps required for people who have user macros. Be careful folks. <span style="color: #58ae46;">@BergerofLondon</span> spotted this first:
+            <blockquote>
+                <p>Following upgrade to Confluence 5.5.1 the values of parameters in user macros cannot be evaluated the same way. Discovered this the hard way</p>
+                <footer>â Berger (<a href="#">@BergerofLondon</a>) May 22, 2014</footer>
+            </blockquote>
+            <blockquote>
+                <p>You can't use the same shorthand you use for standard variables. <span style="color: #58ae46;">#if</span> ($paramistrue) will always evaluate as true.</p>
+                <footer>â Berger (<a href="#">@BergerofLondon</a>) May 22, 2014</footer>
+            </blockquote>
+            <blockquote>
+                <p>You now have to use things like <span style="color: #58ae46;">#if</span> ($paramistrue == true) or <span style="color: #58ae46;">#if</span> ($paramistrue == false).</p>
+                <footer>â Berger (<a href="#">@BergerofLondon</a>) May 22, 2014</footer>
+            </blockquote>
+            <blockquote>
+                <p>@baitman For strings I can no longer do <span style="color: #58ae46;">#if</span> ($paramfoo), I have to do <span style="color: #58ae46;">#if</span> ($paramfoo).length() > 0. Which is crazy.</p>
+                <footer>â Berger (<a href="#">@BergerofLondon</a>) May 22, 2014</footer>
+            </blockquote>
+            <blockquote>
+                <p>@baitman Also, if you're upgrading to 5.5.1 to fix the security vulnerability double-check that it's upgraded xwork to 1.17. Ours wasnât.</p>
+                <footer>â Berger (<a href="#">@BergerofLondon</a>) May 22, 2014</footer>
+            </blockquote>
+        </article>
+        <footer>
+            The update to atlassian-xwork-core-1.17.jar means you have to be more specific with your coding. Thanks to <a href="#">@BergerofLondon</a> for the heads up.
+        </footer>
+        <div class="image-placeholder">
+            <img src="src/placeholder.jpg" alt="Social icon">
+            <img src="src/placeholder.jpg" alt="Social icon">
+            <img src="src/placeholder.jpg" alt="Social icon">
+            <img src="src/placeholder.jpg" alt="Social icon">
+        </div>
+    </div>
+</body>
+</html>

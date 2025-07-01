@@ -17,13 +17,39 @@ from selenium.webdriver.chrome.options import Options
 from urllib.parse import urljoin
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from Utils.utils_general import util_render_and_screenshot
+from Utils.utils_general import render_and_screenshot
 
 
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
 
+def read_html(html_path: str) -> str:
+    """
+    Reads HTML file and returns content
+    """
+    with open(html_path, 'r', encoding='utf-8') as file:
+        return file.read()
+    
 
+def clean_html_result(result):
+    '''
+        Output of LLMs can contain other stuff. Everything is deleted except <html> and everything between...
+        If no final </html> is found, than just tkae the string
+    '''
+    pattern = re.compile(r"<!DOCTYPE html.*?(?:</html>|$)", re.DOTALL | re.IGNORECASE)
+    try:
+        clean_result = pattern.search(result).group(0)
+        unescaped_html = clean_result.encode('utf-8').decode('unicode_escape')
+
+        # Only remove backslashes before <, > and whitespaces
+        cleaned_html = re.sub(r'\\(?=[<>\s])', '', unescaped_html)
+    except Exception as e:
+        print(f"Try again with this image. Error: {e}")
+        cleaned_html = None
+
+    return cleaned_html.strip()
+    
+    
 async def process_html_file(html_path: str) -> tuple:
     """
         Processes the HTML file and returns:
@@ -96,24 +122,6 @@ async def create_data_entry(name: int, html_path: str, llm_output: bool) -> dict
 
     return data
 
-
-def clean_html_result(result):
-    '''
-        Output of LLMs can contain other stuff. Everything is deleted except <html> and everything between...
-        If no final </html> is found, than just tkae the string
-    '''
-    pattern = re.compile(r"<!DOCTYPE html.*?(?:</html>|$)", re.DOTALL | re.IGNORECASE)
-    try:
-        clean_result = pattern.search(result).group(0)
-        unescaped_html = clean_result.encode('utf-8').decode('unicode_escape')
-
-        # Only remove backslashes before <, > and whitespaces
-        cleaned_html = re.sub(r'\\(?=[<>\s])', '', unescaped_html)
-    except Exception as e:
-        print(f"Try again with this image. Error: {e}")
-        cleaned_html = None
-
-    return cleaned_html.strip()
 
 
 def _get_page_size(driver, width=1280, max_height=15_000):
