@@ -10,6 +10,7 @@ from LLMs.Strategies.llamaLocalStrategy import LlamaStrategy
 from LLMs.Strategies.qwenLocalStrategy import QwenStrategy
 from LLMs.LLMClient import LLMClient
 import Utils.utils_general as utils_general
+import Utils.utils_llms as utils_llms
 
 
 class DetectorAgent:
@@ -43,10 +44,10 @@ class DetectorAgent:
     Let’s think step by step.
     """
 
-    def __init__(self, model: str):
+    def __init__(self, client, model: str):
         self.model = model
-        self.strategy = utils_general.get_model_strategy(model)
-        self.client = LLMClient(self.strategy)
+        self.strategy = utils_llms.get_model_strategy(model)
+        self.client =client
 
     async def detect_issues(self, code: str):
         """
@@ -64,9 +65,8 @@ class DetectorAgent:
         
         text, tokens_used = response
 
-        raw_json = utils_general.clean_json_result(text)
+        clean_json = utils_general.clean_json_result(text)
 
-        clean_json = json.loads(raw_json)
         
         for issue in clean_json:
             issue_obj = {

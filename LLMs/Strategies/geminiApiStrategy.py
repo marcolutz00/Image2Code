@@ -66,15 +66,15 @@ class GeminiStrategy(LLMStrategy):
 
 
     # Multi-Agent Approach
-    async def agent_call(self, prompt, html_code):
+    async def agent_call(self, prompt):
         '''
             Detects, identifies and patches accessibility issues in HTML/CSS
             Uses reasoning model
         '''
-        reasoning_model = "gemini-2.5-pro"
+
 
         response = self.client.models.generate_content(
-            model=reasoning_model,
+            model=self.used_model,
             # prompt contains prompt + html_code
             contents=[prompt],
         )

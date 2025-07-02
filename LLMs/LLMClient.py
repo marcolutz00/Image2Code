@@ -27,7 +27,7 @@ class LLMClient:
         """
             Detect, identifies / classifies, patches accessibility issues in HTML
         """
-        return await self.strategy.llm_accessibility_detection(prompt)
+        return await self.strategy.agent_call(prompt)
     
 
 

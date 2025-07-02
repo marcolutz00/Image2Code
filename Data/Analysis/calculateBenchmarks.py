@@ -162,13 +162,13 @@ def start_process(model, prompting_strategy, date):
     insights_dir = output_path / model / "insights"
     results_path = current_path.parent.parent / "Results" / "benchmarks"
 
-    if prompting_strategy == "composite" or prompting_strategy == "iterative":
+    if "composite" in prompting_strategy or "iterative" in prompting_strategy:
         base_name_strat = prompting_strategy.split("_")[0]
         insight_dirs_strats = [d for d in os.listdir(insights_dir) if d.startswith(base_name_strat)]
 
         for prompt_strat in insight_dirs_strats:
             insight_dir_path =  insights_dir / prompt_strat / date
-            _start_calculcations(model, prompting_strategy, date, insight_dir_path, results_path)
+            _start_calculcations(model, prompt_strat, date, insight_dir_path, results_path)
     else:
         insight_dir_path = insights_dir / prompting_strategy / date
         _start_calculcations(model, prompting_strategy, date, insight_dir_path, results_path)

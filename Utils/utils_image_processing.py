@@ -84,6 +84,7 @@ async def process_image(client, image_information, prompt, model, prompt_strateg
 
 async def process_image_iterative(client, model, prompt_strategy, html_generated, accessibility_data, image, date, number_iterations=3):
     '''
+        Improvement Strategy: Iterative
         Gets generated HTML and Accessibility Data
         Grabs the Code with Issues and sends it to LLM.
         Afterwards, the LLM will return fixed code and it will be stored in file.
@@ -95,8 +96,8 @@ async def process_image_iterative(client, model, prompt_strategy, html_generated
         output_base_html_path, output_base_accessibility_path, output_base_images_path, output_base_insights_path = utils_general.create_directories(OUTPUT_PATH, model, f"{prompt_strategy}_refine_{i}", date)
 
         html_snippets = utils_iterative_prompt.get_violation_snippets(html_generated, accessibility_data)
-        refine_prompt = utils_prompt.get_prompt("iterative_refine")
-        final_refine_prompt = f"{refine_prompt}\n\n{html_snippets}"
+        refine_prompt = utils_prompt.get_prompt("iterative")
+        final_refine_prompt = f"{refine_prompt}\n\nViolations:\n{html_snippets}"
 
         generated_html = await utils_iterative_prompt.process_refinement_llm(client, final_refine_prompt)
 
@@ -114,26 +115,25 @@ async def process_image_iterative(client, model, prompt_strategy, html_generated
 
 async def process_image_composite(client, model, prompt_strategy, html_generated, accessibility_data, image_path, date):
     '''
-        xx
+        Improvement Strategy: Composite
+        Uses accessibility violations, as well as color recommendations as input for the LLMs.
     '''
 
-    prompt_strategy = "composite_refine"
-
     base_name = os.path.splitext(image_path)[0]
-    composite_html_path = os.path.join(OUTPUT_PATH, model, 'html', "composite", date, f"{base_name}.html")
-    composite_image_path = os.path.join(OUTPUT_PATH, model, 'images', "composite", date, f"{base_name}.png")
+    composite_html_path = os.path.join(OUTPUT_PATH, model, 'html', prompt_strategy, date, f"{base_name}.html")
+    composite_image_path = os.path.join(OUTPUT_PATH, model, 'images', prompt_strategy, date, f"{base_name}.png")
 
-    output_base_html_path, output_base_accessibility_path, output_base_images_path, output_base_insights_path = utils_general.create_directories(OUTPUT_PATH, model, f"{prompt_strategy}", date)
+    output_base_html_path, output_base_accessibility_path, output_base_images_path, output_base_insights_path = utils_general.create_directories(OUTPUT_PATH, model, f"{prompt_strategy}_refine", date)
 
     html_snippets = utils_iterative_prompt.get_violation_snippets(html_generated, accessibility_data)
     color_recommendations = color_recommendation.get_recommended_colors(composite_html_path, composite_image_path)
-    composite_prompt = utils_prompt.get_prompt(prompt_strategy)
+    composite_prompt = utils_prompt.get_prompt("composite")
 
     final_composite_prompt = f"{composite_prompt}\n\nViolations:\n{html_snippets}\n\nColor Recommendations:\n{color_recommendations}"
 
     generated_html = await utils_iterative_prompt.process_refinement_llm(client, final_composite_prompt)
 
-    with open(os.path.join(output_base_html_path, f"{prompt_strategy}", date, f"{base_name}.html"), "w", encoding="utf-8") as f:
+    with open(os.path.join(output_base_html_path, f"{prompt_strategy}_refine", date, f"{base_name}.html"), "w", encoding="utf-8") as f:
         f.write(generated_html)
         
-    _, accessibility_issues, accessibility_issues_overview = await analyze_outputs(image_path, model, f"{prompt_strategy}", date)
+    _, accessibility_issues, accessibility_issues_overview = await analyze_outputs(image_path, model, f"{prompt_strategy}_refine", date)

@@ -158,22 +158,6 @@ def _get_reasoning_prompt():
     return f"{_get_base_prompt()}\n\n{accessibility_reminder}\n{chain_of_thought}\n\n{output_format}\n\nThe image is attached to this prompt."
 
 
-def _get_iterative_start_prompt():
-    """
-        Self-and-Refine Approach
-        Check here: https://arxiv.org/pdf/2303.17651
-
-        3 Phases
-        Build: Use prompt to copy Image as above
-        Feedback: Use Accessibility Tools to find violations
-        Refine: Use generated Code and found violations to refine the existing lines of code.
-
-        Phase Build:
-        This starting prompt for the build phase uses the naive approach
-    """
-    return _get_naive_prompt()
-
-
 def _get_iterative_refine_prompt():
     """
         Self-and-Refine Approach
@@ -195,6 +179,23 @@ def _get_iterative_refine_prompt():
 
     Make sure to only change what is necessary to fix the violations.
     The HTML/CSS is provided below, along with the accessibility issues that need to be addressed.
+
+    The violations are provided in the following format:
+    Violations:
+    {
+        "html": HTML/CSS which has to be fixed,
+        "accessibility_violations": 
+        [
+            {
+                "snippet": The code snippet with the issue, 
+                "id": The Wcag issue ID, 
+                "source": The source of the issue (e.g., axe, pa11y, lighthouse),
+                "message": Message describing the issue, 
+                "impact": impact level (critical, serious, moderate, minor)
+            },
+            { ... }
+        ]
+    }
     """
 
     return f"{accessibility_reminder}\n\n{refine_prompt}"
@@ -218,6 +219,23 @@ def _get_composite_prompt():
 
     Make sure to only change what is necessary to fix the violations.
     The HTML/CSS is provided below, along with the accessibility issues that need to be addressed.
+
+    The violations are provided in the following format:
+    Violations:
+    {
+        "html": HTML/CSS which has to be fixed,
+        "accessibility_violations": 
+        [
+            {
+                "snippet": The code snippet with the issue, 
+                "id": The Wcag issue ID, 
+                "source": The source of the issue (e.g., axe, pa11y, lighthouse),
+                "message": Message describing the issue, 
+                "impact": impact level (critical, serious, moderate, minor)
+            },
+            { ... }
+        ]
+    }
     """
 
     color_recommendation = """
@@ -225,6 +243,7 @@ def _get_composite_prompt():
         Whenever a color-contrast violation is detected, we propose
         an accessible color alternative in the following format:
 
+        Color Recommendations:
         [{
             "text_snippet": "Text that needs to be changed",
             "old_color": "#xxxxxx",
@@ -252,15 +271,11 @@ def get_prompt(prompt_strategy):
             return _get_zero_shot_prompt()
         case "few-shot":
             return _get_few_shot_prompt()
-        case "iterative":
-            return _get_iterative_start_prompt()
-        case "iterative_refine":
-            return _get_iterative_refine_prompt()
         case "reason":
             return _get_reasoning_prompt()
+        case "iterative":
+            return _get_iterative_refine_prompt()
         case "composite":
-            return _get_iterative_start_prompt()
-        case "composite_refine":
             return _get_composite_prompt()
         case _:
             raise ValueError(f"Prompt Strategy {prompt_strategy} is not supported.")

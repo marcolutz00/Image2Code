@@ -9,6 +9,8 @@ from LLMs.Strategies.llamaLocalStrategy import LlamaStrategy
 from LLMs.Strategies.qwenLocalStrategy import QwenStrategy
 from LLMs.LLMClient import LLMClient
 import Utils.utils_general as utils_general
+import Utils.utils_html as utils_html
+import Utils.utils_llms as utils_llms
 
 
 class ResolverAgent:
@@ -37,17 +39,17 @@ class ResolverAgent:
     Let’s think step by step.
     """
 
-    def __init__(self, model: str):
+    def __init__(self, client, model: str):
         self.model = model
-        self.strategy = utils_general.get_model_strategy(model)
-        self.client = LLMClient(self.strategy)
+        self.strategy = utils_llms.get_model_strategy(model)
+        self.client= client
 
     async def resolve_code(self, issues, code: str = None):
         """
             Responsible for patching issues in the code.
         """
         
-        prompt = f"{self.identifier_prompt}\n\n{issues}\n\n{code}"
+        prompt = f"{self.resolver_prompt}\n\n{issues}\n\n{code}"
         response = await self.client.agent_call(prompt)
 
         if response is None:
@@ -56,6 +58,6 @@ class ResolverAgent:
         
         text, tokens_used = response
 
-        clean_html = utils_general.clean_html_result(text)
+        clean_html = utils_html.clean_html_result(text)
 
         return clean_html, tokens_used
