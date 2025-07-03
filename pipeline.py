@@ -28,7 +28,7 @@ OUTPUT_PATH = DATA_PATH / "Output"
 # Arguments
 DEFAULT_MODEL = "gemini"  # option: openai, gemini, qwen_local, qwen_hf, llama_local, llama_hf, hf-finetuned
 DEFAULT_PROMPT_STRATEGY = "naive" # options: naive, zero-shot, few-shot, reason, iterative, composite
-DEFAULT_IMPROVEMENT_STRATEGY = "agent" #"composite"  # options: None, iterative, composite, agent
+DEFAULT_IMPROVEMENT_STRATEGY = None #"composite"  # options: None, iterative, composite, agent
 DEFAULT_STARTING_FROM = 0  
 DATE = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
 # Test

@@ -74,6 +74,10 @@ class IdentifierAgent:
 
         updated_issues = []
 
+        if clean_json is None or len(clean_json) == 0:
+            print("Identifier: No issues found")
+            return updated_issues, tokens_used
+
         for issue in clean_json:
             issue_obj = {
                 "line_start": issue.get("line_start", 0),

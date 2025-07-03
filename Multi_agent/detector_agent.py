@@ -66,7 +66,10 @@ class DetectorAgent:
         text, tokens_used = response
 
         clean_json = utils_general.clean_json_result(text)
-
+        
+        if clean_json is None or len(clean_json) == 0:
+            print("Detector: No issues found")
+            return issues, tokens_used
         
         for issue in clean_json:
             issue_obj = {

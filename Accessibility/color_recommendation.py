@@ -4,6 +4,7 @@ from PIL import ImageColor
 import os
 from pathlib import Path
 import sys
+from bs4 import BeautifulSoup
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
@@ -190,8 +191,26 @@ def calculate_recommended_colors(blocks, image_path):
             
         is_large = False
 
+def _extract_html_snippet(html_path, text_snippet):
+    """
+        gets the html snippet based on text snippet
+    """
+    with open(html_path, 'r', encoding='utf-8') as file:
+        html_content = file.read()
 
-def _structure_recommended_colors(blocks):
+    soup = BeautifulSoup(html_content, "html.parser")
+    # finds all occurrences where the text matches exactly
+    matches = soup.find_all(string=lambda s: s and s.strip().lower() ==text_snippet.lower())
+    
+    if not matches:
+        return ""
+    
+    html_snippet = str(matches[0].parent)
+
+    return html_snippet
+
+
+def _structure_recommended_colors(blocks, html_path):
     list_output = []
     for block in blocks:
         new_color = block["suggest_color"]
@@ -203,8 +222,12 @@ def _structure_recommended_colors(blocks):
         old_color_hex =  '#%02x%02x%02x' % old_color
         text = block["text"]
 
+        # Get html Snippet
+        html_snippet = _extract_html_snippet(html_path, text)
+
         list_output.append({
             "text_snippet": text,
+            "html_snippet": html_snippet,
             "old_color": old_color_hex,
             "new_color": new_color
         })
@@ -233,7 +256,7 @@ def get_recommended_colors(html_path, image_path):
     # Delete modified image
     os.system(f'rm "{modified_image_path}"')
 
-    output = _structure_recommended_colors(blocks)
+    output = _structure_recommended_colors(blocks, html_path)
 
     return output
 
@@ -247,8 +270,8 @@ if __name__ == "__main__":
     DIR_PATH = os.path.dirname(os.path.realpath(__file__))
     INPUT_HTML_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Input', 'html')
     INPUT_IMG_PATH = os.path.join(DIR_PATH, '..', 'Data', 'Input', 'images')
-    original_html = os.path.join(DIR_PATH, '35.html')
-    original_img = os.path.join(DIR_PATH, '35.png')
+    original_html = os.path.join(DIR_PATH, '8.html')
+    original_img = os.path.join(DIR_PATH, '8.png')
     mod_img = os.path.join(DIR_PATH, '6_mod.png')
     # modified_html = os.path.join(DIR_PATH, '2_noimg.html')
     # original_html = os.path.join(os.path.dirname(__file__), 'original.html')
