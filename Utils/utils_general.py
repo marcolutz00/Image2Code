@@ -7,6 +7,7 @@ import os
 import sys
 import shutil
 import re
+import pandas as pd
 
 
     
@@ -166,6 +167,34 @@ def create_directories(output_path, model, prompt_strategy, date):
 
     return output_base_html_path, output_base_accessibility_path, output_base_images_path, output_base_insights_path
 
+def _flatten_dict(dictionary, parent_key=""):
+    """
+    Helper to flatten dictionary
+    """
+    seperator = '.'
+    flat_dict = {}
+
+    for key, value in dictionary.items():
+        new_key = f"{parent_key}{seperator}{key}" if parent_key else str(key)
+        # if dict, then it could be further nested
+        if isinstance(value, dict):
+            flat_dict.update(_flatten_dict(value, new_key))
+        else:
+            flat_dict[new_key] = value
+    return flat_dict
+
+
+def export_dict_to_excel(dictionary, name, out_path):
+    """
+        Saves dictionary in excel
+    """
+
+    with pd.ExcelWriter(out_path, engine="xlsxwriter") as writer:
+        # 1) Landmarks ─ ein eindimensionales Dict: als Serie speichern
+        flat_dict = _flatten_dict(dictionary)
+        pd.Series(flat_dict, name="value").to_excel(writer, sheet_name=name)
+
+    print(f"Wrote to excel file: {out_path}")
 
 
 

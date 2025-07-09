@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        header {
+            background-color: #f8f8f8;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        nav a {
+            color: #6c757d;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        nav a:hover {
+            text-decoration: underline;
+        }
+
+        main {
+            padding: 20px;
+            background-color: #fff;
+            margin: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        section {
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #343a40;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        footer a {
+            color: #fff;
+            text-decoration: none;
+            margin-right: 20px;
+        }
+
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <nav>
+        <a href="#">Features</a>
+        <a href="#">Open Source</a>
+        <a href="#">About</a>
+        <a href="#">Docs</a>
+        <a href="#">Login</a>
+        <a href="#">Register</a>
+    </nav>
+</header>
+
+<main>
+    <section>
+        <h1>aws_autoscaling_lifecycle_hook</h1>
+        <p>Provides an AutoScaling Lifecycle Hook resource.</p>
+    </section>
+
+    <section>
+        <h2>Example Usage</h2>
+        <pre><code>
+resource {
+    aws_autoscaling_group: 
+        name: terraform-test-foobar5
+        availability_zones: 
+            - us-west-2a
+        resources: 
+            - name: terraform-test-foobar5
+              health_check_type: EC2
+              termination_policies: 
+                  - oldest_instance
+        tag: 
+            key: Foo
+            value: foo-bar
+        aws_autoscaling_lifecycle_hook: 
+            name: foobar
+            autoscaling_group_name: '${aws_autoscaling_group.foobar.name}'
+            default_result: CONTINUE
+            heartbeat_timeout: 2000
+            lifecycle_transition: 'autoscaling:EC2_INSTANCE_LAUNCHING'
+            notification_metadata: "{\n \"foo\": \"bar\"\n}"
+            notification_target_arn: 'arn:aws:sqs:us-east-1:44445556666:queue1*'
+            role_arn: 'arn:aws:iam:123456789012:role/S3Access'
+}</code></pre>
+    </section>
+
+    <section>
+        <h2>Argument Reference Reference</h2>
+        <p>The following arguments are supported:</p>
+        <ul>
+            <li><strong>name</strong> - (Required) The name of the lifecycle hook.</li>
+            <li><strong>autoscaling_group_name</strong> - (Required) The name of the Auto Scaling group to which you want to assign the lifecycle hook.</li>
+            <li><strong>default_result</strong> - (Optional) Defines the action the Auto Scaling group should take when the lifecycle hook timeout elapses or if an unexpected failure occurs.</li>
+            <li><strong>heartbeat_timeout</strong> - (Optional) Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult parameter</li>
+        </ul>
+    </section>
+</main>
+
+<footer>
+    <p>See the source of this document at <a href="https://Terraform.io">Terraform.io</a></p>
+</footer>
+
+</body>
+</html>

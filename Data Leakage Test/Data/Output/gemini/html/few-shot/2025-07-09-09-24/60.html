@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Account</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+        }
+
+        .create-account-section {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+            color: #555;
+            font-size: 14px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 14px;
+            color: #333;
+            box-sizing: border-box;
+        }
+
+        textarea {
+            resize: vertical;
+            height: 80px;
+        }
+
+        .referral-optional {
+            font-size: 12px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-group label {
+            margin-right: 20px;
+            margin-bottom: 0;
+        }
+
+        button {
+            background-color: #f47920;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            display: block;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #e0701e;
+        }
+
+        .tc-section {
+            margin-top: 20px;
+        }
+
+        .tc-section label {
+            display: inline-block;
+            margin-bottom: 0;
+            vertical-align: middle;
+        }
+
+        .verification-section {
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 3fr 1fr;
+            gap: 10px;
+            align-items: center;
+        }
+
+        .verification-section button {
+            width: auto;
+            margin: 0;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            color: #777;
+        }
+
+        .footer a {
+            color: #f47920;
+            text-decoration: none;
+        }
+
+        .footer a:hover {
+            text-decoration: underline;
+        }
+
+        .left-section {
+            width: 250px;
+            margin-top: 60px;
+            margin-left: 80px;
+        }
+
+        .learn-section {
+            margin-top: 60px;
+            margin-left: 100px;
+        }
+
+        .community-section {
+            margin-top: 60px;
+            margin-left: 80px;
+        }
+
+        .resources-section {
+            margin-top: 60px;
+            margin-left: 80px;
+        }
+
+        .connect-section {
+            margin-top: 60px;
+            margin-left: 80px;
+        }
+
+        .bottom-footer {
+            margin-top: 80px;
+            margin-left: 100px;
+        }
+
+        .main-header {
+            width: 100%;
+            height: 80px;
+        }
+
+        .main-content {
+            display: flex;
+        }
+
+        .sign-up {
+            border: none;
+            background-color: #f47920;
+            color: white;
+            width: 80px;
+            height: 30px;
+            border-radius: 5px;
+        }
+
+        .sign-up:hover {
+            background-color: #e0701e;
+            cursor: pointer;
+        }
+
+        .login {
+            border: none;
+            background-color: white;
+            color: blue;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .login:hover {
+            text-decoration: underline;
+        }
+
+        .main-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            margin-left: 60px;
+        }
+
+        .header-right {
+            margin-right: 60px;
+        }
+
+        .header-right button {
+            margin-left: 10px;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .header-links a {
+            text-decoration: none;
+            color: black;
+        }
+
+        .header-links a:hover {
+            text-decoration: underline;
+        }
+
+        #alpha-logo {
+            color: white;
+            background-color: #01796f;
+            height: 80px;
+            font-size: 24px;
+            font-weight: bold;
+            margin-top: -20px;
+            margin-left: -20px;
+            width: 200px;
+            text-align: center;
+            padding-top: 25px;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+        }
+
+        /* Style the header */
+        .header {
+            background-color: #f1f1f1;
+            padding: 30px;
+            text-align: center;
+        }
+
+        /* Style the top navigation bar */
+        .navbar {
+            overflow: hidden;
+            background-color: #333;
+        }
+
+        /* Style the navigation bar links */
+        .navbar a {
+            float: left;
+            display: block;
+            color: white;
+            text-align: center;
+            padding: 14px 20px;
+            text-decoration: none;
+        }
+
+        /* Right-aligned link */
+        .navbar a.right {
+            float: right;
+        }
+
+        /* Change color on hover */
+        .navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+
+        .column {
+            float: left;
+            padding: 10px;
+            height: 300px;
+            /* Should be removed. Only for demonstration */
+        }
+
+        .left {
+            width: 35%;
+        }
+
+        .right {
+            width: 65%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f1f1f1;
+            padding: 25px;
+            text-align: center;
+        }
+
+        /* Responsive layout - makes the three columns stack on top of each other instead of next to each other */
+        @media screen and (max-width: 600px) {
+            .column.side,
+            .column.middle {
+                width: 100%;
+            }
+        }
+
+        .radio {
+            display: inline-block;
+            position: relative;
+            margin-bottom: 12px;
+            margin-right: 15px;
+            cursor: pointer;
+            font-size: 16px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Hide the browser's default radio button */
+        .radio input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+        }
+
+        /* Create a custom radio button */
+        .checkmark {
+            position: relative;
+            top: 0;
+            left: 0;
+            height: 20px;
+            width: 20px;
+            background-color: #eee;
+            border-radius: 50%;
+            border: 1px solid #ccc;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .radio:hover input~.checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the radio button is checked, add a blue background */
+        .radio input:checked~.checkmark {
+            background-color: #fff;
+        }
+
+        /* Create the indicator (the dot/circle - hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the indicator (dot/circle) when checked */
+        .radio input:checked~.checkmark:after {
+            display: block;
+        }
+
+        /* Style the indicator (dot/circle) */
+        .radio .checkmark:after {
+            top: 5px;
+            left: 5px;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #01796f;
+        }
+
+        .create-form {
+            width: 450px;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
+            margin-top: 10px;
+        }
+
+        .login-button {
+            background-color: blue;
+            width: 30px;
+            height: 30px;
+        }
+    </style>
+</head>
+
+<body>
+    <div>
+        <div class="main-header">
+            <div class="header-left">
+                <div id="alpha-logo">
+                    Alpha One
+                    Labs
+                </div>
+            </div>
+            <div class="header-links">
+                <a href="#">LEARN</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">RESOURCES</a>
+                <a href="#">ABOUT</a>
+            </div>
+            <div class="header-right">
+                <input type="text" placeholder="What do you want to learn?" style="height:30px; width:200px;">
+                <button class="login" style="margin-left:30px;">Login</button>
+                <button class="sign-up">Signup</button>
+            </div>
+        </div>
+        <div class="main-content">
+            <div class="left" style="background-color:#fff; height: 800px; padding: 20px;">
+                <div>
+                    <div style="margin-left:60px;">
+                        <img src="src/placeholder.jpg" width="200" height="150" alt="Placeholder Image" style="border:1px solid black;">
+                    </div>
+                    <div class="left-section">
+                        <h3>Join our community of learners and teachers</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="right" style="background-color:#fff; height: 800px; padding: 20px;">
+                <div style="width: 450px;">
+                    <h2>
+                        <span style="font-size:24px; font-weight: bold; margin-left: 20px;">Create Account</span>
+                    </h2>
+                </div>
+                <div class="create-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="first-name" style="margin-left: 20px;">First Name *</label>
+                            <input type="text" id="first-name" name="first-name" style="margin-left: 20px;">
+                        </div>
+                        <div class="form-group">
+                            <label for="last-name">Last Name *</label>
+                            <input type="text" id="last-name" name="last-name">
+                        </div>
+                    </div>
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="username" style="margin-left: 20px;">Username *</label>
+                            <input type="text" id="username" name="username" style="margin-left: 20px;">
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email *</label>
+                            <input type="email" id="email" name="email">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="referral-code" style="margin-left: 20px;">Referral Code</label>
+                        <input type="text" id="referral-code" name="referral-code" style="margin-left: 20px;">
+                        <div class="referral-optional">Optional - Enter a referral code if you have one</div>
+                    </div>
+                    <div class="form-group">
+                        <label for="how-hear">How did you hear about us?</label>
+                        <textarea id="how-hear" name="how-hear"></textarea>
+                        <div class="referral-optional">Optional - Tell us how you found us. You can enter text or a link.
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        We value your privacy and encourage you to stay safe online. A private profile will only be visible
+                        to you and site administrators, while a public profile can be viewed by anyone.
+                    </div>
+
+                    <div class="radio-group">
+                        <label class="radio">
+                            Public
+                            <input type="radio" checked="checked" name="radio">
+                            <span class="checkmark"></span>
+                        </label>
+                        <label class="radio">
+                            Private
+                            <input type="radio" name="radio">
+                            <span class="checkmark"></span>
+                        </label>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="password" style="margin-left: 20px;">Password *</label>
+                        <input type="password" id="password" name="password" style="margin-left: 20px;">
+                        <div class="referral-optional">Create a strong password</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="confirm-password">Confirm Password *</label>
+                        <input type="password" id="confirm-password" name="confirm-password">
+                        <div class="referral-optional">Repeat your password</div>
+                    </div>
+
+                    <div class="tc-section">
+                        <input type="checkbox" id="i-agree" name="i-agree">
+                        <label for="i-agree">I want to teach courses</label>
+                    </div>
+
+                    <div class="verification-section">
+                        <label for="verification">Verification</label>
+                        <input type="text" id="verification" name="verification" style="margin-left: 15px;">
+                        <button style="height: 30px; width:80px; margin-top: -10px; margin-left:20px; padding: 3px; background-color:blue;">.</button>
+                    </div>
+
+                    <button type="submit" style="margin-top: 20px;">CREATE ACCOUNT</button>
+
+                    <div class="footer">
+                        Already have an account? <a href="#">Sign in</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div style="background-color:white;">
+            <div class="row">
+                <div class="column left" style="background-color:#fff; height: 250px;">
+                    <div class="learn-section">
+                        <h3 style="margin-left:30px;">LEARNING</h3>
+                        <p style="margin-left:30px;">Courses</p>
+                        <p style="margin-left:30px;">Subjects</p>
+                        <p style="margin-left:30px;">Quizzes</p>
+                        <p style="margin-left:30px;">Videos</p>
+                        <p style="margin-left:30px;">Challenges</p>
+                        <p style="margin-left:30px;">Study Groups</p>
+                    </div>
+                </div>
+                <div class="column middle" style="background-color:#fff; height: 250px;">
+                    <div class="community-section">
+                        <h3 style="margin-left:30px;">COMMUNITY</h3>
+                        <p style="margin-left:30px;">Forum</p>
+                        <p style="margin-left:30px;">Blog</p>
+                        <p style="margin-left:30px;">Features</p>
+                        <p style="margin-left:30px;">Success Stories</p>
+                    </div>
+                </div>
+                <div class="column right" style="background-color:#fff; height: 250px;">
+                    <div class="resources-section">
+                        <h3 style="margin-left:30px;">RESOURCES & INFO</h3>
+                        <p style="margin-left:30px;">GSOC'25</p>
+                        <p style="margin-left:30px;">Status</p>
+                        <p style="margin-left:30px;">Feedback</p>
+                        <p style="margin-left:30px;">Terms</p>
+                    </div>
+                </div>
+                <div class="column right" style="background-color:#fff; height: 250px;">
+                    <div class="connect-section">
+                        <h3 style="margin-left:30px;">CONNECT WITH US</h3>
+                        <button class="login-button"></button>
+                        <button class="login-button"></button>
+                        <button class="login-button"></button>
+                        <button class="login-button"></button>
+                        <button class="login-button"></button>
+                    </div>
+                </div>
+                <div class="column right" style="background-color:#fff; height: 250px;">
+                    <div class="resources-section">
+                        <h3 style="margin-left:30px;">SUBSCRIBE TO NEWSLETTER</h3>
+                        <input type="text" style="height:30px; width:200px;">
+                        <button class="sign-up" style="margin-left:30px;">></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div style="background-color:white;">
+            <div class="bottom-footer">
+                <p style="margin-left:100px;">@ 2025 Alpha One Labs. All rights reserved.</p>
+                <p style="margin-left:100px;">Last updated: 06/12/2025 01:23nachm.</p>
+                <p style="margin-left:700px;">About Us Terms & Conditions Privacy Policy Cookie Policy</p>
+            </div>
+        </div>
+</body>
+
+</html>

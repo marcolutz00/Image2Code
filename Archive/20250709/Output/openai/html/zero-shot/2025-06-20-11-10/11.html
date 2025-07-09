@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AWS Autoscaling Lifecycle Hook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #fff;
+        }
+        header {
+            background-color: #f5f7fa;
+            padding: 15px 20px;
+            border-bottom: 1px solid #e1e1e1;
+        }
+        header a {
+            text-decoration: none;
+            margin: 0 15px;
+            color: #007ACC;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        .container {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+        .sidebar {
+            width: 240px;
+            padding-right: 20px;
+            border-right: 1px solid #e1e1e1;
+        }
+        .content {
+            flex: 1;
+            padding-left: 40px;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            margin: 5px 0;
+        }
+        nav a {
+            color: #007ACC;
+            text-decoration: none;
+            font-size: 14px;
+        }
+        nav a.active {
+            font-weight: bold;
+        }
+        h1 {
+            font-size: 28px;
+            color: #333;
+            margin: 20px 0;
+        }
+        h2 {
+            font-size: 20px;
+            color: #333;
+            margin: 20px 0;
+            border-bottom: 1px solid #e1e1e1;
+            padding-bottom: 10px;
+        }
+        pre {
+            background-color: #f9f9f9;
+            border: 1px solid #e1e1e1;
+            padding: 20px;
+            overflow-x: auto;
+            white-space: pre-wrap;
+            font-size: 14px;
+            line-height: 1.5;
+            margin: 20px 0;
+        }
+        pre code {
+            color: #333;
+        }
+        pre code .hljs-keyword {
+            color: #d73a49;
+            font-weight: bold;
+        }
+        pre code .hljs-string {
+            color: #032f62;
+        }
+        ul {
+            list-style-type: disc;
+            margin: 20px 0;
+            padding-left: 20px;
+        }
+        footer {
+            background-color: #3b3b3b;
+            color: #fff;
+            padding: 20px;
+            font-size: 14px;
+            margin-top: 40px;
+        }
+        footer .links {
+            display: flex;
+            justify-content: space-between;
+            max-width: 1200px;
+            margin: auto;
+        }
+        footer a {
+            color: #c1c1c1;
+            text-decoration: none;
+        }
+        footer a:hover {
+            color: #fff;
+        }
+        footer h3 {
+            margin-bottom: 10px;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <a href="#">FEATURES</a>
+    <a href="#">OPEN SOURCE</a>
+    <a href="#">ABOUT</a>
+    <a href="#">DOCS</a>
+    <a href="#">LOGIN</a>
+    <a href="#">REGISTER</a>
+</header>
+
+<div class="container">
+    <aside class="sidebar">
+        <nav>
+            <ul>
+                <li><a href="#">Videos</a></li>
+                <li><a href="#">Getting started</a></li>
+                <li><a href="#">Getting more from Koding</a></li>
+                <li><a href="#">Stack Documentation</a></li>
+                <li><a href="#">Configuration</a></li>
+                <li><a href="#" class="active">Providers</a></li>
+                <li><a href="#">Archive</a></li>
+                <li><a href="#">Atlas</a></li>
+                <li><a href="#">AWS</a></li>
+            </ul>
+        </nav>
+    </aside>
+
+    <main class="content">
+        <h1>aws_autoscaling_lifecycle_hook</h1>
+        <p>Provides an AutoScaling Lifecycle Hook resource.</p>
+        <h2>Example Usage</h2>
+        <pre>
+            <code>
+resource:
+    aws_autoscaling_group:
+        foobar:
+            availability_zones:
+                - us-west-2a
+            name: terraform-test-foobar5
+            health_check_type: EC2
+            termination_policies:
+                - OldestInstance
+            tag:
+                key: Foo
+                value: foo-bar
+                propagate_at_launch: true
+aws_autoscaling_lifecycle_hook:
+    foobar:
+        name: foobar
+        autoscaling_group_name: '${aws_autoscaling_group.foobar.name}'
+        default_result: CONTINUE
+        heartbeat_timeout: 2000
+        lifecycle_transition: 'autoscaling:EC2_INSTANCE_LAUNCHING'
+        notification_metadata: '{
+ "foo": "bar"
+}'
+        notification_target_arn: 'arn:aws:sqs:us-east-1:444455556666:queue1'
+        role_arn: 'arn:aws:iam::123456789012:role/S3Access'
+            </code>
+        </pre>
+
+        <h2>Argument Reference</h2>
+        <p>The following arguments are supported:</p>
+        <ul>
+            <li><strong>name</strong> - (Required) The name of the lifecycle hook.</li>
+            <li><strong>autoscaling_group_name</strong> - (Required) The name of the Auto Scaling group to which you want to assign the lifecycle hook.</li>
+            <li><strong>default_result</strong> - (Optional) Defines the action the Auto Scaling group should take when the lifecycle hook timeout elapses or if an unexpected failure occurs.</li>
+            <li><strong>heartbeat_timeout</strong> - (Optional) Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult parameter.</li>
+        </ul>
+        <p>See the source of this document at <a href="#">Terraform.io</a></p>
+    </main>
+</div>
+
+<footer>
+    <div class="links">
+        <div>
+            <h3>For Teams</h3>
+            <nav>
+                <ul>
+                    <li><a href="#">Platform for Training</a></li>
+                    <li><a href="#">Pre-Sales Automation</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            <h3>Resources</h3>
+            <nav>
+                <ul>
+                    <li><a href="#">Documentation</a></li>
+                    <li><a href="#">Blog</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            <h3>About</h3>
+            <nav>
+                <ul>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Open Source</a></li>
+                </ul>
+            </nav>
+        </div>
+        <div>
+            <h3>Contact</h3>
+            <nav>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Twitter</a></li>
+                    <li><a href="#">LinkedIn</a></li>
+                </ul>
+            </nav>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>

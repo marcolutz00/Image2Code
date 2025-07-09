@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>JokeBuddha</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            font-size: 13px;
+            color: #333;
+            line-height: 1.4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 600px;
+            margin: 20px auto;
+            padding: 0;
+        }
+
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .joke {
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .joke p {
+            margin-bottom: 10px;
+        }
+
+        .vote {
+            margin-top: 10px;
+        }
+
+        .vote a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .vote a:hover {
+            text-decoration: underline;
+        }
+
+
+        .related-topics {
+            margin-top: 20px;
+        }
+
+        .related-topics h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .related-topics a {
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .related-topics a:hover {
+            text-decoration: underline;
+        }
+
+        .top-authors {
+            margin-top: 20px;
+        }
+
+        .top-authors h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .top-authors ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .top-authors li {
+            margin-bottom: 5px;
+        }
+
+        .recent-comments {
+            margin-top: 20px;
+        }
+
+        .recent-comments h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .recent-comments p {
+            margin-bottom: 10px;
+        }
+
+        /* Custom CSS */
+        .top-menu {
+            background-color: #f0f0f0;
+            padding: 5px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .top-menu a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .top-menu a:hover {
+            text-decoration: underline;
+        }
+
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .joke-form {
+            margin-top: 20px;
+        }
+
+        .joke-form textarea {
+            width: 100%;
+            height: 100px;
+            margin-bottom: 10px;
+        }
+
+        .search-box {
+            float: right;
+        }
+
+        .search-box input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .follow-joke {
+            margin-top: 20px;
+        }
+
+        .follow-joke input[type="email"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        .related-topics a {
+            font-size: 13px;
+        }
+
+        .top-authors {
+            font-size: 13px;
+        }
+
+        .recent-comments {
+            font-size: 13px;
+        }
+
+        /* Specific to the layout */
+        body {
+            margin: 0px;
+            font-size: 13px;
+            line-height: 1.4;
+            color: #333333;
+            font-family: Arial, sans-serif;
+        }
+
+        .container {
+            width: 600px;
+            margin: 20px auto;
+        }
+
+        /* Top Menu */
+        .top-menu {
+            background-color: #f0f0f0;
+            padding: 5px;
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        .top-menu a {
+            margin: 0 10px;
+            text-decoration: none;
+            color: #333;
+        }
+
+        .search-box {
+            float: right;
+        }
+
+        .search-box input[type="text"] {
+            padding: 5px;
+            border: 1px solid #ccc;
+        }
+
+        /* Main Content */
+        h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        /* Jokes */
+        .joke {
+            margin-bottom: 20px;
+            padding: 10px;
+        }
+
+        .joke p {
+            margin-bottom: 10px;
+        }
+
+        .vote {
+            margin-top: 10px;
+        }
+
+        .vote a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Follow Joke */
+        .follow-joke {
+            margin-top: 20px;
+        }
+
+        .follow-joke input[type="email"] {
+            width: 100%;
+            padding: 5px;
+            margin-bottom: 10px;
+        }
+
+        /* Related Topics */
+        .related-topics {
+            margin-top: 20px;
+        }
+
+        .related-topics h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .related-topics a {
+            display: inline-block;
+            margin-right: 5px;
+            margin-bottom: 5px;
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        /* Top Authors */
+        .top-authors {
+            margin-top: 20px;
+        }
+
+        .top-authors h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .top-authors ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .top-authors li {
+            margin-bottom: 5px;
+        }
+
+        /* Recent Comments */
+        .recent-comments {
+            margin-top: 20px;
+        }
+
+        .recent-comments h3 {
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+
+        .recent-comments p {
+            margin-bottom: 10px;
+        }
+
+        /* Footer */
+        .footer {
+            margin-top: 20px;
+            text-align: center;
+            font-size: 12px;
+            color: #777;
+        }
+
+        /* Specific styling for up/down votes */
+        .vote img {
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+
+        /* External Links */
+        .external-links {
+            margin-top: 20px;
+        }
+
+        /* Recent Activity */
+        .recent-activity {
+            margin-top: 20px;
+        }
+
+        .recent-activity ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .recent-activity li {
+            margin-bottom: 5px;
+        }
+
+        .recent-activity a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        .recent-activity a:hover {
+            text-decoration: underline;
+        }
+
+        a {
+            color: #007bff;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="top-menu">
+            <a href="#">Funny Jokes</a>
+            <a href="#">Top Rated</a>
+            <a href="#">Most Discussed</a>
+            <a href="#">Recent</a>
+            <br>
+            <a href="#">One-liners</a>
+            <a href="#">Blonde</a>
+            <a href="#">Hairline</a>
+            <a href="#">Chuck Norris</a>
+            <div class="search-box">
+                <input type="text" placeholder="Search jokes">
+            </div>
+        </div>
+
+        <h1>Capacity Jokes</h1>
+
+        <h2>Funny Jokes</h2>
+
+        <div class="joke">
+            Picard "Mr
+            <p>Picard "Mr. LaForge, have you had any success with your attempts at finding a weakness in
+                the Borg? more...</p>
+            <div class="vote">
+                <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_20/https://jokebuddha.com/images/voteup.png"
+                    alt="Vote Up">1
+                <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_20/https://jokebuddha.com/images/votedown.png"
+                    alt="Vote Down">0
+                comments (0)
+            </div>
+        </div>
+
+        <div class="joke">
+            Bell Labs Proves Existence of Dark Suckers
+            <p>Bell Labs Proves Existence of Dark Suckers For years it has been believed that electric bulbs
+                emitted light. more...</p>
+            <div class="vote">
+                <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_20/https://jokebuddha.com/images/voteup.png"
+                    alt="Vote Up">1
+                <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_20/https://jokebuddha.com/images/votedown.png"
+                    alt="Vote Down">0
+                comments (0)
+            </div>
+        </div>
+
+        <div class="joke">
+            Windows and The Borg
+            <p>Picard: "Mr. LaForge, have you had any success with your
+                attempts at finding a weakness in the Borg? And Mr. Data, have you been
+                able to access their command pathways?"
+                <br>
+                Geordi: "Yes, Captain. In fact, we found the answer by
+                searching through our archives on late Twentieth-century computing
+                technology."
+                <br>
+                Geordi presses a key, and a logo appears on the computer screen.
+                Riker looks puzzled. "What the hell is 'Microsoft'?"
+                <br>
+                Data turns to answer.
+                <br>
+                this program, for some reason called 'Windows', through the Borg command
+                pathways. Once inside their root command unit, it will begin consuming
+                system resources at an unstoppable rate."
+                <br>
+                Picard: "But the Borg have the ability to adapt. Won't
+                they alter their processing systems to increase their storage capacity?"
+                <br>
+                Data: "Yes, Captain. But when 'Windows' detects this, it
+                creates a new version of itself more...
+            </p>
+            <div class="vote">
+                <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_20/https://jokebuddha.com/images/voteup.png"
+                    alt="Vote Up">0
+                <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_20/https://jokebuddha.com/images/votedown.png"
+                    alt="Vote Down">0
+                comments (0)
+            </div>
+        </div>
+
+        <div class="joke">
+            Bell Labs Proves Existence of Dark Suckers
+            <p>Bell Labs Proves Existence of Dark Suckers For years it has been believed that electric bulbs
+                emitted light.However, recent information from Bell Labs has proven otherwise. more...</p>
+            <div class="vote">
+                <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_20/https://jokebuddha.com/images/voteup.png"
+                    alt="Vote Up">0
+                <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_20/https://jokebuddha.com/images/votedown.png"
+                    alt="Vote Down">0
+                comments (0)
+            </div>
+        </div>
+
+        <div class="joke">
+            What's the fluid capacity of Monica Lewinsky's
+            mouth?
+            <p>What's the fluid capacity of Monica Lewinsky's mouth? 1 U. S. leader</p>
+            <div class="vote">
+                <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_20/https://jokebuddha.com/images/voteup.png"
+                    alt="Vote Up">0
+                <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_20/https://jokebuddha.com/images/votedown.png"
+                    alt="Vote Down">0
+                comments (0)
+            </div>
+        </div>
+
+        <div class="joke">
+            <a href="#">More Jokes</a>
+        </div>
+
+        <div class="follow-joke">
+            Get a Joke of the Day to your email
+            <input type="email" placeholder="">
+        </div>
+
+        <div class="related-topics">
+            <h3>Related Topics</h3>
+            <a href="#">Ability</a>
+            <a href="#">Adapt</a>
+            <a href="#">Answer</a>
+            <a href="#">Apparently</a>
+            <a href="#">Begin</a>
+            <a href="#">Believe</a>
+            <a href="#">Borg</a>
+            <a href="#">Capacity</a>
+            <a href="#">Captain</a>
+            <a href="#">Command</a>
+            <a href="#">Compensate</a>
+            <a href="#">Data</a>
+            <a href="#">Deep</a>
+            <a href="#">Found</a>
+            <a href="#">Geordi</a>
+            <a href="#">Hours</a>
+            <a href="#">Increase</a>
+            <a href="#">Logo</a>
+            <a href="#">Microsoft</a>
+            <a href="#">Pathways</a>
+            <a href="#">Picard</a>
+            <a href="#">Processing</a>
+            <a href="#">Reason</a>
+            <a href="#">Resources</a>
+            <a href="#">Riker</a>
+            <a href="#">Scanners</a>
+            <a href="#">Something</a>
+            <a href="#">Space</a>
+            <a href="#">Storage Unit</a>
+        </div>
+
+        <div class="top-authors">
+            <h3>Top Authors</h3>
+            week month overall
+            <ul>
+                <li>
+                    <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_20/https://jokebuddha.com/images/voteup.png"
+                        alt="Vote Up">1
+                    <img src="https://cdn.shortpixel.ai/spai/q_lossy+w_20/https://jokebuddha.com/images/votedown.png"
+                        alt="Vote Down">0
+                    <a href="#">SWEETLY BEAT</a>
+                    1 joke
+                </li>
+            </ul>
+        </div>
+
+        <div class="recent-comments">
+            <h3>Recent Comments</h3>
+            <p>Alex: Good one!</p>
+            <p>Jack: I think the joke should be worded
+                differently.</p>
+            <p>Douglas: Funniest thing ever</p>
+            <p>â dajerâ¢â : In the much shorter version of
+                this joke the song used was "My country
+                'tiz' of thee".</p>
+            <p>Jerome Byanski: Works for me</p>
+        </div>
+
+        <div class="joke-form">
+            Know a Funny Joke?
+            <br>
+            <a href="#">Tell a Joke</a>
+        </div>
+
+        <div class="external-links">
+            <a href="#">Add a Useful Linl</a>
+            <h3>External Links</h3>
+        </div>
+
+        <div class="recent-activity">
+            <h3>Recent Activity</h3>
+            <ul>
+                <li><a href="#">Picard "Mr</a></li>
+                <li><a href="#">Senator questions judge's role in lesbian wedding</a> by Anonym</li>
+                <li><a href="#">You have the capacity to learn from</a> by Anonym</li>
+                <li><a href="#">Dark Suckers</a> by Anonym</li>
+                <li><a href="#">Senator questions judge's role in lesbian wedding</a></li>
+                <li><a href="#">Bell Labs Proves Existence of Dark Suckers</a></li>
+                <li><a href="#">Senator questions judge's role in lesbian wedding</a></li>
+            </ul>
+        </div>
+
+        <div class="footer">
+            JokeBuddha.com Â© 2010-2023 <a href="#">Terms & Privacy</a>
+            <br>
+            We love <a href="#">good humor</a> and obviously <a href="#">hilarious jokes</a> followed by a healthy
+            laughter!
+        </div>
+    </div>
+</body>
+
+</html>

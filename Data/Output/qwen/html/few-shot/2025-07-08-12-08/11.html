@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aws_autoscaling_lifecycle_hook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #f8f8f8;
+            padding: 20px 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #f8f8f8;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 20px;
+        }
+        main {
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+        aside {
+            background-color: #f8f8f8;
+            padding: 20px;
+            margin: 20px;
+        }
+        aside ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        aside ul li {
+            margin-bottom: 10px;
+        }
+        footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+        .example {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ddd;
+        }
+        .argument-reference {
+            background-color: #f9f9f9;
+            padding: 20px;
+            margin: 20px;
+            border: 1px solid #ddd;
+        }
+        .argument-reference h2 {
+            margin-top: 0;
+        }
+        .argument-reference ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+        .argument-reference li {
+            margin-bottom: 10px;
+        }
+        .argument-reference p {
+            margin-bottom: 10px;
+        }
+        .argument-reference code {
+            background-color: #f9f9f9;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#">FEATURES</a></li>
+                <li><a href="#">OPEN SOURCE</a></li>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">DOCS</a></li>
+            </ul>
+        </nav>
+        <nav>
+            <ul>
+                <li><a href="#">LOGIN</a></li>
+                <li><a href="#">REGISTER</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <h1>aws_autoscaling_lifecycle_hook</h1>
+        <p>Provides an AutoScaling Lifecycle Hook resource.</p>
+        <h2>Example Usage</h2>
+        <div class="example">
+            <pre>
+                <code>
+resource "aws_autoscaling_group" "foobar" {
+  availability_zones = ["us-west-2a"]
+  name               = "terraform-test-foobar5"
+  health_check_type  = "EC2"
+  termination_policies = ["OldestInstance"]
+  tag {
+    key: "Foo"
+    value: "foo-bar"
+  }
+  aws_autoscaling_lifecycle_hook {
+    name = "foobar"
+    autoscaling_group_name = "${aws_autoscaling_group.foobar.name}"
+    default_result = "CONTINUE"
+    heartbeat_timeout = 2000
+    lifecycle_transition = "autoscaling:EC2_INSTANCE_LAUNCHING"
+    notification_metadata = "{"foo": "bar"}"
+    notification_target_arn = "arn:aws:sqs:us-east-1:444455556666:queue1*"
+    role_arn = "arn:aws:iam:123456789012:role/S3Access"
+  }
+}
+                </code>
+            </pre>
+        </div>
+        <h2>Argument Reference Reference</h2>
+        <div class="argument-reference">
+            <h2>Arguments are supported:</h2>
+            <ul>
+                <li><strong>name</strong> - (Required) The name of the lifecycle hook.</li>
+                <li><strong>autoscaling_group_name</strong> - (Required) The name of the Auto Scaling group to which you want to assign the lifecycle hook.</li>
+                <li><strong>default_result</strong> - (Optional) Defines the action the Auto Scaling group should take when the lifecycle hook timeout elapses or if an unexpected failure occurs.</li>
+                <li><strong>heartbeat_timeout</strong> - (Optional) Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult parameter</li>
+            </ul>
+        </div>
+    </main>
+    <aside>
+        <ul>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Getting started</a></li>
+            <li><a href="#">Getting more from Koding</a></li>
+            <li><a href="#">Stack Documentation</a></li>
+            <li><a href="#">Configuration</a></li>
+            <li><a href="#">Providers</a></li>
+            <li><a href="#">Data Sources</a></li>
+            <li><a href="#">Resources</a></li>
+            <li><a href="#">aws_alb</a></li>
+            <li><a href="#">aws_alb_listener</a></li>
+            <li><a href="#">aws_alb_listener_rule</a></li>
+            <li><a href="#">aws_alb_target_group</a></li>
+            <li><a href="#">aws</a></li>
+            <li><a href="#">Azure Service Management</a></li>
+            <li><a href="#">Provisioners</a></li>
+        </ul>
+    </aside>
+    <footer>
+        <p><a href="#">See the source of this document at <a href="https://www.terraform.io">Terraform.io</a></p>
+    </footer>
+</body>
+</html>

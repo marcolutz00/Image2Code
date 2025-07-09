@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+            width: 600px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .header {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input, .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group select {
+            width: 100%;
+            padding: 10px;
+            box-sizing: border-box;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group input[type="checkbox"] {
+            margin-right: 5px;
+        }
+        .form-group textarea {
+            height: 100px;
+        }
+        .submit-button {
+            background-color: #e74c3c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100px;
+            margin-top: 20px;
+        }
+        .submit-button:hover {
+            background-color: #d43f3a;
+        }
+        .terms-and-conditions {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #333;
+        }
+        .terms-and-conditions a {
+            color: #e74c3c;
+            text-decoration: none;
+        }
+        .terms-and-conditions a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Producer Application</div>
+        <form>
+            <div class="form-group">
+                <label for="first-name">First Name <span class="required">*</span></label>
+                <input type="text" id="first-name" name="first-name" required>
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name <span class="required">*</span></label>
+                <input type="text" id="last-name" name="last-name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address <span class="required">*</span></label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="phone-number">Phone Number <span class="required">*</span></label>
+                <input type="tel" id="phone-number" name="phone-number" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Where Do You Live? <span class="required">*</span></label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="age">I am at Least 18 Years of Age <span class="required">*</span></label>
+                <input type="checkbox" id="age" name="age" required>
+            </div>
+            <div class="form-group">
+                <label for="production-company">Do You Have a Production Company? <span class="required">*</span></label>
+                <input type="checkbox" id="production-company" name="production-company" required>
+            </div>
+            <div class="form-group">
+                <label for="genre">Preferred Genre <span class="required">*</span></label>
+                <select id="genre" name="genre" required>
+                    <option value="">Select a Genre</option>
+                    <option value="Action">Action</option>
+                    <option value="Comedy">Comedy</option>
+                    <option value="Drama">Drama</option>
+                    <option value="Horror">Horror</option>
+                    <option value="Sci-Fi">Sci-Fi</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="confidence">Are You Confident You Can Create Full-Length Episodes (12-25 minutes) on a Low-Budget and Continue to Create Episodes if they are Renewed by Candivan Subscribers? <span class="required">*</span></label>
+                <input type="checkbox" id="confidence" name="confidence" required>
+            </div>
+            <div class="form-group">
+                <label for="start-production">If Selected as a Winner, Would You be Able to Start Production by this May or June (2019)? <span class="required">*</span></label>
+                <input type="checkbox" id="start-production" name="start-production" required>
+            </div>
+            <div class="form-group">
+                <label for="collaborators">Names of Others Plan to Collaborate with (if Applicable)</label>
+                <textarea id="collaborators" name="collaborators"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="pga-membership">Are you a member of the PGA? <span class="required">*</span></label>
+                <input type="checkbox" id="pga-membership" name="pga-membership" required>
+            </div>
+            <div class="form-group">
+                <label for="social-networks">Are you a member of the PGA? <span class="required">*</span></label>
+                <input type="checkbox" id="social-networks" name="social-networks" required>
+            </div>
+            <div class="form-group">
+                <label for="how-found">How did you find out about us?</label>
+                <textarea id="how-found" name="how-found"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="terms-and-conditions">I Have Read and I Accept the Terms and Conditions Below</label>
+                <input type="checkbox" id="terms-and-conditions" name="terms-and-conditions" required>
+            </div>
+            <div class="form-group">
+                <a href="#">Terms and Conditions</a>
+            </div>
+            <div class="form-group">
+                <button class="submit-button" type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+</body>
+</html>

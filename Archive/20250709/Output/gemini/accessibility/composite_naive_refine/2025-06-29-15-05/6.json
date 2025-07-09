@@ -1,0 +1,192 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
+      ],
+      "impact": "serious",
+      "name": "Links; Distinguishable Color;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 2.82,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#06569d",
+                  "parentColor": "#000000"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div>\n            Listen/Download ( <a href=\"#\">help?</a> )\n        </div>",
+                    "target": [
+                      "div:nth-child(6)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 2.82:1 with the surrounding text. (Minimum contrast is 3:1, link text: #06569d, surrounding text: #000000)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<div>\n            Listen/Download ( <a href=\"#\">help?</a> )\n        </div>",
+                    "target": [
+                      "div:nth-child(6)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">help?</a>",
+            "target": [
+              "div:nth-child(6) > a"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 2.82:1 with the surrounding text. (Minimum contrast is 3:1, link text: #06569d, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,0,MAIN,5,DIV,1,A",
+              "selector": "body > main.container > div > a",
+              "boundingRect": {
+                "top": 749,
+                "bottom": 767,
+                "left": 174,
+                "right": 213,
+                "width": 39,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "help?",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 2.82:1 with the surrounding text. (Minimum contrast is 3:1, link text: #06569d, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-1-DIV",
+                    "path": "1,HTML,1,BODY,0,MAIN,5,DIV",
+                    "selector": "body > main.container > div",
+                    "boundingRect": {
+                      "top": 749,
+                      "bottom": 767,
+                      "left": 41,
+                      "right": 371,
+                      "width": 330,
+                      "height": 18
+                    },
+                    "snippet": "<div>",
+                    "nodeLabel": "Listen/Download ( help? )"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-7-A",
+              "path": "1,HTML,1,BODY,0,MAIN,13,DIV,3,A",
+              "selector": "body > main.container > div.links > a",
+              "boundingRect": {
+                "top": 2084,
+                "bottom": 2102,
+                "left": 41,
+                "right": 371,
+                "width": 330,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "M4B Audiobook (70MB)",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (329.6px by 18px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 22px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-6-A",
+                    "path": "1,HTML,1,BODY,0,MAIN,13,DIV,2,A",
+                    "selector": "body > main.container > div.links > a",
+                    "boundingRect": {
+                      "top": 2061,
+                      "bottom": 2079,
+                      "left": 41,
+                      "right": 371,
+                      "width": 330,
+                      "height": 18
+                    },
+                    "snippet": "<a href=\"#\">",
+                    "nodeLabel": "Wikipedia - Josephine Brown"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

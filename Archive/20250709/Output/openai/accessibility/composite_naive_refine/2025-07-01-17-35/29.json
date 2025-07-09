@@ -1,0 +1,87 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputSearch.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.Textarea.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputCheckbox.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
+        "Principle1.Guideline1_3.1_3_1.F68",
+        "Principle4.Guideline4_1.4_1_2.H91.Fieldset.Name"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/label"
+      ],
+      "impact": "critical",
+      "name": "Label; Multiple Elements; Content missing",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "axe-core",
+          "title": "Form elements must have labels",
+          "description": "Ensure every form element has a label",
+          "impact": "critical",
+          "nodes": {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "hidden-explicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Form element has explicit <label> that is hidden"
+              }
+            ],
+            "impact": "critical",
+            "html": "<input type=\"text\" id=\"search-input\">",
+            "target": [
+              "#search-input"
+            ],
+            "failureSummary": "Fix all of the following:\n  Form element has explicit <label> that is hidden"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "lighthouse",
+          "title": "Form elements do not have associated labels",
+          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-INPUT",
+              "path": "1,HTML,1,BODY,1,MAIN,3,DIV,1,INPUT",
+              "selector": "body > main.content > div.search-bar > input#search-input",
+              "boundingRect": {
+                "top": 968,
+                "bottom": 1007,
+                "left": 20,
+                "right": 310,
+                "width": 290,
+                "height": 39
+              },
+              "snippet": "<input type=\"text\" id=\"search-input\">",
+              "nodeLabel": "body > main.content > div.search-bar > input#search-input",
+              "explanation": "Fix all of the following:\n  Form element has explicit <label> that is hidden"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

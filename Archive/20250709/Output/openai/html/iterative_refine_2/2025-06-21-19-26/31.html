@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Replicated UI</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+        }
+        .header {
+            background-color: #f2f2f2;
+            padding: 10px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header img {
+            width: 200px;
+            height: 23px;
+        }
+        ul {
+            list-style: none;
+        }
+        .header-links {
+            display: flex;
+            gap: 20px;
+        }
+        .header-links li {
+            font-size: 14px;
+            color: #ff6600;
+        }
+        .breadcrumb {
+            margin: 20px 15px;
+            font-size: 12px;
+        }
+        .breadcrumb a {
+            color: #0056b3;
+            text-decoration: none;
+        }
+        .sidebar {
+            background-color: #fcebbb;
+            width: 200px;
+            padding: 15px;
+            float: left;
+        }
+        .sidebar .title {
+            background-color: #fcba03;
+            padding: 10px;
+            font-size: 14px;
+        }
+        .sidebar ul {
+            padding-top: 10px;
+        }
+        .sidebar li {
+            margin-bottom: 10px;
+            font-size: 13px;
+            color: #404040;
+        }
+        .main-content {
+            margin-left: 220px;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #e6e6e6;
+        }
+        .main-content .box {
+            display: flex;
+            background-color: #e9f6ff;
+            padding: 10px;
+            border: 1px solid #d1e7fa;
+            margin-bottom: 10px;
+        }
+        .main-content .box img {
+            width: 40px;
+            height: 40px;
+            margin-right: 10px;
+        }
+        .question, .answer {
+            flex: 1;
+        }
+        .question p, .answer p {
+            font-size: 13px;
+            margin-bottom: 5px;
+        }
+        .answer-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .related-questions {
+            margin: 20px 0;
+        }
+        .related-questions ul {
+            padding: 10px;
+            border-top: 1px solid #e6e6e6;
+        }
+        .related-questions li {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 0;
+            font-size: 13px;
+            border-bottom: 1px solid #e6e6e6;
+        }
+        .ask-section {
+            background-color: #fcba03;
+            margin: 20px 0;
+            padding: 15px;
+        }
+        .ask-section form {
+            display: flex;
+            flex-direction: column;
+        }
+        .ask-section input, .ask-section textarea {
+            margin-bottom: 10px;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+        .footer {
+            background-color: #f2f2f2;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+            color: #9c9c9c;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <img src="src/placeholder.jpg" alt="Logo">
+        <ul class="header-links">
+            <li>Home</li>
+            <li>Answers</li>
+            <li>App</li>
+        </ul>
+    </div>
+    <h1 style="display:none;">Main Page Heading</h1>
+    <div class="breadcrumb">
+        <a href="#">Home</a> / <a href="#">Answers</a> / <a href="#">Destinations</a> / <a href="#">Guangzhou</a> / <a href="#">Transportation</a>
+    </div>
+    <div class="sidebar">
+        <div class="title">Q & A Categories</div>
+        <ul>
+            <li>Destinations</li>
+            <li>Visa & Embassy</li>
+            <li>Tours</li>
+            <li>Flights</li>
+            <li>Trains</li>
+            <li>Weather</li>
+            <li>Great Wall</li>
+            <li>Culture</li>
+        </ul>
+    </div>
+    <div class="main-content">
+        <div class="box">
+            <img src="src/placeholder.jpg" alt="User">
+            <div class="question">
+                <p>Asked by Mr.eric from israel | Jun. 02, 2009 04:24</p>
+                <p>About: How do you get from Guangzhou airport to the city?</p>
+                <p>Hi,<br>
+                1. I'll arrive at GZ airport at 23:00 and need to go to the "riverside international youth hostel". I'm planning on takeing line 1 into town. from there - can I take the metro???? is it working all night????<br>
+                2. I'll not have Chinese money on me and I read that the bank at the airport closes at 21:00. are there ATMs at the airport???? if not - what to do????<br>
+                thanks<br>
+                eric
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <img src="src/placeholder.jpg" alt="User">
+            <div class="answer">
+                <p>Answered by Mr.Qi from China | Jun. 03, 2009 22:11</p>
+                <p>Hello!<br>
+                1. Suggest you take a taxi to the hotel after ing arrive ing in the town. Subway Line 1 passes Fangcun Station which is the neat metro station to the hotel, but subway are not working after 23:30. I think you gonna miss it.<br>
+                2. Yes, there are ATMs at the terminal, they are of bank like, Bank of China and several others.<br>
+                Good luck~</p>
+                <div class="answer-meta">
+                    <div>
+                        <span>0</span>
+                        <span>0</span>
+                    </div>
+                    <a href="#" style="font-size: 12px; color: #0056b3;">Reply</a>
+                </div>
+            </div>
+        </div>
+        <div class="related-questions">
+            <p>Related Questions:</p>
+            <ul>
+                <li>
+                    <div><a href="#" style="color: #0056b3;">Is Guangzhou Baiyun Airport far away from my hotel in Liwan District?</a><br>
+                    Asked by jac from singapore | Nov. 04, 2012 20:45</div>
+                    <div>1 answer</div>
+                </li>
+                <li>
+                    <div><a href="#" style="color: #0056b3;">how to go to changsha shuyuan international youth hostel from airport?anyon...</a><br>
+                    Asked by firdaus from Malaysia | Sep. 21, 2017 01:29</div>
+                    <div>1 answer</div>
+                </li>
+                <li>
+                    <div><a href="#" style="color: #0056b3;">Hi I will arrive in Pudong Airport at 10.15 p.m. We will stay at MINGTOWN ...</a><br>
+                    Asked by Mr.Andrea from italy | Feb. 21, 2011 02:17</div>
+                    <div>1 answer</div>
+                </li>
+                <li>
+                    <div><a href="#" style="color: #0056b3;">hi two of us will arrive Pudong International Airport on 27/10/10 and w...</a><br>
+                    Asked by Mrs.lisa chan from australia | Sep. 28, 2010 22:44</div>
+                    <div>1 answer</div>
+                </li>
+                <li>
+                    <div><a href="#" style="color: #0056b3;">The best transportation from Tianjin Airport to Peking Uni International Yo...</a><br>
+                    Asked by Azila from Malaysia | Nov. 20, 2011 00:09</div>
+                    <div>1 answer</div>
+                </li>
+                <li>
+                    <div><a href="#" style="color: #0056b3;">How to go to Guilin airport from Ming Palace International Youth Hostel?</a><br>
+                    Asked by chloe from Malaysia | Dec. 24, 2017 18:38</div>
+                    <div>1 answer</div>
+                </li>
+            </ul>
+        </div>
+        <div class="ask-section">
+            <form>
+                <input type="text" placeholder="Ask a Question" style="width: 100%;">
+                <label for="select-topic" style="font-size:0;">Select Topic</label>
+                <select id="select-topic">
+                    <option>Guangzhou</option>
+                </select>
+                <input type="text" placeholder="Question Summary (100 characters)">
+                <textarea placeholder="Details (optional) (2,000 characters)" cols="30" rows="5"></textarea>
+                <input type="submit" value="Submit" style="background-color: #cc5200; color: white;">
+            </form>
+        </div>
+    </div>
+    <div class="footer">
+        <p>About Us & Contact Us</p>
+        <p>Copyright ÃÂ© 1998-2023 All rights reserved.</p>
+    </div>
+</body>
+</html>

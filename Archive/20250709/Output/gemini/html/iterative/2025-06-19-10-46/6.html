@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LibriVox</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 20px auto;
+        }
+
+        a {
+            color: #007BFF;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        /* Header */
+        .header {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .header a {
+            margin-left: 15px;
+        }
+
+        /* Search */
+        .search-area {
+            text-align: right;
+            margin-bottom: 20px;
+        }
+
+        .search-area input[type="text"] {
+            width: 300px;
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        .search-area .advanced-search {
+            font-size: 0.8em;
+            color: #666;
+        }
+
+        /* Main Content */
+        .main-content {
+            display: flex;
+        }
+
+        /* Placeholder Image */
+        .placeholder {
+            background-color: #0000FF;
+            width: 200px;
+            height: 200px;
+            margin-bottom: 10px;
+        }
+
+        /* Browse the Catalog */
+        .browse-catalog {
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+        .browse-catalog table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        .browse-catalog th {
+            background-color: #add8e6;
+            padding: 10px;
+            text-align: left;
+        }
+
+        /* Left Sidebar */
+        .left-sidebar {
+            width: 25%;
+            padding-right: 20px;
+        }
+
+        .donate {
+            background-color: #e6ffe6;
+            padding: 10px;
+            margin-bottom: 15px;
+        }
+
+        .thank-reader {
+            margin-bottom: 15px;
+        }
+
+        .thank-reader p {
+            font-size: 0.9em;
+            color: #555;
+        }
+
+        .download-links {
+            margin-bottom: 15px;
+        }
+
+        .download-links a {
+            display: block;
+            padding: 5px 10px;
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            border-radius: 4px;
+            margin-top: 5px;
+        }
+
+        .download-links a.itunes {
+            background-color: #add8e6;
+            color: black;
+        }
+
+        .download-links a.rss {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .download-links a.torrent {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+
+        .production-details {
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .production-details p {
+            margin: 5px 0;
+        }
+
+        .links {
+            font-size: 0.9em;
+        }
+
+        .links ul {
+            padding-left: 20px;
+        }
+
+        .links li {
+            margin: 5px 0;
+        }
+
+        /* Main Area */
+        .main-area {
+            width: 75%;
+            padding-left: 20px;
+        }
+
+        .book-title {
+            font-size: 1.5em;
+            margin-bottom: 5px;
+        }
+
+        .author {
+            font-size: 1.1em;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .book-description {
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+
+        .genre-language {
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        .download-options {
+            text-align: center;
+        }
+
+        .download-options a {
+            display: block;
+            margin: 5px 0;
+            font-size: 0.8em;
+            color: #007BFF;
+        }
+
+        .chapter-list {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        .chapter-list th {
+            background-color: #add8e6;
+            padding: 10px;
+            text-align: left;
+        }
+
+        .chapter-list td {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .chapter-list tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="#">About</a>
+            <a href="#">Contact</a>
+            <a href="#">Forum</a>
+            <a href="#">Help</a>
+        </div>
+
+        <div class="search-area">
+            <input type="text" placeholder="Search by Author, Title or Reader">
+            <div class="advanced-search"><a href="#">Advanced search</a></div>
+        </div>
+
+        <div class="browse-catalog">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Author</th>
+                        <th>Title</th>
+                        <th>Genre/Subject</th>
+                        <th>Language</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+
+        <div class="main-content">
+            <div class="left-sidebar">
+                <div class="donate">
+                    <p>Donate to LibriVox</p>
+                </div>
+
+                <div class="thank-reader">
+                    <p>Thank a reader</p>
+                    <p>LibriVox recordings are Public Domain in the USA. If you are not in the USA, please verify the copyright status of these works in your own country before downloading, otherwise you may be violating copyright laws.</p>
+                </div>
+
+                <div class="download-links">
+                    <p>Listen/Download ( <a href="#">help?</a> )</p>
+                    <a href="#">Whole book (zip file) <span style="float: right;">Download</span></a>
+                    <a href="#" class="itunes">Subscribe by iTunes <span style="float: right;">iTunes</span></a>
+                    <a href="#" class="rss">RSS Feed <span style="float: right;">RSS</span></a>
+                    <a href="#" class="torrent">Download torrent <span style="float: right;">Torrent</span></a>
+                </div>
+
+                <div class="production-details">
+                    <p>Production details</p>
+                    <p>Running Time: 02:32:05</p>
+                    <p>Zip file size: 71MB</p>
+                    <p>Catalog date: 2018-09-12</p>
+                    <p>Read by: Jim Locke</p>
+                    <p>Book Coordinator: Jim Locke</p>
+                    <p>Meta Coordinator: DaveC</p>
+                    <p>Proof Listener: DaveC</p>
+                </div>
+
+                <div class="links">
+                    <p>Links</p>
+                    <ul>
+                        <li><a href="#">Internet Archive Page</a></li>
+                        <li><a href="#">Online text</a></li>
+                        <li><a href="#">Wikipedia - Josephine Brown</a></li>
+                        <li><a href="#">M4B Audiobook (70MB)</a></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="main-area">
+                <div class="book-title">Biography of an American Bondman, By His Daughter</div>
+                <div class="author">Josephine Brown (1839 - 1874)</div>
+
+                <div class="book-description">
+                    Josephine Brown's Biography of an American Bondsman faithfully follows the trajectory of her father's life as previously explored in his own narratives. She distills and summarizes the major revelatory moments of his autobiography while she also incorporates new anecdotal information and offers her own perspective on Brown's life.
+                </div>
+
+                <div class="genre-language">
+                    Genre(s): Biography & Autobiography <br>
+                    Language: English
+                </div>
+
+                <div class="download-options">
+                    <div class="placeholder"></div>
+                    <a href="#">Download cover art</a>
+                    <a href="#">Download CD case insert</a>
+                </div>
+
+                <table class="chapter-list">
+                    <thead>
+                        <tr>
+                            <th>SECTION</th>
+                            <th>CHAPTER</th>
+                            <th>READER</th>
+                            <th>TIME</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>01</td>
+                            <td>Chapters 1 and 2</td>
+                            <td>Jim Locke</td>
+                            <td>00:14:18</td>
+                        </tr>
+                        <tr>
+                            <td>02</td>
+                            <td>Chapters 3 and 4</td>
+                            <td>Jim Locke</td>
+                            <td>00:07:04</td>
+                        </tr>
+                        <tr>
+                            <td>03</td>
+                            <td>Chapters 5 and 6</td>
+                            <td>Jim Locke</td>
+                            <td>00:09:26</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

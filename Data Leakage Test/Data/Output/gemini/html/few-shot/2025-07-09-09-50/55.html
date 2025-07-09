@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fbfb;
+        }
+
+        .container {
+            max-width: 1440px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #00a396;
+            color: white;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .nav-links li {
+            margin-right: 20px;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-bar {
+            margin-right: 20px;
+        }
+
+        .search-bar input {
+            padding: 8px;
+            border: none;
+            border-radius: 4px;
+        }
+
+        .auth-buttons a {
+            color: white;
+            text-decoration: none;
+            margin-left: 10px;
+            padding: 8px 16px;
+            border-radius: 4px;
+            border: 1px solid white;
+        }
+
+        .auth-buttons a:last-child {
+            background-color: #ff6b35;
+            border: none;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 250px;
+            padding-right: 20px;
+        }
+
+        .forum-categories {
+            flex: 1;
+        }
+
+        .forum-section {
+            margin-bottom: 30px;
+        }
+
+        .forum-section h2 {
+            font-size: 20px;
+            margin-bottom: 10px;
+            color: #005650;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #005650;
+        }
+
+        .categories-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .categories-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid #ddd;
+            color: #555;
+        }
+
+        .categories-list li:last-child {
+            border-bottom: none;
+        }
+
+        .discussions-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .discussions-list li {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .discussions-list li:last-child {
+            border-bottom: none;
+        }
+
+        .discussion-item {
+            display: flex;
+        }
+
+        .discussion-author {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #aee8e2;
+            color: #005650;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+        }
+
+        .discussion-content {
+            flex: 1;
+        }
+
+        .discussion-meta {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .discussion-title {
+            font-size: 16px;
+            color: #005650;
+            margin-bottom: 5px;
+        }
+
+        .discussion-details {
+            font-size: 12px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .discussion-details span {
+            margin-right: 10px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #f9fbfb;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-section {
+            width: 20%;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            color: #005650;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section li {
+            padding: 5px 0;
+        }
+
+        .footer-section a {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .footer-copyright {
+            text-align: left;
+            color: #555;
+            font-size: 12px;
+        }
+
+        .footer-bottom {
+            background-color: #f9fbfb;
+            padding: 10px 20px;
+            text-align: right;
+            color: #555;
+            font-size: 12px;
+        }
+
+        .footer-bottom a {
+            color: #555;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .main-content {
+            display: flex;
+        }
+
+        .sidebar {
+            width: 250px;
+            padding-right: 20px;
+        }
+
+        .forum-categories {
+            flex: 1;
+        }
+
+        .forum-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+            color: #005650;
+        }
+
+        .categories-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .categories-list li {
+            padding: 10px 0;
+            color: #555;
+        }
+
+        .categories-list li:last-child {
+            border-bottom: none;
+        }
+
+        .discussions-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .discussions-list li {
+            padding: 15px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .discussions-list li:last-child {
+            border-bottom: none;
+        }
+
+        .discussion-item {
+            display: flex;
+        }
+
+        .discussion-author {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: #aee8e2;
+            color: #005650;
+            text-align: center;
+            line-height: 40px;
+            margin-right: 10px;
+        }
+
+        .discussion-content {
+            flex: 1;
+        }
+
+        .discussion-meta {
+            font-size: 12px;
+            color: #555;
+            margin-bottom: 5px;
+        }
+
+        .discussion-title {
+            font-size: 16px;
+            color: #005650;
+            margin-bottom: 5px;
+        }
+
+        .discussion-details {
+            font-size: 12px;
+            color: #555;
+            margin-top: 5px;
+        }
+
+        .discussion-details span {
+            margin-right: 10px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #f9fbfb;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+        }
+
+        .footer-section {
+            width: 20%;
+        }
+
+        .footer-section h3 {
+            font-size: 16px;
+            color: #005650;
+            margin-bottom: 10px;
+        }
+
+        .footer-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .footer-section li {
+            padding: 5px 0;
+        }
+
+        .footer-section a {
+            color: #555;
+            text-decoration: none;
+        }
+
+        .footer-copyright {
+            text-align: left;
+            color: #555;
+            font-size: 12px;
+        }
+
+        .footer-bottom {
+            background-color: #f9fbfb;
+            padding: 10px 20px;
+            text-align: right;
+            color: #555;
+            font-size: 12px;
+        }
+
+        .footer-bottom a {
+            color: #555;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        .all-categories {
+            padding: 10px;
+            background-color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <div class="logo">Alpha One Labs</div>
+                <ul class="nav-links">
+                    <li><a href="#">LEARN</a></li>
+                    <li><a href="#">COMMUNITY</a></li>
+                    <li><a href="#">RESOURCES</a></li>
+                    <li><a href="#">ABOUT</a></li>
+                </ul>
+            </div>
+            <div class="header-right">
+                <div class="search-bar">
+                    <input type="text" placeholder="What do you want to learn?">
+                </div>
+                <div class="auth-buttons">
+                    <a href="#">Login</a>
+                    <a href="#">Signup</a>
+                </div>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="sidebar">
+                <div class="forum-section">
+                    <h2>Forum</h2>
+                    <p>Join discussions, ask questions, and share knowledge</p>
+                </div>
+                <div class="forum-section">
+                    <h2>CATEGORIES</h2>
+                    <ul class="categories-list">
+                        <li class="all-categories"><input type="checkbox"> All Categories</li>
+                        <li><input type="checkbox"> Category 1 3</li>
+                        <li><input type="checkbox"> Category 2 3</li>
+                        <li><input type="checkbox"> Category 3 3</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="forum-categories">
+                <div class="forum-section">
+                    <h2>Forum Categories</h2>
+                    <p>Browse all categories or select one to see its topics</p>
+                </div>
+
+                <div class="forum-section">
+                    <h2>Recent Discussions</h2>
+                    <ul class="discussions-list">
+                        <li>
+                            <div class="discussion-item">
+                                <div class="discussion-author">S</div>
+                                <div class="discussion-content">
+                                    <div class="discussion-meta">student5 â¢ 19 Stunden, 22 Minuten ago â¢ Category 1</div>
+                                    <div class="discussion-title">Topic 3</div>
+                                    <div class="discussion-description">Content for topic 3</div>
+                                    <div class="discussion-details">
+                                        <span> <input type="checkbox"> 0 views</span>
+                                        <span> <input type="checkbox"> 5 replies</span>
+                                        <span> <input type="checkbox"> 0 upvotes</span>
+                                        <span> <input type="checkbox"> 0 downvotes</span>
+                                        <span> <input type="checkbox"> Last reply 19 Stunden, 22 Minuten ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="discussion-item">
+                                <div class="discussion-author">S</div>
+                                <div class="discussion-content">
+                                    <div class="discussion-meta">student3 â¢ 19 Stunden, 22 Minuten ago â¢ Category 1</div>
+                                    <div class="discussion-title">Topic 2</div>
+                                    <div class="discussion-description">Content for topic 2</div>
+                                    <div class="discussion-details">
+                                        <span> <input type="checkbox"> 0 views</span>
+                                        <span> <input type="checkbox"> 2 replies</span>
+                                        <span> <input type="checkbox"> 0 upvotes</span>
+                                        <span> <input type="checkbox"> 0 downvotes</span>
+                                        <span> <input type="checkbox"> Last reply 19 Stunden, 22 Minuten ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="discussion-item">
+                                <div class="discussion-author">T</div>
+                                <div class="discussion-content">
+                                    <div class="discussion-meta">teacher2 â¢ 19 Stunden, 22 Minuten ago â¢ Category 1</div>
+                                    <div class="discussion-title">Topic 1</div>
+                                    <div class="discussion-description">Content for topic 1</div>
+                                    <div class="discussion-details">
+                                        <span> <input type="checkbox"> 0 views</span>
+                                        <span> <input type="checkbox"> 4 replies</span>
+                                        <span> <input type="checkbox"> 0 upvotes</span>
+                                        <span> <input type="checkbox"> 0 downvotes</span>
+                                        <span> <input type="checkbox"> Last reply 19 Stunden, 22 Minuten ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="discussion-item">
+                                <div class="discussion-author">S</div>
+                                <div class="discussion-content">
+                                    <div class="discussion-meta">student8 â¢ 19 Stunden, 22 Minuten ago â¢ Category 2</div>
+                                    <div class="discussion-title">Topic 3</div>
+                                    <div class="discussion-description">Content for topic 3</div>
+                                    <div class="discussion-details">
+                                        <span> <input type="checkbox"> 0 views</span>
+                                        <span> <input type="checkbox"> 5 replies</span>
+                                        <span> <input type="checkbox"> 0 upvotes</span>
+                                        <span> <input type="checkbox"> 0 downvotes</span>
+                                        <span> <input type="checkbox"> Last reply 19 Stunden, 22 Minuten ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="discussion-item">
+                                <div class="discussion-author">S</div>
+                                <div class="discussion-content">
+                                    <div class="discussion-meta">student7 â¢ 19 Stunden, 22 Minuten ago â¢ Category 2</div>
+                                    <div class="discussion-title">Topic 2</div>
+                                    <div class="discussion-description">Content for topic 2</div>
+                                    <div class="discussion-details">
+                                        <span> <input type="checkbox"> 0 views</span>
+                                        <span> <input type="checkbox"> 5 replies</span>
+                                        <span> <input type="checkbox"> 0 upvotes</span>
+                                        <span> <input type="checkbox"> 0 downvotes</span>
+                                        <span> <input type="checkbox"> Last reply 19 Stunden, 22 Minuten ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="discussion-item">
+                                <div class="discussion-author">S</div>
+                                <div class="discussion-content">
+                                    <div class="discussion-meta">student7 â¢ 19 Stunden, 22 Minuten ago â¢ Category 2</div>
+                                    <div class="discussion-title">Topic 1</div>
+                                    <div class="discussion-description">Content for topic 1</div>
+                                    <div class="discussion-details">
+                                        <span> <input type="checkbox"> 0 views</span>
+                                        <span> <input type="checkbox"> 2 replies</span>
+                                        <span> <input type="checkbox"> 0 upvotes</span>
+                                        <span> <input type="checkbox"> 0 downvotes</span>
+                                        <span> <input type="checkbox"> Last reply 19 Stunden, 22 Minuten ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="discussion-item">
+                                <div class="discussion-author">T</div>
+                                <div class="discussion-content">
+                                    <div class="discussion-meta">teacher1 â¢ 19 Stunden, 22 Minuten ago â¢ Category 3</div>
+                                    <div class="discussion-title">Topic 3</div>
+                                    <div class="discussion-description">Content for topic 3</div>
+                                    <div class="discussion-details">
+                                        <span> <input type="checkbox"> 0 views</span>
+                                        <span> <input type="checkbox"> 4 replies</span>
+                                        <span> <input type="checkbox"> 0 upvotes</span>
+                                        <span> <input type="checkbox"> 0 downvotes</span>
+                                        <span> <input type="checkbox"> Last reply 19 Stunden, 22 Minuten ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="discussion-item">
+                                <div class="discussion-author">S</div>
+                                <div class="discussion-content">
+                                    <div class="discussion-meta">student6 â¢ 19 Stunden, 22 Minuten ago â¢ Category 3</div>
+                                    <div class="discussion-title">Topic 2</div>
+                                    <div class="discussion-description">Content for topic 2</div>
+                                    <div class="discussion-details">
+                                        <span> <input type="checkbox"> 0 views</span>
+                                        <span> <input type="checkbox"> 3 replies</span>
+                                        <span> <input type="checkbox"> 0 upvotes</span>
+                                        <span> <input type="checkbox"> 0 downvotes</span>
+                                        <span> <input type="checkbox"> Last reply 19 Stunden, 22 Minuten ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="discussion-item">
+                                <div class="discussion-author">S</div>
+                                <div class="discussion-content">
+                                    <div class="discussion-meta">student3 â¢ 19 Stunden, 22 Minuten ago â¢ Category 3</div>
+                                    <div class="discussion-title">Topic 1</div>
+                                    <div class="discussion-description">Content for topic 1</div>
+                                    <div class="discussion-details">
+                                        <span> <input type="checkbox"> 0 views</span>
+                                        <span> <input type="checkbox"> 4 replies</span>
+                                        <span> <input type="checkbox"> 0 upvotes</span>
+                                        <span> <input type="checkbox"> 0 downvotes</span>
+                                        <span> <input type="checkbox"> Last reply 19 Stunden, 22 Minuten ago</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-section">
+                <h3>LEARNING</h3>
+                <ul>
+                    <li><input type="checkbox"> Courses</li>
+                    <li><input type="checkbox"> Subjects</li>
+                    <li><input type="checkbox"> Quizzes</li>
+                    <li><input type="checkbox"> Videos</li>
+                    <li><input type="checkbox"> Challenges</li>
+                    <li><input type="checkbox"> Study Groups</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>COMMUNITY</h3>
+                <ul>
+                    <li><input type="checkbox"> Forum</li>
+                    <li><input type="checkbox"> Blog</li>
+                    <li><input type="checkbox"> Features</li>
+                    <li><input type="checkbox"> Success Stories</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>RESOURCES & INFO</h3>
+                <ul>
+                    <li><input type="checkbox"> GSOC'25</li>
+                    <li><input type="checkbox"> Status</li>
+                    <li><input type="checkbox"> Feedback</li>
+                    <li><input type="checkbox"> Terms</li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h3>CONNECT WITH US</h3>
+                <!-- Social Media Icons -->
+                <p>SUBSCRIBE TO NEWSLETTER</p>
+                <input type="email" placeholder="Your email">
+            </div>
+        </div>
+
+        <!-- Footer Bottom -->
+        <div class="footer-bottom">
+            <p>Â© 2025 Alpha One Labs. All rights reserved.</p>
+            <p>Last updated: 06/12/2025 12:14nachm.</p>
+            <a href="#">About Us</a>
+            <a href="#">Terms & Conditions</a>
+            <a href="#">Privacy Policy</a>
+            <a href="#">Cookie Policy</a>
+        </div>
+    </div>
+</body>
+
+</html>

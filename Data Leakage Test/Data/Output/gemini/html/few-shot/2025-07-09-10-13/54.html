@@ -1,0 +1,886 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9fbfb;
+            color: #212529;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 960px;
+            margin: 20px auto;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .content {
+            margin-top: 20px;
+        }
+
+        .donation-section {
+            display: flex;
+            gap: 20px;
+        }
+
+        .donation-form,
+        .why-donate {
+            border: 1px solid #e9ecef;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: white;
+        }
+
+        .donation-form {
+            width: 45%;
+        }
+
+        .why-donate {
+            width: 45%;
+            line-height: 1.6;
+        }
+
+        .why-donate h3 {
+            color: #212529;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 15px;
+            border: 1px solid #ced4da;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #17a2b8;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #138496;
+        }
+
+        .one-time-monthly {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 15px;
+        }
+
+        .one-time-monthly button {
+            flex: 1;
+            margin: 0 5px;
+        }
+
+        .amount-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+
+        .amount-options button {
+            padding: 8px 12px;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #e9ecef;
+        }
+
+        /* New CSS */
+        .alpha-one-labs {
+            background-color: #007bff;
+            /* Or any color that represents your brand */
+            color: white;
+            /* Sets the text color to white for better contrast */
+            padding: 20px;
+            /* Adds padding around the content */
+            display: flex;
+            /* Uses flexbox to align items horizontally */
+            justify-content: space-between;
+            /* Distributes items evenly across the line */
+            align-items: center;
+            /* Vertically aligns items to the center */
+            font-family: 'Arial', sans-serif;
+            /* Sets the font to Arial or a similar sans-serif font */
+        }
+
+        .alpha-one-labs-logo {
+            font-size: 24px;
+            /* Adjust the size as needed */
+            font-weight: bold;
+        }
+
+        .alpha-one-labs-nav {
+            display: flex;
+            /* Uses flexbox for horizontal navigation */
+            gap: 20px;
+            /* Adds space between navigation items */
+        }
+
+        .alpha-one-labs-nav a {
+            color: white;
+            /* Sets the link color to white */
+            text-decoration: none;
+            /* Removes underlines from links */
+            font-size: 16px;
+            /* Sets a readable font size */
+        }
+
+        .alpha-one-labs-search input[type="text"] {
+            padding: 8px;
+            /* Adds padding inside the text box */
+            border-radius: 5px;
+            /* Rounds the corners of the text box */
+            border: none;
+            /* Removes the border */
+        }
+
+        .alpha-one-labs-auth a {
+            color: white;
+            /* Sets the link color to white */
+            text-decoration: none;
+            /* Removes underlines from links */
+            padding: 10px 20px;
+            /* Adds padding to the buttons */
+            border-radius: 5px;
+            /* Rounds the corners of the buttons */
+            background-color: rgba(255, 255, 255, 0.2);
+            /* Adds a slightly transparent white background */
+            margin-left: 10px;
+            /* Adds space between the buttons */
+            border: 1px solid white;
+            /* Adds a white border around the buttons */
+        }
+
+        .alpha-one-labs-auth a.signup {
+            background-color: #ffa000;
+            /* A vibrant color for the signup button */
+            border: none;
+            /* Removes the border */
+            color: black;
+            /* Sets the text color to black for contrast */
+        }
+
+        .support-our-mission-h1 {
+            font-size: 2.5rem;
+            /* Adjust the size as needed */
+            margin-bottom: 0.5rem;
+            /* Spacing below the title */
+            text-align: center;
+            /* Centers the text */
+            font-weight: 600;
+            /* Makes the text bold */
+            color: #212529;
+            /* Sets a dark color for readability */
+        }
+
+        .support-our-mission-p {
+            font-size: 1rem;
+            /* Adjust the size as needed */
+            margin-bottom: 2rem;
+            /* Spacing below the paragraph */
+            text-align: center;
+            /* Centers the text */
+            color: #6c757d;
+            /* A softer color for body text */
+        }
+
+        .make-a-donation-h3 {
+            font-size: 1.75rem;
+            /* Slightly larger than h4, adjust as needed */
+            font-weight: bold;
+            /* Bold text */
+            margin-bottom: 1.5rem;
+            /* Adds space below the heading */
+            color: #212529;
+            /* Sets a dark color for readability */
+        }
+
+        .donation-type-h3 {
+            font-size: 1.25rem;
+            /* Adjust the size as needed */
+            font-weight: bold;
+            /* Makes the text bold */
+            margin-bottom: 1rem;
+            /* Spacing below the heading */
+            color: #212529;
+            /* Sets a dark color for readability */
+        }
+
+        .one-time {
+            background-color: #f9fbfb;
+            /* Or the color that you want */
+            border: none;
+            padding: 10px 20px;
+            /* Adjust as needed */
+            border-radius: 5px;
+            /* Or whatever value looks good */
+            margin-right: 10px;
+            font-size: 1rem;
+            cursor: pointer;
+            color: #212529;
+        }
+
+        .monthly {
+            background-color: #f9fbfb;
+            /* Or the color that you want */
+            border: none;
+            padding: 10px 20px;
+            /* Adjust as needed */
+            border-radius: 5px;
+            /* Or whatever value looks good */
+            font-size: 1rem;
+            cursor: pointer;
+            color: #212529;
+        }
+
+        .support-our-mission {
+            font-size: 0.875rem;
+            /* Slightly smaller, adjust as needed */
+            margin-bottom: 1.5rem;
+            /* Adds space below the paragraph */
+            color: #495057;
+            /* A slightly darker gray for body text */
+        }
+
+        .amount-options button {
+            background-color: #f9fbfb;
+            /* Or the color that you want */
+            border: none;
+            padding: 10px 20px;
+            /* Adjust as needed */
+            border-radius: 5px;
+            /* Or whatever value looks good */
+            font-size: 1rem;
+            cursor: pointer;
+            color: #212529;
+        }
+
+        .or-enter-custom-amount input[type="text"] {
+            padding: 10px;
+            /* Adjust as needed */
+            border: 1px solid #ced4da;
+            /* Adjust as needed */
+            border-radius: 5px;
+            /* Or whatever value looks good */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .e-mail input[type="email"] {
+            padding: 10px;
+            /* Adjust as needed */
+            border: 1px solid #ced4da;
+            /* Adjust as needed */
+            border-radius: 5px;
+            /* Or whatever value looks good */
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .message-optional textarea {
+            padding: 10px;
+            /* Adjust as needed */
+            border: 1px solid #ced4da;
+            /* Adjust as needed */
+            border-radius: 5px;
+            /* Or whatever value looks good */
+            width: 100%;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+
+        .make-my-donation-anonymous {
+            display: flex;
+            /* Use flexbox to align items */
+            align-items: center;
+            /* Vertically align the items */
+            margin-bottom: 1rem;
+            /* Spacing below the container */
+            margin-top: 1rem;
+        }
+
+        .make-my-donation-anonymous input[type="checkbox"] {
+            margin-right: 0.5rem;
+            /* Spacing between the checkbox and label */
+        }
+
+        .make-my-donation-anonymous label {
+            margin: 0;
+            /* Reset the default margin */
+            font-size: 1rem;
+            /* Adjust the font size as needed */
+            color: #495057;
+            /* Sets a dark color for readability */
+            font-weight: normal;
+            /* Or whatever font weight you like */
+        }
+
+        .final-donation-amount-number {
+            font-size: 1.25rem;
+            /* Adjust the size as needed */
+            font-weight: bold;
+            /* Makes the text bold */
+            margin-top: 2rem;
+            /* Adds spacing above the amount */
+            color: #28a745;
+            /* A green color for positive connotation */
+        }
+
+        .donate-now-button button {
+            width: 100%;
+            padding: 15px;
+            /* Adjust as needed */
+            border-radius: 5px;
+            /* Or whatever value looks good */
+            font-size: 1.25rem;
+            /* Adjust as needed */
+            font-weight: bold;
+            /* Makes the text bold */
+            background-color: #20c997;
+            /* A vibrant green color */
+            color: white;
+            /* Sets the text color to white for contrast */
+            border: none;
+            /* Removes the border */
+            cursor: pointer;
+            /* Changes the cursor to a pointer on hover */
+        }
+
+        .why-donate-h3 {
+            font-size: 1.75rem;
+            /* Slightly larger than h4, adjust as needed */
+            font-weight: bold;
+            /* Bold text */
+            margin-bottom: 1.5rem;
+            /* Adds space below the heading */
+            color: #212529;
+            /* Sets a dark color for readability */
+        }
+
+        .ul-li-checkmark {
+            list-style-type: none;
+            /* Removes the default bullet */
+            padding-left: 0;
+            /* Resets the default padding */
+        }
+
+        .ul-li-checkmark li::before {
+            content: '¹30';
+            /* Unicode for a checkmark followed by a space */
+            color: #20c997;
+            /* A green color for the checkmark */
+        }
+
+        .why-donate-monthly-h3 {
+            font-size: 1.75rem;
+            /* Slightly larger than h4, adjust as needed */
+            font-weight: bold;
+            /* Bold text */
+            margin-bottom: 1.5rem;
+            /* Adds space below the heading */
+            color: #212529;
+            /* Sets a dark color for readability */
+        }
+
+        .footer {
+            display: flex;
+            /* Uses flexbox */
+            justify-content: space-between;
+            /* Distributes space between the items */
+            align-items: flex-start;
+            /* Aligns items to the start of the container */
+            padding: 20px;
+            /* Adds padding around the content */
+            background-color: #f9fbfb;
+            /* Or whatever background color you want */
+        }
+
+        .footer-section {
+            flex: 1;
+            /* Allows each section to grow and take equal space */
+        }
+
+        .footer-section h4 {
+            font-size: 1.25rem;
+            /* Adjust as needed */
+            font-weight: bold;
+            /* Makes the text bold */
+            margin-bottom: 1rem;
+            /* Spacing below the heading */
+            color: #212529;
+            /* Sets a dark color for readability */
+        }
+
+        .footer-section ul {
+            list-style-type: none;
+            /* Removes the default bullet */
+            padding-left: 0;
+            /* Resets the default padding */
+        }
+
+        .footer-section ul li {
+            margin-bottom: 0.5rem;
+            /* Adds space below each list item */
+        }
+
+        .footer-section ul li::before {
+            content: '0da';
+            /* Unicode for a right arrow from Font Awesome */
+            font-family: FontAwesome;
+            /* Sets the font family */
+            display: inline-block;
+            /* Makes it a block element to control width */
+            margin-right: 0.5rem;
+            /* Adds spacing between the arrow and the text */
+            width: 1.4em;
+            /* Sets a fixed width to align the arrows */
+            color: #007bff;
+            /* Or any color that you want */
+        }
+
+        .footer-section a {
+            text-decoration: none;
+            /* Removes underlines from links */
+            color: #495057;
+            /* A slightly darker gray for body text */
+        }
+
+        .connect-with-us {
+            flex: 1;
+            /* Allows it to grow and take space */
+            display: flex;
+            /* Use flexbox */
+            flex-direction: column;
+            /* Stack items vertically */
+            align-items: flex-start;
+            /* Align items to the start of the container */
+        }
+
+        .connect-with-us-h4 {
+            font-size: 1.25rem;
+            /* Adjust as needed */
+            font-weight: bold;
+            /* Makes the text bold */
+            margin-bottom: 1rem;
+            /* Spacing below the heading */
+            color: #212529;
+            /* Sets a dark color for readability */
+        }
+
+        .social-icons {
+            display: flex;
+            /* Use flexbox */
+            justify-content: flex-start;
+            /* Align items to the start of the container */
+            margin-bottom: 1rem;
+            /* Spacing below the icons */
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            /* Keeps the items in a row */
+            align-items: center;
+            /* Centers items vertically */
+            justify-content: center;
+            /* Centers items horizontally */
+            margin-right: 0.5rem;
+            /* Spacing between the icons */
+            width: 36px;
+            /* Adjust as needed */
+            height: 36px;
+            /* Adjust as needed */
+            border-radius: 50%;
+            /* Makes it round */
+            background-color: #e9ecef;
+            /* Or a suitable background color */
+            color: #495057;
+            /* Sets a dark color for readability */
+            text-decoration: none;
+            /* Removes underlines from links */
+        }
+
+        .social-icons a i {
+            font-size: 1rem;
+            /* Adjust the size of the icon */
+        }
+
+        .social-icons .fab {
+            font-size: 1.3rem;
+        }
+
+        .social-icons .fa-facebook-f {
+            color: #3b5998;
+        }
+
+        .social-icons .fa-twitter {
+            color: #1da1f2;
+        }
+
+        .social-icons .fa-youtube {
+            color: #ff0000;
+        }
+
+        .social-icons .fa-linkedin-in {
+            color: #0077b5;
+        }
+
+        .social-icons .fa-github {
+            color: #333;
+        }
+
+        .subscribe-to-newsletter {
+            flex: 1;
+            /* Allows it to grow and take space */
+            display: flex;
+            /* Use flexbox */
+            flex-direction: column;
+            /* Stack items vertically */
+            align-items: flex-start;
+            /* Align items to the start of the container */
+        }
+
+        .subscribe-to-newsletter-h4 {
+            font-size: 1.25rem;
+            /* Adjust as needed */
+            font-weight: bold;
+            /* Makes the text bold */
+            margin-bottom: 1rem;
+            /* Spacing below the heading */
+            color: #212529;
+            /* Sets a dark color for readability */
+        }
+
+        .subscribe-input {
+            display: flex;
+            /* Use flexbox */
+            width: 100%;
+            /* Occupy the full width */
+        }
+
+        .subscribe-input input[type="email"] {
+            flex: 1;
+            /* Let the input field grow */
+            padding: 10px;
+            /* Adjust as needed */
+            border: 1px solid #ced4da;
+            /* Adjust as needed */
+            border-radius: 5px 0 0 5px;
+            /* Rounds only the left side */
+            box-sizing: border-box;
+        }
+
+        .subscribe-input button {
+            padding: 10px 20px;
+            /* Adjust as needed */
+            border: none;
+            /* Removes the border */
+            border-radius: 0 5px 5px 0;
+            /* Rounds only the right side */
+            background-color: #20c997;
+            /* A vibrant green color */
+            color: white;
+            /* Sets the text color to white for contrast */
+            cursor: pointer;
+            /* Changes the cursor to a pointer on hover */
+        }
+
+        .subscribe-input button i {
+            font-size: 1rem;
+            /* Adjust the size of the icon */
+        }
+
+        .copyright-section {
+            display: flex;
+            /* Uses flexbox */
+            justify-content: space-between;
+            /* Distributes space between the items */
+            align-items: center;
+            /* Aligns items vertically */
+            padding: 20px;
+            /* Adds padding around the content */
+            background-color: #f9fbfb;
+            /* Or whatever background color you want */
+            color: #495057;
+            /* A slightly darker gray for body text */
+            font-size: 0.75rem;
+            /* Adjust as needed */
+        }
+
+        .bottom-footer-nav {
+            list-style-type: none;
+            /* Removes the default bullet */
+            padding-left: 0;
+            /* Resets the default padding */
+            display: flex;
+            /* Use flexbox */
+            margin: 0;
+        }
+
+        .bottom-footer-nav li {
+            margin-left: 10px;
+            /* Adds space to the left of each list item */
+        }
+
+        .bottom-footer-nav a {
+            text-decoration: none;
+            /* Removes underlines from links */
+            color: #495057;
+            /* A slightly darker gray for body text */
+        }
+
+        .learn {
+            margin-right: 1rem;
+        }
+
+        .about {
+            margin-right: 1rem;
+        }
+
+        .community {
+            margin-right: 1rem;
+        }
+
+        .resources {
+            margin-right: 1rem;
+        }
+
+        .login {
+            margin-right: 1rem;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            margin: 0 auto;
+            width: 100%;
+            max-width: 960px;
+        }
+
+        @font-face {
+            font-family: FontAwesome;
+            src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css');
+        }
+
+        .footer-section ul li::before {
+            font-family: "Font Awesome 5 Free";
+            font-weight: 900;
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+        integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <div class="alpha-one-labs">
+        <div class="alpha-one-labs-logo">
+            Alpha One Labs
+        </div>
+        <div class="alpha-one-labs-nav">
+            <a href="#" class="learn">
+                Learn
+            </a>
+            <a href="#" class="community">
+                Community
+            </a>
+            <a href="#" class="resources">
+                Resources
+            </a>
+            <a href="#" class="about">
+                About
+            </a>
+        </div>
+        <div class="alpha-one-labs-search">
+            <input type="text" placeholder="What do you want to learn?">
+        </div>
+        <div class="alpha-one-labs-auth">
+            <a href="#" class="login">Login</a>
+            <a href="#" class="signup">Signup</a>
+        </div>
+    </div>
+    <div class="container">
+        <h1 class="support-our-mission-h1">
+            Support Our Mission
+        </h1>
+        <p class="support-our-mission-p">
+            Your donation helps us provide quality education to more students around the world.
+        </p>
+        <div class="donation-section">
+            <div class="donation-form">
+                <h3 class="make-a-donation-h3">
+                    Make a Donation
+                </h3>
+                <h3 class="donation-type-h3">
+                    Donation Type
+                </h3>
+                <div class="one-time-monthly">
+                    <button class="one-time">
+                        One-time
+                    </button>
+                    <button class="monthly">
+                        Monthly
+                    </button>
+                </div>
+                <p class="support-our-mission">
+                    Support our mission with a one-time donation
+                </p>
+                <h3 class="donation-type-h3">
+                    Select Amount
+                </h3>
+                <div class="amount-options">
+                    <button>$5</button>
+                    <button>$10</button>
+                    <button>$25</button>
+                    <button>$50</button>
+                    <button>$100</button>
+                </div>
+                <div class="or-enter-custom-amount">
+                    <input type="text" placeholder="$ Or enter custom amount">
+                </div>
+                <div class="e-mail">
+                    <input type="email" placeholder="E-Mail">
+                </div>
+                <div class="message-optional">
+                    <textarea placeholder="Message (Optional) Share why you're donating..."></textarea>
+                </div>
+                <div class="make-my-donation-anonymous">
+                    <input type="checkbox">
+                    <label>Make my donation anonymous</label>
+                </div>
+                <div style="margin-top: 2rem;">
+                    <h3 class="donation-type-h3">
+                        Final Donation Amount:
+                    </h3>
+                    <h3 class="final-donation-amount-number">
+                        $0.00
+                    </h3>
+                </div>
+                <div class="donate-now-button">
+                    <button>
+                        Donate Now
+                    </button>
+                </div>
+            </div>
+            <div class="why-donate">
+                <h3 class="why-donate-h3">Why Donate?</h3>
+                <p>Your donation helps us:</p>
+                <ul class="ul-li-checkmark">
+                    <li>Provide scholarships to students in need</li>
+                    <li>Develop new educational content and resources</li>
+                    <li>Improve our platform and technology</li>
+                    <li>Expand our reach to underserved communities</li>
+                </ul>
+                <p>We're committed to making quality education
+                    accessible to everyone, regardless of their financial
+                    situation.</p>
+                <h3 class="why-donate-monthly-h3">
+                    Why Donate Monthly?
+                </h3>
+                <p>Monthly donations provide sustainable support that helps us:</p>
+                <ul class="ul-li-checkmark">
+                    <li>Plan long-term educational programs</li>
+                    <li>Maintain consistent support for students</li>
+                    <li>Develop new educational resources continuously</li>
+                    <li>Make long-term commitments to communities</li>
+                </ul>
+                <p>Your monthly support creates a foundation for sustainable
+                    education.</p>
+            </div>
+        </div>
+        <div class="footer">
+            <div class="footer-section">
+                <h4>Learning</h4>
+                <ul>
+                    <li><a href="#">Courses</a></li>
+                    <li><a href="#">Subjects</a></li>
+                    <li><a href="#">Quizzes</a></li>
+                    <li><a href="#">Videos</a></li>
+                    <li><a href="#">Challenges</a></li>
+                    <li><a href="#">Study Groups</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Community</h4>
+                <ul>
+                    <li><a href="#">Forum</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Success Stories</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources & Info</h4>
+                <ul>
+                    <li><a href="#">GSOC'25</a></li>
+                    <li><a href="#">Status</a></li>
+                    <li><a href="#">Feedback</a></li>
+                    <li><a href="#">Terms</a></li>
+                </ul>
+            </div>
+            <div class="connect-with-us">
+                <h4 class="connect-with-us-h4">Connect With Us</h4>
+                <div class="social-icons">
+                    <a href="#"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#"><i class="fab fa-twitter"></i></a>
+                    <a href="#"><i class="fab fa-youtube"></i></a>
+                    <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#"><i class="fab fa-github"></i></a>
+                </div>
+                <div class="subscribe-to-newsletter">
+                    <h4 class="subscribe-to-newsletter-h4">Subscribe to Newsletter</h4>
+                    <div class="subscribe-input">
+                        <input type="email" placeholder="Your email">
+                        <button><i class="fas fa-arrow-right"></i></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="copyright-section">
+        <div class="copyright">
+            Â© 2025 Alpha One Labs. All rights reserved. <br>
+            Last updated: 06/12/2025 12:23nachm.
+        </div>
+        <ul class="bottom-footer-nav">
+            <li><a href="#">About Us</a></li>
+            <li><a href="#">Terms & Conditions</a></li>
+            <li><a href="#">Privacy Policy</a></li>
+            <li><a href="#">Cookie Policy</a></li>
+        </ul>
+    </div>
+</body>
+
+</html>

@@ -9,7 +9,6 @@ from LLMs.Strategies.geminiApiStrategy import GeminiStrategy
 from LLMs.Strategies.llamaLocalStrategy import LlamaStrategy
 from LLMs.Strategies.qwenLocalStrategy import QwenStrategy
 from LLMs.Strategies.hfFinetunedStrategy import HfFinetunedStrategy
-from LLMs.Strategies.hfEndpointStrategy import HfEndpointStrategy
 import Utils.utils_general as util_general
 
 def get_model_strategy(name):
@@ -27,17 +26,8 @@ def get_model_strategy(name):
         case "llama_local":
             strategy = LlamaStrategy()
             return strategy
-        case "llama_hf":
-            endpoint_llama = None
-            strategy = HfEndpointStrategy(endpoint_llama)
-            return strategy
         case "qwen_local":
             strategy = QwenStrategy()
-            return strategy
-        case "qwen_hf":
-            with open(Path(__file__).resolve().parent.parent / "keys.json", "r", encoding="utf-8") as f:
-                endpoint_qwen = json.load(f)["huggingface"]["endpoint_qwen"]
-            strategy = HfEndpointStrategy(endpoint_qwen)
             return strategy
         case "finetuned_hf":
             strategy = HfFinetunedStrategy()

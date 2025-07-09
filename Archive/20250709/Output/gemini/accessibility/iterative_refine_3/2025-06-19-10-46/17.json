@@ -1,0 +1,380 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H43.IncorrectAttr",
+        "Principle1.Guideline1_3.1_3_1.H43.HeadersRequired",
+        "Principle1.Guideline1_3.1_3_1.H43.MissingHeaderIds",
+        "Principle1.Guideline1_3.1_3_1.H43.MissingHeadersAttrs",
+        "Principle1.Guideline1_3.1_3_1.H43,H63"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/empty-table-header"
+      ],
+      "impact": "minor",
+      "name": "Tables; Table Headers;",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/empty-table-header",
+          "source": "axe-core",
+          "title": "Table header text should not be empty",
+          "description": "Ensure table headers have discernible text",
+          "impact": "minor",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "minor",
+                "message": "Element does not have text that is visible to screen readers"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "minor",
+            "html": "<th scope=\"col\"></th>",
+            "target": [
+              "tr:nth-child(1) > th[scope=\"col\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have text that is visible to screen readers"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/empty-table-header",
+          "source": "axe-core",
+          "title": "Table header text should not be empty",
+          "description": "Ensure table headers have discernible text",
+          "impact": "minor",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "minor",
+                "message": "Element does not have text that is visible to screen readers"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "minor",
+            "html": "<th scope=\"col\"></th>",
+            "target": [
+              "tr:nth-child(2) > th[scope=\"col\"]:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have text that is visible to screen readers"
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H43.MissingHeaderIds",
+          "source": "pa11y",
+          "title": "Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements' headers attributes.",
+          "description": "<table aria-label=\"Average Daily Temperatures in Ottawa, Ontario\">\n                        <thead...</table>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H43.MissingHeaderIds",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Not all th elements in this table contain an id attribute. These cells should contain ids so that they may be referenced by td elements' headers attributes.",
+            "context": "<table aria-label=\"Average Daily Temperatures in Ottawa, Ontario\">\n                        <thead...</table>",
+            "selector": "html > body > div > main > div > div > table",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
+      ],
+      "impact": "serious",
+      "name": "Links; Distinguishable Color;",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 1.79,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#0056b3",
+                  "parentColor": "#333333"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<p>",
+                    "target": [
+                      ".main > p"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 1.79:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0056b3, surrounding text: #333333)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<p>",
+                    "target": [
+                      ".main > p"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">day counts</a>",
+            "target": [
+              "p > a:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.79:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0056b3, surrounding text: #333333)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 1.79,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#0056b3",
+                  "parentColor": "#333333"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<p>",
+                    "target": [
+                      ".main > p"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 1.79:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0056b3, surrounding text: #333333)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<p>",
+                    "target": [
+                      ".main > p"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">Fahrenheit</a>",
+            "target": [
+              "p > a:nth-child(4)"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.79:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0056b3, surrounding text: #333333)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,0,DIV,1,MAIN,0,DIV,1,DIV,2,P,3,A",
+              "selector": "div.content > div.main > p > a",
+              "boundingRect": {
+                "top": 525,
+                "bottom": 543,
+                "left": 257,
+                "right": 335,
+                "width": 77,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "day counts",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.79:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0056b3, surrounding text: #333333)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-1-P",
+                    "path": "1,HTML,1,BODY,0,DIV,1,MAIN,0,DIV,1,DIV,2,P",
+                    "selector": "main > div.content > div.main > p",
+                    "boundingRect": {
+                      "top": 394,
+                      "bottom": 649,
+                      "left": 144,
+                      "right": 391,
+                      "width": 247,
+                      "height": 256
+                    },
+                    "snippet": "<p>",
+                    "nodeLabel": "Average daily temperatures in Ottawa, Ontario, including the lower and upper bo…"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-2-A",
+              "path": "1,HTML,1,BODY,0,DIV,1,MAIN,0,DIV,1,DIV,2,P,7,A",
+              "selector": "div.content > div.main > p > a",
+              "boundingRect": {
+                "top": 627,
+                "bottom": 645,
+                "left": 241,
+                "right": 317,
+                "width": 76,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Fahrenheit",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.79:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0056b3, surrounding text: #333333)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-1-P",
+                    "path": "1,HTML,1,BODY,0,DIV,1,MAIN,0,DIV,1,DIV,2,P",
+                    "selector": "main > div.content > div.main > p",
+                    "boundingRect": {
+                      "top": 394,
+                      "bottom": 649,
+                      "left": 144,
+                      "right": 391,
+                      "width": 247,
+                      "height": 256
+                    },
+                    "snippet": "<p>",
+                    "nodeLabel": "Average daily temperatures in Ottawa, Ontario, including the lower and upper bo…"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-3-A",
+              "path": "1,HTML,1,BODY,0,DIV,1,MAIN,0,DIV,1,DIV,0,NAV,3,A",
+              "selector": "div.content > div.main > nav.nav > a",
+              "boundingRect": {
+                "top": 229,
+                "bottom": 247,
+                "left": 232,
+                "right": 348,
+                "width": 117,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Warming Trends",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (116.8px by 18px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-4-A",
+                    "path": "1,HTML,1,BODY,0,DIV,1,MAIN,0,DIV,1,DIV,0,NAV,2,A",
+                    "selector": "div.content > div.main > nav.nav > a",
+                    "boundingRect": {
+                      "top": 204,
+                      "bottom": 247,
+                      "left": 144,
+                      "right": 367,
+                      "width": 223,
+                      "height": 44
+                    },
+                    "snippet": "<a href=\"#\">",
+                    "nodeLabel": "Monthly Summary"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

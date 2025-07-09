@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alpha One Labs</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* Header */
+        .header {
+            background-color: #00a699;
+            color: white;
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .header-left {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .nav {
+            margin-left: 50px;
+        }
+
+        .nav a {
+            color: white;
+            text-decoration: none;
+            margin-right: 20px;
+            font-size: 14px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+            background-color: white;
+            border-radius: 5px;
+            padding: 5px;
+        }
+
+        .search-box input {
+            border: none;
+            outline: none;
+            padding: 5px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .search-box span {
+            color: #00a699;
+            padding: 5px;
+            cursor: pointer;
+        }
+
+        .header-right {
+            display: flex;
+            align-items: center;
+        }
+
+        .header-right a {
+            color: white;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+            border: 1px solid white;
+            border-radius: 5px;
+            padding: 8px 15px;
+        }
+
+        .header-right a:last-child {
+            background-color: #f27022;
+            border: 1px solid #f27022;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 50px;
+            text-align: center;
+        }
+
+        .main-content h1 {
+            font-size: 32px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .main-content p {
+            font-size: 16px;
+            color: #555;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        /* Learning Inquiry Form */
+        .inquiry-form {
+            width: 60%;
+            margin: 0 auto;
+            padding: 30px;
+            background-color: #f9f9f9;
+            border-radius: 5px;
+            text-align: left;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        .form-group input[type="text"],
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+            resize: vertical;
+        }
+
+        .form-group textarea {
+            height: 100px;
+        }
+
+        .inquiry-form button {
+            background-color: #f27022;
+            color: white;
+            padding: 15px 30px;
+            border: none;
+            border-radius: 5px;
+            font-size: 18px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        /* Footer */
+        .footer {
+            background-color: #f9f9f9;
+            padding: 50px;
+        }
+
+        .footer-columns {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 30px;
+        }
+
+        .footer-column {
+            width: 20%;
+        }
+
+        .footer-column h4 {
+            font-size: 18px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 10px;
+            color: #555;
+        }
+        .footer-column li::before {
+            content: "096";
+            font-family: FontAwesome;
+            display: inline-block;
+            margin-left: -1.3em;
+            width: 1.3em;
+            color: #00a699;
+            font-size: 0.8em;
+          }
+
+        .footer-bottom {
+            text-align: center;
+            color: #777;
+            font-size: 14px;
+        }
+        .footer-bottom a {
+          margin: 0 5px;
+          color: #777;
+          text-decoration: none;
+        }
+        .footer-bottom a:hover {
+          text-decoration: underline;
+        }
+        .footer-connect {
+            display: flex;
+            align-items: center;
+        }
+        .footer-connect a {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            width: 30px;
+            height: 30px;
+            margin-right: 10px;
+            background-color: #e9e9e9;
+            border-radius: 50%;
+            text-decoration: none;
+        }
+        .footer-connect a:hover {
+            background-color: #00a699;
+        }
+        .footer-connect a::before {
+            font-family: FontAwesome;
+            font-size: 1.2em;
+            color: #fff;
+        }
+
+        .footer-connect a:first-child {
+            background-color: #3b5998; /* Facebook Color */
+        }
+        .footer-connect a:first-child::before {
+            content: "09a";
+            color: #fff;
+        }
+
+        .footer-connect a:nth-child(2)::before {
+            content: "099";
+            color: #fff;
+        }
+
+        .footer-connect a:nth-child(3)::before {
+            content: "16e";
+            color: #fff;
+        }
+        .footer-connect a:nth-child(4)::before {
+            content: "0d5";
+            color: #fff;
+        }
+        .footer-connect a:nth-child(5)::before {
+            content: "167";
+            color: #fff;
+        }
+        .footer-subscribe {
+            margin-top: 20px;
+        }
+        .footer-subscribe input[type="email"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        .footer-subscribe button {
+            background-color: #00a699;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav {
+                margin-left: 0;
+                margin-top: 20px;
+            }
+
+            .header-right {
+                margin-top: 20px;
+            }
+
+            .inquiry-form {
+                width: 90%;
+            }
+        }
+        @font-face {
+            font-family: 'FontAwesome';
+            src: url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff2') format('woff2'),
+                 url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/fonts/fontawesome-webfont.woff') format('woff');
+            font-weight: normal;
+            font-style: normal;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-left">
+            <div class="logo">Alpha One Labs</div>
+            <div class="nav">
+                <a href="#">LEARN</a>
+                <a href="#">COMMUNITY</a>
+                <a href="#">RESOURCES</a>
+                <a href="#">ABOUT</a>
+            </div>
+        </div>
+        <div class="header-right">
+            <div class="search-box">
+                <input type="text" placeholder="What do you want to learn?">
+                <span>&#x2315;</span>
+            </div>
+            <a href="#">Login</a>
+            <a href="#">Signup</a>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <h1>&#x2610; Learn with Alpha One Labs</h1>
+        <p>Ready to expand your knowledge? Fill out the form below to get started!</p>
+
+        <div class="inquiry-form">
+            <h2>Learning Inquiry Form</h2>
+            <form>
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" placeholder="What would you like to learn?">
+                    <small>Give your waiting room a descriptive title</small>
+                </div>
+                <div class="form-group">
+                    <label for="description">Description</label>
+                    <textarea id="description" placeholder="Describe what you want to learn"></textarea>
+                </div>
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" placeholder="Main subject (e.g., Mathematics, Programming)">
+                    <small>The main subject area for this waiting room</small>
+                </div>
+                <div class="form-group">
+                    <label for="topics">Topics</label>
+                    <input type="text" id="topics" placeholder="e.g., Python, Machine Learning, Data Science">
+                    <small>Enter topics separated by commas</small>
+                </div>
+                <button type="submit">Submit Inquiry</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="footer-columns">
+            <div class="footer-column">
+                <h4>LEARNING</h4>
+                <ul>
+                    <li>Courses</li>
+                    <li>Subjects</li>
+                    <li>Quizzes</li>
+                    <li>Videos</li>
+                    <li>Challenges</li>
+                    <li>Study Groups</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>COMMUNITY</h4>
+                <ul>
+                    <li>Forum</li>
+                    <li>Blog</li>
+                    <li>Features</li>
+                    <li>Success Stories</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>RESOURCES & INFO</h4>
+                <ul>
+                    <li>GSOC'25</li>
+                    <li>Status</li>
+                    <li>Feedback</li>
+                    <li>Terms</li>
+                </ul>
+            </div>
+            <div class="footer-column">
+                <h4>CONNECT WITH US</h4>
+                <div class="footer-connect">
+                    <a href="#"></a>
+                    <a href="#"></a>
+                    <a href="#"></a>
+                    <a href="#"></a>
+                    <a href="#"></a>
+                </div>
+                <div class="footer-subscribe">
+                    SUBSCRIBE TO NEWSLETTER
+                    <form>
+                        <input type="email" placeholder="Your email">
+                        <button type="submit">&#x2315;</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2025 Alpha One Labs. All rights reserved.<br>
+            Last updated: 06/12/2025 12:19nachm.<br>
+            <a href="#">About Us</a> | <a href="#">Terms & Conditions</a> | <a href="#">Privacy Policy</a> | <a href="#">Cookie Policy</a>
+        </div>
+    </div>
+</body>
+</html>

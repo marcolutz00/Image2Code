@@ -1,0 +1,511 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+        "https://dequeuniversity.com/rules/axe/4.10/region",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
+      ],
+      "impact": "moderate",
+      "name": "Landmark & Region; Missing & Unique Landmarks;",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+          "source": "axe-core",
+          "title": "Document should have one main landmark",
+          "description": "Ensure the document has a main landmark",
+          "impact": "moderate",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "page-has-main",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Document does not have a main landmark"
+              }
+            ],
+            "none": [],
+            "impact": "moderate",
+            "html": "<html lang=\"en\">",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix all of the following:\n  Document does not have a main landmark"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"content\">",
+            "target": [
+              ".content"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
+      ],
+      "impact": "serious",
+      "name": "Links; Distinguishable Color;",
+      "amount_nodes_failed": 4,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 2.44,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#0000ff",
+                  "parentColor": "#000000"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<header>\n        <p>Information</p>\n        <a href=\"#\">Bookshop</a> | <a href=\"#\">Donate</a>\n        <div>Derechos | Equipo Nizkor</div>\n        <img src=\"src/placeholder.jpg\" alt=\"Image\" style=\"float: right;\" width=\"100\" height=\"50\">\n    </header>",
+                    "target": [
+                      "header"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 2.44:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0000ff, surrounding text: #000000)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<header>\n        <p>Information</p>\n        <a href=\"#\">Bookshop</a> | <a href=\"#\">Donate</a>\n        <div>Derechos | Equipo Nizkor</div>\n        <img src=\"src/placeholder.jpg\" alt=\"Image\" style=\"float: right;\" width=\"100\" height=\"50\">\n    </header>",
+                    "target": [
+                      "header"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">Bookshop</a>",
+            "target": [
+              "header > a:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 2.44:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0000ff, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 2.44,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#0000ff",
+                  "parentColor": "#000000"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<header>\n        <p>Information</p>\n        <a href=\"#\">Bookshop</a> | <a href=\"#\">Donate</a>\n        <div>Derechos | Equipo Nizkor</div>\n        <img src=\"src/placeholder.jpg\" alt=\"Image\" style=\"float: right;\" width=\"100\" height=\"50\">\n    </header>",
+                    "target": [
+                      "header"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 2.44:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0000ff, surrounding text: #000000)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<header>\n        <p>Information</p>\n        <a href=\"#\">Bookshop</a> | <a href=\"#\">Donate</a>\n        <div>Derechos | Equipo Nizkor</div>\n        <img src=\"src/placeholder.jpg\" alt=\"Image\" style=\"float: right;\" width=\"100\" height=\"50\">\n    </header>",
+                    "target": [
+                      "header"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">Donate</a>",
+            "target": [
+              "a:nth-child(3)"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 2.44:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0000ff, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 2.44,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#0000ff",
+                  "parentColor": "#000000"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<p>",
+                    "target": [
+                      "footer > p:nth-child(8)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 2.44:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0000ff, surrounding text: #000000)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<p>",
+                    "target": [
+                      "footer > p:nth-child(8)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">Equipo Nizkor</a>",
+            "target": [
+              "a:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 2.44:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0000ff, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 2.44,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#0000ff",
+                  "parentColor": "#000000"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<p>",
+                    "target": [
+                      "footer > p:nth-child(8)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 2.44:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0000ff, surrounding text: #000000)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<p>",
+                    "target": [
+                      "footer > p:nth-child(8)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">Derechos Human Rights</a>",
+            "target": [
+              "p:nth-child(8) > a:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 2.44:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0000ff, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-A",
+              "path": "1,HTML,1,BODY,0,HEADER,1,A",
+              "selector": "body > header > a",
+              "boundingRect": {
+                "top": 71,
+                "bottom": 89,
+                "left": 133,
+                "right": 204,
+                "width": 71,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Bookshop",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 2.44:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0000ff, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-HEADER",
+                    "path": "1,HTML,1,BODY,0,HEADER",
+                    "selector": "body > header",
+                    "boundingRect": {
+                      "top": 36,
+                      "bottom": 108,
+                      "left": 20,
+                      "right": 392,
+                      "width": 372,
+                      "height": 72
+                    },
+                    "snippet": "<header>",
+                    "nodeLabel": "Information\n\nBookshop | Donate\nDerechos | Equipo Nizkor"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-3-A",
+              "path": "1,HTML,1,BODY,0,HEADER,3,A",
+              "selector": "body > header > a",
+              "boundingRect": {
+                "top": 71,
+                "bottom": 89,
+                "left": 227,
+                "right": 279,
+                "width": 52,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Donate",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 2.44:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0000ff, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-HEADER",
+                    "path": "1,HTML,1,BODY,0,HEADER",
+                    "selector": "body > header",
+                    "boundingRect": {
+                      "top": 36,
+                      "bottom": 108,
+                      "left": 20,
+                      "right": 392,
+                      "width": 372,
+                      "height": 72
+                    },
+                    "snippet": "<header>",
+                    "nodeLabel": "Information\n\nBookshop | Donate\nDerechos | Equipo Nizkor"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-A",
+              "path": "1,HTML,1,BODY,2,FOOTER,7,P,1,A",
+              "selector": "body > footer > p > a",
+              "boundingRect": {
+                "top": 1732,
+                "bottom": 1750,
+                "left": 57,
+                "right": 157,
+                "width": 100,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Equipo Nizkor",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 2.44:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0000ff, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-5-P",
+                    "path": "1,HTML,1,BODY,2,FOOTER,7,P",
+                    "selector": "body > footer > p",
+                    "boundingRect": {
+                      "top": 1713,
+                      "bottom": 1843,
+                      "left": 20,
+                      "right": 392,
+                      "width": 372,
+                      "height": 130
+                    },
+                    "snippet": "<p>",
+                    "nodeLabel": "This document has been published on 08Apr16 by the Equipo Nizkor and Derechos H…"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-6-A",
+              "path": "1,HTML,1,BODY,2,FOOTER,7,P,3,A",
+              "selector": "body > footer > p > a",
+              "boundingRect": {
+                "top": 1732,
+                "bottom": 1750,
+                "left": 203,
+                "right": 377,
+                "width": 174,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Derechos Human Rights",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 2.44:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0000ff, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-5-P",
+                    "path": "1,HTML,1,BODY,2,FOOTER,7,P",
+                    "selector": "body > footer > p",
+                    "boundingRect": {
+                      "top": 1713,
+                      "bottom": 1843,
+                      "left": 20,
+                      "right": 392,
+                      "width": 372,
+                      "height": 130
+                    },
+                    "snippet": "<p>",
+                    "nodeLabel": "This document has been published on 08Apr16 by the Equipo Nizkor and Derechos H…"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

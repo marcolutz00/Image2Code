@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dating App</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #192485;
+            color: #fff;
+            text-align: left;
+            padding: 50px;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .hero .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero .buttons a {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .hero .buttons a:first-child {
+            background-color: #fff;
+            color: #192485;
+        }
+
+        .hero .buttons a:last-child {
+            background-color: #4dd0e1;
+            color: #404040;
+        }
+
+        .hero .small-text {
+            margin-top: 30px;
+            font-size: 0.9em;
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 20px;
+            text-align: center;
+        }
+
+        .main-content h2 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        .main-content p {
+            font-size: 1.1em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        /* Navigation */
+        nav {
+            background-color: #f0f0f0;
+            padding: 10px;
+            text-align: center;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            margin: 0 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #34495e;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer p {
+            font-size: 0.8em;
+        }
+        /* Specific Styles */
+        .hero {
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 250px;
+            height: 200px;
+            background-color: #0e1557;
+        }
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 350px;
+            height: 300px;
+            background-color: #0e1557;
+        }
+        .button {
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .button.primary {
+            background-color: #fff;
+            color: #192485;
+        }
+
+        .button.secondary {
+            background-color: #4dd0e1;
+            color: #404040;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .footer-links div {
+            text-align: left;
+        }
+
+        .footer-links h4 {
+            margin-bottom: 10px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links li {
+            margin-bottom: 5px;
+        }
+
+        .footer-links a {
+            color: white;
+            text-decoration: none;
+        }
+        .navigation {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .navigation a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #777;
+            text-decoration: none;
+        }
+        .button-link {
+            background-color: #0aaac7;
+            color: #404040;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        .center {
+            text-align: center;
+        }
+
+        .button-container {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .footer {
+                background-color: #263238;
+                color: #fff;
+                padding: 20px;
+                text-align: center;
+        }
+
+        .footer p {
+                font-size: 0.8em;
+                margin: 0;
+        }
+
+        .footer-links {
+                display: flex;
+                justify-content: space-around;
+                margin-bottom: 20px;
+        }
+
+        .footer-links div {
+                text-align: left;
+        }
+
+        .footer-links h4 {
+                margin-bottom: 10px;
+        }
+
+        .footer-links ul {
+                list-style: none;
+                padding: 0;
+        }
+
+        .footer-links li {
+                margin-bottom: 5px;
+        }
+
+        .footer-links a {
+                color: white;
+                text-decoration: none;
+        }
+
+        .copywrite{
+                text-align: left;
+                font-size: smaller;
+        }
+
+        .singles-in{
+            text-align: center;
+        }
+
+        .singles-button {
+            background-color: #0aaac7;
+            color: #404040;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            cursor: pointer;
+            border-radius: 25px;
+            margin-left: 5px;
+            margin-right: 5px;
+            margin-bottom: 10px;
+        }
+
+        .singles-button-container{
+            margin-bottom: 10px;
+            margin-top: 10px;
+        }
+        .nav-a{
+            color: #192485;
+        }
+
+    </style>
+</head>
+<body>
+
+    <div class="hero">
+        <h1>Meet amazing singles
+            today</h1>
+        <p>Just say g'day to local singles looking for fun
+            excitement and romance in your area right now</p>
+        <p>Create your free profile to see your matches</p>
+        <div class="buttons">
+            <a href="#" class="button primary">Join for free now</a>
+            <a href="#" class="button secondary">Sign in</a>
+        </div>
+        <p class="small-text">Over 50? Try our mature dating site</p>
+    </div>
+
+    <nav>
+        <a href="#">Home</a>
+        <a href="#">Singles</a>
+        <a href="#">Gold Coast</a>
+        <a class="nav-a" href="#">Bonogin</a>
+    </nav>
+
+    <main class="main-content">
+        <h2>Singles Bonogin</h2>
+        <p>Finding singles in Bonogin is fun and easy with justsaygday.com. As one of Australia's leading matchmaking websites
+            you have a great chance of meeting that special someone missing in your life.</p>
+        <p>Life as a single girl of guy in Bonogin can be fun but most of us are looking for someone to share the ups and downs of
+            life, share experiences and cuddle up on those cold winter nights. With new members registering on Australia's
+            hottest online dating website every month looking for friendship and romance, your dream date may be just a couple
+            of click away.</p>
+        <p>Finding a date is fun and easy with our desktop and convenient mobile applications. Our latest smartphone
+            application is the most powerful yet and best of all, there is no application to download and no fiddly installation
+            instructions to follow, just sign up for free and visit <a href="#">justsaygday.com</a> from any mobile device for instant access to the
+            mobile application. From the mobile application you can access all the popular features as if you were on the desktop
+            site as well as some mobile enhanced features like:</p>
+        <p>Who's near me - find singles near you with the latest geo-location technologies without giving away your exact
+            location</p>
+        <p>Upload photos and videos directly from your phones camera</p>
+        <p>Send 'icebreakers' and 'winks'</p>
+        <p>Advanced personality matching and automated suggestions</p>
+
+        <h2>Find the guy who's right for you</h2>
+        <p>What's your idea of the perfect guy? Outgoing, sensitive, wild, gentle, tall, big, slim?</p>
+        <p>Find someone to share your life with. The next person you say g'day to might be the one.</p>
+
+        <div class="button-container">
+            <a href="#" class="button-link">Search single women in Bonogin</a>
+            <a href="#" class="button-link">Search single men in Bonogin</a>
+            <a href="#" class="button-link">Dating in Bonogin</a>
+        </div>
+
+    <section class="singles-in">
+        <h2>Singles in</h2>
+        <div class="singles-button-container">
+            <a href="#" class="singles-button">Advancetown</a>
+            <a href="#" class="singles-button">Arundel</a>
+            <a href="#" class="singles-button">Arundel Bc</a>
+        </div>
+
+        <div class="singles-button-container">
+            <a href="#" class="singles-button">Arundel Dc</a>
+        </div>
+    </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="footer-links">
+            <div>
+                <h4>Just Say G'day</h4>
+                <ul>
+                    <li>SSL secureScamalytics</li>
+                </ul>
+            </div>
+            <div>
+                <h4>Pages</h4>
+                <ul>
+                    <li><a href="#">Local singles</a></li>
+                    <li><a href="#">Mature dating</a></li>
+                    <li><a href="#">Blog</a></li>
+                    <li><a href="#">Completing your dating profile</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <ul>
+                    <li><a href="#">Terms</a></li>
+                    <li><a href="#">Privacy</a></li>
+                    <li><a href="#">Cookies</a></li>
+                    <li><a href="#">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+        <p class="copywrite">ÃÂ© Copyright notice - Site design and content copyright justsaygday.com <br>
+            Individuals pictured are models and are used for illustrative purposes only.</p>
+    </footer>
+
+</body>
+</html>

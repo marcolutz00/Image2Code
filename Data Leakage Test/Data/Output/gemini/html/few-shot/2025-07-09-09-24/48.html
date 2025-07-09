@@ -1,0 +1,860 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oranges Price Change Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #fff;
+            color: #333;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: 1px solid #e0e0e0;
+            text-align: center;
+        }
+
+        header a {
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+            margin: 0 10px;
+        }
+
+        section {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+        }
+
+        section h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .main-content {
+            float: left;
+            width: 65%;
+        }
+
+        .sidebar {
+            float: right;
+            width: 30%;
+            padding: 20px;
+            margin-top: 20px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            box-sizing: border-box;
+        }
+
+        .sidebar h3 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: #5cb85c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background: #4cae4c;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .right {
+            float: right;
+        }
+
+        @media(max-width: 768px) {
+            .main-content,
+            .sidebar {
+                width: 100%;
+                float: none;
+            }
+        }
+
+        /* Custom CSS based on screenshot */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            text-align: left;
+            padding: 20px;
+        }
+
+        header a {
+            font-size: 14px;
+            margin: 0 5px;
+        }
+
+        section {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fff;
+            border: none;
+        }
+
+        section h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .sidebar {
+            float: right;
+            width: 300px;
+            padding: 20px;
+            margin-top: 20px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            box-sizing: border-box;
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .sidebar input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .sidebar button {
+            background: #5cb85c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .sidebar button:hover {
+            background: #4cae4c;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .right {
+            float: right;
+        }
+
+        /* Custom CSS based on screenshot */
+        .container {
+            width: 80%;
+            margin: 20px auto;
+            overflow: hidden;
+        }
+
+        header {
+            text-align: left;
+            padding: 20px;
+        }
+
+        header a {
+            font-size: 14px;
+            margin: 0 5px;
+        }
+
+        section {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fff;
+            border: none;
+        }
+
+        section h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .main-content {
+            float: left;
+            width: 65%;
+        }
+
+        .sidebar {
+            float: right;
+            width: 30%;
+            padding: 20px;
+            margin-top: 20px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            box-sizing: border-box;
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .sidebar input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .sidebar button {
+            background: #5cb85c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .sidebar button:hover {
+            background: #4cae4c;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .right {
+            float: right;
+        }
+
+        /* Custom CSS based on screenshot */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+        }
+
+        header a {
+            font-size: 13px;
+            margin: 0 5px;
+            color: #777;
+        }
+
+        section {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fff;
+            border: none;
+        }
+
+        section h1 {
+            font-size: 28px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .main-content {
+            float: left;
+            width: 65%;
+        }
+
+        .sidebar {
+            float: right;
+            width: 30%;
+            padding: 20px;
+            margin-top: 20px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            box-sizing: border-box;
+        }
+
+        .sidebar h2 {
+            font-size: 20px;
+            color: #333;
+        }
+
+        .sidebar input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .sidebar button {
+            background: #5cb85c;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .sidebar button:hover {
+            background: #4cae4c;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .right {
+            float: right;
+        }
+
+        /* More Custom CSS based on screenshot */
+        header a {
+            font-size: 12px;
+            margin: 0 5px;
+            color: #777;
+            text-decoration: none;
+            text-transform: capitalize;
+        }
+
+        section h1 {
+            font-size: 26px;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+        }
+
+        .sidebar input[type="text"] {
+            padding: 6px;
+            font-size: 14px;
+        }
+
+        .sidebar button {
+            padding: 8px 12px;
+            font-size: 14px;
+        }
+
+        /* End of Custom CSS */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            line-height: 1.6;
+            color: #333;
+        }
+
+        header {
+            text-align: center;
+            padding: 10px;
+        }
+
+        header a {
+            font-size: 12px;
+            margin: 0 5px;
+            color: #777;
+            text-decoration: none;
+            text-transform: capitalize;
+        }
+
+        section {
+            padding: 20px;
+            margin-bottom: 20px;
+            background: #fff;
+            border: none;
+        }
+
+        section h1 {
+            font-size: 26px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        .main-content {
+            float: left;
+            width: 65%;
+        }
+
+        .sidebar {
+            float: right;
+            width: 30%;
+            padding: 20px;
+            margin-top: 20px;
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            box-sizing: border-box;
+        }
+
+        .sidebar h2 {
+            font-size: 18px;
+            color: #333;
+        }
+
+        .sidebar input[type="text"] {
+            width: 100%;
+            padding: 6px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            box-sizing: border-box;
+        }
+
+        .sidebar button {
+            background: #5cb85c;
+            color: white;
+            padding: 8px 12px;
+            border: none;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        .sidebar button:hover {
+            background: #4cae4c;
+        }
+
+        ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        ul li {
+            margin-bottom: 5px;
+        }
+
+        a {
+            color: #337ab7;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        footer {
+            background: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        .bold {
+            font-weight: bold;
+        }
+
+        .right {
+            float: right;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <a href="#">home</a>
+        <a href="#">banking</a>
+        <a href="#">blockchain</a>
+        <a href="#">cryptocurrencies</a>
+        <a href="#">finance</a>
+        <a href="#">markets</a>
+        <a href="#">podcast</a>
+        <a href="#">events</a>
+        <a href="#">learn</a>
+        <a href="#">regulation</a>
+        <a href="#">technology</a>
+    </header>
+
+    <div class="container">
+        <section>
+            <h1>Oranges now costing $20 in yr 2022 â $19.66 in yr 2023</h1>
+
+            <p>Orange Prices, 2022-2023 ($20)</p>
+            <p>Per the U.S. Bureau of Labor Statistics, costs of oranges are <span style="color: green;">1.69% lower</span> in the yr 2023
+                versus 2022 (a $0.34 change in USD value).</p>
+
+            <p><span class="bold">Between 2022 & 2023:</span> Oranges had an avg. increase rate of <span
+                    style="color: green;">-1.69% each year</span>. To
+                explain, oranges at $20 in the yr 2022 would now be $19.66 in yr 2023 to buy same
+                amount. Compared to the total increase rate of 3.97% during this same time, the change
+                for oranges was much more decreased.</p>
+
+            <p><span class="bold">During the yr 2022:</span> Costs changed by 11.58%, that is much more than the typical change
+                each year for oranges during the 2022-2023 time frame. Compared to <a href="#">all item increase</a> in
+                the yr 2022 (8%), the change for oranges was greatly higher.</p>
+
+            <p style="text-align: center;"><span class="bold">Price Change for Oranges from the yr 1997</span></p>
+            <p style="text-align: center;">User Price Index, U.S. Bureau of Labor Statistics</p>
+
+            <p>Years with most price differences: 1998 (28.08%), 1999 (24.12%), along with 2000
+                (-14.63%).</p>
+
+            <p><span class="bold">View change in prices for other stuff</span><br>
+                <a href="#">Funds and loans</a> Â· <a href="#">Health care</a> Â· <a href="#">Loaf of Bread</a> Â· <a
+                    href="#">T.V.s</a> Â· <a href="#">More</a>
+            </p>
+
+            <p><span class="bold">Value of $20.00 from yr 2022</span></p>
+            <p>Listed are figured values of equal worth in oranges, over some time, for $20 from the yr
+                2022. Shown sums are equal in what can be bought at the time:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>USD Worth</th>
+                        <th>Price Change</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2022</td>
+                        <td>$20.00</td>
+                        <td>11.58%</td>
+                    </tr>
+                    <tr>
+                        <td>2023</td>
+                        <td>$19.66</td>
+                        <td>-1.69%*</td>
+                    </tr>
+                </tbody>
+            </table>
+            <p>* May change. See <a href="#">inflation over-view</a> for details.<br>
+                ** Long times of 0% usually say bad info. This could increase later.</p>
+
+            <p>Raw User Price Index info via U.S. Bureau of Labor Stats. for <span style="font-style: italic;">Oranges</span>:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>Year</th>
+                        <th>1997</th>
+                        <th>1998</th>
+                        <th>1999</th>
+                        <th>2000</th>
+                        <th>2001</th>
+                        <th>2002</th>
+                        <th>2003</th>
+                        <th>2004</th>
+                        <th>200</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>CPI</td>
+                        <td>100.000</td>
+                        <td>128.077</td>
+                        <td>158.969</td>
+                        <td>135.708</td>
+                        <td>141.992</td>
+                        <td>150.338</td>
+                        <td>152.462</td>
+                        <td>162.131</td>
+                        <td>17</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p><span class="bold">Check oranges values for increasing</span></p>
+            <p>Begin the increased cost form:</p>
+
+            <p>CPI for yr 2023 / CPI for yr 2022 * 2022 USD worth = 2023 USD worth</p>
+
+            <p>Then set the old CPI numbers from above. The CPI for Oranges was 299.766 in the yr
+                2022 and also 294.714 in yr 2023:</p>
+
+            <p>294.714 / 299.766 * $20 = <span class="bold">$19.66</span></p>
+
+            <p>To Explain, per the U.S. Bureau of Labor Stats., $20 in the yr 2022 has same "worth" as
+                $19.66 in the yr 2023 (in the CPI items of Oranges).</p>
+
+            <p>Data By: U.S. Bureau of Labor Stats. did start watching the <a href="#">User Price Index</a> for Oranges
+                from yr 1997. Plus oranges, the data makes monthly values on price differences paid by
+                most people for all goods along with services.</p>
+
+            <p>>> <a href="#">Read more on increasing values and using funds.</a></p>
+
+            <p>In other countries:</p>
+            <ul>
+                <li><a href="#">Canada Increase</a></li>
+                <li><a href="#">U.K. Increase</a></li>
+                <li><a href="#">Australia Increase</a></li>
+                <li><a href="#">Euro Increase</a></li>
+                <li><a href="#">Venezuela Increase</a></li>
+            </ul>
+        </section>
+
+        <div class="sidebar">
+            <h2>Orange Price Change
+                Calculator</h2>
+            <label for="price">Price</label>
+            <input type="text" id="price" placeholder="$">
+            <label for="beginYear">Begin year</label>
+            <input type="text" id="beginYear">
+            <label for="finishYear">Finish year</label>
+            <input type="text" id="finishYear">
+            <button>Check Price Change</button>
+
+            <p>View price change for:</p>
+            <ul>
+                <li><a href="#">Cellphone data plans</a></li>
+                <li><a href="#">Saint Paul, Minnesota</a></li>
+                <li><a href="#">T.V.s</a></li>
+                <li><a href="#">Entire CPI item list</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <div class="container">
+            <div style="float: left; width: 33.33%;">
+                <h4>GET IN TOUCH</h4>
+                <p>Justin Perrey</p>
+                <p><a href="mailto:justin@perreyhometeam.com">justin@perreyhometeam.com</a></p>
+                <p><a href="tel:(317) 286-6588">(317) 286-6588</a></p>
+                <p>7900 E US 36
+                    Avon, IN 46123</p>
+            </div>
+            <div style="float: left; width: 33.33%;">
+                <h4>EXPLORE</h4>
+                <p><a href="#">Meet Our Agents</a></p>
+                <p><a href="#">Client Testimonials</a></p>
+                <p><a href="#">Instant Home Evaluation</a></p>
+                <p><a href="#">Mortgage Calculator</a></p>
+                <p><a href="#">Visit our Blog</a></p>
+            </div>
+            <div style="float: left; width: 33.33%;">
+                <h4>REAL ESTATE SEARCH</h4>
+                <p><a href="#">Search Indianapolis</a></p>
+                <p><a href="#">Search West Indy</a></p>
+                <p><a href="#">Search North Indy</a></p>
+                <p><a href="#">Search Downtown Indy</a></p>
+                <p><a href="#">Search South Indy</a></p>
+            </div>
+            <div style="clear: both;"></div>
+            <p>&copy; 2021 The Perry Home Team | All Rights Reserved</p>
+        </div>
+    </footer>
+</body>
+
+</html>

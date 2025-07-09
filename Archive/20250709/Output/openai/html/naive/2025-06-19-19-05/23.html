@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexito's World</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #282828;
+            color: #e5e5e5;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background-color: #1c1c1c;
+        }
+
+        .header h1 {
+            font-size: 36px;
+            margin: 0;
+        }
+
+        .header p {
+            font-size: 18px;
+            margin: 10px 0 20px 0;
+            color: #a5a5a5;
+        }
+
+        .nav {
+            font-size: 14px;
+            margin: 20px 0;
+        }
+
+        .content {
+            max-width: 720px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .line {
+            width: 100%;
+            height: 1px;
+            background-color: #f5a623;
+            margin: 20px 0;
+        }
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+
+        .tags {
+            display: flex;
+            gap: 10px;
+        }
+
+        .tag {
+            background-color: #1c1c1c;
+            padding: 5px 10px;
+            border-radius: 3px;
+        }
+
+        .main-content h1 {
+            font-size: 32px;
+            line-height: 1.4;
+            margin: 20px 0;
+            color: #e5e5e5;
+        }
+
+        .main-content p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        .code-block {
+            background-color: #1c1c1c;
+            padding: 20px;
+            border-radius: 5px;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
+            margin: 20px 0;
+            font-size: 14px;
+        }
+
+        .support {
+            background-color: #000;
+            padding: 20px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 40px;
+        }
+
+        .support button {
+            background-color: #f5a623;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            color: #1c1c1c;
+            border-radius: 3px;
+        }
+
+        .section-title {
+            font-size: 24px;
+            line-height: 1.4;
+            margin: 40px 0 20px;
+            color: #e5e5e5;
+        }
+
+        .articles {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .article {
+            background-color: #1c1c1c;
+            padding: 15px;
+            border-radius: 5px;
+            width: calc(33.333% - 20px);
+            box-sizing: border-box;
+        }
+
+        .article p {
+            margin: 15px 0 5px;
+        }
+
+        .article-date {
+            color: #a5a5a5;
+        }
+
+        .footer {
+            background-color: #1c1c1c;
+            text-align: center;
+            padding: 20px;
+            margin-top: 40px;
+        }
+
+        .footer a {
+            color: #e5e5e5;
+            margin: 0 10px;
+            text-decoration: none;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <header class="header">
+        <h1>Alexito's World</h1>
+        <p>A world of coding by Alejandro Martinez</p>
+        <nav class="nav">
+            | Swift Development
+        </nav>
+    </header>
+
+    <div class="content">
+        <div class="info">
+            <span>June 5, 2016</span>
+            <span> 1 min read</span>
+        </div>
+
+        <div class="line"></div>
+
+        <div class="tags">
+            <span class="tag">Scripting</span>
+            <span class="tag">Swift</span>
+            <span class="tag">Tips and Tricks</span>
+        </div>
+
+        <div class="main-content">
+            <h1>Poor man's hot reloading for Swift scripts</h1>
+            <p>The other day, while I was writing a <span style="color: #f5a623;">Swift script</span>, I added an option to make it run continuously so it could be on a server doing its job without stopping. <i>For eva.</i></p>
+            <p>To implement that I just used a <span style="background-color: #1c1c1c;">repeat</span> loop creating <span style="background-color: #1c1c1c;">NSTask</span>s that called the same script. <i>Scripts recursion.</i></p>
+            <p>The funny part is that with this simple thing I found a quick way to writing the script, almost as a hot reloading tool.</p>
+            <div class="code-block">
+                let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() <br>
+                task.launchPath = Process.arguments.first! task.arguments = <br>
+                Array(Process.arguments.suffixFrom(1).filter({$0 != reload})) task.launch() task.waitUntilExit() } while true } Just drop this snippet at the top of the script, and when you call it with the <span style="background-color: #1c1c1c;">reload</span> argument it will start looping indefinitely.
+            </div>
+            <p>Then you can just call it from the command line like:</p>
+            <p>main.swift reload other params When that is done you can just modify the script and save the file, in the next execution your changes will be visible. If it fails to compile is not a big deal, the main script is still in memory without those changes so it will just loop and try to run it again.</p>
+            <p>Obviously is not a big deal, is a bit annoying seeing all the console spammed, but I found it quite useful while I'm developing short scripts that I want to iterate on.</p>
+            <p>Remember that you can use <span style="color: #f5a623;">OS signals</span> to stop the task when the main script is killed.</p>
+
+            <p>Share this article on Twitter</p>
+        </div>
+
+        <div class="support">
+            <p>If you liked this article please consider supporting me</p>
+            <button>Buy me a coffee</button>
+        </div>
+
+        <h2 class="section-title">Continue reading</h2>
+        <div class="articles">
+            <div class="article">
+                <p>Next article</p>
+                <h3>Using closures to simplify</h3>
+                <p class="article-date">June 7, 2016</p>
+            </div>
+            <div class="article">
+                <p>Previous article</p>
+                <h3>It's a trap! Catch OS signals in Swift.</h3>
+                <p class="article-date">May 29, 2016</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Similar suggested articles</h2>
+        <div class="articles">
+            <div class="article">
+                <p>Based on tag <span style="color: #f5a623;">Swift</span></p>
+                <h3>Backport SwiftUI modifiers</h3>
+                <p class="article-date">October 20, 2023</p>
+            </div>
+            <div class="article">
+                <p>Based on tag <span style="color: #f5a623;">Scripting</span></p>
+                <h3>Swift script to export lists from Reminders.app</h3>
+                <p class="article-date">May 8, 2019</p>
+            </div>
+            <div class="article">
+                <p>Based on tag <span style="color: #f5a623;">Tips and Tricks</span></p>
+                <h3>Swift Collection's prefix for quick tests</h3>
+                <p class="article-date">March 16, 2019</p>
+            </div>
+        </div>
+
+        <h2 class="section-title">Or check out this article tags</h2>
+        <div class="tags">
+            <span class="tag">Scripting</span>
+            <span class="tag">Swift</span>
+            <span class="tag">Tips and Tricks</span>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <a href="#">RSS</a> |
+        <a href="#">alexito4</a> |
+        <a href="#">alexito4</a> |
+        <a href="#">alexito4</a>
+        <p>Generated using <span style="color: #f5a623;">Publish</span></p>
+    </footer>
+</body>
+</html>

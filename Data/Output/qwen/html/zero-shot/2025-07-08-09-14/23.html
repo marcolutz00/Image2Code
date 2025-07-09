@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexito's World</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2a2a2a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+            color: #fff;
+        }
+        main {
+            background-color: #222;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            text-align: left;
+        }
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        .article-header .date {
+            font-size: 14px;
+            color: #fff;
+        }
+        .article-header .read-time {
+            font-size: 14px;
+            color: #fff;
+        }
+        .article-header .tags {
+            display: flex;
+            gap: 10px;
+        }
+        .article-header .tags button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            cursor: pointer;
+        }
+        .article-header .tags button:hover {
+            background-color: #555;
+        }
+        .article-content {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .article-content h1 {
+            color: #fff;
+            margin-bottom: 20px;
+        }
+        .article-content p {
+            margin-bottom: 10px;
+        }
+        .article-content a {
+            color: #ff6300;
+            text-decoration: none;
+        }
+        .article-content a:hover {
+            text-decoration: underline;
+        }
+        .article-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 20px;
+        }
+        .article-footer .share {
+            font-size: 16px;
+            color: #ff6300;
+            text-decoration: none;
+        }
+        .article-footer .share:hover {
+            text-decoration: underline;
+        }
+        .article-footer .support {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .article-footer .support button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #ff6300;
+            color: #222;
+            cursor: pointer;
+        }
+        .article-footer .support button:hover {
+            background-color: #e64a19;
+        }
+        .article-footer .next {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .article-footer .next button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            cursor: pointer;
+        }
+        .article-footer .next button:hover {
+            background-color: #555;
+        }
+        .article-footer .previous {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .article-footer .previous button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            cursor: pointer;
+        }
+        .article-footer .previous button:hover {
+            background-color: #555;
+        }
+        .article-footer .similar {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .article-footer .similar button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            cursor: pointer;
+        }
+        .article-footer .similar button:hover {
+            background-color: #555;
+        }
+        .article-footer .check {
+            display: flex;
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .article-footer .check button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            cursor: pointer;
+        }
+        .article-footer .check button:hover {
+            background-color: #555;
+        }
+        .article-footer .tags {
+            display: flex;
+            gap: 10px;
+            margin-top: 20px;
+        }
+        .article-footer .tags button {
+            padding: 5px 10px;
+            border: none;
+            border-radius: 5px;
+            background-color: #444;
+            color: #fff;
+            cursor: pointer;
+        }
+        .article-footer .tags button:hover {
+            background-color: #555;
+        }
+        footer {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+            color: #fff;
+        }
+        footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Alexito's World</h1>
+        <p>A world of coding ð, by Alejandro Martinez</p>
+    </header>
+    <main>
+        <div class="article-header">
+            <div class="date">June 5, 2016</div>
+            <div class="read-time">1 min read</div>
+        </div>
+        <div class="tags">
+            <button>Scripting</button>
+            <button>Swift</button>
+            <button>Tips and Tricks</button>
+        </div>
+        <h1>Poor man's hot reloading for Swift scripts</h1>
+        <p>The other day, while I was writing a Swift script, I added an option to make it run continuously so it could be on a server doing its job without stopping. for eva.</p>
+        <p>To implement that I just used a <code>repeat</code> loop creating <code>NSTask</code>s that called the same script. Scripts recursion.</p>
+        <p>The funny part is that with this simple thing I found a quick way to writing the script, almost as a hot reloading tool.</p>
+        <pre><code>let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() task.arguments = Array(Process.arguments.suffixFrom(1).filter{ $0 != reload }) task.launchPath = Process.arguments.first! task.launch() task.waitUntilExit() } while true } Just drop this snippet at the top of the script, and when you call it with the <code>reload</code> argument it will start looping indefinitely.</code></pre>
+        <p>Then you can just call it from the command line like:</p>
+        <pre><code>main.swift reload other params</code></pre>
+        <p>When that is done you can just modify the script and save the file, in the next execution your changes will be visible. If it fails to compile is not a big deal, the main script is still in memory without those changes so it will just loop and try to run it again.</p>
+        <p>Obviously is not a big deal, is a bit annoying seeing all the console spammed, but I found it quite useful while I'm developing short scripts that I want to iterate on.</p>
+        <p>Remember that you can use OS signals to stop the task when the main script is killed.</p>
+        <div class="article-footer">
+            <div class="share">
+                <a href="#">Share this article on Twitter</a>
+            </div>
+            <div class="support">
+                <button>Buy me a coffee</button>
+            </div>
+            <div class="next">
+                <button>Next article</button>
+            </div>
+            <div class="previous">
+                <button>Previous article</button>
+            </div>
+            <div class="similar">
+                <button>Based on tag Swift</button>
+                <button>Based on tag Scripting</button>
+                <button>Based on tag Tips and Tricks</button>
+            </div>
+            <div class="check">
+                <button>Or check out this article</button>
+            </div>
+            <div class="tags">
+                <button>Scripting</button>
+                <button>Swift</button>
+                <button>Tips and Tricks</button>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>RSS</p>
+        <a href="#">RSS</a>
+        <p>alexito4 | alexito4 | alexito4</p>
+    </footer>
+</body>
+</html>

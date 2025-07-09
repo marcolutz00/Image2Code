@@ -1,0 +1,1066 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "pass",
+      "1.4.10": "pass",
+      "1.4.12": "pass",
+      "2.1.1+2.1.2": "pass",
+      "2.4.3": "pass",
+      "2.4.6": "pass",
+      "2.4.7": "pass"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H42.2",
+        "Principle1.Guideline1_3.1_3_1.G141"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
+        "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+        "https://dequeuniversity.com/rules/axe/4.10/empty-heading"
+      ],
+      "impact": "moderate",
+      "name": "Headings; Wrong Order, Empty & Missing Headings;",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+          "source": "axe-core",
+          "title": "Heading levels should only increase by one",
+          "description": "Ensure the order of headings is semantically correct",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "heading-order",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Heading order invalid"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<h5>[Source: Itar Tass, Vienna, 07Apr16]</h5>",
+            "target": [
+              "h5"
+            ],
+            "failureSummary": "Fix any of the following:\n  Heading order invalid"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
+          "source": "axe-core",
+          "title": "Page should contain a level-one heading",
+          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+          "impact": "moderate",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "page-has-heading-one",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Page must have a level-one heading"
+              }
+            ],
+            "none": [],
+            "impact": "moderate",
+            "html": "<html>",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix all of the following:\n  Page must have a level-one heading"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+          "source": "lighthouse",
+          "title": "Heading elements are not in a sequentially-descending order",
+          "description": "Properly ordered headings that do not skip levels convey the semantic structure of the page, making it easier to navigate and understand when using assistive technologies. [Learn more about heading order](https://dequeuniversity.com/rules/axe/4.10/heading-order).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-H5",
+              "path": "1,HTML,1,BODY,2,BLOCKQUOTE,0,BLOCKQUOTE,0,FONT,11,H5",
+              "selector": "blockquote > blockquote > font > h5",
+              "boundingRect": {
+                "top": 2407,
+                "bottom": 2447,
+                "left": 88,
+                "right": 892,
+                "width": 804,
+                "height": 40
+              },
+              "snippet": "<h5>",
+              "nodeLabel": "[Source: Itar Tass, Vienna, 07Apr16]",
+              "explanation": "Fix any of the following:\n  Heading order invalid"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle3.Guideline3_1.3_1_1.H57.2",
+        "Principle3.Guideline3_1.3_1_1.H57.3.Lang",
+        "Principle3.Guideline3_1.3_1_1.H57.3.XmlLang",
+        "Principle3.Guideline3_1.3_1_2.H58.1.Lang",
+        "Principle3.Guideline3_1.3_1_2.H58.1.XmlLang"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+        "https://dequeuniversity.com/rules/axe/4.10/html-lang-valid",
+        "https://dequeuniversity.com/rules/axe/4.10/html-xml-lang-mismatch",
+        "https://dequeuniversity.com/rules/axe/4.10/valid-lang"
+      ],
+      "impact": "serious",
+      "name": "Language; Document Lang; Missing & Invalid",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+          "source": "axe-core",
+          "title": "<html> element must have a lang attribute",
+          "description": "Ensure every HTML document has a lang attribute",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-lang",
+                "data": {
+                  "messageKey": "noLang"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "The <html> element does not have a lang attribute"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<html>",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute"
+          }
+        },
+        {
+          "id": "Principle3.Guideline3_1.3_1_1.H57.2",
+          "source": "pa11y",
+          "title": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
+          "description": "<html><head><meta charset=\"utf-8\"><ti...</html>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
+            "type": "error",
+            "typeCode": 1,
+            "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
+            "context": "<html><head><meta charset=\"utf-8\"><ti...</html>",
+            "selector": "html",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+          "source": "lighthouse",
+          "title": "`<html>` element does not have a `[lang]` attribute",
+          "description": "If a page doesn't specify a `lang` attribute, a screen reader assumes that the page is in the default language that the user chose when setting up the screen reader. If the page isn't actually in the default language, then the screen reader might not announce the page's text correctly. [Learn more about the `lang` attribute](https://dequeuniversity.com/rules/axe/4.10/html-has-lang).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-HTML",
+              "path": "1,HTML",
+              "selector": "html",
+              "boundingRect": {
+                "top": 0,
+                "bottom": 2975,
+                "left": 0,
+                "right": 980,
+                "width": 980,
+                "height": 2975
+              },
+              "snippet": "<html>",
+              "nodeLabel": "html",
+              "explanation": "Fix any of the following:\n  The <html> element does not have a lang attribute"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_1.1_1_1.H37",
+        "Principle1.Guideline1_1.1_1_1.H67.1",
+        "Principle1.Guideline1_1.1_1_1.H36"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+        "https://dequeuniversity.com/rules/axe/4.10/input-image-alt"
+      ],
+      "impact": "critical",
+      "name": "Alt-Text; Images;",
+      "amount_nodes_failed": 4,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "axe-core",
+          "title": "Images must have alternative text",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-alt",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an alt attribute"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<img height=\"67\" src=\"http://www.derechos.org/nizkor/img/equiponizkor.gif\" width=\"285\">",
+            "target": [
+              "img[height=\"67\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "axe-core",
+          "title": "Images must have alternative text",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-alt",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an alt attribute"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<img height=\"38\" src=\"/img/dere/whites.gif\" width=\"27\">",
+            "target": [
+              "img[height=\"38\"][src$=\"whites.gif\"][width=\"27\"]:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "axe-core",
+          "title": "Images must have alternative text",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-alt",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an alt attribute"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<img height=\"38\" src=\"/img/dere/whites.gif\" width=\"27\">",
+            "target": [
+              "img[height=\"38\"][src$=\"whites.gif\"][width=\"27\"]:nth-child(4)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "axe-core",
+          "title": "Images must have alternative text",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-alt",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an alt attribute"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<img height=\"68\" src=\"/img/dere/dereni.gif\" width=\"69\">",
+            "target": [
+              "img[height=\"68\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_1.1_1_1.H37",
+          "source": "pa11y",
+          "title": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+          "description": "<img height=\"67\" src=\"http://www.derechos.org/nizkor/img/equiponizkor.gif\" width=\"285\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+            "context": "<img height=\"67\" src=\"http://www.derechos.org/nizkor/img/equiponizkor.gif\" width=\"285\">",
+            "selector": "html > body > center:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(3) > font > b > img",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_1.1_1_1.H37",
+          "source": "pa11y",
+          "title": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+          "description": "<img height=\"38\" src=\"/img/dere/whites.gif\" width=\"27\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+            "context": "<img height=\"38\" src=\"/img/dere/whites.gif\" width=\"27\">",
+            "selector": "html > body > center:nth-child(4) > img:nth-child(2)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_1.1_1_1.H37",
+          "source": "pa11y",
+          "title": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+          "description": "<img height=\"38\" src=\"/img/dere/whites.gif\" width=\"27\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+            "context": "<img height=\"38\" src=\"/img/dere/whites.gif\" width=\"27\">",
+            "selector": "html > body > center:nth-child(4) > img:nth-child(4)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "lighthouse",
+          "title": "Image elements do not have `[alt]` attributes",
+          "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-2-IMG",
+              "path": "1,HTML,1,BODY,0,CENTER,0,TABLE,0,TBODY,0,TR,2,TD,0,FONT,0,B,0,IMG",
+              "selector": "td > font > b > img",
+              "boundingRect": {
+                "top": 11,
+                "bottom": 78,
+                "left": 670,
+                "right": 955,
+                "width": 285,
+                "height": 67
+              },
+              "snippet": "<img height=\"67\" src=\"http://www.derechos.org/nizkor/img/equiponizkor.gif\" width=\"285\">",
+              "nodeLabel": "td > font > b > img",
+              "explanation": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "lighthouse",
+          "title": "Image elements do not have `[alt]` attributes",
+          "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-3-IMG",
+              "path": "1,HTML,1,BODY,3,CENTER,1,IMG",
+              "selector": "body > center > img",
+              "boundingRect": {
+                "top": 2488,
+                "bottom": 2526,
+                "left": 348,
+                "right": 375,
+                "width": 27,
+                "height": 38
+              },
+              "snippet": "<img height=\"38\" src=\"/img/dere/whites.gif\" width=\"27\">",
+              "nodeLabel": "body > center > img",
+              "explanation": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "lighthouse",
+          "title": "Image elements do not have `[alt]` attributes",
+          "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-IMG",
+              "path": "1,HTML,1,BODY,3,CENTER,3,IMG",
+              "selector": "body > center > img",
+              "boundingRect": {
+                "top": 2488,
+                "bottom": 2526,
+                "left": 547,
+                "right": 574,
+                "width": 27,
+                "height": 38
+              },
+              "snippet": "<img height=\"38\" src=\"/img/dere/whites.gif\" width=\"27\">",
+              "nodeLabel": "body > center > img",
+              "explanation": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "lighthouse",
+          "title": "Image elements do not have `[alt]` attributes",
+          "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-5-IMG",
+              "path": "1,HTML,1,BODY,3,CENTER,6,TABLE,0,TBODY,0,TR,0,TD,0,A,0,IMG",
+              "selector": "tr > td > a > img",
+              "boundingRect": {
+                "top": 2756,
+                "bottom": 2824,
+                "left": 11,
+                "right": 80,
+                "width": 69,
+                "height": 68
+              },
+              "snippet": "<img height=\"68\" src=\"/img/dere/dereni.gif\" width=\"69\">",
+              "nodeLabel": "tr > td > a > img",
+              "explanation": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+        "https://dequeuniversity.com/rules/axe/4.10/region",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level"
+      ],
+      "impact": "moderate",
+      "name": "Landmark & Region; Missing & Unique Landmarks;",
+      "amount_nodes_failed": 4,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+          "source": "axe-core",
+          "title": "Document should have one main landmark",
+          "description": "Ensure the document has a main landmark",
+          "impact": "moderate",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "page-has-main",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Document does not have a main landmark"
+              }
+            ],
+            "none": [],
+            "impact": "moderate",
+            "html": "<html>",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix all of the following:\n  Document does not have a main landmark"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<center>",
+            "target": [
+              "body > center:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<blockquote>",
+            "target": [
+              "body > blockquote"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<center>",
+            "target": [
+              "center:nth-child(4)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_1.1_1_1.H30.2",
+        "Principle4.Guideline4_1.4_1_2.H91.A.EmptyNoId",
+        "Principle4.Guideline4_1.4_1_2.H91.A.NoContent"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/link-name"
+      ],
+      "impact": "serious",
+      "name": "Links; Missing descriptive content of <a>;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "axe-core",
+          "title": "Links must have discernible text",
+          "description": "Ensure links have discernible text",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element does not have text that is visible to screen readers"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
+              }
+            ],
+            "all": [],
+            "none": [
+              {
+                "id": "focusable-no-name",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element is in tab order and does not have accessible text"
+              }
+            ],
+            "impact": "serious",
+            "html": "<a href=\"#\"><img height=\"68\" src=\"/img/dere/dereni.gif\" width=\"69\"></a>",
+            "target": [
+              "td:nth-child(1) > a"
+            ],
+            "failureSummary": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_1.1_1_1.H30.2",
+          "source": "pa11y",
+          "title": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+          "description": "<a href=\"#\"><img height=\"68\" src=\"/img/dere...</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H30.2",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Img element is the only content of the link, but is missing alt text. The alt text should describe the purpose of the link.",
+            "context": "<a href=\"#\"><img height=\"68\" src=\"/img/dere...</a>",
+            "selector": "html > body > center:nth-child(4) > table > tbody > tr > td:nth-child(1) > a",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-name",
+          "source": "lighthouse",
+          "title": "Links do not have a discernible name",
+          "description": "Link text (and alternate text for images, when used as links) that is discernible, unique, and focusable improves the navigation experience for screen reader users. [Learn how to make links accessible](https://dequeuniversity.com/rules/axe/4.10/link-name).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-6-A",
+              "path": "1,HTML,1,BODY,3,CENTER,6,TABLE,0,TBODY,0,TR,0,TD,0,A",
+              "selector": "tbody > tr > td > a",
+              "boundingRect": {
+                "top": 2810,
+                "bottom": 2828,
+                "left": 11,
+                "right": 80,
+                "width": 69,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "tbody > tr > td > a",
+              "explanation": "Fix all of the following:\n  Element is in tab order and does not have accessible text\n\nFix any of the following:\n  Element does not have text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H49.Center"
+      ],
+      "url": [
+        null
+      ],
+      "impact": "minor",
+      "name": "Elements; Center;",
+      "amount_nodes_failed": 4,
+      "issues": [
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H49.Center",
+          "source": "pa11y",
+          "title": "Presentational markup used that has become obsolete in HTML5.",
+          "description": "<center><table width=\"97%\"><tbody><tr><...</center>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Center",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Presentational markup used that has become obsolete in HTML5.",
+            "context": "<center><table width=\"97%\"><tbody><tr><...</center>",
+            "selector": "html > body > center:nth-child(1)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H49.Center",
+          "source": "pa11y",
+          "title": "Presentational markup used that has become obsolete in HTML5.",
+          "description": "<center><font></font></center>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Center",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Presentational markup used that has become obsolete in HTML5.",
+            "context": "<center><font></font></center>",
+            "selector": "html > body > center:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(2) > center",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H49.Center",
+          "source": "pa11y",
+          "title": "Presentational markup used that has become obsolete in HTML5.",
+          "description": "<center><h2>\nOSCE registers record numb...</center>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Center",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Presentational markup used that has become obsolete in HTML5.",
+            "context": "<center><h2>\nOSCE registers record numb...</center>",
+            "selector": "html > body > blockquote > blockquote > font > center",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H49.Center",
+          "source": "pa11y",
+          "title": "Presentational markup used that has become obsolete in HTML5.",
+          "description": "<center><a href=\"#\" class=\"button\">Book...</center>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Center",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Presentational markup used that has become obsolete in HTML5.",
+            "context": "<center><a href=\"#\" class=\"button\">Book...</center>",
+            "selector": "html > body > center:nth-child(4)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H49.Font"
+      ],
+      "url": [
+        null
+      ],
+      "impact": "minor",
+      "name": "Elements; Font;",
+      "amount_nodes_failed": 8,
+      "issues": [
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H49.Font",
+          "source": "pa11y",
+          "title": "Presentational markup used that has become obsolete in HTML5.",
+          "description": "<font>&nbsp;&nbsp;&nbsp;&nbsp;<b>Info...</font>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Font",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Presentational markup used that has become obsolete in HTML5.",
+            "context": "<font>&nbsp;&nbsp;&nbsp;&nbsp;<b>Info...</font>",
+            "selector": "html > body > center:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(1) > font",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H49.Font",
+          "source": "pa11y",
+          "title": "Presentational markup used that has become obsolete in HTML5.",
+          "description": "<font></font>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Font",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Presentational markup used that has become obsolete in HTML5.",
+            "context": "<font></font>",
+            "selector": "html > body > center:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(2) > center > font",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H49.Font",
+          "source": "pa11y",
+          "title": "Presentational markup used that has become obsolete in HTML5.",
+          "description": "<font><b><img height=\"67\" src=\"http:/...</font>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Font",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Presentational markup used that has become obsolete in HTML5.",
+            "context": "<font><b><img height=\"67\" src=\"http:/...</font>",
+            "selector": "html > body > center:nth-child(1) > table > tbody > tr:nth-child(1) > td:nth-child(3) > font",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H49.Font",
+          "source": "pa11y",
+          "title": "Presentational markup used that has become obsolete in HTML5.",
+          "description": "<font><div style=\"float:left\">&nbsp;&...</font>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Font",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Presentational markup used that has become obsolete in HTML5.",
+            "context": "<font><div style=\"float:left\">&nbsp;&...</font>",
+            "selector": "html > body > center:nth-child(1) > table > tbody > tr:nth-child(2) > td > b > font",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H49.Font",
+          "source": "pa11y",
+          "title": "Presentational markup used that has become obsolete in HTML5.",
+          "description": "<font>Bookshop</font>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Font",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Presentational markup used that has become obsolete in HTML5.",
+            "context": "<font>Bookshop</font>",
+            "selector": "html > body > center:nth-child(1) > table > tbody > tr:nth-child(2) > td > b > font > div > a:nth-child(1) > font",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H49.Font",
+          "source": "pa11y",
+          "title": "Presentational markup used that has become obsolete in HTML5.",
+          "description": "<font>Donate</font>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Font",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Presentational markup used that has become obsolete in HTML5.",
+            "context": "<font>Donate</font>",
+            "selector": "html > body > center:nth-child(1) > table > tbody > tr:nth-child(2) > td > b > font > div > a:nth-child(2) > font",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H49.Font",
+          "source": "pa11y",
+          "title": "Presentational markup used that has become obsolete in HTML5.",
+          "description": "<font><h3>\n07Apr16\n</h3><hr><center><...</font>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Font",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Presentational markup used that has become obsolete in HTML5.",
+            "context": "<font><h3>\n07Apr16\n</h3><hr><center><...</font>",
+            "selector": "html > body > blockquote > blockquote > font",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H49.Font",
+          "source": "pa11y",
+          "title": "Presentational markup used that has become obsolete in HTML5.",
+          "description": "<font><b>This document has been publi...</font>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H49.Font",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Presentational markup used that has become obsolete in HTML5.",
+            "context": "<font><b>This document has been publi...</font>",
+            "selector": "html > body > center:nth-child(4) > table > tbody > tr > td:nth-child(2) > font",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    }
+  ]
+}

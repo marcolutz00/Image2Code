@@ -4,6 +4,8 @@ import ollama
 
 # ToDo: Define Model
 MODEL = "llama3.2-vision:latest"
+MAX_TOKENS = 6144
+CONTEXT_LENGTH = 32768 
 
 class LlamaStrategy(LLMStrategy):
     def __init__(self):
@@ -20,7 +22,11 @@ class LlamaStrategy(LLMStrategy):
                 'role': 'user',
                 'content': prompt,
                 'images': [image_data]
-            }]
+            }],
+            options={
+                "num_predict": MAX_TOKENS,
+                "num_ctx": CONTEXT_LENGTH
+            }
         )
 
         return response["message"]["content"], None
@@ -31,7 +37,11 @@ class LlamaStrategy(LLMStrategy):
             messages=[{
                 'role': 'user',
                 'content': prompt
-            }]
+            }],
+            options={
+                "num_predict": MAX_TOKENS,
+                "num_ctx": CONTEXT_LENGTH
+            }
         )
 
         return response["message"]["content"], None

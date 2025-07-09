@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Simpson - Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+        }
+        nav {
+            background-color: #4CAF50;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        main {
+            padding: 20px;
+            background-color: white;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        article {
+            margin: 20px 0;
+        }
+        article h2 {
+            color: #4CAF50;
+            margin: 0 0 10px;
+        }
+        article p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin: 0 0 20px;
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>David Simpson</h1>
+        <p>deliver. iterate.</p>
+    </header>
+    <nav>
+        <a href="#">Blog</a>
+        <a href="#">About</a>
+        <a href="#">Projects</a>
+        <a href="#">Apps</a>
+    </nav>
+    <main>
+        <article>
+            <h2>Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</h2>
+            <p>Posted by David Simpson on May 22, 2014. <a href="#">Return to index</a>.</p>
+            <p>Tags:</p>
+            <p>Following yesterday's Atlassian security advisory for Confluence, it looks like there are some added steps required for people who have user macros. Be careful folks.</p>
+            <p>@BergerofLondon spotted this first:</p>
+            <blockquote>
+                <p>Following upgrade to Confluence 5.5.1 the values of parameters in user macros cannot be evaluated the same way. Discovered this the hard way</p>
+                <footer>â Berger (@BergerofLondon) May 22, 2014</footer>
+            </blockquote>
+            <blockquote>
+                <p>You can't use the same shorthand you use for standard variables. #if ($paramistrue) will always evaluate as true.</p>
+                <footer>â Berger (@BergerofLondon) May 22, 2014</footer>
+            </blockquote>
+            <blockquote>
+                <p>You now have to use things like #if ($paramistrue == true) or #if ($paramistrue == false).</p>
+                <footer>â Berger (@BergerofLondon) May 22, 2014</footer>
+            </blockquote>
+            <blockquote>
+                <p>@baitman For strings I can no longer do #if ($paramfoo), I have to do #if ($paramfoo).length() > 0. Which is crazy.</p>
+                <footer>â Berger (@BergerofLondon) May 22, 2014</footer>
+            </blockquote>
+            <p>The update to atlassian-xwork-core-1.17.jar means you have to be more specific with your coding. Thanks to @BergerofLondon for the heads up.</p>
+        </article>
+    </main>
+    <footer>
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">LinkedIn</a>
+        <a href="#">GitHub</a>
+        <a href="#">Instagram</a>
+    </footer>
+</body>
+</html>

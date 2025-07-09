@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fetch 5.8 - Your Best Friend for File Transfer</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #1a365d;
+            color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        .header {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .content {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+        .footer {
+            font-size: 14px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .footer a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .support {
+            font-size: 16px;
+            text-decoration: underline;
+            margin-top: 20px;
+        }
+        .support a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .support a:hover {
+            text-decoration: underline;
+        }
+        .topic {
+            background-color: #f0f4f8;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+        .topic h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+        .topic p {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .user {
+            font-size: 12px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        .topic .post {
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .topic .post a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .content .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content .content .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .content .content .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content .content .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content .content .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content .content .content .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .content .content .content .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content .content .content .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content .content .content .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content .content .content .content .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content .content a:hover {
+            text-decoration: underline;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content .content .timestamp {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content .content .username {
+            font-size: 12px;
+            color: #666;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content .content .content {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content .content .content p {
+            margin-bottom: 10px;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content .content .content a {
+            color: #1a365d;
+            text-decoration: none;
+        }
+        .topic .post .content .content .content .content .content .content .content .content .content .content .content .content .content .

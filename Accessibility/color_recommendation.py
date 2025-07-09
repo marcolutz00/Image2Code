@@ -236,7 +236,7 @@ def _structure_recommended_colors(blocks, html_path):
 
 
 
-def get_recommended_colors(html_path, image_path):
+def get_recommended_colors(html_path, image_path, full_output=False):
 
     modified_image_path = image_path.replace(".png", "_mod.png")
     base_name = image_path.split("/")[-1].split(".")[0]
@@ -255,6 +255,9 @@ def get_recommended_colors(html_path, image_path):
 
     # Delete modified image
     os.system(f'rm "{modified_image_path}"')
+
+    if full_output:
+        return blocks
 
     output = _structure_recommended_colors(blocks, html_path)
 

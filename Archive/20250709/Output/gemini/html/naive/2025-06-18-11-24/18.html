@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #8bc34a;
+            color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+        }
+
+        header p {
+            font-size: 1.2em;
+            margin-bottom: 0;
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        article {
+            margin-bottom: 30px;
+            background-color: white;
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        article h2 {
+            font-size: 2em;
+            font-weight: 300;
+            margin-top: 0;
+            margin-bottom: 10px;
+            color: #8bc34a;
+        }
+
+        article p {
+            margin-bottom: 15px;
+        }
+
+        article a {
+            color: #8bc34a;
+        }
+
+        .post-meta {
+            font-size: 0.9em;
+            color: #777;
+        }
+
+        .post-meta a {
+            color: #777;
+        }
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #f2f2f2;
+            color: #777;
+            margin-top: 30px;
+        }
+        .footer-icons a{
+            display: inline-block;
+            color: #8bc34a;
+            font-size: 25px;
+            padding: 3px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>David Simpson</h1>
+            <p>deliver. iterate.</p>
+            <nav>
+                <a href="#">Blog</a>
+                <a href="#">About</a>
+                <a href="#">Projects</a>
+                <a href="#">Apps</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <article>
+            <h2>Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</h2>
+            <p class="post-meta">Posted by David Simpson on May 22, 2014. <a href="#">Return to index</a>.</p>
+            <p class="post-meta">Tags:</p>
+            <p>Following yesterdays <a href="#">Atlassian security advisory for Confluence</a>, it looks like there are
+                some added steps required for people who have user macros. Be careful folks.</p>
+            <p><a href="#">@BergerofLondon</a> spotted this first:</p>
+            <p>
+                Following upgrade to Confluence 5.5.1 the values of parameters
+                in user macros cannot be evaluated the same way. Discovered
+                this the hard way
+            </p>
+            <p>Berger (<a href="#">@BergerofLondon</a>) <a href="#">May 22, 2014</a></p>
+            <p>
+                You can't use the same shorthand you use for standard variables.
+                #if ($paramistrue) will always evaluate as true.
+            </p>
+            <p>Berger (<a href="#">@BergerofLondon</a>) <a href="#">May 22, 2014</a></p>
+            <p>
+                You now have to use things like #if ($paramistrue == true) or #if
+                ($paramistrue == false).
+            </p>
+            <p>Berger (<a href="#">@BergerofLondon</a>) <a href="#">May 22, 2014</a></p>
+            <p><a href="#">@baitman</a> For strings I can no longer do #if ($paramfoo), I have
+                to do #if ($paramfoo).length() > 0. Which is crazy.</p>
+            <p>Berger (<a href="#">@BergerofLondon</a>) <a href="#">May 22, 2014</a></p>
+            <p><a href="#">@baitman</a> Also, if you're upgrading to 5.5.1 to fix the security
+                vulnerability double-check that it's upgraded xwork to 1.17. Ours
+                wasn't.</p>
+            <p>Berger (<a href="#">@BergerofLondon</a>) <a href="#">May 22, 2014</a></p>
+            <p>The update to atlassian-xwork-core-1.17.jar means you have to be more specific with
+                your coding. Thanks to <a href="#">@BergerofLondon</a> for the heads up.</p>
+        </article>
+    </div>
+    <footer>
+        <div class="footer-icons">
+            <a href="#">ï</a>
+            <a href="#">ï</a>
+            <a href="#">ï</a>
+            <a href="#">ï°</a>
+            <a href="#">ï</a>
+        </div>
+    </footer>
+</body>
+</html>

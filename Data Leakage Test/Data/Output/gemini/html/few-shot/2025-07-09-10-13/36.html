@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            color: #333;
+        }
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+        header {
+            background: #fff;
+            color: #333;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: 1px solid #e8e8e8;
+        }
+        header a {
+            color: #333;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+        header ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        header #branding {
+            float: left;
+        }
+        header #branding h1 {
+            margin: 0;
+        }
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+        header .highlight, header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+        header a:hover {
+            color: #e8491d;
+            font-weight: bold;
+        }
+        #newsletter {
+            padding: 15px;
+            color: #fff;
+            background: #35424a;
+        }
+        #newsletter h1 {
+            float: left;
+        }
+        #newsletter form {
+            float: right;
+            margin-top: 15px;
+        }
+        #newsletter input[type="email"] {
+            padding: 4px;
+            height: 25px;
+            width: 250px;
+        }
+        .button_1 {
+            height: 38px;
+            background: #e8491d;
+            border: 0;
+            padding-left: 20px;
+            padding-right: 20px;
+            color: #fff;
+        }
+        #main {
+            padding-top: 20px;
+        }
+        #main h1 {
+            font-size: 24px;
+        }
+        article#main-col {
+            float: left;
+            width: 65%;
+        }
+        aside#sidebar {
+            float: right;
+            width: 30%;
+            margin-top: 10px;
+        }
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #242943;
+            text-align: center;
+        }
+
+        /* Utility Classes */
+        .button {
+            background-color: #333;
+            color: #fff;
+            padding: 10px 15px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button:hover {
+            background-color: #555;
+        }
+
+        .dark {
+            padding: 15px;
+            background: #35424a;
+            color: #fff;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        /* Media Queries */
+        @media(max-width: 768px) {
+            header #branding,
+            header nav,
+            header nav li,
+            #newsletter h1,
+            #newsletter form,
+            #boxes .box,
+            article#main-col,
+            aside#sidebar {
+                float: none;
+                text-align: center;
+                width: 100%;
+            }
+
+            header {
+                padding-bottom: 20px;
+            }
+
+            #newsletter button, .quote button {
+                display: block;
+                width: 100%;
+            }
+
+            #newsletter form input[type="email"] {
+                width: 100%;
+                margin: 0;
+            }
+        }
+
+        .top-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 10px 20px;
+        }
+
+        .top-bar a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .auth-buttons a {
+            padding: 8px 12px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .content {
+            width: 100%;
+            padding: 20px;
+        }
+
+        .main-image {
+            width: 100%;
+            height: 400px;
+            background-color: blue;
+            margin-bottom: 20px;
+        }
+
+        .article-title {
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .article-meta {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .article-content {
+            font-size: 1em;
+            margin-bottom: 30px;
+        }
+        .article-content p{
+            margin-bottom: 0.7em;
+        }
+
+        .author-intro {
+            margin-bottom: 30px;
+        }
+
+        .global-recognition {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+        }
+
+        .recognition-image {
+            width: 100%;
+            height: 200px;
+            background-color: blue;
+            margin-bottom: 20px;
+        }
+
+        footer {
+            background-color: #f9f9f9;
+            padding: 30px 20px;
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.9em;
+            color: #555;
+            border-top: 1px solid #eee;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        footer ul li {
+            margin-bottom: 5px;
+        }
+
+        footer a {
+            text-decoration: none;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="top-bar">
+        <a href="#">Ideas for Decor</a>
+        <div class="auth-buttons">
+            <a href="#">Sign In</a>
+        </div>
+    </div>
+
+    <div class="content">
+        <div class="main-image"></div>
+        <h1 class="article-title">Technology Keeps Business Running Smoothly Amid the Coronavirus Outbreak</h1>
+        <p class="article-meta">by Melissa Palmer | Mar 11, 2020 | Career, Melissa Palmer, Work is not a place</p>
+        <div class="article-content">
+            <p>Many felt the effects of the 2020 Coronavirus outbreak, as companies urged employees to work remotely, students shifted to online learning, and major events were canceled. If something like this had occurred 20 or 30 years ago, those...</p>
+        </div>
+
+        <div class="author-intro">
+            <p>Hi, I'm Theresa Millerâwelcome to 24x7 IT Connection! This is your go-to place for real-world insights into technology and career development. All the content comes from leading experts who work hands-on with tech every day. I'm glad you're hereâdon't forget to follow or subscribe to stay up to date with the latest information!</p>
+        </div>
+
+        <h2 class="global-recognition">Global Industry Recognition</h2>
+        <div class="recognition-image"></div>
+        <div class="recognition-image"></div>
+    </div>
+
+    <footer>
+        <div>
+            <h3>Modsy Inc.</h3>
+            <ul>
+                <li><a href="#">Design Gallery</a></li>
+                <li><a href="#">Join Us</a></li>
+            </ul>
+        </div>
+        <div>
+            <h3>Help</h3>
+            <ul>
+                <li><a href="#">Questions</a></li>
+                <li><a href="#">Terms and Conditions</a></li>
+                <li><a href="#">Privacy Policy</a></li>
+                <li><a href="#">Reach Out</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

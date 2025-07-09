@@ -1,0 +1,629 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segway Guided Tours</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Header */
+        header {
+            background-color: #fff;
+            padding: 20px;
+            text-align: left;
+        }
+
+        header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-left: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #777;
+            font-size: 14px;
+        }
+
+        /* Search Section */
+        .search-section {
+            background-color: #fff;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .search-box {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 50%;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #2ab7a7;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Main Content */
+        main {
+            background-color: #fff;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        main h1 {
+            font-size: 24px;
+        }
+
+        /* Tour List */
+        .tour-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tour-list li {
+            padding: 10px;
+            border-bottom: 1px solid #eee;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #555;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .breadcrumbs {
+            padding: 20px;
+            background-color: #fff;
+            margin-top: 20px;
+            font-size: 14px;
+            color: #777;
+        }
+
+        .breadcrumbs a {
+            color: #777;
+            text-decoration: none;
+        }
+
+        .main-content {
+            display: flex;
+        }
+
+        .content {
+            flex: 3;
+            padding: 20px;
+        }
+
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .sidebar img {
+            width: 100%;
+            height: 250px;
+            background-color: blue;
+        }
+
+        .tour-description {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .footer-stats {
+            background-color: #7f8c8d;
+            color: #fff;
+            padding: 50px 20px;
+            display: flex;
+            justify-content: space-around;
+            text-align: center;
+        }
+
+        .footer-stats div {
+            font-size: 20px;
+        }
+
+        .footer-bottom {
+            background-color: #2ab7a7;
+            color: #fff;
+            text-align: center;
+            padding: 50px;
+        }
+
+        .footer-links {
+            background-color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            font-size: 12px;
+        }
+
+        .footer-links a {
+            color: #777;
+            text-decoration: none;
+        }
+
+        /* Additional Styles for Exact Positioning */
+        header .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .logo {
+            font-size: 20px;
+            font-weight: bold;
+            color: #666;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-left: 15px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #666;
+            font-size: 12px;
+        }
+
+        .search-section {
+            padding: 30px;
+        }
+
+        input[type="text"] {
+            padding: 12px;
+            width: 45%;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 14px;
+        }
+
+        main {
+            margin-top: 0px;
+        }
+
+        main h1 {
+            font-size: 28px;
+            margin-bottom: 20px;
+        }
+
+        .breadcrumbs {
+            padding: 15px;
+            font-size: 12px;
+        }
+
+        .main-content {
+            display: flex;
+        }
+
+        .content {
+            flex: 3;
+            padding: 20px;
+        }
+
+        .sidebar {
+            flex: 1;
+            padding: 20px;
+        }
+
+        .tour-description {
+            margin-top: 10px;
+            padding: 20px;
+        }
+
+        .footer-stats {
+            padding: 60px 20px;
+        }
+
+        .footer-stats div {
+            font-size: 24px;
+        }
+
+        .footer-bottom {
+            padding: 40px;
+            font-size: 14px;
+        }
+
+        .footer-links {
+            padding: 30px;
+        }
+
+        .footer-links a {
+            font-size: 11px;
+        }
+
+        .main-content {
+            margin-top: 0;
+        }
+
+        .content {
+            flex: 2;
+            padding: 15px;
+        }
+
+        .sidebar {
+            flex: 1;
+            padding: 15px;
+        }
+
+        .tour-list li {
+            padding: 8px;
+        }
+
+        .tour-description {
+            margin-top: 15px;
+            padding: 15px;
+        }
+
+        /* Specific Adjustments */
+        .logo {
+            font-size: 18px;
+        }
+
+        nav ul li {
+            margin-left: 12px;
+        }
+
+        nav a {
+            font-size: 11px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            width: 40%;
+        }
+
+        button {
+            padding: 10px 20px;
+            font-size: 12px;
+        }
+
+        main h1 {
+            font-size: 24px;
+        }
+
+        .breadcrumbs {
+            padding: 12px;
+        }
+
+        .tour-list li {
+            padding: 6px;
+        }
+
+        .tour-description {
+            padding: 12px;
+        }
+
+        /* USA and States Specific CSS */
+        .usa-states {
+            margin-top: 20px;
+        }
+
+        .usa-states h2 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .usa-states ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .usa-states li {
+            padding: 5px 0;
+            font-size: 14px;
+        }
+
+        .usa-states a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .usa-states a:hover {
+            text-decoration: underline;
+        }
+
+        #footer-find-tour {
+            color: #fff;
+            font-size: 20px;
+            text-decoration: none;
+        }
+
+        /* Tour Box Styling */
+        .tour-box {
+            padding: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+
+        .tour-box h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .tour-box p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .breadcrumbs {
+            background-color: #fff;
+            padding: 10px 20px;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .breadcrumbs a {
+            color: #777;
+            text-decoration: none;
+        }
+
+        .breadcrumbs span {
+            margin: 0 5px;
+        }
+
+        .breadcrumbs span:last-child {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .tour-listing {
+            margin-top: 20px;
+        }
+
+        .tour-listing h1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .tour-listing p {
+            font-size: 14px;
+            color: #555;
+        }
+
+        .tour-list {
+            margin-top: 10px;
+        }
+
+        .tour-list ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .tour-list li {
+            padding: 8px 12px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .tour-list li:last-child {
+            border-bottom: none;
+        }
+
+        .tour-list a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        .tour-list a:hover {
+            text-decoration: underline;
+        }
+
+        .sidebar {
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        /* Ensure button color is maintained */
+        button {
+            background-color: #2ab7a7;
+            color: #fff;
+        }
+
+        .blue-placeholder {
+            width: 100%;
+            height: 250px;
+            background-color: blue;
+            margin-bottom: 20px;
+        }
+
+        .tour-description {
+            margin-top: 20px;
+        }
+
+        .footer-links {
+            background-color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-around;
+            font-size: 12px;
+        }
+
+        .footer-links a {
+            color: #777;
+            text-decoration: none;
+        }
+
+        .footer-copyright {
+            background-color: #fff;
+            padding: 10px;
+            text-align: right;
+            font-size: 12px;
+            color: #777;
+        }
+
+        .tour-description-text {
+            font-size: 14px;
+            color: #555;
+            line-height: 1.6;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="container">
+            <div class="logo">SEGWAY Guided TOURS</div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Find Segway Tours</a></li>
+                    <li><a href="#">Browse Tours</a></li>
+                    <li><a href="#">For Tour Operators</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="search-section">
+        <div class="search-box">
+            <input type="text" placeholder="Tour Location...">
+            <button>FIND</button>
+        </div>
+    </section>
+
+    <section class="breadcrumbs">
+        <div class="container">
+            <a href="#">//</a>
+            <a href="#">USA</a>
+            <span>/</span>
+            <span>SOUTH CAROLINA</span>
+        </div>
+    </section>
+
+    <main>
+        <div class="container">
+            <section class="tour-listing">
+                <h1>List of 6 Segway Tours in South Carolina</h1>
+                <p>South Carolina List Date: 11/3/23</p>
+            </section>
+
+            <div class="main-content">
+                <section class="content">
+                    <div class="tour-box">
+                        <h3>South Carolina</h3>
+                    </div>
+
+                    <div class="tour-description">
+                        <h3>SOUTH CAROLINA SEGWAY TOURS</h3>
+                        <p class="tour-description-text">Discover South Carolina on one of these six Segway tours. Experience the
+                            sights and sounds of South Carolina's
+                            cities and landmarks with an up-close and personal tour on the SegwayÂ® PT.</p>
+                    </div>
+
+                    <div class="usa-states">
+                        <ul>
+                            <li><a href="#">USA >></a></li>
+                            <li><a href="#">SOUTH CAROLINA >></a></li>
+                            <li><a href="#">CHARLESTON >></a></li>
+                            <li><a href="#">Segway of Charleston >></a></li>
+                            <li><a href="#">GREENVILLE >></a></li>
+                            <li><a href="#">Carolina Segway >></a></li>                            
+                            <li><a href="#">Greenville Glides >></a></li>
+                            <li><a href="#">HILTON HEAD ISLAND >></a></li>
+                            <li><a href="#">Hilton Head Segway >></a></li>
+                            <li><a href="#">LITTLE RIVER >></a></li>
+                            <li><a href="#">Myrtle Beach Segway >></a></li>
+                            <li><a href="#">Myrtle Beach Segway >></a></li>
+                        </ul>
+                        <p>Showing 6 South Carolina tours of 636 tours Worldwide</p>
+                    </div>
+                </section>
+
+                <aside class="sidebar">
+                    <div class="blue-placeholder"></div>
+                </aside>
+            </div>
+
+            <section class="tour-description">
+                <h3>South Carolina Segway Tours</h3>
+                <p class="tour-description-text">Whether South Carolina is your home state or your next travel destination,
+                    one of these Segway tours can add
+                    exciting new fun to your next business trip, vacation or weekend plans.</p>
+                <p class="tour-description-text">Looking for adventure tours beyond South Carolina's six Segway tours? Use
+                    our Directory to <a href="#">find Segway Tours</a>
+                    across the United States and around the world and experience touring on a Segway PT for yourself!
+                </p>
+            </section>
+        </div>
+    </main>
+
+    <section class="footer-stats">
+        <div>636<br>WORLDWIDE</div>
+        <div>56<br>COUNTRIES</div>
+        <div>198<br>REGIONS</div>
+        <div>442<br>CITIES</div>
+    </section>
+
+    <section class="footer-bottom">
+        Find a Tour on a SegwayÂ® PT now!
+        <br>
+        <a href="#" id="footer-find-tour">Find a Tour Now</a>
+    </section>
+
+    <section class="footer-links">
+        <a href="#">HOME</a>
+        <a href="#">FIND SEGWAY TOURS</a>
+        <a href="#">BROWSE TOURS</a>
+        <a href="#">ABOUT SGT</a>
+        <a href="#">SEGWAY MINIPRO</a>
+        <a href="#">FOR TOUR OPERATORS</a>
+        <a href="#">LEGALESE</a>
+        <a href="#">SITEMAP</a>
+    </section>
+
+    <div class="footer-copyright">
+        Â©2004-2023 SegwayGuidedTours.com
+    </div>
+</body>
+
+</html>
