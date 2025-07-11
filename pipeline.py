@@ -26,7 +26,7 @@ OUTPUT_PATH = DATA_PATH / "Output"
 
 
 # Arguments
-DEFAULT_MODEL = "gemini"  # option: openai, gemini, qwen, llama
+DEFAULT_MODEL = "gemini"  # option: openai, gemini, qwen, mistral
 DEFAULT_PROMPT_STRATEGY = "naive" # options: naive, zero-shot, few-shot, reason, iterative, composite
 DEFAULT_IMPROVEMENT_STRATEGY = None  # options: None, iterative, composite, agent
 DEFAULT_STARTING_FROM = 0  
@@ -72,7 +72,7 @@ async def main(model, prompt_strategy, date, improvement_strategy, starting_from
             # Sometimes the LLMs return errors messages (e.g. "I can't do this task ...")
             for i in range(max_attempts):
                 try: 
-                    generated_html = await utils_image_processing.process_image(client, image_information, prompt, model, prompt_strategy, date)
+                    # generated_html = await utils_image_processing.process_image(client, image_information, prompt, model, prompt_strategy, date)
                     break
                 except Exception as e:
                     print(f"Failed at image {image} on attempt {i + 1}")
@@ -84,17 +84,17 @@ async def main(model, prompt_strategy, date, improvement_strategy, starting_from
 
 
             # 6. Improvement Strategies
-            if not improvement_strategy:
-                pass
-            elif improvement_strategy == "iterative":
-                # 6.1 Process HTML iteratively and use accessibility tools
-                await utils_image_processing.process_image_iterative(client, model, prompt_strategy, generated_html, accessibility_issues, image, date)
-            elif improvement_strategy == "composite":
-                # 6.2 Pre-Processing of HTML and Image, then use accessibility tools
-                await utils_image_processing.process_image_composite(client, model, prompt_strategy, generated_html, accessibility_issues, image, date)
-            elif improvement_strategy == "agent":
-                # 6.3 Use Multi-Agent Approach
-                await multi_agent.run_multi_agent(client, model, prompt_strategy, generated_html, image, date)
+            # if not improvement_strategy:
+            #     pass
+            # elif improvement_strategy == "iterative":
+            #     # 6.1 Process HTML iteratively and use accessibility tools
+            #     await utils_image_processing.process_image_iterative(client, model, prompt_strategy, generated_html, accessibility_issues, image, date)
+            # elif improvement_strategy == "composite":
+            #     # 6.2 Pre-Processing of HTML and Image, then use accessibility tools
+            #     await utils_image_processing.process_image_composite(client, model, prompt_strategy, generated_html, accessibility_issues, image, date)
+            # elif improvement_strategy == "agent":
+            #     # 6.3 Use Multi-Agent Approach
+            #     await multi_agent.run_multi_agent(client, model, prompt_strategy, generated_html, image, date)
                 
 
             print("----------- Done -----------\n")
@@ -129,7 +129,7 @@ def _get_cli_arguments():
     parser.add_argument(
         "--model", "-m",
         default=DEFAULT_MODEL,
-        choices=["gemini", "openai", "qwen", "llama"],
+        choices=["gemini", "openai", "qwen", "mistral"],
         help=f"LLM-Model (default: {DEFAULT_MODEL})"
     )
     parser.add_argument(

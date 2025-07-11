@@ -24,6 +24,7 @@ def start_qualitative_analysis(list_paths):
     map_landmarks = {}
     map_font_size_color_contrast = {}
     map_background_colors = {}
+    map_foreground_colors = {}
     list_complexity_structure = []
     map_complexity_datasets = {}
 
@@ -45,6 +46,9 @@ def start_qualitative_analysis(list_paths):
             # compare landmark structure (H1: "Landmark & Region Tags are not often set. However, there are many comparable structures, yet causing violations.")
             # landmarks.check_elements_after_body(map_landmarks, html_path, model_name)
 
+            # compare font colors (H1: "There are similar colors which cause color contrast violations")
+            color_analysis.get_colors_in_violations(html_path, map_foreground_colors, model_name)
+
             # get amount of small, and large fonts (H1: "Pages with more small fonts have more color contrast violations")
             # default_background_color = color_analysis.analyze_color_contrast(html_path, map_font_size_color_contrast, model_name)
 
@@ -55,16 +59,19 @@ def start_qualitative_analysis(list_paths):
     
 
     # calculate correlation (H1: "Correlation between complexity (DOM-Length) and amount of xyz violations")
-    df_complexity_structure = pd.DataFrame(list_complexity_structure)
-    stats.correlation(df_complexity_structure, groupby_col="model", x_col="amount_nodes", y_col="amount_landmark_violations")
+    # df_complexity_structure = pd.DataFrame(list_complexity_structure)
+    # stats.correlation(df_complexity_structure, groupby_col="model", x_col="amount_nodes", y_col="amount_landmark_violations")
 
 
     # get brightness differences between background colors (H1: "Differences in backgroudn colors between models")
     color_results = color_analysis.get_brightness_differences(list_paths, map_background_colors)
 
 
+
+
+
     
-    return map_landmarks, map_font_size_color_contrast, map_background_colors, color_results, map_complexity_datasets
+    return map_landmarks, map_font_size_color_contrast, map_background_colors, color_results, map_complexity_datasets, map_foreground_colors
 
     
 
@@ -101,13 +108,14 @@ if __name__ == "__main__":
         "openai_reason_3": curr_path.parent.parent / "Output" / "openai" / "html" / "reason" / "2025-06-20-19-43",
     }
 
-    map_landmarks, map_font_size_color_contrast, map_background_colors, color_results, map_complexity_datasets = start_qualitative_analysis(list_paths)
+    map_landmarks, map_font_size_color_contrast, map_background_colors, color_results, map_complexity_datasets, map_foreground_colors = start_qualitative_analysis(list_paths)
 
     # Export results to excel
     # utils_general.export_dict_to_excel(map_landmarks, "landmarks", curr_path / "data" / "landmark_qualitative_analysis.xlsx")
     # utils_general.export_dict_to_excel(map_font_size_color_contrast, "color_contrast", curr_path / "data" / "colorcontrast_qualitative_analysis.xlsx")
     # utils_general.export_dict_to_excel(map_background_colors, "background_colors", curr_path / "data" / "background_qualitative_analysis.xlsx")
     # utils_general.export_dict_to_excel(color_results, "color_runs", curr_path / "data" / "colorbrighter_qualitative_analysis.xlsx")
-    utils_general.export_dict_to_excel(map_complexity_datasets, "complexity_datasets", curr_path / "data" / "complexity_datasets_qualitative_analysis.xlsx")
+    # utils_general.export_dict_to_excel(map_complexity_datasets, "complexity_datasets", curr_path / "data" / "complexity_datasets_qualitative_analysis.xlsx")
+    utils_general.export_dict_to_excel(map_foreground_colors, "foreground_colors", curr_path / "data" / "foreground_qualitative_analysis.xlsx")
 
     print("Done")

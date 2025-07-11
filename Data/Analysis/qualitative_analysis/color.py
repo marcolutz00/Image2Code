@@ -1,11 +1,12 @@
 import pandas as pd
 import sys
 import os
-import cv2
+import json
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))))
 import Accessibility.color_recommendation as color_recommendation
 import Data.Analysis.qualitative_analysis.font_size as font_size
+import Data.Analysis.qualitative_analysis.stats as stats
 
 
 
@@ -145,9 +146,48 @@ def get_brightness_differences(list_paths, map_background_colors):
     return color_results
 
 
-def get_color_violations(html_path, map_findings_color_contrast, model_name):
+def get_colors_in_violations(html_path, map_findings_color_contrast, model_name):
     """
     Check which colors cause violatiosn
     """
     accessibility_path = html_path.replace(".html", ".json")
     accessibility_path = accessibility_path.replace("html", "accessibility")
+
+    with open(accessibility_path, "r") as f:
+        data = json.load(f)
+
+    color_contrast_violations = stats.get_all_violations(data, "Color Contrast; Text;", full_output=True)
+
+    if len(color_contrast_violations) == 0 or len(color_contrast_violations.get("issues", [])) == 0:
+        return
+
+    axe_core_violations = [issue for issue in color_contrast_violations.get("issues", []) if issue.get("source") == "axe-core"]
+
+    # seen = set()
+    for issue in axe_core_violations:
+        temp = issue.get("nodes", {}).get("any", [])
+        if len(temp) == 0:
+            continue
+        foreground_color = temp[0].get("data", {}).get("fgColor", None)
+        background_color = temp[0].get("data", {}).get("bgColor", None)
+
+        # if foreground_color in seen:
+        #     continue
+        # seen.add(foreground_color)
+
+        if map_findings_color_contrast.get(model_name) is None:
+            map_findings_color_contrast[model_name] = {}
+
+        if map_findings_color_contrast[model_name].get(foreground_color) is None:
+            map_findings_color_contrast[model_name][foreground_color] = {
+                "amount_violations": 0,
+                # "background_color": {}
+            }
+        
+        map_findings_color_contrast[model_name][foreground_color]["amount_violations"] += 1
+
+        # if background_color not in map_findings_color_contrast[model_name][foreground_color]["background_color"]:
+        #     map_findings_color_contrast[model_name][foreground_color]["background_color"][background_color] = 0
+
+        # map_findings_color_contrast[model_name][foreground_color]["background_color"][background_color] += 1
+
