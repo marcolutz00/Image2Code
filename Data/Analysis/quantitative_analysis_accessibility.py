@@ -321,11 +321,19 @@ if __name__ == "__main__":
     comparison_data_average_openai = [
         ("openai", "naive", os.path.join(result_path, "openai_naive_average_results.json")),
         ("openai", "zero-shot", os.path.join(result_path, "openai_zero-shot_average_results.json")),
+        ("openai", "few-shot", os.path.join(result_path, "openai_few-shot_average_results.json")),
         ("openai", "reason", os.path.join(result_path, "openai_reason_average_results.json")),
         ("openai", "iterative", os.path.join(result_path, "openai_iterative_average_results.json")),
         ("openai", "iterative_refine_1", os.path.join(result_path, "openai_iterative_refine_1_average_results.json")),
         ("openai", "iterative_refine_2", os.path.join(result_path, "openai_iterative_refine_2_average_results.json")),
         ("openai", "iterative_refine_3", os.path.join(result_path, "openai_iterative_refine_3_average_results.json")),
+    ]
+
+    comparison_data_average_qwen = [
+        ("qwen", "naive", os.path.join(result_path, "qwen_naive_average_results.json")),
+        ("qwen", "zero-shot", os.path.join(result_path, "qwen_zero-shot_average_results.json")),
+        ("qwen", "few-shot", os.path.join(result_path, "qwen_few-shot_average_results.json")),
+        ("qwen", "reason", os.path.join(result_path, "qwen_reason_average_results.json")),
     ]
 
     comparison_data_average_both = [
@@ -345,7 +353,7 @@ if __name__ == "__main__":
         ("openai", "iterative_refine_3", os.path.join(result_path, "openai_iterative_refine_3_average_results.json")),
     ]
 
-    plot_bar_average_violations(comparison_data_average_gemini)
+    plot_bar_average_violations(comparison_data_average_qwen)
     # plot_cake_average_violations(comparison_data_average_openai[5][2])
 
 

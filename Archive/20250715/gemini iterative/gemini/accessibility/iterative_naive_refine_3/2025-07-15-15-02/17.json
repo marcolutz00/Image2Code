@@ -1,0 +1,75 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H43.IncorrectAttr",
+        "Principle1.Guideline1_3.1_3_1.H43.HeadersRequired",
+        "Principle1.Guideline1_3.1_3_1.H43.MissingHeaderIds",
+        "Principle1.Guideline1_3.1_3_1.H43.MissingHeadersAttrs",
+        "Principle1.Guideline1_3.1_3_1.H43,H63"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/empty-table-header"
+      ],
+      "impact": "minor",
+      "name": "Tables; Table Headers;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/empty-table-header",
+          "source": "axe-core",
+          "title": "Table header text should not be empty",
+          "description": "Ensure table headers have discernible text",
+          "impact": "minor",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "minor",
+                "message": "Element does not have text that is visible to screen readers"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "minor",
+            "html": "<th scope=\"col\"></th>",
+            "target": [
+              "tr:nth-child(2) > th[scope=\"col\"]:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have text that is visible to screen readers"
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.H43.HeadersRequired",
+          "source": "pa11y",
+          "title": "The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.",
+          "description": "<table>\n                    <caption>A...</table>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.H43.HeadersRequired",
+            "type": "error",
+            "typeCode": 1,
+            "message": "The relationship between td elements and their associated th elements is not defined. As this table has multiple levels of th elements, you must use the headers attribute on td elements.",
+            "context": "<table>\n                    <caption>A...</table>",
+            "selector": "html > body > main > div:nth-child(5) > div > table",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    }
+  ]
+}

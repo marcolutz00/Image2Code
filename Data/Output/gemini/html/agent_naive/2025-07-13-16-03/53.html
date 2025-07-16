@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f5f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #fff;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav {
+            background: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            padding: 0;
+            margin: 0;
+            list-style: none;
+            text-align: center;
+        }
+
+        nav li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        nav a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px 0;
+            overflow: hidden;
+        }
+
+        article {
+            float: left;
+            width: 65%;
+            background: #fff;
+            padding: 20px;
+        }
+
+        aside {
+            float: right;
+            width: 30%;
+            background: #fff;
+            padding: 20px;
+        }
+
+        footer {
+            background: #333;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .placeholder-image {
+            background-color: blue;
+            width: 100%;
+            height: 150px;
+            margin-bottom: 10px;
+        }
+
+        .latest-questions {
+            margin-top: 20px;
+        }
+
+        .latest-questions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .latest-questions li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .latest-questions a {
+            text-decoration: none;
+            color: #a94442;
+        }
+        .menu-container {
+            background-color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        .menu-container a {
+            display: inline-block;
+            margin: 0 10px;
+            color: #777;
+            text-decoration: none;
+            font-size: 12px;
+        }
+        .content-area {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .main-content {
+            width: 65%;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .sidebar {
+            width: 30%;
+            padding: 20px;
+            background-color: #fff;
+        }
+        .breadcrumb {
+            background-color: #f2f2f2;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 12px;
+        }
+
+        .breadcrumb a {
+            color: #777;
+            text-decoration: none;
+        }
+
+        .breadcrumb span {
+            color: #777;
+        }
+        .category-labels {
+            margin-bottom: 20px;
+        }
+
+        .category-labels span {
+            background-color: #f0ad4e;
+            color: white;
+            padding: 5px 10px;
+            margin-right: 5px;
+            border-radius: 3px;
+            font-size: 12px;
+        }
+        .question-container {
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-size: 1.5em;
+            margin-bottom: 10px;
+        }
+
+        .options {
+            margin-bottom: 20px;
+        }
+
+        .options p {
+            margin: 5px 0;
+            color: #a94442;
+        }
+
+        .answer {
+            margin-bottom: 20px;
+        }
+
+        .answer h3 {
+            font-size: 1.3em;
+            margin-bottom: 5px;
+        }
+
+        .answer p {
+            font-size: 1em;
+            line-height: 1.4;
+        }
+        .share-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .share-buttons a {
+            background-color: #5bc0de;
+            color: white;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 3px;
+            width: 23%;
+            text-align: center;
+        }
+
+        .share-buttons a:nth-child(2) {
+            background-color: #337ab7;
+        }
+
+        .share-buttons a:nth-child(3) {
+            background-color: #d9534f;
+        }
+
+        .share-buttons a:nth-child(4) {
+            background-color: #5bc0de;
+        }
+
+        .share-buttons a:nth-child(5) {
+            background-color: #d9534f;
+        }
+        .related-posts, .comments {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+        }
+
+        .latest-questions-widget {
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .latest-questions-widget h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+        }
+
+        .latest-questions-widget ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .latest-questions-widget li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .latest-questions-widget a {
+            color: #a94442;
+            text-decoration: none;
+        }
+        .footer {
+            background-color: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="menu-container">
+        <a href="#">ABOUT</a>
+        <a href="#">DISCLAIMER</a>
+        <a href="#">SITEMAP</a>
+        <a href="#">CONTACT</a>
+        <a href="#">PRIVACY POLICY</a>
+        <a href="#">VISIT KERALA PSC</a>
+    </div>
+    <header>
+        <div class="container">
+            <div class="placeholder-image" style="width: 200px; height: 100px; margin: 20px auto;"></div>
+        </div>
+    </header>
+    <nav>
+        <div class="container">
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Notifications</a></li>
+                <li><a href="#">Mock Exams</a></li>
+                <li><a href="#">Previous Questions</a></li>
+                <li><a href="#">Syllabus</a></li>
+                <li><a href="#">Answer Key</a></li>
+                <li><a href="#">Study Materials</a></li>
+                <li><a href="#">Youtube</a></li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container">
+    <div class="breadcrumb">
+        <a href="#">Home</a> > 
+        <a href="#">Facts on India</a> > 
+        <a href="#">General Knowledge</a> > 
+        <span>Years</span>
+    </div>
+    <div class="content-area">
+        <main class="main-content">
+            <div class="category-labels">
+                <span>Facts on India</span>
+                <span>General Knowledge</span>
+                <span>Years</span>
+            </div>
+            <div class="question-container">
+                <h2 class="question">The Indian Oil Corporation was set up in which year?</h2>
+                <div class="options">
+                    <p>A - 1964</p>
+                    <p>B - 1965</p>
+                    <p>C - 1966</p>
+                    <p>D - 1970</p>
+                </div>
+                <div class="answer">
+                    <h3>Answer : A</h3>
+                    <h3>Explanation</h3>
+                    <p>Indian Oil Corporation is an Indian state owned oil and gas company primarily headquartered in New Delhi. It is the largest commercial oil company in the country.</p>
+                    <a href="#">Show Answer</a>
+                </div>
+            </div>
+            <div class="share-buttons">
+                <a href="#">Tweet</a>
+                <a href="#">Share</a>
+                <a href="#">Share</a>
+                <a href="#">Share</a>
+                <a href="#">Share</a>
+            </div>
+            <div class="related-posts">
+                <h3>RELATED POSTS</h3>
+            </div>
+            <div class="comments">
+                <h3>0 COMMENTS:</h3>
+            </div>
+        </main>
+        <aside class="sidebar">
+            <div class="search-widget" style="height: 50px; background-color:#f0ad4e;">
+            </div>
+            <div class="search-widget" style="height: 50px; background-color:#f0ad4e; margin-top: 20px;">
+            </div>
+            <div class="latest-questions-widget">
+                <h3>LATEST QUESTIONS</h3>
+                <ul>
+                    <li><a href="#">Let us go for a walk, Question tag?</a></li>
+                    <li><a href="#">Who conducted Panthi Bhojanam first time in India?</a></li>
+                    <li><a href="#">She sang well, ________? (Question Tag)</a></li>
+                    <li><a href="#">I congratulate you ________ your success.</a></li>
+                    <li><a href="#">The founder of 'Samathwa Samajam"</a></li>
+                    <li><a href="#">There is an exception ________ every rule.</a></li>
+                    <li><a href="#">He died ________ a severe head injury.</a></li>
+                     <li><a href="#">Who conducted "Panthi Bhojanam" for the first time in India?</a></li>
+                    <li><a href="#">Who founded the Vidya Poshini Sabha?</a></li>
+                     <li><a href="#">Who, among the following, has the final right to sanction the expenditure of public money in India ?</a></li>
+                </ul>
+            </div>
+        </aside>
+    </div>
+</div>
+    <footer class="footer">
+        <p>Created with by YesLearners.com - YesLearners</p>
+    </footer>
+</body>
+</html>

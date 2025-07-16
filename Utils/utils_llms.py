@@ -8,7 +8,7 @@ from LLMs.Strategies.openaiApiStrategy import OpenAIStrategy
 from LLMs.Strategies.geminiApiStrategy import GeminiStrategy
 from LLMs.Strategies.llamaLocalStrategy import LlamaStrategy
 from LLMs.Strategies.qwenLocalStrategy import QwenStrategy
-from LLMs.Strategies.mistralLocalStrategy import PixtralStrategy
+from LLMs.Strategies.llavaLocalStrategy import LlavaStrategy
 import Utils.utils_general as util_general
 
 def get_model_strategy(name):
@@ -29,8 +29,8 @@ def get_model_strategy(name):
         case "qwen":
             strategy = QwenStrategy()
             return strategy
-        case "mistral":
-            strategy = PixtralStrategy()
+        case "llava":
+            strategy = LlavaStrategy()
             return strategy
         case _:
             raise ValueError(f"Model {name} not supported.")

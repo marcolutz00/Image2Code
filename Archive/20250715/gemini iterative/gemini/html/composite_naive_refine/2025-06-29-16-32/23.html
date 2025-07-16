@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexito's World</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            margin: 0;
+            background-color: #212121;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        a {
+            color: #ff9800;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 1.1em;
+            color: #ddd;
+        }
+
+        header nav {
+            margin-top: 10px;
+        }
+
+        header nav a {
+            margin: 0 10px;
+            font-size: 1em;
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            color: #ccc;
+            font-size: 0.9em;
+            margin-bottom: 10px;
+        }
+
+        .article-header .time {
+            display: flex;
+            align-items: center;
+        }
+
+        .article-header .time::before {
+            content: " ";
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            margin-right: 5px;
+            background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D"16"%20height%3D"16"%20xmlns%3D"http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg"%3E%3Cpath%20fill%3D"%239E9E9E"%20d%3D"M8%200C3.6%200%200%203.6%200%208s3.6%208%208%208%208-3.6%208-8-3.6-8-8-8zm0%2013.3C4.4%2013.3%201.3%2010.2%201.3%206.7c0-.4.3-.7.7-.7h1.3c.4%200%20.7.3.7.7%200%202.5%202%204.5%204.5%204.5%202.5%200%204.5-2%204.5-4.5%200-.4.3-.7.7-.7h1.3c.4%200%20.7.3.7.7%200%203.6-3.1%206.6-6.7%206.6z"%2F%3E%3C%2Fsvg%3E');
+            background-repeat: no-repeat;
+            background-size: contain;
+        }
+
+        .article-tags {
+            display: flex;
+        }
+
+        .article-tags a {
+            background-color: #424242;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+            font-size: 0.85em;
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+        }
+
+        p {
+            font-size: 1.1em;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        code {
+            background-color: #333;
+            color: #eee;
+            padding: 2px 5px;
+            border-radius: 3px;
+        }
+
+        blockquote {
+            border-left: 3px solid #ff9800;
+            padding-left: 15px;
+            font-style: italic;
+            color: #ccc;
+        }
+
+        .share-article {
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .support-message {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .buy-coffee-button {
+            display: inline-block;
+            background-color: #ff9800;
+            color: #212121;
+            padding: 10px 20px;
+            border-radius: 5px;
+            margin-top: 10px;
+            font-weight: bold;
+        }
+
+        .continue-reading {
+            margin-top: 40px;
+        }
+
+        .article-cards {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 20px;
+        }
+
+        .article-card {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .article-card h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .article-card p {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+
+        .similar-articles {
+            margin-top: 40px;
+        }
+
+        .similar-articles-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 20px;
+        }
+
+        .similar-article-card {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+        }
+
+        .similar-article-card h3 {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+
+        .similar-article-card p {
+            font-size: 0.8em;
+            color: #aaa;
+        }
+        .article-tags-bottom {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .article-tags-bottom a {
+            background-color: #424242;
+            color: #fff;
+            padding: 8px 15px;
+            border-radius: 5px;
+            margin: 0 5px;
+            font-size: 0.9em;
+            display: inline-block;
+        }
+        footer {
+            margin-top: 50px;
+            text-align: center;
+            color: #777;
+            font-size: 0.8em;
+        }
+
+        a:not(:hover) {
+            text-decoration: underline; /* Add underline to all links */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Alexito's World</h1>
+            <p>A world of coding, by Alejandro Martinez</p>
+            <nav>
+                <a href="#">Swift</a>
+                <a href="#">Development</a>
+            </nav>
+        </header>
+
+        <main>
+        <article>
+        <div class="article-header">
+            <div>June 5, 2016</div>
+            <div class="time">1 min read</div>
+        </div>
+
+        <div class="article-tags">
+            <a href="#">Scripting</a>
+            <a href="#">Swift</a>
+            <a href="#">Tips and Tricks</a>
+        </div>
+
+        <h1>Poor man's hot reloading for Swift scripts</h1>
+        <p>The other day, while I was writing a <code>Swift script</code>, I added an option to make it run continuosly so it could be on a server doing its job without stoping. <em>for eva</em>.</p>
+
+        <p>To implement that I just used a <code>repeat</code> loop creating <code>NSTask</code>s that called the same script. <em>Scripts recursion</em>.</p>
+
+        <p>The funny part is that with this simple thing I found a quick way to writing the script, almost as a hot reloading tool.</p>
+
+        <p>let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() task.launchPath = Process.arguments.first! task.arguments = Array (Process.arguments.suffixFrom (1).filter({$0 != reload})) task.launch() task.waitUntilExit() } while true } Just drop this snippet at the top of the script, and when you call it with the <code>reload</code> argument it will start looping indefinitely.</p>
+
+        <p>Then you can just call it from the command line like:</p>
+
+        <p>main.swift reload other params When that is done you can just modify the script and save the file, in the next execution your changes will be visible. If it fails to compile is not a big deal, the main script is still in memory without those changes so it will just loop and try to run it again.</p>
+
+        <p>Obviously is not a big deal, is a bit annoying seeing all the console spammed, but I found it quite useful while I'm developing short scripts that I want to iterate on.</p>
+
+        <p>Remember that you can use <a href="#">OS signals</a> to stop the task when the main script is killed.</p>
+
+        <div class="share-article">
+            <a href="#">Share this article on Twitter</a>
+        </div>
+
+        <div class="support-message">
+            If you liked this article please consider supporting me
+            <a href="#" class="buy-coffee-button">Buy me a coffee</a>
+        </div>
+
+        <div class="continue-reading">
+            <h2>Continue reading</h2>
+            <div class="article-cards">
+                <div class="article-card">
+                    <h2>Next article</h2>
+                    <a href="#">Using closures to simplify</a>
+                    <p>June 7, 2016</p>
+                </div>
+                <div class="article-card">
+                    <h2>Previous article</h2>
+                    <a href="#">It's a trap! Catch OS signals in Swift.</a>
+                    <p>May 29, 2016</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="similar-articles">
+            <h2>Similar suggested articles</h2>
+            <div class="similar-articles-grid">
+                <div class="similar-article-card">
+                    <h3>Based on tag Swift</h3>
+                    <a href="#">Backport SwiftUl modifiers</a>
+                    <p>October 20, 2023</p>
+                </div>
+                <div class="similar-article-card">
+                    <h3>Based on tag Scripting</h3>
+                    <a href="#">Swift script to export lists from Reminders.app</a>
+                    <p>May 8, 2019</p>
+                </div>
+                <div class="similar-article-card">
+                    <h3>Based on tag Tips and Tricks</h3>
+                    <a href="#">Swift Collection's prefix for quick tests</a>
+                    <p>March 16, 2019</p>
+                </div>
+            </div>
+        </div>
+        </article>
+        </main>
+        <div class="article-tags-bottom">
+            <h2>Or check out this article tags</h2>
+            <a href="#">Scripting</a>
+            <a href="#">Swift</a>
+            <a href="#">Tips and Tricks</a>
+        </div>
+        <footer>
+            <a href="#">RSS</a>
+            <p><a href="#">alexito4</a> | <a href="#">alexito4</a> | <a href="#">alexito4</a></p>
+            <p>Generated using <a href="#">Publish</a></p>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Pink Rose Cottage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #e0f2f7;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .container {
+            width: 900px;
+            background-color: #f5f5dc;
+            padding: 20px;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 3em;
+            color: #778899;
+            margin: 0;
+        }
+
+        nav {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #8b4513;
+            margin: 0 10px;
+            padding: 5px 10px;
+            border-radius: 5px;
+            background-color: #f0e68c;
+        }
+
+        .search-bar {
+            margin-bottom: 20px;
+        }
+
+        .search-bar input[type="text"] {
+            width: 100%;
+            padding: 8px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .sidebar {
+            width: 250px;
+            float: left;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .sidebar li {
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            background-color: #f0e68c;
+            cursor: pointer;
+        }
+        .sidebar li:hover {
+            background-color: #FFFAF0;
+        }
+
+        .content {
+            width: 600px;
+            float: right;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .content img{
+            width: 140px;
+            height: 140px;
+        }
+
+        .footer {
+            clear: both;
+            text-align: center;
+            padding-top: 20px;
+            color: #778899;
+        }
+        .login-area {
+            text-align: right;
+        }
+        .login-area a{
+            color: #8b4513;
+            text-decoration: none;
+            margin-left: 5px;
+        }
+        .currency {
+            text-align: center;
+            background-color: #f0e68c;
+            border-radius: 5px;
+            padding: 3px;
+            width: 80px;
+            margin-left: auto;
+            margin-right: 10px;
+        }
+        .cart-area {
+            text-align: left;
+        }
+        .cart-area span{
+            font-weight: bold;
+        }
+        .widget{
+            background-color: #f0e68c;
+            border-radius: 5px;
+            padding: 15px;
+            margin-top: 20px;
+        }
+        .widget-title{
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .stay-in-touch-icons{
+            margin-top: 10px;
+        }
+        .stay-in-touch-icons a{
+            display: inline-block;
+            margin-right: 5px;
+        }
+        .social-icon{
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            display: inline-block;
+            text-indent: -9999px;
+            overflow: hidden;
+            color: black;
+        }
+        #facebook{
+            background-color: #3b5998;
+            color: #fff;
+        }
+        #pinterest{
+            background-color: #c8232c;
+            color: #fff;
+        }
+        #instagram{
+            background-color: #e4405f;
+            color: #fff;
+        }
+        .newsletter-form input[type="email"] {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        .newsletter-form button {
+            background-color: #778899;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .align-right{
+            display: flex;
+        }
+        .featured-products {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .product {
+            width: 200px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .product img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 10px;
+        }
+        #footer-nav{
+            text-align: center;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        #footer-nav a{
+            text-decoration: none;
+            color: #8b4513;
+            margin: 0 10px;
+            padding: 5px 10px;
+        }
+        #footer-copyright{
+            text-align: center;
+            color: #333;
+        }
+        .ladies_menu{
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            background-color: #f0e68c;
+            cursor: pointer;
+        }
+        .menu_items{
+            padding: 10px;
+            margin-bottom: 5px;
+            border-radius: 5px;
+            background-color: #FFFAF0;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>The Pink Rose Cottage</h1>
+        </header>
+        <nav>
+            <a href="#">Home</a>
+            <a href="#">Contact</a>
+            <a href="#">New Products</a>
+            <a href="#">Clearance</a>
+        </nav>
+        <main>
+        <div class="align-right">
+            <div class="login-area">
+                <a href="#">Log in</a>
+                <a href="#">Sign up</a>
+            </div>
+            <div class="currency">
+                Pick a currency<br>
+                USD
+            </div>
+            <div class="cart-area">
+                <span>0</span> items in<br>
+                your cart
+            </div>
+        </div>
+        <div class="search-bar">
+            <label for="search">Search</label>
+            <input type="text" id="search" placeholder="Search...">
+        </div>
+        <div class="main-content">
+            <div class="sidebar">
+                <ul>
+                    <li>Cozy Cottage and<br>Farmhouse Decor</li>
+                    <li>Vintage & Antique<br>Linens</li>
+                    <li>Vintage Bride &<br>Wedding</li>
+                    <li>Tea Time</li>
+                    <li>Vintage Hand Painted<br>China</li>
+                    <li>Shabby & Shiny Silver</li>
+                    <li>Vintage Kitchen</li>
+                    <li>Homer Laughlin<br>Fiestaware</li>
+                    <li>Vintage Laundry Room</li>
+                    <li>Ladies Vintage Vanity
+                        <ul>
+                            <li class="menu_items">Compacts</li>
+                            <li class="menu_items">Perfume Bottles</li>
+                            <li class="menu_items">Vanity Trays</li>
+                            <li class="menu_items">Powder & Cream Jars</li>
+                        </ul>
+                    </li>
+                    <li>Jewelry
+                        <ul>
+                            <li class="menu_items">Bracelets</li>
+                            <li class="menu_items">Necklaces</li>
+                            <li class="menu_items">Pins</li>
+                            <li class="menu_items">Rings</li>
+                        </ul>
+                    </li>
+                    <li>Cottage Garden</li>
+                    <li>Vintage Ephemera</li>
+                    <li>Vintage Travel Souvenirs</li>
+                    <li>Vintage Children's Items</li>
+                    <li>Vintage Sewing Notions</li>
+                    <li>Vintage Holidays
+                        <ul>
+                            <li class="menu_items">Easter</li>
+                            <li class="menu_items">Halloween</li>
+                            <li class="menu_items">Thanksgiving</li>
+                            <li class="menu_items">Christmas</li>
+                            <li class="menu_items">Valentine's Day</li>
+                        </ul>
+                    </li>
+                    <li>Book Nook</li>
+                </ul>
+                <div class="widget">
+                    <div class="widget-title">Stay in touch</div>
+                    <div class="stay-in-touch-icons">
+                        <a href="#" id="facebook" class="social-icon">Facebook</a>
+                        <a href="#" id="pinterest" class="social-icon">Pinterest</a>
+                        <a href="#" id="instagram" class="social-icon" style="background-color: #e4405f; color: #000;">Instagram</a>
+                    </div>
+                </div>
+                <div class="widget">
+                    <div class="widget-title">Newsletter</div>
+                    Sign up to our newsletter for the latest<br>
+                    news and special offers...
+                    <form class="newsletter-form">
+                        <label for="email">Email</label>
+                        <input type="email" id="email" placeholder="type your email...">
+                        <button type="submit" style="color: black;">Subscribe</button>
+                    </form>
+                </div>
+            </div>
+            <div class="content">
+                <img src="src/placeholder.jpg" alt="Placeholder Image">
+                <p><em>Thank you for visiting The Pink Rose Cottage!</em></p>
+                <p>Here you'll find all the little extras that make your home cottage cozy.<br>
+                We also have beautiful extras for the lady, from wonderful vintage powder compacts, to unusual vintage purses
+                and handbags, to sparkling costume jewelry.</p>
+                <p>The place to shop for cozy cottage, shabby chic decor and trinkets!</p>
+                <h2>Featured Products</h2>
+                <div class="featured-products">
+                    <div class="product">
+                        <img src="src/placeholder.jpg" alt="Product 1">
+                        Heidi Daus<br>
+                        Cornucopia Brooch<br>
+                        Heidi's Harvest Pin<br>
+                        $150.00
+                    </div>
+                    <div class="product">
+                        <img src="src/placeholder.jpg" alt="Product 2">
+                        Heidi Daus Squirrel<br>
+                        Sparkle Fall<br>
+                        Rhinestone Pin<br>
+                        $125.00
+                    </div>
+                    <div class="product">
+                        <img src="src/placeholder.jpg" alt="Product 3">
+                        Heidi Daus Precious<br>
+                        Pumpkin PavÃÂ© Fall<br>
+                        Brooch Pin<br>
+                        $150.00
+                    </div>
+                    <div class="product">
+                        <img src="src/placeholder.jpg" alt="Product 4">
+                        Vintage McCoy<br>
+                        Pottery Purple and<br>
+                        White<br>
+                        Chrysanthemum<br>
+                        Vase<br>
+                        $55.00
+                    </div>
+                </div>
+            </div>
+        </div>
+        </main>
+        <footer class="footer">
+            <div id="footer-nav">
+                <a href="#">Search</a>
+                <a href="#">Contact</a>
+                <a href="#">About Us</a>
+                <a href="#">Cleaning Silver</a>
+            </div>
+            <div id="footer-copyright">
+                Copyright ÃÂ© 2023 The Pink Rose Cottage. All Rights Reserved.
+            </div>
+        </footer>
+    </div>
+</body>
+</html>

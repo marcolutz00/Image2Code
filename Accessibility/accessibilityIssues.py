@@ -5,6 +5,7 @@ import subprocess
 import json
 from pathlib import Path
 import sys
+import shutil
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from Accessibility import accessibilityMapping
 from Accessibility.old import accessibilityMapping_automatically
@@ -73,10 +74,10 @@ async def _google_lighthouse(html_path):
 
     # Important lighthouse can't acccess local files, thus webserver
     server_process = await asyncio.create_subprocess_exec(
-        "python",
+        "python3",
         "-m",
         "http.server",
-        "8000",
+        "8001",
         "--bind",
         "127.0.0.1",
         cwd=str(local_html_dir),
@@ -84,36 +85,47 @@ async def _google_lighthouse(html_path):
         stderr=asyncio.subprocess.PIPE
     )
 
-    await asyncio.sleep(1)
+    try:
+        await asyncio.sleep(1)
 
-    localhost_url = f"http://127.0.0.1:8000/{local_html_name}"
+        url = f"http://127.0.0.1:8001/{local_html_name}"
 
-    lighthouse_command = ["lighthouse", localhost_url, "--output=json", "--chrome-flags=--headless", "--quiet", "--output-path=stdout", "--only-categories=accessibility"]
-    output_cmd = subprocess.run(lighthouse_command, capture_output=True, text=True)
+        lh_bin = shutil.which("lighthouse") or "/opt/homebrew/bin/lighthouse"
 
-    # kill server  
-    server_process.terminate()
+        cmd = [
+            lh_bin, url,
+            "--output=json", "--output-path=stdout",
+            "--chrome-flags=--headless",
+            "--quiet",
+            "--only-categories=accessibility",
+        ]
 
-    if output_cmd.stderr:
-        print(output_cmd.stderr)
-        return
-    
-    
-    output_cmd_json = json.loads(output_cmd.stdout)
+        proc = await asyncio.create_subprocess_exec(
+            *cmd,
+            stdin=asyncio.subprocess.DEVNULL,
+            stdout=asyncio.subprocess.PIPE,
+            stderr=asyncio.subprocess.PIPE,
+        )
 
-    # Important fields
-    audits = output_cmd_json["audits"]
-    categories = output_cmd_json["categories"]
+        stdout_bytes, stderr_bytes = await proc.communicate()
 
-    important_output = {
-        "audits": audits,
-        "categories": categories
-    }
+        if proc.returncode != 0:
+            raise RuntimeError(stderr_bytes.decode() or "lighthouse failed")
 
-    # lighthouse_report = open(f"{DIR_PATH}/lighthouse_report.json", "w")
-    # json.dump(important_output, lighthouse_report)
+        data = json.loads(stdout_bytes.decode())
+        return {
+            "audits": data["audits"],
+            "categories": data["categories"],
+        }
 
-    return important_output
+    finally:
+        if server_process.returncode is None:
+            server_process.terminate()
+            try:
+                await server_process.wait()
+            except ProcessLookupError:
+                pass
+
 
 async def _create_automatic_mapping(html_path):
     axe_core_results = await _axe_core(html_path)
@@ -128,7 +140,12 @@ async def _create_automatic_mapping(html_path):
 async def _get_accessibility_issues(html_path):
     axe_core_results = await _axe_core(html_path)
     pa11y_results = await _pa11y(html_path)
-    lighthouse_results = await _google_lighthouse(html_path)
+
+    try:
+        lighthouse_results = await _google_lighthouse(html_path)
+    except Exception as e:
+        print(f"Error while running Lighthouse: {e}")
+        lighthouse_results = None
 
     issues_automatic_json, issues_overview_json = accessibilityMapping.integrate_accessibility_tools_results(pa11y_results, axe_core_results, lighthouse_results)
 

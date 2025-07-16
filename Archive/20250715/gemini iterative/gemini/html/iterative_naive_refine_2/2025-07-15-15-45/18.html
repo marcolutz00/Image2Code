@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #1e88e5;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #8bc34a;
+            color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+            color: #000; /* Increased contrast */
+        }
+
+        header p {
+            margin: 0;
+            font-style: italic;
+            color: #000; /* Increased contrast */
+        }
+
+        nav {
+            margin-top: 10px;
+        }
+
+        nav a {
+            color: #000; /* Increased contrast */
+            margin-left: 15px;
+        }
+
+        nav a:first-child {
+            margin-left: 0;
+        }
+
+        article {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+
+        article h1 {
+            font-size: 2em;
+            font-weight: 300;
+            margin-bottom: 10px;
+        }
+
+        article p {
+            margin-bottom: 15px;
+        }
+
+        article .meta {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .meta a {
+            color: #007bff; /* Changed to a more contrasting color */
+            text-decoration: underline;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #777;
+            background-color: #eee;
+            border-top: 1px solid #ddd;
+        }
+
+        .comment {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-left: 3px solid #ddd;
+        }
+
+        .comment p {
+            margin-bottom: 5px;
+        }
+
+        .comment .author {
+            font-style: italic;
+            font-size: 0.9em;
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>David Simpson</h1>
+        <p>deliver. iterate.</p>
+        <nav>
+            <a href="#">Blog</a>
+            <a href="#">About</a>
+            <a href="#">Projects</a>
+            <a href="#">Apps</a>
+        </nav>
+    </header>
+    <main class="container">
+        <article>
+            <h1>Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</h1>
+            <p class="meta">
+                Posted by David Simpson on May 22, 2014. <a href="#" style="text-decoration:underline;">Return to index</a>.
+                Tags: 
+            </p>
+            <p>Following yesterdays <a href="#" style="text-decoration:underline;">Atlassian security advisory for Confluence</a> , it looks like there are some added steps required for people who have user macros. Be careful folks.</p>
+            <p><a href="#" style="text-decoration:underline;">@BergerofLondon</a> spotted this first:</p>
+            <div class="comment">
+                <p>Following upgrade to Confluence 5.5.1 the values of parameters in user macros cannot be evaluated the same way. Discovered this the hard way</p>
+                <p class="author">&mdash; Berger (<a href="#" style="text-decoration:underline;">@BergerofLondon</a>) <a href="#" style="text-decoration:underline;">May 22, 2014</a></p>
+            </div>
+            <div class="comment">
+                <p>You can't use the same shorthand you use for standard variables. <code>#if ($paramistrue)</code> will always evaluate as true.</p>
+                <p class="author">&mdash; Berger (<a href="#" style="text-decoration:underline;">@BergerofLondon</a>) <a href="#" style="text-decoration:underline;">May 22, 2014</a></p>
+            </div>
+            <div class="comment">
+                <p>You now have to use things like <code>#if ($paramistrue == true)</code> or <code>#if ($paramistrue == false)</code>.</p>
+                <p class="author">&mdash; Berger (<a href="#" style="text-decoration:underline;">@BergerofLondon</a>) <a href="#" style="text-decoration:underline;">May 22, 2014</a></p>
+            </div>
+            <div class="comment">
+                <p><a href="#" style="text-decoration:underline;">@baitman</a> For strings I can no longer do <code>#if ($paramfoo)</code>, I have to do <code>#if ($paramfoo).length() > 0</code>. Which is crazy.</p>
+                <p class="author">&mdash; Berger (<a href="#" style="text-decoration:underline;">@BergerofLondon</a>) <a href="#" style="text-decoration:underline;">May 22, 2014</a></p>
+            </div>
+            <div class="comment">
+                <p><a href="#" style="text-decoration:underline;">@baitman</a> Also, if you're upgrading to 5.5.1 to fix the security vulnerability double-check that it's upgraded xwork to 1.17. Ours wasn't.</p>
+                <p class="author">&mdash; Berger (<a href="#" style="text-decoration:underline;">@BergerofLondon</a>) <a href="#" style="text-decoration:underline;">May 22, 2014</a></p>
+            </div>
+            <p>The update to <b>atlassian-xwork-core-1.17.jar</b> means you have to be more specific with your coding. Thanks to <a href="#" style="text-decoration:underline;">@BergerofLondon</a> for the heads up.</p>
+        </article>
+    </main>
+    <footer>
+        <a href="#" style="text-decoration:underline;">ÃÂ¯Ã&nbsp;Ã</a>
+        <a href="#" style="text-decoration:underline;">ÃÂ¯Ã&nbsp;Ã¢</a>
+        <a href="#" style="text-decoration:underline;">ÃÂ¯Ã&nbsp;Ã¢</a>
+        <a href="#" style="text-decoration:underline;">ÃÂ¯Ã&nbsp;Ã¢</a>
+        <a href="#" style="text-decoration:underline;"> Ã&nbsp;ÃÂ¤ÃÃ&nbsp;ÃÂ¤ÃÂ®Ã&nbsp;ÃÂ¥ÃÃ&nbsp;ÃÂ¤ÃÂ²</a>
+    </footer>
+</body>
+</html>

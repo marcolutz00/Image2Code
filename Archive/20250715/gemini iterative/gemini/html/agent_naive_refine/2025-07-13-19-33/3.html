@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Producer Application</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #fff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+form {
+    width: 600px;
+    padding: 20px;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="email"],
+input[type="tel"],
+textarea,
+select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 5px;
+}
+
+textarea {
+    height: 100px;
+}
+
+.radio-group {
+    display: flex;
+    align-items: center;
+}
+
+.radio-group input[type="radio"] {
+    margin-right: 5px;
+}
+
+.radio-group label {
+    font-weight: normal;
+    margin-right: 15px;
+}
+
+button {
+    background-color: #e91e63;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    width: auto;
+}
+
+button:hover {
+    background-color: #c2185b;
+}
+
+.required::after {
+    content: " *";
+    color: red;
+}
+
+.header {
+    width: 100%;
+    height: 150px;
+    background-color: blue;
+}
+
+.title-bar {
+    width: 100%;
+    background-color: #e91e63;
+    color: white;
+    text-align: center;
+    padding: 10px 0;
+    font-size: 20px;
+}
+
+.info-text {
+    margin-bottom: 15px;
+}
+
+.asterisk {
+    color: red;
+}
+.powered-by {
+    font-size: small;
+    text-align: right;
+}
+a {
+    color: #1565c0;
+}
+</style>
+</head>
+<body>
+<form>
+    <header class="header" role="banner"></header>
+    <div class="title-bar">Producer Application</div>
+    
+    <div class="info-text">Tell us a little about you and your experience. <a href="#">FAQ</a> for more information.</div>
+
+    <div class="form-group">
+        <label for="firstName" class="required">First Name</label>
+        <input type="text" id="firstName">
+    </div>
+
+    <div class="form-group">
+        <label for="lastName" class="required">Last Name</label>
+        <input type="text" id="lastName">
+    </div>
+
+    <div class="form-group">
+        <label for="email" class="required">Email Address</label>
+        <input type="email" id="email">
+    </div>
+
+    <div class="form-group">
+        <label for="phone" class="required">Phone Number</label>
+        <input type="tel" id="phone">
+    </div>
+
+    <div class="form-group">
+        <label for="location" class="required">Where Do You Live?</label>
+        <input type="text" id="location">
+    </div>
+
+    <div class="form-group">
+        <label class="required">I am at Least 18 Years of Age</label>
+        <div>
+            <label><input type="radio" name="age" value="yes">Yes</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="required">Do You Have a Production Company?</label>
+        <div>
+            <label><input type="radio" name="production" value="yes">Yes</label>
+        </div>
+        <div>
+            <label><input type="radio" name="production" value="no">No</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="aboutYou" class="required">Tell Us More About You.</label>
+        <textarea id="aboutYou"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="genre" class="required">Preferred Genre</label>
+        <select id="genre">
+            <option value="">Select a genre</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label class="required">Are You Confident You Can Create Full-Length Episodes (12-25 minutes) on a Low-Budget and
+            Continue to Create Episodes if they are Renewed by Candivan Subscribers?</label>
+        <div>
+            <label><input type="radio" name="confident" value="yes">Yes</label>
+            <label><input type="radio" name="confident" value="no">No</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label class="required">If Selected as a Winner, Would You be Able to Start Production by this May or June (2019)?</label>
+        <div>
+            <label><input type="radio" name="start_production" value="yes">Yes</label>
+            <label><input type="radio" name="start_production" value="no">No</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="collaborators">Names of Others Plan to Collaborate with (if Applicable)</label>
+        <textarea id="collaborators"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label class="required">Are you a member of the PGA?</label>
+        <div>
+            <label><input type="radio" name="pga_member" value="yes">Yes</label>
+            <label><input type="radio" name="pga_member" value="no">No</label>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="socialNetworks">OPTIONAL: Those with large social networks are preferable. Feel free to list any large networks you
+            are part of or your Twitter.</label>
+        <textarea id="socialNetworks"></textarea>
+        <div style="font-size: small;">0/800 characters</div>
+    </div>
+
+    <div class="form-group">
+        <label for="howDidYouHear">How did you find out about us?</label>
+        <select id="howDidYouHear">
+            <option value="">Select an option</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="terms"><input type="checkbox" id="terms"> I Have Read and I Accept the Terms and Conditions Below</label>
+        <a href="#">Terms and Conditions</a>
+    </div>
+    <div style="display: flex; justify-content: space-between;">
+        <a href="#">Report abuse</a>
+        <div class="powered-by">Powered by <img src="src/placeholder.jpg" width="20" height="20" style="vertical-align: middle" alt="Candivan"></div>
+    </div>
+    <button type="submit">Submit</button>
+</form>
+</body>
+</html>

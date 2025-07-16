@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f6f2;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #f9f6f2;
+            color: #e67e22;
+            padding-top: 10px;
+            min-height: 30px;
+            border-bottom: 1px solid #e67e22;
+            text-align: center;
+        }
+
+        header a {
+            color: #e67e22;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.7em;
+            padding: 0 10px;
+        }
+
+        #branding {
+            float: left;
+        }
+
+        #branding h1 {
+            margin: 0;
+        }
+
+        #navbar {
+            background-color: #f9f6f2;
+        }
+
+        #navbar ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        #navbar li {
+            display: inline;
+            padding: 0 20px;
+        }
+
+        #navbar a {
+            color: black;
+            text-decoration: none;
+        }
+        #navbar {
+            background-color: #f9f6f2;
+            overflow: hidden;
+            padding: 10px;
+            text-align: center;
+        }
+
+        #navbar ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        #navbar li {
+            display: inline;
+            margin: 0 10px;
+        }
+
+        #navbar a {
+            color: #000;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+        }
+
+        #navbar a:hover {
+            background-color: #ddd;
+            color: black;
+        }
+        main {
+            display: flex;
+            padding: 20px 0;
+        }
+
+        article {
+            flex: 2;
+            padding-right: 30px;
+        }
+
+        aside {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        #blue-box {
+            width: 180px;
+            height: 150px;
+            background-color: blue;
+            margin: 20px auto;
+        }
+        .main-container {
+            display: flex;
+            width: 80%;
+            margin: 20px auto;
+        }
+
+        .main-content {
+            flex: 2;
+            padding-right: 20px;
+        }
+
+        .sidebar {
+            flex: 1;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+                footer {
+            background: #000;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .latest-questions {
+            margin-top: 20px;
+            line-height: 1.8;
+        }
+
+        .latest-questions a {
+            color: #c0392b;
+            text-decoration: none;
+        }
+
+        .latest-questions a:hover {
+            text-decoration: underline;
+        }
+        .breadcrumbs {
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 0.8em;
+        }
+
+        .breadcrumbs a {
+            color: #c0392b;
+            text-decoration: none;
+        }
+
+        .breadcrumbs span {
+            color: #888;
+        }
+        .post {
+            background-color: #fff;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .post h1 {
+            color: #c0392b;
+        }
+
+        .post p {
+            margin-bottom: 20px;
+        }
+
+        .categories {
+            background-color: #f39c12;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 0.8em;
+            margin-right: 5px;
+        }
+
+                .categories a {
+            color: white;
+            text-decoration: none;
+        }
+        .answer {
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .explanation {
+            margin-top: 10px;
+        }
+
+        .explanation p {
+            margin-bottom: 10px;
+        }
+
+        .show-answer {
+            background-color: #f0f0f0;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .show-answer:hover {
+            background-color: #ddd;
+        }
+        .share-buttons {
+            margin-top: 20px;
+            display: flex;
+        }
+
+        .share-button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 0.9em;
+        }
+
+        .share-button:hover {
+            opacity: 0.8;
+        }
+
+        .share-button.twitter {
+            background-color: #55acee;
+        }
+
+        .share-button.facebook {
+            background-color: #3b5998;
+        }
+
+        .share-button.linkedin {
+            background-color: #0077b5;
+        }
+
+        .share-button.pinterest {
+            background-color: #bd081c;
+        }
+
+        .share-button.email {
+            background-color: #8e44ad;
+        }
+
+        .related-posts {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+
+        .comments {
+            margin-top: 30px;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 5px;
+        }
+        .search-box {
+            background-color: #f0f0f0;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+
+        .search-box input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .latest-questions {
+            margin-top: 20px;
+        }
+
+        .latest-questions h3 {
+            color: #c0392b;
+        }
+
+        .latest-questions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .latest-questions li {
+            padding: 10px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+
+        .latest-questions li:last-child {
+            border-bottom: none;
+        }
+
+        .latest-questions a {
+            color: #c0392b;
+            text-decoration: none;
+        }
+
+        .latest-questions a:hover {
+            text-decoration: underline;
+        }
+        .ads {
+            background-color: #f39c12;
+            height: 100px;
+            width: 100%;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+                <div id="blue-box"></div>
+            </div>
+            <nav>
+                <a href="#">About</a>
+                <a href="#">Disclaimer</a>
+                <a href="#">Sitemap</a>
+                <a href="#">Contact</a>
+                <a href="#">Privacy Policy</a>
+                <a href="#">Visit Kerala PSC</a>
+            </nav>
+        </div>
+    </header>
+    <section id="navbar">
+        <div class="container">
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">Notifications</a></li>
+                    <li><a href="#">Mock Exams</a></li>
+                    <li><a href="#">Previous Questions</a></li>
+                    <li><a href="#">Syllabus</a></li>
+                    <li><a href="#">Answer Key</a></li>
+                    <li><a href="#">Study Materials</a></li>
+                    <li><a href="#">Youtube</a></li>
+                </ul>
+            </nav>
+        </div>
+    </section>
+    <main class="main-container">
+        <div class="main-content">
+            <div class="breadcrumbs">
+                <a href="#">Home</a><span>/</span>
+                <a href="#">Facts on India</a><span>/</span>
+                <a href="#">General Knowledge</a><span>/</span>
+                <span>Years</span>
+            </div>
+            <article class="post">
+                <span class="categories">Facts on India</span>
+                <span class="categories">General Knowledge</span>
+                <span class="categories">Years</span>
+                <h1>The Indian Oil Corporation was set up in which year?</h1>
+                <p>A - 1964</p>
+                <p>B - 1965</p>
+                <p>C - 1966</p>
+                <p>D - 1970</p>
+                <div class="answer">Answer : A</div>
+                <div class="explanation">
+                    <p>Indian Oil Corporation is an Indian state owned oil and gas company primarily headquartered in New Delhi. It is the
+                        largest commercial oil company in the country.</p>
+                </div>
+                <div class="show-answer">Show Answer</div>
+                <div class="share-buttons">
+                    <a href="#" class="share-button twitter">Tweet</a>
+                    <a href="#" class="share-button facebook">Share</a>
+                    <a href="#" class="share-button linkedin">Share</a>
+                    <a href="#" class="share-button pinterest">Share</a>
+                    <a href="#" class="share-button email">Share</a>
+                </div>
+            </article>
+            <div class="related-posts">
+                RELATED POSTS
+            </div>
+            <div class="comments">
+                0 COMMENTS:
+            </div>
+        </div>
+        <aside class="sidebar">
+            <div class="search-box">
+                <input type="text" placeholder="Search...">
+            </div>
+            <div class="ads"></div>
+            <div class="latest-questions">
+                <h3>LATEST QUESTIONS</h3>
+                <ul>
+                    <li><a href="#">Let us go for a walk, Question tag?</a></li>
+                    <li><a href="#">Who conducted Panthi Bhojanam first time in India ?</a></li>
+                    <li><a href="#">She sang well, _________? (Question Tag)</a></li>
+                    <li><a href="#">I congratulate you _________ your success.</a></li>
+                    <li><a href="#">The founder of 'Samathwa Samajam"</a></li>                    
+                    <li><a href="#">There is an exception _________ every rule.</a></li>
+                    <li><a href="#">He died _________ a severe head injury.</a></li>
+                    <li><a href="#">Who conducted "Panthi Bhojanam" for the first time in India?</a></li>
+                    <li><a href="#">Who founded the Vidya Poshini Sabha?</a></li>
+                    <li><a href="#">Who, among the following, has the final right to sanction the expenditure of public money in India ?</a></li>
+                </ul>
+            </div>
+        </aside>
+    </main>
+    <footer>
+        <p>Created with by YesLearners.com - YesLearners</p>
+    </footer>
+</body>
+</html>

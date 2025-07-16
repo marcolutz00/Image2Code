@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Webpage Recreation</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+}
+
+/* Header */
+.header {
+    background: #35424a;
+    color: white;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: 3px solid #e8491d;
+}
+
+.header a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-size: 16px;
+}
+
+.header ul {
+    padding: 0;
+    margin: 0;
+}
+
+.header li {
+    float: left;
+    display: inline;
+    padding: 0 20px 0 20px;
+}
+
+.header #branding {
+    float: left;
+}
+
+.header #branding h1 {
+    margin: 0;
+}
+
+.header .highlight, .header .current a {
+    color: #e8491d;
+    font-weight: bold;
+}
+
+/* Showcase */
+#showcase {
+    min-height: 400px;
+    background: url('src/placeholder.jpg') no-repeat 0 -400px;
+    text-align: center;
+    color: white;
+}
+
+#showcase h1 {
+    margin-top: 100px;
+    font-size: 55px;
+    margin-bottom: 10px;
+}
+
+#showcase p {
+    font-size: 20px;
+}
+
+/* Newsletter */
+#newsletter {
+    padding: 15px;
+    color: white;
+    background: #35424a;
+}
+
+#newsletter h1 {
+    float: left;
+}
+
+#newsletter form {
+    float: right;
+    margin-top: 15px;
+}
+
+#newsletter input[type="email"] {
+    padding: 4px;
+    height: 25px;
+    width: 250px;
+}
+
+.button_1 {
+    height: 38px;
+    background: #e8491d;
+    border: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+    color: white;
+}
+
+/* Boxes */
+#boxes {
+    margin-top: 20px;
+}
+
+#boxes .box {
+    float: left;
+    text-align: center;
+    width: 30%;
+    padding: 10px;
+}
+
+#boxes .box img {
+    width: 90px;
+}
+
+/* Sidebar */
+aside#sidebar {
+    float: right;
+    width: 30%;
+    margin-top: 10px;
+}
+
+aside#sidebar .quote input, aside#sidebar .quote textarea {
+    width: 90%;
+    padding: 5px;
+}
+
+/* Main-col */
+article#main-col {
+    float: left;
+    width: 65%;
+}
+
+/* Services */
+ul#services li {
+    list-style: none;
+    padding: 20px;
+    border: #cccccc solid 1px;
+    margin-bottom: 5px;
+    background: #e6e6e6;
+}
+
+/* Footer */
+footer {
+    padding: 20px;
+    margin-top: 20px;
+    color: white;
+    background-color: #e8491d;
+    text-align: center;
+}
+
+/* Media Queries */
+@media(max-width: 768px) {
+    .header #branding,
+    .header nav,
+    .header nav li,
+    #newsletter h1,
+    #newsletter form,
+    #boxes .box,
+    aside#sidebar,
+    article#main-col {
+        float: none;
+        text-align: center;
+        width: 100%;
+    }
+
+    .header {
+        padding-bottom: 20px;
+    }
+
+    #showcase h1 {
+        margin-top: 40px;
+    }
+
+    #newsletter form {
+        margin-top: 0;
+    }
+}
+/* Specific Styles */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+#main-container {
+    background-color: #fff;
+    padding: 20px;
+}
+
+/* Navigation */
+#main-nav {
+    background-color: #f0ad4e;
+    color: #fff;
+    padding: 10px 0;
+}
+
+#main-nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+#main-nav a:hover {
+    background-color: #d9534f;
+}
+
+#breadcrumb {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+}
+
+#breadcrumb a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+#breadcrumb .current {
+    color: #777;
+}
+
+/* Sidebar */
+#sidebar {
+    float: left;
+    width: 20%;
+}
+
+#sidebar .widget {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+#sidebar .widget h3 {
+    margin-top: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Content Area */
+#content {
+    float: right;
+    width: 75%;
+    padding: 10px;
+}
+
+/* Q & A Styles */
+.q-a-categories {
+    background-color: #f0ad4e;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.q-a-categories li {
+    padding: 8px;
+    border-bottom: 1px #f0ad4e solid;
+    list-style: none;
+}
+
+.q-a-categories li:last-child {
+    border-bottom: 0;
+}
+
+/* Question and Answer Section */
+.question {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.answer {
+    padding: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+/* Form Styles */
+.ask-question-form {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.ask-question-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.ask-question-form input[type="text"],
+.ask-question-form textarea,
+.ask-question-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* Footer */
+footer {
+    background-color: #ddd;
+    text-align: center;
+    padding: 20px;
+    font-size: small;
+    color: #555;
+}
+/* Specific styles to match the look of the image */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+#main-container {
+    background-color: #fff;
+    padding: 20px;
+}
+
+/* Navigation */
+#main-nav {
+    background-color: #f0ad4e;
+    color: #fff;
+    padding: 10px 0;
+}
+
+#main-nav a {
+    color: #fff;
+    text-decoration: none;
+    padding: 10px;
+    display: block;
+}
+
+#main-nav a:hover {
+    background-color: #d9534f;
+}
+
+#breadcrumb {
+    padding: 10px;
+    margin-bottom: 10px;
+    background-color: #f8f8f8;
+    border-bottom: 1px solid #ddd;
+}
+
+#breadcrumb a {
+    color: #337ab7;
+    text-decoration: none;
+}
+
+#breadcrumb .current {
+    color: #777;
+}
+
+/* Sidebar */
+#sidebar {
+    float: left;
+    width: 20%;
+}
+
+#sidebar .widget {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+}
+
+#sidebar .widget h3 {
+    margin-top: 0;
+    padding-bottom: 5px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* Content Area */
+#content {
+    float: right;
+    width: 75%;
+    padding: 10px;
+}
+
+/* Q & A Styles */
+.q-a-categories {
+    background-color: #f0ad4e;
+    color: #fff;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.q-a-categories li {
+    padding: 8px;
+    border-bottom: 1px #f0ad4e solid;
+    list-style: none;
+}
+
+.q-a-categories li:last-child {
+    border-bottom: 0;
+}
+
+/* Question and Answer Section */
+.question {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+}
+
+.answer {
+    padding: 10px;
+    background-color: #f8f8f8;
+    border: 1px solid #ddd;
+    margin-bottom: 10px;
+}
+
+/* Form Styles */
+.ask-question-form {
+    padding: 10px;
+    border: 1px solid #ddd;
+    margin-bottom: 20px;
+}
+
+.ask-question-form label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.ask-question-form input[type="text"],
+.ask-question-form textarea,
+.ask-question-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+/* Footer */
+footer {
+    background-color: #ddd;
+    text-align: center;
+    padding: 20px;
+    font-size: small;
+    color: #555;
+}
+
+#search-bar {
+    width: 300px; /* Adjust width as needed */
+    margin: 20px auto; /* Center the search bar */
+}
+
+/* Q & A Categories */
+.q-a-categories {
+    background-color: #f0ad4e;
+    color: #fff;
+    padding: 10px;
+}
+
+.q-a-categories ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.q-a-categories li {
+    padding: 8px;
+    border-bottom: 1px solid #f0ad4e;
+}
+
+.q-a-categories li:last-child {
+    border-bottom: none;
+}
+/* Styling for the Ask a Question form */
+.ask-question-form {
+    padding: 20px;
+    border: 1px solid #ddd;
+    background-color: #fff;
+}
+
+.ask-question-form label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.ask-question-form input[type="text"],
+.ask-question-form textarea,
+.ask-question-form select {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 4px; /* Optional: for rounded corners */
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+}
+
+.ask-question-form input[type="text"]:focus,
+.ask-question-form textarea:focus,
+.ask-question-form select:focus {
+    outline: none; /* Remove default focus outline */
+    border-color: #66afe9; /* Change border color on focus */
+    box-shadow: 0 0 5px rgba(102, 175, 233, 0.5); /* Add a subtle box shadow */
+}
+
+.ask-question-form textarea {
+    resize: vertical; /* Allow vertical resizing of textarea */
+    height: 120px; /* Set a default height for the textarea */
+}
+#vote-container {
+    display: inline-block;
+    margin-right: 10px; /* Adjust spacing as needed */
+}
+
+#vote-container .vote-button {
+    background-color: #4CAF50; /* Green */
+    border: none;
+    color: white;
+    padding: 5px 10px; /* Adjust padding as needed */
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 12px; /* Adjust font size as needed */
+    margin: 2px; /* Adjust margin as needed */
+    cursor: pointer;
+    border-radius: 5px;
+}
+</style>
+</head>
+<body>
+    <div id="main-container">
+        <div id="breadcrumb">
+            <a href="#">Home</a> /
+            <a href="#">Answers</a> /
+            <a href="#">Destinations</a> /
+            <a href="#">Guangzhou</a> /
+            <a href="#">Transportation</a> /
+        </div>
+
+        <div style="clear: both;"></div>
+
+        <div id="content">
+            <div class="question">
+                
+                Asked by Mr.eric from israel | Jun. 02, 2009 04:24<br>
+                About: How do you get from Guangzhou airport to the city?<br><br>
+
+                Hi,<br>
+                1. I'll arrive at GZ airport at 23:00 and need to go to the "riverside international youth hostel". I'm<br>
+                planning on takeing line 1 into town. from there - can I take the metro???? is it working all night????<br>
+                2. I'll not have Chinese money on me and I read that the bank at the airport closes at 21:00. are there<br>
+                ATMs at the airport???? if not - what to do????<br>
+                thanks<br>
+                eric
+                
+            </div>
+
+            <div class="answer">
+               
+                Answered by Mr.Qi from China | Jun. 03, 2009 22:11<br><br>
+
+                Hello!<br>
+                1. Suggest you take a taxi to the hotel aftering arriving in the town. Subway Line 1 passes Fangcun<br>
+                Station which is the neat metro station to the hotel, but subway are not working after 23:30. I think<br>
+                you gona miss it.<br>
+                2. Yes, there are ATMs at the teminal, they are of bank like, Bank of China and several others.<br>
+                Good luck~<br>
+                
+                <div id="vote-container">
+                    <button class="vote-button">0</button>
+                </div>
+                <div id="vote-container">
+                    <button class="vote-button">0</button>
+                </div>
+                <div id="vote-container">
+                   Reply
+                </div>
+
+            </div>
+
+            <h3>Related Questions:</h3>
+            <div class="question">
+                <a href="#">Is Guangzhou Baiyun Airport far away from my hotel in Liwan District?</a><br>
+                Asked by jac from singapore | Nov. 04, 2012 20:45
+                 1<br>
+                 answer
+            </div>
+
+            <div class="question">
+                <a href="#">how to go to changsha shuyuan international youth hostel from airport?anyon...</a><br>
+                Asked by firdaus from Malaysia | Sep. 21, 2017 01:29
+                1<br>
+                answer
+            </div>
+
+            <div class="question">
+                <a href="#">Hi I will arrive in Pudong Airport at 10.15 p.m. We will stay at MINGTOWN ...</a><br>
+                Asked by Mr.Andrea from italy | Feb. 21, 2011 02:17
+                1<br>
+                answer
+            </div>
+
+            <div class="question">
+                <a href="#">hi two of us will arrive Pudong International Airport on 27/10/10 and w...</a><br>
+                Asked by Mrs.lisa chan from australia | Sep. 28, 2010 22:44
+                1<br>
+                answer
+            </div>
+
+            <div class="question">
+                <a href="#">The best transportation from Tianjin Airport to Peking Uni International Yo...</a><br>
+                Asked by Azlia from Malaysia | Nov. 20, 2011 00:09
+                1<br>
+                answer
+            </div>
+
+            <div class="question">
+                <a href="#">How to go to Guilin airport from Ming Palace International Youth Hostel?</a><br>
+                Asked by chloe from Malaysia | Dec. 24, 2017 18:38
+                1<br>
+                answer
+            </div>
+        </div>
+        <div style="clear: both;"></div>
+        <div class="ask-question-form">
+            <label for="categories">Categories:</label>
+            <select id="categories">
+                <option>Guangzhou</option>
+            </select>
+
+            <label for="questionSummary">Question Summary (100 characters)</label>
+            <input type="text" id="questionSummary" maxlength="100">
+
+            <label for="details">Details (optional) (2,000 characters)</label>
+            <textarea id="details" maxlength="2000"></textarea>
+
+            <input type="submit" value="Submit Question" style="background-color: #4CAF50; color: white; padding: 10px 15px; border: none; cursor: pointer;">
+        </div>
+    </div>
+
+    <footer>
+        About Us & Contact Us<br>
+        Copyright Â© 1998-2023 All rights reserved.
+    </footer>
+</body>
+</html>

@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aws_autoscaling_lifecycle_hook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background: #f4f4f4;
+            color: #555;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: 1px solid #e0e0e0;
+        }
+
+        header a {
+            color: #555;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        header ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        header #branding {
+            float: left;
+        }
+
+        header #branding h1 {
+            margin: 0;
+        }
+
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+
+        header .highlight, header .current a {
+            color: #e67e22;
+            font-weight: bold;
+        }
+
+        /* Sidebar */
+        aside#sidebar {
+            float: left;
+            width: 20%;
+            padding: 10px;
+        }
+
+        aside#sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        aside#sidebar li {
+            margin-bottom: 5px;
+        }
+
+        /* Main */
+        article#main-col {
+            float: right;
+            width: 75%;
+            padding: 0 20px;
+        }
+
+        /* Footer */
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #333;
+            text-align: left;
+            clear: both;
+            overflow: hidden;
+        }
+
+        footer ul {
+            list-style: none;
+            padding: 0;
+            float: left;
+            width: 25%;
+            box-sizing: border-box;
+            padding-left: 15px;
+        }
+
+        footer ul li a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        footer ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-logo {
+            width: 80px;
+            height: auto;
+            margin-bottom: 10px;
+        }
+
+        .highlight {
+            color: #e67e22;
+            font-weight: bold;
+        }
+
+        /* Utilities */
+        .button_1 {
+            height: 38px;
+            background: #e67e22;
+            border: 0;
+            padding-left: 20px;
+            padding-right: 20px;
+            color: #fff;
+        }
+
+        .dark {
+            padding: 15px;
+            background: #35424a;
+            color: #fff;
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+
+        /* Media Queries */
+        @media(max-width: 768px) {
+            header #branding,
+            header nav,
+            header nav li,
+            aside#sidebar,
+            article#main-col {
+                float: none;
+                text-align: center;
+                width: 100%;
+            }
+
+            header {
+                padding-bottom: 20px;
+            }
+
+            aside#sidebar {
+                margin-top: 30px;
+            }
+
+            footer ul {
+                width: 50%;
+                float: left;
+                text-align: left;
+            }
+        }
+
+        .yaml-hcl {
+            text-align: right;
+        }
+
+        .yaml-hcl a {
+            padding: 5px;
+            margin-left: 5px;
+            text-decoration: none;
+            color: #007bff;
+        }
+        .language-selector a {
+            color: #007bff;
+            text-decoration: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-left: 5px;
+        }
+
+        .language-selector a.active {
+            background-color: #f0f0f0;
+            color: #333;
+            font-weight: bold;
+        }
+
+        pre {
+            background-color: #f5f5f5;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            font-family: monospace;
+            font-size: 14px;
+            white-space: pre-wrap; /* css-3 */
+            white-space: -moz-pre-wrap; /* Mozilla, since 1999 */
+            white-space: -pre-wrap; /* Opera 4-6 */
+            white-space: -o-pre-wrap; /* Opera 7 */
+            word-wrap: break-word; /* Internet Explorer 5.5+ */
+        }
+
+        .argument-reference ul {
+            list-style-type: disc;
+            padding-left: 20px;
+        }
+
+        .argument-reference li {
+            margin-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <div id="branding">
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Features</a></li>
+                    <li><a href="#">Open Source</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Docs</a></li>
+                    <li><a href="#">Login</a></li>
+                    <li><a href="#">Register</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <div class="container">
+        <aside id="sidebar">
+            <ul>
+                <li><a href="#">Videos</a></li>
+                <li><a href="#">Getting started</a></li>
+                <li><a href="#">Getting more from Koding</a></li>
+                <li><a href="#">Stack Documentation</a></li>
+                <li><a href="#">Configuration</a></li>
+                <li><a href="#">Providers</a>
+                    <ul>
+                        <li><a href="#">Archive</a></li>
+                        <li><a href="#">Atlas</a></li>
+                        <li><a href="#">AWS</a>
+                            <ul>
+                                <li><a href="#">Data Sources</a></li>
+                                <li><a href="#">Resources</a>
+                                    <ul>
+                                        <li><a href="#">aws_alb</a></li>
+                                        <li><a href="#">aws_alb_listener</a></li>
+                                        <li><a href="#">aws_alb_listener_rule</a></li>
+                                        <li><a href="#">aws_alb_target_group</a></li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+                <li><a href="#">Azure Service Management</a></li>
+                <li><a href="#">Provisioners</a></li>
+            </ul>
+        </aside>
+
+        <article id="main-col">
+            <h2>aws_autoscaling_lifecycle_hook</h2>
+            <p>Provides an AutoScaling Lifecycle Hook resource.</p>
+
+            <h3>Example Usage</h3>
+
+            <div class="language-selector yaml-hcl">
+                <a href="#" class="language-selector">yaml</a>
+                <a href="#" class="language-selector">hcl</a>
+            </div>
+
+            <pre>
+resource:
+  aws_autoscaling_group:
+    foobar:
+      availability_zones:
+        - us-west-2a
+      name: terraform-test-foobar5
+      health_check_type: EC2
+      termination_policies:
+        - OldestInstance
+      tag:
+        key: Foo
+        value: foo-bar
+      propagate_at_launch: true
+  aws_autoscaling_lifecycle_hook:
+    foobar:
+      name: foobar
+      autoscaling_group_name: '${aws_autoscaling_group.foobar.name}'
+      default_result: CONTINUE
+      heartbeat_timeout: 2000
+      lifecycle_transition: 'autoscaling:EC2_INSTANCE_LAUNCHING'
+      notification_metadata: "{
+ "foo": "bar"
+}"
+      notification_target_arn: 'arn:aws:sqs:us-east-1:444455556666:queue1*'
+      role_arn: 'arn:aws:iam::123456789012:role/S3Access'
+            </pre>
+
+            <h3>Argument Reference</h3>
+            <p>The following arguments are supported:</p>
+            <div class="argument-reference">
+                <ul>
+                    <li><code>name</code> - (Required) The name of the lifecycle hook.</li>
+                    <li><code>autoscaling_group_name</code> - (Required) The name of the Auto Scaling group to which you want to assign the lifecycle hook</li>
+                    <li><code>default_result</code> - (Optional) Defines the action the Auto Scaling group should take when the lifecycle hook timeout elapses or if an unexpected failure occurs.</li>
+                    <li><code>heartbeat_timeout</code> - (Optional) Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult parameter</li>
+                </ul>
+            </div>
+            <p>See the source of this document at <a href="https://www.terraform.io" target="_blank">Terraform.io</a></p>
+        </article>
+    </div>
+
+    <footer>
+        <div class="container">
+            <ul>
+                <li>
+                    <img src="src/placeholder.jpg" alt="Koding Logo" class="footer-logo">
+                </li>
+                <li>For Teams</li>
+                <li><a href="#">Platform for Training</a></li>
+                <li><a href="#">Pre-Sales Automation</a></li>
+            </ul>
+
+            <ul>
+                <li>Resources</li>
+                <li><a href="#">Documentation</a></li>
+                <li><a href="#">Blog</a></li>
+                <li><a href="#">Get Started</a></li>
+            </ul>
+
+            <ul>
+                <li>About</li>
+                <li><a href="#">About Us</a></li>
+                <li><a href="#">Open Source</a></li>
+            </ul>
+
+            <ul>
+                <li>Contact</li>
+                <li><a href="#">Facebook</a></li>
+                <li><a href="#">Twitter</a></li>
+                <li><a href="#">LinkedIn</a></li>
+                <li><a href="#">Email Us</a></li>
+            </ul>
+        </div>
+    </footer>
+</body>
+</html>

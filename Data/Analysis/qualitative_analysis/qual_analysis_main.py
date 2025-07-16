@@ -13,6 +13,7 @@ import Data.Analysis.qualitative_analysis.landmarks as landmarks
 import Data.Analysis.qualitative_analysis.complexity as complexity
 import Data.Analysis.qualitative_analysis.color as color_analysis
 import Data.Analysis.qualitative_analysis.stats as stats
+import Data.Analysis.qualitative_analysis.iterative_differences as iterative_differences
 
 
 
@@ -73,7 +74,47 @@ def start_qualitative_analysis(list_paths):
     
     return map_landmarks, map_font_size_color_contrast, map_background_colors, color_results, map_complexity_datasets, map_foreground_colors
 
+
+def start_qualitative_analysis_iterative(list_paths_iterative):
+    """
     
+    """
+
+    for index in range(0, len(list_paths_iterative)):
+        map_differences = {
+            "added": {},
+            "removed": {},
+            "unchanged": {}
+        }
+        
+        print(f"Processing {list_paths_iterative[index]}")
+        html_files = [f for f in utils_dataset.sorted_alphanumeric(os.listdir(list_paths_iterative[index])) if f.endswith('.html')]
+
+        if index + 1 >= len(list_paths_iterative):
+            break
+ 
+        for file in html_files:
+            print("Processing file:", file)
+            html_path1 = os.path.join(list_paths_iterative[index], file)
+            accessibility_json_path1 = html_path1.replace('.html', '.json').replace('html', 'accessibility')
+            html_path2 = os.path.join(list_paths_iterative[index + 1], file)
+            accessibility_json_path2 = html_path2.replace('.html', '.json').replace('html', 'accessibility')
+
+            map_differences_file = iterative_differences.calculate_differences_iterative_rounds(accessibility_json1_path=accessibility_json_path1, accessibility_json2_path=accessibility_json_path2)
+
+            if map_differences_file is None:
+                continue
+
+            for key in map_differences_file.keys():
+                for item in map_differences_file[key]:
+                    if map_differences[key].get("amount") is None:
+                        map_differences[key]["amount"] = 0
+                    map_differences[key]["amount"] += 1
+                    if map_differences[key].get(item["rule"]) is None:
+                        map_differences[key][item["rule"]] = 0
+                    map_differences[key][item["rule"]] += 1
+        
+
 
 
 
@@ -108,7 +149,38 @@ if __name__ == "__main__":
         "openai_reason_3": curr_path.parent.parent / "Output" / "openai" / "html" / "reason" / "2025-06-20-19-43",
     }
 
+    list_paths_iterative = [
+        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative" / "2025-06-18-21-10",
+        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_1" / "2025-06-18-21-10",
+        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_2" / "2025-06-18-21-10",
+        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_3 " / "2025-06-18-21-10",
+        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative" / "2025-06-19-07-33",
+        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_1" / "2025-06-19-07-33",
+        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_2" / "2025-06-19-07-33",
+        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_3 " / "2025-06-19-07-33",
+        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative" / "2025-06-19-10-46",
+        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_1" / "2025-06-19-10-46",
+        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_2" / "2025-06-19-10-46",
+        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_3 " / "2025-06-19-10-46",
+        
+        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative" / "2025-06-21-11-04",
+        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_1" / "2025-06-21-11-04",
+        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_2" / "2025-06-21-11-04",
+        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_3 " / "2025-06-21-11-04",
+        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative" / "2025-06-21-15-32",
+        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_1" / "2025-06-21-15-32",
+        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_2" / "2025-06-21-15-32",
+        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_3 " / "2025-06-21-15-32",
+        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative" / "2025-06-21-19-26",
+        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_1" / "2025-06-21-19-26",
+        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_2" / "2025-06-21-19-26",
+        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_3 " / "2025-06-21-19-26",
+    ]
+
+
+    map_differences = start_qualitative_analysis_iterative(list_paths_iterative)
     map_landmarks, map_font_size_color_contrast, map_background_colors, color_results, map_complexity_datasets, map_foreground_colors = start_qualitative_analysis(list_paths)
+
 
     # Export results to excel
     # utils_general.export_dict_to_excel(map_landmarks, "landmarks", curr_path / "data" / "landmark_qualitative_analysis.xlsx")

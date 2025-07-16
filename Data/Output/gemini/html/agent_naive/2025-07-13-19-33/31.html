@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel China Guide</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        #header {
+            background: #35424a;
+            color: #ffffff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: 3px solid #e8491d;
+        }
+
+        #navbar {
+            background-color: #f4f4f4;
+            color: #333;
+            padding: 10px 0;
+        }
+
+        #navbar ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        #navbar li {
+            display: inline;
+            padding: 0 20px;
+        }
+
+        #navbar a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        #main {
+            padding: 20px;
+        }
+
+        #sidebar {
+            float: left;
+            width: 20%;
+            background: #f4f4f4;
+            color: #333;
+        }
+
+        #sidebar ul {
+            padding: 0;
+            list-style: none;
+        }
+
+        #sidebar li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+
+        #sidebar a {
+            color: #333;
+            text-decoration: none;
+        }
+
+        #content {
+            float: right;
+            width: 75%;
+            background: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+
+        #footer {
+            background: #35424a;
+            color: #ffffff;
+            text-align: center;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        /* Specific Styles */
+        .answers-container {
+            margin-top: 20px;
+        }
+
+        .question-container {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+        }
+
+        .question-title {
+            font-weight: bold;
+        }
+
+        .answer-container {
+            margin-top: 10px;
+            padding-left: 20px;
+        }
+
+        .ask-question-form {
+            background-color: #f9f9f9;
+            padding: 20px;
+            border: 1px solid #ddd;
+            margin-top: 20px;
+        }
+
+        .ask-question-form label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .ask-question-form input[type="text"],
+        .ask-question-form textarea,
+        .ask-question-form select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .ask-question-form input[type="submit"] {
+            background-color: #5cb85c;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .answers {
+            background-color: #fff;
+            padding: 20px;
+            border: 1px solid #ddd;
+        }
+        .answers a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        .related-questions {
+            margin-top: 20px;
+        }
+
+        .related-questions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .related-questions li {
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+        }
+        .nav-link {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        .answers-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .categories {
+            margin-bottom: 10px;
+        }
+        .categories label {
+            margin-right: 10px;
+        }
+        .question-summary {
+            margin-bottom: 10px;
+        }
+        .details {
+            margin-bottom: 10px;
+        }
+        .footer-text {
+            font-size: smaller;
+            color: #fff;
+        }
+        .reply-button {
+            background-color: #1e90ff;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            float: right;
+            margin-top: -5px;
+        }
+        .answers-count {
+            float: right;
+        }
+        .nav-path {
+            padding: 10px;
+            font-size: small;
+        }
+        .nav-path a {
+            color: #1e90ff;
+            text-decoration: none;
+        }
+        .nav-path span {
+            color: #333;
+        }
+        .header-right {
+            float: right;
+        }
+        .header-right ul {
+            padding: 0;
+            list-style: none;
+            margin-top: 0;
+            margin-bottom: 0;
+        }
+        .header-right li {
+            display: inline;
+            padding: 0 10px;
+        }
+        .header-right a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .form-categories {
+            margin-bottom: 10px;
+        }
+        .form-categories label {
+            margin-right: 10px;
+        }
+        .form-summary {
+            margin-bottom: 10px;
+        }
+        .form-details {
+            margin-bottom: 10px;
+        }
+        .form-details textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            resize: vertical;
+        }
+        .button-row {
+            text-align: right;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="header">
+            <div class="container">
+                <h1><a href="/" style="color:#fff; text-decoration:none;"></a></h1>
+                <div class="header-right">
+                    <ul>
+                        <li><a href="#">Community</a></li>
+                        <li><a href="#">Answers</a></li>
+                        <li><a href="#">App</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="nav-path">
+            <div class="container">
+                <a href="#">Home</a> / <a href="#">Answers</a> / <a href="#">Destinations</a> / <a href="#">Guangzhou</a> / <span>Transportation</span> /
+            </div>
+        </div>
+        <div id="main">
+            <div class="container">
+                <div id="sidebar">
+                    <ul>
+                        <li><a href="#">Q & A Categories</a></li>
+                        <li><a href="#">Destinations</a></li>
+                        <li><a href="#">Visa & Embassy</a></li>
+                        <li><a href="#">Tours</a></li>
+                        <li><a href="#">Flights</a></li>
+                        <li><a href="#">Trains</a></li>
+                        <li><a href="#">Weather</a></li>
+                        <li><a href="#">Great Wall</a></li>
+                        <li><a href="#">Culture</a></li>
+                    </ul>
+                </div>
+                <div id="content">
+                    <div class="answers">
+                        <div class="question-container">
+                            Asked by Mr.eric from israel | Jun. 02, 2009 04:24<br>
+                            About: How do you get from Guangzhou airport to the city?
+                            <p>Hi,<br>
+                                1. I'll arrive at GZ airport at 23:00 and need to go to the "riverside international youth hostel". I'm<br>
+                                planning on takeing line 1 into town. from there - can I take the metro???? is it working all night????<br>
+                                2. I'll not have Chinese money on me and I read that the bank at the airport closes at 21:00. are there<br>
+                                ATMs at the airport???? if not - what to do????<br>
+                                thanks<br>
+                                eric</p>
+                        </div>
+                        <div class="answer-container">
+                            Answered by Mr.Qi from China | Jun. 03, 2009 22:11
+                            <button style="border: none; background-color: white;"></button>0
+                            <button style="border: none; background-color: white;"></button>0
+                            <button class="reply-button">Reply</button>
+                            <p>Hello!<br>
+                                1. Suggest you take a taxi to the hotel aftering arriving in the town. Subway Line 1 passes Fangcun<br>
+                                Station which is the neat metro station to the hotel, but subway are not working after 23:30. I think<br>
+                                you gona miss it.<br>
+                                2. Yes, there are ATMs at the teminal, they are of bank like, Bank of China and several others.<br>
+                                Good luck~</p>
+                        </div>
+                    </div>
+                    <div class="related-questions">
+                        <p class="answers-title">Related Questions:</p>
+                        <ul>
+                            <li>
+                                <a href="#">Is Guangzhou Baiyun Airport far away from my hotel in Liwan District?</a><span class="answers-count">1 answer</span><br>
+                                Asked by jac from singapore | Nov. 04, 2012 20:45
+                            </li>
+                            <li>
+                                <a href="#">how to go to changsha shuyuan international youth hostel from airport?anyon...</a><span class="answers-count">1 answer</span><br>
+                                Asked by firdaus from Malaysia | Sep. 21, 2017 01:29
+                            </li>
+                            <li>
+                                <a href="#">Hi I will arrive in Pudong Airport at 10.15 p.m. We will stay at MINGTOWN ...</a><span class="answers-count">1 answer</span><br>
+                                Asked by Mr.Andrea from italy | Feb. 21, 2011 02:17
+                            </li>
+                            <li>
+                                <a href="#">hi two of us will arrive Pudong International Airport on 27/10/10 and w...</a><span class="answers-count">1 answer</span><br>
+                                Asked by Mrs.lisa chan from australia | Sep. 28, 2010 22:44
+                            </li>
+                            <li>
+                                <a href="#">The best transportation from Tianjin Airport to Peking Uni International Yo...</a><span class="answers-count">1 answer</span><br>
+                                Asked by Azlia from Malaysia | Nov. 20, 2011 00:09
+                            </li>
+                            <li>
+                                <a href="#">How to go to Guilin airport from Ming Palace International Youth Hostel?</a><span class="answers-count">1 answer</span><br>
+                                Asked by chloe from Malaysia | Dec. 24, 2017 18:38
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="ask-question-form">
+                        <p class="answers-title">Ask a Question</p>
+                        <div class="form-categories">
+                            <label for="categories">Categories:</label>
+                            <select id="categories">
+                                <option value="guangzhou">Guangzhou</option>
+                            </select>
+                        </div>
+                        <div class="form-summary">
+                            <label for="questionSummary">Question Summary (100 characters)</label>
+                            <input type="text" id="questionSummary" maxlength="100">
+                        </div>
+                        <div class="form-details">
+                            <label for="details">Details (optional) (2,000 characters)</label>
+                            <textarea id="details" rows="5" maxlength="2000"></textarea>
+                        </div>
+                        <div class="button-row">
+                            <input type="submit" value="Submit">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="footer">
+            <div class="container">
+                <p class="footer-text">About Us & Contact Us<br>
+                Copyright Â© 1998-2023 All rights reserved.</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

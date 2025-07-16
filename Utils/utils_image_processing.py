@@ -82,7 +82,7 @@ async def process_image(client, image_information, prompt, model, prompt_strateg
     return result_clean
 
 
-async def process_image_iterative(client, model, prompt_strategy, html_generated, accessibility_data, image, date, number_iterations=3):
+async def process_image_iterative(client, model, prompt_strategy, html_input, accessibility_data, image, date, number_iterations=3):
     '''
         Improvement Strategy: Iterative
         Gets generated HTML and Accessibility Data
@@ -91,11 +91,12 @@ async def process_image_iterative(client, model, prompt_strategy, html_generated
     '''
 
     base_name = os.path.splitext(image)[0]
+    generated_html = None
 
     for i in range(1, number_iterations + 1):
         output_base_html_path, output_base_accessibility_path, output_base_images_path, output_base_insights_path = utils_general.create_directories(OUTPUT_PATH, model, f"{prompt_strategy}_refine_{i}", date)
 
-        html_snippets = utils_iterative_prompt.get_violation_snippets(html_generated, accessibility_data)
+        html_snippets = utils_iterative_prompt.get_violation_snippets(html_input, accessibility_data)
         refine_prompt = utils_prompt.get_prompt("iterative")
         final_refine_prompt = f"{refine_prompt}\n\nViolations:\n{html_snippets}"
 
@@ -103,6 +104,16 @@ async def process_image_iterative(client, model, prompt_strategy, html_generated
 
         with open(os.path.join(output_base_html_path, f"{prompt_strategy}_refine_{i}", date, f"{base_name}.html"), "w", encoding="utf-8") as f:
             f.write(generated_html)
+        
+        # if generated_html is None:
+        #     html_file_path = os.path.join(output_base_html_path, f"{prompt_strategy}_refine_{i}", date, f"{base_name}.html")
+        #     if os.path.exists(html_file_path):
+        #         # HTML/CSS aus der Datei auslesen
+        #         with open(html_file_path, "r", encoding="utf-8") as f:
+        #             generated_html = f.read()
+        #     else:
+        #         print(f"HTML-Datei nicht gefunden: {html_file_path}")
+        #         generated_html = None
             
         _, accessibility_issues, accessibility_issues_overview = await analyze_outputs(image, model, f"{prompt_strategy}_refine_{i}", date)
 
@@ -111,9 +122,10 @@ async def process_image_iterative(client, model, prompt_strategy, html_generated
             break
 
         accessibility_data = accessibility_issues
+        html_input = generated_html
 
 
-async def process_image_composite(client, model, prompt_strategy, html_generated, accessibility_data, image_path, date):
+async def process_image_composite(client, model, prompt_strategy, html_input, accessibility_data, image_path, date):
     '''
         Improvement Strategy: Composite
         Uses accessibility violations, as well as color recommendations as input for the LLMs.
@@ -125,7 +137,7 @@ async def process_image_composite(client, model, prompt_strategy, html_generated
 
     output_base_html_path, output_base_accessibility_path, output_base_images_path, output_base_insights_path = utils_general.create_directories(OUTPUT_PATH, model, f"{prompt_strategy}_refine", date)
 
-    html_snippets = utils_iterative_prompt.get_violation_snippets(html_generated, accessibility_data)
+    html_snippets = utils_iterative_prompt.get_violation_snippets(html_input, accessibility_data)
     color_recommendations = color_recommendation.get_recommended_colors(composite_html_path, composite_image_path)
     composite_prompt = utils_prompt.get_prompt("composite")
 
