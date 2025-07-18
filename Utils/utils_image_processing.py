@@ -90,6 +90,10 @@ async def process_image_iterative(client, model, prompt_strategy, html_input, ac
         Afterwards, the LLM will return fixed code and it will be stored in file.
     '''
 
+    # In case no accessibility violatinos are found, no iteration needed
+    if len(accessibility_data["automatic"]) == 0:
+        return
+
     base_name = os.path.splitext(image)[0]
     generated_html = None
 
@@ -100,20 +104,20 @@ async def process_image_iterative(client, model, prompt_strategy, html_input, ac
         refine_prompt = utils_prompt.get_prompt("iterative")
         final_refine_prompt = f"{refine_prompt}\n\nViolations:\n{html_snippets}"
 
-        generated_html = await utils_iterative_prompt.process_refinement_llm(client, final_refine_prompt)
-
-        with open(os.path.join(output_base_html_path, f"{prompt_strategy}_refine_{i}", date, f"{base_name}.html"), "w", encoding="utf-8") as f:
-            f.write(generated_html)
+        # TODO: Freigeben
+        # generated_html = await utils_iterative_prompt.process_refinement_llm(client, final_refine_prompt)
+        # with open(os.path.join(output_base_html_path, f"{prompt_strategy}_refine_{i}", date, f"{base_name}.html"), "w", encoding="utf-8") as f:
+        #     f.write(generated_html)
         
-        # if generated_html is None:
-        #     html_file_path = os.path.join(output_base_html_path, f"{prompt_strategy}_refine_{i}", date, f"{base_name}.html")
-        #     if os.path.exists(html_file_path):
-        #         # HTML/CSS aus der Datei auslesen
-        #         with open(html_file_path, "r", encoding="utf-8") as f:
-        #             generated_html = f.read()
-        #     else:
-        #         print(f"HTML-Datei nicht gefunden: {html_file_path}")
-        #         generated_html = None
+        if generated_html is None:
+            html_file_path = os.path.join(output_base_html_path, f"{prompt_strategy}_refine_{i}", date, f"{base_name}.html")
+            if os.path.exists(html_file_path):
+                # HTML/CSS aus der Datei auslesen
+                with open(html_file_path, "r", encoding="utf-8") as f:
+                    generated_html = f.read()
+            else:
+                print(f"HTML-Datei nicht gefunden: {html_file_path}")
+                generated_html = None
             
         _, accessibility_issues, accessibility_issues_overview = await analyze_outputs(image, model, f"{prompt_strategy}_refine_{i}", date)
 
@@ -123,6 +127,8 @@ async def process_image_iterative(client, model, prompt_strategy, html_input, ac
 
         accessibility_data = accessibility_issues
         html_input = generated_html
+
+        break
 
 
 async def process_image_composite(client, model, prompt_strategy, html_input, accessibility_data, image_path, date):
@@ -147,5 +153,6 @@ async def process_image_composite(client, model, prompt_strategy, html_input, ac
 
     with open(os.path.join(output_base_html_path, f"{prompt_strategy}_refine", date, f"{base_name}.html"), "w", encoding="utf-8") as f:
         f.write(generated_html)
+
         
     _, accessibility_issues, accessibility_issues_overview = await analyze_outputs(image_path, model, f"{prompt_strategy}_refine", date)

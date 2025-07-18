@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Webpage</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            font-size: 13px;
+            color: #333;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        /* Header Styles */
+        .header {
+            background: #35424a;
+            color: white;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #e8491d 3px solid;
+        }
+
+        .header a {
+            color: white;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        .header ul {
+            margin: 0;
+            padding: 0;
+            list-style: none;
+            overflow: hidden;
+        }
+
+        .header li {
+            float: left;
+            display: inline;
+            padding: 0 20px 0 20px;
+        }
+
+        .header #branding {
+            float: left;
+        }
+
+        .header #branding h1 {
+            margin: 0;
+        }
+
+        .header .highlight,
+        .header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+
+        .header a:hover {
+            color: #cccccc;
+            font-weight: bold;
+        }
+
+
+        /* Sidebar Styles */
+        aside#sidebar {
+            float: left;
+            width: 20%;
+            margin-top: 10px;
+        }
+
+        aside#sidebar .quote input,
+        aside#sidebar .quote textarea {
+            width: 90%;
+            padding: 5px;
+        }
+
+        /* Main Content Styles */
+        article#main-col {
+            float: right;
+            width: 70%;
+        }
+
+        /* Footer Styles */
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #e87e04;
+            text-align: center;
+        }
+
+        /* Utilities */
+        .clr {
+            clear: both;
+        }
+
+        /* Categories */
+        .categories {
+            background: #f4f4f4;
+            border: #ccc solid 1px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        #categories h4 {
+            padding: 0;
+            margin: 0;
+        }
+
+        /* Q & A */
+        .q_a {
+            width: 200px;
+            background-color: #f0ad4e;
+            color: #fff;
+            padding: 10px;
+            margin-bottom: 10px;
+        }
+
+        .q_a_categories {
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+
+        .q_a_list {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .q_a_list li {
+            padding: 8px;
+            border-bottom: 1px dotted #fff;
+        }
+
+        .q_a_list li:last-child {
+            border-bottom: none;
+        }
+
+        /* Responsive Styles */
+        @media screen and (max-width: 768px) {
+
+            .header #branding,
+            .header nav,
+            .header nav li,
+            aside#sidebar,
+            article#main-col {
+                float: none;
+                text-align: center;
+                width: 100%;
+            }
+
+            .header {
+                padding-bottom: 20px;
+            }
+
+            .showcase h1 {
+                margin-top: 40px;
+            }
+
+            .showcase-container {
+                width: 100%;
+            }
+
+            .boxes div {
+                width: 100%;
+            }
+
+            aside#sidebar .quote input,
+            aside#sidebar .quote textarea {
+                width: 98%;
+            }
+        }
+
+        .home_link {
+            color: #007bff;
+        }
+
+        .search_bar {
+            border: 1px solid #cccccc;
+            margin-bottom: 10px;
+            height: 25px;
+        }
+
+        .blue_box {
+            width: 15px;
+            height: 15px;
+            background-color: blue;
+            float: left;
+            margin-top: 15px;
+        }
+
+        .speech {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+
+        .reply {
+            color: blue;
+        }
+
+        .related_questions {
+            margin-top: 30px;
+        }
+
+        .related_questions ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .related_questions li {
+            border-bottom: 1px solid #ccc;
+            padding: 10px 0;
+        }
+
+        .related_questions li:last-child {
+            border-bottom: none;
+        }
+
+        .answer_count {
+            float: right;
+            font-style: italic;
+        }
+
+        .ask_question_form {
+            background-color: #e87e04;
+            color: #fff;
+            padding: 15px;
+            margin-top: 20px;
+        }
+
+        .ask_question_form select {
+            width: 200px;
+            padding: 5px;
+            margin: 5px 0;
+        }
+
+        .ask_question_form input[type="text"],
+        .ask_question_form textarea {
+            width: 98%;
+            padding: 5px;
+            margin: 5px 0;
+        }
+
+        .community {
+            float: right;
+            margin-right: 5px;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #35424a;
+        }
+
+        .answers {
+            float: right;
+            margin-right: 60px;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #35424a;
+        }
+
+        .app {
+            float: right;
+            margin-right: 110px;
+            margin-top: 5px;
+            font-size: 12px;
+            color: #35424a;
+        }
+
+        .destinations {
+            font-weight: bold;
+        }
+
+        .visa {
+            margin-top: 10px;
+        }
+
+        .tours {
+            margin-top: 10px;
+        }
+
+        .flights {
+            margin-top: 10px;
+        }
+
+        .trains {
+            margin-top: 10px;
+        }
+
+        .weather {
+            margin-top: 10px;
+        }
+
+        .great_wall {
+            margin-top: 10px;
+        }
+
+        .culture {
+            margin-top: 10px;
+        }
+
+        .num {
+            border: none;
+            background-color: blue;
+            color: white;
+            padding: 2px;
+            min-width: 25px;
+            margin-right: 5px;
+        }
+
+        .q_a {
+            background-color: #f0ad4e;
+            color: #fff;
+        }
+
+        footer {
+            background-color: #e87e04;
+            color: #fff;
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="container">
+            <div class="community">Community</div>
+            <div class="answers">Answers</div>
+            <div class="app">App</div>
+        </div>
+        <div class="container">
+            <a class="home_link" href="#">Home</a> /
+            <a class="home_link" href="#">Answers</a> /
+            <a class="home_link" href="#">Destinations</a> /
+            <a class="home_link" href="#">Guangzhou</a> /
+            <a class="home_link" href="#">Transportation</a> /
+            <br>
+            <div class="q_a">
+                <div class="q_a_categories">Q & A Categories</div>
+            </div>
+            <ul class="q_a_list">
+                <li>
+                    <div class="destinations">Destinations</div>
+                </li>
+                <li>
+                    <div class="visa">Visa & Embassy</div>
+                </li>
+                <li>
+                    <div class="tours">Tours</div>
+                </li>
+                <li>
+                    <div class="flights">Flights</div>
+                </li>
+                <li>
+                    <div class="trains">Trains</div>
+                </li>
+                <li>
+                    <div class="weather">Weather</div>
+                </li>
+                <li>
+                    <div class="great_wall">Great Wall</div>
+                </li>
+                <li>
+                    <div class="culture">Culture</div>
+                </li>
+            </ul>
+
+            <div>
+                <label for="search_bar_1">Search:</label>
+                <input type="text" id="search_bar_1" class="search_bar" placeholder=" ">
+                <div class="blue_box"></div>
+                <div class="speech">Asked by Mr.eric from israel | Jun. 02, 2009 04:24<br>
+                    About: How do you get from Guangzhou airport to the city?
+                    <br><br>
+                    Hi,<br>
+                    1. I'll arrive at GZ airport at 23:00 and need to go to the "riverside international youth
+                    hostel".
+                    I'm<br>
+                    planning on takeing line 1 into town. from there can I take the metro???? is it working all
+                    night????<br>
+                    2. I'll not have Chinese money on me and I read that the bank at the airport closes at 21:00.
+                    are there<br>
+                    ATMs at the airport???? if not what to do????<br>
+                    thanks<br>
+                    eric
+                </div>
+
+                <div class="blue_box"></div>
+                <div class="speech">Answered by Mr.Qi from China | Jun. 03, 2009 22:11<br>
+                    Hello!<br>
+                    1. Suggest you take a taxi to the hotel aftering arriving in the town. Subway Line 1 passes
+                    Fangcun<br>
+                    Station which is the neat metro station to the hotel, but subway are not working after 23:30. I
+                    think<br>
+                    you gona miss it.<br>
+                    2. Yes, there are ATMs at the teminal, they are of bank like, Bank of China and several
+                    others.<br>
+                    Good luck~
+                    <div style="float: right;">
+                        <button class="num">0</button>
+                        <button class="num">0</button>
+                        <a class="reply" href="#">Reply</a>
+                    </div>
+                </div>
+
+                <div class="related_questions">
+                    Related Questions:
+                    <ul>
+                        <li>
+                            <a href="#">Is Guangzhou Baiyun Airport far away from my hotel in Liwan District?</a>
+                            <div class="answer_count">1 answer</div>
+                            <br>Asked by jac from singapore | Nov. 04, 2012 20:45
+                        </li>
+                        <li>
+                            <a href="#">how to go to changsha shuyuan international youth hostel from
+                                airport?anyon...</a>
+                            <div class="answer_count">1 answer</div>
+                            <br>Asked by firdaus from Malaysia | Sep. 21, 2017 01:29
+                        </li>
+                        <li>
+                            <a href="#">Hi I will arrive in Pudong Airport at 10.15 p.m. We will stay at MINGTOWN
+                                ...</a>
+                            <div class="answer_count">1 answer</div>
+                            <br>Asked by Mr.Andrea from italy | Feb. 21, 2011 02:17
+                        </li>
+                        <li>
+                            <a href="#">hi two of us will arrive Pudong International Airport on 27/10/10 and w...</a>
+                            <div class="answer_count">1 answer</div>
+                            <br>Asked by Mrs.lisa chan from australia | Sep. 28, 2010 22:44
+                        </li>
+                        <li>
+                            <a href="#">The best transportation from Tianjin Airport to Peking Uni International
+                                Yo...</a>
+                            <div class="answer_count">1 answer</div>
+                            <br>Asked by Azlia from Malaysia | Nov. 20, 2011 00:09
+                        </li>
+                        <li>
+                            <a href="#">How to go to Guilin airport from Ming Palace International Youth Hostel?</a>
+                            <div class="answer_count">1 answer</div>
+                            <br>Asked by chloe from Malaysia | Dec. 24, 2017 18:38
+                        </li>
+                    </ul>
+                </div>
+
+                <form class="ask_question_form">
+                    Ask a Question
+                    <br>
+                    <label for="search_bar_2">Question:</label>
+                    <input type="text" id="search_bar_2" class="search_bar" placeholder=" ">
+                    <br>
+                    <label for="categories">Categories:</label>
+                    <select id="categories" name="categories" aria-label="Category">
+                        <option value="Guangzhou">Guangzhou</option>
+                    </select>
+                    <br>
+                    <label for="question_summary">Question Summary (100 characters)</label>
+                    <br>
+                    <input type="text" id="question_summary" class="search_bar" aria-label="Question Summary">
+                    <br>
+                    <label for="details">Details (optional) (2,000 characters)</label>
+                    <br>
+                    <textarea id="details" rows="5" cols="50" aria-label="Details"></textarea>
+                    <br>
+                    <input type="submit" value="Submit">
+                </form>
+            </div>
+        </div>
+    </main>
+    <footer>
+        <p>About Us & Contact Us</p>
+        <p>Copyright ÃÂ© 1998-2023 All rights reserved.</p>
+    </footer>
+</body>
+
+</html>

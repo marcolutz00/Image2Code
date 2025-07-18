@@ -1,0 +1,845 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lost Password Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #0000ff;
+            color: #ffffff;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #e0e0e0;
+            padding: 5px 0;
+            text-align: right;
+        }
+        nav a {
+            color: #0000ff;
+            text-decoration: none;
+            margin: 0 5px;
+        }
+        .container {
+            width: 90%;
+            margin: 20px auto;
+            background-color: #ffffff;
+            padding: 20px;
+            border: 1px solid #ccc;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        .form-group input[type="text"], .form-group input[type="email"], .form-group input[type="password"] {
+            width: 100%;
+            padding: 5px;
+            box-sizing: border-box;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 5px;
+            background-color: #0000ff;
+            color: #ffffff;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group button:hover {
+            background-color: #0000ff;
+        }
+        .form-group button:active {
+            background-color: #0000ff;
+        }
+        .form-group button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"] {
+            background-color: #0000ff;
+            color: #ffffff;
+        }
+        .form-group button[type="submit"]:hover {
+            background-color: #0000ff;
+        }
+        .form-group button[type="submit"]:active {
+            background-color: #0000ff;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"] {
+            background-color: #cccccc;
+            color: #0000ff;
+        }
+        .form-group button[type="reset"]:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"] {
+            background-color: #cccccc;
+            color: #0000ff;
+        }
+        .form-group button[type="button"]:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="button"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="button"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="submit"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="submit"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .form-group button[type="reset"]:disabled:hover {
+            background-color: #cccccc;
+        }
+        .form-group button[type="reset"]:disabled:active {
+            background-color: #cccccc;
+        }
+        .form

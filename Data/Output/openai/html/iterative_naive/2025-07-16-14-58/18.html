@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update your user macros on Confluence</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            line-height: 1.5;
+            color: #333;
+        }
+        .header {
+            background-color: #3ab54a;
+            padding: 20px;
+            color: #fff;
+            text-align: center;
+        }
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+        .header p {
+            margin: 5px 0;
+        }
+        nav {
+            margin-top: 10px;
+        }
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        .content {
+            background-color: #f7f7f7;
+            padding: 20px;
+        }
+        .content h2 {
+            color: #3ab54a;
+            margin: 0 0 10px 0;
+            font-size: 22px;
+        }
+        .content p {
+            margin: 10px 0;
+        }
+        .quote {
+            margin: 30px 0;
+            border-left: 2px solid #ccc;
+            padding-left: 15px;
+            font-style: italic;
+            color: #555;
+        }
+        .quote span {
+            display: block;
+            margin-top: 10px;
+            color: #3ab54a;
+            font-style: normal;
+        }
+        .footer {
+            background-color: #f9f9f9;
+            padding: 20px;
+            font-size: 14px;
+            text-align: center;
+        }
+        .footer img {
+            width: 24px;
+            height: 24px;
+            margin: 0 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="header">
+    <h1>David Simpson</h1>
+    <p>deliver. iterate.</p>
+    <nav>
+        <a href="#">Blog</a>
+        <a href="#">About</a>
+        <a href="#">Projects</a>
+        <a href="#">Apps</a>
+    </nav>
+</div>
+
+<div class="content">
+    <h2>Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</h2>
+    <p>Posted by David Simpson on May 22, 2014. Return to index .<br>Tags:</p>
+
+    <p>Following yesterdays <a href="#" style="color: #099;">Atlassian security advisory for Confluence</a>, it looks like there are some added steps required for people who have user macros. Be careful folks.</p>
+    <p><a href="#" style="color: #339933;">@BergerofLondon</a> spotted this first:</p>
+
+    <div class="quote">
+        <p>Following upgrade to Confluence 5.5.1 the values of parameters in user macros cannot be evaluated the same way. Discovered this the hard way</p>
+        <span>â Berger (@BergerofLondon) May 22, 2014</span>
+    </div>
+    
+    <div class="quote">
+        <p>You can't use the same shorthand you use for standard variables. <a href="#" style="color: #339933;">#if ($paramistrue)</a> will always evaluate as true.</p>
+        <span>â Berger (@BergerofLondon) May 22, 2014</span>
+    </div>
+
+    <div class="quote">
+        <p>You now have to use things like <a href="#" style="color: #339933;">#if ($paramistrue == true)</a> or <a href="#" style="color: #339933;">#if ($paramistrue == false)</a>.</p>
+        <span>â Berger (@BergerofLondon) May 22, 2014</span>
+    </div>
+
+    <div class="quote">
+        <p><a href="#" style="color: #339933;">@baitman</a> For strings I can no longer do <a href="#" style="color: #339933;">#if ($paramfoo)</a>, I have to do <a href="#" style="color: #339933;">#if ($paramfoo).length() > 0</a>. Which is crazy.</p>
+        <span>â Berger (@BergerofLondon) May 22, 2014</span>
+    </div>
+
+    <div class="quote">
+        <p><a href="#" style="color: #339933;">@baitman</a> Also, if you're upgrading to 5.5.1 to fix the security vulnerability double-check that it's upgraded xwork to 1.17. Ours wasn't.</p>
+        <span>â Berger (@BergerofLondon) May 22, 2014</span>
+    </div>
+
+    <p>The update to atlassian-xwork-core-1.17.jar means you have to be more specific with your coding. Thanks to <a href="#" style="color: #339933;">@BergerofLondon</a> for the heads up.</p>
+</div>
+
+<div class="footer">
+    <a href="#"><img src="src/placeholder.jpg" alt="icon"></a>
+    <a href="#"><img src="src/placeholder.jpg" alt="icon"></a>
+    <a href="#"><img src="src/placeholder.jpg" alt="icon"></a>
+    <a href="#"><img src="src/placeholder.jpg" alt="icon"></a>
+</div>
+
+</body>
+</html>

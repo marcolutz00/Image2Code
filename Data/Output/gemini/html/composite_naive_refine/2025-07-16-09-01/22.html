@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Spawn Plane Radius Question</title>
+<style>
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+.container {
+    width: 800px;
+    margin: 20px auto;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.header a {
+    text-decoration: none;
+    color: #7C4DFF;
+    font-size: 14px;
+    margin-left: 10px;
+}
+
+.header a:hover {
+    text-decoration: underline;
+}
+
+.question-title {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+}
+
+.mission-makers {
+    font-size: 12px;
+    color: #7C4DFF;
+    border: 1px solid #ddd;
+    padding: 2px 5px;
+    border-radius: 3px;
+}
+
+.ago {
+    font-size: 12px;
+    color: #7C4DFF;
+    margin-bottom: 10px;
+}
+
+.post {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #eee;
+}
+
+.post-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+    background-color: #5e5eff;
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.author {
+    font-weight: bold;
+    color: #333;
+}
+
+.date {
+    font-size: 12px;
+    color: #7C4DFF;
+    margin-left: 5px;
+}
+
+.post-content {
+    font-size: 14px;
+    color: #333;
+    line-height: 1.5;
+}
+
+.search-bar {
+    margin-bottom: 20px;
+}
+
+.search-bar input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+}
+
+.post-reply {
+    text-align: center;
+}
+
+.post-reply a {
+    display: inline-block;
+    background-color: #f0f0f0;
+    color: #333;
+    padding: 8px 15px;
+    border-radius: 3px;
+    text-decoration: none;
+}
+
+.original-post {
+    margin-top: 20px;
+}
+
+.original-post h3 {
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+.original-post ul {
+    list-style: none;
+    padding: 0;
+}
+
+.original-post li {
+    margin-bottom: 5px;
+}
+
+.original-post li:last-child {
+    margin-bottom: 0;
+}
+
+.footer {
+    text-align: right;
+    font-size: 12px;
+    color: #7C4DFF;
+    margin-top: 20px;
+}
+.placeholder{
+    background-color: blue;
+}
+</style>
+</head>
+<body>
+
+<main class="container">
+    <div class="header">
+        <div>
+            <h1 class="question-title">Spawn Plane Radius Question</h1>
+        </div>
+        <div>
+            <a href="#">Sign Up</a>
+            <a href="#">Log In</a>
+            <a href="#">New Conversation</a>
+        </div>
+    </div>
+
+    <div class="search-bar">
+        <label for="search">Search:</label>
+        <input type="text" id="search" name="search" placeholder="Search">
+    </div>
+
+    <div class="post-reply">
+        <a href="#">Post a Reply</a>
+    </div>
+    <div>
+        <span class="mission-makers">Mission Makers</span>
+    </div>
+
+    <p class="ago">5 YEARS AGO</p>
+
+    <div class="post">
+        <div class="post-header">
+            <div class="avatar"></div>
+            <div>
+                <span class="author">Fletcher</span>
+                <span class="date">4 Sep 2018</span>
+            </div>
+        </div>
+        <div class="post-content">
+            Good evening gents/ladies.<br><br>
+            On the Virtual Al System module radius setting, this needs to be set in order to actually see anything on the
+            ground right? If I'm doing a high altitude bomb run and use the camera to lock on to a target i'll need to
+            have that radius set to the altitude I'm bombing from?<br><br>
+            I was just wondering because if I set my plane radius to let's say 3000m and my jet goes mach 1 lol I'll see a
+            fps drop like crazy because my system is trying to load all the objects popping up at one time.<br><br>
+            Thanks for any info.
+        </div>
+    </div>
+    <div class="post">
+        <div class="post-header">
+            <div class="avatar">
+                A
+            </div>
+            <div>
+                <span class="author">AngusDLX</span>
+                <span class="date">4 Sep 2018</span>
+            </div>
+        </div>
+        <div class="post-content">
+            The camera is not taken into account in the spawn radius but the aircraft.<br><br>
+            I had terrible experiences playing with attack jeets on ALIVE precisely because of the spawn radius in
+            airplanes. If you increase too much, spawn / despawn will actually cause fps dropl (not because of ALIVE
+            but because of the amount of objects appearing and disappearing, especially in areas with many enemies).<br><br>
+            My only way was to set the spawn radius at 200 (so the bots that are at an airport for example are visible)
+            and use a drone to move to the attack area to spawn the targets. The problem is that sometimes the AR-2
+            Darter gets drunk (ArmaBUG) and takes too long to get to the destination or worse, is killed before arriving.<br><br>
+            SpyderBlack gave some tips on how to replace this drone with an object that will call ALIVE_spawnSources
+            and generate the spawn in a specific location but I could not get it to work.<br><br>
+            One possibility could also be: Once the ALIVE generates an air-related task like CAS, SEAD for example, it
+            creates an object using spawnSources and deletes it as soon as the object is destroyed. I do not know if it
+            would be possible but it is a suggestion to the devs.<br><br>
+            So players on planes can view and attack their targets at a safe distance without knocking down their own
+            fps or everyone present. As I said, more than 1 plane on the server can create many problems when the
+            spawn radius is high.
+        </div>
+    </div>
+    <div class="post">
+        <div class="post-header">
+            <div class="avatar"></div>
+            <div>
+                <span class="author">Fletcher</span>
+                <span class="date">4 Sep 2018</span>
+            </div>
+        </div>
+        <div class="post-content">
+            Oh ok thanks man!
+        </div>
+    </div>
+    <div class="post">
+        <div class="post-header">
+            <div class="avatar"></div>
+            <div>
+                <span class="author">Friznit</span>
+                <span class="date">5 Sep 2018</span>
+                <span class="date">Administrator</span>
+            </div>
+        </div>
+        <div class="post-content">
+            That's not a bad idea actually. We could potentially add a capability for players to place a "Target" marker
+            over an intended objective which spawns an invisible object that calls ALIVE_spawnSources.
+        </div>
+    </div>
+    <div class="post">
+        <div class="post-header">
+            <div class="avatar"></div>
+            <div>
+                <span class="author">Log In</span>
+                <span class="author">or</span>
+                <span class="author">Sign Up</span>
+                <span class="author">to reply!</span>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="original-post">
+        <h3>Original Post</h3>
+        <ul>
+            <li>2018</li>
+            <li>September</li>
+            <li>Latest</li>
+        </ul>
+    </div>
+
+    <div class="footer">
+        Powered by esoTalk
+    </div>
+</main>
+
+</body>
+</html>

@@ -357,7 +357,7 @@ def calculate_insights(accessibility_dir, insight_dir, model, prompt_strategy, d
        Accessibility Violation Ranking and benchmarks are calculated
        Place for the final insight overview: Results/[model]_[prompt-technique]_analysisAccessibilityIssues.json
     '''
-    if "iterative" in prompt_strategy or "composite" in prompt_strategy:
+    if "iterative" in prompt_strategy or "composite" in prompt_strategy or "agent" in prompt_strategy:
         base_name_strat = prompt_strategy.split("_")[0]
         # Find amount of dirs that start with iterative
         insight_dirs_strats = [d for d in os.listdir(insight_dir) if d.startswith(base_name_strat)]

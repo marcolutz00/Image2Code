@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polibyte</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        h2 {
+            font-size: 1.2em;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        code {
+            background-color: #f4f4f4;
+            padding: 5px;
+            border-radius: 3px;
+            display: block;
+            white-space: pre-wrap;
+            overflow-x: auto;
+        }
+
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+        .meta {
+            color: #777;
+            font-size: 0.9em;
+            margin-bottom: 20px;
+        }
+
+        .meta span {
+            margin-right: 10px;
+            color: #666;
+        }
+
+        .clearfix::after {
+            content: "";
+            clear: both;
+            display: table;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div>Polibyte</div>
+            <div>About Me</div>
+        </header>
+
+        <main>
+            <h1>Export news from google sites</h1>
+
+            <div class="meta">
+                <span style="color: #666;">Apr 27, 2012</span>
+                <span style="color: #666;">1 minute read</span>
+            </div>
+
+            <p>I've added a script, <a href="#" style="color: #007bff; background-color: #cce2ff;">export_google_site_news</a>, to my catchall repository on github.</p>
+
+            <p>For example, to download the news stories at
+                <a href="https://sites.google.com/a/medinacommunityband.org/www/announcements" style="color: #007bff; background-color: #cce2ff;">https://sites.google.com/a/medinacommunityband.org/www/announcements</a>, you
+                would run</p>
+
+            <code>
+export_google_site_news https://sites.google.com/a/medinacommunityband.org/www announcements
+            </code>
+
+            <h2>The backstory</h2>
+
+            <p>When Free It Athens moved our website from Google Sites to Drupal, we started from
+                scratch rather than importing our old content. I realized on Wednesday that the news
+                posts on the site were interesting historical information, yet I'd never archived them.</p>
+
+            <p>First, I tried a recursive wget.</p>
+
+            <code>
+wget -r --no-parent --no-clobber ...
+            </code>
+
+            <p>This failed to work because Google pointlessly used javascript rather than anchor tags
+                to link between the news listing pages.</p>
+
+            <p>Next I found and tried to use the google-sites-export tool from Google's Data
+                Liberation Team, but I was never able to authenticate succesfully from it.</p>
+
+            <p>At this point I was worried I'd need to use a tool like Selenium to run the javascript,
+                but then I realized the news listing pages took a single paramater to determine how
+                far along in the pagination they were. It wouldn't take more than a C-style for loop to
+                download them all.</p>
+
+            <code>
+for i in $(seq 0 10 120); do
+  wget ""   "-Onews.$i"
+done
+            </code>
+
+            <p>After doing that, I looked at the first one and determined a pattern that would match
+                the relative URLs of individual news stories. I then extracted all the URLS.</p>
+
+            <code>
+grep -E -h -o '/a/freeitathens.org/foo/news/[a-z0-9\-]+' news.* |
+sort -u > news_links
+            </code>
+
+            <p>Once I had the list of URLs, it was simple to have wget download them all.</p>
+
+            <code>
+wget -i news_links -B https://sites.google.com
+            </code>
+
+            <p>Since I didn't find any other guides to doing this, I decided to flesh out what I'd done
+                into a simple tool and write about it here.</p>
+        </main>
+    </div>
+</body>
+</html>

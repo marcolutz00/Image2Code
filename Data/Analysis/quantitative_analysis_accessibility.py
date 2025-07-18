@@ -307,26 +307,26 @@ if __name__ == "__main__":
     # 1. General Comparison Data (Average)
     # 1.1 per Model and Prompt Strategy
     comparison_data_average_gemini = [
-        ("gemini", "naive", os.path.join(result_path, "gemini_naive_average_results.json")),
-        ("gemini", "zero-shot", os.path.join(result_path, "gemini_zero-shot_average_results.json")),
-        ("gemini", "few-shot", os.path.join(result_path, "gemini_few-shot_average_results.json")),
-        ("gemini", "reason", os.path.join(result_path, "gemini_reason_average_results.json")),
-        ("gemini", "iterative", os.path.join(result_path, "gemini_iterative_average_results.json")),
-        ("gemini", "iterative_refine_1", os.path.join(result_path, "gemini_iterative_refine_1_average_results.json")),
-        ("gemini", "iterative_refine_2", os.path.join(result_path, "gemini_iterative_refine_2_average_results.json")),
-        ("gemini", "iterative_refine_3", os.path.join(result_path, "gemini_iterative_refine_3_average_results.json")),
+        # ("gemini", "naive", os.path.join(result_path, "gemini_naive_average_results.json")),
+        # ("gemini", "zero-shot", os.path.join(result_path, "gemini_zero-shot_average_results.json")),
+        # ("gemini", "few-shot", os.path.join(result_path, "gemini_few-shot_average_results.json")),
+        # ("gemini", "reason", os.path.join(result_path, "gemini_reason_average_results.json")),
+        ("gemini", "iterative_naive", os.path.join(result_path, "gemini_iterative_naive_average_results.json")),
+        ("gemini", "iterative_naive_refine_1", os.path.join(result_path, "gemini_iterative_naive_refine_1_average_results.json")),
+        ("gemini", "iterative_naive_refine_2", os.path.join(result_path, "gemini_iterative_naive_refine_2_average_results.json")),
+        ("gemini", "iterative_naive_refine_3", os.path.join(result_path, "gemini_iterative_naive_refine_3_average_results.json")),
         ("gemini", "composite_refine", os.path.join(result_path, "gemini_composite_refine_average_results.json")),
     ]
 
     comparison_data_average_openai = [
-        ("openai", "naive", os.path.join(result_path, "openai_naive_average_results.json")),
-        ("openai", "zero-shot", os.path.join(result_path, "openai_zero-shot_average_results.json")),
-        ("openai", "few-shot", os.path.join(result_path, "openai_few-shot_average_results.json")),
-        ("openai", "reason", os.path.join(result_path, "openai_reason_average_results.json")),
-        ("openai", "iterative", os.path.join(result_path, "openai_iterative_average_results.json")),
-        ("openai", "iterative_refine_1", os.path.join(result_path, "openai_iterative_refine_1_average_results.json")),
-        ("openai", "iterative_refine_2", os.path.join(result_path, "openai_iterative_refine_2_average_results.json")),
-        ("openai", "iterative_refine_3", os.path.join(result_path, "openai_iterative_refine_3_average_results.json")),
+        # ("openai", "naive", os.path.join(result_path, "openai_naive_average_results.json")),
+        # ("openai", "zero-shot", os.path.join(result_path, "openai_zero-shot_average_results.json")),
+        # ("openai", "few-shot", os.path.join(result_path, "openai_few-shot_average_results.json")),
+        # ("openai", "reason", os.path.join(result_path, "openai_reason_average_results.json")),
+        ("openai", "iterative_naive", os.path.join(result_path, "openai_iterative_naive_average_results.json")),
+        ("openai", "iterative_naive_refine_1", os.path.join(result_path, "openai_iterative_naive_refine_1_average_results.json")),
+        ("openai", "iterative_naive_refine_2", os.path.join(result_path, "openai_iterative_naive_refine_2_average_results.json")),
+        ("openai", "iterative_naive_refine_3", os.path.join(result_path, "openai_iterative_naive_refine_3_average_results.json")),
     ]
 
     comparison_data_average_qwen = [
@@ -334,6 +334,12 @@ if __name__ == "__main__":
         ("qwen", "zero-shot", os.path.join(result_path, "qwen_zero-shot_average_results.json")),
         ("qwen", "few-shot", os.path.join(result_path, "qwen_few-shot_average_results.json")),
         ("qwen", "reason", os.path.join(result_path, "qwen_reason_average_results.json")),
+        ("qwen", "naive", os.path.join(result_path, "qwen_iterative_naive_average_results.json")),
+        ("qwen", "iterative_naive_refine_1", os.path.join(result_path, "qwen_iterative_naive_refine_1_average_results.json")),
+        ("qwen", "iterative_naive_refine_2", os.path.join(result_path, "qwen_iterative_naive_refine_2_average_results.json")),
+        ("qwen", "iterative_naive_refine_3", os.path.join(result_path, "qwen_iterative_naive_refine_3_average_results.json")),
+        ("qwen", "composite_refine", os.path.join(result_path, "qwen_composite_naive_refine_average_results.json")),
+        ("qwen", "agent_refine", os.path.join(result_path, "qwen_agent_naive_refine_average_results.json")),
     ]
 
     comparison_data_average_both = [
@@ -343,14 +349,14 @@ if __name__ == "__main__":
         ("openai", "zero-shot", os.path.join(result_path, "openai_zero-shot_average_results.json")),
         ("gemini", "reason", os.path.join(result_path, "gemini_reason_average_results.json")),
         ("openai", "reason", os.path.join(result_path, "openai_reason_average_results.json")),
-        ("gemini", "iterative", os.path.join(result_path, "gemini_iterative_average_results.json")),
-        ("openai", "iterative", os.path.join(result_path, "openai_iterative_average_results.json")),
-        ("gemini", "iterative_refine_1", os.path.join(result_path, "gemini_iterative_refine_1_average_results.json")),
-        ("openai", "iterative_refine_1", os.path.join(result_path, "openai_iterative_refine_1_average_results.json")),
-        ("gemini", "iterative_refine_2", os.path.join(result_path, "gemini_iterative_refine_2_average_results.json")),
-        ("openai", "iterative_refine_2", os.path.join(result_path, "openai_iterative_refine_2_average_results.json")),
-        ("gemini", "iterative_refine_3", os.path.join(result_path, "gemini_iterative_refine_3_average_results.json")),
-        ("openai", "iterative_refine_3", os.path.join(result_path, "openai_iterative_refine_3_average_results.json")),
+        ("gemini", "iterative_naive", os.path.join(result_path, "gemini_iterative_naive_average_results.json")),
+        ("openai", "iterative_naive", os.path.join(result_path, "openai_iterative_naive_average_results.json")),
+        ("gemini", "iterative_naive_refine_1", os.path.join(result_path, "gemini_iterative_naive_refine_1_average_results.json")),
+        ("openai", "iterative_naive_refine_1", os.path.join(result_path, "openai_iterative_naive_refine_1_average_results.json")),
+        ("gemini", "iterative_naive_refine_2", os.path.join(result_path, "gemini_iterative_naive_refine_2_average_results.json")),
+        ("openai", "iterative_naive_refine_2", os.path.join(result_path, "openai_iterative_naive_refine_2_average_results.json")),
+        ("gemini", "iterative_naive_refine_3", os.path.join(result_path, "gemini_iterative_naive_refine_3_average_results.json")),
+        ("openai", "iterative_naive_refine_3", os.path.join(result_path, "openai_iterative_naive_refine_3_average_results.json")),
     ]
 
     plot_bar_average_violations(comparison_data_average_qwen)

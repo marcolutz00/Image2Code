@@ -2,7 +2,7 @@ import cv2
 
 
 # Hypothesis CC: Size of Fonts different
-def _calculate_size_fonts(df, image_path):
+def calculate_size_fonts(df, image_path):
     """
     Check if size of fonts different
     Here only difference between large and small fonts accoridng to WCAG criteria

@@ -1,0 +1,579 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexito's World</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2a2a2a;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #333;
+            padding: 10px 0;
+            text-align: center;
+            color: #fff;
+        }
+        main {
+            flex: 1;
+            padding: 20px;
+            background-color: #222;
+            color: #fff;
+        }
+        footer {
+            background-color: #333;
+            text-align: center;
+            padding: 10px 0;
+            color: #fff;
+        }
+        .article {
+            margin-bottom: 20px;
+        }
+        .article h1 {
+            color: #ff6b00;
+        }
+        .article p {
+            line-height: 1.6;
+        }
+        .article .buttons {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .article .buttons button {
+            background-color: #ff6b00;
+            color: #222;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        .article .buttons button:hover {
+            background-color: #ff9900;
+        }
+        .article .buttons a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .buttons a:hover {
+            text-decoration: underline;
+        }
+        .article .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+        .article .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .tags button:hover {
+            background-color: #444;
+        }
+        .article .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .tags a:hover {
+            text-decoration: underline;
+        }
+        .article .related-articles {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        .article .related-articles .article {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            flex: 1;
+            margin-right: 10px;
+        }
+        .article .related-articles .article h2 {
+            color: #ff6b00;
+        }
+        .article .related-articles .article p {
+            line-height: 1.6;
+        }
+        .article .related-articles .article .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button {
+            background-color: #333;
+            color: #fff;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 5px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags button:hover {
+            background-color: #444;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags {
+            display: flex;
+            justify-content: center;
+            margin-top: 10px;
+        }
+        .article .related-articles .article .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags .tags

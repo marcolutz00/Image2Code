@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Capacity Jokes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #fff;
+            padding: 10px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav ul {
+            list-style: none;
+            padding: 0;
+        }
+        nav ul li {
+            display: inline;
+            margin-right: 10px;
+        }
+        nav ul li a {
+            color: #333;
+            text-decoration: none;
+            font-weight: bold;
+        }
+        main {
+            margin: 20px;
+        }
+        .joke {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 10px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+        }
+        .joke h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+        .joke p {
+            font-size: 1em;
+            margin-bottom: 10px;
+        }
+        .joke .comments {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .joke .comments span {
+            color: #999;
+            margin-right: 10px;
+        }
+        .joke .comments .thumbs {
+            display: flex;
+            align-items: center;
+        }
+        .joke .comments .thumbs span {
+            margin-right: 5px;
+        }
+        .joke .comments .thumbs .upvote {
+            color: #4CAF50;
+        }
+        .joke .comments .thumbs .downvote {
+            color: #f44336;
+        }
+        .joke .comments .thumbs .upvote:hover,
+        .joke .comments .thumbs .downvote:hover {
+            color: #333;
+        }
+        .joke .comments .thumbs .upvote:active,
+        .joke .comments .thumbs .downvote:active {
+            color: #666;
+        }
+        .joke .comments .thumbs .upvote:disabled,
+        .joke .comments .thumbs .downvote:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:active {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover,
+        .joke .comments .thumbs .downvote:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:disabled:hover {
+            color: #ccc;
+        }
+        .joke .comments .thumbs .upvote:disabled:disabled:disabled:disabled:disabled:disabled

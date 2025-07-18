@@ -60,7 +60,30 @@ class OpenAIStrategy(LLMStrategy):
             model=self.used_model,
             input=[
                 {
-                    "role": "system", "content": f"Imagine that you are a senior frontend developper focusing on implementing HTML/CSS from UI-Images. It is the goal to copy the image as precise as possible. Please only answer with the code, meaning without any explanation.",
+                    "role": "user",
+                    "content": [
+                        { "type": "input_text", "text": prompt }
+                    ],
+                }
+            ],
+        )
+
+        tokens_used = {
+            "input_tokens": response.usage.input_tokens,
+            "output_tokens": response.usage.output_tokens,
+            "total_tokens": response.usage.total_tokens
+        }
+        return response.output_text, tokens_used
+    
+
+    async def agent_call(self, prompt):
+        '''
+            Detects, identifies and patches accessibility issues in HTML/CSS
+        '''
+        response = self.client.responses.create(
+            model=self.used_model,
+            input=[
+                {
                     "role": "user",
                     "content": [
                         { "type": "input_text", "text": prompt }

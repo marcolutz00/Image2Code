@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Segway Guided Tours</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+
+        /* Header Section */
+        header {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-style: italic;
+            color: #555;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #777;
+            font-size: 12px;
+        }
+
+        /* Search Section */
+        .search-section {
+            background-color: #f9f9f9;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .search-container {
+            margin-top: 20px;
+        }
+
+        input[type="text"] {
+            width: 70%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #2cb6a3;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        /* Main Content Section */
+        main {
+            padding: 20px;
+            background-color: #f9f9f9;
+        }
+
+        .breadcrumbs {
+            color: #999;
+            font-size: 12px;
+            margin-bottom: 20px;
+        }
+
+        .title {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        .list-date {
+            color: #999;
+            font-size: 10px;
+            margin-bottom: 20px;
+        }
+
+        .tour-list {
+            display: flex;
+        }
+
+        .tour-options {
+            width: 65%;
+        }
+
+        .tour-image {
+            width: 35%;
+        }
+
+        .tour-image img {
+            width: 100%;
+            height: 250px;
+            background-color: blue;
+        }
+
+        .tour-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+                .tour-item {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            padding: 15px;
+            margin-bottom: 20px;
+        }
+
+        .tour-details {
+            margin-top: 20px;
+        }
+
+        .tour-details p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .tour-destinations {
+            margin-top: 20px;
+        }
+
+        .destinations-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .destinations-list li {
+            margin-bottom: 5px;
+        }
+
+        .destinations-list li a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+        .destinations-list li {
+            margin-bottom: 5px;
+            font-size: 12px;
+        }
+
+        .destinations-list li a {
+            text-decoration: none;
+            color: #337ab7;
+        }
+        .tour-description {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #666;
+        }
+
+        /* Footer Section */
+        footer {
+            background-color: #555;
+            color: white;
+            text-align: center;
+            padding: 30px;
+        }
+
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+            color: #fff;
+        }
+
+        .stat {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 36px;
+            font-weight: bold;
+        }
+
+        .stat-label {
+            font-size: 14px;
+        }
+
+        .cta-banner {
+            background-color: #2cb6a3;
+            padding: 30px;
+            text-align: center;
+            color: white;
+        }
+
+        .cta-text {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .cta-button {
+            background-color: white;
+            color: #2cb6a3;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: space-around;
+            margin-bottom: 20px;
+        }
+
+        .footer-links ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-links ul li {
+            margin-bottom: 5px;
+        }
+
+        .footer-links ul li a {
+            text-decoration: none;
+            color: white;
+            font-size: 10px;
+        }
+        .copyright {
+            font-size: 10px;
+            color: #ddd;
+        }
+
+        .nav-links a,
+        .breadcrumbs,
+        .list-date,
+        .destinations-list li a {
+            color: #006fe7; /* Example: Adjust to a more accessible color */
+        }
+
+        button, .cta-button {
+            color: #fff;
+        }
+
+        .breadcrumbs {
+            color: #6c757d;
+        }
+
+        .cta-text {
+            color: #fff;
+        }
+
+        button {
+            background-color: #008674;
+        }
+
+        .cta-text {
+            background-color: #1ca693;
+        }
+
+        .cta-button {
+            color: #767676;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="header-container">
+            <div class="logo">SEGWAY Guided TOURS</div>
+            <nav class="nav-links">
+                <a href="#">Home</a>
+                <a href="#">Find Segway Tours</a>
+                <a href="#">Browse Tours</a>
+                <a href="#">For Tour Operators</a>
+            </nav>
+        </div>
+    </header>
+
+    <section class="search-section">
+        <div class="search-container">
+            <label for="tour-location">
+                <input type="text" id="tour-location" name="tour-location" placeholder="Tour Location...">
+            </label>
+            <button>FIND</button>
+        </div>
+    </section>
+
+    <main>
+        <div class="breadcrumbs">
+            // USA / SOUTH CAROLINA
+        </div>
+        <h1 class="title">List of 6 Segway Tours in South Carolina</h1>
+        <p class="list-date">South Carolina List Date: 11/3/23</p>
+
+        <div class="tour-list">
+            <div class="tour-options">
+                <div class="tour-item" style="background-color: #d9edf7; border-color: #bce8f1; color: #31708f;">
+                    South Carolina
+                </div>
+                <div class="tour-details">
+                    <p>Discover South Carolina on one of these six Segway tours. Experience the sights and sounds of South Carolina's
+                        cities and landmarks with an up-close and personal tour on the SegwayÃÃÂ® PT.</p>
+                </div>
+
+                <div class="tour-destinations">
+                    <p>USA >></p>
+                    <p>SOUTH CAROLINA >></p>
+                    <p>CHARLESTON >></p>
+                    <ul class="destinations-list">
+                        <li><a href="#">Segway of Charleston >></a></li>
+                    </ul>
+                    <p>GREENVILLE >></p>
+                    <ul class="destinations-list">
+                        <li><a href="#">Carolina Segway >></a></li>
+                        <li><a href="#">Greenville Glides >></a></li>
+                    </ul>
+                    <p>HILTON HEAD ISLAND >></p>
+                    <ul class="destinations-list">
+                        <li><a href="#">Hilton Head Segway >></a></li>
+                    </ul>
+                    <p>LITTLE RIVER >></p>
+                    <ul class="destinations-list">
+                        <li><a href="#">Myrtle Beach Segway >></a></li>
+                        <li><a href="#">Myrtle Beach Segway >></a></li>
+                    </ul>
+                </div>
+                <p style="font-size: 10px; text-align: right; color: #555; margin-top: 20px;">Showing 6 South Carolina tours of 636 tours Worldwide</p>
+            </div>
+            <div class="tour-image">
+                <img src="src/placeholder.jpg" alt="Placeholder Image">
+            </div>
+        </div>
+        <div class="tour-description">
+            <h2>South Carolina Segway Tours</h2>
+            <p>Whether South Carolina is your home state or your next travel destination, one of these Segway tours can add
+                exciting new fun to your next business trip, vacation or weekend plans.</p>
+            <p>Looking for adventure tours beyond South Carolina's six Segway tours? Use our Directory to <a href="#">find Segway Tours</a>
+                across the United States and around the world and experience touring on a Segway PT for yourself!</p>
+        </div>
+    </main>
+
+    <footer>
+        <div class="stats-container">
+            <div class="stat">
+                <div class="stat-number">636</div>
+                <div class="stat-label">WORLDWIDE</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">56</div>
+                <div class="stat-label">COUNTRIES</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">198</div>
+                <div class="stat-label">REGIONS</div>
+            </div>
+            <div class="stat">
+                <div class="stat-number">442</div>
+                <div class="stat-label">CITIES</div>
+            </div>
+        </div>
+
+        <div class="cta-banner">
+            <div class="cta-text">Find a Tour on a SegwayÃÃÂ® PT now!</div>
+            <button class="cta-button">Find a Tour Now</button>
+        </div>
+
+        <div class="footer-links">
+            <ul>
+                <li><a href="#">HOME</a></li>
+                <li><a href="#">FIND SEGWAY TOURS</a></li>
+                <li><a href="#">BROWSE TOURS</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">ABOUT SGT</a></li>
+                <li><a href="#">SEGWAY MINIPRO</a></li>
+                <li><a href="#">FOR TOUR OPERATORS</a></li>
+            </ul>
+            <ul>
+                <li><a href="#">LEGALESE</a></li>
+                <li><a href="#">SITEMAP</a></li>
+            </ul>
+        </div>
+        <div class="copyright">ÃÃÂ©2004-2023 SegwayGuidedTours.com</div>
+    </footer>
+</body>
+</html>

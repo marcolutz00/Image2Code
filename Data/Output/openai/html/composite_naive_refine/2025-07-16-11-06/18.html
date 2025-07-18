@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update your user macros on Confluence</title>
+    <style>
+        body {
+            font-family: Helvetica, Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+        }
+        header {
+            background-color: #60b442;
+            padding: 20px;
+            color: black;
+            font-weight: bold;
+        }
+        header .title {
+            margin: 0;
+            font-size: 24px;
+        }
+        header .subtitle {
+            margin: 0;
+            font-size: 14px;
+            font-weight: normal;
+        }
+        nav {
+            float: right;
+            margin-top: -40px;
+        }
+        nav a {
+            color: black;
+            text-decoration: none;
+            margin-left: 20px;
+            font-size: 14px;
+        }
+        article {
+            max-width: 800px;
+            margin: 40px auto;
+            padding: 20px;
+            background-color: white;
+            border: 1px solid #e3e3e3;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.1);
+        }
+        article h1 {
+            color: #FF5252;
+            font-size: 24px;
+            margin-top: 0;
+        }
+        article .meta {
+            font-size: 14px;
+            color: #7C4DFF;
+        }
+        article a {
+            color: #7C4DFF;
+            text-decoration: none;
+        }
+        .highlight {
+            background-color: #f5f5f5;
+            padding: 15px;
+            border-left: 5px solid #ccc;
+            margin: 20px 0;
+            font-style: italic;
+        }
+        .highlight a {
+            color: #404040;
+        }
+        footer {
+            background-color: #f5f5f5;
+            padding: 20px 0;
+            text-align: center;
+        }
+        footer img {
+            width: 24px;
+            height: 24px;
+            margin: 0 5px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="content">
+        <div class="title">David Simpson</div>
+        <div class="subtitle">deliver. iterate.</div>
+        <nav>
+            <a href="#">Blog</a>
+            <a href="#">About</a>
+            <a href="#">Projects</a>
+            <a href="#">Apps</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+<article>
+    <h1>Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</h1>
+    <div class="meta">Posted by David Simpson on May 22, 2014. <a href="#">Return to index</a>. Tags:</div>
+
+    <p>Following yesterdays <a href="#">Atlassian security advisory for Confluence</a>, it looks like there are some added steps required for people who have user macros. Be careful folks.</p>
+
+    <p><a href="#">@BergerofLondon</a> spotted this first:</p>
+
+    <div class="highlight">
+        Following upgrade to Confluence 5.5.1 the values of parameters in user macros cannot be evaluated the same way. Discovered this the hard way<br>
+        Ã¢ Berger (<a href="#">@BergerofLondon</a>) <span style="color: #404040;">May 22, 2014</span>
+    </div>
+
+    <div class="highlight">
+        You can't use the same shorthand you use for standard variables. <span style="color: #404040;">#if</span> ($paramistrue) will always evaluate as true.<br>
+        Ã¢ Berger (<a href="#">@BergerofLondon</a>) <span style="color: #404040;">May 22, 2014</span>
+    </div>
+
+    <div class="highlight">
+        You now have to use things like <span style="color: #404040;">#if</span> ($paramistrue == true) or <span style="color: #404040;">#if</span> ($paramistrue == false).<br>
+        Ã¢ Berger (<a href="#">@BergerofLondon</a>) <span style="color: #404040;">May 22, 2014</span>
+    </div>
+
+    <div class="highlight">
+        <a href="#">@baitman</a> For strings I can no longer do <span style="color: #404040;">#if</span> ($paramfoo), I have to do <span style="color: #404040;">#if</span> ($paramfoo).length() > 0. Which is crazy.<br>
+        Ã¢ Berger (<a href="#">@BergerofLondon</a>) <span style="color: #404040;">May 22, 2014</span>
+    </div>
+
+    <div class="highlight">
+        <a href="#">@baitman</a> Also, if you're upgrading to 5.5.1 to fix the security vulnerability double-check that it's upgraded xwork to 1.17. Ours wasn't.<br>
+        Ã¢ Berger (<a href="#">@BergerofLondon</a>) <span style="color: #404040;">May 22, 2014</span>
+    </div>
+
+    <p>The update to <span style="color: #7C4DFF;">atlassian-xwork-core-1.17.jar</span> means you have to be more specific with your coding. Thanks to <a href="#">@BergerofLondon</a> for the heads up.</p>
+</article>
+</main>
+
+<footer>
+    <img src="src/placeholder.jpg" alt="social icon">
+    <img src="src/placeholder.jpg" alt="social icon">
+    <img src="src/placeholder.jpg" alt="social icon">
+    <img src="src/placeholder.jpg" alt="social icon">
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,167 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputSearch.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.Textarea.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputCheckbox.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
+        "Principle1.Guideline1_3.1_3_1.F68",
+        "Principle4.Guideline4_1.4_1_2.H91.Fieldset.Name"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/label"
+      ],
+      "impact": "critical",
+      "name": "Label; Multiple Elements; Content missing",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "axe-core",
+          "title": "Form elements must have labels",
+          "description": "Ensure every form element has a label",
+          "impact": "critical",
+          "nodes": {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "hidden-explicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Form element has explicit <label> that is hidden"
+              }
+            ],
+            "impact": "critical",
+            "html": "<input type=\"text\" id=\"search-bar\" class=\"search-bar\" aria-labelledby=\"search-bar-label\">",
+            "target": [
+              "#search-bar"
+            ],
+            "failureSummary": "Fix all of the following:\n  Form element has explicit <label> that is hidden"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "lighthouse",
+          "title": "Form elements do not have associated labels",
+          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-INPUT",
+              "path": "1,HTML,1,BODY,1,MAIN,7,INPUT",
+              "selector": "body > main.main-content > input#search-bar",
+              "boundingRect": {
+                "top": 973,
+                "bottom": 1012,
+                "left": 20,
+                "right": 416,
+                "width": 396,
+                "height": 39
+              },
+              "snippet": "<input type=\"text\" id=\"search-bar\" class=\"search-bar\" aria-labelledby=\"search-bar-label\">",
+              "nodeLabel": "body > main.main-content > input#search-bar",
+              "explanation": "Fix all of the following:\n  Form element has explicit <label> that is hidden"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-A",
+              "path": "1,HTML,1,BODY,0,HEADER,2,NAV,2,A",
+              "selector": "body > header.header > nav.nav > a",
+              "boundingRect": {
+                "top": 11,
+                "bottom": 47,
+                "left": 186,
+                "right": 281,
+                "width": 95,
+                "height": 36
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Features",
+              "explanation": "Fix any of the following:\n  Target has insufficient size because it is partially obscured (smallest space is 95.3px by 18px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-A",
+                    "path": "1,HTML,1,BODY,0,HEADER,2,NAV,3,A",
+                    "selector": "body > header.header > nav.nav > a",
+                    "boundingRect": {
+                      "top": 29,
+                      "bottom": 65,
+                      "left": 76,
+                      "right": 187,
+                      "width": 111,
+                      "height": 36
+                    },
+                    "snippet": "<a href=\"#\">",
+                    "nodeLabel": "Floor Plans"
+                  }
+                },
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-3-A",
+                    "path": "1,HTML,1,BODY,0,HEADER,2,NAV,4,A",
+                    "selector": "body > header.header > nav.nav > a",
+                    "boundingRect": {
+                      "top": 29,
+                      "bottom": 83,
+                      "left": 53,
+                      "right": 288,
+                      "width": 235,
+                      "height": 54
+                    },
+                    "snippet": "<a href=\"#\">",
+                    "nodeLabel": "Photo Gallery"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

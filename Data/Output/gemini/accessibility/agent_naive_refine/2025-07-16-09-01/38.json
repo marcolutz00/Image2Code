@@ -1,0 +1,167 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr"
+      ],
+      "impact": "serious",
+      "name": "Aria Attributes; Prohibited Attributes;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr",
+          "source": "axe-core",
+          "title": "Elements must only use permitted ARIA attributes",
+          "description": "Ensure ARIA attributes are not prohibited for an element's role",
+          "impact": "serious",
+          "nodes": {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "aria-prohibited-attr",
+                "data": {
+                  "role": null,
+                  "nodeName": "div",
+                  "messageKey": "noRoleSingular",
+                  "prohibited": [
+                    "aria-label"
+                  ]
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute cannot be used on a div with no valid role attribute."
+              }
+            ],
+            "impact": "serious",
+            "html": "<div class=\"blue-box\" aria-label=\"decorative blue box\"></div>",
+            "target": [
+              ".blue-box"
+            ],
+            "failureSummary": "Fix all of the following:\n  aria-label attribute cannot be used on a div with no valid role attribute."
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr",
+          "source": "lighthouse",
+          "title": "Elements use prohibited ARIA attributes",
+          "description": "Using ARIA attributes in roles where they are prohibited can mean that important information is not communicated to users of assistive technologies. [Learn more about prohibited ARIA roles](https://dequeuniversity.com/rules/axe/4.10/aria-prohibited-attr).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-DIV",
+              "path": "1,HTML,1,BODY,1,MAIN,0,DIV,0,DIV",
+              "selector": "body > main > div.container > div.blue-box",
+              "boundingRect": {
+                "top": 151,
+                "bottom": 233,
+                "left": 57,
+                "right": 179,
+                "width": 122,
+                "height": 82
+              },
+              "snippet": "<div class=\"blue-box\" aria-label=\"decorative blue box\">",
+              "nodeLabel": "decorative blue box",
+              "explanation": "Fix all of the following:\n  aria-label attribute cannot be used on a div with no valid role attribute."
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-A",
+              "path": "1,HTML,1,BODY,2,FOOTER,0,DIV,0,DIV,1,UL,1,LI,0,A",
+              "selector": "div.get-in-touch > ul > li > a",
+              "boundingRect": {
+                "top": 1843,
+                "bottom": 1860,
+                "left": 57,
+                "right": 266,
+                "width": 209,
+                "height": 17
+              },
+              "snippet": "<a href=\"mailto:justin@perreyhometeam.com\">",
+              "nodeLabel": "justin@perreyhometeam.com",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (209.2px by 17px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 3.6px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-A",
+                    "path": "1,HTML,1,BODY,2,FOOTER,0,DIV,1,DIV,1,UL,1,LI,0,A",
+                    "selector": "div.explore > ul > li > a",
+                    "boundingRect": {
+                      "top": 1807,
+                      "bottom": 1850,
+                      "left": 161,
+                      "right": 249,
+                      "width": 88,
+                      "height": 43
+                    },
+                    "snippet": "<a href=\"#\">",
+                    "nodeLabel": "Our Client Testimonials"
+                  }
+                },
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-3-A",
+                    "path": "1,HTML,1,BODY,2,FOOTER,0,DIV,1,DIV,1,UL,2,LI,0,A",
+                    "selector": "div.explore > ul > li > a",
+                    "boundingRect": {
+                      "top": 1864,
+                      "bottom": 1957,
+                      "left": 161,
+                      "right": 236,
+                      "width": 75,
+                      "height": 94
+                    },
+                    "snippet": "<a href=\"#\">",
+                    "nodeLabel": "FREE Instant Home Evaluation"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

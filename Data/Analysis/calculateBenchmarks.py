@@ -162,7 +162,7 @@ def start_process(model, prompting_strategy, date):
     insights_dir = output_path / model / "insights"
     results_path = current_path.parent.parent / "Results" / "benchmarks"
 
-    if "composite" in prompting_strategy or "iterative" in prompting_strategy:
+    if "composite" in prompting_strategy or "iterative" in prompting_strategy or "agent" in prompting_strategy:
         base_name_strat = prompting_strategy.split("_")[0]
         insight_dirs_strats = [d for d in os.listdir(insights_dir) if d.startswith(base_name_strat)]
 

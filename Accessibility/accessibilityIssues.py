@@ -8,7 +8,6 @@ import sys
 import shutil
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from Accessibility import accessibilityMapping
-from Accessibility.old import accessibilityMapping_automatically
 
 
 AXE_CORE_PATH = "/usr/local/lib/node_modules/axe-core/axe.min.js"
@@ -77,7 +76,7 @@ async def _google_lighthouse(html_path):
         "python3",
         "-m",
         "http.server",
-        "8001",
+        "8003",
         "--bind",
         "127.0.0.1",
         cwd=str(local_html_dir),
@@ -88,7 +87,7 @@ async def _google_lighthouse(html_path):
     try:
         await asyncio.sleep(1)
 
-        url = f"http://127.0.0.1:8001/{local_html_name}"
+        url = f"http://127.0.0.1:8003/{local_html_name}"
 
         lh_bin = shutil.which("lighthouse") or "/opt/homebrew/bin/lighthouse"
 
@@ -126,15 +125,6 @@ async def _google_lighthouse(html_path):
             except ProcessLookupError:
                 pass
 
-
-async def _create_automatic_mapping(html_path):
-    axe_core_results = await _axe_core(html_path)
-    pa11y_results = await _pa11y(html_path)
-    lighthouse_results = await _google_lighthouse(html_path)
-
-    general_accessibility_map = await accessibilityMapping_automatically.full_matching_automatically(pa11y_results, axe_core_results, lighthouse_results)
-
-    return general_accessibility_map
 
 
 async def _get_accessibility_issues(html_path):

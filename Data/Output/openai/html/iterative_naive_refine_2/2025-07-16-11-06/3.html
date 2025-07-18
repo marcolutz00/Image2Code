@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .container {
+            background-color: white;
+            width: 600px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .header {
+            background-color: #404040;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        ul {
+            padding: 0;
+        }
+        li {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], 
+        input[type="email"], 
+        select, 
+        textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+        }
+        input[type="checkbox"], 
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        textarea {
+            height: 100px;
+        }
+        .bold-text {
+            color: #e00;
+        }
+        .img-placeholder {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        .info-text {
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .link-text {
+            color: #0000ee;
+        }
+        .submit-btn {
+            background-color: #404040;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            display: block;
+            margin: 20px 0;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            type: submit;
+        }
+        .footer-link {
+            color: #0000ee;
+            font-size: 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" role="main">
+        <div class="img-placeholder" aria-hidden="true"></div>
+        <h1 class="header">Producer Application</h1>
+        <p class="info-text">Tell us a little about you and your experience. <a href="#" class="link-text">FAQ</a> for more information.</p>
+        <form>
+            <ul>
+                <li>
+                    <label for="firstname">First Name <span class="bold-text">*</span></label>
+                    <input type="text" id="firstname" aria-required="true">
+                </li>
+                <li>
+                    <label for="lastname">Last Name <span class="bold-text">*</span></label>
+                    <input type="text" id="lastname" aria-required="true">
+                </li>
+                <li>
+                    <label for="email">Email Address <span class="bold-text">*</span></label>
+                    <input type="email" id="email" aria-required="true">
+                </li>
+                <li>
+                    <label for="phone">Phone Number <span class="bold-text">*</span></label>
+                    <input type="text" id="phone" aria-required="true">
+                </li>
+                <li>
+                    <label for="location">Where Do You Live? <span class="bold-text">*</span></label>
+                    <input type="text" id="location" aria-required="true">
+                </li>
+                <li>
+                    <label for="age">I am at Least 18 Years of Age <span class="bold-text">*</span></label><br>
+                    <input type="checkbox" id="age" aria-required="true">Yes
+                </li>
+                <li>
+                    <fieldset>
+                        <legend>Do You Have a Production Company? <span class="bold-text">*</span></legend>
+                        <label for="production_yes"><input type="radio" name="production" id="production_yes" aria-required="true">Yes</label>
+                        <label for="production_no"><input type="radio" name="production" id="production_no" aria-required="true">No</label>
+                    </fieldset>
+                </li>
+                <li>
+                    <label for="about">Tell Us More About You. <span class="bold-text">*</span></label>
+                    <textarea id="about" aria-required="true"></textarea>
+                </li>
+                <li>
+                    <label for="genre">Preferred Genre <span class="bold-text">*</span></label>
+                    <select id="genre" aria-required="true"></select>
+                </li>
+                <li>
+                    <fieldset>
+                        <legend>Are You Confident You Can Create Full-Length Episodes (12-25 minutes) on a Low-Budget and Continue to Create Episodes if they are Renewed by Candivan Subscribers? <span class="bold-text">*</span></legend>
+                        <label for="episodes_yes"><input type="radio" name="episodes" id="episodes_yes" aria-required="true">Yes</label>
+                        <label for="episodes_no"><input type="radio" name="episodes" id="episodes_no" aria-required="true">No</label>
+                    </fieldset>
+                </li>
+                <li>
+                    <fieldset>
+                        <legend>If Selected as a Winner, Would You be Able to Start Production by this May or June (2019)? <span class="bold-text">*</span></legend>
+                        <label for="winner_yes"><input type="radio" name="winner" id="winner_yes" aria-required="true">Yes</label>
+                        <label for="winner_no"><input type="radio" name="winner" id="winner_no" aria-required="true">No</label>
+                    </fieldset>
+                </li>
+                <li>
+                    <label for="collaborate">Names of Others Plan to Collaborate with (If Applicable)</label>
+                    <textarea id="collaborate"></textarea>
+                </li>
+                <li>
+                    <fieldset>
+                        <legend>Are you a member of the PGA? <span class="bold-text">*</span></legend>
+                        <label for="pga_yes"><input type="radio" name="pga" id="pga_yes" aria-required="true">Yes</label>
+                        <label for="pga_no"><input type="radio" name="pga" id="pga_no" aria-required="true">No</label>
+                    </fieldset>
+                </li>
+                <li>
+                    <label>OPTIONAL: Those with large social networks are preferable. Feel free to list any large networks you are part of or your Twitter.</label>
+                    <textarea aria-label="Social networks information"></textarea>
+                </li>
+                <li>
+                    <label for="how">How did you find out about us?</label>
+                    <select id="how"></select>
+                </li>
+                <li>
+                    <input type="checkbox" id="terms" aria-required="true">
+                    <label for="terms"><span class="bold-text">*</span> I Have Read and I Accept the Terms and Conditions Below</label>
+                </li>
+                <li class="footer-link">
+                    <a href="#" class="link-text">Terms and Conditions</a>
+                </li>
+            </ul>
+            <button type="submit" class="submit-btn">Submit</button>
+        </form>
+        <div class="footer-link">Report abuse <span class="link-text">Powered by <img src="src/placeholder.jpg" width="15" height="15" alt="Candivan"></span></div>
+    </div>
+</body>
+</html>

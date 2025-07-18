@@ -1,0 +1,241 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_4.1_4_3.G18",
+        "Principle1.Guideline1_4.1_4_3.G18.Fail",
+        "Principle1.Guideline1_4.1_4_3.G145",
+        "Principle1.Guideline1_4.1_4_3.G145.Fail",
+        "Principle1.Guideline1_4.1_4_6.G17",
+        "Principle1.Guideline1_4.1_4_6.G18"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+      ],
+      "impact": "serious",
+      "name": "Color Contrast; Text;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#337ab7",
+                  "bgColor": "#f9f9f9",
+                  "contrastRatio": 4.32,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<a href=\"#\" class=\"active\">yaml</a>",
+                    "target": [
+                      ".active"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 4.32 (foreground color: #337ab7, background color: #f9f9f9, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\" class=\"active\">yaml</a>",
+            "target": [
+              ".active"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.32 (foreground color: #337ab7, background color: #f9f9f9, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 4.33:1. Recommendation:  change background to #fefefe.",
+          "description": "<a href=\"#\" class=\"active\">yaml</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 4.33:1. Recommendation:  change background to #fefefe.",
+            "context": "<a href=\"#\" class=\"active\">yaml</a>",
+            "selector": "html > body > main > article > div:nth-child(3) > a:nth-child(1)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,1,MAIN,1,ARTICLE,2,DIV,0,A",
+              "selector": "main.container > article > div.tabs > a.active",
+              "boundingRect": {
+                "top": 328,
+                "bottom": 365,
+                "left": 240,
+                "right": 296,
+                "width": 56,
+                "height": 38
+              },
+              "snippet": "<a href=\"#\" class=\"active\">",
+              "nodeLabel": "yaml",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 4.32 (foreground color: #337ab7, background color: #f9f9f9, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H48"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/list",
+        "https://dequeuniversity.com/rules/axe/4.10/listitem"
+      ],
+      "impact": "serious",
+      "name": "List; Incorrect Structure;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/list",
+          "source": "axe-core",
+          "title": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "description": "Ensure that lists are structured correctly",
+          "impact": "serious",
+          "nodes": {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "only-listitems",
+                "data": {
+                  "values": "ul"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<ul>\n                    <li><a href=\"#\">Archive</a></li>\n                    <li><a href=\"#\">Atlas</a></li>\n                    <li><a href=\"#\">AWS</a></li>\n                </ul>",
+                    "target": [
+                      "ul:nth-child(7)"
+                    ]
+                  },
+                  {
+                    "html": "<ul>\n                    <li><a href=\"#\">aws_alb</a></li>\n                    <li><a href=\"#\">aws_alb_listener</a></li>\n                    <li><a href=\"#\">aws_alb_listener_rule</a></li>\n                    <li><a href=\"#\">aws_alb_target_group</a></li>\n                </ul>",
+                    "target": [
+                      "ul:nth-child(10)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "List element has direct children that are not allowed: ul"
+              }
+            ],
+            "impact": "serious",
+            "html": "<ul>",
+            "target": [
+              "aside > ul"
+            ],
+            "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed: ul"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/list",
+          "source": "lighthouse",
+          "title": "Lists do not contain only `<li>` elements and script supporting elements (`<script>` and `<template>`).",
+          "description": "Screen readers have a specific way of announcing lists. Ensuring proper list structure aids screen reader output. [Learn more about proper list structure](https://dequeuniversity.com/rules/axe/4.10/list).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-UL",
+              "path": "1,HTML,1,BODY,1,MAIN,0,ASIDE,0,UL",
+              "selector": "body > main.container > aside > ul",
+              "boundingRect": {
+                "top": 131,
+                "bottom": 646,
+                "left": 20,
+                "right": 220,
+                "width": 200,
+                "height": 515
+              },
+              "snippet": "<ul>",
+              "nodeLabel": "Videos\nGetting started\nGetting more from Koding\nStack Documentation\nConfigurati…",
+              "explanation": "Fix all of the following:\n  List element has direct children that are not allowed: ul"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-UL",
+                    "path": "1,HTML,1,BODY,1,MAIN,0,ASIDE,0,UL,6,UL",
+                    "selector": "main.container > aside > ul > ul",
+                    "boundingRect": {
+                      "top": 315,
+                      "bottom": 402,
+                      "left": 20,
+                      "right": 220,
+                      "width": 200,
+                      "height": 87
+                    },
+                    "snippet": "<ul>",
+                    "nodeLabel": "Archive\nAtlas\nAWS"
+                  }
+                },
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-3-UL",
+                    "path": "1,HTML,1,BODY,1,MAIN,0,ASIDE,0,UL,9,UL",
+                    "selector": "main.container > aside > ul > ul",
+                    "boundingRect": {
+                      "top": 468,
+                      "bottom": 585,
+                      "left": 20,
+                      "right": 220,
+                      "width": 200,
+                      "height": 117
+                    },
+                    "snippet": "<ul>",
+                    "nodeLabel": "aws_alb\naws_alb_listener\naws_alb_listener_rule\naws_alb_target_group"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

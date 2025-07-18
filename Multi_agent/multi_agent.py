@@ -1,7 +1,8 @@
 import sys
 import os
-import json
+import math
 from pathlib import Path
+from time import sleep
 
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from Multi_agent.detector_agent import DetectorAgent
@@ -39,6 +40,9 @@ async def run_multi_agent(client, model: str, prompt_strategy: str, code: str, i
         print(f"iteration {attempt+1}")
         # detect issues
         issues_json, tokens_used_detector = await detector.detect_issues(code)
+
+        # TODO: weg
+        sleep(20)
         
         if not issues_json:
             print("No issues found")
@@ -47,19 +51,25 @@ async def run_multi_agent(client, model: str, prompt_strategy: str, code: str, i
         # identify issues
         updated_issues_json, tokens_used_identifier = await identifier.identify_issues(code, issues_json)
 
+        # TODO: weg
+        sleep(20)
+
         temp_code = code
         # tokens_used_resolver = 0
 
         # resolve issues in batches n=5
         for i in range(0, len(updated_issues_json), batch_size):
             batch = updated_issues_json[i:i + batch_size]
-            print(f"Process batch {i / batch_size} of {len(updated_issues_json) / batch_size}")
+            print(f"Process batch {i / batch_size + 1} of {math.ceil(len(updated_issues_json) / batch_size)}")
             temp_code, tokens_used_resolver_batch = await resolver.resolve_code(updated_issues_json, temp_code)
             temp_code = utils_html.clean_html_result(temp_code)
             # tokens_used_resolver += tokens_used_resolver_batch
         
         # clean final html
         resolved_code = utils_html.clean_html_result(temp_code)
+
+        # TODO: weg
+        sleep(20)
         # print(f"Tokens used: {tokens_used_detector + tokens_used_identifier + tokens_used_resolver}")
 
         output_base_html_path, output_base_accessibility_path, output_base_images_path, output_base_insights_path = utils_general.create_directories(OUTPUT_PATH, model, f"{prompt_strategy}_refine", date)
@@ -68,6 +78,8 @@ async def run_multi_agent(client, model: str, prompt_strategy: str, code: str, i
 
         # analyze outputs
         _, accessibility_issues, accessibility_issues_overview = await utils_image_processing.analyze_outputs(image, model, f"{prompt_strategy}_refine", date)
+
+
 
 
 
