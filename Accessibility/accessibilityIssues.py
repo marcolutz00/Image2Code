@@ -76,7 +76,7 @@ async def _google_lighthouse(html_path):
         "python3",
         "-m",
         "http.server",
-        "8003",
+        "8002",
         "--bind",
         "127.0.0.1",
         cwd=str(local_html_dir),
@@ -87,7 +87,7 @@ async def _google_lighthouse(html_path):
     try:
         await asyncio.sleep(1)
 
-        url = f"http://127.0.0.1:8003/{local_html_name}"
+        url = f"http://127.0.0.1:8002/{local_html_name}"
 
         lh_bin = shutil.which("lighthouse") or "/opt/homebrew/bin/lighthouse"
 
