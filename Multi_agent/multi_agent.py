@@ -41,8 +41,6 @@ async def run_multi_agent(client, model: str, prompt_strategy: str, code: str, i
         # detect issues
         issues_json, tokens_used_detector = await detector.detect_issues(code)
 
-        # TODO: weg
-        sleep(20)
         
         if not issues_json:
             print("No issues found")
@@ -51,8 +49,6 @@ async def run_multi_agent(client, model: str, prompt_strategy: str, code: str, i
         # identify issues
         updated_issues_json, tokens_used_identifier = await identifier.identify_issues(code, issues_json)
 
-        # TODO: weg
-        sleep(20)
 
         temp_code = code
         # tokens_used_resolver = 0
@@ -68,8 +64,6 @@ async def run_multi_agent(client, model: str, prompt_strategy: str, code: str, i
         # clean final html
         resolved_code = utils_html.clean_html_result(temp_code)
 
-        # TODO: weg
-        sleep(20)
         # print(f"Tokens used: {tokens_used_detector + tokens_used_identifier + tokens_used_resolver}")
 
         output_base_html_path, output_base_accessibility_path, output_base_images_path, output_base_insights_path = utils_general.create_directories(OUTPUT_PATH, model, f"{prompt_strategy}_refine", date)

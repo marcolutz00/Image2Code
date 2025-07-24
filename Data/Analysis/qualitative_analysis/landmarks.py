@@ -27,6 +27,7 @@ def check_elements_after_body(map_findings, html_path, model_name):
 
     if body_soup is None:
         map_findings[model_name]["no_body"] = map_findings[model_name].get("no_body", 0) + 1
+        return
     
     for element in body_soup.find_all(recursive=False):
         # All landmark elements

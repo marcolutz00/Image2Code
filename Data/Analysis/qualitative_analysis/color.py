@@ -146,7 +146,7 @@ def get_brightness_differences(list_paths, map_background_colors):
     return color_results
 
 
-def get_colors_in_violations(html_path, map_findings_color_contrast, model_name):
+def get_colors_in_violations(html_path, map_findings_color_contrast, model_name, run_name=None):
     """
     Check which colors cause violatiosn
     """
@@ -178,13 +178,26 @@ def get_colors_in_violations(html_path, map_findings_color_contrast, model_name)
         if map_findings_color_contrast.get(model_name) is None:
             map_findings_color_contrast[model_name] = {}
 
-        if map_findings_color_contrast[model_name].get(foreground_color) is None:
-            map_findings_color_contrast[model_name][foreground_color] = {
-                "amount_violations": 0,
-                # "background_color": {}
-            }
-        
-        map_findings_color_contrast[model_name][foreground_color]["amount_violations"] += 1
+        if run_name is None:
+            if map_findings_color_contrast[model_name].get(foreground_color) is None:
+                map_findings_color_contrast[model_name][foreground_color] = {
+                    "amount_violations": 0,
+                    # "background_color": {}
+                }
+            
+            map_findings_color_contrast[model_name][foreground_color]["amount_violations"] += 1
+            
+        else:
+            if map_findings_color_contrast[model_name].get(run_name) is None:
+                map_findings_color_contrast[model_name][run_name] = {}
+
+            if map_findings_color_contrast[model_name][run_name].get(foreground_color) is None:
+                map_findings_color_contrast[model_name][run_name][foreground_color] = {
+                    "amount_violations": 0,
+                    # "background_color": {}
+                }
+            
+            map_findings_color_contrast[model_name][run_name][foreground_color]["amount_violations"] += 1
 
         # if background_color not in map_findings_color_contrast[model_name][foreground_color]["background_color"]:
         #     map_findings_color_contrast[model_name][foreground_color]["background_color"][background_color] = 0

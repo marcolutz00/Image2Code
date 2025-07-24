@@ -1,0 +1,661 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": null,
+      "url": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role",
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role",
+          "source": "axe-core",
+          "title": "ARIA role should be appropriate for the element",
+          "description": "Ensure role attribute has an appropriate value for the element",
+          "impact": "minor",
+          "nodes": {
+            "any": [
+              {
+                "id": "aria-allowed-role",
+                "data": [
+                  "heading"
+                ],
+                "relatedNodes": [],
+                "impact": "minor",
+                "message": "ARIA role heading is not allowed for given element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "minor",
+            "html": "<header class=\"header-text\" role=\"heading\" aria-level=\"1\">\n      <h1>A New Life: A Memoir</h1>\n    </header>",
+            "target": [
+              "header"
+            ],
+            "failureSummary": "Fix any of the following:\n  ARIA role heading is not allowed for given element"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role",
+          "source": "lighthouse",
+          "title": "Uses ARIA roles on incompatible elements",
+          "description": "Many HTML elements can only be assigned certain ARIA roles. Using ARIA roles where they are not allowed can interfere with the accessibility of the web page. [Learn more about ARIA roles](https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-HEADER",
+              "path": "1,HTML,1,BODY,1,DIV,0,HEADER",
+              "selector": "body > div.container > header.header-text",
+              "boundingRect": {
+                "top": 21,
+                "bottom": 58,
+                "left": 8,
+                "right": 404,
+                "width": 396,
+                "height": 37
+              },
+              "snippet": "<header class=\"header-text\" role=\"heading\" aria-level=\"1\">",
+              "nodeLabel": "A New Life: A Memoir",
+              "explanation": "Fix any of the following:\n  ARIA role heading is not allowed for given element"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": null,
+      "url": "https://dequeuniversity.com/rules/axe/4.10/aria-required-children",
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-required-children",
+          "source": "axe-core",
+          "title": "Certain ARIA roles must contain particular children",
+          "description": "Ensure elements with an ARIA role that require child roles contain them",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "aria-required-children",
+                "data": {
+                  "messageKey": "unallowed",
+                  "values": "li[tabindex]"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<li><a href=\"#\" aria-label=\"Main Menu\">Home</a></li>",
+                    "target": [
+                      "li:nth-child(1)"
+                    ]
+                  },
+                  {
+                    "html": "<li><a href=\"#\" aria-label=\"Menu Item\">Books</a></li>",
+                    "target": [
+                      "li:nth-child(2)"
+                    ]
+                  },
+                  {
+                    "html": "<li><a href=\"#\" aria-label=\"Menu Item\">Authors</a></li>",
+                    "target": [
+                      "li:nth-child(3)"
+                    ]
+                  },
+                  {
+                    "html": "<li><a href=\"#\" aria-label=\"Menu Item\">About Us</a></li>",
+                    "target": [
+                      "li:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "critical",
+                "message": "Element has children which are not allowed: li[tabindex]"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<ul class=\"navbar-nav\" role=\"menu\">\n        <li><a href=\"#\" aria-label=\"Main Menu\">Home</a></li>\n        <li><a href=\"#\" aria-label=\"Menu Item\">Books</a></li>\n        <li><a href=\"#\" aria-label=\"Menu Item\">Authors</a></li>\n        <li><a href=\"#\" aria-label=\"Menu Item\">About Us</a></li>\n      </ul>",
+            "target": [
+              "ul"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has children which are not allowed: li[tabindex]"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-required-children",
+          "source": "lighthouse",
+          "title": "Elements with an ARIA `[role]` that require children to contain a specific `[role]` are missing some or all of those required children.",
+          "description": "Some ARIA parent roles must contain specific child roles to perform their intended accessibility functions. [Learn more about roles and required children elements](https://dequeuniversity.com/rules/axe/4.10/aria-required-children).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-UL",
+              "path": "1,HTML,1,BODY,1,DIV,3,NAV,1,UL",
+              "selector": "body > div.container > nav.navbar > ul.navbar-nav",
+              "boundingRect": {
+                "top": 500,
+                "bottom": 572,
+                "left": 8,
+                "right": 404,
+                "width": 396,
+                "height": 72
+              },
+              "snippet": "<ul class=\"navbar-nav\" role=\"menu\">",
+              "nodeLabel": "Home\nBooks\nAuthors\nAbout Us",
+              "explanation": "Fix any of the following:\n  Element has children which are not allowed: li[tabindex]"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-LI",
+                    "path": "1,HTML,1,BODY,1,DIV,3,NAV,1,UL,0,LI",
+                    "selector": "div.container > nav.navbar > ul.navbar-nav > li",
+                    "boundingRect": {
+                      "top": 500,
+                      "bottom": 518,
+                      "left": 48,
+                      "right": 404,
+                      "width": 356,
+                      "height": 18
+                    },
+                    "snippet": "<li>",
+                    "nodeLabel": "Home"
+                  }
+                },
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-3-LI",
+                    "path": "1,HTML,1,BODY,1,DIV,3,NAV,1,UL,1,LI",
+                    "selector": "div.container > nav.navbar > ul.navbar-nav > li",
+                    "boundingRect": {
+                      "top": 518,
+                      "bottom": 536,
+                      "left": 48,
+                      "right": 404,
+                      "width": 356,
+                      "height": 18
+                    },
+                    "snippet": "<li>",
+                    "nodeLabel": "Books"
+                  }
+                },
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-4-LI",
+                    "path": "1,HTML,1,BODY,1,DIV,3,NAV,1,UL,2,LI",
+                    "selector": "div.container > nav.navbar > ul.navbar-nav > li",
+                    "boundingRect": {
+                      "top": 536,
+                      "bottom": 554,
+                      "left": 48,
+                      "right": 404,
+                      "width": 356,
+                      "height": 18
+                    },
+                    "snippet": "<li>",
+                    "nodeLabel": "Authors"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+        "https://dequeuniversity.com/rules/axe/4.10/region",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
+      ],
+      "impact": "moderate",
+      "name": "Landmark & Region; Missing & Unique Landmarks;",
+      "amount_nodes_failed": 3,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+          "source": "axe-core",
+          "title": "Document should have one main landmark",
+          "description": "Ensure the document has a main landmark",
+          "impact": "moderate",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "page-has-main",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Document does not have a main landmark"
+              }
+            ],
+            "none": [],
+            "impact": "moderate",
+            "html": "<html lang=\"en\">",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix all of the following:\n  Document does not have a main landmark"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<header class=\"header-text\" role=\"heading\" aria-level=\"1\">\n      <h1>A New Life: A Memoir</h1>\n    </header>",
+            "target": [
+              "header"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"hero-image\">\n      <img src=\"src/placeholder.jpg\" alt=\"Hero Image\" width=\"100%\" height=\"400px\">\n    </div>",
+            "target": [
+              ".hero-image"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H48"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/list",
+        "https://dequeuniversity.com/rules/axe/4.10/listitem"
+      ],
+      "impact": "serious",
+      "name": "List; Incorrect Structure;",
+      "amount_nodes_failed": 4,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/listitem",
+          "source": "axe-core",
+          "title": "<li> elements must be contained in a <ul> or <ol>",
+          "description": "Ensure <li> elements are used semantically",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "listitem",
+                "data": {
+                  "messageKey": "roleNotValid"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "List item parent element has a role that is not role=\"list\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<li><a href=\"#\" aria-label=\"Main Menu\">Home</a></li>",
+            "target": [
+              "li:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  List item parent element has a role that is not role=\"list\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/listitem",
+          "source": "axe-core",
+          "title": "<li> elements must be contained in a <ul> or <ol>",
+          "description": "Ensure <li> elements are used semantically",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "listitem",
+                "data": {
+                  "messageKey": "roleNotValid"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "List item parent element has a role that is not role=\"list\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<li><a href=\"#\" aria-label=\"Menu Item\">Books</a></li>",
+            "target": [
+              "li:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  List item parent element has a role that is not role=\"list\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/listitem",
+          "source": "axe-core",
+          "title": "<li> elements must be contained in a <ul> or <ol>",
+          "description": "Ensure <li> elements are used semantically",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "listitem",
+                "data": {
+                  "messageKey": "roleNotValid"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "List item parent element has a role that is not role=\"list\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<li><a href=\"#\" aria-label=\"Menu Item\">Authors</a></li>",
+            "target": [
+              "li:nth-child(3)"
+            ],
+            "failureSummary": "Fix any of the following:\n  List item parent element has a role that is not role=\"list\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/listitem",
+          "source": "axe-core",
+          "title": "<li> elements must be contained in a <ul> or <ol>",
+          "description": "Ensure <li> elements are used semantically",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "listitem",
+                "data": {
+                  "messageKey": "roleNotValid"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "List item parent element has a role that is not role=\"list\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<li><a href=\"#\" aria-label=\"Menu Item\">About Us</a></li>",
+            "target": [
+              "li:nth-child(4)"
+            ],
+            "failureSummary": "Fix any of the following:\n  List item parent element has a role that is not role=\"list\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/listitem",
+          "source": "lighthouse",
+          "title": "List items (`<li>`) are not contained within `<ul>`, `<ol>` or `<menu>` parent elements.",
+          "description": "Screen readers require list items (`<li>`) to be contained within a parent `<ul>`, `<ol>` or `<menu>` to be announced properly. [Learn more about proper list structure](https://dequeuniversity.com/rules/axe/4.10/listitem).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-2-LI",
+              "path": "1,HTML,1,BODY,1,DIV,3,NAV,1,UL,0,LI",
+              "selector": "div.container > nav.navbar > ul.navbar-nav > li",
+              "boundingRect": {
+                "top": 500,
+                "bottom": 518,
+                "left": 48,
+                "right": 404,
+                "width": 356,
+                "height": 18
+              },
+              "snippet": "<li>",
+              "nodeLabel": "Home",
+              "explanation": "Fix any of the following:\n  List item parent element has a role that is not role=\"list\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/listitem",
+          "source": "lighthouse",
+          "title": "List items (`<li>`) are not contained within `<ul>`, `<ol>` or `<menu>` parent elements.",
+          "description": "Screen readers require list items (`<li>`) to be contained within a parent `<ul>`, `<ol>` or `<menu>` to be announced properly. [Learn more about proper list structure](https://dequeuniversity.com/rules/axe/4.10/listitem).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-3-LI",
+              "path": "1,HTML,1,BODY,1,DIV,3,NAV,1,UL,1,LI",
+              "selector": "div.container > nav.navbar > ul.navbar-nav > li",
+              "boundingRect": {
+                "top": 518,
+                "bottom": 536,
+                "left": 48,
+                "right": 404,
+                "width": 356,
+                "height": 18
+              },
+              "snippet": "<li>",
+              "nodeLabel": "Books",
+              "explanation": "Fix any of the following:\n  List item parent element has a role that is not role=\"list\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/listitem",
+          "source": "lighthouse",
+          "title": "List items (`<li>`) are not contained within `<ul>`, `<ol>` or `<menu>` parent elements.",
+          "description": "Screen readers require list items (`<li>`) to be contained within a parent `<ul>`, `<ol>` or `<menu>` to be announced properly. [Learn more about proper list structure](https://dequeuniversity.com/rules/axe/4.10/listitem).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-LI",
+              "path": "1,HTML,1,BODY,1,DIV,3,NAV,1,UL,2,LI",
+              "selector": "div.container > nav.navbar > ul.navbar-nav > li",
+              "boundingRect": {
+                "top": 536,
+                "bottom": 554,
+                "left": 48,
+                "right": 404,
+                "width": 356,
+                "height": 18
+              },
+              "snippet": "<li>",
+              "nodeLabel": "Authors",
+              "explanation": "Fix any of the following:\n  List item parent element has a role that is not role=\"list\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/listitem",
+          "source": "lighthouse",
+          "title": "List items (`<li>`) are not contained within `<ul>`, `<ol>` or `<menu>` parent elements.",
+          "description": "Screen readers require list items (`<li>`) to be contained within a parent `<ul>`, `<ol>` or `<menu>` to be announced properly. [Learn more about proper list structure](https://dequeuniversity.com/rules/axe/4.10/listitem).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-10-LI",
+              "path": "1,HTML,1,BODY,1,DIV,3,NAV,1,UL,3,LI",
+              "selector": "div.container > nav.navbar > ul.navbar-nav > li",
+              "boundingRect": {
+                "top": 554,
+                "bottom": 572,
+                "left": 48,
+                "right": 404,
+                "width": 356,
+                "height": 18
+              },
+              "snippet": "<li>",
+              "nodeLabel": "About Us",
+              "explanation": "Fix any of the following:\n  List item parent element has a role that is not role=\"list\""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/label-title-only",
+        "https://dequeuniversity.com/rules/axe/4.10/label-content-name-mismatch"
+      ],
+      "impact": "serious",
+      "name": "Aria Attributes; Label Problems;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label-content-name-mismatch",
+          "source": "lighthouse",
+          "title": "Elements with visible text labels do not have matching accessible names.",
+          "description": "Visible text labels that do not match the accessible name can result in a confusing experience for screen reader users. [Learn more about accessible names](https://dequeuniversity.com/rules/axe/4.10/label-content-name-mismatch).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-8-A",
+              "path": "1,HTML,1,BODY,1,DIV,3,NAV,1,UL,3,LI,0,A",
+              "selector": "nav.navbar > ul.navbar-nav > li > a",
+              "boundingRect": {
+                "top": 554,
+                "bottom": 572,
+                "left": 48,
+                "right": 110,
+                "width": 62,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\" aria-label=\"Menu Item\">",
+              "nodeLabel": "About Us",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-8-A",
+              "path": "1,HTML,1,BODY,1,DIV,3,NAV,1,UL,3,LI,0,A",
+              "selector": "nav.navbar > ul.navbar-nav > li > a",
+              "boundingRect": {
+                "top": 554,
+                "bottom": 572,
+                "left": 48,
+                "right": 110,
+                "width": 62,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\" aria-label=\"Menu Item\">",
+              "nodeLabel": "About Us",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (61.8px by 18px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 13.4px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-7-A",
+                    "path": "1,HTML,1,BODY,1,DIV,3,NAV,1,UL,2,LI,0,A",
+                    "selector": "nav.navbar > ul.navbar-nav > li > a",
+                    "boundingRect": {
+                      "top": 536,
+                      "bottom": 554,
+                      "left": 48,
+                      "right": 100,
+                      "width": 52,
+                      "height": 18
+                    },
+                    "snippet": "<a href=\"#\" aria-label=\"Menu Item\">",
+                    "nodeLabel": "Authors"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

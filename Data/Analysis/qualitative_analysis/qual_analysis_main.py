@@ -28,44 +28,45 @@ def start_qualitative_analysis(list_paths):
     map_foreground_colors = {}
     list_complexity_structure = []
     map_complexity_datasets = {}
+    color_results = {}
 
     for name, path in list_paths.items():
         print(f"Processing {name}")
         html_files = [f for f in utils_dataset.sorted_alphanumeric(os.listdir(path)) if f.endswith('.html')]
-        model_name = name.split("_")[0]
+        model_name, run_name = name.split("_", 1)
  
         for file in html_files:
             print("Processing file:", file)
             html_path = os.path.join(path, file)
 
             # compare complexity per dataset (H1: "Dataset 2 is more complex than dataset 1,so causing more violations.")
-            # complexity.estimate_complexity_datasets(map_complexity_datasets, html_path, model_name)
+            complexity.estimate_complexity_datasets(map_complexity_datasets, html_path, model_name)
 
             # get complexity and violations per file
-            # complexity.estimate_complexity_structure(list_complexity_structure, html_path, model_name)
+            complexity.estimate_complexity_structure(list_complexity_structure, html_path, model_name)
 
             # compare landmark structure (H1: "Landmark & Region Tags are not often set. However, there are many comparable structures, yet causing violations.")
-            # landmarks.check_elements_after_body(map_landmarks, html_path, model_name)
+            landmarks.check_elements_after_body(map_landmarks, html_path, model_name)
 
             # compare font colors (H1: "There are similar colors which cause color contrast violations")
-            color_analysis.get_colors_in_violations(html_path, map_foreground_colors, model_name)
+            color_analysis.get_colors_in_violations(html_path, map_foreground_colors, model_name, run_name)
 
             # get amount of small, and large fonts (H1: "Pages with more small fonts have more color contrast violations")
-            default_background_color = color_analysis.analyze_color_contrast(html_path, map_font_size_color_contrast, model_name)
+            # default_background_color = color_analysis.analyze_color_contrast(html_path, map_font_size_color_contrast, model_name)
 
-            if map_background_colors.get(name) is None:
-                map_background_colors[name] = []
+            # if map_background_colors.get(name) is None:
+            #     map_background_colors[name] = []
 
-            map_background_colors[name].append(default_background_color)
+            # map_background_colors[name].append(default_background_color)
     
 
     # calculate correlation (H1: "Correlation between complexity (DOM-Length) and amount of xyz violations")
-    # df_complexity_structure = pd.DataFrame(list_complexity_structure)
-    # stats.correlation(df_complexity_structure, groupby_col="model", x_col="amount_nodes", y_col="amount_landmark_violations")
+    df_complexity_structure = pd.DataFrame(list_complexity_structure)
+    stats.correlation(df_complexity_structure, groupby_col="model", x_col="amount_nodes", y_col="amount_landmark_violations")
 
 
     # get brightness differences between background colors (H1: "Differences in backgroudn colors between models")
-    color_results = color_analysis.get_brightness_differences(list_paths, map_background_colors)
+    # color_results = color_analysis.get_brightness_differences(list_paths, map_background_colors)
 
 
 
@@ -80,7 +81,15 @@ def start_qualitative_analysis_iterative(list_paths_iterative):
     
     """
 
+    map_difference_all = {}
+
     for index in range(0, len(list_paths_iterative)):
+        iteration_round = index % 4
+        date = list_paths_iterative[index].name.split("/")[-1]
+
+        if iteration_round == 3:
+            continue
+
         map_differences = {
             "added": {},
             "removed": {},
@@ -114,6 +123,9 @@ def start_qualitative_analysis_iterative(list_paths_iterative):
                         map_differences[key][item["rule"]] = 0
                     map_differences[key][item["rule"]] += 1
         
+        map_difference_all[f"{iteration_round}_{iteration_round+1}_{date}"] = map_differences
+    
+    return map_difference_all
 
 
 
@@ -121,7 +133,7 @@ def start_qualitative_analysis_iterative(list_paths_iterative):
 if __name__ == "__main__":
     curr_path = Path(__file__).parent
 
-    list_paths = {
+    map_paths = {
         # "gemini_naive_1": curr_path.parent.parent / "Output" / "gemini" / "html" / "naive" / "2025-06-18-10-18",
         # "gemini_naive_2": curr_path.parent.parent / "Output" / "gemini" / "html" / "naive" / "2025-06-18-11-24",
         # "gemini_naive_3": curr_path.parent.parent / "Output" / "gemini" / "html" / "naive" / "2025-06-18-11-53",
@@ -162,45 +174,100 @@ if __name__ == "__main__":
         "qwen_reason_3": curr_path.parent.parent / "Output" / "qwen" / "html" / "reason" / "2025-07-09-08-35",
     }
 
-    list_paths_iterative = [
-        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative" / "2025-06-18-21-10",
-        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_1" / "2025-06-18-21-10",
-        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_2" / "2025-06-18-21-10",
-        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_3 " / "2025-06-18-21-10",
-        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative" / "2025-06-19-07-33",
-        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_1" / "2025-06-19-07-33",
-        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_2" / "2025-06-19-07-33",
-        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_3 " / "2025-06-19-07-33",
-        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative" / "2025-06-19-10-46",
-        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_1" / "2025-06-19-10-46",
-        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_2" / "2025-06-19-10-46",
-        curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_refine_3 " / "2025-06-19-10-46",
+    map_paths_iterative = {
+        "gemini_iterative_naive_1": curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive" / "2025-07-16-09-01",
+        "gemini_iterative_naive_1_refine_1": curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_1" / "2025-07-16-09-01",
+        "gemini_iterative_naive_1_refine_2": curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_2" / "2025-07-16-09-01",
+        "gemini_iterative_naive_1_refine_3": curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_3" / "2025-07-16-09-01",
+        "gemini_iterative_naive_2": curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive" / "2025-07-16-11-02",
+        "gemini_iterative_naive_2_refine_1": curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_1" / "2025-07-16-11-02",
+        "gemini_iterative_naive_2_refine_2": curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_2" / "2025-07-16-11-02",
+        "gemini_iterative_naive_2_refine_3": curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_3" / "2025-07-16-11-02",
+        "gemini_iterative_naive_3": curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive" / "2025-07-16-13-16",
+        "gemini_iterative_naive_3_refine_1": curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_1" / "2025-07-16-13-16",
+        "gemini_iterative_naive_3_refine_2": curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_2" / "2025-07-16-13-16",
+        "gemini_iterative_naive_3_refine_3": curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_3" / "2025-07-16-13-16",
         
-        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative" / "2025-06-21-11-04",
-        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_1" / "2025-06-21-11-04",
-        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_2" / "2025-06-21-11-04",
-        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_3 " / "2025-06-21-11-04",
-        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative" / "2025-06-21-15-32",
-        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_1" / "2025-06-21-15-32",
-        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_2" / "2025-06-21-15-32",
-        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_3 " / "2025-06-21-15-32",
-        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative" / "2025-06-21-19-26",
-        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_1" / "2025-06-21-19-26",
-        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_2" / "2025-06-21-19-26",
-        curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_refine_3 " / "2025-06-21-19-26",
+        "openai_iterative_naive_1": curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive" / "2025-07-16-11-06",
+        "openai_iterative_naive_1_refine_1": curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_1" / "2025-07-16-11-06",
+        "openai_iterative_naive_1_refine_2": curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_2" / "2025-07-16-11-06",
+        "openai_iterative_naive_1_refine_3": curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_3" / "2025-07-16-11-06",
+        "openai_iterative_naive_2": curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive" / "2025-07-16-14-58",
+        "openai_iterative_naive_2_refine_1": curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_1" / "2025-07-16-14-58",
+        "openai_iterative_naive_2_refine_2": curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_2" / "2025-07-16-14-58",
+        "openai_iterative_naive_2_refine_3": curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_3" / "2025-07-16-14-58",
+        "openai_iterative_naive_3": curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive" / "2025-07-16-19-50",
+        "openai_iterative_naive_3_refine_1": curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_1" / "2025-07-16-19-50",
+        "openai_iterative_naive_3_refine_2": curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_2" / "2025-07-16-19-50",
+        "openai_iterative_naive_3_refine_3": curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_3" / "2025-07-16-19-50",
+
+        "qwen_iterative_naive_1": curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive" / "2025-07-16-08-47",
+        "qwen_iterative_naive_1_refine_1": curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_1" / "2025-07-16-08-47",
+        "qwen_iterative_naive_1_refine_2": curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_2" / "2025-07-16-08-47",
+        "qwen_iterative_naive_1_refine_3": curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_3" / "2025-07-16-08-47",
+        "qwen_iterative_naive_2": curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive" / "2025-07-16-09-03",
+        "qwen_iterative_naive_2_refine_1": curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_1" / "2025-07-16-09-03",
+        "qwen_iterative_naive_2_refine_2": curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_2" / "2025-07-16-09-03",
+        "qwen_iterative_naive_2_refine_3": curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_3" / "2025-07-16-09-03",
+        "qwen_iterative_naive_3": curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive" / "2025-07-16-09-31",
+        "qwen_iterative_naive_3_refine_1": curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_1" / "2025-07-16-09-31",
+        "qwen_iterative_naive_3_refine_2": curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_2" / "2025-07-16-09-31",
+        "qwen_iterative_naive_3_refine_3": curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_3" / "2025-07-16-09-31",
+    }
+
+    list_paths_iterative = [
+        # curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive" / "2025-07-16-09-01",
+        # curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_1" / "2025-07-16-09-01",
+        # curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_2" / "2025-07-16-09-01",
+        # curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_3" / "2025-07-16-09-01",
+        # curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive" / "2025-07-16-11-02",
+        # curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_1" / "2025-07-16-11-02",
+        # curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_2" / "2025-07-16-11-02",
+        # curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_3" / "2025-07-16-11-02",
+        # curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive" / "2025-07-16-13-16",
+        # curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_1" / "2025-07-16-13-16",
+        # curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_2" / "2025-07-16-13-16",
+        # curr_path.parent.parent / "Output" / "gemini" / "html" / "iterative_naive_refine_3" / "2025-07-16-13-16",
+        
+        # curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive" / "2025-07-16-11-06",
+        # curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_1" / "2025-07-16-11-06",
+        # curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_2" / "2025-07-16-11-06",
+        # curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_3" / "2025-07-16-11-06",
+        # curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive" / "2025-07-16-14-58",
+        # curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_1" / "2025-07-16-14-58",
+        # curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_2" / "2025-07-16-14-58",
+        # curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_3" / "2025-07-16-14-58",
+        # curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive" / "2025-07-16-19-50",
+        # curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_1" / "2025-07-16-19-50",
+        # curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_2" / "2025-07-16-19-50",
+        # curr_path.parent.parent / "Output" / "openai" / "html" / "iterative_naive_refine_3" / "2025-07-16-19-50",
+
+        curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive" / "2025-07-16-08-47",
+        curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_1" / "2025-07-16-08-47",
+        curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_2" / "2025-07-16-08-47",
+        curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_3" / "2025-07-16-08-47",
+        curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive" / "2025-07-16-09-03",
+        curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_1" / "2025-07-16-09-03",
+        curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_2" / "2025-07-16-09-03",
+        curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_3" / "2025-07-16-09-03",
+        curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive" / "2025-07-16-09-31",
+        curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_1" / "2025-07-16-09-31",
+        curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_2" / "2025-07-16-09-31",
+        curr_path.parent.parent / "Output" / "qwen" / "html" / "iterative_naive_refine_3" / "2025-07-16-09-31",
     ]
 
 
     # map_differences = start_qualitative_analysis_iterative(list_paths_iterative)
-    map_landmarks, map_font_size_color_contrast, map_background_colors, color_results, map_complexity_datasets, map_foreground_colors = start_qualitative_analysis(list_paths)
+    map_landmarks, map_font_size_color_contrast, map_background_colors, color_results, map_complexity_datasets, map_foreground_colors = start_qualitative_analysis(map_paths_iterative)
 
 
     # Export results to excel
-    utils_general.export_dict_to_excel(map_landmarks, "landmarks", curr_path / "data" / "landmark_qualitative_analysis.xlsx")
-    utils_general.export_dict_to_excel(map_font_size_color_contrast, "color_contrast", curr_path / "data" / "colorcontrast_qualitative_analysis.xlsx")
-    utils_general.export_dict_to_excel(map_background_colors, "background_colors", curr_path / "data" / "background_qualitative_analysis.xlsx")
-    utils_general.export_dict_to_excel(color_results, "color_runs", curr_path / "data" / "colorbrighter_qualitative_analysis.xlsx")
-    utils_general.export_dict_to_excel(map_complexity_datasets, "complexity_datasets", curr_path / "data" / "complexity_datasets_qualitative_analysis.xlsx")
+    # utils_general.export_dict_to_excel(map_landmarks, "landmarks", curr_path / "data" / "landmark_qualitative_analysis.xlsx")
+    # utils_general.export_dict_to_excel(map_font_size_color_contrast, "color_contrast", curr_path / "data" / "colorcontrast_qualitative_analysis.xlsx")
+    # utils_general.export_dict_to_excel(map_background_colors, "background_colors", curr_path / "data" / "background_qualitative_analysis.xlsx")
+    # utils_general.export_dict_to_excel(color_results, "color_runs", curr_path / "data" / "colorbrighter_qualitative_analysis.xlsx")
+    # utils_general.export_dict_to_excel(map_complexity_datasets, "complexity_datasets", curr_path / "data" / "complexity_datasets_qualitative_analysis.xlsx")
     utils_general.export_dict_to_excel(map_foreground_colors, "foreground_colors", curr_path / "data" / "foreground_qualitative_analysis.xlsx")
+    # utils_general.export_dict_to_excel(map_differences, "iterative_differences", curr_path / "data" / "qwen_iterative_differences_qualitative_analysis.xlsx")
 
     print("Done")

@@ -1,0 +1,243 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": null,
+      "url": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role",
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role",
+          "source": "axe-core",
+          "title": "ARIA role should be appropriate for the element",
+          "description": "Ensure role attribute has an appropriate value for the element",
+          "impact": "minor",
+          "nodes": {
+            "any": [
+              {
+                "id": "aria-allowed-role",
+                "data": [
+                  "complementary"
+                ],
+                "relatedNodes": [],
+                "impact": "minor",
+                "message": "ARIA role complementary is not allowed for given element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "minor",
+            "html": "<article class=\"post\" role=\"complementary\">",
+            "target": [
+              "article"
+            ],
+            "failureSummary": "Fix any of the following:\n  ARIA role complementary is not allowed for given element"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": null,
+      "url": "https://dequeuniversity.com/rules/axe/4.10/aria-required-attr",
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-required-attr",
+          "source": "axe-core",
+          "title": "Required ARIA attributes must be provided",
+          "description": "Ensure elements with ARIA roles have all required ARIA attributes",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "aria-required-attr",
+                "data": [
+                  "aria-level"
+                ],
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Required ARIA attribute not present: aria-level"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<div class=\"post-header\" role=\"heading\" aria-label=\"Post header\">",
+            "target": [
+              ".post-header"
+            ],
+            "failureSummary": "Fix any of the following:\n  Required ARIA attribute not present: aria-level"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": null,
+      "url": "https://dequeuniversity.com/rules/axe/4.10/aria-roles",
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-roles",
+          "source": "axe-core",
+          "title": "ARIA roles used must conform to valid values",
+          "description": "Ensure all elements with a role attribute use a valid value",
+          "impact": "critical",
+          "nodes": {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "invalidrole",
+                "data": [
+                  "articlebody"
+                ],
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Role must be one of the valid ARIA roles: articlebody"
+              }
+            ],
+            "impact": "critical",
+            "html": "<div class=\"post-content\" role=\"articlebody\">",
+            "target": [
+              ".post-content"
+            ],
+            "failureSummary": "Fix all of the following:\n  Role must be one of the valid ARIA roles: articlebody"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+        "https://dequeuniversity.com/rules/axe/4.10/region",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
+      ],
+      "impact": "moderate",
+      "name": "Landmark & Region; Missing & Unique Landmarks;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+          "source": "axe-core",
+          "title": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+          "description": "Ensure landmarks are unique",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "landmark-is-unique",
+                "data": {
+                  "role": "navigation",
+                  "accessibleText": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<nav class=\"social-media-links\" role=\"navigation\">",
+                    "target": [
+                      ".social-media-links"
+                    ]
+                  }
+                ],
+                "impact": "moderate",
+                "message": "The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<nav class=\"navbar\" role=\"navigation\">",
+            "target": [
+              ".navbar"
+            ],
+            "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+      "url": null,
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 3,
+      "issues": [
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"home\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#home\" role=\"link\" aria-label=\"Home\">Home</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"home\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#home\" role=\"link\" aria-label=\"Home\">Home</a>",
+            "selector": "html > body > header > nav > ul > li:nth-child(1) > a",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"about\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#about\" role=\"link\" aria-label=\"About\">About</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"about\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#about\" role=\"link\" aria-label=\"About\">About</a>",
+            "selector": "html > body > header > nav > ul > li:nth-child(2) > a",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"contact\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#contact\" role=\"link\" aria-label=\"Contact\">Contact</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"contact\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#contact\" role=\"link\" aria-label=\"Contact\">Contact</a>",
+            "selector": "html > body > header > nav > ul > li:nth-child(3) > a",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    }
+  ]
+}

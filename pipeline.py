@@ -23,16 +23,17 @@ KEYS_PATH = CURR_PATH / "keys.json"
 DATA_PATH = CURR_PATH / "Data"
 INPUT_PATH = DATA_PATH / "Input"
 OUTPUT_PATH = DATA_PATH / "Output"
+RESULT_PATH = CURR_PATH / "Results"
 
 
 # Arguments
-DEFAULT_MODEL = "qwen"  # option: openai, gemini, qwen, llava
+DEFAULT_MODEL = "gemini"  # option: openai, gemini, qwen, llava
 DEFAULT_PROMPT_STRATEGY = "naive" # options: naive, zero-shot, few-shot, reason
-DEFAULT_IMPROVEMENT_STRATEGY = "iterative"  # options: None, iterative, composite, agent
+DEFAULT_IMPROVEMENT_STRATEGY = None  # options: None, iterative, composite, agent
 DEFAULT_STARTING_FROM = 0  
-# DATE = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
+DATE = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
 # Test
-DATE = "2025-07-16-08-47"
+# DATE = "2025-07-12-14-27"
 
 
 async def main(model, prompt_strategy, date, improvement_strategy, starting_from):
@@ -77,7 +78,7 @@ async def main(model, prompt_strategy, date, improvement_strategy, starting_from
             # Sometimes the LLMs return errors messages (e.g. "I can't do this task ...")
             for i in range(max_attempts):
                 try: 
-                    # generated_html = await utils_image_processing.process_image(client, image_information, prompt, model, prompt_strategy, date)
+                    generated_html = await utils_image_processing.process_image(client, image_information, prompt, model, prompt_strategy, date)
                     break
                 except Exception as e:
                     print(f"Failed at image {image} on attempt {i + 1}")
@@ -85,33 +86,30 @@ async def main(model, prompt_strategy, date, improvement_strategy, starting_from
                         raise e
 
 
-            if generated_html is None:
-                html_file_path = os.path.join(output_base_html_path, prompt_strategy, date, f"{image_information['name']}.html")
-                if os.path.exists(html_file_path):
-                    # HTML/CSS aus der Datei auslesen
-                    with open(html_file_path, "r", encoding="utf-8") as f:
-                        generated_html = f.read()
-                else:
-                    print(f"HTML-Datei nicht gefunden: {html_file_path}")
-                    generated_html = None
+            # if generated_html is None:
+            #     html_file_path = os.path.join(output_base_html_path, prompt_strategy, date, f"{image_information['name']}.html")
+            #     if os.path.exists(html_file_path):
+            #         # HTML/CSS aus der Datei auslesen
+            #         with open(html_file_path, "r", encoding="utf-8") as f:
+            #             generated_html = f.read()
+            #     else:
+            #         print(f"HTML-Datei nicht gefunden: {html_file_path}")
+            #         generated_html = None
 
 
             # 5. Analyze outputs for Input & Output
-            # _, accessibility_issues, _ = await utils_image_processing.analyze_outputs(image, model, prompt_strategy, date)
+            _, accessibility_issues, _ = await utils_image_processing.analyze_outputs(image, model, prompt_strategy, date)
 
-            if accessibility_issues is None:
-                accessibility_file_path = os.path.join(output_base_accessibility_path, prompt_strategy, date, f"{image_information['name']}.json")
-                if os.path.exists(accessibility_file_path):
-                    with open(accessibility_file_path, "r", encoding="utf-8") as f:
-                        accessibility_issues = json.load(f)
-                else:
-                    print(f"Accessibility file not found: {accessibility_file_path}")
-                    accessibility_issues = None
+            # if accessibility_issues is None:
+            #     accessibility_file_path = os.path.join(output_base_accessibility_path, prompt_strategy, date, f"{image_information['name']}.json")
+            #     if os.path.exists(accessibility_file_path):
+            #         with open(accessibility_file_path, "r", encoding="utf-8") as f:
+            #             accessibility_issues = json.load(f)
+            #     else:
+            #         print(f"Accessibility file not found: {accessibility_file_path}")
+            #         accessibility_issues = None
 
 
-            # print(generated_html)
-        
-            # print(accessibility_issues)
 
             # 6. Improvement Strategies
             if not improvement_strategy:
@@ -132,12 +130,21 @@ async def main(model, prompt_strategy, date, improvement_strategy, starting_from
 
 
     # 7. Overwrite insights
-    # _overwrite_insights(
+    # analyzeAccessibility.overwrite_insights(
     #     os.path.join(INPUT_PATH, 'accessibility'),
     #     os.path.join(INPUT_PATH, 'insights'),
     #     None,
+    #     None,
     #     None
     # )
+    # calculateBenchmarks.start_calculcations(
+    #     None,
+    #     None,
+    #     None,
+    #     os.path.join(INPUT_PATH, 'insights'),
+    #     os.path.join(RESULT_PATH, 'benchmarks')
+    # )
+
     analyzeAccessibility.calculate_insights(
         output_base_accessibility_path,
         output_base_insights_path,

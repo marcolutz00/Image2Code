@@ -129,7 +129,7 @@ def _analyze_benchmark_files(directory):
 
 
 
-def _start_calculcations(model, prompting_strategy, date, insights_dir, results_path):
+def start_calculcations(model, prompting_strategy, date, insights_dir, results_path):
     """
         Start the calculations for benchmarks
     """
@@ -150,6 +150,12 @@ def _start_calculcations(model, prompting_strategy, date, insights_dir, results_
         with open(output_path_analysis, "w", encoding="utf-8") as fh:
             json.dump(combination, fh, indent=2)
 
+    elif overview_values and not model and not prompting_strategy:
+
+        output_path_analysis = os.path.join(results_path, f"input_analysis_benchmarks.json")
+        with open(output_path_analysis, "w", encoding="utf-8") as fh:
+            json.dump(overview_values, fh, indent=2)
+
     else:
         print("No data found")
 
@@ -168,10 +174,10 @@ def start_process(model, prompting_strategy, date):
 
         for prompt_strat in insight_dirs_strats:
             insight_dir_path =  insights_dir / prompt_strat / date
-            _start_calculcations(model, prompt_strat, date, insight_dir_path, results_path)
+            start_calculcations(model, prompt_strat, date, insight_dir_path, results_path)
     else:
         insight_dir_path = insights_dir / prompting_strategy / date
-        _start_calculcations(model, prompting_strategy, date, insight_dir_path, results_path)
+        start_calculcations(model, prompting_strategy, date, insight_dir_path, results_path)
 
 
 # analyze_overview_files(r"..\Input\insights")

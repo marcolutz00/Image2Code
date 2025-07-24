@@ -1,0 +1,541 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr"
+      ],
+      "impact": "critical",
+      "name": "Aria Attributes; Allowed Attributes;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr",
+          "source": "axe-core",
+          "title": "Elements must only use supported ARIA attributes",
+          "description": "Ensure an element's role supports its ARIA attributes",
+          "impact": "critical",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "aria-allowed-attr",
+                "data": [
+                  "aria-expanded=\"false\""
+                ],
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "ARIA attribute is not allowed: aria-expanded=\"false\""
+              }
+            ],
+            "none": [],
+            "impact": "critical",
+            "html": "<div id=\"navbarToggle01\" class=\"collapse navbar-collapse\" aria-labelledby=\"navbarColor\" data-bs-parent=\"#navbarNav\" style=\"height: 300px;\" aria-expanded=\"false\">",
+            "target": [
+              "#navbarToggle01"
+            ],
+            "failureSummary": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr",
+          "source": "lighthouse",
+          "title": "`[aria-*]` attributes do not match their roles",
+          "description": "Each ARIA `role` supports a specific subset of `aria-*` attributes. Mismatching these invalidates the `aria-*` attributes. [Learn how to match ARIA attributes to their roles](https://dequeuniversity.com/rules/axe/4.10/aria-allowed-attr).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-DIV",
+              "path": "1,HTML,1,BODY,1,DIV,1,HEADER,0,NAV,2,DIV",
+              "selector": "div.container > header.header > nav.navigation > div#navbarToggle01",
+              "boundingRect": {
+                "top": 26,
+                "bottom": 326,
+                "left": 8,
+                "right": 404,
+                "width": 396,
+                "height": 300
+              },
+              "snippet": "<div id=\"navbarToggle01\" class=\"collapse navbar-collapse\" aria-labelledby=\"navbarColor\" data-bs-parent=\"#navbarNav\" style=\"height: 300px;\" aria-expanded=\"false\">",
+              "nodeLabel": "Home\nContact us\nAbout us\nShopping cart\nProfile",
+              "explanation": "Fix all of the following:\n  ARIA attribute is not allowed: aria-expanded=\"false\""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": null,
+      "url": "https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus",
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus",
+          "source": "axe-core",
+          "title": "ARIA hidden element must not be focusable or contain focusable elements",
+          "description": "Ensure aria-hidden elements are not focusable nor contain focusable elements",
+          "impact": "serious",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "focusable-disabled",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\"></button>",
+                    "target": [
+                      ".btn-close"
+                    ]
+                  },
+                  {
+                    "html": "<button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">Close</button>",
+                    "target": [
+                      ".btn-secondary"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Focusable content should be disabled or be removed from the DOM"
+              }
+            ],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">",
+            "target": [
+              "#exampleModal"
+            ],
+            "failureSummary": "Fix all of the following:\n  Focusable content should be disabled or be removed from the DOM"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus",
+          "source": "lighthouse",
+          "title": "`[aria-hidden=\"true\"]` elements contain focusable descendents",
+          "description": "Focusable descendents within an `[aria-hidden=\"true\"]` element prevent those interactive elements from being available to users of assistive technologies like screen readers. [Learn how `aria-hidden` affects focusable elements](https://dequeuniversity.com/rules/axe/4.10/aria-hidden-focus).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-DIV",
+              "path": "1,HTML,1,BODY,1,DIV,5,DIV",
+              "selector": "body > div.container > div#exampleModal",
+              "boundingRect": {
+                "top": 558,
+                "bottom": 718,
+                "left": 8,
+                "right": 404,
+                "width": 396,
+                "height": 160
+              },
+              "snippet": "<div class=\"modal fade\" id=\"exampleModal\" tabindex=\"-1\" aria-labelledby=\"exampleModalLabel\" aria-hidden=\"true\">",
+              "nodeLabel": "Contact us\n\nPlease complete the form below to contact us.\n\nClose\n\nÂ© 2023 Websi…",
+              "explanation": "Fix all of the following:\n  Focusable content should be disabled or be removed from the DOM"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-BUTTON",
+                    "path": "1,HTML,1,BODY,1,DIV,5,DIV,0,DIV,0,DIV,0,DIV,1,BUTTON",
+                    "selector": "div.modal-dialog > div.modal-content > div.modal-header > button.btn-close",
+                    "boundingRect": {
+                      "top": 606,
+                      "bottom": 612,
+                      "left": 8,
+                      "right": 24,
+                      "width": 16,
+                      "height": 6
+                    },
+                    "snippet": "<button type=\"button\" class=\"btn-close\" data-bs-dismiss=\"modal\" aria-label=\"Close\">",
+                    "nodeLabel": "Close"
+                  }
+                },
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-3-BUTTON",
+                    "path": "1,HTML,1,BODY,1,DIV,5,DIV,0,DIV,0,DIV,2,DIV,0,BUTTON",
+                    "selector": "div.modal-dialog > div.modal-content > div.modal-footer > button.btn",
+                    "boundingRect": {
+                      "top": 663,
+                      "bottom": 684,
+                      "left": 8,
+                      "right": 58,
+                      "width": 50,
+                      "height": 21
+                    },
+                    "snippet": "<button type=\"button\" class=\"btn btn-secondary\" data-bs-dismiss=\"modal\">",
+                    "nodeLabel": "Close"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": null,
+      "url": "https://dequeuniversity.com/rules/axe/4.10/aria-roles",
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-roles",
+          "source": "axe-core",
+          "title": "ARIA roles used must conform to valid values",
+          "description": "Ensure all elements with a role attribute use a valid value",
+          "impact": "critical",
+          "nodes": {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "invalidrole",
+                "data": [
+                  "searchbar"
+                ],
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Role must be one of the valid ARIA roles: searchbar"
+              }
+            ],
+            "impact": "critical",
+            "html": "<form class=\"form-inline my-2 my-md-0\" role=\"searchbar\">",
+            "target": [
+              "form"
+            ],
+            "failureSummary": "Fix all of the following:\n  Role must be one of the valid ARIA roles: searchbar"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-roles",
+          "source": "lighthouse",
+          "title": "`[role]` values are not valid",
+          "description": "ARIA roles must have valid values in order to perform their intended accessibility functions. [Learn more about valid ARIA roles](https://dequeuniversity.com/rules/axe/4.10/aria-roles).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-FORM",
+              "path": "1,HTML,1,BODY,1,DIV,1,HEADER,2,FORM",
+              "selector": "body > div.container > header.header > form.form-inline",
+              "boundingRect": {
+                "top": 326,
+                "bottom": 365,
+                "left": 8,
+                "right": 404,
+                "width": 396,
+                "height": 39
+              },
+              "snippet": "<form class=\"form-inline my-2 my-md-0\" role=\"searchbar\">",
+              "nodeLabel": "Search",
+              "explanation": "Fix all of the following:\n  Role must be one of the valid ARIA roles: searchbar"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle4.Guideline4_1.4_1_2.H91.InputButton.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.Button.Name"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/input-button-name",
+        "https://dequeuniversity.com/rules/axe/4.10/button-name"
+      ],
+      "impact": "critical",
+      "name": "Label; Button; Missing Label",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/button-name",
+          "source": "axe-core",
+          "title": "Buttons must have discernible text",
+          "description": "Ensure buttons have discernible text",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "button-has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have inner text that is visible to screen readers"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "implicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an implicit (wrapped) <label>"
+              },
+              {
+                "id": "explicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an explicit <label>"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<button class=\"btn btn-outline-primary\" type=\"submit\"><i class=\"bi bi-search\"></i></button>",
+            "target": [
+              ".btn-outline-primary"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.Button.Name",
+          "source": "pa11y",
+          "title": "This button element does not have a name available to an accessibility API. Valid names are: title undefined, element content, aria-label undefined, aria-labelledby undefined.",
+          "description": "<button class=\"btn btn-outline-primary\" type=\"submit\"><i class=\"bi bi-search\"></i></button>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Button.Name",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This button element does not have a name available to an accessibility API. Valid names are: title undefined, element content, aria-label undefined, aria-labelledby undefined.",
+            "context": "<button class=\"btn btn-outline-primary\" type=\"submit\"><i class=\"bi bi-search\"></i></button>",
+            "selector": "html > body > div > header > form > div > div > button",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/button-name",
+          "source": "lighthouse",
+          "title": "Buttons do not have an accessible name",
+          "description": "When a button doesn't have an accessible name, screen readers announce it as \"button\", making it unusable for users who rely on screen readers. [Learn how to make buttons more accessible](https://dequeuniversity.com/rules/axe/4.10/button-name).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-5-BUTTON",
+              "path": "1,HTML,1,BODY,1,DIV,1,HEADER,2,FORM,0,DIV,3,DIV,0,BUTTON",
+              "selector": "form.form-inline > div.input-group > div.input-group-append > button.btn",
+              "boundingRect": {
+                "top": 358,
+                "bottom": 364,
+                "left": 8,
+                "right": 24,
+                "width": 16,
+                "height": 6
+              },
+              "snippet": "<button class=\"btn btn-outline-primary\" type=\"submit\">",
+              "nodeLabel": "form.form-inline > div.input-group > div.input-group-append > button.btn",
+              "explanation": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle2.Guideline2_4.2_4_3.H4.2"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/tabindex"
+      ],
+      "impact": "serious",
+      "name": "Tabindex; Incorrect Usage;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/tabindex",
+          "source": "axe-core",
+          "title": "Elements should not have tabindex greater than zero",
+          "description": "Ensure tabindex attribute values are not greater than 0",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "tabindex",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has a tabindex greater than 0"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<input type=\"text\" class=\"form-control me-2\" placeholder=\"Search\" aria-label=\"Search\" aria-describedby=\"search-addon\" tabindex=\"1\">",
+            "target": [
+              "input"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has a tabindex greater than 0"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/tabindex",
+          "source": "lighthouse",
+          "title": "Some elements have a `[tabindex]` value greater than 0",
+          "description": "A value greater than 0 implies an explicit navigation ordering. Although technically valid, this often creates frustrating experiences for users who rely on assistive technologies. [Learn more about the `tabindex` attribute](https://dequeuniversity.com/rules/axe/4.10/tabindex).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-6-INPUT",
+              "path": "1,HTML,1,BODY,1,DIV,1,HEADER,2,FORM,0,DIV,1,INPUT",
+              "selector": "header.header > form.form-inline > div.input-group > input.form-control",
+              "boundingRect": {
+                "top": 326,
+                "bottom": 347,
+                "left": 8,
+                "right": 161,
+                "width": 153,
+                "height": 21
+              },
+              "snippet": "<input type=\"text\" class=\"form-control me-2\" placeholder=\"Search\" aria-label=\"Search\" aria-describedby=\"search-addon\" tabindex=\"1\">",
+              "nodeLabel": "Search",
+              "explanation": "Fix any of the following:\n  Element has a tabindex greater than 0"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+      "url": null,
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"contact\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#contact\">Contact us</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"contact\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#contact\">Contact us</a>",
+            "selector": "html > body > div > main > div > a",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-12-BUTTON",
+              "path": "1,HTML,1,BODY,1,DIV,3,MAIN,3,BUTTON",
+              "selector": "body > div.container > main.content > button.btn",
+              "boundingRect": {
+                "top": 515,
+                "bottom": 536,
+                "left": 8,
+                "right": 156,
+                "width": 148,
+                "height": 21
+              },
+              "snippet": "<button type=\"button\" class=\"btn btn-primary mt-5\" data-bs-toggle=\"modal\" data-bs-target=\"#exampleModal\">",
+              "nodeLabel": "Contact us for access.",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (147.9px by 21px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 16.2px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-13-A",
+                    "path": "1,HTML,1,BODY,1,DIV,3,MAIN,2,DIV,2,A",
+                    "selector": "div.container > main.content > div.alert > a",
+                    "boundingRect": {
+                      "top": 497,
+                      "bottom": 515,
+                      "left": 53,
+                      "right": 121,
+                      "width": 68,
+                      "height": 18
+                    },
+                    "snippet": "<a href=\"#contact\">",
+                    "nodeLabel": "Contact us"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -322,7 +322,7 @@ def _write_json_result(content, out_path):
         json.dump(content, fh, ensure_ascii=False, indent=2)
 
 
-def _overwrite_insights(accessibility_dir, insights_dir, model, prompt_strategy, date):
+def overwrite_insights(accessibility_dir, insights_dir, model, prompt_strategy, date):
     '''
         Overwrites the insights
     '''
@@ -342,10 +342,10 @@ def _overwrite_insights(accessibility_dir, insights_dir, model, prompt_strategy,
         date
     )
 
-    if model and prompt_strategy:
+    if model and prompt_strategy and date:
         out_path = os.path.join(RESULT_DIR, f'{model}_{prompt_strategy}_analysis_accessibility_{date}.json')
     else:
-        out_path = os.path.join(RESULT_DIR, f'input_analysis_accessibility_{date}.json')
+        out_path = os.path.join(RESULT_DIR, f'input_analysis_accessibility.json')
     print(f"Writing insights to {out_path}")
     _write_json_result(json_output_final, out_path)
 
@@ -367,12 +367,12 @@ def calculate_insights(accessibility_dir, insight_dir, model, prompt_strategy, d
             for prompt_strat in insight_dirs_strats:
                 insight_dir_path = os.path.join(insight_dir, prompt_strat, date)
                 accessibility_dir_path = os.path.join(accessibility_dir, prompt_strat, date)
-                _overwrite_insights(accessibility_dir_path, insight_dir_path, model, prompt_strat, date)
+                overwrite_insights(accessibility_dir_path, insight_dir_path, model, prompt_strat, date)
 
     else:
         accessibility_prompt_dir = os.path.join(accessibility_dir, prompt_strategy, date)
         insight_prompt_dir = os.path.join(insight_dir, prompt_strategy, date)
-        _overwrite_insights(accessibility_prompt_dir, insight_prompt_dir, model, prompt_strategy, date)
+        overwrite_insights(accessibility_prompt_dir, insight_prompt_dir, model, prompt_strategy, date)
 
         
 

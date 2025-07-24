@@ -10,12 +10,15 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from Accessibility import accessibilityMapping
 
 
-AXE_CORE_PATH = "/usr/local/lib/node_modules/axe-core/axe.min.js"
+
 DIR_PATH = os.path.dirname(os.path.realpath(__file__))
 
 DATA_PATH = os.path.join(os.path.dirname(__file__), '..', 'Data')
 INPUT_DATA_PATH = os.path.join(DATA_PATH, 'Input', 'html')
 OUTPUT_DATA_PATH = os.path.join(DATA_PATH, 'Output', 'openai', 'html')
+UTILS_PATH = os.path.join(os.path.dirname(__file__), '..', 'Utils')
+
+AXE_CORE_PATH = os.path.join(UTILS_PATH, "axe-core/axe.min.js")
 
 '''
     In the following, we are going to use different automatic accessibility tools
@@ -76,7 +79,7 @@ async def _google_lighthouse(html_path):
         "python3",
         "-m",
         "http.server",
-        "8002",
+        "8001",
         "--bind",
         "127.0.0.1",
         cwd=str(local_html_dir),
@@ -87,7 +90,7 @@ async def _google_lighthouse(html_path):
     try:
         await asyncio.sleep(1)
 
-        url = f"http://127.0.0.1:8002/{local_html_name}"
+        url = f"http://127.0.0.1:8001/{local_html_name}"
 
         lh_bin = shutil.which("lighthouse") or "/opt/homebrew/bin/lighthouse"
 

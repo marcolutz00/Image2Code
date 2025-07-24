@@ -1,5 +1,6 @@
 import os
 import json
+from collections import defaultdict
 
 '''
     For each Test Case (Model, Prompt Strategy) there exist 3 test rounds.
@@ -126,7 +127,7 @@ def _get_average_benchmark_results(model: str, prompt_strategy: str) -> dict:
     benchmark_files_processed = 0
     total_ir = 0
     total_iwir = 0
-    total_status_counts = {}
+    total_status_counts = defaultdict(int)
     total_final_score = 0
     total_final_size_score = 0
     total_final_matched_text_score = 0
@@ -143,8 +144,8 @@ def _get_average_benchmark_results(model: str, prompt_strategy: str) -> dict:
             total_ir += overview_results.get("mean_ir", 0)
             total_iwir += overview_results.get("mean_iwir", 0)
 
-            # TODO: Status counts noch nicht richtig
-            total_status_counts.update(overview_results.get("status_counts", {}))
+            for status, count in overview_results.get("status_counts", {}).items():
+                total_status_counts[status] += count 
 
             overview_files_processed += overview_results.get("files_processed", 0)
 
@@ -168,6 +169,9 @@ def _get_average_benchmark_results(model: str, prompt_strategy: str) -> dict:
         "average_final_position_score": round(total_final_position_score / result_files_processed, 4) if result_files_processed > 0 else 0,
         "average_final_text_color_score": round(total_final_text_color_score / result_files_processed, 4) if result_files_processed > 0 else 0,
         "average_final_clip_score": round(total_final_clip_score / result_files_processed, 4) if result_files_processed > 0 else 0,
+        "total_ir": round(total_ir / result_files_processed, 4) if result_files_processed > 0 else 0,
+        "total_iwir": round(total_iwir / result_files_processed, 4) if result_files_processed > 0 else 0,
+        "total_status_counts": {status: int(round(counts / result_files_processed)) for status, counts in total_status_counts.items()},
     }
                 
 
@@ -181,8 +185,8 @@ def get_average_results() -> tuple:
     """
         Gets the result files from each round and calculates the average
     """
-    model = "qwen" # gemini, openai, qwen
-    prompt_strategy = "agent_naive_refine" # naive, zero-shot, few-shot, reason, iterative_naive, iterative_naive_refine_1, iterative_naive_refine_2, iterative_naive_refine_3, composite_naive_refine, agent_naive_refine
+    model = "openai" # gemini, openai, qwen
+    prompt_strategy = "agent_naive_refine" # naive, zero-shot, few-shot, reason, iterative_naive, iterative_naive_refine_1, iterative_naive_refine_2, iterative_naive_refine_3, composite_naive, composite_naive_refine, agent_naive_refine
 
     accessibility_results = _get_average_accessibility_results(model, prompt_strategy)
     benchmark_results = _get_average_benchmark_results(model, prompt_strategy)
