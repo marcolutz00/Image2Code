@@ -103,7 +103,7 @@ def _get_few_shot_prompt():
     "Landmark Regions",
     "WCAG 2.1 SC 1.3.1 / 2.4.1 – page regions must be identified with ARIA or HTML5 landmarks so users can navigate by region.",
     "<nav aria-label=\"Primary\">\n  …\n</nav>\n<main id=\"main-content\">\n  …\n</main>",
-    "<div id=\"primary-nav\">…</div><div id=\"secondary-nav\">…</div>"
+    "<div id=\"primary-nav\">…</div><div id=\"main-content\">…</div>"
     ],
     [
     "Table Headers",
