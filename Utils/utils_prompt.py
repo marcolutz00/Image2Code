@@ -31,12 +31,12 @@ def _get_base_prompt():
 
 
 def _get_accessibility_reminder():
-    # Wcag 2.2
+    # Wcag 2.1
     url_wcag22 = "https://www.w3.org/TR/WCAG22/"
 
     reminder = f"""Accessibility-first Reminder
         --------------------
-        It is *EXTREMELY* important that your HTML/CSS **complies with WCAG 2.2**.   
+        It is *EXTREMELY* important that your HTML/CSS **complies with WCAG 2.1**.   
 
         Refer to the full spec if in doubt: {url_wcag22}
 
@@ -63,9 +63,7 @@ def _get_zero_shot_prompt():
     return f"{base}\n\n{accessibility_reminder}\n\nThe image is attached to this prompt."
 
 def _get_few_shot_prompt():
-    """
-        xxx
-        
+    """ 
         examples from:
         https://www.w3.org/
     """
@@ -104,7 +102,7 @@ def _get_few_shot_prompt():
     [
     "Landmark Regions",
     "WCAG 2.1 SC 1.3.1 / 2.4.1 – page regions must be identified with ARIA or HTML5 landmarks so users can navigate by region.",
-    "<nav aria-label=\"Primary\">\n  …\n</nav>\n<nav aria-label=\"Secondary\">\n  …\n</nav>",
+    "<nav aria-label=\"Primary\">\n  …\n</nav>\n<main id=\"main-content\">\n  …\n</main>",
     "<div id=\"primary-nav\">…</div><div id=\"secondary-nav\">…</div>"
     ],
     [

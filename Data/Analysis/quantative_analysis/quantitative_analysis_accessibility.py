@@ -376,11 +376,18 @@ if __name__ == "__main__":
         ("qwen", "agent_refine", os.path.join(result_path, "qwen_agent_naive_refine_average_results.json")),
     ]
 
-    comparison_data_average_all = comparison_data_average_gemini + comparison_data_average_openai + comparison_data_average_qwen
+    comparison_data_average_llava = [
+        ("llava", "naive", os.path.join(result_path, "llava_naive_average_results.json")),
+        ("llava", "zero-shot", os.path.join(result_path, "llava_zero-shot_average_results.json")),
+        ("llava", "few-shot", os.path.join(result_path, "llava_few-shot_average_results.json")),
+        ("llava", "reason", os.path.join(result_path, "llava_reason_average_results.json")),
+    ]
+
+    comparison_data_average_all = comparison_data_average_gemini + comparison_data_average_openai + comparison_data_average_qwen + comparison_data_average_llava
 
     # plot_bar_average_violations(comparison_data_average_qwen)
     # plot_cake_average_violations(comparison_data_average_openai[5][2])
-    map_severity_distr = get_severity_distribution(comparison_data_average_all)
+    map_severity_distr = get_severity_distribution(comparison_data_average_llava)
 
 
     # 2. Specific (per File) Comparison Data

@@ -19,6 +19,21 @@ def _soupify_html(html_path):
         soup = bs(f.read(), 'html.parser')
     return soup
 
+
+def get_complexity_structure(map_findings, html_path, model_name):
+    """
+    returs the amount of dom-nodes in the html file
+    """
+    soup = _soupify_html(html_path)
+    amount_nodes = _count_dom_nodes(soup)
+
+    if map_findings.get(model_name) is None:
+        map_findings[model_name] = []
+    map_findings[model_name].append(amount_nodes)
+
+
+
+
 # Hypothesis Landmarks: Less complex structures have more landmark violations
 def estimate_complexity_structure(list_findings, html_path, model_name):
     """

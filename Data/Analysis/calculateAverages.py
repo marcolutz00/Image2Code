@@ -185,8 +185,8 @@ def get_average_results() -> tuple:
     """
         Gets the result files from each round and calculates the average
     """
-    model = "openai" # gemini, openai, qwen
-    prompt_strategy = "agent_naive_refine" # naive, zero-shot, few-shot, reason, iterative_naive, iterative_naive_refine_1, iterative_naive_refine_2, iterative_naive_refine_3, composite_naive, composite_naive_refine, agent_naive_refine
+    model = "llava" # gemini, openai, qwen
+    prompt_strategy = "reason" # naive, zero-shot, few-shot, reason, iterative_naive, iterative_naive_refine_1, iterative_naive_refine_2, iterative_naive_refine_3, composite_naive, composite_naive_refine, agent_naive_refine
 
     accessibility_results = _get_average_accessibility_results(model, prompt_strategy)
     benchmark_results = _get_average_benchmark_results(model, prompt_strategy)
