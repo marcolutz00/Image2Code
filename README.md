@@ -64,5 +64,3 @@ Necessary Utils for the project. They combine different functionalities, e.g.,:
 - Contains prompts
 - Contains necessary functionalities for ReAct prompt (here iterative)
 - Image-Processing functionalities
-
-
