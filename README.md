@@ -17,67 +17,52 @@
 }
 ```
 
-# Files
+## File Overview
 
-## /practical:
+### Root directory
+- `README.md` – Project overview, setup, and folder structure.
+- `requirements.txt` – Python dependencies for `pip install -r requirements.txt`.
+- `keys.json` – API keys for OpenAI, Gemini and eventually Hugging Face.
+- `pipeline.py` – Central pipeline class; orchestrates the image-to-code process (load inputs, call models, save results).
 
-- **`keys.json`**: Contains the API-Keys for the different LLMs & ImgBB.
-- **`pipeline.py`**: Contains the Pipeline class which is responsible for the whole process of Image2Code.
-- **`preparation.py`**: Script to prepare necessary data, particularly downloading and storing datasets from HuggingFace.
+### Accessibility
+- `Accessibility/mappingCsAndAxeCore.json` – Mapping between accessibility standards/tools (e.g., WCAG ↔ axe-core).
+- `Accessibility/accessibilityMapping.py` – Evaluates and aggregates WCAG mapping.
+- `Accessibility/accessibilityIssues.py` – Runs automated accessibility checks on generated HTML.
+- `Accessibility/color_recommendation.py` – Returns Color Recommendations, necessary for Color-Aware prompt.
 
-### /practical/API
+### Benchmarks
+- `Benchmarks/accessibilityBenchmarks.py` – Scores accessibility based on defined metrics.
+- other files: Visual Similarity based on Design2Code (https://github.com/NoviScl/Design2Code)
 
-- **`apiCalls.py`**: Contains LLM-Client class which allows to use different LLMs (Strategies).
+### Data
+- `Data/Analysis` – Quantitative and Qualitative Analysis of generated code.
+- `Data/Input` – Human Input / Benchmark Dataset
+- `Data/Output` – Output of MLLMs
 
-#### /practical/API/Strategies
+### Data_leakage_test
+- `Data_leakage_test/Data` – Synthetic Dataset to rule out data leakage.
+- `Data_leakage_test/Results` – Results of data leakage tests.
 
-- **`LLMStrategy.py`**: Abstract Base-Class `LLMStrategy` for different API-Strategies.
+### LLMs
+- `LLMs/LLMClient.py` – Client for interacting with LLMs.
+- `LLMs/Strategies` – Various strategies for interacting with different LLMs. (Strategy Design Pattern)
 
-### /practical/ImageUpload:
+### Multi_agent
+- `Multi_agent/detector_agent.py` – According to agentic prompting -> Detector
+- `Multi_agent/identifier_agent.py` – According to agentic prompting -> Identifier
+- `Multi_agent/resolver_agent.py` – According to agentic prompting -> Resolver
+- `Multi_agent/multi_agent.py` – Multi-Agent orchestration and management.
 
-- **`imageUploader.py`**: Class for uploading images to ImgBB
+### Results
+- `Results/accessibility` - Results for accessibility of each model per run (also average results) 
+- `Results/benchmarks` - Results for benchmarks of each model per run (also average results)
+- `Results/human_code` - Results for human code evaluation -> Input
 
-### /practical/Data:
-
-- Input and Output of the LLM-Client.
-- **`/Input/html`**: HTML files for analysis and processing.
-- **`/Input/json`**: JSON files containing accessibility analysis results.
-- **`/Input/json/manual`**: Manually annotated JSON files for accessibility benchmarking.
-
-### /practical/Utils
-
-- **`utils.py`**: Util functions for the Pipeline (e.g. loading API keys, saving generated code, validating HTML, and creating screenshots.)
-- **`tokenCounter.py`**: Token Counter for the generated code.
-- **`htmlAnalyzer.py`**: Analyzing HTML, including DOM extraction, bounding box calculation and accessibility analysis.
-- **`huggingFace.py`**: Functions for interacting with HuggingFace datasets.
-
-### /practical/Accessibility
-
-- **`mappingCsAndAxeCore.json`**: Maps between different accessibility standards and tools.
-- **`accessibilityChecks.py`**: Functions for running automated accessibility checks.
-- **`wcagCompliance.py`**: WCAG compliance verification tools.
-
-### /practical/Benchmarks
-
-- **`metricCalculator.py`**: Calculates similarity and quality metrics for generated code.
-- **`accessibilityScorer.py`**: Scores the accessibility compliance of generated HTML.
-- **`visualComparison.py`**: Tools for comparing visual similarity between original and generated pages.
-
-## /theoretical:
-
-- Space for the theoretical, written part of the thesis.
+### Utils
+Necessary Utils for the project. They combine different functionalities, e.g.,:
+- Contains prompts
+- Contains necessary functionalities for ReAct prompt (here iterative)
+- Image-Processing functionalities
 
 
-# Background Information
-## Possible similarity scores:
-
-- Structural Similary Index (SSIM): visual similarity
-- TreeBLEU - measures the match of the DOM tree structure
-- ClipScore
-
-## Accessibility
-
-- WCAG (Web Content Accessibility Guidelines): International standard for web accessibility
-- Tools: axe-core, pa11y, lighthouse
-- Common issues: missing alt text, lack of landmarks, ...
-- Severity levels: high, moderate, low
