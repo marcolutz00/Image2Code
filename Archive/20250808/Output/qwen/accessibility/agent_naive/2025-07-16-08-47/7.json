@@ -1,0 +1,423 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_4.1_4_3.G18",
+        "Principle1.Guideline1_4.1_4_3.G18.Fail",
+        "Principle1.Guideline1_4.1_4_3.G145",
+        "Principle1.Guideline1_4.1_4_3.G145.Fail",
+        "Principle1.Guideline1_4.1_4_6.G17",
+        "Principle1.Guideline1_4.1_4_6.G18"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+      ],
+      "impact": "serious",
+      "name": "Color Contrast; Text;",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#0000ee",
+                  "bgColor": "#d6002b",
+                  "contrastRatio": 1.74,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<footer>\n        <div class=\"container\">\n            <p>Tel: <a href=\"tel:1234567890\">[PHONE REDACTED]</a></p>\n            <p>Email: <a href=\"mailto:info@example.com\">[EMAIL REDACTED]</a></p>\n        </div>\n    </footer>",
+                    "target": [
+                      "footer"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 1.74 (foreground color: #0000ee, background color: #d6002b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"tel:1234567890\">[PHONE REDACTED]</a>",
+            "target": [
+              "a[href=\"tel:1234567890\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.74 (foreground color: #0000ee, background color: #d6002b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#0000ee",
+                  "bgColor": "#d6002b",
+                  "contrastRatio": 1.74,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<footer>\n        <div class=\"container\">\n            <p>Tel: <a href=\"tel:1234567890\">[PHONE REDACTED]</a></p>\n            <p>Email: <a href=\"mailto:info@example.com\">[EMAIL REDACTED]</a></p>\n        </div>\n    </footer>",
+                    "target": [
+                      "footer"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 1.74 (foreground color: #0000ee, background color: #d6002b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"mailto:info@example.com\">[EMAIL REDACTED]</a>",
+            "target": [
+              "a[href$=\"mailto:info@example.com\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.74 (foreground color: #0000ee, background color: #d6002b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.74:1. Recommendation:  change background to #fff.",
+          "description": "<a href=\"tel:1234567890\">[PHONE REDACTED]</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.74:1. Recommendation:  change background to #fff.",
+            "context": "<a href=\"tel:1234567890\">[PHONE REDACTED]</a>",
+            "selector": "html > body > footer > div > p:nth-child(1) > a",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.74:1. Recommendation:  change background to #fff.",
+          "description": "<a href=\"mailto:info@example.com\">[EMAIL REDACTED]</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.74:1. Recommendation:  change background to #fff.",
+            "context": "<a href=\"mailto:info@example.com\">[EMAIL REDACTED]</a>",
+            "selector": "html > body > footer > div > p:nth-child(2) > a",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,3,FOOTER,0,DIV,0,P,1,A",
+              "selector": "footer > div.container > p > a",
+              "boundingRect": {
+                "top": 749,
+                "bottom": 766,
+                "left": 142,
+                "right": 300,
+                "width": 158,
+                "height": 17
+              },
+              "snippet": "<a href=\"tel:1234567890\">",
+              "nodeLabel": "[PHONE REDACTED]",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 1.74 (foreground color: #0000ee, background color: #d6002b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-1-FOOTER",
+                    "path": "1,HTML,1,BODY,3,FOOTER",
+                    "selector": "body > footer",
+                    "boundingRect": {
+                      "top": 703,
+                      "bottom": 847,
+                      "left": 0,
+                      "right": 412,
+                      "width": 412,
+                      "height": 144
+                    },
+                    "snippet": "<footer>",
+                    "nodeLabel": "Tel: [PHONE REDACTED]\n\nEmail: [EMAIL REDACTED]"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-2-A",
+              "path": "1,HTML,1,BODY,3,FOOTER,0,DIV,1,P,1,A",
+              "selector": "footer > div.container > p > a",
+              "boundingRect": {
+                "top": 783,
+                "bottom": 800,
+                "left": 156,
+                "right": 305,
+                "width": 149,
+                "height": 17
+              },
+              "snippet": "<a href=\"mailto:info@example.com\">",
+              "nodeLabel": "[EMAIL REDACTED]",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 1.74 (foreground color: #0000ee, background color: #d6002b, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-1-FOOTER",
+                    "path": "1,HTML,1,BODY,3,FOOTER",
+                    "selector": "body > footer",
+                    "boundingRect": {
+                      "top": 703,
+                      "bottom": 847,
+                      "left": 0,
+                      "right": 412,
+                      "width": 412,
+                      "height": 144
+                    },
+                    "snippet": "<footer>",
+                    "nodeLabel": "Tel: [PHONE REDACTED]\n\nEmail: [EMAIL REDACTED]"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+      "url": null,
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 6,
+      "issues": [
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"welcome\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#welcome\">Welcome</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"welcome\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#welcome\">Welcome</a>",
+            "selector": "html > body > nav > div > a:nth-child(1)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"therapy\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#therapy\">Therapy</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"therapy\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#therapy\">Therapy</a>",
+            "selector": "html > body > nav > div > a:nth-child(2)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"about\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#about\">About Emma</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"about\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#about\">About Emma</a>",
+            "selector": "html > body > nav > div > a:nth-child(3)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"issues\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#issues\">Issues</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"issues\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#issues\">Issues</a>",
+            "selector": "html > body > nav > div > a:nth-child(4)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"fees\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#fees\">Fees</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"fees\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#fees\">Fees</a>",
+            "selector": "html > body > nav > div > a:nth-child(5)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"contact\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#contact\">Contact</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"contact\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#contact\">Contact</a>",
+            "selector": "html > body > nav > div > a:nth-child(6)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-8-A",
+              "path": "1,HTML,1,BODY,1,NAV,0,DIV,5,A",
+              "selector": "body > nav > div.container > a",
+              "boundingRect": {
+                "top": 277,
+                "bottom": 294,
+                "left": 264,
+                "right": 319,
+                "width": 55,
+                "height": 17
+              },
+              "snippet": "<a href=\"#contact\">",
+              "nodeLabel": "Contact",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (55.1px by 17px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 19px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-7-A",
+                    "path": "1,HTML,1,BODY,1,NAV,0,DIV,2,A",
+                    "selector": "body > nav > div.container > a",
+                    "boundingRect": {
+                      "top": 259,
+                      "bottom": 276,
+                      "left": 267,
+                      "right": 359,
+                      "width": 92,
+                      "height": 17
+                    },
+                    "snippet": "<a href=\"#about\">",
+                    "nodeLabel": "About Emma"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

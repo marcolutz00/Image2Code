@@ -1,0 +1,114 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H48"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/list",
+        "https://dequeuniversity.com/rules/axe/4.10/listitem"
+      ],
+      "impact": "serious",
+      "name": "List; Incorrect Structure;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/list",
+          "source": "axe-core",
+          "title": "<ul> and <ol> must only directly contain <li>, <script> or <template> elements",
+          "description": "Ensure that lists are structured correctly",
+          "impact": "serious",
+          "nodes": {
+            "any": [],
+            "all": [],
+            "none": [
+              {
+                "id": "only-listitems",
+                "data": {
+                  "values": "#text"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "List element has direct children that are not allowed: #text"
+              }
+            ],
+            "impact": "serious",
+            "html": "<ul>",
+            "target": [
+              "ul"
+            ],
+            "failureSummary": "Fix all of the following:\n  List element has direct children that are not allowed: #text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/list",
+          "source": "lighthouse",
+          "title": "Lists do not contain only `<li>` elements and script supporting elements (`<script>` and `<template>`).",
+          "description": "Screen readers have a specific way of announcing lists. Ensuring proper list structure aids screen reader output. [Learn more about proper list structure](https://dequeuniversity.com/rules/axe/4.10/list).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-UL",
+              "path": "1,HTML,1,BODY,9,HEADER,1,DIV,3,NAV,1,UL",
+              "selector": "header.header > div.header-content > nav.navigation > ul",
+              "boundingRect": {
+                "top": 194,
+                "bottom": 356,
+                "left": 8,
+                "right": 404,
+                "width": 396,
+                "height": 162
+              },
+              "snippet": "<ul>",
+              "nodeLabel": "\", \"\nHome\n\", \"\nProducts\n\", \"\nPricing\n\", \"\nContact Us\n\", \"",
+              "explanation": "Fix all of the following:\n  List element has direct children that are not allowed: #text"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl",
+        "Principle2.Guideline2_4.2_4_2.H25.1.EmptyTitle"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/document-title"
+      ],
+      "impact": "serious",
+      "name": "Title; Document Title;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl",
+          "source": "pa11y",
+          "title": "A title should be provided for the document, using a non-empty title element in the head section.",
+          "description": "<head></head>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_2.H25.1.NoTitleEl",
+            "type": "error",
+            "typeCode": 1,
+            "message": "A title should be provided for the document, using a non-empty title element in the head section.",
+            "context": "<head></head>",
+            "selector": "html > head",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    }
+  ]
+}

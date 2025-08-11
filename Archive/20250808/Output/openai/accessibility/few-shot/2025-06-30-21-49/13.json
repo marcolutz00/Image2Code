@@ -1,0 +1,170 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
+      ],
+      "impact": "serious",
+      "name": "Links; Distinguishable Color;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 2.26,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#0066cc",
+                  "parentColor": "#333333"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<p>Iâve added a script, <a href=\"#\" aria-label=\"export_google_site_news script on github\">export_google_site_news</a>, to my catchall repository on github.</p>",
+                    "target": [
+                      "p:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 2.26:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0066cc, surrounding text: #333333)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<p>Iâve added a script, <a href=\"#\" aria-label=\"export_google_site_news script on github\">export_google_site_news</a>, to my catchall repository on github.</p>",
+                    "target": [
+                      "p:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\" aria-label=\"export_google_site_news script on github\">export_google_site_news</a>",
+            "target": [
+              "p:nth-child(3) > a[href=\"#\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 2.26:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0066cc, surrounding text: #333333)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-A",
+              "path": "1,HTML,1,BODY,0,DIV,1,MAIN,2,P,1,A",
+              "selector": "div.container > main > p > a",
+              "boundingRect": {
+                "top": 257,
+                "bottom": 275,
+                "left": 189,
+                "right": 370,
+                "width": 181,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\" aria-label=\"export_google_site_news script on github\">",
+              "nodeLabel": "export_google_site_news",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 2.26:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0066cc, surrounding text: #333333)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-P",
+                    "path": "1,HTML,1,BODY,0,DIV,1,MAIN,2,P",
+                    "selector": "body > div.container > main > p",
+                    "boundingRect": {
+                      "top": 254,
+                      "bottom": 302,
+                      "left": 20,
+                      "right": 392,
+                      "width": 372,
+                      "height": 48
+                    },
+                    "snippet": "<p>",
+                    "nodeLabel": "Iâve added a script, export_google_site_news, to my catchall repository on gi…"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/label-title-only",
+        "https://dequeuniversity.com/rules/axe/4.10/label-content-name-mismatch"
+      ],
+      "impact": "serious",
+      "name": "Aria Attributes; Label Problems;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label-content-name-mismatch",
+          "source": "lighthouse",
+          "title": "Elements with visible text labels do not have matching accessible names.",
+          "description": "Visible text labels that do not match the accessible name can result in a confusing experience for screen reader users. [Learn more about accessible names](https://dequeuniversity.com/rules/axe/4.10/label-content-name-mismatch).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,0,DIV,1,MAIN,3,P,1,A",
+              "selector": "div.container > main > p > a",
+              "boundingRect": {
+                "top": 339,
+                "bottom": 357,
+                "left": 20,
+                "right": 556,
+                "width": 536,
+                "height": 18
+              },
+              "snippet": "<a href=\"https://sites.google.com/a/medinacommunityband.org/www/announcements\" aria-label=\"example url\">",
+              "nodeLabel": "https://sites.google.com/a/medinacommunityband.org/www/announcements",
+              "explanation": "Fix any of the following:\n  Text inside the element is not included in the accessible name"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

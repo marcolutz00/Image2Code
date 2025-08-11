@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 700px;
+            margin: 20px auto;
+            padding: 20px;
+        }
+
+        .header-image {
+            width: 100%;
+            height: 150px;
+            background-color: blue;
+            margin-bottom: 20px;
+        }
+
+        .form-title {
+            background-color: #E91E63;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="email"],
+        .form-group textarea {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .form-group textarea {
+            height: 100px;
+        }
+
+        .radio-group {
+            display: flex;
+            align-items: center;
+        }
+
+        .radio-group input[type="radio"] {
+            margin-right: 5px;
+        }
+
+        .submit-button {
+            background-color: #E91E63;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .terms-link {
+            display: block;
+            margin-top: 10px;
+        }
+
+        .required::after {
+            content: "*";
+            color: red;
+            margin-left: 3px;
+        }
+
+        .powered-by {
+            text-align: right;
+            margin-top: 10px;
+        }
+
+        .asterisk{
+         color: red;
+        }
+
+        .faq-link{
+            color: blue
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header-image"></div>
+        <div class="form-title">Producer Application</div>
+
+        <p>Tell us a little about you and your experience. <a class="faq-link" href="#">FAQ</a> for more information.</p>
+
+        <form>
+            <div class="form-group">
+                <label for="first-name">First Name <span class="asterisk">*</span></label>
+                <input type="text" id="first-name" name="first-name">
+            </div>
+            <div class="form-group">
+                <label for="last-name">Last Name <span class="asterisk">*</span></label>
+                <input type="text" id="last-name" name="last-name">
+            </div>
+            <div class="form-group">
+                <label for="email">Email Address <span class="asterisk">*</span></label>
+                <input type="email" id="email" name="email">
+            </div>
+            <div class="form-group">
+                <label for="phone">Phone Number <span class="asterisk">*</span></label>
+                <input type="text" id="phone" name="phone">
+            </div>
+            <div class="form-group">
+                <label for="where">Where Do You Live? <span class="asterisk">*</span></label>
+                <input type="text" id="where" name="where">
+            </div>
+            <div class="form-group">
+                <label>I am at Least 18 Years of Age <span class="asterisk">*</span></label>
+                <div class="radio-group">
+                    <input type="radio" id="yes" name="age" value="yes">
+                    <label for="yes">Yes</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Do You Have a Production Company? <span class="asterisk">*</span></label>
+                <div>
+                    <input type="radio" id="company-yes" name="company" value="yes">
+                    <label for="company-yes">Yes</label>
+                </div>
+                <div>
+                    <input type="radio" id="company-no" name="company" value="no">
+                    <label for="company-no">No</label>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="about">Tell Us More About You. <span class="asterisk">*</span></label>
+                <textarea id="about" name="about"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label for="genre">Preferred Genre <span class="asterisk">*</span></label>
+                <select id="genre" name="genre">
+                    <option value=""> </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Are You Confident You Can Create Full-Length Episodes (12-25 minutes) on a Low-Budget and Continue to Create Episodes if they are Renewed by Candivan Subscribers? <span class="asterisk">*</span></label>
+                <div>
+                    <input type="radio" id="confident-yes" name="confident" value="yes">
+                    <label for="confident-yes">Yes</label>
+                    <input type="radio" id="confident-no" name="confident" value="no">
+                    <label for="confident-no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>If Selected as a Winner, Would You be Able to Start Production by this May or June (2019)? <span class="asterisk">*</span></label>
+                <div>
+                    <input type="radio" id="start-yes" name="start" value="yes">
+                    <label for="start-yes">Yes</label>
+                    <input type="radio" id="start-no" name="start" value="no">
+                    <label for="start-no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="collaborate">Names of Others Plan to Collaborate with (if Applicable)</label>
+                <textarea id="collaborate" name="collaborate"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label>Are you a member of the PGA? <span class="asterisk">*</span></label>
+                <div>
+                    <input type="radio" id="pga-yes" name="pga" value="yes">
+                    <label for="pga-yes">Yes</label>
+                    <input type="radio" id="pga-no" name="pga" value="no">
+                    <label for="pga-no">No</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="networks">OPTIONAL: Those with large social networks are preferable. Feel free to list any large networks you are part of or your Twitter.</label>
+                <textarea id="networks" name="networks"></textarea>
+                <p style="font-size: smaller;">0/800 characters</p>
+            </div>
+
+            <div class="form-group">
+                <label for="find-out">How did you find out about us?</label>
+                <select id="find-out" name="find-out">
+                    <option value=""> </option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <input type="checkbox" id="terms" name="terms">
+                <label for="terms">I Have Read and I Accept the Terms and Conditions Below <span class="asterisk">*</span></label>
+                <a class="terms-link" href="#">Terms and Conditions</a>
+            </div>
+
+            <a href="#">Report abuse</a>
+
+            <button type="submit" class="submit-button">Submit</button>
+        </form>
+
+        <div class="powered-by">Powered by <img src="src/placeholder.jpg" width="20" height="20" alt=""></div>
+    </div>
+</body>
+</html>

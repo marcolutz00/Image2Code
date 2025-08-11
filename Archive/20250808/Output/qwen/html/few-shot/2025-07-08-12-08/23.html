@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexito's World</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #2a2a2a;
+            color: #ffffff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        header {
+            background-color: #333333;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            color: #ffffff;
+            font-size: 24px;
+        }
+        main {
+            background-color: #333333;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            max-width: 800px;
+            text-align: left;
+        }
+        main h2 {
+            margin: 0 0 10px;
+            color: #ffffff;
+            font-size: 20px;
+        }
+        main p {
+            margin: 0;
+            color: #ffffff;
+            font-size: 16px;
+        }
+        main a {
+            color: #ff6b00;
+            text-decoration: none;
+        }
+        main a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #333333;
+            padding: 10px 0;
+            text-align: center;
+        }
+        footer p {
+            margin: 0;
+            color: #ffffff;
+            font-size: 14px;
+        }
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff6b00;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px 0;
+            text-align: center;
+        }
+        .button:hover {
+            background-color: #ff9900;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Alexito's World</h1>
+        <p>A world of coding ð, by Alejandro Martinez</p>
+    </header>
+    <main>
+        <p>June 5, 2016</p>
+        <p>1 min read</p>
+        <div>
+            <button class="button">Scripting</button>
+            <button class="button">Swift</button>
+            <button class="button">Tips and Tricks</button>
+        </div>
+        <h2>Poor man's hot reloading for Swift scripts</h2>
+        <p>The other day, while I was writing a Swift script, I added an option to make it run continuously so it could be on a server doing its job without stopping. for eva.</p>
+        <p>To implement that I just used a <code>repeat</code> loop creating <code>NSTask</code>s that called the same script. Scripts recursion.</p>
+        <p>The funny part is that with this simple thing I found a quick way to writing the script, almost as a hot reloading tool.</p>
+        <pre><code>let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() task.arguments = Array(Process.arguments.suffixFrom(1).filter{ $0 != reload }) task.launchPath = Process.arguments.first! task.arguments = Array(Process.arguments.suffixFrom(1).filter{ $0 != reload }) task.launch() task.waitUntilExit() } while true } Just drop this snippet at the top of the script, and when you call it with the <code>reload</code> argument it will start looping indefinitely.</code></pre>
+        <p>Then you can just call it from the command line like:</p>
+        <pre><code>main.swift reload other params</code></pre>
+        <p>When that is done you can just modify the script and save the file, in the next execution your changes will be visible. If it fails to compile is not a big deal, the main script is still in memory without those changes so it will just loop and try to run it again.</p>
+        <p>Obviously is not a big deal, is a bit annoying seeing all the console spammed, but I found it quite useful while I'm developing short scripts that I want to iterate on.</p>
+        <p>Remember that you can use OS signals to stop the task when the main script is killed.</p>
+        <p><a href="#">Share this article on Twitter</a></p>
+        <div class="button">Buy me a coffee</div>
+        <p>June 7, 2016</p>
+        <p>Next article</p>
+        <p><a href="#">Using article</a></p>
+        <p>Previous article</p>
+        <p><a href="#">It's a trap! Catch OS signals in Swift</a></p>
+        <footer>
+            <p>Based on tag Swift</p>
+            <p>Based on tag Scripting</p>
+            <p>Based on tag Tips and Tricks</p>
+            <p>October 20, 2023</p>
+            <p>May 8, 2019</p>
+            <p>March 16, 2019</p>
+        </footer>
+    </main>
+</body>
+</html>

@@ -1,0 +1,737 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle4.Guideline4_1.4_1_2.H91.InputButton.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.Button.Name"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/input-button-name",
+        "https://dequeuniversity.com/rules/axe/4.10/button-name"
+      ],
+      "impact": "critical",
+      "name": "Label; Button; Missing Label",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/button-name",
+          "source": "axe-core",
+          "title": "Buttons must have discernible text",
+          "description": "Ensure buttons have discernible text",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "button-has-visible-text",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have inner text that is visible to screen readers"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "implicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an implicit (wrapped) <label>"
+              },
+              {
+                "id": "explicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an explicit <label>"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<button><i class=\"fas fa-search\"></i></button>",
+            "target": [
+              ".header-content > button"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.Button.Name",
+          "source": "pa11y",
+          "title": "This button element does not have a name available to an accessibility API. Valid names are: title undefined, element content, aria-label undefined, aria-labelledby undefined.",
+          "description": "<button><i class=\"fas fa-search\"></i></button>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.Button.Name",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This button element does not have a name available to an accessibility API. Valid names are: title undefined, element content, aria-label undefined, aria-labelledby undefined.",
+            "context": "<button><i class=\"fas fa-search\"></i></button>",
+            "selector": "html > body > header > div > button",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/button-name",
+          "source": "lighthouse",
+          "title": "Buttons do not have an accessible name",
+          "description": "When a button doesn't have an accessible name, screen readers announce it as \"button\", making it unusable for users who rely on screen readers. [Learn how to make buttons more accessible](https://dequeuniversity.com/rules/axe/4.10/button-name).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-BUTTON",
+              "path": "1,HTML,1,BODY,0,HEADER,0,DIV,5,BUTTON",
+              "selector": "body > header > div.header-content > button",
+              "boundingRect": {
+                "top": 34,
+                "bottom": 40,
+                "left": 396,
+                "right": 412,
+                "width": 16,
+                "height": 6
+              },
+              "snippet": "<button>",
+              "nodeLabel": "body > header > div.header-content > button",
+              "explanation": "Fix any of the following:\n  Element does not have inner text that is visible to screen readers\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_4.1_4_3.G18",
+        "Principle1.Guideline1_4.1_4_3.G18.Fail",
+        "Principle1.Guideline1_4.1_4_3.G145",
+        "Principle1.Guideline1_4.1_4_3.G145.Fail",
+        "Principle1.Guideline1_4.1_4_6.G17",
+        "Principle1.Guideline1_4.1_4_6.G18"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+      ],
+      "impact": "serious",
+      "name": "Color Contrast; Text;",
+      "amount_nodes_failed": 5,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#ffffff",
+                  "bgColor": "#00bfa5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.0pt (13.3333px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button>CONTINUE SHOPPING</button>",
+                    "target": [
+                      "button:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #ffffff, background color: #00bfa5, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button>CONTINUE SHOPPING</button>",
+            "target": [
+              "button:nth-child(3)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #ffffff, background color: #00bfa5, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#ffffff",
+                  "bgColor": "#00bfa5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.0pt (13.3333px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button>RECALCULATE</button>",
+                    "target": [
+                      ".empty-cart > button"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #ffffff, background color: #00bfa5, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button>RECALCULATE</button>",
+            "target": [
+              ".empty-cart > button"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #ffffff, background color: #00bfa5, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#00bfa5",
+                  "bgColor": "#ffffff",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.5pt (14px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<section class=\"shopping-cart\">",
+                    "target": [
+                      "section"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #00bfa5, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">Empty Cart</a>",
+            "target": [
+              ".empty-cart > a"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #00bfa5, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#ffffff",
+                  "bgColor": "#00bfa5",
+                  "contrastRatio": 2.33,
+                  "fontSize": "10.0pt (13.3333px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button>CHECKOUT</button>",
+                    "target": [
+                      "section > button:nth-child(6)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #ffffff, background color: #00bfa5, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button>CHECKOUT</button>",
+            "target": [
+              "section > button:nth-child(6)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #ffffff, background color: #00bfa5, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#0000ee",
+                  "bgColor": "#333333",
+                  "contrastRatio": 1.34,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<footer class=\"footer\">",
+                    "target": [
+                      "footer"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 1.34 (foreground color: #0000ee, background color: #333333, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">artwork information</a>",
+            "target": [
+              "p > a"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 1.34 (foreground color: #0000ee, background color: #333333, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.33:1. Recommendation:  change background to #008674.",
+          "description": "<button>CONTINUE SHOPPING</button>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.33:1. Recommendation:  change background to #008674.",
+            "context": "<button>CONTINUE SHOPPING</button>",
+            "selector": "html > body > main > section > button:nth-child(3)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.33:1. Recommendation:  change background to #008674.",
+          "description": "<button>RECALCULATE</button>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.33:1. Recommendation:  change background to #008674.",
+            "context": "<button>RECALCULATE</button>",
+            "selector": "html > body > main > section > div:nth-child(4) > button",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.33:1. Recommendation:  change text colour to #008674.",
+          "description": "<a href=\"#\">Empty Cart</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.33:1. Recommendation:  change text colour to #008674.",
+            "context": "<a href=\"#\">Empty Cart</a>",
+            "selector": "html > body > main > section > div:nth-child(4) > a",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.33:1. Recommendation:  change background to #008674.",
+          "description": "<button>CHECKOUT</button>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.33:1. Recommendation:  change background to #008674.",
+            "context": "<button>CHECKOUT</button>",
+            "selector": "html > body > main > section > button:nth-child(6)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.34:1. Recommendation:  change text colour to #fdfdff.",
+          "description": "<a href=\"#\">artwork information</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 1.34:1. Recommendation:  change text colour to #fdfdff.",
+            "context": "<a href=\"#\">artwork information</a>",
+            "selector": "html > body > footer > p > a",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-BUTTON",
+              "path": "1,HTML,1,BODY,1,MAIN,0,SECTION,2,BUTTON",
+              "selector": "body > main > section.shopping-cart > button",
+              "boundingRect": {
+                "top": 180,
+                "bottom": 215,
+                "left": 114,
+                "right": 298,
+                "width": 184,
+                "height": 35
+              },
+              "snippet": "<button>",
+              "nodeLabel": "CONTINUE SHOPPING",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #ffffff, background color: #00bfa5, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-2-BUTTON",
+              "path": "1,HTML,1,BODY,1,MAIN,0,SECTION,3,DIV,0,BUTTON",
+              "selector": "main > section.shopping-cart > div.empty-cart > button",
+              "boundingRect": {
+                "top": 235,
+                "bottom": 270,
+                "left": 101,
+                "right": 237,
+                "width": 136,
+                "height": 35
+              },
+              "snippet": "<button>",
+              "nodeLabel": "RECALCULATE",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #ffffff, background color: #00bfa5, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-3-A",
+              "path": "1,HTML,1,BODY,1,MAIN,0,SECTION,3,DIV,1,A",
+              "selector": "main > section.shopping-cart > div.empty-cart > a",
+              "boundingRect": {
+                "top": 244,
+                "bottom": 260,
+                "left": 241,
+                "right": 311,
+                "width": 70,
+                "height": 16
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Empty Cart",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #00bfa5, background color: #ffffff, font size: 10.5pt (14px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-4-SECTION",
+                    "path": "1,HTML,1,BODY,1,MAIN,0,SECTION",
+                    "selector": "body > main > section.shopping-cart",
+                    "boundingRect": {
+                      "top": 94,
+                      "bottom": 391,
+                      "left": 20,
+                      "right": 392,
+                      "width": 372,
+                      "height": 297
+                    },
+                    "snippet": "<section class=\"shopping-cart\">",
+                    "nodeLabel": "Your Shopping Cart\n\nYOUR SHOPPING CART IS EMPTY.\n\nCONTINUE SHOPPING\nRECALCULATE…"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-5-BUTTON",
+              "path": "1,HTML,1,BODY,1,MAIN,0,SECTION,5,BUTTON",
+              "selector": "body > main > section.shopping-cart > button",
+              "boundingRect": {
+                "top": 336,
+                "bottom": 371,
+                "left": 149,
+                "right": 263,
+                "width": 115,
+                "height": 35
+              },
+              "snippet": "<button>",
+              "nodeLabel": "CHECKOUT",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #ffffff, background color: #00bfa5, font size: 10.0pt (13.3333px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-6-A",
+              "path": "1,HTML,1,BODY,2,FOOTER,0,P,1,A",
+              "selector": "body > footer.footer > p > a",
+              "boundingRect": {
+                "top": 759,
+                "bottom": 794,
+                "left": 3,
+                "right": 409,
+                "width": 405,
+                "height": 35
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "artwork information",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 1.34 (foreground color: #0000ee, background color: #333333, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-7-FOOTER",
+                    "path": "1,HTML,1,BODY,2,FOOTER",
+                    "selector": "body > footer.footer",
+                    "boundingRect": {
+                      "top": 461,
+                      "bottom": 823,
+                      "left": 0,
+                      "right": 412,
+                      "width": 412,
+                      "height": 362
+                    },
+                    "snippet": "<footer class=\"footer\">",
+                    "nodeLabel": "This site does not do live transactions. If you provide a credit card number it…"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H42.2",
+        "Principle1.Guideline1_3.1_3_1.G141"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
+        "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+        "https://dequeuniversity.com/rules/axe/4.10/empty-heading"
+      ],
+      "impact": "moderate",
+      "name": "Headings; Wrong Order, Empty & Missing Headings;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
+          "source": "axe-core",
+          "title": "Page should contain a level-one heading",
+          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+          "impact": "moderate",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "page-has-heading-one",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Page must have a level-one heading"
+              }
+            ],
+            "none": [],
+            "impact": "moderate",
+            "html": "<html lang=\"en\">",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix all of the following:\n  Page must have a level-one heading"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-BUTTON",
+              "path": "1,HTML,1,BODY,0,HEADER,0,DIV,5,BUTTON",
+              "selector": "body > header > div.header-content > button",
+              "boundingRect": {
+                "top": 34,
+                "bottom": 40,
+                "left": 396,
+                "right": 412,
+                "width": 16,
+                "height": 6
+              },
+              "snippet": "<button>",
+              "nodeLabel": "body > header > div.header-content > button",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (16px by 6px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 16px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-8-INPUT",
+                    "path": "1,HTML,1,BODY,0,HEADER,0,DIV,4,INPUT",
+                    "selector": "body > header > div.header-content > input",
+                    "boundingRect": {
+                      "top": 27,
+                      "bottom": 48,
+                      "left": 243,
+                      "right": 396,
+                      "width": 153,
+                      "height": 21
+                    },
+                    "snippet": "<input type=\"text\" placeholder=\"SEARCH\" aria-label=\"Search\">",
+                    "nodeLabel": "Search"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

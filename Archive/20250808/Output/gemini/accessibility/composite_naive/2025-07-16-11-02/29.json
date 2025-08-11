@@ -1,0 +1,351 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H42.2",
+        "Principle1.Guideline1_3.1_3_1.G141"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
+        "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+        "https://dequeuniversity.com/rules/axe/4.10/empty-heading"
+      ],
+      "impact": "moderate",
+      "name": "Headings; Wrong Order, Empty & Missing Headings;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+          "source": "axe-core",
+          "title": "Heading levels should only increase by one",
+          "description": "Ensure the order of headings is semantically correct",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "heading-order",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Heading order invalid"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<h3>Recent Posts</h3>",
+            "target": [
+              "h3:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Heading order invalid"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+          "source": "lighthouse",
+          "title": "Heading elements are not in a sequentially-descending order",
+          "description": "Properly ordered headings that do not skip levels convey the semantic structure of the page, making it easier to navigate and understand when using assistive technologies. [Learn more about heading order](https://dequeuniversity.com/rules/axe/4.10/heading-order).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-H3",
+              "path": "1,HTML,1,BODY,4,DIV,0,ASIDE,0,H3",
+              "selector": "body > div.container > aside#sidebar > h3",
+              "boundingRect": {
+                "top": 1312,
+                "bottom": 1342,
+                "left": 61,
+                "right": 391,
+                "width": 330,
+                "height": 30
+              },
+              "snippet": "<h3>",
+              "nodeLabel": "Recent Posts",
+              "explanation": "Fix any of the following:\n  Heading order invalid"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+        "https://dequeuniversity.com/rules/axe/4.10/region",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
+      ],
+      "impact": "moderate",
+      "name": "Landmark & Region; Missing & Unique Landmarks;",
+      "amount_nodes_failed": 4,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+          "source": "axe-core",
+          "title": "Document should have one main landmark",
+          "description": "Ensure the document has a main landmark",
+          "impact": "moderate",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "page-has-main",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Document does not have a main landmark"
+              }
+            ],
+            "none": [],
+            "impact": "moderate",
+            "html": "<html lang=\"en\">",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix all of the following:\n  Document does not have a main landmark"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+          "source": "axe-core",
+          "title": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+          "description": "Ensure landmarks are unique",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "landmark-is-unique",
+                "data": {
+                  "role": "complementary",
+                  "accessibleText": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<aside id=\"sidebar\">\n            <h3>Recent Posts</h3>\n            <p>New Heights by Marston Lake Website</p>\n            <h3>Recent Comments</h3>\n            <h3>Archives</h3>\n            <p>February 2017</p>\n            <h3>Categories</h3>\n            <p>Residents Page Posts</p>\n        </aside>",
+                    "target": [
+                      ".container:nth-child(5) > aside"
+                    ]
+                  }
+                ],
+                "impact": "moderate",
+                "message": "The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<aside id=\"sidebar\">\n            <input type=\"search\" placeholder=\"Search...\">\n            <input type=\"button\" value=\"Search\">\n        </aside>",
+            "target": [
+              ".container:nth-child(4) > aside"
+            ],
+            "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<section id=\"showcase\">\n        <div class=\"container\">\n            <h1>swimming-pool-5</h1>\n            <img src=\"src/placeholder.jpg\" alt=\"Placeholder Image\" width=\"800\" height=\"500\" class=\"blue-box\">\n        </div>\n    </section>",
+            "target": [
+              "#showcase"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"container\">\n        <section id=\"boxes\">\n            <div class=\"box\">\n                <img src=\"src/placeholder.jpg\" alt=\"Placeholder Image\" width=\"200\" height=\"200\" class=\"blue-box\">\n            </div>\n        </section>\n    </div>",
+            "target": [
+              ".container:nth-child(3)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputSearch.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.Textarea.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputCheckbox.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
+        "Principle1.Guideline1_3.1_3_1.F68",
+        "Principle4.Guideline4_1.4_1_2.H91.Fieldset.Name"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/label"
+      ],
+      "impact": "critical",
+      "name": "Label; Multiple Elements; Content missing",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.InputSearch.Name",
+          "source": "pa11y",
+          "title": "This searchinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
+          "description": "<input type=\"search\" placeholder=\"Search...\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputSearch.Name",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This searchinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
+            "context": "<input type=\"search\" placeholder=\"Search...\">",
+            "selector": "#sidebar > input:nth-child(1)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle4.Guideline4_1.4_1_1.F77"
+      ],
+      "url": [
+        null
+      ],
+      "impact": "minor",
+      "name": "ID; Duplicate IDs;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "Principle4.Guideline4_1.4_1_1.F77",
+          "source": "pa11y",
+          "title": "Duplicate id attribute value \"sidebar\" found on the web page.",
+          "description": "<aside id=\"sidebar\">\n            <h3>Recent Posts</...</aside>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_1.F77",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Duplicate id attribute value \"sidebar\" found on the web page.",
+            "context": "<aside id=\"sidebar\">\n            <h3>Recent Posts</...</aside>",
+            "selector": "#sidebar",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-A",
+              "path": "1,HTML,1,BODY,0,HEADER,0,DIV,1,NAV,0,UL,3,LI,0,A",
+              "selector": "nav > ul > li > a",
+              "boundingRect": {
+                "top": 69,
+                "bottom": 87,
+                "left": 177,
+                "right": 312,
+                "width": 135,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "PHOTO GALLERY",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (134.6px by 18px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 18px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-3-A",
+                    "path": "1,HTML,1,BODY,0,HEADER,0,DIV,1,NAV,0,UL,2,LI,0,A",
+                    "selector": "nav > ul > li > a",
+                    "boundingRect": {
+                      "top": 43,
+                      "bottom": 87,
+                      "left": 80,
+                      "right": 354,
+                      "width": 274,
+                      "height": 44
+                    },
+                    "snippet": "<a href=\"#\">",
+                    "nodeLabel": "FLOOR PLANS"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

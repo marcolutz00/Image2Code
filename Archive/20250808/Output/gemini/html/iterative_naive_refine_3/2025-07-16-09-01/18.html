@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>David Simpson</title>
+<style>
+body {
+    font-family: sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f9f9f9;
+    margin: 0;
+    padding: 0;
+}
+
+a {
+    color: #0077cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+header {
+    background-color: #87D37C;
+    padding: 30px;
+    color: #000;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 5px;
+}
+
+header p {
+    font-size: 1em;
+    margin-top: 0;
+    opacity: 0.8;
+    color: #000;
+}
+
+nav {
+    text-align: right;
+    margin-top: -50px;
+    margin-right: 10px;
+}
+
+nav a {
+    color: #000;
+    margin-left: 20px;
+    font-size: 0.9em;
+}
+
+main {
+    padding: 20px 0;
+}
+
+article {
+    margin-bottom: 30px;
+}
+
+article h2 {
+    font-size: 2em;
+    margin-bottom: 10px;
+    color: #222;
+}
+
+article p {
+    margin-bottom: 15px;
+}
+
+footer {
+    text-align: center;
+    padding: 30px 0;
+    background-color: #f2f2f2;
+}
+
+.article-meta {
+    font-size: 0.85em;
+    color: #444;
+    margin-bottom: 20px;
+}
+
+.comment {
+    margin-bottom: 20px;
+    padding: 15px;
+    border-left: 3px solid #eee;
+}
+
+.comment-author {
+    font-weight: bold;
+    color: #555;
+}
+
+.comment-date {
+    font-size: 0.8em;
+    color: #777;
+}
+main a{
+    color: #0077cc;
+    text-decoration: underline;
+}
+footer a{
+    text-decoration: none;
+    color: #0077cc;
+}
+</style>
+</head>
+<body>
+<header>
+    <div class="container">
+        <h1>David Simpson</h1>
+        <p>deliver. iterate.</p>
+        <nav>
+            <a href="#">Blog</a>
+            <a href="#">About</a>
+            <a href="#">Projects</a>
+            <a href="#">Apps</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <div class="container">
+        <article>
+            <h2>Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</h2>
+            <div class="article-meta">
+                Posted by David Simpson on May 22, 2014. <a href="#" style="color: #0077cc;">Return to index</a> .<br>
+                Tags:
+            </div>
+
+            <p>Following yesterdays <a href="#" style="color: #0077cc;">Atlassian security advisory for Confluence</a> , it looks like there are
+            some added steps required for people who have user macros. Be careful folks.
+            <a href="#" style="color: #0077cc;">@BergerofLondon</a> spotted this first:</p>
+
+            <div class="comment">
+                <p>Following upgrade to Confluence 5.5.1 the values of parameters
+                in user macros cannot be evaluated the same way. Discovered
+                this the hard way</p>
+                <p>ÃÃÂ¢ÃÃÃÃ Berger (<a href="#" style="color: #0077cc;">@BergerofLondon</a>) <a href="#" style="color: #0077cc;">May 22, 2014</a></p>
+            </div>
+
+            <div class="comment">
+                <p>You can't use the same shorthand you use for standard variables.
+                #if ($paramistrue) will always evaluate as true.</p>
+                <p>ÃÃÂ¢ÃÃÃÃ Berger (<a href="#" style="color: #0077cc;">@BergerofLondon</a>) <a href="#" style="color: #0077cc;">May 22, 2014</a></p>
+            </div>
+
+            <div class="comment">
+                <p>You now have to use things like #if ($paramistrue == true) or #if
+                ($paramistrue == false).</p>
+                <p>ÃÃÂ¢ÃÃÃÃ Berger (<a href="#" style="color: #0077cc;">@BergerofLondon</a>) <a href="#" style="color: #0077cc;">May 22, 2014</a></p>
+            </div>
+
+            <div class="comment">
+                <p><a href="#" style="color: #0077cc;">@baitman</a> For strings I can no longer do #if ($paramfoo), I have
+                to do #if ($paramfoo).length() > 0. Which is crazy.</p>
+                <p>ÃÃÂ¢ÃÃÃÃ Berger (<a href="#" style="color: #0077cc;">@BergerofLondon</a>) <a href="#" style="color: #0077cc;">May 22, 2014</a></p>
+            </div>
+
+            <div class="comment">
+                <p><a href="#" style="color: #0077cc;">@baitman</a> Also, if you're upgrading to 5.5.1 to fix the security
+                vulnerability double-check that it's upgraded xwork to 1.17. Ours
+                wasn't.</p>
+                <p>ÃÃÂ¢ÃÃÃÃ Berger (<a href="#" style="color: #0077cc;">@BergerofLondon</a>) <a href="#" style="color: #0077cc;">May 22, 2014</a></p>
+            </div>
+
+            <p>The update to <b>atlassian-xwork-core-1.17.jar</b> means you have to be more specific with
+            your coding. Thanks to <a href="#" style="color: #0077cc;">@BergerofLondon</a> for the heads up.</p>
+        </article>
+    </div>
+</main>
+
+<footer>
+    <div class="container">
+        <a href="#" style="color: #0077cc;">ÃÃÂ¯ÃÃÃÃ</a>
+        <a href="#" style="color: #0077cc;">ÃÃÂ¯ÃÃÃÃ</a>
+        <a href="#" style="color: #0077cc;">ÃÃÂ¯ÃÃÃÃ</a>
+        <a href="#" style="color: #0077cc;">ÃÃÂ¯ÃÃÃÃÂ¡</a>
+        <a href="#" style="color: #0077cc;">ÃÃÂ¯ÃÃÃÃÂ§</a>
+    </div>
+</footer>
+</body>
+</html>

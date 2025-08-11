@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CREATE H2O Program</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #333;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            background-color: #333;
+            padding: 5px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+        main {
+            padding: 20px;
+            background-color: white;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            margin: 20px;
+        }
+        .blue-box {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            margin: 20px 0;
+        }
+        h1, h2, h3 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        table, th, td {
+            border: 1px solid black;
+            padding: 10px;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        .example {
+            margin-top: 40px;
+        }
+        .example h3 {
+            margin-top: 0;
+        }
+        .example ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .example li {
+            margin-bottom: 10px;
+        }
+        .example .example-content {
+            margin-left: 40px;
+        }
+        .example .example-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .example .example-content li {
+            margin-bottom: 10px;
+        }
+        .example .example-content .example-content-content {
+            margin-left: 40px;
+        }
+        .example .example-content .example-content-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .example .example-content .example-content-content li {
+            margin-bottom: 10px;
+        }
+        .example .example-content .example-content-content .example-content-content-content {
+            margin-left: 40px;
+        }
+        .example .example-content .example-content-content .example-content-content-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .example .example-content .example-content-content .example-content-content-content li {
+            margin-bottom: 10px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content {
+            margin-left: 40px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content li {
+            margin-bottom: 10px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content .example-content-content-content-content-content {
+            margin-left: 40px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content .example-content-content-content-content-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content .example-content-content-content-content-content li {
+            margin-bottom: 10px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content .example-content-content-content-content-content .example-content-content-content-content-content-content {
+            margin-left: 40px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content .example-content-content-content-content-content .example-content-content-content-content-content-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content .example-content-content-content-content-content .example-content-content-content-content-content-content li {
+            margin-bottom: 10px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content .example-content-content-content-content-content .example-content-content-content-content-content-content .example-content-content-content-content-content-content-content-content-content {
+            margin-left: 40px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content .example-content-content-content-content-content .example-content-content-content-content-content-content .example-content-content-content-content-content-content-content .example-content-content-content-content-content-content-content-content-content ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content .example-content-content-content-content-content .example-content-content-content-content-content-content .example-content-content-content-content-content-content-content .example-content-content-content-content-content-content-content-content-content li {
+            margin-bottom: 10px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content .example-content-content-content-content-content .example-content-content-content-content-content-content .example-content-content-content-content-content-content-content .example-content-content-content-content-content-content-content-content-content .example-content-content-content-content-content-content-content-content-content-content {
+            margin-left: 40px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content .example-content-content-content-content-content .example-content-content-content-content-content-content .example-content-content-content-content-content-content-content .example-content-content-content-content-content-content-content-content-content .example-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content {
+            margin-left: 40px;
+        }
+        .example .example-content .example-content-content .example-content-content-content .example-content-content-content-content .example-content-content-content-content-content .example-content-content-content-content-content-content .example-content-content-content-content-content-content-content .example-content-content-content-content-content-content-content-content-content .example-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content .example-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content-content', 'accessibility_violations': [{'snippet': '<html lang="en">', 'id': 'https://dequeuniversity.com/rules/axe/4.10/landmark-one-main', 'message': 'Document should have one main landmark', 'impact': 'moderate'}, {'snippet': '<html lang="en">', 'id': 'https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one', 'message': 'Page should contain a level-one heading', 'impact': 'moderate'}]}
+```

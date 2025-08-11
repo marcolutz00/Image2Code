@@ -1,0 +1,193 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": null,
+      "url": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role",
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-allowed-role",
+          "source": "axe-core",
+          "title": "ARIA role should be appropriate for the element",
+          "description": "Ensure role attribute has an appropriate value for the element",
+          "impact": "minor",
+          "nodes": {
+            "any": [
+              {
+                "id": "aria-allowed-role",
+                "data": [
+                  "navigation"
+                ],
+                "relatedNodes": [],
+                "impact": "minor",
+                "message": "ARIA role navigation is not allowed for given element"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "minor",
+            "html": "<header class=\"navbar\" role=\"navigation\">\n        <div class=\"logo\"></div>\n        <div class=\"nav-links\" role=\"listbox\">\n            <button type=\"button\" aria-label=\"Menu\" aria-expanded=\"false\" aria-controls=\"main-menu\"><span>Menu</span></button>\n        </div>\n    </header>",
+            "target": [
+              "header"
+            ],
+            "failureSummary": "Fix any of the following:\n  ARIA role navigation is not allowed for given element"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": null,
+      "url": "https://dequeuniversity.com/rules/axe/4.10/aria-input-field-name",
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-input-field-name",
+          "source": "axe-core",
+          "title": "ARIA input fields must have an accessible name",
+          "description": "Ensure every ARIA input field has an accessible name",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has no title attribute"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"nav-links\" role=\"listbox\">\n            <button type=\"button\" aria-label=\"Menu\" aria-expanded=\"false\" aria-controls=\"main-menu\"><span>Menu</span></button>\n        </div>",
+            "target": [
+              ".nav-links"
+            ],
+            "failureSummary": "Fix any of the following:\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": null,
+      "url": "https://dequeuniversity.com/rules/axe/4.10/aria-required-children",
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/aria-required-children",
+          "source": "axe-core",
+          "title": "Certain ARIA roles must contain particular children",
+          "description": "Ensure elements with an ARIA role that require child roles contain them",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "aria-required-children",
+                "data": {
+                  "messageKey": "unallowed",
+                  "values": "button[aria-controls]"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button type=\"button\" aria-label=\"Menu\" aria-expanded=\"false\" aria-controls=\"main-menu\"><span>Menu</span></button>",
+                    "target": [
+                      "button[type=\"button\"]"
+                    ]
+                  }
+                ],
+                "impact": "critical",
+                "message": "Element has children which are not allowed: button[aria-controls]"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<div class=\"nav-links\" role=\"listbox\">\n            <button type=\"button\" aria-label=\"Menu\" aria-expanded=\"false\" aria-controls=\"main-menu\"><span>Menu</span></button>\n        </div>",
+            "target": [
+              ".nav-links"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has children which are not allowed: button[aria-controls]"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_4.1_4_3.G18",
+        "Principle1.Guideline1_4.1_4_3.G18.Fail",
+        "Principle1.Guideline1_4.1_4_3.G145",
+        "Principle1.Guideline1_4.1_4_3.G145.Fail",
+        "Principle1.Guideline1_4.1_4_6.G17",
+        "Principle1.Guideline1_4.1_4_6.G18"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+      ],
+      "impact": "serious",
+      "name": "Color Contrast; Text;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-DIV",
+              "path": "1,HTML,1,BODY,2,DIV,0,DIV",
+              "selector": "body > div.main-content > div.signin",
+              "boundingRect": {
+                "top": 207,
+                "bottom": 247,
+                "left": 20,
+                "right": 111,
+                "width": 91,
+                "height": 40
+              },
+              "snippet": "<div class=\"signin\">",
+              "nodeLabel": "Sign in",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #ffffff, background color: #4caf50, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

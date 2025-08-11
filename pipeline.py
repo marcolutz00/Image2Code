@@ -27,13 +27,13 @@ RESULT_PATH = CURR_PATH / "Results"
 
 
 # Arguments
-DEFAULT_MODEL = "gemini"  # option: openai, gemini, qwen, llava
+DEFAULT_MODEL = "openai"  # option: openai, gemini, qwen, llava
 DEFAULT_PROMPT_STRATEGY = "naive" # options: naive, zero-shot, few-shot, reason
 DEFAULT_IMPROVEMENT_STRATEGY = None  # options: None, iterative, composite, agent
 DEFAULT_STARTING_FROM = 0  
-DATE = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
+# DATE = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M")
 # Test
-# DATE = "2025-07-12-14-27"
+DATE = "2025-06-15-17-04"
 
 
 async def main(model, prompt_strategy, date, improvement_strategy, starting_from):

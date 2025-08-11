@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Polibyte</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            line-height: 1.6;
+            color: #333;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 70%;
+            margin: 20px auto;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+        }
+
+        header h1 {
+            font-size: 2em;
+            font-weight: normal;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+        }
+
+        header nav ul li {
+            margin-left: 20px;
+        }
+
+        header nav ul li a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        main h1 {
+            font-size: 2.5em;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+
+        .post-meta {
+            font-size: 0.9em;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        main p {
+            margin-bottom: 15px;
+        }
+
+        main a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        pre {
+            background-color: #f8f8f8;
+            padding: 10px;
+            overflow-x: auto;
+            border: 1px solid #ddd;
+            margin-bottom: 15px;
+        }
+
+        pre code {
+            font-family: monospace;
+            font-size: 1em;
+        }
+
+        /* Added to fix color contrast issues */
+        a:link {
+            color: #007bff;
+        }
+        a:visited {
+            color: #0056b3;
+        }
+
+        /* Fixes for contrast */
+        header nav ul li a {
+            color: #007bff;
+        }
+
+        .post-meta {
+            color: #555;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Polibyte</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">About Me</a></li>
+                </ul>
+            </nav>
+        </header>
+
+        <main>
+            <h1>Export news from google sites</h1>
+            <div class="post-meta">
+                Apr 27, 2012
+                <br>
+                1 minute read
+            </div>
+
+            <p>I've added a script, <a href="#">export_google_site_news</a>, to my catchall repository on github.</p>
+
+            <p>For example, to download the news stories at
+            https://sites.google.com/a/medinacommunityband.org/www/announcements, you
+            would run</p>
+
+            <pre><code>export_google_site_news https://sites.google.com/a/medinacommunityband.org/www announcements</code></pre>
+
+            <h2>The backstory</h2>
+            <p>When Free It Athens moved our website from Google Sites to Drupal, we started from
+            scratch rather than importing our old content. I realized on Wednesday that the news
+            posts on the site were interesting historical information, yet I'd never archived them.</p>
+
+            <p>First, I tried a recursive wget.</p>
+
+            <pre><code>wget -r --no-parent --no-clobber ...</code></pre>
+
+            <p>This failed to work because Google pointlessly used javascript rather than anchor tags
+            to link between the news listing pages.</p>
+
+            <p>Next I found and tried to use the google-sites-export tool from Google's Data
+            Liberation Team, but I was never able to authenticate succesfully from it.</p>
+
+            <p>At this point I was worried I'd need to use a tool like Selenium to run the javascript,
+            but then I realized the news listing pages took a single paramater to determine how
+            far along in the pagination they were. It wouldn't take more than a C-style for loop to
+            download them all.</p>
+
+            <pre><code>for i in $(seq 0 10 120); do
+wget "" "-Onews.$i"
+done</code></pre>
+
+            <p>After doing that, I looked at the first one and determined a pattern that would match
+            the relative URLs of individual news stories. I then extracted all the URLS.</p>
+
+            <pre><code>grep -E -h -o '/a/freeitathens.org/foo/news/[a-z0-9\-]+' news.* |
+sort -u > news_links</code></pre>
+
+            <p>Once I had the list of URLs, it was simple to have wget download them all.</p>
+
+            <pre><code>wget -i news_links -B https://sites.google.com</code></pre>
+
+            <p>Since I didn't find any other guides to doing this, I decided to flesh out what I'd done
+            into a simple tool and write about it here.</p>
+        </main>
+    </div>
+</body>
+</html>

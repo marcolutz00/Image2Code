@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Website Title</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f4f1e8;
+        }
+        header {
+            background-color: #f4f1e8;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 10px 0;
+        }
+        nav a {
+            margin: 0 10px;
+            color: #8b4513;
+            text-decoration: none;
+        }
+        main {
+            display: grid;
+            grid-template-columns: 1fr 3fr;
+            grid-template-rows: auto 1fr;
+            grid-template-areas: "header header" "nav main";
+            padding: 20px;
+        }
+        .header {
+            grid-area: header;
+            background-color: #f4f1e8;
+            padding: 20px;
+            text-align: center;
+        }
+        .nav {
+            grid-area: nav;
+            background-color: #f4f1e8;
+            padding: 20px;
+            text-align: center;
+        }
+        .main {
+            grid-area: main;
+            background-color: #f4f1e8;
+            padding: 20px;
+        }
+        .latest-questions {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .related-posts {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .comments {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .footer {
+            background-color: #333;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+        .footer a {
+            color: #fff;
+            text-decoration: none;
+        }
+        .footer a:hover {
+            text-decoration: underline;
+        }
+        .blue-box {
+            width: 300px;
+            height: 200px;
+            background-color: #000;
+            margin: 20px;
+        }
+        .yellow-box {
+            width: 300px;
+            height: 200px;
+            background-color: #ffcc00;
+            margin: 20px;
+        }
+        .question {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .question h2 {
+            margin: 0;
+        }
+        .question p {
+            margin: 10px 0;
+        }
+        .question button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #8b4513;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .question button:hover {
+            background-color: #c0392b;
+        }
+        .question a {
+            color: #8b4513;
+            text-decoration: none;
+        }
+        .question a:hover {
+            text-decoration: underline;
+        }
+        .question .answer {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .question .answer h3 {
+            margin: 0;
+        }
+        .question .answer p {
+            margin: 10px 0;
+        }
+        .question .answer button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #8b4513;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .question .answer button:hover {
+            background-color: #c0392b;
+        }
+        .question .answer a {
+            color: #8b4513;
+            text-decoration: none;
+        }
+        .question .answer a:hover {
+            text-decoration: underline;
+        }
+        .question .answer .answer-explanation {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .question .answer .answer-explanation h3 {
+            margin: 0;
+        }
+        .question .answer .answer-explanation p {
+            margin: 10px 0;
+        }
+        .question .answer .answer-explanation button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #8b4513;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .question .answer .answer-explanation button:hover {
+            background-color: #c0392b;
+        }
+        .question .answer .answer-explanation a {
+            color: #8b4513;
+            text-decoration: none;
+        }
+        .question .answer .answer-explanation a:hover {
+            text-decoration: underline;
+        }
+        .question .answer .answer-explanation .answer-explanation-text {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .question .answer .answer-explanation .answer-explanation-text h3 {
+            margin: 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text p {
+            margin: 10px 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #8b4513;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .question .answer .answer-explanation .answer-explanation-text button:hover {
+            background-color: #c0392b;
+        }
+        .question .answer .answer-explanation .answer-explanation-text a {
+            color: #8b4513;
+            text-decoration: none;
+        }
+        .question .answer .answer-explanation .answer-explanation-text a:hover {
+            text-decoration: underline;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text h3 {
+            margin: 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text p {
+            margin: 10px 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #8b4513;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text button:hover {
+            background-color: #c0392b;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text a {
+            color: #8b4513;
+            text-decoration: none;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text a:hover {
+            text-decoration: underline;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text h3 {
+            margin: 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text p {
+            margin: 10px 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #8b4513;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text button:hover {
+            background-color: #c0392b;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text a {
+            color: #8b4513;
+            text-decoration: none;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text a:hover {
+            text-decoration: underline;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text h3 {
+            margin: 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text p {
+            margin: 10px 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #8b4513;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text button:hover {
+            background-color: #c0392b;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text a {
+            color: #8b4513;
+            text-decoration: none;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text a:hover {
+            text-decoration: underline;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text h3 {
+            margin: 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text p {
+            margin: 10px 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #8b4513;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text button:hover {
+            background-color: #c0392b;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text a {
+            color: #8b4513;
+            text-decoration: none;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text a:hover {
+            text-decoration: underline;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text .answer-explanation-text-text-text-text-text-text {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text .answer-explanation-text-text-text-text-text-text h3 {
+            margin: 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text .answer-explanation-text-text-text-text-text-text p {
+            margin: 10px 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text .answer-explanation-text-text-text-text-text-text button {
+            margin: 10px 0;
+            padding: 10px 20px;
+            background-color: #8b4513;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text .answer-explanation-text-text-text-text-text-text button:hover {
+            background-color: #c0392b;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text .answer-explanation-text-text-text-text-text-text a {
+            color: #8b4513;
+            text-decoration: none;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text .answer-explanation-text-text-text-text-text-text a:hover {
+            text-decoration: underline;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text .answer-explanation-text-text-text-text-text-text .answer-explanation-text-text-text-text-text-text-text {
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f1e8;
+            border: 1px solid #8b4513;
+            border-radius: 5px;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text-text-text .answer-explanation-text-text-text-text-text-text .answer-explanation-text-text-text-text-text-text-text h3 {
+            margin: 0;
+        }
+        .question .answer .answer-explanation .answer-explanation-text .answer-explanation-text-text .answer-explanation-text-text-text .answer-explanation-text-text-text-text .answer-explanation-text-text-text

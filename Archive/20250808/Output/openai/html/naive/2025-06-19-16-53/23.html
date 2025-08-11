@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexito's World</title>
+    <style>
+        body {
+            background-color: #252525;
+            color: #ccc;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        header {
+            background-color: #161616;
+            padding: 20px;
+            text-align: center;
+        }
+        header h1 {
+            color: #ffffff;
+            font-size: 36px;
+        }
+        header p {
+            color: #7a7a7a;
+            margin: 0;
+        }
+        nav {
+            display: flex;
+            justify-content: center;
+            margin: 20px 0;
+        }
+        nav a {
+            color: #ccc;
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 18px;
+        }
+        .content {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        .content img {
+            width: 100%;
+            max-width: 100px;
+        }
+        .info-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 12px;
+            border-bottom: 3px solid #fcb926;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        .tags {
+            display: flex;
+            gap: 10px;
+        }
+        .tag {
+            background-color: #111;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 15px;
+            font-size: 12px;
+        }
+        .content h2 {
+            color: #fff;
+            font-size: 28px;
+        }
+        .highlight {
+            color: #fcb926;
+        }
+        .code {
+            background-color: #333;
+            color: #f8f8f2;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 10px;
+            border-radius: 5px;
+            overflow-x: auto;
+            margin: 20px 0;
+        }
+        .button {
+            display: inline-block;
+            background-color: #fcb926;
+            color: #111;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 20px 0;
+        }
+        .footer {
+            background-color: #111;
+            color: #7a7a7a;
+            text-align: center;
+            padding: 20px;
+            font-size: 12px;
+        }
+        .footer a {
+            color: #fcb926;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Alexito's World</h1>
+        <p>A world of coding <span>ð»</span>, by Alejandro Martinez</p>
+        <nav>
+            <a href="#">|</a>
+            <a href="#">Swift</a>
+            <a href="#">Development</a>
+        </nav>
+    </header>
+    <div class="content">
+        <div class="info-bar">
+            <span>June 5, 2016</span>
+            <span><img src="src/placeholder.jpg" alt="icon"> 1 min read</span>
+        </div>
+        <div class="tags">
+            <div class="tag">Scripting</div>
+            <div class="tag">Swift</div>
+            <div class="tag">Tips and Tricks</div>
+        </div>
+        <h2>Poor man's hot reloading for Swift scripts</h2>
+        <p>The other day, while I was writing a <span class="highlight">Swift script</span>, I added an option to make it run continuously so it could be on a server doing its job without stopping. <em>For eva</em>.</p>
+        <p>To implement that I just used a <span class="highlight">repeat</span> loop creating <span class="highlight">NSTask</span> s that called the same script. <strong>Scripts recursion.</strong></p>
+        <p>The funny part is that with this simple thing I found a quick way to writing the script, almost as a hot reloading tool.</p>
+        <div class="code">
+            let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask() task.launchPath = Process.arguments.first! task.arguments = Array(Process.arguments.suffixFrom(1).filter({$0 != reload})) task.launch() task.waitUntilExit() } while true }
+        </div>
+        <p>Just drop this snippet at the top of the script, and when you call it with the <span class="highlight">reload</span> argument it will start looping indefinitely.</p>
+        <p>Then you can just call it from the command line like:</p>
+        <div class="code">
+            main.swift reload other params When that is done you can just modify the script and save the file, in the next execution your changes will be visible. If it fails to compile is not a big deal, the main script is still in memory without those changes so it will just loop and try to run it again.
+        </div>
+        <p>Obviously is not a big deal, is a bit annoying seeing all the console spammed, but I found it quite useful while I'm developing short scripts that I want to iterate on.</p>
+        <p>Remember that you can use <span class="highlight">OS signals</span> to stop the task when the main script is killed.</p>
+        <a href="#" class="button">Share this article on Twitter</a>
+        <div class="info-bar">
+            <div>If you liked this article please consider supporting me</div>
+            <div><a href="#" class="button">Buy me a coffee â</a></div>
+        </div>
+        <h3>Continue reading</h3>
+        <div class="related-articles">
+            <div class="related-article">
+                <h4>Next article</h4>
+                <p><span class="highlight">Using closures to simplify</span></p>
+                <p>June 7, 2016</p>
+            </div>
+            <div class="related-article">
+                <h4>Previous article</h4>
+                <p><span class="highlight">It's a trap! Catch OS signals in Swift.</span></p>
+                <p>May 29, 2016</p>
+            </div>
+        </div>
+        <h3>Similar suggested articles</h3>
+        <div class="related-articles">
+            <div class="related-article">
+                <img src="src/placeholder.jpg" alt="Swift">
+                <p>Based on tag <span class="highlight">Swift</span></p>
+                <p>Backport SwiftUI modifiers</p>
+                <p>October 20, 2023</p>
+            </div>
+            <div class="related-article">
+                <img src="src/placeholder.jpg" alt="Scripting">
+                <p>Based on tag <span class="highlight">Scripting</span></p>
+                <p>Swift script to export lists from Reminders.app</p>
+                <p>May 8, 2019</p>
+            </div>
+            <div class="related-article">
+                <img src="src/placeholder.jpg" alt="Tips and Tricks">
+                <p>Based on tag <span class="highlight">Tips and Tricks</span></p>
+                <p>Swift Collection's prefix for quick tests</p>
+                <p>March 16, 2019</p>
+            </div>
+        </div>
+        <h3>Or check out this article tags</h3>
+        <div class="tags">
+            <div class="tag">Scripting</div>
+            <div class="tag">Swift</div>
+            <div class="tag">Tips and Tricks</div>
+        </div>
+    </div>
+    <footer class="footer">
+        <a href="#">RSS</a> | <a href="#">alexito4</a> | <a href="#">alexito4</a> | <a href="#">alexito4</a>
+        <div>Generated using <span class="highlight">Publish</span></div>
+    </footer>
+</body>
+</html>

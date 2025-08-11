@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Representation</title>
+    <style>
+        /* Basic Reset */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f2f2f2;
+        }
+
+        /* Base Styles */
+        .container {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            grid-gap: 24px;
+            padding: 24px;
+            background-color: #f2f2f2;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .card img {
+            width: 25%;
+            height: 200px;
+            border-radius: 4px 4px 0 0;
+        }
+
+        .card .header {
+            background-color: #f6c9;
+            color: white;
+            text-align: center;
+            padding: 12px;
+        }
+
+        .card .body {
+            padding: 18px;
+            background-color: #fff;
+        }
+
+        .card .footer {
+            background-color: #e4c9;
+            color: white;
+            text-align: center;
+            padding: 6px 0;
+            border-radius: 0 0 4px;
+        }
+
+        /* Placeholder Styles */
+        .placeholder {
+            height: 25vh;
+            background-color: #ccc;
+        }
+
+        .card .footer img {
+            width: 10%;
+            border-radius: 4px;
+        }
+
+        /* Styling for the text and icons */
+        h2 {
+            margin: 0;
+            font-size: 24px;
+            line-height: 1.2;
+        }
+
+        p {
+            margin: 8px 0;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .container {
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+
+            .card .footer img {
+                width: 50%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="card">
+            <img src="src/placeholder.jpg" alt="Image" class="placeholder">
+            <div class="header">Temperature in Quebec</div>
+            <div class="body">
+                <h2>9Â°C</h2>
+                <p><strong>Current:</strong> 8Â°C</p>
+                <p><strong>High:</strong> 10Â°C</p>
+                <p><strong>Low:</strong> 6Â°C</p>
+            </div>
+            <div class="footer">
+                <img src="src/placeholder.jpg" alt="Image">
+                <p><strong>Wind:</strong> 5 km/h SE</p>
+            </div>
+        </div>
+        <div class="card">
+            <img src="src/placeholder.jpg" alt="Image" class="placeholder">
+            <div class="header">Temperature in Ontario</div>
+            <div class="body">
+                <h2>10Â°C</h2>
+                <p><strong>Current:</strong> 9Â°C</p>
+                <p><strong>High:</strong> 12Â°C</p>
+                <p><strong>Low:</strong> 8Â°C</p>
+            </div>
+            <div class="footer">
+                <img src="src/placeholder.jpg" alt="Image">
+                <p><strong>Wind:</strong> 10 km/h SW</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

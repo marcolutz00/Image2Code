@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Simpson</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: #f1f1f1;
+        }
+        .header {
+            background-color: #50c27d;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 20px 40px;
+        }
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+        .main-content {
+            background-color: white;
+            padding: 40px;
+            max-width: 800px;
+            margin: 0 auto;
+            margin-top: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .title {
+            color: #50c27d;
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .post-details {
+            margin-top: 10px;
+            color: gray;
+            font-size: 14px;
+        }
+        .content {
+            margin-top: 20px;
+        }
+        .content p {
+            font-size: 16px;
+            color: #333;
+            line-height: 1.6;
+        }
+        .content a {
+            color: #50c27d;
+        }
+        .blockquote {
+            margin-top: 20px;
+            padding-left: 20px;
+            border-left: 2px solid #ccc;
+            color: #666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        .blockquote a {
+            color: #50c27d;
+        }
+        .footer {
+            background-color: #f1f1f1;
+            padding: 20px;
+            text-align: center;
+            font-size: 20px;
+            color: #50c27d;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+        .footer img {
+            width: 24px;
+            height: 24px;
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div>David Simpson <br> deliver. iterate. </div>
+        <div class="nav">
+            <a href="#">Blog</a>
+            <a href="#">About</a>
+            <a href="#">Projects</a>
+            <a href="#">Apps</a>
+        </div>
+    </div>
+    <div class="main-content">
+        <div class="title">Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</div>
+        <div class="post-details">
+            Posted by David Simpson on May 22, 2014. <a href="#">Return to index</a> . <br>
+            Tags:
+        </div>
+        <div class="content">
+            <p>Following yesterdays <a href="#">Atlassian security advisory for Confluence</a>, it looks like there are some added steps required for people who have user macros. Be careful folks.<br>@BergerofLondon spotted this first:</p>
+            <div class="blockquote">
+                <p>Following upgrade to Confluence 5.5.1 the values of parameters in user macros cannot be evaluated the same way. Discovered this the hard way<br>â Berger (@BergerofLondon) <a href="#">May 22, 2014</a></p>
+            </div>
+            <div class="blockquote">
+                <p>You can't use the same shorthand you use for standard variables. #if ($paramistrue) will always evaluate as true.<br>â Berger (@BergerofLondon) <a href="#">May 22, 2014</a></p>
+            </div>
+            <div class="blockquote">
+                <p>You now have to use things like #if ($paramistrue == true) or #if ($paramistrue == false).<br>â Berger (@BergerofLondon) <a href="#">May 22, 2014</a></p>
+            </div>
+            <div class="blockquote">
+                <p>@baitman For strings I can no longer do #if ($paramfoo), I have to do #if ($paramfoo.length() > 0. Which is crazy.<br>â Berger (@BergerofLondon) <a href="#">May 22, 2014</a></p>
+            </div>
+            <div class="blockquote">
+                <p>@baitman Also, if you're upgrading to 5.5.1 to fix the security vulnerability double-check that it's upgraded xwork to 1.17. Ours wasn't.<br>â Berger (@BergerofLondon) <a href="#">May 22, 2014</a></p>
+            </div>
+            <p>The update to atlassian-xwork-core-1.17.jar means you have to be more specific with your coding. Thanks to @BergerofLondon for the heads up.</p>
+        </div>
+    </div>
+    <div class="footer">
+        <img src="src/placeholder.jpg" alt="social icon">
+        <img src="src/placeholder.jpg" alt="social icon">
+        <img src="src/placeholder.jpg" alt="social icon">
+        <img src="src/placeholder.jpg" alt="social icon">
+    </div>
+</body>
+</html>

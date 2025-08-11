@@ -309,6 +309,7 @@ def plot_heatmap_comparison_violations(comparison: list) -> None:
     # calc cosine similarity for each pari
     cosine_similarity_dict = _calculate_cosine_similarity(vector_space)
 
+
     # dataframe out of dict 
     df_cosine = pd.DataFrame.from_dict(cosine_similarity_dict, orient='index').fillna(0)
     # rename columns to human readable
@@ -325,8 +326,10 @@ def plot_heatmap_comparison_violations(comparison: list) -> None:
 
     plt.xticks(range(df_cosine.shape[1]), df_cosine.columns, rotation=45, ha='right', fontsize=8)
     plt.yticks(range(df_cosine.shape[0]), df_cosine.index, fontsize=7)
-    plt.title('Pairwise Cosine Similarity per File across Runs')
+    plt.title('Pairwise Cosine Similarity per Screenshot across Different Models')
     plt.show()
+
+    pass
 
 
 
@@ -387,11 +390,11 @@ if __name__ == "__main__":
 
     # plot_bar_average_violations(comparison_data_average_qwen)
     # plot_cake_average_violations(comparison_data_average_openai[5][2])
-    map_severity_distr = get_severity_distribution(comparison_data_average_llava)
+    # map_severity_distr = get_severity_distribution(comparison_data_average_llava)
 
 
     # 2. Specific (per File) Comparison Data
-    output_path = os.path.join(os.path.dirname(__file__), "..", "Output")
+    output_path = os.path.join(os.path.dirname(__file__), "..", "..", "Output")
 
     comparison_data_specific_gemini = [
         # ("gemini", "naive", os.path.join(output_path, "gemini", "accessibility", "naive", "2025-06-18-10-18")),
@@ -411,13 +414,14 @@ if __name__ == "__main__":
         ("gemini", "iterative_refine_1", os.path.join(output_path, "gemini", "accessibility", "iterative_refine_1", "2025-06-19-10-46")),
     ]
 
-    comparison_data_specific_openai = [
-        # ("openai", "naive", os.path.join(output_path, "openai", "accessibility", "naive", "2025-06-19-15-41")),
-        # ("openai", "naive", os.path.join(output_path, "openai", "accessibility", "naive", "2025-06-19-16-53")),
-        # ("openai", "naive", os.path.join(output_path, "openai", "accessibility", "naive", "2025-06-19-19-05")),
-        # ("gemini", "naive", os.path.join(output_path, "gemini", "accessibility", "naive", "2025-06-18-10-18")),
-        # ("gemini", "naive", os.path.join(output_path, "gemini", "accessibility", "naive", "2025-06-18-11-24")),
-        # ("gemini", "naive", os.path.join(output_path, "gemini", "accessibility", "naive", "2025-06-18-11-53")),
+
+    comparison_data_specific_both= [
+        ("openai", "naive", os.path.join(output_path, "openai", "accessibility", "naive", "2025-06-19-15-41")),
+        ("openai", "naive", os.path.join(output_path, "openai", "accessibility", "naive", "2025-06-19-16-53")),
+        ("openai", "naive", os.path.join(output_path, "openai", "accessibility", "naive", "2025-06-19-19-05")),
+        ("gemini", "naive", os.path.join(output_path, "gemini", "accessibility", "naive", "2025-06-18-10-18")),
+        ("gemini", "naive", os.path.join(output_path, "gemini", "accessibility", "naive", "2025-06-18-11-24")),
+        ("gemini", "naive", os.path.join(output_path, "gemini", "accessibility", "naive", "2025-06-18-11-53")),
         # ("openai", "zero-shot", os.path.join(output_path, "openai", "accessibility", "zero-shot", "2025-06-20-09-55")),
         # ("openai", "zero-shot", os.path.join(output_path, "openai", "accessibility", "zero-shot", "2025-06-20-11-10")),
         # ("openai", "zero-shot", os.path.join(output_path, "openai", "accessibility", "zero-shot", "2025-06-20-12-33")),
@@ -436,13 +440,14 @@ if __name__ == "__main__":
         # ("gemini", "iterative", os.path.join(output_path, "gemini", "accessibility", "iterative", "2025-06-18-21-10")),
         # ("gemini", "iterative", os.path.join(output_path, "gemini", "accessibility", "iterative", "2025-06-19-07-33")),
         # ("gemini", "iterative", os.path.join(output_path, "gemini", "accessibility", "iterative", "2025-06-19-10-46")),
-        ("openai", "iterative_refine_1", os.path.join(output_path, "openai", "accessibility", "iterative_refine_1", "2025-06-21-11-04")),
-        ("openai", "iterative_refine_1", os.path.join(output_path, "openai", "accessibility", "iterative_refine_1", "2025-06-21-15-32")),
+        # ("openai", "iterative_refine_1", os.path.join(output_path, "openai", "accessibility", "iterative_refine_1", "2025-06-21-11-04")),
+        # ("openai", "iterative_refine_1", os.path.join(output_path, "openai", "accessibility", "iterative_refine_1", "2025-06-21-15-32")),
         # ("openai", "iterative_refine_1", os.path.join(output_path, "openai", "accessibility", "iterative_refine_1", "2025-06-21-19-26")),
-        ("gemini", "iterative_refine_1", os.path.join(output_path, "gemini", "accessibility", "iterative_refine_1", "2025-06-18-21-10")),
-        ("gemini", "iterative_refine_1", os.path.join(output_path, "gemini", "accessibility", "iterative_refine_1", "2025-06-19-07-33")),
+        # ("gemini", "iterative_refine_1", os.path.join(output_path, "gemini", "accessibility", "iterative_refine_1", "2025-06-18-21-10")),
+        # ("gemini", "iterative_refine_1", os.path.join(output_path, "gemini", "accessibility", "iterative_refine_1", "2025-06-19-07-33")),
         # ("gemini", "iterative_refine_1", os.path.join(output_path, "gemini", "accessibility", "iterative_refine_1", "2025-06-19-10-46")),
     ]
-    # plot_heatmap_comparison_violations(comparison_data_specific_openai)
+    plot_heatmap_comparison_violations(comparison_data_specific_both)
+
 
 

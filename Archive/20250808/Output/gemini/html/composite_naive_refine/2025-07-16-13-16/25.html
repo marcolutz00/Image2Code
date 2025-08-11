@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Singles Bonogin</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Hero Section */
+        .hero {
+            background-color: #29327B;
+            color: #fff;
+            text-align: left;
+            padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 600px;
+            margin-left: 50px;
+        }
+
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+        }
+
+        .hero .buttons {
+            display: flex;
+            gap: 20px;
+        }
+
+        .hero .buttons a {
+            display: inline-block;
+            padding: 12px 24px;
+            border-radius: 5px;
+            text-decoration: none;
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .hero .buttons a:first-child {
+            background-color: #fff;
+            color: #29327B;
+        }
+
+        .hero .buttons a:last-child {
+            background-color: #51B9CD;
+        }
+
+        .hero .over50 {
+            margin-top: 30px;
+            font-size: 1em;
+        }
+
+        .hero-image {
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 40%;
+            height: 100%;
+        }
+
+        .hero-image::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            width: 200px;
+            height: 200px;
+            background-color: #0E1666;
+            z-index: 1;
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background-color: #0E1666;
+            z-index: 1;
+        }
+
+
+        /* Main Content */
+        main {
+            padding: 40px 20px;
+        }
+
+        main h2 {
+            font-size: 2em;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        main p {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #29798D;
+            color: #fff;
+            padding: 20px;
+        }
+
+        footer p {
+            text-align: center;
+        }
+
+        nav {
+            padding: 20px;
+        }
+
+        nav a {
+            display: inline-block;
+            padding: 5px 10px;
+            text-decoration: none;
+            color: #555;
+        }
+
+        nav a.active {
+            color: #007bff;
+        }
+
+        /* Specific Content Styles */
+        .breadcrumbs {
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9em;
+        }
+
+        .breadcrumbs a {
+            color: #7C4DFF;
+            text-decoration: none;
+        }
+
+        .breadcrumbs span {
+            color: #333;
+        }
+
+        /* Buttons */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        /* Footer Styles */
+        .footer-section {
+            background-color: #29798D;
+            color: #fff;
+            padding: 20px;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-around;
+        }
+
+        .footer-column {
+            flex: 1;
+            padding: 0 20px;
+        }
+
+        .footer-column h4 {
+            border-bottom: 1px solid #fff;
+            padding-bottom: 5px;
+            margin-bottom: 10px;
+             color: #000000;
+        }
+
+        .footer-column ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .footer-column li {
+            margin-bottom: 5px;
+        }
+
+        .footer-column a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .copyright {
+            text-align: left;
+            padding: 20px;
+            background-color: #29798D;
+            color: #fff;
+        }
+
+        /* Singles in Section */
+        .singles-in-section {
+            background-color: #29798D;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            display: flex;
+            justify-content: center;
+        }
+
+        .singles-in-section a {
+            background-color: #51B9CD;
+            color: #fff;
+            padding: 10px 20px;
+            text-decoration: none;
+            border-radius: 5px;
+            margin: 10px;
+            display: inline-block;
+        }
+
+        .buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .grey-text {
+            color: grey
+        }
+
+        .search-buttons-container {
+            display: flex;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+        }
+
+        .search-buttons-container a {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #f0f0f0;
+            color: #333;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .grey-text {
+            color: #000000 !important;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="hero">
+        <div class="hero-content">
+            <h1>Meet amazing singles today</h1>
+            <p>Just say g'day to local singles looking for fun excitement and romance in your area right now</p>
+            <p>Create your free profile to see your matches</p>
+            <div class="buttons">
+                <a href="#">Join for free now</a>
+                <a href="#" style="color:#404040">Sign in</a>
+            </div>
+            <p class="over50">Over 50? Try our mature dating site</p>
+        </div>
+        <div class="hero-image"></div>
+    </header>
+
+    <nav class="breadcrumbs">
+        <a href="#" style="color:#7C4DFF">Home</a>
+        <span> > </span>
+        <a href="#" style="color:#7C4DFF">Singles</a>
+        <span> > </span>
+        <a href="#" style="color:#7C4DFF">Gold Coast</a>
+        <span> > </span>
+        <span>Bonogin</span>
+    </nav>
+
+    <main class="container">
+        <h2>Singles Bonogin</h2>
+        <p>Finding singles in Bonogin is fun and easy with justsaygday.com. As one of Australia's leading matchmaking
+            websites
+            you have a great chance of meeting that special someone missing in your life.</p>
+        <p>Life as a single girl of guy in Bonogin can be fun but most of us are looking for someone to share the ups and
+            downs of
+            life, share experiences and cuddle up on those cold winter nights. With new members registering on
+            Australia's
+            hottest online dating website every month looking for friendship and romance, your dream date may be just a
+            couple
+            of click away.</p>
+        <p>Finding a date is fun and easy with our desktop and convenient mobile applications. Our latest smartphone
+            application is the most powerful yet and best of all, there is no application to download and no fiddly
+            installation
+            instructions to follow, just sign up for free and visit <a href="#">justsaygday.com</a> from any mobile device
+            for instant access to the
+            mobile application. From the mobile application you can access all the popular features as if you were on
+            the desktop
+            site as well as some mobile enhanced features like:</p>
+        <p>Who's near me - find singles near you with the latest geo-location technologies without giving away your exact
+            location</p>
+        <p>Upload photos and videos directly from your phones camera</p>
+        <p>Send 'icebreakers' and 'winks'</p>
+        <p>Advanced personality matching and automated suggestions</p>
+
+        <h2>Find the guy who's right for you</h2>
+
+        <p>What's your idea of the perfect guy? Outgoing, sensitive, wild, gentle, tall, big, slim?</p>
+        <p>Find someone to share your life with. The next person you say g'day to might be the one.</p>
+
+        <div class="search-buttons-container">
+            <a href="#">Search single women in Bonogin</a>
+            <a href="#">Search single men in Bonogin</a>
+            <a href="#">Dating in Bonogin</a>
+        </div>
+    </main>
+
+    <section class="singles-in-section">
+        <a href="#" style="color:#404040">Advancetown</a>
+        <a href="#" style="color:#404040">Arundel</a>
+        <a href="#" style="color:#404040">Arundel Bc</a>
+        <a href="#" style="color:#404040">Arundel Dc</a>
+    </section>
+
+    <footer class="footer-section">
+        <div class="footer-content">
+            <div class="footer-column">
+                <h4>Just Say G'day</h4>
+                <ul>
+                    <li><a  href="#">SSL secureScamalytics</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Pages</h4>
+                <ul>
+                    <li><a  href="#">Local singles</a></li>
+                    <li><a  href="#">Mature dating</a></li>                    
+                    <li><a  href="#">Blog</a></li>
+                    <li><a  href="#">Completing your dating profile</a></li>
+                </ul>
+            </div>
+
+            <div class="footer-column">
+                <h4>Company</h4>
+                <ul>
+                    <li><a  href="#">Terms</a></li>
+                    <li><a  href="#">Privacy</a></li>
+                    <li><a  href="#">Cookies</a></li>
+                    <li><a  href="#">Facebook</a></li>
+                </ul>
+            </div>
+        </div>
+    </footer>
+
+    <div class="copyright">
+        ÃÂ© Copyright notice - Site design and content copyright justsaygday.com<br>
+        Individuals pictured are models and are used for illustrative purposes only.
+    </div>
+</body>
+
+</html>

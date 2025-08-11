@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Q & A</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            text-decoration: none;
+            color: #007bff;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #f8f9fa;
+            padding: 10px 0;
+            text-align: right;
+        }
+
+        .header a {
+            margin: 0 10px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            display: flex;
+            margin-top: 20px;
+        }
+
+        .sidebar {
+            width: 20%;
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .content {
+            width: 80%;
+            padding: 20px;
+        }
+
+        /* Q & A Styles */
+        .q-a-categories {
+            background-color: #ffbb33;
+            color: #fff;
+            padding: 10px;
+            margin-bottom: 20px;
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #ffbb33;
+            color: #444;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        .question {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .question-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .question-header .user {
+            margin-right: 10px;
+        }
+
+        .question-content {
+            margin-bottom: 10px;
+        }
+
+        .answer {
+            margin-left: 20px;
+            padding: 10px;
+            border: 1px solid #eee;
+        }
+
+        .answer-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .answer-header .user {
+            margin-right: 10px;
+        }
+
+        .answer-content {
+            margin-bottom: 10px;
+        }
+
+        .related-questions {
+            margin-top: 20px;
+        }
+
+        .related-questions h3 {
+            margin-bottom: 10px;
+        }
+
+        .related-questions ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .related-questions li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .ask-question {
+            margin-top: 20px;
+            background-color: #ffbb33;
+            padding: 10px;
+        }
+
+        .ask-question h3 {
+            margin-bottom: 10px;
+        }
+
+        .ask-question label {
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .ask-question input[type="text"],
+        .ask-question textarea,
+        .ask-question select {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .ask-question textarea {
+            height: 150px;
+        }
+
+        /* Breadcrumbs */
+        .breadcrumbs {
+            padding: 10px;
+            font-size: 14px;
+        }
+
+        .breadcrumbs a {
+            color: #007bff;
+        }
+
+        /* Button */
+        .button {
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .question-votes {
+            display: flex;
+            align-items: center;
+        }
+
+        .question-votes button {
+            background: none;
+            border: none;
+            font-size: 16px;
+            cursor: pointer;
+            padding: 0 5px;
+        }
+
+        /* Question with Answer styling */
+        .question-with-answer {
+            margin-bottom: 20px;
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+        }
+
+        .question-with-answer .question {
+            margin-bottom: 10px;
+        }
+
+        .question-with-answer .answer {
+            margin-left: 0;
+            padding: 10px;
+            border: 1px solid #eee;
+            background-color: #f9f9f9;
+        }
+
+        .related-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="header">
+        <a href="#">Community</a>
+        <a href="#">Answers</a>
+        <a href="#">App</a>
+    </div>
+
+    <div class="breadcrumbs">
+        <a href="#">Home</a> /
+        <a href="#">Answers</a> /
+        <a href="#">Destinations</a> /
+        <a href="#">Guangzhou</a> /
+        <a href="#">Transportation</a> /
+    </div>
+
+    <div class="main-content">
+        <div class="sidebar">
+            <div class="q-a-categories">
+                Q & A Categories
+            </div>
+            <ul>
+                <li><a href="#">Destinations</a></li>
+                <li><a href="#">Visa & Embassy</a></li>
+                <li><a href="#">Tours</a></li>
+                <li><a href="#">Flights</a></li>
+                <li><a href="#">Trains</a></li>
+                <li><a href="#">Weather</a></li>
+                <li><a href="#">Great Wall</a></li>
+                <li><a href="#">Culture</a></li>
+            </ul>
+        </div>
+        <div class="content">
+            <div class="question-with-answer">
+                <div class="question">
+                    <div class="question-header">
+                        <div class="user">Asked by Mr.eric from israel | Jun. 02, 2009 04:24</div>
+                    </div>
+                    <div class="question-content">
+                        About: How do you get from Guangzhou airport to the city?
+                        <br><br>
+                        Hi,
+                        <br>
+                        1. I'll arrive at GZ airport at 23:00 and need to go to the "riverside international youth hostel".
+                        I'm
+                        planning on takeing line 1 into town. from there - can I take the metro???? is it working all
+                        night????
+                        <br>
+                        2. I'll not have Chinese money on me and I read that the bank at the airport closes at 21:00.
+                        are there
+                        ATMs at the airport???? if not - what to do????
+                        <br>
+                        thanks
+                        <br>
+                        eric
+                    </div>
+                </div>
+                <div class="answer">
+                    <div class="answer-header">
+                        <div class="user">Answered by Mr.Qi from China | Jun. 03, 2009 22:11</div>
+                        <div class="question-votes">
+                            <button>0</button>
+                            <button>0</button>
+                            <button class="button">Reply</button>
+                        </div>
+                    </div>
+                    <div class="answer-content">
+                        Hello!
+                        <br>
+                        1. Suggest you take a taxi to the hotel aftering arriving in the town. Subway Line 1 passes
+                        Fangcun
+                        Station which is the neat metro station to the hotel, but subway are not working after 23:30. I
+                        think
+                        you gona miss it.
+                        <br>
+                        2. Yes, there are ATMs at the teminal, they are of bank like, Bank of China and several others.
+                        <br>
+                        Good luck~
+                    </div>
+                </div>
+            </div>
+            <div class="related-questions">
+                <h3>Related Questions:</h3>
+                <ul>
+                    <li class="related-question">
+                        <div>
+                            <a href="#">Is Guangzhou Baiyun Airport far away from my hotel in Liwan District?</a>
+                            <br>
+                            Asked by jac from singapore | Nov. 04, 2012 20:45
+                        </div>
+                        <div>1 answer</div>
+                    </li>
+                    <li class="related-question">
+                        <div><a href="#">how to go to changsha shuyuan international youth hostel from airport?anyon...</a>
+                            <br>
+                            Asked by firdaus from Malaysia | Sep. 21, 2017 01:29
+                        </div>
+                        <div>1 answer</div>
+                    </li>
+                    <li class="related-question">
+                        <div><a href="#">Hi I will arrive in Pudong Airport at 10.15 p.m. We will stay at MINGTOWN ...</a>
+                            <br>
+                            Asked by Mr.Andrea from italy | Feb. 21, 2011 02:17
+                        </div>
+                        <div>1 answer</div>
+                    </li>
+                    <li class="related-question">
+                        <div>
+                            <a href="#">hi two of us will arrive Pudong International Airport on 27/10/10 and w...</a>
+                            <br>
+                            Asked by Mrs.lisa chan from australia | Sep. 28, 2010 22:44
+                        </div>
+                        <div>1 answer</div>
+                    </li>
+                    <li class="related-question">
+                        <div>
+                            <a href="#">The best transportation from Tianjin Airport to Peking Uni International Yo...</a>
+                            <br>
+                            Asked by Azlia from Malaysia | Nov. 20, 2011 00:09
+                        </div>
+                        <div>1 answer</div>
+                    </li>
+                    <li class="related-question">
+                        <div>
+                            <a href="#">How to go to Guilin airport from Ming Palace International Youth Hostel?</a>
+                            <br>
+                            Asked by chloe from Malaysia | Dec. 24, 2017 18:38
+                        </div>
+                        <div>1 answer</div>
+                    </li>
+                </ul>
+            </div>
+            <div class="ask-question">
+                <h3>Ask a Question</h3>
+                <label for="categories">Categories:</label>
+                <select id="categories">
+                    <option>Guangzhou</option>
+                </select>
+                <label for="question-summary">Question Summary (100 characters)</label>
+                <input type="text" id="question-summary" maxlength="100">
+                <label for="details">Details (optional) (2,000 characters)</label>
+                <textarea id="details" maxlength="2000"></textarea>
+                <button type="submit">Submit</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        About Us & Contact Us
+        <br>
+        Copyright Â© 1998-2023 All rights reserved.
+    </div>
+</body>
+
+</html>

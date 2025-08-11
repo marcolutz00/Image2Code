@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Cart</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #333;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 14px;
+        }
+
+        .header-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .search-box {
+            display: flex;
+            align-items: center;
+        }
+
+        .search-box input {
+            padding: 5px;
+            border: none;
+            border-radius: 5px;
+        }
+
+        .search-box button {
+            background-color: transparent;
+            border: none;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        .image-placeholder {
+            width: 184px;
+            height: 223px;
+            background-color: blue;
+        }
+
+        .contact-info {
+            text-align: left;
+            margin-left: 20px;
+        }
+
+        nav {
+            background-color: #333;
+            text-align: center;
+            padding: 10px;
+        }
+
+        nav a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 15px;
+        }
+
+        .cart-container {
+            background-color: #fff;
+            color: #333;
+            padding: 20px;
+            margin-top: 20px;
+        }
+
+        .cart-container h2 {
+            text-align: center;
+        }
+
+        .continue-shopping {
+            display: block;
+            width: 220px;
+            padding: 10px 20px;
+            background-color: #00bdaa;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            margin: 20px auto;
+        }
+
+        .cart-items {
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 10px;
+        }
+
+        .cart-items p {
+            text-align: center;
+        }
+
+        .total {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .checkout-button {
+            display: block;
+            width: 120px;
+            padding: 10px 20px;
+            background-color: #00bdaa;
+            color: #fff;
+            text-decoration: none;
+            text-align: center;
+            border-radius: 5px;
+            margin: 20px auto;
+        }
+
+        .recalculate, .empty-cart {
+            background-color: #ddd;
+            color: #333;
+            padding: 5px 10px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .empty-cart {
+            background-color: transparent;
+            text-decoration: underline;
+        }
+
+        footer {
+            margin-top: 50px;
+            text-align: left;
+            padding: 20px;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="header-links">
+                <a href="#">CLICK HERE TO SIGN IN</a>
+                OR
+                <a href="#">CLICK HERE TO REGISTER</a>
+            </div>
+            <div class="contact-section" style="display: flex; align-items: center;">
+                <div class="image-placeholder"></div>
+                <div class="contact-info">
+                    <p>Talk to a real person!</p>
+                    <p>[PHONE REDACTED]</p>
+                </div>
+            </div>
+            <div class="header-links">
+                <a href="#">VIEW CART</a>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="SEARCH">
+                <button type="submit">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+                        <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+                    </svg>
+                </button>
+            </div>
+        </header>
+        <nav>
+            <a href="#">â°</a>
+        </nav>
+
+        <div class="cart-container">
+            <h2>Your Shopping Cart</h2>
+            <a href="#" class="continue-shopping">CONTINUE SHOPPING</a>
+
+            <div class="cart-items">
+                <h3>Your Shopping Cart</h3>
+                <p>YOUR SHOPPING CART IS EMPTY.</p>
+            </div>
+
+            <div class="total">
+                TOTAL: $0.00
+            </div>
+
+            <a href="#" class="checkout-button">CHECKOUT</a>
+
+            <button class="recalculate">RECALCULATE</button>
+            <button class="empty-cart">Empty Cart</button>
+        </div>
+
+        <footer>
+            <input type="checkbox" id="showCart" name="showCart">
+            <label for="showCart">Show me my shopping cart every time I order something.</label>
+            <p>This site does not do live transactions. If you provide a credit card number it will not be billed immediately. Due to the custom nature of these products, you will be
+                contacted by a sales person at Century 2001 to coordinate getting any custom artwork or other special handling instructions you require. There is a note area when you
+                check out to provide any special instructions you may have regarding your order. Once the sales person has all the information they need and have verified the charges
+                on this order, you will have the order acknowledgement mailed, emailed or faxed to your attention. If at that time you are satisfied with the order it will then be processed
+                using the payment of your choice. If you would like to use your own custom logo for imprinting on any of our products <a href="#">contact us</a> for instructions on the best way of getting
+                your logo to us. For information on acceptable digial artwork, see our <a href="#">artwork information</a> page. *** Tax will only be applicable on goods delivered to Florida.</p>
+        </footer>
+    </div>
+</body>
+</html>

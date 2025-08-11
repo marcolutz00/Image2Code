@@ -30,8 +30,8 @@ async def download_dataset():
         html_str = entry['text']
         img = entry['image']
 
-        out_html = os.path.join(CURR_PATH, 'html', f"{index+1}.html")
-        out_img  = os.path.join(CURR_PATH, 'images', f"{index+1}.png")
+        out_html = os.path.join(CURR_PATH,'image_alt', 'html', f"{index+1}.html")
+        out_img  = os.path.join(CURR_PATH, 'image_alt', 'images', f"{index+1}.png")
         os.makedirs(os.path.dirname(out_html), exist_ok=True)
         os.makedirs(os.path.dirname(out_img), exist_ok=True)
 
@@ -76,7 +76,7 @@ async def main():
         result_clean = utils_html.clean_html_result(result_raw)
 
 
-        output_html_path = os.path.join(CURR_PATH, 'html_generated', f"{model}_{image_information['name']}.html")
+        output_html_path = os.path.join(CURR_PATH, 'image_alt', 'html_generated', f"{model}_{image_information['name']}.html")
         with open(output_html_path, "w", encoding="utf-8") as f:
             f.write(result_clean)
 

@@ -1,0 +1,307 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+        "https://dequeuniversity.com/rules/axe/4.10/region",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
+      ],
+      "impact": "moderate",
+      "name": "Landmark & Region; Missing & Unique Landmarks;",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+          "source": "axe-core",
+          "title": "Document should have one main landmark",
+          "description": "Ensure the document has a main landmark",
+          "impact": "moderate",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "page-has-main",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Document does not have a main landmark"
+              }
+            ],
+            "none": [],
+            "impact": "moderate",
+            "html": "<html lang=\"en\">",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix all of the following:\n  Document does not have a main landmark"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div>",
+            "target": [
+              ".container > div"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
+      ],
+      "impact": "serious",
+      "name": "Links; Distinguishable Color;",
+      "amount_nodes_failed": 2,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 1.03,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#0066cc",
+                  "parentColor": "#666666"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<p>Simple theme. Theme images by <a href=\"#\">nammath</a>. Powered by <a href=\"#\">Blogger</a>.</p>",
+                    "target": [
+                      "footer > p:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 1.03:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0066cc, surrounding text: #666666)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<p>Simple theme. Theme images by <a href=\"#\">nammath</a>. Powered by <a href=\"#\">Blogger</a>.</p>",
+                    "target": [
+                      "footer > p:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">nammath</a>",
+            "target": [
+              "p:nth-child(4) > a:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.03:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0066cc, surrounding text: #666666)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 1.03,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#0066cc",
+                  "parentColor": "#666666"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<p>Simple theme. Theme images by <a href=\"#\">nammath</a>. Powered by <a href=\"#\">Blogger</a>.</p>",
+                    "target": [
+                      "footer > p:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 1.03:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0066cc, surrounding text: #666666)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<p>Simple theme. Theme images by <a href=\"#\">nammath</a>. Powered by <a href=\"#\">Blogger</a>.</p>",
+                    "target": [
+                      "footer > p:nth-child(4)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">Blogger</a>",
+            "target": [
+              "p:nth-child(4) > a:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.03:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0066cc, surrounding text: #666666)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-A",
+              "path": "1,HTML,1,BODY,2,FOOTER,3,P,1,A",
+              "selector": "body > footer > p > a",
+              "boundingRect": {
+                "top": 1450,
+                "bottom": 1467,
+                "left": 256,
+                "right": 322,
+                "width": 67,
+                "height": 17
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "nammath",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.03:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0066cc, surrounding text: #666666)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-P",
+                    "path": "1,HTML,1,BODY,2,FOOTER,3,P",
+                    "selector": "body > footer > p",
+                    "boundingRect": {
+                      "top": 1446,
+                      "bottom": 1497,
+                      "left": 10,
+                      "right": 402,
+                      "width": 392,
+                      "height": 51
+                    },
+                    "snippet": "<p>",
+                    "nodeLabel": "Simple theme. Theme images by nammath. Powered by Blogger."
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-3-A",
+              "path": "1,HTML,1,BODY,2,FOOTER,3,P,3,A",
+              "selector": "body > footer > p > a",
+              "boundingRect": {
+                "top": 1476,
+                "bottom": 1493,
+                "left": 187,
+                "right": 242,
+                "width": 54,
+                "height": 17
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Blogger",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.03:1 with the surrounding text. (Minimum contrast is 3:1, link text: #0066cc, surrounding text: #666666)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-P",
+                    "path": "1,HTML,1,BODY,2,FOOTER,3,P",
+                    "selector": "body > footer > p",
+                    "boundingRect": {
+                      "top": 1446,
+                      "bottom": 1497,
+                      "left": 10,
+                      "right": 402,
+                      "width": 392,
+                      "height": 51
+                    },
+                    "snippet": "<p>",
+                    "nodeLabel": "Simple theme. Theme images by nammath. Powered by Blogger."
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

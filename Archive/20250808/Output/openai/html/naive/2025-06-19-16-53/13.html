@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Export News from Google Sites</title>
+    <style>
+        body {
+            font-family: 'Georgia', serif;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+            background-color: #f9f9f9;
+        }
+        .container {
+            max-width: 700px;
+            margin: 50px auto;
+            padding: 0 20px;
+            background: white;
+        }
+        header {
+            text-align: right;
+        }
+        header a {
+            color: #666;
+            text-decoration: none;
+            font-size: 14px;
+            margin-left: 10px;
+        }
+        h1 {
+            font-size: 3em;
+            margin-bottom: 0.3em;
+        }
+        h2 {
+            font-size: 1.5em;
+            margin-top: 1.5em;
+            margin-bottom: 0.5em;
+            font-weight: bold;
+        }
+        p {
+            margin: 1em 0;
+        }
+        .date, .read-time {
+            font-size: 0.9em;
+            color: #888;
+        }
+        code {
+            background: #f5f5f5;
+            padding: 5px;
+            display: block;
+            margin: 1em 0;
+            border-left: 3px solid #ccc;
+            white-space: pre-wrap;
+        }
+        a {
+            color: #1a0dab;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <span>Polibyte</span>
+            <a href="#">About Me</a>
+        </header>
+        <article>
+            <h1>Export news from google sites</h1>
+            <p class="date">Apr 27, 2012</p>
+            <p class="read-time">1 minute read</p>
+            <p>Iâve added a script, <a href="#">export_google_site_news</a>, to my catchall repository on github.</p>
+            <p>For example, to download the news stories at <a href="https://sites.google.com/a/medinacommunityband.org/www/announcements">https://sites.google.com/a/medinacommunityband.org/www/announcements</a>, you would run</p>
+            <code>
+export_google_site_news https://sites.google.com/a/medinacommunityband.org/www announcements
+            </code>
+            <h2>The backstory</h2>
+            <p>When Free It Athens moved our website from Google Sites to Drupal, we started from scratch rather than importing our old content. I realized on Wednesday that the news posts on the site were interesting historical information, yet Iâd never archived them.</p>
+            <p>First, I tried a recursive wget.</p>
+            <code>
+wget -r --no-parent --no-clobber ""
+            </code>
+            <p>This failed to work because Google pointlessly used javascript rather than anchor tags to link between the news listing pages.</p>
+            <p>Next I found and tried to use the google-sites-export tool from Googleâs Data Liberation Team, but I was never able to authenticate successfully from it.</p>
+            <p>At this point I was worried Iâd need to use a tool like Selenium to run the javascript, but then I realized the news listing pages took a single parameter to determine how far along in the pagination they were. It wouldnât take more than a C-style for loop to download them all.</p>
+            <code>
+for i in $(seq 0 10 120); do
+  wget ""   "-Onews.$i"
+done
+            </code>
+            <p>After doing that, I looked at the first one and determined a pattern that would match the relative URLs of individual news stories. I then extracted all the URLs.</p>
+            <code>
+grep -E -h -o '/a/freeitathens.org/foo/news/[a-z0-9\-]+' news.* | sort -u > news_links
+            </code>
+            <p>Once I had the list of URLs, it was simple to have wget download them all.</p>
+            <code>
+wget -i news_links -B https://sites.google.com
+            </code>
+            <p>Since I didnât find any other guides to doing this, I decided to flesh out what Iâd done into a simple tool and write about it here.</p>
+        </article>
+    </div>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Post</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 0;
+            text-align: center;
+        }
+        header nav {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+        }
+        header nav a {
+            color: white;
+            text-decoration: none;
+            padding: 10px;
+        }
+        main {
+            padding: 20px;
+            background-color: white;
+            margin: 0 auto;
+            max-width: 800px;
+        }
+        main h1 {
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+        main p, main .timestamp, main .tags {
+            color: #333;
+            margin-bottom: 10px;
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="src/placeholder.jpg" alt="Logo">
+        </div>
+        <nav>
+            <a href="#">Blog</a>
+            <a href="#">About</a>
+            <a href="#">Projects</a>
+            <a href="#">Apps</a>
+        </nav>
+    </header>
+    <main>
+        <h1>Update your user macros on Confluence</h1>
+        <p class="timestamp">Posted by David Simpson on May 22, 2014.</p>
+        <p class="tags">Tags:</p>
+        <p>Following yesterday's Atlassian security advisory for Confluence, it looks like there are some added steps required for people who have user macros. Be careful folks.</p>
+        <p>@BergerofLondon spotted this first:</p>
+        <blockquote>
+            <p>Following upgrade to Confluence 5.5.1 the values of parameters in user macros cannot be evaluated the same way. Discovered this the hard way</p>
+            <footer>â Berger (@BergerofLondon) May 22, 2014</footer>
+        </blockquote>
+        <p>You can't use the same shorthand you use for standard variables. #if ($paramistrue) will always evaluate as true.</p>
+        <p>You now have to use things like #if ($paramistrue == true) or #if ($paramistrue == false).</p>
+        <p>@baitman For strings I can no longer do #if ($paramfoo), I have to do #if ($paramfoo).length() > 0. Which is crazy.</p>
+        <p>@baitman Also, if you're upgrading to 5.5.1 to fix the security vulnerability double-check that it's upgraded xwork to 1.17. Ours wasn't.</p>
+        <p>The update to atlassian-xwork-core-1.17.jar means you have to be more specific with your coding. Thanks to @BergerofLondon for the heads up.</p>
+    </main>
+    <footer>
+        <a href="#"><i class="fab fa-facebook"></i></a>
+        <a href="#"><i class="fab fa-twitter"></i></a>
+        <a href="#"><i class="fab fa-instagram"></i></a>
+        <a href="#"><i class="fab fa-linkedin"></i></a>
+        <a href="#"><i class="fab fa-github"></i></a>
+    </footer>
+</body>
+</html>

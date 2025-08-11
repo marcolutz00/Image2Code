@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>aws_autoscaling_lifecycle_hook</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f8fa;
+            color: #333;
+        }
+        header {
+            background-color: #fff;
+            border-bottom: 1px solid #e5e5e5;
+            padding: 10px 20px;
+        }
+        header nav a {
+            margin-right: 15px;
+            color: #666;
+            text-decoration: none;
+            font-size: 12px;
+            padding: 5px 10px; /* Added padding to increase touch target size */
+        }
+        header nav a:hover {
+            text-decoration: underline;
+        }
+        main {
+            max-width: 900px;
+            margin: 20px auto;
+            padding: 0 20px;
+        }
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+        section {
+            margin-bottom: 40px;
+        }
+        pre {
+            background-color: #f0f0f0;
+            border: 1px solid #ddd;
+            padding: 10px;
+            overflow: auto;
+            color: #333;
+        }
+        .code-header {
+            background-color: #f0f3f6;
+            padding: 10px;
+            border-bottom: 1px solid #ddd;
+            display: flex;
+            justify-content: flex-end;
+            font-size: 12px;
+            color: #404040; /* Updated color for better contrast */
+        }
+        ul {
+            padding-left: 20px;
+        }
+        footer {
+            background-color: #333;
+            color: #999;
+            padding: 20px;
+            font-size: 12px;
+            display: flex;
+            justify-content: space-between;
+        }
+        footer div {
+            width: 30%;
+        }
+        footer div h3 {
+            color: #fff;
+            margin-top: 0;
+        }
+        footer div a {
+            color: #b3b3b3;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+        footer div a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="#">FEATURES</a>
+            <a href="#">OPEN SOURCE</a>
+            <a href="#">ABOUT</a>
+            <a href="#">DOCS</a>
+            <a href="#">LOGIN</a>
+            <a href="#">REGISTER</a>
+        </nav>
+    </header>
+    <main>
+        <h1>aws_autoscaling_lifecycle_hook</h1>
+        <p>Provides an AutoScaling Lifecycle Hook resource.</p>
+        <section>
+            <h2>Example Usage</h2>
+            <div class="code-header">
+                yaml | hcl
+            </div>
+            <pre>
+resource:
+  aws_autoscaling_group:
+    foobar:
+      availability_zones:
+        - us-west-2a
+      name: terraform-test-foobar5
+      health_check_type: EC2
+      termination_policies:
+        - OldestInstance
+      tag:
+        key: Foo
+        value: foo-bar
+        propagate_at_launch: true
+  aws_autoscaling_lifecycle_hook:
+    foobar:
+      name: foobar
+      autoscaling_group_name: '${aws_autoscaling_group.foobar.name}'
+      default_result: CONTINUE
+      heartbeat_timeout: 2000
+      lifecycle_transition: 'autoscaling:EC2_INSTANCE_LAUNCHING'
+      notification_metadata: '{"foo":"bar"}'
+      notification_target_arn: 'arn:aws:sqs:us-east-1:444455556666:queue1'
+      role_arn: 'arn:aws:iam::123456789012:role/S3Access'</pre>
+        </section>
+        <section>
+            <h2>Argument Reference</h2>
+            <p>The following arguments are supported:</p>
+            <ul>
+                <li><strong>name</strong> - (Required) The name of the lifecycle hook.</li>
+                <li><strong>autoscaling_group_name</strong> - (Required) The name of the Auto Scaling group to which you want to assign the lifecycle hook</li>
+                <li><strong>default_result</strong> - (Optional) Defines the action the Auto Scaling group should take when the lifecycle hook timeout elapses or if an unexpected failure occurs.</li>
+                <li><strong>heartbeat_timeout</strong> - (Optional) Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult parameter</li>
+            </ul>
+        </section>
+        <p>See the source of this document at <a href="https://www.terraform.io">Terraform.io</a></p>
+    </main>
+    <footer>
+        <div>
+            <h3>Koding</h3>
+            <a href="#">For Teams</a>
+            <a href="#">Platform for Training</a>
+            <a href="#">Pre-Sales Automation</a>
+        </div>
+        <div>
+            <h3>Resources</h3>
+            <a href="#">Documentation</a>
+            <a href="#">Blog</a>
+        </div>
+        <div>
+            <h3>About</h3>
+            <a href="#">About Us</a>
+            <a href="#">Open Source</a>
+        </div>
+        <div>
+            <h3>Contact</h3>
+            <a href="#">Facebook</a>
+            <a href="#">Twitter</a>
+            <a href="#">LinkedIn</a>
+            <a href="#">Email Us</a>
+        </div>
+    </footer>
+</body>
+</html>

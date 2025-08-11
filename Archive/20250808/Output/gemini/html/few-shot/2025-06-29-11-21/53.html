@@ -1,0 +1,381 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f8f6;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            background-color: #f9f8f6;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        nav {
+            background-color: #fff;
+            padding: 10px 0;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        nav ul li {
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: #333;
+        }
+
+        main {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .content {
+            width: 65%;
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .sidebar {
+            width: 30%;
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        footer {
+            background-color: #222;
+            color: #fff;
+            text-align: center;
+            padding: 20px 0;
+            margin-top: 20px;
+        }
+
+        a {
+            color: #c0392b;
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline;
+        }
+
+
+        /* Custom Styles */
+        header {
+            text-align: left;
+        }
+
+        header img {
+            width: 180px;
+            height: 130px;
+            margin-bottom: 10px;
+            background-color: blue;
+        }
+
+        header ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+        }
+
+        header ul li {
+            margin: 0 10px;
+            font-size: 0.8em;
+        }
+
+        .content {
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .sidebar {
+            background-color: #fff;
+            padding: 20px;
+        }
+
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .sidebar ul li {
+            margin-bottom: 10px;
+        }
+
+        .sidebar ul li a {
+            display: block;
+            padding: 10px;
+            background-color: #f9f9f9;
+            border-left: 5px solid #ddd;
+        }
+
+        .sidebar ul li a:hover {
+            background-color: #eee;
+            border-left-color: #c0392b;
+        }
+
+        .tag {
+            background-color: #f0ad4e;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+            font-size: 0.8em;
+        }
+
+        .related-posts {
+            margin-top: 20px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+        }
+
+        footer {
+            font-size: 0.8em;
+            padding: 20px;
+        }
+
+        .content-section {
+            margin-bottom: 20px;
+        }
+
+        .content-section h2 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .content-section p {
+            color: #555;
+        }
+
+        .latest-questions ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .latest-questions ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .latest-questions ul li:last-child {
+            border-bottom: none;
+        }
+
+        .latest-questions ul li a {
+            display: block;
+            color: #c0392b;
+        }
+
+        .latest-questions ul li a:hover {
+            text-decoration: none;
+        }
+
+        .content-item {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .content-item:last-child {
+            border-bottom: none;
+        }
+
+        .content-item h3 {
+            color: #333;
+            margin-bottom: 10px;
+        }
+
+        .content-item p {
+            color: #555;
+        }
+
+        .content-item a {
+            color: #c0392b;
+        }
+
+        .content-item a:hover {
+            text-decoration: underline;
+        }
+
+        .content-item .tags {
+            margin-top: 10px;
+        }
+
+        .content-item .tags a {
+            display: inline-block;
+            background-color: #f0ad4e;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+            font-size: 0.8em;
+        }
+
+        .content-item .tags a:hover {
+            text-decoration: none;
+            opacity: 0.8;
+        }
+
+        #search-bar {
+            height: 30px;
+            margin-bottom: 15px;
+            background-color: #fcf8e3;
+        }
+
+        #search-bar::placeholder {
+            font-size: 16px;
+            color: white;
+        }
+
+        .latest-questions {
+            margin-top: 25px;
+        }
+
+        button {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+
+        .share {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <img src="src/placeholder.jpg" alt="Placeholder Image">
+            <ul>
+                <li><a href="#">ABOUT</a></li>
+                <li><a href="#">DISCLAIMER</a></li>
+                <li><a href="#">SITEMAP</a></li>
+                <li><a href="#">CONTACT</a></li>
+                <li><a href="#">PRIVACY POLICY</a></li>
+                <li><a href="#">VISIT KERALA PSC</a></li>
+            </ul>
+        </header>
+
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Notifications</a></li>
+                <li><a href="#">Mock Exams</a></li>
+                <li><a href="#">Previous Questions</a></li>
+                <li><a href="#">Syllabus</a></li>
+                <li><a href="#">Answer Key</a></li>
+                <li><a href="#">Study Materials</a></li>
+                <li><a href="#">Youtube</a></li>
+            </ul>
+        </nav>
+
+        <main>
+            <div class="content">
+                <p><a href="#">Home</a> <a href="#">Facts on India</a> <a href="#">General Knowledge</a> <a href="#">Years</a></p>
+                <p><span class="tag">Facts on India</span> <span class="tag">General Knowledge</span> <span class="tag">Years</span></p>
+                <h2>The Indian Oil Corporation was set up in which year?</h2>
+                <p>A - 1964</p>
+                <p>B - 1965</p>
+                <p>C - 1966</p>
+                <p>D - 1970</p>
+                <h2>Answer : A</h2>
+                <h2>Explanation</h2>
+                <p>Indian Oil Corporation is an Indian state owned oil and gas company primarily headquartered in New Delhi. It is the
+                    largest commercial oil company in the country.</p>
+                <button>Show Answer</button>
+
+                <table style="width: 100%; margin-top: 20px;">
+                    <tr>
+                        <td style="width: 20%;">
+                            <button class="share">Tweet</button>
+                        </td>
+                        <td style="width: 20%;">
+                            <button class="share">Share</button>
+                        </td>
+                        <td style="width: 20%;">
+                            <button class="share">Share</button>
+                        </td>
+                        <td style="width: 20%;">
+                            <button class="share">Share</button>
+                        </td>
+                        <td style="width: 20%;">
+                            <button class="share">Share</button>
+                        </td>
+                    </tr>
+                </table>
+
+                <div class="related-posts">
+                    <h3>RELATED POSTS</h3>
+                </div>
+
+                <div class="comments">
+                    <h3>0 COMMENTS:</h3>
+                </div>
+            </div>
+
+            <div class="sidebar">
+                <div id="search-bar">
+
+                </div>
+                <div style="width: 100%; height: 100px; background-color: gold; margin-bottom: 20px;"></div>
+                <div class="latest-questions">
+                    <h3>LATEST QUESTIONS</h3>
+                    <ul>
+                        <li><a href="#">Let us go for a walk, Question tag?</a></li>
+                        <li><a href="#">Who conducted Panthi Bhojanam first time in India ?</a></li>
+                        <li><a href="#">She sang well, ________ ? (Question Tag)</a></li>
+                        <li><a href="#">I congratulate you ________ your success.</a></li>
+                        <li><a href="#">The founder of 'Samathwa Samajam"</a></li>
+                        <li><a href="#">There is an exception ________ every rule.</a></li>
+                        <li><a href="#">He died ________ a severe head injury.</a></li>
+                        <li><a href="#">Who conducted "Panthi Bhojanam" for the first time in India?</a></li>
+                        <li><a href="#">Who founded the Vidya Poshini Sabha?</a></li>
+                        <li><a href="#">Who, among the following, has the final right to sanction the expenditure of
+                                public money in India ?</a></li>
+                    </ul>
+                </div>
+            </div>
+        </main>
+
+        <footer>
+            <p>Created with by YesLearners.com - YesLearners</p>
+        </footer>
+    </div>
+</body>
+
+</html>

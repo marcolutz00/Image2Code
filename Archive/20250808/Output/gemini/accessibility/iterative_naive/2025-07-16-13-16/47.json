@@ -1,0 +1,1523 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle3.Guideline3_1.3_1_1.H57.2",
+        "Principle3.Guideline3_1.3_1_1.H57.3.Lang",
+        "Principle3.Guideline3_1.3_1_1.H57.3.XmlLang",
+        "Principle3.Guideline3_1.3_1_2.H58.1.Lang",
+        "Principle3.Guideline3_1.3_1_2.H58.1.XmlLang"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+        "https://dequeuniversity.com/rules/axe/4.10/html-lang-valid",
+        "https://dequeuniversity.com/rules/axe/4.10/html-xml-lang-mismatch",
+        "https://dequeuniversity.com/rules/axe/4.10/valid-lang"
+      ],
+      "impact": "serious",
+      "name": "Language; Document Lang; Missing & Invalid",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+          "source": "axe-core",
+          "title": "<html> element must have a lang attribute",
+          "description": "Ensure every HTML document has a lang attribute",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-lang",
+                "data": {
+                  "messageKey": "noLang"
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "The <html> element does not have a lang attribute"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<html>",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix any of the following:\n  The <html> element does not have a lang attribute"
+          }
+        },
+        {
+          "id": "Principle3.Guideline3_1.3_1_1.H57.2",
+          "source": "pa11y",
+          "title": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
+          "description": "<html><head>\n<title>Seahorse.org</tit...</html>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle3.Guideline3_1.3_1_1.H57.2",
+            "type": "error",
+            "typeCode": 1,
+            "message": "The html element should have a lang or xml:lang attribute which describes the language of the document.",
+            "context": "<html><head>\n<title>Seahorse.org</tit...</html>",
+            "selector": "html",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/html-has-lang",
+          "source": "lighthouse",
+          "title": "`<html>` element does not have a `[lang]` attribute",
+          "description": "If a page doesn't specify a `lang` attribute, a screen reader assumes that the page is in the default language that the user chose when setting up the screen reader. If the page isn't actually in the default language, then the screen reader might not announce the page's text correctly. [Learn more about the `lang` attribute](https://dequeuniversity.com/rules/axe/4.10/html-has-lang).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-HTML",
+              "path": "1,HTML",
+              "selector": "html",
+              "boundingRect": {
+                "top": 0,
+                "bottom": 1185,
+                "left": 0,
+                "right": 980,
+                "width": 980,
+                "height": 1185
+              },
+              "snippet": "<html>",
+              "nodeLabel": "html",
+              "explanation": "Fix any of the following:\n  The <html> element does not have a lang attribute"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_1.1_1_1.H37",
+        "Principle1.Guideline1_1.1_1_1.H67.1",
+        "Principle1.Guideline1_1.1_1_1.H36"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+        "https://dequeuniversity.com/rules/axe/4.10/input-image-alt"
+      ],
+      "impact": "critical",
+      "name": "Alt-Text; Images;",
+      "amount_nodes_failed": 3,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "axe-core",
+          "title": "Images must have alternative text",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-alt",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an alt attribute"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<img src=\"src/placeholder.jpg\" width=\"175\" height=\"175\" style=\"float:left;\">",
+            "target": [
+              "#content > img[height=\"175\"][width=\"175\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "axe-core",
+          "title": "Images must have alternative text",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-alt",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an alt attribute"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<img src=\"src/placeholder.jpg\" width=\"175\" height=\"75\">",
+            "target": [
+              "img[height=\"75\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "axe-core",
+          "title": "Images must have alternative text",
+          "description": "Ensure <img> elements have alternative text or a role of none or presentation",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "has-alt",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an alt attribute"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<img src=\"src/placeholder.jpg\" width=\"175\" height=\"175\" style=\"float:left;\">",
+            "target": [
+              "#footer > img[height=\"175\"][width=\"175\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_1.1_1_1.H37",
+          "source": "pa11y",
+          "title": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+          "description": "<img src=\"src/placeholder.jpg\" width=\"175\" height=\"175\" style=\"float:left;\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+            "context": "<img src=\"src/placeholder.jpg\" width=\"175\" height=\"175\" style=\"float:left;\">",
+            "selector": "#content > img",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_1.1_1_1.H37",
+          "source": "pa11y",
+          "title": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+          "description": "<img src=\"src/placeholder.jpg\" width=\"175\" height=\"75\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+            "context": "<img src=\"src/placeholder.jpg\" width=\"175\" height=\"75\">",
+            "selector": "#container > div:nth-child(5) > div:nth-child(2) > table > tbody > tr:nth-child(3) > td:nth-child(2) > img",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_1.1_1_1.H37",
+          "source": "pa11y",
+          "title": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+          "description": "<img src=\"src/placeholder.jpg\" width=\"175\" height=\"175\" style=\"float:left;\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_1.1_1_1.H37",
+            "type": "error",
+            "typeCode": 1,
+            "message": "Img element missing an alt attribute. Use the alt attribute to specify a short text alternative.",
+            "context": "<img src=\"src/placeholder.jpg\" width=\"175\" height=\"175\" style=\"float:left;\">",
+            "selector": "#footer > img",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "lighthouse",
+          "title": "Image elements do not have `[alt]` attributes",
+          "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,2,DIV,0,IMG",
+              "selector": "body > div#container > div#content > img",
+              "boundingRect": {
+                "top": 111,
+                "bottom": 286,
+                "left": 10,
+                "right": 185,
+                "width": 175,
+                "height": 175
+              },
+              "snippet": "<img src=\"src/placeholder.jpg\" width=\"175\" height=\"175\" style=\"float:left;\">",
+              "nodeLabel": "body > div#container > div#content > img",
+              "explanation": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "lighthouse",
+          "title": "Image elements do not have `[alt]` attributes",
+          "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-2-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,4,DIV,1,DIV,0,TABLE,0,TBODY,2,TR,1,TD,14,IMG",
+              "selector": "tbody > tr > td > img",
+              "boundingRect": {
+                "top": 825,
+                "bottom": 900,
+                "left": 280,
+                "right": 455,
+                "width": 175,
+                "height": 75
+              },
+              "snippet": "<img src=\"src/placeholder.jpg\" width=\"175\" height=\"75\">",
+              "nodeLabel": "tbody > tr > td > img",
+              "explanation": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/image-alt",
+          "source": "lighthouse",
+          "title": "Image elements do not have `[alt]` attributes",
+          "description": "Informative elements should aim for short, descriptive alternate text. Decorative elements can be ignored with an empty alt attribute. [Learn more about the `alt` attribute](https://dequeuniversity.com/rules/axe/4.10/image-alt).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-3-IMG",
+              "path": "1,HTML,1,BODY,0,DIV,6,DIV,0,IMG",
+              "selector": "body > div#container > div#footer > img",
+              "boundingRect": {
+                "top": 1010,
+                "bottom": 1185,
+                "left": 10,
+                "right": 185,
+                "width": 175,
+                "height": 175
+              },
+              "snippet": "<img src=\"src/placeholder.jpg\" width=\"175\" height=\"175\" style=\"float:left;\">",
+              "nodeLabel": "body > div#container > div#footer > img",
+              "explanation": "Fix any of the following:\n  Element does not have an alt attribute\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle4.Guideline4_1.4_1_2.H91.InputEmail.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputSearch.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.Textarea.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputPassword.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputCheckbox.Name",
+        "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
+        "Principle1.Guideline1_3.1_3_1.F68",
+        "Principle4.Guideline4_1.4_1_2.H91.Fieldset.Name"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/label"
+      ],
+      "impact": "critical",
+      "name": "Label; Multiple Elements; Content missing",
+      "amount_nodes_failed": 6,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "axe-core",
+          "title": "Form elements must have labels",
+          "description": "Ensure every form element has a label",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "implicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an implicit (wrapped) <label>"
+              },
+              {
+                "id": "explicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an explicit <label>"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "non-empty-placeholder",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no placeholder attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<input type=\"text\" name=\"username\">",
+            "target": [
+              "input[name=\"username\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "axe-core",
+          "title": "Form elements must have labels",
+          "description": "Ensure every form element has a label",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "implicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an implicit (wrapped) <label>"
+              },
+              {
+                "id": "explicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an explicit <label>"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "non-empty-placeholder",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no placeholder attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<input type=\"text\" name=\"email\">",
+            "target": [
+              "input[name=\"email\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "axe-core",
+          "title": "Form elements must have labels",
+          "description": "Ensure every form element has a label",
+          "impact": "critical",
+          "nodes": {
+            "any": [
+              {
+                "id": "implicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an implicit (wrapped) <label>"
+              },
+              {
+                "id": "explicit-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element does not have an explicit <label>"
+              },
+              {
+                "id": "aria-label",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-label attribute does not exist or is empty"
+              },
+              {
+                "id": "aria-labelledby",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty"
+              },
+              {
+                "id": "non-empty-title",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no title attribute"
+              },
+              {
+                "id": "non-empty-placeholder",
+                "data": {
+                  "messageKey": "noAttr"
+                },
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element has no placeholder attribute"
+              },
+              {
+                "id": "presentational-role",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "critical",
+                "message": "Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "critical",
+            "html": "<input type=\"text\" name=\"security_code\">",
+            "target": [
+              "input[name=\"security_code\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
+          "source": "pa11y",
+          "title": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
+          "description": "<input type=\"text\" name=\"username\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
+            "context": "<input type=\"text\" name=\"username\">",
+            "selector": "#container > div:nth-child(5) > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2) > input",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.F68",
+          "source": "pa11y",
+          "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
+          "description": "<input type=\"text\" name=\"username\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
+            "context": "<input type=\"text\" name=\"username\">",
+            "selector": "#container > div:nth-child(5) > div:nth-child(2) > table > tbody > tr:nth-child(1) > td:nth-child(2) > input",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
+          "source": "pa11y",
+          "title": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
+          "description": "<input type=\"text\" name=\"email\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
+            "context": "<input type=\"text\" name=\"email\">",
+            "selector": "#container > div:nth-child(5) > div:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2) > input",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.F68",
+          "source": "pa11y",
+          "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
+          "description": "<input type=\"text\" name=\"email\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
+            "context": "<input type=\"text\" name=\"email\">",
+            "selector": "#container > div:nth-child(5) > div:nth-child(2) > table > tbody > tr:nth-child(2) > td:nth-child(2) > input",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
+          "source": "pa11y",
+          "title": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
+          "description": "<input type=\"text\" name=\"security_code\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle4.Guideline4_1.4_1_2.H91.InputText.Name",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This textinput element does not have a name available to an accessibility API. Valid names are: label element, title undefined, aria-label undefined, aria-labelledby undefined.",
+            "context": "<input type=\"text\" name=\"security_code\">",
+            "selector": "#container > div:nth-child(5) > div:nth-child(2) > table > tbody > tr:nth-child(3) > td:nth-child(2) > input",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_3.1_3_1.F68",
+          "source": "pa11y",
+          "title": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
+          "description": "<input type=\"text\" name=\"security_code\">",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_3.1_3_1.F68",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This form field should be labelled in some way. Use the label element (either with a \"for\" attribute or wrapped around the form field), or \"title\", \"aria-label\" or \"aria-labelledby\" attributes as appropriate.",
+            "context": "<input type=\"text\" name=\"security_code\">",
+            "selector": "#container > div:nth-child(5) > div:nth-child(2) > table > tbody > tr:nth-child(3) > td:nth-child(2) > input",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "lighthouse",
+          "title": "Form elements do not have associated labels",
+          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-4-INPUT",
+              "path": "1,HTML,1,BODY,0,DIV,4,DIV,1,DIV,0,TABLE,0,TBODY,0,TR,1,TD,0,INPUT",
+              "selector": "tbody > tr > td > input",
+              "boundingRect": {
+                "top": 654,
+                "bottom": 675,
+                "left": 280,
+                "right": 433,
+                "width": 153,
+                "height": 21
+              },
+              "snippet": "<input type=\"text\" name=\"username\">",
+              "nodeLabel": "tbody > tr > td > input",
+              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "lighthouse",
+          "title": "Form elements do not have associated labels",
+          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-5-INPUT",
+              "path": "1,HTML,1,BODY,0,DIV,4,DIV,1,DIV,0,TABLE,0,TBODY,1,TR,1,TD,0,INPUT",
+              "selector": "tbody > tr > td > input",
+              "boundingRect": {
+                "top": 687,
+                "bottom": 708,
+                "left": 280,
+                "right": 433,
+                "width": 153,
+                "height": 21
+              },
+              "snippet": "<input type=\"text\" name=\"email\">",
+              "nodeLabel": "tbody > tr > td > input",
+              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/label",
+          "source": "lighthouse",
+          "title": "Form elements do not have associated labels",
+          "description": "Labels ensure that form controls are announced properly by assistive technologies, like screen readers. [Learn more about form element labels](https://dequeuniversity.com/rules/axe/4.10/label).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-6-INPUT",
+              "path": "1,HTML,1,BODY,0,DIV,4,DIV,1,DIV,0,TABLE,0,TBODY,2,TR,1,TD,12,INPUT",
+              "selector": "tbody > tr > td > input",
+              "boundingRect": {
+                "top": 804,
+                "bottom": 825,
+                "left": 280,
+                "right": 433,
+                "width": 153,
+                "height": 21
+              },
+              "snippet": "<input type=\"text\" name=\"security_code\">",
+              "nodeLabel": "tbody > tr > td > input",
+              "explanation": "Fix any of the following:\n  Element does not have an implicit (wrapped) <label>\n  Element does not have an explicit <label>\n  aria-label attribute does not exist or is empty\n  aria-labelledby attribute does not exist, references elements that do not exist or references elements that are empty\n  Element has no title attribute\n  Element has no placeholder attribute\n  Element's default semantics were not overridden with role=\"none\" or role=\"presentation\""
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+        "https://dequeuniversity.com/rules/axe/4.10/region",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
+      ],
+      "impact": "moderate",
+      "name": "Landmark & Region; Missing & Unique Landmarks;",
+      "amount_nodes_failed": 11,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+          "source": "axe-core",
+          "title": "Document should have one main landmark",
+          "description": "Ensure the document has a main landmark",
+          "impact": "moderate",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "page-has-main",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Document does not have a main landmark"
+              }
+            ],
+            "none": [],
+            "impact": "moderate",
+            "html": "<html>",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix all of the following:\n  Document does not have a main landmark"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"header-bar\">",
+            "target": [
+              ".header-bar"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"navigation\">\n        Welcome Guest ( <a href=\"#\">Log In</a> | <a href=\"#\">Register</a> )\n    </div>",
+            "target": [
+              ".navigation"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div id=\"content\">\n        <img src=\"src/placeholder.jpg\" width=\"175\" height=\"175\" style=\"float:left;\">\n        <div class=\"breadcrumbs\" style=\"padding-top: 75px;\">\n            <a href=\"#\">Seahorse.org</a> &gt; Lost Password Form\n        </div>\n        <div style=\"clear: both;\"></div>\n    </div>",
+            "target": [
+              "#content"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"section\">",
+            "target": [
+              ".section:nth-child(4)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div class=\"section-title\">Please complete the form fully</div>",
+            "target": [
+              ".section:nth-child(5) > .section-title"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<tr>\n                    <td width=\"250\">Enter your account username</td>\n                    <td><input type=\"text\" name=\"username\"></td>\n                </tr>",
+            "target": [
+              "tr:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<tr>\n                    <td>OR Enter your email address</td>\n                    <td><input type=\"text\" name=\"email\"></td>\n                </tr>",
+            "target": [
+              "tr:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<tr>",
+            "target": [
+              "tr:nth-child(3)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div id=\"footer\">\n          <img src=\"src/placeholder.jpg\" width=\"175\" height=\"175\" style=\"float:left;\">\n        <a href=\"#\">Lo-Fi Version</a>\n        <div style=\"float: right;\">Time is now: 30th November 2023 - 10:02 AM</div>\n    </div>",
+            "target": [
+              "#footer"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/region",
+          "source": "axe-core",
+          "title": "All page content should be contained by landmarks",
+          "description": "Ensure all page content is contained by landmarks",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "region",
+                "data": {
+                  "isIframe": false
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Some page content is not contained by landmarks"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div style=\"background-color:#D1DCEB\">\n    <div class=\"footer-links\" style=\"float:left; padding: 5px;\">\n        Powered By <a href=\"#\">IP.Board</a> Â© 2023 <a href=\"#\">IPS, Inc.</a><br>\n        Licensed to: Seahorse Dot Org Limited\n    </div>\n</div>",
+            "target": [
+              "body > div:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Some page content is not contained by landmarks"
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
+      ],
+      "impact": "serious",
+      "name": "Links; Distinguishable Color;",
+      "amount_nodes_failed": 3,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 1.31,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#000080",
+                  "parentColor": "#000000"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"navigation\">\n        Welcome Guest ( <a href=\"#\">Log In</a> | <a href=\"#\">Register</a> )\n    </div>",
+                    "target": [
+                      ".navigation"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 1.31:1 with the surrounding text. (Minimum contrast is 3:1, link text: #000080, surrounding text: #000000)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"navigation\">\n        Welcome Guest ( <a href=\"#\">Log In</a> | <a href=\"#\">Register</a> )\n    </div>",
+                    "target": [
+                      ".navigation"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">Log In</a>",
+            "target": [
+              ".navigation > a:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.31:1 with the surrounding text. (Minimum contrast is 3:1, link text: #000080, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 1.31,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#000080",
+                  "parentColor": "#000000"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"navigation\">\n        Welcome Guest ( <a href=\"#\">Log In</a> | <a href=\"#\">Register</a> )\n    </div>",
+                    "target": [
+                      ".navigation"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 1.31:1 with the surrounding text. (Minimum contrast is 3:1, link text: #000080, surrounding text: #000000)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"navigation\">\n        Welcome Guest ( <a href=\"#\">Log In</a> | <a href=\"#\">Register</a> )\n    </div>",
+                    "target": [
+                      ".navigation"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">Register</a>",
+            "target": [
+              ".navigation > a:nth-child(2)"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.31:1 with the surrounding text. (Minimum contrast is 3:1, link text: #000080, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 1.31,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#000080",
+                  "parentColor": "#000000"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"breadcrumbs\" style=\"padding-top: 75px;\">\n            <a href=\"#\">Seahorse.org</a> &gt; Lost Password Form\n        </div>",
+                    "target": [
+                      ".breadcrumbs"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 1.31:1 with the surrounding text. (Minimum contrast is 3:1, link text: #000080, surrounding text: #000000)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<div class=\"breadcrumbs\" style=\"padding-top: 75px;\">\n            <a href=\"#\">Seahorse.org</a> &gt; Lost Password Form\n        </div>",
+                    "target": [
+                      ".breadcrumbs"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">Seahorse.org</a>",
+            "target": [
+              ".breadcrumbs > a"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.31:1 with the surrounding text. (Minimum contrast is 3:1, link text: #000080, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-7-A",
+              "path": "1,HTML,1,BODY,0,DIV,1,DIV,1,A",
+              "selector": "body > div#container > div.navigation > a",
+              "boundingRect": {
+                "top": 65,
+                "bottom": 100,
+                "left": 250,
+                "right": 337,
+                "width": 87,
+                "height": 35
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Log In",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.31:1 with the surrounding text. (Minimum contrast is 3:1, link text: #000080, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-8-DIV",
+                    "path": "1,HTML,1,BODY,0,DIV,1,DIV",
+                    "selector": "body > div#container > div.navigation",
+                    "boundingRect": {
+                      "top": 65,
+                      "bottom": 101,
+                      "left": 0,
+                      "right": 980,
+                      "width": 980,
+                      "height": 36
+                    },
+                    "snippet": "<div class=\"navigation\">",
+                    "nodeLabel": "Welcome Guest ( Log In | Register )"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-9-A",
+              "path": "1,HTML,1,BODY,0,DIV,1,DIV,3,A",
+              "selector": "body > div#container > div.navigation > a",
+              "boundingRect": {
+                "top": 65,
+                "bottom": 100,
+                "left": 363,
+                "right": 479,
+                "width": 117,
+                "height": 35
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Register",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.31:1 with the surrounding text. (Minimum contrast is 3:1, link text: #000080, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-8-DIV",
+                    "path": "1,HTML,1,BODY,0,DIV,1,DIV",
+                    "selector": "body > div#container > div.navigation",
+                    "boundingRect": {
+                      "top": 65,
+                      "bottom": 101,
+                      "left": 0,
+                      "right": 980,
+                      "width": 980,
+                      "height": 36
+                    },
+                    "snippet": "<div class=\"navigation\">",
+                    "nodeLabel": "Welcome Guest ( Log In | Register )"
+                  }
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-10-A",
+              "path": "1,HTML,1,BODY,0,DIV,2,DIV,1,DIV,0,A",
+              "selector": "div#container > div#content > div.breadcrumbs > a",
+              "boundingRect": {
+                "top": 186,
+                "bottom": 221,
+                "left": 185,
+                "right": 373,
+                "width": 188,
+                "height": 35
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Seahorse.org",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.31:1 with the surrounding text. (Minimum contrast is 3:1, link text: #000080, surrounding text: #000000)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-11-DIV",
+                    "path": "1,HTML,1,BODY,0,DIV,2,DIV,1,DIV",
+                    "selector": "body > div#container > div#content > div.breadcrumbs",
+                    "boundingRect": {
+                      "top": 111,
+                      "bottom": 222,
+                      "left": 20,
+                      "right": 970,
+                      "width": 950,
+                      "height": 111
+                    },
+                    "snippet": "<div class=\"breadcrumbs\" style=\"padding-top: 75px;\">",
+                    "nodeLabel": "Seahorse.org > Lost Password Form"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H42.2",
+        "Principle1.Guideline1_3.1_3_1.G141"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
+        "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+        "https://dequeuniversity.com/rules/axe/4.10/empty-heading"
+      ],
+      "impact": "moderate",
+      "name": "Headings; Wrong Order, Empty & Missing Headings;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
+          "source": "axe-core",
+          "title": "Page should contain a level-one heading",
+          "description": "Ensure that the page, or at least one of its frames contains a level-one heading",
+          "impact": "moderate",
+          "nodes": {
+            "any": [],
+            "all": [
+              {
+                "id": "page-has-heading-one",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Page must have a level-one heading"
+              }
+            ],
+            "none": [],
+            "impact": "moderate",
+            "html": "<html>",
+            "target": [
+              "html"
+            ],
+            "failureSummary": "Fix all of the following:\n  Page must have a level-one heading"
+          }
+        }
+      ]
+    }
+  ]
+}

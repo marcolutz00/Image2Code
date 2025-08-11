@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            padding-top: 20px;
+            padding-bottom: 20px;
+        }
+        .container {
+            background-color: white;
+            width: 600px;
+            border: 1px solid #ccc;
+            padding: 20px;
+            box-sizing: border-box;
+        }
+        .header {
+            background-color: #404040;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            font-weight: bold;
+            font-size: 18px;
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        ul {
+            padding: 0;
+        }
+        li {
+            list-style: none;
+            margin-bottom: 15px;
+        }
+        label {
+            font-weight: bold;
+        }
+        input[type="text"], 
+        input[type="email"], 
+        select, 
+        textarea {
+            width: calc(100% - 12px);
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 2px;
+        }
+        input[type="checkbox"], 
+        input[type="radio"] {
+            margin-right: 10px;
+        }
+        textarea {
+            height: 100px;
+        }
+        .bold-text {
+            color: #e00;
+        }
+        .img-placeholder {
+            width: 200px;
+            height: 200px;
+            background-color: blue;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 20px;
+        }
+        .info-text {
+            font-size: 14px;
+            color: #333;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .link-text {
+            color: #0000ee;
+        }
+        .submit-btn {
+            background-color: #404040;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            text-align: center;
+            display: block;
+            margin: 20px 0;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+        }
+        .footer-link {
+            color: #0000ee;
+            font-size: 12px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <main class="container">
+        <div class="img-placeholder"></div>
+        <div class="header">Producer Application</div>
+        <p class="info-text">Tell us a little about you and your experience. <span class="link-text">FAQ</span> for more information.</p>
+        <form>
+            <ul>
+                <li>
+                    <label for="firstname">First Name <span class="bold-text">*</span></label>
+                    <input type="text" id="firstname">
+                </li>
+                <li>
+                    <label for="lastname">Last Name <span class="bold-text">*</span></label>
+                    <input type="text" id="lastname">
+                </li>
+                <li>
+                    <label for="email">Email Address <span class="bold-text">*</span></label>
+                    <input type="email" id="email">
+                </li>
+                <li>
+                    <label for="phone">Phone Number <span class="bold-text">*</span></label>
+                    <input type="text" id="phone">
+                </li>
+                <li>
+                    <label for="location">Where Do You Live? <span class="bold-text">*</span></label>
+                    <input type="text" id="location">
+                </li>
+                <li>
+                    <label>I am at Least 18 Years of Age <span class="bold-text">*</span></label><br>
+                    <input type="checkbox" id="age" aria-label="I am at least 18 years of age">Yes
+                </li>
+                <li>
+                    <label>Do You Have a Production Company? <span class="bold-text">*</span></label><br>
+                    <input type="radio" name="production" id="production-yes" aria-label="Do you have a production company? Yes">Yes<br>
+                    <input type="radio" name="production" id="production-no" aria-label="Do you have a production company? No">No
+                </li>
+                <li>
+                    <label for="about">Tell Us More About You. <span class="bold-text">*</span></label>
+                    <textarea id="about"></textarea>
+                </li>
+                <li>
+                    <label for="genre">Preferred Genre <span class="bold-text">*</span></label>
+                    <select id="genre"></select>
+                </li>
+                <li>
+                    <label>Are You Confident You Can Create Full-Length Episodes (12-25 minutes) on a Low-Budget and Continue to Create Episodes if they are Renewed by Candivan Subscribers? <span class="bold-text">*</span></label><br>
+                    <input type="radio" name="episodes" id="episodes-yes" aria-label="Are you confident you can create full-length episodes? Yes">Yes<br>
+                    <input type="radio" name="episodes" id="episodes-no" aria-label="Are you confident you can create full-length episodes? No">No
+                </li>
+                <li>
+                    <label>If Selected as a Winner, Would You be Able to Start Production by this May or June (2019)? <span class="bold-text">*</span></label><br>
+                    <input type="radio" name="winner" id="winner-yes" aria-label="If selected as a winner, start production by May or June 2019? Yes">Yes<br>
+                    <input type="radio" name="winner" id="winner-no" aria-label="If selected as a winner, start production by May or June 2019? No">No
+                </li>
+                <li>
+                    <label for="collaborate">Names of Others Plan to Collaborate with (If Applicable)</label>
+                    <textarea id="collaborate"></textarea>
+                </li>
+                <li>
+                    <label>Are you a member of the PGA? <span class="bold-text">*</span></label><br>
+                    <input type="radio" name="pga" id="pga-yes" aria-label="Are you a member of the PGA? Yes">Yes<br>
+                    <input type="radio" name="pga" id="pga-no" aria-label="Are you a member of the PGA? No">No
+                </li>
+                <li>
+                    <label>OPTIONAL: Those with large social networks are preferable. Feel free to list any large networks you are part of or your Twitter.</label>
+                    <textarea aria-label="List any large networks or your Twitter"></textarea>
+                </li>
+                <li>
+                    <label for="how">How did you find out about us?</label>
+                    <select id="how"></select>
+                </li>
+                <li>
+                    <input type="checkbox" id="terms" aria-label="I have read and I accept the terms and conditions below"><span class="bold-text">*</span> I Have Read and I Accept the Terms and Conditions Below
+                </li>
+                <li class="footer-link">
+                    <span class="link-text">Terms and Conditions</span>
+                </li>
+            </ul>
+            <button class="submit-btn" type="submit">Submit</button>
+        </form>
+        <div class="footer-link">Report abuse <span class="link-text">Powered by <img src="src/placeholder.jpg" width="15" height="15" alt="Image placeholder"></span></div>
+    </main>
+</body>
+</html>

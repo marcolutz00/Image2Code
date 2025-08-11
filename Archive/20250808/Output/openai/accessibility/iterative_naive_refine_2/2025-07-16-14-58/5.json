@@ -1,0 +1,142 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_4.1_4_3.G18",
+        "Principle1.Guideline1_4.1_4_3.G18.Fail",
+        "Principle1.Guideline1_4.1_4_3.G145",
+        "Principle1.Guideline1_4.1_4_3.G145.Fail",
+        "Principle1.Guideline1_4.1_4_6.G17",
+        "Principle1.Guideline1_4.1_4_6.G18"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+      ],
+      "impact": "serious",
+      "name": "Color Contrast; Text;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#ffffff",
+                  "bgColor": "#4aad6a",
+                  "contrastRatio": 2.8,
+                  "fontSize": "22.5pt (30px)",
+                  "fontWeight": "bold",
+                  "messageKey": null,
+                  "expectedContrastRatio": "3:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<section class=\"hero\">\n            <h2>How to Upload Videos to YouTube if Access to Website is Blocked</h2>\n        </section>",
+                    "target": [
+                      ".hero"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.8 (foreground color: #ffffff, background color: #4aad6a, font size: 22.5pt (30px), font weight: bold). Expected contrast ratio of 3:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<h2>How to Upload Videos to YouTube if Access to Website is Blocked</h2>",
+            "target": [
+              "h2"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.8 (foreground color: #ffffff, background color: #4aad6a, font size: 22.5pt (30px), font weight: bold). Expected contrast ratio of 3:1"
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G145.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 3:1, but text in this element has a contrast ratio of 2.81:1. Recommendation:  change background to #44a764.",
+          "description": "<h2>How to Upload Videos to YouTube...</h2>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G145.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 3:1, but text in this element has a contrast ratio of 2.81:1. Recommendation:  change background to #44a764.",
+            "context": "<h2>How to Upload Videos to YouTube...</h2>",
+            "selector": "html > body > main > section:nth-child(1) > h2",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-H2",
+              "path": "1,HTML,1,BODY,1,MAIN,0,SECTION,0,H2",
+              "selector": "body > main > section.hero > h2",
+              "boundingRect": {
+                "top": 124,
+                "bottom": 229,
+                "left": 20,
+                "right": 392,
+                "width": 372,
+                "height": 105
+              },
+              "snippet": "<h2>",
+              "nodeLabel": "How to Upload Videos to YouTube if Access to Website is Blocked",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.8 (foreground color: #ffffff, background color: #4aad6a, font size: 22.5pt (30px), font weight: bold). Expected contrast ratio of 3:1"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-1-SECTION",
+                    "path": "1,HTML,1,BODY,1,MAIN,0,SECTION",
+                    "selector": "body > main > section.hero",
+                    "boundingRect": {
+                      "top": 84,
+                      "bottom": 269,
+                      "left": 0,
+                      "right": 412,
+                      "width": 412,
+                      "height": 185
+                    },
+                    "snippet": "<section class=\"hero\">",
+                    "nodeLabel": "How to Upload Videos to YouTube if Access to Website is Blocked"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

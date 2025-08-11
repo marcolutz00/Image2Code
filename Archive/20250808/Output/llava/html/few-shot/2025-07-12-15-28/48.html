@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Webpage Screenshot</title>
+    <style>
+      /* Important colors */
+      :root {
+        --primary: #333;
+        --secondary: #666;
+        --text-color: #000;
+        --background: #fff;
+        --image-placeholder-bg: url('src/placeholder.jpg') no-repeat center center fixed;
+      }
+
+      /* Reset some default browser styles */
+      html, body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        background-color: var(--background);
+      }
+
+      /* Custom reset for form elements */
+      input[type="checkbox"] {
+        appearance: none;
+        background-color: var(--primary);
+        border: none;
+        height: 16px;
+        width: 16px;
+        cursor: pointer;
+      }
+
+      /* Custom reset for labels */
+      label {
+        display: block;
+        padding: 0.5em;
+        margin-bottom: 0.5em;
+        background-color: var(--primary);
+        color: white;
+        cursor: pointer;
+      }
+
+      /* General styles */
+      h1 {
+        font-size: 36px;
+        margin: 24px 0;
+        text-align: center;
+      }
+
+      p {
+        color: var(--text-color);
+        line-height: 1.5;
+      }
+
+      /* Custom styles for the image placeholder */
+      .placeholder-img {
+        background-color: var(--image-placeholder-bg);
+        height: 200px;
+        width: 300px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Accessibility-first Reminder</h1>
+    <div class="container">
+      <nav aria-label="Primary">
+        <ul>
+          <li><a href="#newsletter">Newsletter</a></li>
+          <li><a href="#contact">Contact Us</a></li>
+          <li><a href="#about">About Us</a></li>
+        </ul>
+      </nav>
+      <div class="placeholder-img"></div>
+      <h2>Cooking Techniques</h2>
+      <p>Readable text</p>
+    </div>
+    <form action="/submit" method="post">
+      <input type="checkbox" id="newsletter" name="newsletter" value="newsletter">
+      <label for="newsletter">Sign up for our newsletter</label><br>
+      <input type="checkbox" id="contact" name="contact" value="contact">
+      <label for="contact">Contact us directly</label><br>
+      <input type="checkbox" id="about" name="about" value="about">
+      <label for="about">Learn more about our team</label><br>
+      <button type="submit">Get started today</button>
+    </form>
+  </body>
+</html>

@@ -1,0 +1,198 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_3.1_3_1.H42.2",
+        "Principle1.Guideline1_3.1_3_1.G141"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/page-has-heading-one",
+        "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+        "https://dequeuniversity.com/rules/axe/4.10/empty-heading"
+      ],
+      "impact": "moderate",
+      "name": "Headings; Wrong Order, Empty & Missing Headings;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+          "source": "axe-core",
+          "title": "Heading levels should only increase by one",
+          "description": "Ensure the order of headings is semantically correct",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "heading-order",
+                "data": null,
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "Heading order invalid"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<h3>Experience That Delivers:</h3>",
+            "target": [
+              "h3:nth-child(1)"
+            ],
+            "failureSummary": "Fix any of the following:\n  Heading order invalid"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/heading-order",
+          "source": "lighthouse",
+          "title": "Heading elements are not in a sequentially-descending order",
+          "description": "Properly ordered headings that do not skip levels convey the semantic structure of the page, making it easier to navigate and understand when using assistive technologies. [Learn more about heading order](https://dequeuniversity.com/rules/axe/4.10/heading-order).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-H3",
+              "path": "1,HTML,1,BODY,1,MAIN,0,DIV,4,DIV,0,H3",
+              "selector": "main > div.content > div.text-section > h3",
+              "boundingRect": {
+                "top": 599,
+                "bottom": 627,
+                "left": 20,
+                "right": 392,
+                "width": 372,
+                "height": 29
+              },
+              "snippet": "<h3>",
+              "nodeLabel": "Experience That Delivers:",
+              "explanation": "Fix any of the following:\n  Heading order invalid"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
+      ],
+      "impact": "serious",
+      "name": "Links; Distinguishable Color;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 2.35,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#3366cc",
+                  "parentColor": "#333333"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<p>Copyright Â© 2021 Traffic Management, Inc. | Trucking Minneapolis | Digital by <a href=\"#\">Corrective Crew</a></p>",
+                    "target": [
+                      "footer > p"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 2.35:1 with the surrounding text. (Minimum contrast is 3:1, link text: #3366cc, surrounding text: #333333)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<p>Copyright Â© 2021 Traffic Management, Inc. | Trucking Minneapolis | Digital by <a href=\"#\">Corrective Crew</a></p>",
+                    "target": [
+                      "footer > p"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">Corrective Crew</a>",
+            "target": [
+              "p > a"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 2.35:1 with the surrounding text. (Minimum contrast is 3:1, link text: #3366cc, surrounding text: #333333)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-A",
+              "path": "1,HTML,1,BODY,2,FOOTER,0,P,1,A",
+              "selector": "body > footer.footer > p > a",
+              "boundingRect": {
+                "top": 2394,
+                "bottom": 2407,
+                "left": 171,
+                "right": 257,
+                "width": 86,
+                "height": 14
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "Corrective Crew",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 2.35:1 with the surrounding text. (Minimum contrast is 3:1, link text: #3366cc, surrounding text: #333333)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-P",
+                    "path": "1,HTML,1,BODY,2,FOOTER,0,P",
+                    "selector": "body > footer.footer > p",
+                    "boundingRect": {
+                      "top": 2372,
+                      "bottom": 2411,
+                      "left": 0,
+                      "right": 412,
+                      "width": 412,
+                      "height": 38
+                    },
+                    "snippet": "<p>",
+                    "nodeLabel": "Copyright Â© 2021 Traffic Management, Inc. | Trucking Minneapolis | Digital by …"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

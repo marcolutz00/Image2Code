@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Simpson</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .header {
+            background-color: #37AA48;
+            padding: 20px;
+            color: white;
+        }
+
+        .header h1 {
+            margin: 0;
+            font-size: 24px;
+        }
+
+        .header p {
+            margin: 5px 0 20px;
+            font-size: 14px;
+        }
+
+        .header a {
+            color: #f0f0f0; /* Improved contrast */
+            text-decoration: none;
+            margin-left: 20px;
+        }
+
+        .content {
+            max-width: 700px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 20px;
+            box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .content h2 {
+            color: #37AA48;
+            font-size: 22px;
+        }
+
+        .content p.meta {
+            font-size: 12px;
+            color: #333; /* Improved contrast */
+        }
+
+        .content a {
+            color: #37AA48;
+            text-decoration: none;
+        }
+
+        .quote {
+            border-left: 5px solid #ccc;
+            padding-left: 15px;
+            margin: 20px 0;
+            font-size: 14px;
+            color: #333;
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 12px;
+            color: #333; /* Improved contrast */
+            max-width: 700px;
+            margin: 40px auto 10px;
+        }
+
+        .social-icons {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .social-icons img {
+            width: 24px;
+            height: 24px;
+            margin: 0 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="header">
+        <h1>David Simpson</h1>
+        <p>deliver. iterate.</p>
+        <nav>
+            <a href="#">Blog</a>
+            <a href="#">About</a>
+            <a href="#">Projects</a>
+            <a href="#">Apps</a>
+        </nav>
+    </div>
+
+    <div class="content">
+        <h2>Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</h2>
+        <p class="meta">Posted by David Simpson on May 22, 2014. <a href="#" aria-label="Return to main index">Return to index</a>. <span>Tags:</span></p>
+
+        <p>Following yesterdays <a href="#">Atlassian security advisory for Confluence</a>, it looks like there are some added steps required for people who have user macros. Be careful folks.</p>
+        <p><a href="#">@BergerofLondon</a> spotted this first:</p>
+
+        <div class="quote">
+            <p>Following upgrade to Confluence 5.5.1 the values of parameters in user macros cannot be evaluated the same way. Discovered this the hard way</p>
+            <p>&mdash; Berger (<a href="#">@BergerofLondon</a>) <span style="color: #37AA48;">May 22, 2014</span></p>
+        </div>
+
+        <div class="quote">
+            <p>You can't use the same shorthand you use for standard variables. <a href="#">#if</a> ($paramistrue) will always evaluate as true.</p>
+            <p>&mdash; Berger (<a href="#">@BergerofLondon</a>) <span style="color: #37AA48;">May 22, 2014</span></p>
+        </div>
+
+        <div class="quote">
+            <p>You now have to use things like <a href="#">#if ($paramistrue == true)</a> or <a href="#">#if ($paramistrue == false)</a>.</p>
+            <p>&mdash; Berger (<a href="#">@BergerofLondon</a>) <span style="color: #37AA48;">May 22, 2014</span></p>
+        </div>
+
+        <div class="quote">
+            <p><a href="#">@baitman</a> For strings I can no longer do <a href="#">#if ($paramfoo)</a>, I have to do <a href="#">#if ($paramfoo).length() > 0</a>. Which is crazy.</p>
+            <p>&mdash; Berger (<a href="#">@BergerofLondon</a>) <span style="color: #37AA48;">May 22, 2014</span></p>
+        </div>
+
+        <div class="quote">
+            <p><a href="#">@baitman</a> Also, if you're upgrading to 5.5.1 to fix the security vulnerability double-check that it's upgraded xwork to 1.17. Ours wasn't.</p>
+            <p>&mdash; Berger (<a href="#">@BergerofLondon</a>) <span style="color: #37AA48;">May 22, 2014</span></p>
+        </div>
+    </div>
+
+    <div class="footer">
+        <p>The update to <a href="#">atlassian-xwork-core-1.17.jar</a> means you have to be more specific with your coding. Thanks to <a href="#">@BergerofLondon</a> for the heads up.</p>
+    </div>
+
+    <div class="social-icons">
+        <img src="src/placeholder.jpg" alt="Social Icon">
+        <img src="src/placeholder.jpg" alt="Social Icon">
+        <img src="src/placeholder.jpg" alt="Social Icon">
+        <img src="src/placeholder.jpg" alt="Social Icon">
+    </div>
+
+</body>
+</html>

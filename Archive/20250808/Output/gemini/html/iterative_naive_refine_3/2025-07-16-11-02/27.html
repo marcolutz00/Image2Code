@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #333333;
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        .container {
+            width: 80%;
+            margin: auto;
+            overflow: hidden;
+        }
+
+        header {
+            background-color: #333333;
+            color: #fff;
+            padding-top: 30px;
+            min-height: 70px;
+            border-bottom: #bbb 1px solid;
+        }
+
+        header a {
+            color: #fff;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 16px;
+        }
+
+        header ul {
+            padding: 0;
+            margin: 0;
+        }
+
+        header li {
+            float: left;
+            display: inline;            padding: 0 20px 0 20px;
+        }
+
+        header #branding {
+            float: left;
+        }
+
+        header #branding h1 {
+            margin: 0;
+        }
+
+        header nav {
+            float: right;
+            margin-top: 10px;
+        }
+
+        header .highlight, header .current a {
+            color: #e8491d;
+            font-weight: bold;
+        }
+
+        header a:hover {
+            color: #ccc;
+            font-weight: bold;
+        }
+
+        #newsletter {
+            padding: 15px;
+            color: #fff;
+            background: #35424a;
+        }
+
+        #newsletter h1 {
+            float: left;
+        }
+
+        #newsletter form {
+            float: right;
+            margin-top: 15px;
+        }
+
+        #newsletter input[type="email"] {
+            padding: 4px;
+            height: 25px;
+            width: 250px;
+        }
+
+        .button_1 {
+            height: 38px;
+            background: #e8491d;
+            border: 0;
+            padding-left: 20px;
+            padding-right: 20px;
+            color: #fff;
+        }
+
+        #main {
+            padding: 20px;
+        }
+
+        #sidebar {
+            float: right;
+            width: 30%;
+            margin-top: 10px;
+        }
+
+        #sidebar .quote input, #sidebar .quote textarea {
+            width: 90%;
+            padding: 5px;
+        }
+
+        article#main-col {
+            float: left;
+            width: 65%;
+        }
+
+        ul#services {
+            padding: 0;
+        }
+
+        ul#services li {
+            list-style: none;
+            padding: 20px;
+            border: #cccccc solid 1px;
+            margin-bottom: 5px;
+            background: #e6e6e6;
+        }
+
+        footer {
+            padding: 20px;
+            margin-top: 20px;
+            color: #fff;
+            background-color: #333333;
+            text-align: center;
+        }
+
+        /* MEDIA QUERIES */
+        @media(max-width: 768px) {
+            header #branding,
+            header nav,
+            header nav li,
+            #newsletter h1,
+            #newsletter form,
+            #boxes .box,
+            article#main-col,
+            #sidebar {
+                float: none;
+                text-align: center;
+                width: 100%;
+            }
+
+            header {
+                padding-bottom: 20px;
+            }
+
+            #newsletter form {
+                margin-top: 0;
+            }
+
+        }
+
+        .top-bar {
+            background-color: #333333;
+            padding: 10px 0;
+            text-align: right;
+            font-size: 12px;
+            border-bottom: 1px solid #444;
+        }
+
+        .top-bar a {
+            color: #fff;
+            text-decoration: none;
+            margin-left: 15px;
+        }
+
+        .search-box {
+            display: inline-block;
+            position: relative;
+        }
+
+        .search-box input[type="text"] {
+            padding: 5px;
+            border: none;
+            border-bottom: 1px solid #fff;
+            background: transparent;
+            color: #fff;
+        }
+
+        .search-box button {
+            background: none;
+            border: none;
+            color: #fff;
+            position: absolute;
+            right: 0;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+			padding: 5px;
+			min-height: 44px;
+			min-width: 44px;
+        }
+
+        .logo-area {
+            height: 200px;
+            position: relative;
+        }
+
+        .logo-placeholder {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            width: 150px;
+            height: 150px;
+            background-color: blue;
+            transform: translateY(-50%);
+        }
+
+        .contact-info {
+            position: absolute;
+            top: 50%;
+            left: 30%;
+            transform: translateY(-50%);
+            font-size: 20px;
+        }
+
+        .menu-icon {
+            text-align: center;
+            font-size: 30px;
+            padding: 10px;
+        }
+
+        /* Main Content Styles */
+        .main-content {
+            width: 80%;
+            margin: 20px auto;
+            background: #444;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .main-content h2 {
+            text-align: center;
+            color: #fff;
+        }
+
+        .continue-shopping-btn {
+            display: block;
+            width: 200px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #2bb6ba;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+			
+        }
+
+        .shopping-cart {
+            background: #f4f4f4;
+            color: #333;
+            padding: 15px;
+            margin-top: 20px;
+            border-radius: 5px;
+        }
+
+        .cart-empty {
+            text-align: center;
+        }
+
+        .cart-total {
+            text-align: right;
+            margin-top: 20px;
+        }
+
+        .total-amount {
+            font-size: 20px;
+            font-weight: bold;
+        }
+
+        .checkout-btn {
+            display: block;
+            width: 150px;
+            margin: 20px auto;
+            padding: 10px;
+            background-color: #2bb6ba;
+            color: #fff;
+            text-align: center;
+            text-decoration: none;
+            border-radius: 5px;
+			
+        }
+
+        .cart-actions {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .cart-actions a {
+            color: #333;
+            text-decoration: underline;
+            margin: 0 10px;
+        }
+
+        .disclaimer {
+            margin-top: 40px;
+            font-size: 12px;
+            color: #ddd;
+            text-align: left;
+        }
+
+        .disclaimer input[type="checkbox"] {
+            margin-right: 5px;
+        }
+
+        .disclaimer a {
+            color: #ddd;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+	<header>
+    <div class="top-bar">
+        <a href="#">CLICK HERE TO SIGN IN</a>
+        OR
+        <a href="#">CLICK HERE TO REGISTER</a>
+        <div class="search-box">
+            <label for="search">Search:</label>
+            <input type="text" id="search" placeholder="Search..." aria-label="Search">
+            <button type="submit" aria-label="Submit Search">
+                <svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-search" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" d="M10.442 10.442a1 1 0 0 1 1.414 1.414l-3 3a1 1 0 0 1-1.414-1.414l3-3a1 1 0 0 1 0-1.414z"/>
+                    <path fill-rule="evenodd" d="M6.5 12a5.5 0 1 0 0-11 5.5 0 0 0 0 11zM13 6.5a6.5 0 1 1-13 0 6.5 0 0 1 13 0z"/>
+                </svg>
+            </button>
+        </div>
+        <a href="#">VIEW CART</a>
+    </div>
+	</header>
+
+    <div class="logo-area">
+        <div class="logo-placeholder"></div>
+        <div class="contact-info">Talk to a real person!<br>[PHONE REDACTED]</div>
+        <div class="menu-icon">ÃÃÂ¢ÃÃÃÃÂ°</div>
+    </div>
+
+    <main class="main-content">
+		<h1>Your Shopping Cart</h1>
+        <h2>Your Shopping Cart</h2>
+        <a href="#" class="continue-shopping-btn" style="color: #fff; background-color: #2bb6ba; color: #000;">CONTINUE SHOPPING</a>
+
+        <div class="shopping-cart">
+            <h3>Your Shopping Cart</h3>
+            <div class="cart-empty">YOUR SHOPPING CART IS EMPTY.</div>
+        </div>
+
+        <div class="cart-total">            TOTAL <span class="total-amount">$0.00</span>
+        </div>
+
+        <a href="#" class="checkout-btn" style="color: #fff; background-color: #2bb6ba; color: #000;">CHECKOUT</a>
+
+        <div class="cart-actions">
+            <a href="#" style="color: #333; color: #fff;">RECALCULATE</a>
+            <a href="#" style="color: #333; color: #fff;">Empty Cart</a>
+        </div>
+
+        <div class="disclaimer">
+            <input type="checkbox" id="show-cart" checked>
+            <label for="show-cart">Show me my shopping cart every time I order something.</label><br>
+            This site does not do live transactions. If you provide a credit card number it will not be billed immediately. Due to the custom nature of these products, you will be
+            contacted by a sales person at Century 2001 to coordinate getting any custom artwork or other special handling instructions you require. There is a note area when you
+            check out to provide any special instructions you may have regarding your order. Once the sales person has all the information they need and have verified the charges
+            on this order, you will have the order acknowledgement mailed, emailed or faxed to your attention. If at that time you are satisfied with the order it will then be processed
+            using the payment of your choice. If you would like to use your own custom logo for imprinting on any of our products <a href="#">contact us</a> for instructions on the best way of getting
+            your logo to us. For information on acceptable digial artwork, see our <a href="#">artwork information</a> page. *** Tax will only be applicable on goods delivered to Florida.
+        </div>
+    </main>
+
+    <footer>
+        <p>Century 2001, Copyright &copy; 2023</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>David Simpson - Blog</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+        }
+        header {
+            background-color: #4CAF50;
+            color: white;
+            padding: 15px 0;
+            text-align: center;
+        }
+        header h1 {
+            margin: 0;
+            color: #45a849;
+        }
+        nav {
+            background-color: #4CAF50;
+            padding: 10px 0;
+            text-align: center;
+        }
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            text-decoration-color: #45a849;
+        }
+        main {
+            padding: 20px;
+            background-color: white;
+            margin: 20px;
+        }
+        .post {
+            margin-bottom: 20px;
+        }
+        .post h2 {
+            color: #4CAF50;
+            margin: 0 0 10px 0;
+        }
+        .post p {
+            color: #333;
+            line-height: 1.6;
+        }
+        .post .tags {
+            margin-top: 20px;
+            color: #666;
+        }
+        .post .tags a {
+            color: #4CAF50;
+            text-decoration: none;
+            margin: 0 5px;
+            text-decoration-color: #45a849;
+        }
+        .post .tags a:hover {
+            text-decoration: underline;
+        }
+        footer {
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+        }
+        footer a {
+            color: white;
+            text-decoration: none;
+            margin: 0 10px;
+            text-decoration-color: #45a849;
+        }
+        footer a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1 style="color: #45a849;">David Simpson</h1>
+        <p style="color: #45a849;">deliver. iterate.</p>
+    </header>
+    <nav>
+        <a href="#" style="color: #45a849;">Blog</a>
+        <a href="#" style="color: #45a849;">About</a>
+        <a href="#" style="color: #45a849;">Projects</a>
+        <a href="#" style="color: #45a849;">Apps</a>
+    </nav>
+    <main>
+        <div class="post">
+            <h2 style="color: #45a849;">Update your user macros on Confluence 5.5.1 and atlassian-xwork-core-1.17</h2>
+            <p style="color: #333;">Posted by David Simpson on May 22, 2014. <a href="#">Return to index</a>.</p>
+            <div class="tags">
+                <p style="color: #666;">Tags:</p>
+                <a href="#" style="color: #45a849;">Tags</a>
+            </div>
+            <p style="color: #333;">Following yesterdays <a href="#" style="color: #45a849;">Atlassian security advisory for Confluence</a>, it looks like there are some added steps required for people who have user macros. Be careful folks.</p>
+            <p style="color: #333;">@BergerofLondon spotted this first:</p>
+            <blockquote>
+                <p style="color: #333;">Following upgrade to Confluence 5.5.1 the values of parameters in user macros cannot be evaluated the same way. Discovered this the hard way</p>
+                <footer style="color: #45a849;">Ã¢ Berger (@BergerofLondon) May 22, 2014</footer>
+            </blockquote>
+            <p style="color: #333;">You can't use the same shorthand you use for standard variables. #if ($paramistrue) will always evaluate as true.</p>
+            <p style="color: #333;">You now have to use things like #if ($paramistrue == true) or #if ($paramistrue == false).</p>
+            <p style="color: #333;">@baitman For strings I can no longer do #if ($paramfoo), I have to do #if ($paramfoo).length() > 0. Which is crazy.</p>
+            <p style="color: #333;">@baitman Also, if you're upgrading to 5.5.1 to fix the security vulnerability double-check that it's upgraded xwork to 1.17. Ours wasn't.</p>
+            <p style="color: #333;">The update to atlassian-xwork-core-1.17.jar means you have to be more specific with your coding. Thanks to @BergerofLondon for the heads up.</p>
+        </div>
+    </main>
+    <footer>
+        <a href="#" style="color: #45a849;">Twitter</a>
+        <a href="#" style="color: #45a849;">Facebook</a>
+        <a href="#" style="color: #45a849;">LinkedIn</a>
+        <a href="#" style="color: #45a849;">GitHub</a>
+        <a href="#" style="color: #45a849;">Instagram</a>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f5f5f5;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #ffffff;
+        }
+
+        header {
+            background-color: #90EE90;
+            padding: 20px;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2em;
+            font-weight: normal;
+        }
+
+        header p {
+            margin: 0;
+            font-size: 0.8em;
+            color: #555;
+        }
+
+        header nav {
+            margin-top: 20px;
+        }
+
+        header nav a {
+            color: #007bff;
+            text-decoration: none;
+            margin-left: 10px;
+        }
+
+        header nav a:first-child {
+            margin-left: 0;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        main h2 {
+            font-size: 1.7em;
+            font-weight: normal;
+            margin-bottom: 10px;
+        }
+
+        main p {
+            line-height: 1.6;
+        }
+
+        main p a {
+            color: #007bff;
+            text-decoration: none;
+        }
+        .main-list p{
+            margin-bottom: 20px;
+        }
+        footer {
+            background-color: #f5f5f5;
+            padding: 20px;
+            text-align: center;
+        }
+        footer a{
+            text-decoration: none;
+            color: #333;
+            margin: 0 5px;
+            font-size: 1.5em;
+        }
+
+        /* Accessible link styles */
+        a {
+            color: #007bff;
+            text-decoration: none;
+        }
+
+        a:hover,
+        a:focus {
+            text-decoration: underline;
+        }
+
+        /* Ensure sufficient contrast */
+        header nav a,
+        main p a {
+            color: #0056b3; /* Adjust this color to ensure sufficient contrast */
+        }
+
+        /* Focus outline */
+        a:focus {
+            outline: 2px solid #0056b3; /* Customize focus outline */
+            outline-offset: 2px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>David Simpson</h1>
+            <p>deliver. iterate.</p>
+            <nav>
+                <a href="#">Blog</a>
+                <a href="#">About</a>
+                <a href="#">Projects</a>
+                <a href="#">Apps</a>
+            </nav>
+        </header>
+        <main>
+            <h2>Update your user macros on Confluence
+                5.5.1 and atlassian-xwork-core-1.17</h2>
+            <p>Posted by David Simpson on May 22, 2014. Return to index .</p>
+            <p>Tags:</p>
+            <section class="main-list">
+                <p>Following yesterdays <a href="#">Atlassian security advisory for Confluence</a> , it looks like there are
+                    some added steps required for people who have user macros. Be careful folks.
+                </p>
+                <p><a href="#">@BergerofLondon</a> spotted this first:</p>
+                <p>
+                    Following upgrade to Confluence 5.5.1 the values of parameters
+                    in user macros cannot be evaluated the same way. Discovered
+                    this the hard way
+                </p>
+                <p>
+                    Berger (<a href="#">@BergerofLondon</a>) <a href="#">May 22, 2014</a>
+                </p>
+                <p>
+                    You can't use the same shorthand you use for standard variables.
+                    #if ($paramistrue) will always evaluate as true.
+                </p>
+                <p>
+                    Berger (<a href="#">@BergerofLondon</a>) <a href="#">May 22, 2014</a>
+                </p>
+                <p>
+                    You now have to use things like #if ($paramistrue == true) or #if
+                    ($paramistrue == false).
+                </p>
+                <p>
+                    Berger (<a href="#">@BergerofLondon</a>) <a href="#">May 22, 2014</a>
+                </p>
+                <p>
+                    <a href="#">@baitman</a> For strings I can no longer do #if ($paramfoo), I have
+                    to do #if ($paramfoo).length() > 0. Which is crazy.
+                </p>
+                <p>
+                    Berger (<a href="#">@BergerofLondon</a>) <a href="#">May 22, 2014</a>
+                </p>
+                <p>
+                    <a href="#">@baitman</a> Also, if you're upgrading to 5.5.1 to fix the security
+                    vulnerability double-check that it's upgraded xwork to 1.17. Ours
+                    wasn't.
+                </p>
+                <p>
+                    Berger (<a href="#">@BergerofLondon</a>) <a href="#">May 22, 2014</a>
+                </p>
+                <p>
+                    The update to <a href="#">atlassian-xwork-core-1.17.jar</a> means you have to be more specific with
+                    your coding. Thanks to <a href="#">@BergerofLondon</a> for the heads up.
+                </p>
+            </section>
+        </main>
+        <footer>
+            <a href="#">&#128150;</a>
+            <a href="#">&#128640;</a>
+            <a href="#">&#128642;</a>
+            <a href="#">&#128641;</a>
+            <a href="#">&#128647;</a>
+        </footer>
+    </div>
+</body>
+</html>

@@ -1,0 +1,210 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_4.1_4_3.G18",
+        "Principle1.Guideline1_4.1_4_3.G18.Fail",
+        "Principle1.Guideline1_4.1_4_3.G145",
+        "Principle1.Guideline1_4.1_4_3.G145.Fail",
+        "Principle1.Guideline1_4.1_4_6.G17",
+        "Principle1.Guideline1_4.1_4_6.G18"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+      ],
+      "impact": "serious",
+      "name": "Color Contrast; Text;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#777777",
+                  "bgColor": "#ffffff",
+                  "contrastRatio": 4.47,
+                  "fontSize": "10.8pt (14.4px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 4.47 (foreground color: #777777, background color: #ffffff, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<div class=\"post-meta\">\n                Apr 27, 2012\n                <br>\n                1 minute read\n            </div>",
+            "target": [
+              ".post-meta"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #777777, background color: #ffffff, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-DIV",
+              "path": "1,HTML,1,BODY,0,DIV,1,MAIN,1,DIV",
+              "selector": "body > div.container > main > div.post-meta",
+              "boundingRect": {
+                "top": 356,
+                "bottom": 402,
+                "left": 62,
+                "right": 350,
+                "width": 288,
+                "height": 46
+              },
+              "snippet": "<div class=\"post-meta\">",
+              "nodeLabel": "Apr 27, 2012\n1 minute read",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 4.47 (foreground color: #777777, background color: #ffffff, font size: 10.8pt (14.4px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
+      ],
+      "impact": "serious",
+      "name": "Links; Distinguishable Color;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 2.62,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#7c4dff",
+                  "parentColor": "#333333"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<p>I've added a script, <a href=\"#\">export_google_site_news</a>, to my catchall repository on github.</p>",
+                    "target": [
+                      "p:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 2.62:1 with the surrounding text. (Minimum contrast is 3:1, link text: #7c4dff, surrounding text: #333333)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<p>I've added a script, <a href=\"#\">export_google_site_news</a>, to my catchall repository on github.</p>",
+                    "target": [
+                      "p:nth-child(3)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">export_google_site_news</a>",
+            "target": [
+              "p:nth-child(3) > a"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 2.62:1 with the surrounding text. (Minimum contrast is 3:1, link text: #7c4dff, surrounding text: #333333)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-1-A",
+              "path": "1,HTML,1,BODY,0,DIV,1,MAIN,2,P,1,A",
+              "selector": "div.container > main > p > a",
+              "boundingRect": {
+                "top": 451,
+                "bottom": 469,
+                "left": 62,
+                "right": 243,
+                "width": 181,
+                "height": 18
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "export_google_site_news",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 2.62:1 with the surrounding text. (Minimum contrast is 3:1, link text: #7c4dff, surrounding text: #333333)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-2-P",
+                    "path": "1,HTML,1,BODY,0,DIV,1,MAIN,2,P",
+                    "selector": "body > div.container > main > p",
+                    "boundingRect": {
+                      "top": 422,
+                      "bottom": 499,
+                      "left": 62,
+                      "right": 350,
+                      "width": 288,
+                      "height": 77
+                    },
+                    "snippet": "<p>",
+                    "nodeLabel": "I've added a script, export_google_site_news, to my catchall repository on gith…"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,130 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block"
+      ],
+      "impact": "serious",
+      "name": "Links; Distinguishable Color;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "axe-core",
+          "title": "Links must be distinguishable without relying on color",
+          "description": "Ensure links are distinguished from surrounding text in a way that does not rely on color",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "link-in-text-block",
+                "data": {
+                  "messageKey": "fgContrast",
+                  "contrastRatio": 1.01,
+                  "requiredContrastRatio": 3,
+                  "nodeColor": "#1a0dab",
+                  "parentColor": "#333333"
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<p>Iâve added a script, <a href=\"#\">export_google_site_news</a>, to my catchall repository on github.</p>",
+                    "target": [
+                      "p:nth-child(1)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has insufficient color contrast of 1.01:1 with the surrounding text. (Minimum contrast is 3:1, link text: #1a0dab, surrounding text: #333333)"
+              },
+              {
+                "id": "link-in-text-block-style",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<p>Iâve added a script, <a href=\"#\">export_google_site_news</a>, to my catchall repository on github.</p>",
+                    "target": [
+                      "p:nth-child(1)"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "The link has no styling (such as underline) to distinguish it from the surrounding text"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\">export_google_site_news</a>",
+            "target": [
+              "p:nth-child(1) > a"
+            ],
+            "failureSummary": "Fix any of the following:\n  The link has insufficient color contrast of 1.01:1 with the surrounding text. (Minimum contrast is 3:1, link text: #1a0dab, surrounding text: #333333)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/link-in-text-block",
+          "source": "lighthouse",
+          "title": "Links rely on color to be distinguishable.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. Link text that is discernible improves the experience for users with low vision. [Learn how to make links distinguishable](https://dequeuniversity.com/rules/axe/4.10/link-in-text-block).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,1,MAIN,0,ARTICLE,2,DIV,0,P,1,A",
+              "selector": "article > div.content > p > a",
+              "boundingRect": {
+                "top": 362,
+                "bottom": 383,
+                "left": 20,
+                "right": 226,
+                "width": 206,
+                "height": 21
+              },
+              "snippet": "<a href=\"#\">",
+              "nodeLabel": "export_google_site_news",
+              "explanation": "Fix any of the following:\n  The link has insufficient color contrast of 1.01:1 with the surrounding text. (Minimum contrast is 3:1, link text: #1a0dab, surrounding text: #333333)\n  The link has no styling (such as underline) to distinguish it from the surrounding text"
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-1-P",
+                    "path": "1,HTML,1,BODY,1,MAIN,0,ARTICLE,2,DIV,0,P",
+                    "selector": "main > article > div.content > p",
+                    "boundingRect": {
+                      "top": 331,
+                      "bottom": 417,
+                      "left": 20,
+                      "right": 392,
+                      "width": 372,
+                      "height": 86
+                    },
+                    "snippet": "<p>",
+                    "nodeLabel": "Iâve added a script, export_google_site_news, to my catchall repository on gi…"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

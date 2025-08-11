@@ -1,0 +1,179 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_4.1_4_3.G18",
+        "Principle1.Guideline1_4.1_4_3.G18.Fail",
+        "Principle1.Guideline1_4.1_4_3.G145",
+        "Principle1.Guideline1_4.1_4_3.G145.Fail",
+        "Principle1.Guideline1_4.1_4_6.G17",
+        "Principle1.Guideline1_4.1_4_6.G18"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+      ],
+      "impact": "serious",
+      "name": "Color Contrast; Text;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#ffffff",
+                  "bgColor": "#4caf50",
+                  "contrastRatio": 2.77,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<button style=\"background-color: #4CAF50; color: #fff;\">View Job</button>",
+                    "target": [
+                      "button"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.77 (foreground color: #ffffff, background color: #4caf50, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<button style=\"background-color: #4CAF50; color: #fff;\">View Job</button>",
+            "target": [
+              "button"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #ffffff, background color: #4caf50, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.78:1. Recommendation:  change background to #258829.",
+          "description": "<button style=\"background-color: #4CAF50; color: #fff;\">View Job</button>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.78:1. Recommendation:  change background to #258829.",
+            "context": "<button style=\"background-color: #4CAF50; color: #fff;\">View Job</button>",
+            "selector": "html > body > main > section:nth-child(2) > div > div > button",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-BUTTON",
+              "path": "1,HTML,1,BODY,1,MAIN,1,SECTION,2,DIV,0,DIV,2,BUTTON",
+              "selector": "section.jobs > div.job-list > div.job-item > button",
+              "boundingRect": {
+                "top": 830,
+                "bottom": 870,
+                "left": 56,
+                "right": 163,
+                "width": 107,
+                "height": 40
+              },
+              "snippet": "<button style=\"background-color: #4CAF50; color: #fff;\">",
+              "nodeLabel": "View Job",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.77 (foreground color: #ffffff, background color: #4caf50, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+      "url": null,
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 3,
+      "issues": [
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"about\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#about\">About</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"about\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#about\">About</a>",
+            "selector": "html > body > header > nav > a:nth-child(1)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"jobs\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#jobs\">Jobs</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"jobs\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#jobs\">Jobs</a>",
+            "selector": "html > body > header > nav > a:nth-child(2)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+          "source": "pa11y",
+          "title": "This link points to a named anchor \"company-site\" within the document, but no anchor exists with that name.",
+          "description": "<a href=\"#company-site\">Company Site</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle2.Guideline2_4.2_4_1.G1,G123,G124.NoSuchID",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This link points to a named anchor \"company-site\" within the document, but no anchor exists with that name.",
+            "context": "<a href=\"#company-site\">Company Site</a>",
+            "selector": "html > body > header > nav > a:nth-child(3)",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        }
+      ]
+    }
+  ]
+}

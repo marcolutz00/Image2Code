@@ -38,13 +38,13 @@ class IdentifierAgent:
             "line_end": 10,
             "snippet": "<img src='image.png'>",
             "category": "MissingAlt",
-            "guideline": "WCAG 2.2 – SC 1.1.1 Non-text Content (Level A)",
+            "guideline": "WCAG 2.1 – SC 1.1.1 Non-text Content (Level A)",
             "severity": "Critical" # other options: Critical, Serious, Moderate, Minor
         },
         { ... },
     ]
     Do NOT fix the code and do NOT add extra keys or explanations.
-    Refer to the full WCAG 2.2 spec if in doubt: https://www.w3.org/TR/WCAG22/
+    Refer to the full WCAG 2.1 spec if in doubt: https://www.w3.org/TR/WCAG22/
 
     Let’s think step by step.
     """

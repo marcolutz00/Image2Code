@@ -1,0 +1,75 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": null,
+      "url": "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-banner",
+      "impact": "tbd",
+      "name": "tbd",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-banner",
+          "source": "axe-core",
+          "title": "Document should not have more than one banner landmark",
+          "description": "Ensure the document has at most one banner landmark",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "page-no-duplicate-banner",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<header aria-label=\"Ad Banner Top\">\n        <div class=\"placeholder\" style=\"width: 600px; height: 75px;\"></div>\n    </header>",
+                    "target": [
+                      "header[aria-label=\"Ad Banner Top\"]"
+                    ]
+                  },
+                  {
+                    "html": "<header aria-label=\"Ad Banner Side\">\n        <div class=\"placeholder\" style=\"width: 150px; height: 75px;\"></div>\n    </header>",
+                    "target": [
+                      "header[aria-label=\"Ad Banner Side\"]"
+                    ]
+                  },
+                  {
+                    "html": "<header aria-label=\"Ad Banner Bottom\">\n        <div class=\"placeholder\" style=\"width: 600px; height: 75px;\"></div>\n    </header>",
+                    "target": [
+                      "header[aria-label=\"Ad Banner Bottom\"]"
+                    ]
+                  },
+                  {
+                    "html": "<header aria-label=\"Footer Ad\">\n        <div class=\"placeholder\" style=\"width: 150px; height: 150px;\"></div>\n    </header>",
+                    "target": [
+                      "header[aria-label=\"Footer Ad\"]"
+                    ]
+                  }
+                ],
+                "impact": "moderate",
+                "message": "Document has more than one banner landmark"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<header aria-label=\"Page Banner\">",
+            "target": [
+              "header[aria-label=\"Page Banner\"]"
+            ],
+            "failureSummary": "Fix any of the following:\n  Document has more than one banner landmark"
+          }
+        }
+      ]
+    }
+  ]
+}

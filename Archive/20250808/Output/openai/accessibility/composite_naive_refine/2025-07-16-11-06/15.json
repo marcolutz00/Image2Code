@@ -1,0 +1,133 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-one-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+        "https://dequeuniversity.com/rules/axe/4.10/region",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-complementary-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-contentinfo-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-contentinfo",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-banner-is-top-level",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+        "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level"
+      ],
+      "impact": "moderate",
+      "name": "Landmark & Region; Missing & Unique Landmarks;",
+      "amount_nodes_failed": 3,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-main-is-top-level",
+          "source": "axe-core",
+          "title": "Main landmark should not be contained in another landmark",
+          "description": "Ensure the main landmark is at top level",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "landmark-is-top-level",
+                "data": {
+                  "role": "main"
+                },
+                "relatedNodes": [],
+                "impact": "moderate",
+                "message": "The main landmark is contained in another landmark."
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<div id=\"content\" role=\"main\">",
+            "target": [
+              "#content"
+            ],
+            "failureSummary": "Fix any of the following:\n  The main landmark is contained in another landmark."
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-no-duplicate-main",
+          "source": "axe-core",
+          "title": "Document should not have more than one main landmark",
+          "description": "Ensure the document has at most one main landmark",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "page-no-duplicate-main",
+                "data": null,
+                "relatedNodes": [
+                  {
+                    "html": "<div id=\"content\" role=\"main\">",
+                    "target": [
+                      "#content"
+                    ]
+                  }
+                ],
+                "impact": "moderate",
+                "message": "Document has more than one main landmark"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<main id=\"main\">",
+            "target": [
+              "#main"
+            ],
+            "failureSummary": "Fix any of the following:\n  Document has more than one main landmark"
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/landmark-unique",
+          "source": "axe-core",
+          "title": "Landmarks should have a unique role or role/label/title (i.e. accessible name) combination",
+          "description": "Ensure landmarks are unique",
+          "impact": "moderate",
+          "nodes": {
+            "any": [
+              {
+                "id": "landmark-is-unique",
+                "data": {
+                  "role": "main",
+                  "accessibleText": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<div id=\"content\" role=\"main\">",
+                    "target": [
+                      "#content"
+                    ]
+                  }
+                ],
+                "impact": "moderate",
+                "message": "The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "moderate",
+            "html": "<main id=\"main\">",
+            "target": [
+              "#main"
+            ],
+            "failureSummary": "Fix any of the following:\n  The landmark must have a unique aria-label, aria-labelledby, or title to make landmarks distinguishable"
+          }
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producer Application</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            margin: 0;
+            padding: 20px;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            border: 1px solid #ddd;
+            padding: 20px;
+        }
+        .header {
+            background-color: #ff0099;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            margin-bottom: 20px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        img {
+            display: block;
+            margin: 0 auto 20px;
+            height: 200px;
+            width: 200px;
+            background-color: blue;
+        }
+        p {
+            font-size: 14px;
+            margin-bottom: 20px;
+            color: #333;
+        }
+        p a {
+            color: #0072ed;
+            text-decoration: none;
+        }
+        .form-group {
+            margin-bottom: 20px;
+        }
+        label {
+            font-weight: bold;
+            display: block;
+            margin-bottom: 5px;
+        }
+        input[type="text"],
+        input[type="email"],
+        textarea,
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        .form-check {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .form-check input {
+            margin-right: 10px;
+        }
+        button {
+            background-color: #010101;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            border-radius: 5px;
+        }
+        .footer {
+            font-size: 12px;
+            text-align: center;
+            margin-top: 20px;
+            color: #333;
+        }
+        .footer a {
+            color: #0072ed;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container" role="main">
+        <img src="src/placeholder.jpg" alt="Placeholder">
+        <div class="header"><h1>Producer Application</h1></div>
+
+        <p>Tell us a little about you and your experience. <a href="#">FAQ</a> for more information.</p>
+
+        <div class="form-group">
+            <label for="first-name">First Name <span style="color:#e00;">*</span></label>
+            <input type="text" id="first-name">
+        </div>
+
+        <div class="form-group">
+            <label for="last-name">Last Name <span style="color:#e00;">*</span></label>
+            <input type="text" id="last-name">
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email Address <span style="color:#e00;">*</span></label>
+            <input type="email" id="email">
+        </div>
+
+        <div class="form-group">
+            <label for="phone">Phone Number <span style="color:#e00;">*</span></label>
+            <input type="text" id="phone">
+        </div>
+
+        <div class="form-group">
+            <label for="location">Where Do You Live? <span style="color:#e00;">*</span></label>
+            <input type="text" id="location">
+        </div>
+
+        <div class="form-group">
+            <label>I am at Least 18 Years of Age <span style="color:#e00;">*</span></label>
+            <div class="form-check">
+                <input type="checkbox" id="age">
+                <label for="age">Yes</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Do You Have a Production Company? <span style="color:#e00;">*</span></label>
+            <div class="form-check">
+                <input type="radio" id="prod-yes" name="prod">
+                <label for="prod-yes">Yes</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" id="prod-no" name="prod">
+                <label for="prod-no">No</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="about">Tell Us More About You. <span style="color:#e00;">*</span></label>
+            <textarea id="about" rows="5"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="genre">Preferred Genre <span style="color:#e00;">*</span></label>
+            <select id="genre">
+                <option>Choose...</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label>Are You Confident You Can Create Full-Length Episodes (12-25 minutes) on a Low-Budget and Continue to Create Episodes if they are Renewed by Candivan Subscribers? <span style="color:#e00;">*</span></label>
+            <div class="form-check">
+                <input type="radio" id="conf-yes" name="conf">
+                <label for="conf-yes">Yes</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" id="conf-no" name="conf">
+                <label for="conf-no">No</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>If Selected as a Winner, Would You be Able to Start Production by this May or June (2019)? <span style="color:#e00;">*</span></label>
+            <div class="form-check">
+                <input type="radio" id="winner-yes" name="winner">
+                <label for="winner-yes">Yes</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" id="winner-no" name="winner">
+                <label for="winner-no">No</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="collaboration">Names of Others Plan to Collaborate with (If Applicable)</label>
+            <textarea id="collaboration" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label>Are you a member of the PGA? <span style="color:#e00;">*</span></label>
+            <div class="form-check">
+                <input type="radio" id="pga-yes" name="pga">
+                <label for="pga-yes">Yes</label>
+            </div>
+            <div class="form-check">
+                <input type="radio" id="pga-no" name="pga">
+                <label for="pga-no">No</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label for="social">OPTIONAL: Those with large social networks are preferable. Feel free to list any large networks you are part of or your Twitter.</label>
+            <textarea id="social" rows="3"></textarea>
+        </div>
+
+        <div class="form-group">
+            <label for="discovery">How did you find out about us?</label>
+            <select id="discovery">
+                <option>Choose...</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <div class="form-check">
+                <input type="checkbox" id="agree">
+                <label for="agree">I Have Read and I Accept the Terms and Conditions Below <span style="color:#e00;">*</span></label>
+            </div>
+            <a href="#">Terms and Conditions</a>
+        </div>
+
+        <button>Submit</button>
+
+        <div class="footer">
+            <p><a href="#">Report abuse</a> &nbsp;|&nbsp; Powered by Accessible Web</p>
+        </div>
+    </div>
+</body>
+</html>

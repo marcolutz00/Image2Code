@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Alexito's World</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+            background-color: #212121;
+            color: #fff;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+        }
+
+        a {
+            color: #ff9800;
+            text-decoration: none;
+        }
+
+        a:not(.support a):focus,
+        a:not(.support a):hover {
+            text-decoration: underline;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        header h1 {
+            font-size: 2em;
+            margin-bottom: 5px;
+        }
+
+        header p {
+            font-size: 0.9em;
+            color: #ddd;
+        }
+
+        header nav {
+            margin-top: 10px;
+        }
+
+        header nav a {
+            margin: 0 10px;
+            font-size: 0.8em;
+        }
+
+        .article-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.8em;
+            color: #aaa;
+            margin-bottom: 10px;
+        }
+
+        .article-header span {
+            display: flex;
+            align-items: center;
+        }
+
+        .article-header span::before {
+            content: ' ';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: #aaa;
+            margin-right: 5px;
+        }
+
+        article h1 {
+            font-size: 2em;
+            margin-bottom: 15px;
+        }
+
+        article p {
+            margin-bottom: 15px;
+            color: #ddd;
+        }
+
+        .tags {
+            margin-top: 20px;
+        }
+
+        .tags a {
+            display: inline-block;
+            background-color: #424242;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+            font-size: 0.8em;
+        }
+
+        .support {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .support a {
+            background-color: #ff9800;
+            color: #212121;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+            margin-top: 10px;
+        }
+
+        .related-articles {
+            margin-top: 30px;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .related-article {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+            width: 48%;
+        }
+
+        .related-article h2 {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .related-article p {
+            font-size: 0.9em;
+            color: #aaa;
+        }
+        .similar-articles {
+            margin-top: 30px;
+        }
+
+        .similar-articles h2 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+        .similar-articles-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .similar-article {
+            background-color: #333;
+            padding: 20px;
+            border-radius: 5px;
+        }
+
+        .similar-article h3 {
+            font-size: 1em;
+            margin-bottom: 10px;
+            color: #ddd;
+        }
+
+        .similar-article p {
+            font-size: 0.8em;
+            color: #aaa;
+        }
+        .article-tags {
+            margin-top: 30px;
+        }
+
+        .article-tags h2 {
+            font-size: 1.4em;
+            margin-bottom: 15px;
+        }
+
+        .article-tags a {
+            display: inline-block;
+            background-color: #424242;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 5px;
+            margin-right: 5px;
+            font-size: 0.9em;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 50px;
+            color: #aaa;
+            font-size: 0.8em;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Alexito's World</h1>
+            <p>A world of coding, by Alejandro Martinez</p>
+            <nav>
+                <a href="#">Swift</a>
+                <a href="#">Development</a>
+            </nav>
+        </header>
+
+        <main>
+            <article>
+                <header class="article-header">
+                    <span>June 5, 2016</span>
+                    <span> 1 min read</span>
+                </header>
+        
+                <div class="tags">
+                    <a href="#">Scripting</a>
+                    <a href="#">Swift</a>
+                    <a href="#">Tips and Tricks</a>
+                </div>
+        
+                
+                    <h1>Poor man's hot reloading for Swift scripts</h1>
+                    <p>The other day, while I was writing a <a href="#">Swift script</a>, I added an option to make it run continuosly so it
+                        could be on a server doing its job without stoping. for eva.</p>
+                    <p>To implement that I just used a <a href="#">repeat</a> loop creating <a href="#">NSTasks</a> that called the same script.
+                        Scripts recursion.</p>
+                    <p>The funny part is that with this simple thing I found a quick way to writing the script, almost as a hot
+                        reloading tool.</p>
+                    <p>let reload = "reload" if Process.arguments.contains(reload) { repeat { let task = NSTask()
+                        task.launchPath = Process.arguments.first! task.arguments =
+                        Array (Process.arguments.suffixFrom (1).filter({$0 != reload})) task.launch() task.waitUntilExit() } while
+                        true } Just drop this snippet at the top of the script, and when you call it with the reload argument
+                        it will start looping indefinitely.</p>
+                    <p>Then you can just call it from the command line like:</p>
+                    <p>main.swift reload other params When that is done you can just modify the script and save the file, in
+                        the next execution your changes will be visible. If it fails to compile is not a big deal, the main script is
+                        still in memory without those changes so it will just loop and try to run it again.</p>
+                    <p>Obviously is not a big deal, is a bit annoying seeing all the console spammed, but I found it quite
+                        useful while I'm developing short scripts that I want to iterate on.</p>
+                    <p>Remember that you can use <a href="#">OS signals</a> to stop the task when the main script is killed.</p>
+                
+        
+                <p><a href="#">Share this article on Twitter</a></p>
+        
+                <div class="support">
+                    <p>If you liked this article please consider supporting me</p>
+                    <a href="#">Buy me a coffee</a>
+                </div>
+        
+                <div class="related-articles">
+                    <div class="related-article">
+                        <h2>Next article</h2>
+                        <h3><a href="#">Using closures to simplify</a></h3>
+                        <p>June 7, 2016</p>
+                    </div>
+                    <div class="related-article">
+                        <h2>Previous article</h2>
+                        <h3><a href="#">It's a trap! Catch OS signals in Swift.</a></h3>
+                        <p>May 29, 2016</p>
+                    </div>
+                </div>
+                <div class="similar-articles">
+                    <h2>Similar suggested articles</h2>
+                    <div class="similar-articles-grid">
+                        <div class="similar-article">
+                            <h3><a href="#">Backport SwiftUI modifiers</a></h3>
+                            <p>October 20, 2023</p>
+                        </div>
+                        <div class="similar-article">
+                            <h3><a href="#">Swift script to export lists from Reminders.app</a></h3>
+                            <p>May 8, 2019</p>
+                        </div>
+                        <div class="similar-article">
+                            <h3><a href="#">Swift Collection's prefix for quick tests</a></h3>
+                            <p>March 16, 2019</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="article-tags">
+                    <h2>Or check out this article tags</h2>
+                    <a href="#">Scripting</a>
+                    <a href="#">Swift</a>
+                    <a href="#">Tips and Tricks</a>
+                </div>
+            </article>
+        </main>
+
+        <footer>
+            <a href="#">RSS</a>
+            <p><a href="#">alexito4</a> | <a href="#">alexito4</a> | <a href="#">alexito4</a></p>
+            <p>Generated using <a href="#">Publish</a></p>
+        </footer>
+    </div>
+</body>
+</html>

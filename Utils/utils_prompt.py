@@ -94,7 +94,7 @@ def _get_few_shot_prompt():
     "<a href=\"routes.html\">Click here</a>"
     ],
     [
-    "FormLabel",
+    "Form Label",
     "WCAG 2.1 SC 1.3.1 Info & Relationships – every form control needs a visible label bound programmatically.",
     "<input type=\"checkbox\" id=\"notification\" name=\"notify\" value=\"delays\">\n<label for=\"notification\">Notify me of delays</label>",
     "<input type=\"checkbox\" id=\"notification\" name=\"notify\" value=\"delays\">"
@@ -122,6 +122,12 @@ def _get_few_shot_prompt():
     "WCAG 2.1 SC 3.1.1 Language of Page – the default language of the document must be set with the lang attribute on <html>.",
     "<!DOCTYPE html>\n<html lang=\"en\">\n  …\n</html>",
     "<!DOCTYPE html>\n<html>\n  …\n</html>"
+    ],
+    [
+    "Distinguishable Link Color",
+    "WCAG 2.1 SC 1.4.1 Use of Color – link text that relies on color to convey meaning must (a) differ from surrounding body text by at least a 3 : 1 contrast ratio and (b) provide another visual cue such as an underline or focus outline.",
+    "<p>Read our <a href=\"privacy.html\" style=\"color:#005ea2;text-decoration:underline;\">privacy policy</a> for more details.</p>",
+    "<p>Read our <a href=\"privacy.html\" style=\"color:#3d7fff;text-decoration:none;\">privacy policy</a> for more details.</p>"
     ]
 
     """

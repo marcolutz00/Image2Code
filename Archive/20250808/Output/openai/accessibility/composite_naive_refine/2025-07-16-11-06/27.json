@@ -1,0 +1,181 @@
+{
+  "manual": {
+    "checks": {
+      "1.4.4": "tbd",
+      "1.4.10": "tbd",
+      "1.4.12": "tbd",
+      "2.1.1+2.1.2": "tbd",
+      "2.4.3": "tbd",
+      "2.4.6": "tbd",
+      "2.4.7": "tbd"
+    }
+  },
+  "automatic": [
+    {
+      "wcag_id": [
+        "Principle1.Guideline1_4.1_4_3.G18",
+        "Principle1.Guideline1_4.1_4_3.G18.Fail",
+        "Principle1.Guideline1_4.1_4_3.G145",
+        "Principle1.Guideline1_4.1_4_3.G145.Fail",
+        "Principle1.Guideline1_4.1_4_6.G17",
+        "Principle1.Guideline1_4.1_4_6.G18"
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+        "https://dequeuniversity.com/rules/axe/4.10/color-contrast-enhanced"
+      ],
+      "impact": "serious",
+      "name": "Color Contrast; Text;",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "axe-core",
+          "title": "Elements must meet minimum color contrast ratio thresholds",
+          "description": "Ensure the contrast between foreground and background colors meets WCAG 2 AA minimum contrast ratio thresholds",
+          "impact": "serious",
+          "nodes": {
+            "any": [
+              {
+                "id": "color-contrast",
+                "data": {
+                  "fgColor": "#7c4dff",
+                  "bgColor": "#00c7d9",
+                  "contrastRatio": 2.33,
+                  "fontSize": "12.0pt (16px)",
+                  "fontWeight": "normal",
+                  "messageKey": null,
+                  "expectedContrastRatio": "4.5:1",
+                  "shadowColor": null
+                },
+                "relatedNodes": [
+                  {
+                    "html": "<a href=\"#\" class=\"btn\">CHECKOUT</a>",
+                    "target": [
+                      ".cart-footer > .btn"
+                    ]
+                  }
+                ],
+                "impact": "serious",
+                "message": "Element has insufficient color contrast of 2.33 (foreground color: #7c4dff, background color: #00c7d9, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+              }
+            ],
+            "all": [],
+            "none": [],
+            "impact": "serious",
+            "html": "<a href=\"#\" class=\"btn\">CHECKOUT</a>",
+            "target": [
+              ".cart-footer > .btn"
+            ],
+            "failureSummary": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #7c4dff, background color: #00c7d9, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+          }
+        },
+        {
+          "id": "Principle1.Guideline1_4.1_4_3.G18.Fail",
+          "source": "pa11y",
+          "title": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.33:1. Recommendation:  change text colour to #4718ca.",
+          "description": "<a href=\"#\" class=\"btn\">CHECKOUT</a>",
+          "impact": "error",
+          "original_issue": {
+            "code": "WCAG2AA.Principle1.Guideline1_4.1_4_3.G18.Fail",
+            "type": "error",
+            "typeCode": 1,
+            "message": "This element has insufficient contrast at this conformance level. Expected a contrast ratio of at least 4.5:1, but text in this element has a contrast ratio of 2.33:1. Recommendation:  change text colour to #4718ca.",
+            "context": "<a href=\"#\" class=\"btn\">CHECKOUT</a>",
+            "selector": "html > body > main > div:nth-child(2) > div:nth-child(2) > div:nth-child(3) > a",
+            "runner": "htmlcs",
+            "runnerExtras": {}
+          }
+        },
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/color-contrast",
+          "source": "lighthouse",
+          "title": "Background and foreground colors do not have a sufficient contrast ratio.",
+          "description": "Low-contrast text is difficult or impossible for many users to read. [Learn how to provide sufficient color contrast](https://dequeuniversity.com/rules/axe/4.10/color-contrast).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-0-A",
+              "path": "1,HTML,1,BODY,1,MAIN,1,DIV,1,DIV,2,DIV,1,A",
+              "selector": "div.cart > div.shopping-cart > div.cart-footer > a.btn",
+              "boundingRect": {
+                "top": 664,
+                "bottom": 702,
+                "left": 241,
+                "right": 371,
+                "width": 130,
+                "height": 38
+              },
+              "snippet": "<a href=\"#\" class=\"btn\">",
+              "nodeLabel": "CHECKOUT",
+              "explanation": "Fix any of the following:\n  Element has insufficient color contrast of 2.33 (foreground color: #7c4dff, background color: #00c7d9, font size: 12.0pt (16px), font weight: normal). Expected contrast ratio of 4.5:1"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "wcag_id": [
+        null
+      ],
+      "url": [
+        "https://dequeuniversity.com/rules/axe/4.10/target-size"
+      ],
+      "impact": "serious",
+      "name": "Size; Target Size; Element too small",
+      "amount_nodes_failed": 1,
+      "issues": [
+        {
+          "id": "https://dequeuniversity.com/rules/axe/4.10/target-size",
+          "source": "lighthouse",
+          "title": "Touch targets do not have sufficient size or spacing.",
+          "description": "Touch targets with sufficient size and spacing help users who may have difficulty targeting small controls to activate the targets. [Learn more about touch targets](https://dequeuniversity.com/rules/axe/4.10/target-size).",
+          "score": 0,
+          "details": {
+            "node": {
+              "type": "node",
+              "lhId": "1-2-INPUT",
+              "path": "1,HTML,1,BODY,0,HEADER,1,DIV,1,INPUT",
+              "selector": "body > header.header > div > input",
+              "boundingRect": {
+                "top": 28,
+                "bottom": 49,
+                "left": 237,
+                "right": 390,
+                "width": 153,
+                "height": 21
+              },
+              "snippet": "<input type=\"text\" placeholder=\"SEARCH\" aria-label=\"Search\">",
+              "nodeLabel": "Search",
+              "explanation": "Fix any of the following:\n  Target has insufficient size (153px by 21px, should be at least 24px by 24px)\n  Target has insufficient space to its closest neighbors. Safe clickable space has a diameter of 23px instead of at least 24px."
+            },
+            "subItems": {
+              "type": "subitems",
+              "items": [
+                {
+                  "relatedNode": {
+                    "type": "node",
+                    "lhId": "1-1-A",
+                    "path": "1,HTML,1,BODY,0,HEADER,1,DIV,0,A",
+                    "selector": "body > header.header > div > a",
+                    "boundingRect": {
+                      "top": 10,
+                      "bottom": 27,
+                      "left": 247,
+                      "right": 336,
+                      "width": 89,
+                      "height": 17
+                    },
+                    "snippet": "<a href=\"#\">",
+                    "nodeLabel": "VIEW CART"
+                  }
+                }
+              ]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}

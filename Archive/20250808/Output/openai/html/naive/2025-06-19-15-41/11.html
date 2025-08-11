@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UI Screenshot</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+        header {
+            background: #f6f8fa;
+            padding: 15px 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        header nav {
+            display: flex;
+            gap: 20px;
+        }
+        header nav a {
+            text-decoration: none;
+            color: #333;
+            font-size: 14px;
+        }
+        main {
+            display: flex;
+            max-width: 1200px;
+            margin: 20px auto;
+            gap: 20px;
+        }
+        aside {
+            width: 20%;
+        }
+        aside ul {
+            list-style: none;
+            padding: 0;
+        }
+        aside ul li {
+            margin-bottom: 10px;
+        }
+        aside ul li a {
+            text-decoration: none;
+            color: #0366d6;
+            font-size: 14px;
+        }
+        article {
+            width: 80%;
+        }
+        .code-box {
+            background: #fff8e1;
+            border: 1px solid #e1e1e1;
+            padding: 20px;
+            font-size: 14px;
+            color: #333;
+            font-family: monospace;
+            margin-bottom: 20px;
+        }
+        .code-box .highlight {
+            color: orange;
+        }
+        footer {
+            background: #293845;
+            color: #fff;
+            padding: 20px 0;
+            margin-top: 40px;
+        }
+        footer .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+        }
+        footer div {
+            width: 30%;
+        }
+        footer ul {
+            list-style: none;
+            padding: 0;
+            font-size: 14px;
+        }
+        footer ul li {
+            margin-bottom: 10px;
+        }
+        footer a {
+            text-decoration: none;
+            color: #9c9c9c;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div>
+        <nav>
+            <a href="#">FEATURES</a>
+            <a href="#">OPEN SOURCE</a>
+            <a href="#">ABOUT</a>
+            <a href="#">DOCS</a>
+        </nav>
+    </div>
+    <div>
+        <nav>
+            <a href="#">LOGIN</a>
+            <a href="#">REGISTER</a>
+        </nav>
+    </div>
+</header>
+
+<main>
+    <aside>
+        <ul>
+            <li><a href="#">Videos</a></li>
+            <li><a href="#">Getting started</a></li>
+            <li><a href="#">Getting more from Koding</a></li>
+        </ul>
+        
+        <h3>Stack Documentation</h3>
+        <ul>
+            <li><a href="#">Configuration</a></li>
+            <li><a href="#">Providers</a></li>
+            <li><a href="#">Archive</a></li>
+            <li><a href="#">Atlas</a></li>
+            <li><a href="#">AWS</a></li>
+        </ul>
+
+        <h3>Data Sources</h3>
+        <ul>
+            <li><a href="#">Resources</a></ li>
+            <li><a href="#">aws_alb</a></li>
+            <li><a href="#">aws_alb_listener</a></li>
+            <li><a href="#">aws_alb_listener_rule</a></li>
+            <li><a href="#">aws_alb_target_group</a></li>
+        </ul>
+
+        <h3>Azure Service Management</h3>
+        <ul>
+            <li><a href="#">Provisioners</a></li>
+        </ul>
+    </aside>
+
+    <article>
+        <h1>aws_autoscaling_lifecycle_hook</h1>
+        <p>Provides an AutoScaling Lifecycle Hook resource.</p>
+        
+        <h2>Example Usage</h2>
+        <div class="code-box">
+            <img src="src/placeholder.jpg" alt="Code Placeholder" width="100%" height="250">
+            <pre>
+resource "aws_autoscaling_group" "foobar" {
+  availability_zones = ["us-west-2a"]
+  name               = "terraform-test-foobar5"
+  health_check_type  = "EC2"
+  termination_policies = ["OldestInstance"]
+  tag {
+    key                 = "Foo"
+    value               = "foo-bar"
+    propagate_at_launch = true
+  }
+}
+
+resource "aws_autoscaling_lifecycle_hook" "foobar" {
+  name                   = "foobar"
+  autoscaling_group_name = "<span class="highlight">${aws_autoscaling_group.foobar.name}</span>"
+  default_result         = "CONTINUE"
+  heartbeat_timeout      = 2000
+  lifecycle_transition   = "autoscaling:EC2_INSTANCE_LAUNCHING"
+  notification_metadata  = '{
+  "foo": "bar"
+}'
+  notification_target_arn = "arn:aws:sqs:us-east-1:444455556666:queue1"
+  role_arn               = "arn:aws:iam::123456789012:role/S3Access"
+}
+            </pre>
+        </div>
+
+        <h2>Argument Reference</h2>
+        <p>The following arguments are supported:</p>
+        <ul>
+            <li><strong>name</strong> - (Required) The name of the lifecycle hook.</li>
+            <li><strong>autoscaling_group_name</strong> - (Required) The name of the Auto Scaling group to which you want to assign the lifecycle hook.</li>
+            <li><strong>default_result</strong> - (Optional) Defines the action the Auto Scaling group should take when the lifecycle hook timeout elapses or if an unexpected failure occurs.</li>
+            <li><strong>heartbeat_timeout</strong> - (Optional) Defines the amount of time, in seconds, that can elapse before the lifecycle hook times out. When the lifecycle hook times out, Auto Scaling performs the action defined in the DefaultResult parameter.</li>
+        </ul>
+        <p>See the source of this document at <a href="#" style="color: #0366d6;">Terraform.io</a></p>
+    </article>
+</main>
+
+<footer>
+    <div class="footer-content">
+        <div>
+            <h4>For Teams</h4>
+            <ul>
+                <li>Platform for Training</li>
+                <li>Pre-Sales Automation</li>
+            </ul>
+        </div>
+        <div>
+            <h4>Resources</h4>
+            <ul>
+                <li>Documentation</li>
+                <li>Blog</li>
+            </ul>
+        </div>
+        <div>
+            <h4>About</h4>
+            <ul>
+                <li>About Us</li>
+                <li>Open Source</li>
+            </ul>
+        </div>
+        <div>
+            <h4>Contact</h4>
+            <ul>
+                <li>Facebook</li>
+                <li>Twitter</li>
+                <li>LinkedIn</li>
+                <li>Email us</li>
+            </ul>
+        </div>
+    </div>
+</footer>
+
+</body>
+</html>
