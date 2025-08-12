@@ -158,8 +158,11 @@ def map_htmlcsniffer_and_axecore(id: str, htmlcsniffer: bool=True):
         return None, id, "tbd", "tbd"
 
 
-# Pa11y only shows the wcag id, but not the url
+
 def process_pa11y_issues(issues, wcag_issues_dict):
+    """
+    Pa11y only shows the wcag id, but not the url
+    """
     if issues is None or len(issues) == 0:
         return
     # Load the json file
@@ -193,8 +196,11 @@ def process_pa11y_issues(issues, wcag_issues_dict):
             wcag_issues_dict[(htmlcs_id_tuple, axe_url_tuple, impact, 1, name)] = [full_issue]
 
 
-# Axe-core shows the url and wcag id of all the violations
+
 def process_axe_core_issues(issues, wcag_issues_dict):
+    """
+    Axe-core shows the url and wcag id of all the violations
+    """
     if issues is None or len(issues) == 0:
         return
     
@@ -235,8 +241,11 @@ def process_axe_core_issues(issues, wcag_issues_dict):
                 wcag_issues_dict[(htmlcs_id_tuple, axe_url_tuple, impact, 1, name)] = [full_issue]
 
 
-# Calculates the amount of issues which have been tested by Axe-Core
+
 def count_axe_core_tested_nodes(axe_core_violations, axe_core_incomplete, axe_core_passes):
+    """
+    Calculates the amount of issues which have been tested by Axe-Core
+    """
     amount_nodes_checked = 0
 
     for issues_per_category in [axe_core_violations, axe_core_incomplete, axe_core_passes]:
@@ -249,8 +258,11 @@ def count_axe_core_tested_nodes(axe_core_violations, axe_core_incomplete, axe_co
     return amount_nodes_checked
 
 
-# Lighthouse only shows the url
+
 def process_lighthouse_issues(issues, wcag_issues_dict):
+    """
+    Lighthouse only shows the url
+    """
     if issues is None or len(issues) == 0:
         return
     
@@ -316,8 +328,12 @@ def process_lighthouse_issues(issues, wcag_issues_dict):
 
 
 
-# Main function to call all mappings
+
 def integrate_accessibility_tools_results(pa11y, axe_core, lighthouse):
+    """
+        Integrates the results from different accessibility tools into a unified format.
+    """
+
     '''
         issues_automatic : contains all automatic found issues which do not require human checking
         issues_manual : contains all issues which have to be checked manually again

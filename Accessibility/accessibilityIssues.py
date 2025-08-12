@@ -24,8 +24,10 @@ AXE_CORE_PATH = os.path.join(UTILS_PATH, "axe-core/axe.min.js")
     In the following, we are going to use different automatic accessibility tools
 '''
 
-# 1. axe-core (npm) infos here: https://hackmd.io/@gabalafou/ByvwfEC0j
 async def _axe_core(html_path):
+    """
+    1. axe-core (npm) infos here: https://hackmd.io/@gabalafou/ByvwfEC0j
+    """
     async with async_playwright() as p:
         browser = await p.chromium.launch()
         page = await browser.new_page()
@@ -46,9 +48,11 @@ async def _axe_core(html_path):
     return axe_results
 
 
-# 2. Pa11y (npm) infos here: https://www.npmjs.com/package/pa11y
-# Uses HTML_CodeSniffer under the hood
 async def _pa11y(html_path):
+    """
+    2. Pa11y (npm) infos here: https://www.npmjs.com/package/pa11y
+    Engine: HTML Code Sniffer
+    """
     output_type = "json"
 
     local_html = f"file://{os.path.abspath(html_path)}"
@@ -67,9 +71,12 @@ async def _pa11y(html_path):
     return output_cmd.stdout
 
 
-# 3. Google Lighthouse : https://www.npmjs.com/package/lighthouse
-# Implementation: https://medium.com/@olimpiuseulean/use-python-to-automate-google-lighthouse-reports-and-keep-a-historical-record-of-these-65f378325d64
+
 async def _google_lighthouse(html_path):
+    """
+    3. Google Lighthouse : https://www.npmjs.com/package/lighthouse
+    Implementation: https://medium.com/@olimpiuseulean/use-python-to-automate-google-lighthouse-reports-and-keep-a-historical-record-of-these-65f378325d64
+    """
     local_html = os.path.abspath(html_path)
     local_html_dir = Path(local_html).parent
     local_html_name = Path(local_html).name
@@ -82,9 +89,7 @@ async def _google_lighthouse(html_path):
         "8001",
         "--bind",
         "127.0.0.1",
-        cwd=str(local_html_dir),
-        stdout=asyncio.subprocess.PIPE,
-        stderr=asyncio.subprocess.PIPE
+        cwd=str(local_html_dir), stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE
     )
 
     try:
@@ -92,26 +97,21 @@ async def _google_lighthouse(html_path):
 
         url = f"http://127.0.0.1:8001/{local_html_name}"
 
-        lh_bin = shutil.which("lighthouse") or "/opt/homebrew/bin/lighthouse"
+        # find lighthouse locally
+        lighthouse_binary = shutil.which("lighthouse") or "/opt/homebrew/bin/lighthouse"
 
         cmd = [
-            lh_bin, url,
-            "--output=json", "--output-path=stdout",
-            "--chrome-flags=--headless",
-            "--quiet",
-            "--only-categories=accessibility",
+            lighthouse_binary, url,
+            "--output=json", "--output-path=stdout", "--chrome-flags=--headless","--quiet", "--only-categories=accessibility",
         ]
 
-        proc = await asyncio.create_subprocess_exec(
-            *cmd,
-            stdin=asyncio.subprocess.DEVNULL,
-            stdout=asyncio.subprocess.PIPE,
-            stderr=asyncio.subprocess.PIPE,
+        process_lighthouse = await asyncio.create_subprocess_exec(
+            *cmd, stdin=asyncio.subprocess.DEVNULL, stdout=asyncio.subprocess.PIPE, stderr=asyncio.subprocess.PIPE,
         )
 
-        stdout_bytes, stderr_bytes = await proc.communicate()
+        stdout_bytes, stderr_bytes = await process_lighthouse.communicate()
 
-        if proc.returncode != 0:
+        if process_lighthouse.returncode != 0:
             raise RuntimeError(stderr_bytes.decode() or "lighthouse failed")
 
         data = json.loads(stdout_bytes.decode())
@@ -131,13 +131,16 @@ async def _google_lighthouse(html_path):
 
 
 async def _get_accessibility_issues(html_path):
+    """
+    collect accessibility violations from various tools
+    """
     axe_core_results = await _axe_core(html_path)
     pa11y_results = await _pa11y(html_path)
 
     try:
         lighthouse_results = await _google_lighthouse(html_path)
     except Exception as e:
-        print(f"Error while running Lighthouse: {e}")
+        print(f"Error with Lighthouse: {e}")
         lighthouse_results = None
 
     issues_automatic_json, issues_overview_json = accessibilityMapping.integrate_accessibility_tools_results(pa11y_results, axe_core_results, lighthouse_results)

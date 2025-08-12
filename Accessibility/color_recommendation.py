@@ -17,31 +17,29 @@ def draw_boxes_on_image(image_path, blocks, out_path="annotated.png", color=(0, 
     """
         For test cases
         Just draws boxes in image
-
-        Generated with ChatGPT
     """
     img = cv2.imread(image_path)
-    h, w = img.shape[:2]
+    height, width = img.shape[:2]
 
     for b in blocks:
         x_norm, y_norm, w_norm, h_norm = b["bbox"]
-        # x1, y1 = int(x_norm * w), int(y_norm * h)
-        # x2, y2 = int((x_norm + w_norm) * w), int((y_norm + h_norm) * h)
-        x1 = int(round(x_norm *  w))
-        y1 = int(round(y_norm *  h))
-        x2 = int(round((x_norm + w_norm) * w))
-        y2 = int(round((y_norm + h_norm) * h))
+        # x1, y1 = int(x_norm * width), int(y_norm * height)
+        # x2, y2 = int((x_norm + w_norm) * width), int((y_norm + h_norm) * height)
+        x1 = int(round(x_norm *  width))
+        y1 = int(round(y_norm *  height))
+        x2 = int(round((x_norm + w_norm) * width))
+        y2 = int(round((y_norm + h_norm) * height))
 
-        x1 = max(0, min(x1, w - 1))
-        x2 = max(0, min(x2, w - 1))
-        y1 = max(0, min(y1, h - 1))
-        y2 = max(0, min(y2, h - 1))
+        x1 = max(0, min(x1, width - 1))
+        x2 = max(0, min(x2, width - 1))
+        y1 = max(0, min(y1, height - 1))
+        y2 = max(0, min(y2, height - 1))
 
         cv2.rectangle(img, (x1, y1), (x2, y2), color, thickness)
         cv2.putText(img, b["text"][:20], (x1, max(15, y1 - 5)), cv2.FONT_HERSHEY_SIMPLEX, 0.5, color, 1, cv2.LINE_AA)
 
     cv2.imwrite(out_path, img)
-    print(f"Annotated image: {out_path}")
+    # print(f"Image: {out_path}")
 
 
 
@@ -93,7 +91,10 @@ def get_background_color(image_path, blocks):
                         dict_colors_box[tuple(pixel_color)] += 1
         
         if len(dict_colors_box) > 0:
-            # https://stackoverflow.com/questions/268272/getting-key-with-maximum-value-in-dictionary
+            # Third-party snippet (not my code)
+            # Source: Stack Overflow – “Getting key with maximum value in dictionary?”
+            # Author: ricafeal
+            # Link: https://stackoverflow.com/questions/268272/getting-key-with-maximum-value-in-dictionary
             most_common_color = max(dict_colors_box, key=dict_colors_box.get)
             background_colors.append(most_common_color)
             blocks[blocks.index(block)]["background_color"] = most_common_color
@@ -107,8 +108,6 @@ def get_background_color(image_path, blocks):
 def _check_large_text_bbox(bbox_height):
     """
         Simple chek if css corresponds to large text
-
-        TODO: More sophisticated (e.g. check if bold font or dpr)
     """
 
     return True if bbox_height >= 24 else False
@@ -120,9 +119,12 @@ def perceived_brightness_rgb(rgb):
 
     """
 
-    # Generated with ChatGPT and https://stackoverflow.com/questions/596216/formula-to-determine-perceived-brightness-of-rgb-color?utm_source=chatgpt.com
-    g = [(c/255)/12.92 if c/255<=0.03928 else ((c/255+0.055)/1.055)**2.4 for c in rgb]
+    # Third-party snippet (not my code)
+    # Source: Stack Overflow – “Formula to determine perceived brightness of RGB color”
+    # Author: robmerica
+    # Link: https://stackoverflow.com/questions/596216/formula-to-determine-perceived-brightness-of-rgb-color
 
+    g = [(c/255)/12.92 if c/255<=0.03928 else ((c/255+0.055)/1.055)**2.4 for c in rgb]
     # According to official W3C recommendation: https://www.w3.org/TR/WCAG20-TECHS/G18.html
     return 0.2126*g[0] + 0.7152*g[1] + 0.0722*g[2]
 
@@ -211,6 +213,9 @@ def _extract_html_snippet(html_path, text_snippet):
 
 
 def _structure_recommended_colors(blocks, html_path):
+    """
+        Structures the recommended colors for output
+    """
     list_output = []
     for block in blocks:
         new_color = block["suggest_color"]
@@ -237,6 +242,9 @@ def _structure_recommended_colors(blocks, html_path):
 
 
 def get_recommended_colors(html_path, image_path, full_output=False):
+    """
+        Get recommended colors for the given HTML and image paths.
+    """
 
     modified_image_path = image_path.replace(".png", "_mod.png")
     base_name = image_path.split("/")[-1].split(".")[0]
