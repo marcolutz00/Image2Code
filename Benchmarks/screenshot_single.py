@@ -3,6 +3,11 @@ from playwright.sync_api import sync_playwright
 import argparse
 from PIL import Image
 
+# Third-party snippet (not my code)
+# Source: Design2Code
+# Author: Chenglei Si, Yanzhe Zhang, Ryan Li, Zhengyuan Yang, Ruibo Liu, Diyi Yang
+# Link: https://github.com/NoviScl/Design2Code
+# whole code
 
 def take_screenshot(url, output_file="screenshot.png", do_it_again=False):
     # Convert local path to file:// URL if it's a file

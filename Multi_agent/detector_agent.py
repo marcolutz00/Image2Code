@@ -85,6 +85,5 @@ class DetectorAgent:
         return issues, tokens_used
 
 
-    # TODO: Self-Critique in Future
 
 

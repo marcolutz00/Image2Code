@@ -117,7 +117,7 @@ async def create_data_entry(name: int, html_path: str, llm_output: bool) -> dict
     # 2. Do screenshot -> only necessary if LLM-Output
     if llm_output:
         image_path = os.path.join(html_dir, '..', 'images', f"{name}.png")
-        await util_render_and_screenshot(html_path, image_path)
+        await render_and_screenshot(html_path, image_path)
 
 
     return data
@@ -273,7 +273,10 @@ def _get_css(url: str, soup: BeautifulSoup):
     for link in soup.find_all('link', rel='stylesheet'):
         link_url = link.get('href')
         if link_url:
-            # do some join: https://stackoverflow.com/questions/10893374/python-confusions-with-urljoin
+            # Third-party snippet (not my code)
+            # Source: StackOverflow - "Python: confusions with urljoin"
+            # Author: treecoder
+            # Link: https://stackoverflow.com/questions/10893374/python-confusions-with-urljoin
             css_url = urljoin(url, link_url)
             print(css_url)
             response_css = requests.get(css_url, timeout=10)
@@ -345,12 +348,5 @@ if __name__ == "__main__":
     #         image_path = os.path.join(images_path, f"{os.path.splitext(html_file)[0]}.png")
     #         save_screenshots(html_path, image_path)
     #         print(f"Screenshot saved for {html_file} at {image_path}")
-
-
-
-    
-
-    
-
 
 

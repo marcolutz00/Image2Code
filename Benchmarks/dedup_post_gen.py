@@ -2,6 +2,12 @@ import difflib
 import os
 import re
 
+# Third-party snippet (not my code)
+# Source: Design2Code
+# Author: Chenglei Si, Yanzhe Zhang, Ryan Li, Zhengyuan Yang, Ruibo Liu, Diyi Yang
+# Link: https://github.com/NoviScl/Design2Code
+# whole code
+
 def map_positions(clean_text, original_text):
     """
     Maps the positions from the clean text back to the original text.

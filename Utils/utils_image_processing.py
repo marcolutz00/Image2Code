@@ -104,10 +104,9 @@ async def process_image_iterative(client, model, prompt_strategy, html_input, ac
         refine_prompt = utils_prompt.get_prompt("iterative")
         final_refine_prompt = f"{refine_prompt}\n\nViolations:\n{html_snippets}"
 
-        # TODO: Freigeben
-        # generated_html = await utils_iterative_prompt.process_refinement_llm(client, final_refine_prompt)
-        # with open(os.path.join(output_base_html_path, f"{prompt_strategy}_refine_{i}", date, f"{base_name}.html"), "w", encoding="utf-8") as f:
-        #     f.write(generated_html)
+        generated_html = await utils_iterative_prompt.process_refinement_llm(client, final_refine_prompt)
+        with open(os.path.join(output_base_html_path, f"{prompt_strategy}_refine_{i}", date, f"{base_name}.html"), "w", encoding="utf-8") as f:
+            f.write(generated_html)
         
         if generated_html is None:
             html_file_path = os.path.join(output_base_html_path, f"{prompt_strategy}_refine_{i}", date, f"{base_name}.html")
@@ -128,7 +127,6 @@ async def process_image_iterative(client, model, prompt_strategy, html_input, ac
         accessibility_data = accessibility_issues
         html_input = generated_html
 
-        break
 
 
 async def process_image_composite(client, model, prompt_strategy, html_input, accessibility_data, image_path, date):

@@ -1,6 +1,12 @@
 import cv2
 import numpy as np
 
+# Third-party snippet (not my code)
+# Source: Design2Code
+# Author: Chenglei Si, Yanzhe Zhang, Ryan Li, Zhengyuan Yang, Ruibo Liu, Diyi Yang
+# Link: https://github.com/NoviScl/Design2Code
+# whole code
+
 # This is a patch for color map, which is not updated for newer version of numpy
 def patch_asscalar(a):
     return a.item()

@@ -84,7 +84,7 @@ def _get_few_shot_prompt():
     [
     "Alt-Text",
     "WCAG 2.1 SC 1.1.1 Non-text Content – every meaningful <img> needs a concise alt attribute.",
-    "<img src=\"newsletter.gif\" alt=\"Free newsletter. Get free recipes, news, and more. Learn more.\">",
+    "<img src=\"animal.jpg\" alt=\"Black Cat\">",
     "<img src=\"animal.jpg\">"
     ],
     [

@@ -5,6 +5,11 @@ import os
 from bs4 import BeautifulSoup, NavigableString, Tag, Comment
 from pathlib import Path
 
+# Third-party snippet (not my code)
+# Source: Design2Code
+# Author: Chenglei Si, Yanzhe Zhang, Ryan Li, Zhengyuan Yang, Ruibo Liu, Diyi Yang
+# Link: https://github.com/NoviScl/Design2Code
+# whole code
 
 def rgb_to_hex(rgb):
     """Convert an RGB tuple to hexadecimal format."""

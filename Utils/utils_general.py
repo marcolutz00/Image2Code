@@ -103,7 +103,6 @@ def encode_image_b64(self, image_data):
 
 def create_dir_structure():
     '''
-    TODO: Nohcmal checken, merge mit unten?
         Creates the necessary folder structures for the project
     '''
     base = Path(__file__).resolve().parent.parent

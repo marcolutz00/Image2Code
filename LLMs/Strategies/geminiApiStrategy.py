@@ -11,9 +11,6 @@ from google.genai import types
 MODEL = 'gemini-2.0-flash'
 
 
-SYSTEM_INSTRUCTION_MAPPING = 'You are an expert in understanding accessibility issues in HTML/CSS. ' \
-'Therefore, you often use automatic tools like Google lighthouse, Axe-Core and Pa11y which help you ' \
-'to automatically detect Accessibility Issues within the code'
 
 class GeminiStrategy(LLMStrategy):
     def __init__(self, api_key):
